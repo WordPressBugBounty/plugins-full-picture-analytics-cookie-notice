@@ -600,18 +600,6 @@
 		
 	}
 
-    // Run adblock test
-
-    function runAdblockTest() {
-		if ( fpdata.adblock_enabled !== true && fpdata.adblock_enabled !== false ) {
-            fpdata.adblock_enabled = false;
-            let url = fp.vars.url.slice(-1) == '/' ? fp.vars.url : fp.vars.url + '/'; // make sure that we have a trailing slash at the end
-            FP.getScript( url + 'public/helpers/ad_tracker.js', ()=>{ fpdata.adblock_enabled = !! FP.findID('privateAdManager'); } );
-		}
-    }
-
-    FP.addAction( ['dom_loaded'], runAdblockTest );
-
     // FIRE TAGS WHEN THE DOCUMENT GETS AND LOSES FOCUS
 
     function doPageShowActions(){

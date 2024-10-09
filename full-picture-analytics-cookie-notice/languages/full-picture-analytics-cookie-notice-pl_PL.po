@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wpfp\n"
 "Report-Msgid-Bugs-To: Translator Name <translations@example.com>\n"
-"POT-Creation-Date: 2024-09-30 13:16+0200\n"
-"PO-Revision-Date: 2024-09-30 13:20+0200\n"
+"POT-Creation-Date: 2024-10-07 14:53+0200\n"
+"PO-Revision-Date: 2024-10-07 14:56+0200\n"
 "Last-Translator: Krzysztof Planeta <hello@wpfullpicture.com>\n"
 "Language-Team: Polish\n"
 "Language: pl_PL\n"
@@ -40,22 +40,50 @@ msgstr "Nie masz wystarczających uprawnień dostępu do tej strony."
 msgid "Reports"
 msgstr "Raporty"
 
-#: admin/class-fupi-admin.php:992
+#: admin/class-fupi-admin.php:991
 #, php-format
 msgid "WP Full Picture plugin has detected that you are using OceanWP theme. This theme breaks the controls for styling Consent Banner in the WordPress theme customizer. %1$sLearn what to do about it%2$s."
 msgstr "Wtyczka WP Full Picture wykryła, że używasz motywu OceanWP. Ten motyw uniemożliwia stylizację banera zgody w panelu dostosowania wyglądu szablonu. %1$sDowiedz się, co z tym zrobić%2$s."
 
-#: admin/class-fupi-admin.php:1011
+#: admin/class-fupi-admin.php:1010
 msgid "Order conf. seen"
 msgstr "Potwierdzenie zam. wyświetlone"
 
-#: admin/class-fupi-admin.php:1021
+#: admin/class-fupi-admin.php:1020
 msgid "Order confirmation page seen"
 msgstr "Strona potwierdz. zamówienia obejrzana"
 
-#: admin/class-fupi-admin.php:1021
+#: admin/class-fupi-admin.php:1020
 msgid "Order confirmation page not seen"
 msgstr "Strona potwierdz. zamówienia nieobejrzana"
+
+#: admin/class-fupi-admin.php:1122
+msgid "File not found"
+msgstr "Nie odnaleziono pliku"
+
+#: admin/class-fupi-admin.php:1125 admin/class-fupi-admin.php:1134
+msgid "Permission denied"
+msgstr "Odmowa dostępu"
+
+#: admin/class-fupi-admin.php:1140
+msgid "No settings data received"
+msgstr "Brak danych ustawień"
+
+#: admin/class-fupi-admin.php:1145
+msgid "Invalid JSON format"
+msgstr "Nieprawidłowy format JSON"
+
+#: admin/class-fupi-admin.php:1265
+msgid "This will overwrite all settings of WP Full Picture. Are you sure?"
+msgstr "Spowoduje to nadpisanie wszystkich ustawień WP Full Picture. Jesteś pewien?"
+
+#: admin/class-fupi-admin.php:1293
+msgid "Settings uploaded successfully! The page will now reload."
+msgstr "Ustawienia zostały przesłane pomyślnie! Strona zostanie teraz przeładowana."
+
+#: admin/class-fupi-admin.php:1303
+msgid "Invalid JSON file"
+msgstr "Nieprawidłowy plik JSON"
 
 #: admin/customizer/fupi-customizer-settings.php:6
 #: admin/settings/modules/iframeblock/fupi-admin-tab-iframeblock.php:4
@@ -405,7 +433,7 @@ msgid "Border style"
 msgstr "Styl obramowania"
 
 #: admin/customizer/fupi-customizer-settings.php:875
-#: admin/settings/fupi-admin-fields-html.php:465
+#: admin/settings/fupi-admin-fields-html.php:476
 #: admin/settings/modules/main/fupi-admin-tab-main.php:135
 msgid "None"
 msgstr "Brak"
@@ -709,12 +737,12 @@ msgstr "Wymaga"
 msgid "Search users..."
 msgstr "Szukaj użytkowników..."
 
-#: admin/settings/fupi-admin-fields-html.php:480
-#: admin/settings/fupi-admin-fields-html.php:519
+#: admin/settings/fupi-admin-fields-html.php:491
+#: admin/settings/fupi-admin-fields-html.php:530
 msgid "Please select"
 msgstr "Wybierz"
 
-#: admin/settings/fupi-admin-fields-html.php:598
+#: admin/settings/fupi-admin-fields-html.php:609
 #: admin/settings/pages/fupi-admin-page-display.php:40
 msgid "Required"
 msgstr "Wymagane"
@@ -1573,7 +1601,7 @@ msgstr "Dowiedz się, jak to przetestować"
 #: admin/settings/modules/ga41/fupi-admin-tab-ga41.php:270
 #: admin/settings/modules/ga42__premium_only/fupi-admin-tab-ga42__premium_only.php:209
 #: admin/settings/modules/gads/fupi-admin-tab-gads.php:90
-#: admin/settings/modules/gtm/fupi-admin-tab-gtm.php:365
+#: admin/settings/modules/gtm/fupi-admin-tab-gtm.php:357
 #: admin/settings/modules/hotj/fupi-admin-tab-hotj.php:95
 #: admin/settings/modules/insp/fupi-admin-tab-insp.php:92
 #: admin/settings/modules/linkd/fupi-admin-tab-linkd.php:84
@@ -2408,7 +2436,7 @@ msgstr "Oznacz niestandardowymi metadanymi"
 #: admin/settings/modules/fbp1/fupi-admin-tab-fbp1.php:262
 #: admin/settings/modules/ga41/fupi-admin-tab-ga41.php:240
 #: admin/settings/modules/ga42__premium_only/fupi-admin-tab-ga42__premium_only.php:179
-#: admin/settings/modules/gtm/fupi-admin-tab-gtm.php:343
+#: admin/settings/modules/gtm/fupi-admin-tab-gtm.php:335
 #: admin/settings/modules/mato/fupi-admin-tab-mato.php:238
 #: admin/settings/modules/pla/fupi-admin-tab-pla.php:156
 msgid "This setting lets you track custom metadata that was previously registerd in the Metadata Tracking page."
@@ -3340,7 +3368,7 @@ msgid "Track post's terms (categories, tags, etc.) "
 msgstr "Śledź do jakich kategorii, tagów itp. dodane są strony "
 
 #: admin/settings/modules/fbp1/fupi-admin-tab-fbp1.php:200
-#: admin/settings/modules/gtm/fupi-admin-tab-gtm.php:296
+#: admin/settings/modules/gtm/fupi-admin-tab-gtm.php:288
 msgid "By default WP Full Picture tracks categories, tags and formats that are attached to posts and pages. You can enable tracking other terms in the \"General Settings\" > \"Default Tracking Settings\"."
 msgstr "Domyślnie WP Full Picture śledzi kategorie, tagi i formaty postów i stron. Możesz włączyć śledzenie innych w \"Ustawienia Ogólnych\" > \"Domyślne Ustawienia Śledzenia\"."
 
@@ -3374,7 +3402,7 @@ msgid "Track author's display names"
 msgstr "Śledź autorów"
 
 #: admin/settings/modules/fbp1/fupi-admin-tab-fbp1.php:226
-#: admin/settings/modules/pla/fupi-admin-tab-pla.php:534
+#: admin/settings/modules/pla/fupi-admin-tab-pla.php:512
 msgid "Track searched phrases"
 msgstr "Śledź wyszukiwane frazy"
 
@@ -3383,7 +3411,7 @@ msgstr "Śledź wyszukiwane frazy"
 #: admin/settings/modules/ga42__premium_only/fupi-admin-tab-ga42__premium_only.php:64
 #: admin/settings/modules/hotj/fupi-admin-tab-hotj.php:260
 #: admin/settings/modules/mato/fupi-admin-tab-mato.php:170
-#: admin/settings/modules/pla/fupi-admin-tab-pla.php:528
+#: admin/settings/modules/pla/fupi-admin-tab-pla.php:506
 msgid "Track user's login status and role"
 msgstr "Śledź status logowania i rolę użytkownika"
 
@@ -3410,7 +3438,7 @@ msgstr "Śledź niestandardowe metadane"
 #: admin/settings/modules/fbp1/fupi-admin-tab-fbp1.php:292
 #: admin/settings/modules/ga41/fupi-admin-tab-ga41.php:286
 #: admin/settings/modules/ga42__premium_only/fupi-admin-tab-ga42__premium_only.php:217
-#: admin/settings/modules/gtm/fupi-admin-tab-gtm.php:373
+#: admin/settings/modules/gtm/fupi-admin-tab-gtm.php:365
 #: admin/settings/modules/hotj/fupi-admin-tab-hotj.php:111
 #: admin/settings/modules/mads/fupi-admin-tab-mads.php:108
 #: admin/settings/modules/mato/fupi-admin-tab-mato.php:442
@@ -3607,53 +3635,53 @@ msgstr "Parametry zdarzeń"
 #: admin/settings/modules/fbp1/fupi-admin-tab-fbp1.php:550
 #: admin/settings/modules/ga41/fupi-admin-tab-ga41.php:578
 #: admin/settings/modules/gads/fupi-admin-tab-gads.php:244
-#: admin/settings/modules/gtm/fupi-admin-tab-gtm.php:401
+#: admin/settings/modules/gtm/fupi-admin-tab-gtm.php:393
 #: admin/settings/modules/mato/fupi-admin-tab-mato.php:452
-#: admin/settings/modules/pla/fupi-admin-tab-pla.php:466
+#: admin/settings/modules/pla/fupi-admin-tab-pla.php:444
 msgid "Tracking lead scores and custom events"
 msgstr "Śledzenie zdarzeń niestandardowych i lead scoring"
 
 #: admin/settings/modules/fbp1/fupi-admin-tab-fbp1.php:554
 #: admin/settings/modules/ga41/fupi-admin-tab-ga41.php:582
-#: admin/settings/modules/gtm/fupi-admin-tab-gtm.php:405
+#: admin/settings/modules/gtm/fupi-admin-tab-gtm.php:397
 #: admin/settings/modules/mato/fupi-admin-tab-mato.php:456
-#: admin/settings/modules/pla/fupi-admin-tab-pla.php:470
+#: admin/settings/modules/pla/fupi-admin-tab-pla.php:448
 msgid "Track when specific conditions are met"
 msgstr "Śledź, gdy spełnione są określone warunki"
 
 #: admin/settings/modules/fbp1/fupi-admin-tab-fbp1.php:562
 #: admin/settings/modules/ga41/fupi-admin-tab-ga41.php:590
 #: admin/settings/modules/gads/fupi-admin-tab-gads.php:256
-#: admin/settings/modules/gtm/fupi-admin-tab-gtm.php:413
+#: admin/settings/modules/gtm/fupi-admin-tab-gtm.php:405
 #: admin/settings/modules/mato/fupi-admin-tab-mato.php:464
-#: admin/settings/modules/pla/fupi-admin-tab-pla.php:478
+#: admin/settings/modules/pla/fupi-admin-tab-pla.php:456
 msgid "When this happens"
 msgstr "Kiedy to się wydarzy"
 
 #: admin/settings/modules/fbp1/fupi-admin-tab-fbp1.php:570
 #: admin/settings/modules/ga41/fupi-admin-tab-ga41.php:599
 #: admin/settings/modules/gads/fupi-admin-tab-gads.php:265
-#: admin/settings/modules/gtm/fupi-admin-tab-gtm.php:422
+#: admin/settings/modules/gtm/fupi-admin-tab-gtm.php:414
 #: admin/settings/modules/mato/fupi-admin-tab-mato.php:473
-#: admin/settings/modules/pla/fupi-admin-tab-pla.php:487
+#: admin/settings/modules/pla/fupi-admin-tab-pla.php:465
 msgid "...for..."
 msgstr "...po raz..."
 
 #: admin/settings/modules/fbp1/fupi-admin-tab-fbp1.php:575
 #: admin/settings/modules/ga41/fupi-admin-tab-ga41.php:604
 #: admin/settings/modules/gads/fupi-admin-tab-gads.php:270
-#: admin/settings/modules/gtm/fupi-admin-tab-gtm.php:427
+#: admin/settings/modules/gtm/fupi-admin-tab-gtm.php:419
 #: admin/settings/modules/mato/fupi-admin-tab-mato.php:478
-#: admin/settings/modules/pla/fupi-admin-tab-pla.php:492
+#: admin/settings/modules/pla/fupi-admin-tab-pla.php:470
 msgid "The first time"
 msgstr "Pierwszy"
 
 #: admin/settings/modules/fbp1/fupi-admin-tab-fbp1.php:576
 #: admin/settings/modules/ga41/fupi-admin-tab-ga41.php:605
 #: admin/settings/modules/gads/fupi-admin-tab-gads.php:271
-#: admin/settings/modules/gtm/fupi-admin-tab-gtm.php:428
+#: admin/settings/modules/gtm/fupi-admin-tab-gtm.php:420
 #: admin/settings/modules/mato/fupi-admin-tab-mato.php:479
-#: admin/settings/modules/pla/fupi-admin-tab-pla.php:493
+#: admin/settings/modules/pla/fupi-admin-tab-pla.php:471
 msgid "Every time"
 msgstr "Za każdym razem"
 
@@ -3664,7 +3692,7 @@ msgstr "Wyślij zdarzenie"
 
 #: admin/settings/modules/fbp1/fupi-admin-tab-fbp1.php:582
 #: admin/settings/modules/ga41/fupi-admin-tab-ga41.php:611
-#: admin/settings/modules/gtm/fupi-admin-tab-gtm.php:434
+#: admin/settings/modules/gtm/fupi-admin-tab-gtm.php:426
 msgid "event_name"
 msgstr "event_name"
 
@@ -3997,7 +4025,7 @@ msgstr "Nazwa parametru, np. \"taxonomy_terms\""
 
 #: admin/settings/modules/ga41/fupi-admin-tab-ga41.php:154
 #: admin/settings/modules/ga42__premium_only/fupi-admin-tab-ga42__premium_only.php:93
-#: admin/settings/modules/gtm/fupi-admin-tab-gtm.php:289
+#: admin/settings/modules/gtm/fupi-admin-tab-gtm.php:281
 msgid "This will track what categories, tags and formats are associated with posts and pages. You can enable tracking other terms and / or post types in the \"General Settings\" > \"Default Tracking Settings\"."
 msgstr "Spowoduje to śledzenie, jakie kategorie, tagi i formaty są powiązane z postami i stronami. Możesz włączyć śledzenie innych warunków i / lub typów postów w \"Ustawienia Ogólne\" > \"Domyślne Ustawienia Śledzenia\"."
 
@@ -4472,14 +4500,14 @@ msgid "Send to GA event"
 msgstr "Wyślij do GA zdarzenie"
 
 #: admin/settings/modules/ga41/fupi-admin-tab-ga41.php:619
-#: admin/settings/modules/gtm/fupi-admin-tab-gtm.php:442
+#: admin/settings/modules/gtm/fupi-admin-tab-gtm.php:434
 #: admin/settings/modules/mato/fupi-admin-tab-mato.php:493
 msgid "Value (optional)"
 msgstr "Wartość (opcjonalnie)"
 
 #: admin/settings/modules/ga41/fupi-admin-tab-ga41.php:637
 #: admin/settings/modules/ga42__premium_only/fupi-admin-tab-ga42__premium_only.php:509
-#: admin/settings/modules/main/fupi-admin-tab-main.php:361
+#: admin/settings/modules/main/fupi-admin-tab-main.php:390
 msgid "Other"
 msgstr "Inne"
 
@@ -4527,12 +4555,12 @@ msgstr "Jeśli zdecydujesz się użyć opcji parametru URL i chcesz wyłączyć 
 #: admin/settings/modules/ga41/fupi-admin-tab-ga41.php:666
 #: admin/settings/modules/ga42__premium_only/fupi-admin-tab-ga42__premium_only.php:535
 #: admin/settings/modules/gads/fupi-admin-tab-gads.php:295
-#: admin/settings/modules/gtm/fupi-admin-tab-gtm.php:460
+#: admin/settings/modules/gtm/fupi-admin-tab-gtm.php:452
 #: admin/settings/modules/hotj/fupi-admin-tab-hotj.php:324
 #: admin/settings/modules/mads/fupi-admin-tab-mads.php:259
 #: admin/settings/modules/mato/fupi-admin-tab-mato.php:511
 #: admin/settings/modules/pin/fupi-admin-tab-pin.php:129
-#: admin/settings/modules/pla/fupi-admin-tab-pla.php:547
+#: admin/settings/modules/pla/fupi-admin-tab-pla.php:525
 #: admin/settings/modules/tik/fupi-admin-tab-tik.php:195
 #: admin/settings/modules/tools/fupi-admin-descr_tools.php:20
 #: admin/settings/modules/twit/fupi-admin-tab-twit.php:226
@@ -5159,102 +5187,93 @@ msgstr "Wyślij do DL status logowania i rolę użytkownika"
 msgid "Send to the DL visitor's browser language"
 msgstr "Wysyłaj do DL język przeglądarki odwiedzającego"
 
-#: admin/settings/modules/gtm/fupi-admin-tab-gtm.php:241
-msgid "Send to the DL if a visitor uses an ad blocker"
-msgstr "Wysyłaj do DL, informację czy odwiedzający korzysta z blokera reklam"
-
-#: admin/settings/modules/gtm/fupi-admin-tab-gtm.php:245
-#: admin/settings/modules/pla/fupi-admin-tab-pla.php:440
-msgid "Deprecated. This function will be soon removed due to poor accuracy caused by the recent changes in ad blockers."
-msgstr "Przestarzałe. Ta funkcja zostanie wkrótce usunięta z powodu niskiej dokładności spowodowanej ostatnimi zmianami w blokerach reklam."
-
-#: admin/settings/modules/gtm/fupi-admin-tab-gtm.php:255
+#: admin/settings/modules/gtm/fupi-admin-tab-gtm.php:247
 msgid "Send to the DL page language"
 msgstr "Wysyłaj do DL język strony"
 
-#: admin/settings/modules/gtm/fupi-admin-tab-gtm.php:261
+#: admin/settings/modules/gtm/fupi-admin-tab-gtm.php:253
 msgid "Send to the DL page titles"
 msgstr "Wysyłaj do DL tytuły stron"
 
-#: admin/settings/modules/gtm/fupi-admin-tab-gtm.php:264
+#: admin/settings/modules/gtm/fupi-admin-tab-gtm.php:256
 msgid "Sends both, default post/page titles and meta titles (SEO titles)."
 msgstr "Wysyła zarówno domyślne tytuły postów/stron, jak i meta tytuły (tytuły SEO)."
 
-#: admin/settings/modules/gtm/fupi-admin-tab-gtm.php:268
+#: admin/settings/modules/gtm/fupi-admin-tab-gtm.php:260
 msgid "Send to the DL page type"
 msgstr "Wysyłaj do DL typ strony"
 
-#: admin/settings/modules/gtm/fupi-admin-tab-gtm.php:274
+#: admin/settings/modules/gtm/fupi-admin-tab-gtm.php:266
 msgid "Send to the DL page IDs"
 msgstr "Wysyłaj do DL identyfikatory stron"
 
-#: admin/settings/modules/gtm/fupi-admin-tab-gtm.php:280
+#: admin/settings/modules/gtm/fupi-admin-tab-gtm.php:272
 msgid "Send to the DL page numbers and archive page numbers"
 msgstr "Wysyłaj do DL numery stron i numery stron archiwalnych"
 
-#: admin/settings/modules/gtm/fupi-admin-tab-gtm.php:286
+#: admin/settings/modules/gtm/fupi-admin-tab-gtm.php:278
 msgid "Send to the DL post's terms (categories, tags, etc.) "
 msgstr "Wysyłaj do DL do jakich kategorii, tagów itp. są dodane posty, strony, itd. "
 
-#: admin/settings/modules/gtm/fupi-admin-tab-gtm.php:293
+#: admin/settings/modules/gtm/fupi-admin-tab-gtm.php:285
 msgid "Send to the DL categories, tags and other terms"
 msgstr "Wysyłaj do DL kategorie, tagi i inne"
 
-#: admin/settings/modules/gtm/fupi-admin-tab-gtm.php:300
+#: admin/settings/modules/gtm/fupi-admin-tab-gtm.php:292
 msgid "Send to the DL search terms"
 msgstr "Wysyłaj do DL wyszukiwane frazy"
 
-#: admin/settings/modules/gtm/fupi-admin-tab-gtm.php:306
+#: admin/settings/modules/gtm/fupi-admin-tab-gtm.php:298
 msgid "Send to the DL the number of search results"
 msgstr "Wyślij do DL liczbę wyników wyszukiwania"
 
-#: admin/settings/modules/gtm/fupi-admin-tab-gtm.php:312
+#: admin/settings/modules/gtm/fupi-admin-tab-gtm.php:304
 msgid "Send to the DL author's display names"
 msgstr "Wyślij do DL wyświetlaną nazwę autora strony"
 
-#: admin/settings/modules/gtm/fupi-admin-tab-gtm.php:315
+#: admin/settings/modules/gtm/fupi-admin-tab-gtm.php:307
 msgid "Please make sure that the author's display names that you will be tracking are not their real names and cannot be used for their identification (it is against Google's policy)"
 msgstr "Upewnij się, że wyświetlane nazwy autorów, które będziesz śledzić, nie są ich prawdziwymi nazwiskami i nie mogą być użyte do ich identyfikacji (jest to niezgodne z polityką Google)"
 
-#: admin/settings/modules/gtm/fupi-admin-tab-gtm.php:324
+#: admin/settings/modules/gtm/fupi-admin-tab-gtm.php:316
 msgid "Send to the DL authors IDs"
 msgstr "Wyślij do DL ID autorów"
 
-#: admin/settings/modules/gtm/fupi-admin-tab-gtm.php:337
+#: admin/settings/modules/gtm/fupi-admin-tab-gtm.php:329
 msgid "Send to the DL custom metadata"
 msgstr "Wyślij do DL niestandardowe metadane"
 
-#: admin/settings/modules/gtm/fupi-admin-tab-gtm.php:381
-#: admin/settings/modules/pla/fupi-admin-tab-pla.php:524
+#: admin/settings/modules/gtm/fupi-admin-tab-gtm.php:373
+#: admin/settings/modules/pla/fupi-admin-tab-pla.php:502
 msgid "Tracking user info"
 msgstr "Śledzenie informacji o użytkowniku"
 
-#: admin/settings/modules/gtm/fupi-admin-tab-gtm.php:389
+#: admin/settings/modules/gtm/fupi-admin-tab-gtm.php:381
 #: admin/settings/modules/mato/fupi-admin-tab-mato.php:436
 msgid "Tracking WP data"
 msgstr "Śledzenie danych WP"
 
-#: admin/settings/modules/gtm/fupi-admin-tab-gtm.php:433
+#: admin/settings/modules/gtm/fupi-admin-tab-gtm.php:425
 msgid "Send dataLayer event"
 msgstr "Wyślij zdarzenie dataLayer"
 
-#: admin/settings/modules/gtm/fupi-admin-tab-gtm.php:464
+#: admin/settings/modules/gtm/fupi-admin-tab-gtm.php:456
 msgid "Do NOT clear the ecommerce object in the dataLayer before each push"
 msgstr "NIE czyść obiektu ecommerce w dataLayer przed każdym nowym zdarzeniem tego typu"
 
-#: admin/settings/modules/gtm/fupi-admin-tab-gtm.php:472
+#: admin/settings/modules/gtm/fupi-admin-tab-gtm.php:464
 msgid "Send to the DL customer's name and surname"
 msgstr "Wysyłaj do DL imiona i nazwiska klientów"
 
-#: admin/settings/modules/gtm/fupi-admin-tab-gtm.php:479
+#: admin/settings/modules/gtm/fupi-admin-tab-gtm.php:471
 msgid "Send to the DL customer's email address"
 msgstr "Wysyłaj do DL adresy e-mail klientów"
 
-#: admin/settings/modules/gtm/fupi-admin-tab-gtm.php:486
+#: admin/settings/modules/gtm/fupi-admin-tab-gtm.php:478
 msgid "Send to the DL customer's phone number"
 msgstr "Wysyłaj do DL nr. telefonów klientów"
 
-#: admin/settings/modules/gtm/fupi-admin-tab-gtm.php:493
+#: admin/settings/modules/gtm/fupi-admin-tab-gtm.php:485
 msgid "Send to the DL customer's physical address"
 msgstr "Wysyłaj do DL fizyczne adresy klientów"
 
@@ -5548,7 +5567,7 @@ msgid "Depending on the privacy laws in your country you may have to disclose in
 msgstr "W zależności od przepisów o ochronie prywatności obowiązujących w Twoim kraju, być może będziesz musiał ujawnić w swojej polityce prywatności, że wysyłasz te informacje do Hotjar w celu ich przetwarzania."
 
 #: admin/settings/modules/hotj/fupi-admin-tab-hotj.php:328
-#: admin/settings/modules/pla/fupi-admin-tab-pla.php:551
+#: admin/settings/modules/pla/fupi-admin-tab-pla.php:529
 msgid "Track purchases"
 msgstr "Śledź zamówienia"
 
@@ -6224,6 +6243,10 @@ msgid "These settings change various aspects of WP Full Picture."
 msgstr "Ustawienia te zmieniają różne aspekty WP Full Picture."
 
 #: admin/settings/modules/main/fupi-admin-descr_main.php:33
+msgid "Use these functions to make a backup of your WP Full Picture's settings or move them to a different site."
+msgstr "Użyj tych funkcji, aby wykonać kopię zapasową ustawień WP Full Picture lub przenieść je do innej witryny."
+
+#: admin/settings/modules/main/fupi-admin-descr_main.php:39
 msgid "These settings are experimental. They will be introduced into core if no users report issues with them."
 msgstr "Te ustawienia są eksperymentalne. Zostaną wprowadzone na stałe, jeśli żaden użytkownik nie zgłosi z nimi problemów."
 
@@ -6580,6 +6603,34 @@ msgstr "Połącz podobne adresy URL domen odsyłających"
 #: admin/settings/modules/main/fupi-admin-tab-main.php:352
 msgid "Facebook, Instagram and Pinterest use multiple URLs that redirect traffic to your site, e.g. l.facebook.com, lm.facebook.com, etc. Enable this function to combine them and analyse traffic sources more easily."
 msgstr "Facebook, Instagram i Pinterest używają wielu adresów URL, które przekierowują ruch do Twojej witryny, np. l.facebook.com, lm.facebook.com itp. Włącz tę funkcję, aby je połączyć i łatwiej analizować źródła ruchu."
+
+#: admin/settings/modules/main/fupi-admin-tab-main.php:360
+msgid "Import / Export"
+msgstr "Import / Eksport"
+
+#: admin/settings/modules/main/fupi-admin-tab-main.php:364
+msgid "Export WP FP settings"
+msgstr "Eksportuj ustawienia WP FP"
+
+#: admin/settings/modules/main/fupi-admin-tab-main.php:365
+msgid "Download file"
+msgstr "Pobierz plik"
+
+#: admin/settings/modules/main/fupi-admin-tab-main.php:370
+msgid "Download a JSON file with WP FP's settings."
+msgstr "Pobierz plik JSON z ustawieniami WP FP."
+
+#: admin/settings/modules/main/fupi-admin-tab-main.php:374
+msgid "Import WP FP settings"
+msgstr "Importuj ustawienia WP FP"
+
+#: admin/settings/modules/main/fupi-admin-tab-main.php:375
+msgid "Upload file"
+msgstr "Prześlij plik"
+
+#: admin/settings/modules/main/fupi-admin-tab-main.php:381
+msgid "Send a JSON file with WP FP's settings."
+msgstr "Wyślij plik JSON z ustawieniami WP FP."
 
 #: admin/settings/modules/mato/checklist_mato.php:6
 #: admin/settings/modules/mato/fupi-admin-tab-mato.php:14
@@ -7304,7 +7355,7 @@ msgstr "Nazwa linku"
 #: admin/settings/modules/pla/fupi-admin-tab-pla.php:325
 #: admin/settings/modules/pla/fupi-admin-tab-pla.php:361
 #: admin/settings/modules/pla/fupi-admin-tab-pla.php:423
-#: admin/settings/modules/pla/fupi-admin-tab-pla.php:509
+#: admin/settings/modules/pla/fupi-admin-tab-pla.php:487
 msgid "Track as a single event with parameters"
 msgstr "Śledź jako pojedyncze zdarzenie z parametrami"
 
@@ -7345,79 +7396,59 @@ msgid "Goal name, e.g. \"Viewed page elements\""
 msgstr "Nazwa celu, np. \"Wyświetlane elementy strony\""
 
 #: admin/settings/modules/pla/fupi-admin-tab-pla.php:432
-msgid "Track how many people use ad blockers"
-msgstr "Śledź, ile osób korzysta z blokerów reklam"
-
-#: admin/settings/modules/pla/fupi-admin-tab-pla.php:434
-msgid "Goal name, e.g. \"Uses an ad blocker\""
-msgstr "Nazwa celu, np. \"Używa blokady reklam\""
-
-#: admin/settings/modules/pla/fupi-admin-tab-pla.php:441
-msgid "It is best to use this option on proxied or self-hosted installations of Plausible. See the \"Installation\" section for more details. Otherwise, Plausible will be blocked by some ad blockers, which this function is trying to detect."
-msgstr "Najlepiej jest użyć tej opcji na własnej instalacji Plausible. Zobacz sekcję \"Instalacja\", aby uzyskać więcej szczegółów. W przeciwnym razie Plausible będzie blokowany przez niektóre programy blokujące reklamy, które ta funkcja próbuje wykryć."
-
-#: admin/settings/modules/pla/fupi-admin-tab-pla.php:445
-msgid "Check adblock usage once per session instead of on every page"
-msgstr "Sprawdzaj użycie adblocka raz na sesję zamiast na każdej stronie"
-
-#: admin/settings/modules/pla/fupi-admin-tab-pla.php:450
-msgid "Recommended to minimize the number of events sent to Plausible."
-msgstr "Zalecane, aby zminimalizować liczbę zdarzeń wysyłanych do Plausible."
-
-#: admin/settings/modules/pla/fupi-admin-tab-pla.php:454
 msgid "Track how many people decline cookies"
 msgstr "Śledź, ile osób nie wyraża zgody na śledzenie"
 
-#: admin/settings/modules/pla/fupi-admin-tab-pla.php:456
+#: admin/settings/modules/pla/fupi-admin-tab-pla.php:434
 msgid "Goal name, e.g. \"Cookies declined\""
 msgstr "Nazwa celu, np. \"Odrzucono pliki cookie\""
 
-#: admin/settings/modules/pla/fupi-admin-tab-pla.php:498
+#: admin/settings/modules/pla/fupi-admin-tab-pla.php:476
 msgid "Send"
 msgstr "Wyślij"
 
-#: admin/settings/modules/pla/fupi-admin-tab-pla.php:499
+#: admin/settings/modules/pla/fupi-admin-tab-pla.php:477
 msgid "Short description"
 msgstr "Krótki opis"
 
-#: admin/settings/modules/pla/fupi-admin-tab-pla.php:513
+#: admin/settings/modules/pla/fupi-admin-tab-pla.php:491
 msgid "Goal name, e.g. \"Custom events\""
 msgstr "Nazwa celu, np. \"Zdarzenia niestandardowe\""
 
-#: admin/settings/modules/pla/fupi-admin-tab-pla.php:554
-#: admin/settings/modules/pla/fupi-admin-tab-pla.php:567
+#: admin/settings/modules/pla/fupi-admin-tab-pla.php:532
+#: admin/settings/modules/pla/fupi-admin-tab-pla.php:545
+#: admin/settings/modules/pla/fupi-admin-tab-pla.php:553
+#: admin/settings/modules/pla/fupi-admin-tab-pla.php:566
 #: admin/settings/modules/pla/fupi-admin-tab-pla.php:575
-#: admin/settings/modules/pla/fupi-admin-tab-pla.php:588
-#: admin/settings/modules/pla/fupi-admin-tab-pla.php:597
-#: admin/settings/modules/pla/fupi-admin-tab-pla.php:607
+#: admin/settings/modules/pla/fupi-admin-tab-pla.php:585
 msgid "Goal name"
 msgstr "Nazwa celu"
 
-#: admin/settings/modules/pla/fupi-admin-tab-pla.php:562
+#: admin/settings/modules/pla/fupi-admin-tab-pla.php:540
 msgid "Track purchased items"
 msgstr "Śledź zakupione produkty"
 
-#: admin/settings/modules/pla/fupi-admin-tab-pla.php:572
+#: admin/settings/modules/pla/fupi-admin-tab-pla.php:550
 msgid "Track when a customer begins checkout"
 msgstr "Śledź rozpoczęcie procesu zamawiania"
 
-#: admin/settings/modules/pla/fupi-admin-tab-pla.php:583
+#: admin/settings/modules/pla/fupi-admin-tab-pla.php:561
 msgid "Track items in cart during checkout"
 msgstr "Śledź, jakie produkty są w koszyku podczas składania zamówienia"
 
-#: admin/settings/modules/pla/fupi-admin-tab-pla.php:590
+#: admin/settings/modules/pla/fupi-admin-tab-pla.php:568
 msgid "Attention! Each item in cart is tracked with a separate event!"
 msgstr "Uwaga! Każdy przedmiot w koszyku jest śledzony za pomocą osobnego zdarzenia!"
 
-#: admin/settings/modules/pla/fupi-admin-tab-pla.php:594
+#: admin/settings/modules/pla/fupi-admin-tab-pla.php:572
 msgid "Track adding products to cart"
 msgstr "Śledź dodawanie produktów do koszyka"
 
-#: admin/settings/modules/pla/fupi-admin-tab-pla.php:600
+#: admin/settings/modules/pla/fupi-admin-tab-pla.php:578
 msgid "Attention! If a grouped product is added to cart, each item in the group will be tracked with a separate event!"
 msgstr "Uwaga! Jeśli produkt grupowy zostanie dodany do koszyka, każdy element w grupie będzie śledzony za pomocą osobnego zdarzenia!"
 
-#: admin/settings/modules/pla/fupi-admin-tab-pla.php:604
+#: admin/settings/modules/pla/fupi-admin-tab-pla.php:582
 msgid "Track adding products to a wishlist"
 msgstr "Śledź dodawanie produktów do listy życzeń"
 
@@ -8762,7 +8793,7 @@ msgstr "Użyj SKU jako identyfikatora produktu"
 
 #: admin/settings/modules/woo/fupi-admin-tab-woo.php:14
 msgid "If SKU is not set, a default product id will be used. This value must be the same as the one in your product feeds, e.g. Merchant Center feed or Facebook catalog (if you use it)."
-msgstr "Jeśli SKU nie jest ustawione, zostanie użyty domyślny identyfikator produktu. Ta wartość musi być taka sama jak ta w Twoich kanałach produktowych, np. w kanale Merchant Center lub katalogu na Facebooku (jeśli ich używasz)."
+msgstr "Jeśli SKU nie jest ustawione, zostanie użyty domyślny identyfikator produktu. Ich wartość musi być taka sama jak ta w Twoich feedach produktowych, np. w Merchant Center lub katalogu na Facebooku (jeśli ich używasz)."
 
 #: admin/settings/modules/woo/fupi-admin-tab-woo.php:18
 msgid "Track prices with tax"
@@ -8999,12 +9030,12 @@ msgstr "Rozpoznawać ruch z popularnych aplikacji na Androida"
 msgid "Get Pro in 2 minutes"
 msgstr "Zdobądź Pro w 2 minuty"
 
-#: includes/class-fupi-deactivator.php:86
+#: includes/class-fupi-deactivator.php:90
 #, php-format
 msgid "WP Full Picture plugin has been deactivated on %1$s"
 msgstr "Wtyczka WP Full Picture została dezaktywowana na stronie %1$s"
 
-#: includes/class-fupi-deactivator.php:87
+#: includes/class-fupi-deactivator.php:91
 msgid "WP Full Picture plugin has been deactivated. You can re-activate it from your WordPress admin plugin management page"
 msgstr "Wtyczka WP Full Picture została dezaktywowana. Możesz ją ponownie aktywować na stronie zarządzania wtyczkami w panelu administracyjnym WordPress"
 

@@ -236,14 +236,6 @@ $user_fields = array_merge( $user_fields, array(
 		'field_id' 			=> 'browser_lang',
 		'option_arr_id'		=> $option_arr_id,
 	),
-	array(
-		'type'	 			=> 'toggle',
-		'label' 			=> esc_html__( 'Send to the DL if a visitor uses an ad blocker', 'full-picture-analytics-cookie-notice' ),
-		'field_id' 			=> 'detect_adblock',
-		'must_have'			=> 'pro',
-		'option_arr_id'		=> $option_arr_id,
-		'under field'		=> '<p style="color: red;">' . esc_html__( 'Deprecated. This function will be soon removed due to poor accuracy caused by the recent changes in ad blockers.', 'full-picture-analytics-cookie-notice' ) . '</p>',
-	)
 ));
 
 

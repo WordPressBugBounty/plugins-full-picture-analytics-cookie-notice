@@ -135,7 +135,6 @@
 		visit_info['cdbID'] = fp.vars.cdb_id;
 		// visit_info['timezone'] = timezome_str;
 		// visit_info['time'] = get_date();
-		visit_info['adblock'] = fpdata.adblock_enabled;
 
 		if ( ! prev_consents.cookies ) visit_info['cookiesBeforeConsent'] = listCookies();
 

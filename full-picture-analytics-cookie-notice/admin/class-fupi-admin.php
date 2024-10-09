@@ -468,7 +468,6 @@ class Fupi_Admin {
                 }
                 $sections = apply_filters( 'fupi_' . $module['id'] . '_settings', $sections, $option_arr_id );
                 foreach ( $sections as $section ) {
-                    // trigger_error('Serialized sections' .  serialize($section));
                     add_settings_section(
                         $section['section_id'],
                         esc_html( $section['section_title'] ),
@@ -494,16 +493,15 @@ class Fupi_Admin {
         }
     }
 
-    private function generate_rand_filename( $id ) {
-        $chr = 'abcdefghijklmnopqrstuvwxyz';
-        $name = $id . '_';
-        for ($i = 0; $i < 6; $i++) {
-            $j = mt_rand( 0, strlen( $chr ) - 1 );
-            $name .= $chr[$j];
-        }
-        return $name;
-    }
-
+    // private function generate_rand_filename($id){
+    // 	$chr = 'abcdefghijklmnopqrstuvwxyz';
+    // 	$name = $id . '_';
+    // 	for ($i = 0; $i < 6; $i++) {
+    // 		$j = mt_rand(0, strlen($chr) - 1);
+    // 		$name .= $chr[$j];
+    // 	}
+    // 	return $name;
+    // }
     // SANITIZATION
     public function fupi_sanitize_fields_tools( $input ) {
         include 'settings/modules/tools/fupi-admin-sanitize-tools.php';
@@ -720,6 +718,7 @@ class Fupi_Admin {
         // fupi_review_14_days
         // fupi_gtm_v2_deprecation
         // fupi_gtm_v2_deprecation_2
+        // fupi_uses_oceanwp_theme
         // if ( is_multisite() ){
         // 	$plugins_page_url = network_home_url() . 'wp-admin/network/plugins.php';
         // } else {
@@ -771,6 +770,287 @@ class Fupi_Admin {
             $order_confirmation_page_seen = get_post_meta( $post_id, 'fupi_thankyou_viewed', false );
             echo ( !empty( $order_confirmation_page_seen ) ? '<img src="' . FUPI_URL . '/admin/settings/img/success_ico.png" style="width: 20px; height: 20px" title="' . esc_html__( 'Order confirmation page seen', 'full-picture-analytics-cookie-notice' ) . '">' : '<img src="' . FUPI_URL . '/admin/settings/img/almost_ico.png" style="width: 20px; height: 20px" title="' . esc_html__( 'Order confirmation page not seen', 'full-picture-analytics-cookie-notice' ) . '">' );
         }
+    }
+
+    // IMPORT/EXPORT SETTINGS
+    private function fupi_save_settings_to_file() {
+        include FUPI_PATH . '/includes/fupi_modules_data.php';
+        $saved_options = array();
+        // get modules options
+        foreach ( $fupi_modules as $module ) {
+            $option_id = 'fupi_' . $module['id'];
+            $option_value = get_option( $option_id );
+            if ( !empty( $option_value ) ) {
+                $saved_options[$option_id] = $option_value;
+            } else {
+                $saved_options[$option_id] = 'no_value';
+            }
+        }
+        // get consent banner options
+        $banner_options = get_option( 'fupi_cookie_notice' );
+        if ( !empty( $banner_options ) ) {
+            $saved_options['fupi_cookie_notice'] = $banner_options;
+        } else {
+            $saved_options['fupi_cookie_notice'] = 'no_value';
+        }
+        // get theme mods
+        $banner_style_mods = array(
+            'fupi_notice_bg_color',
+            'fupi_notice_h_color',
+            'fupi_notice_text_color',
+            'fupi_notice_cta_color',
+            'fupi_notice_cta_txt_color',
+            'fupi_notice_cta_color_hover',
+            'fupi_notice_cta_txt_color_hover',
+            'fupi_notice_btn_color',
+            'fupi_notice_btn_txt_color',
+            'fupi_notice_btn_color_hover',
+            'fupi_notice_btn_txt_color_hover',
+            'fupi_notice_switch_color',
+            'fupi_cookie_notice_border',
+            'fupi_notice_border_color',
+            'fupi_cookie_notice_size',
+            'fupi_notice_round_corners',
+            'fupi_cookie_notice_heading_tag',
+            'fupi_cookie_notice_h_font_size',
+            'fupi_cookie_notice_p_font_size',
+            'fupi_cookie_notice_button_font_size',
+            'fupi_notice_necessary_switch_color',
+            'fupi_toggler_bg_color',
+            'fupi_custom_toggler_img'
+        );
+        $saved_options['theme_mods'] = [];
+        foreach ( $banner_style_mods as $mod_id ) {
+            $value = get_theme_mod( $mod_id );
+            if ( empty( $value ) ) {
+                $saved_options['theme_mods'][$mod_id] = 'no_value';
+            } else {
+                $saved_options['theme_mods'][$mod_id] = get_theme_mod( $mod_id );
+            }
+        }
+        $json_data = json_encode( $saved_options, JSON_PRETTY_PRINT );
+        $folder_path = trailingslashit( wp_upload_dir()['basedir'] ) . 'wpfp/backups/';
+        if ( !file_exists( $folder_path ) ) {
+            mkdir( $folder_path, 0755, true );
+        }
+        $file_path = $folder_path . '/wpfp_settings_backup.json';
+        $result = file_put_contents( $file_path, $json_data );
+        if ( $result !== false ) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function fupi_ajax_download_settings_backup() {
+        check_ajax_referer( 'wpfullpicture_download_nonce', 'nonce' );
+        if ( current_user_can( 'manage_options' ) ) {
+            $this->fupi_save_settings_to_file();
+            $file_path = trailingslashit( wp_upload_dir()['basedir'] ) . 'wpfp/backups/wpfp_settings_backup.json';
+            if ( file_exists( $file_path ) ) {
+                $file_url = trailingslashit( wp_upload_dir()['baseurl'] ) . 'wpfp/backups/wpfp_settings_backup.json';
+                wp_send_json_success( array(
+                    'file_url' => $file_url,
+                ) );
+            } else {
+                wp_send_json_error( array(
+                    'message' => esc_html__( 'File not found', 'full-picture-analytics-cookie-notice' ),
+                ) );
+            }
+        } else {
+            wp_send_json_error( array(
+                'message' => esc_html__( 'Permission denied', 'full-picture-analytics-cookie-notice' ),
+            ) );
+        }
+    }
+
+    public function fupi_process_uploaded_settings() {
+        check_ajax_referer( 'wpfullpicture_upload_nonce', 'nonce' );
+        if ( !current_user_can( 'manage_options' ) ) {
+            wp_send_json_error( array(
+                'message' => esc_html__( 'Permission denied', 'full-picture-analytics-cookie-notice' ),
+            ) );
+        }
+        $uploaded_settings = ( isset( $_POST['settings'] ) ? $_POST['settings'] : '' );
+        if ( empty( $uploaded_settings ) ) {
+            wp_send_json_error( array(
+                'message' => esc_html__( 'No settings data received', 'full-picture-analytics-cookie-notice' ),
+            ) );
+        }
+        if ( !is_array( $uploaded_settings ) ) {
+            wp_send_json_error( array(
+                'message' => esc_html__( 'Invalid JSON format', 'full-picture-analytics-cookie-notice' ),
+            ) );
+        }
+        // Update the settings
+        foreach ( $uploaded_settings as $option_id => $option_value ) {
+            switch ( $option_id ) {
+                case 'theme_mods':
+                    foreach ( $option_value as $mod_id => $value ) {
+                        if ( $value == "no_value" ) {
+                            remove_theme_mod( $mod_id );
+                        } else {
+                            set_theme_mod( $mod_id, $value );
+                        }
+                    }
+                    break;
+                case 'fupi_reports':
+                    if ( $option_value == 'no_value' ) {
+                        delete_option( 'fupi_reports' );
+                    } else {
+                        // scripts are encoded during sanitisation. We must encode them before they are sanitized with html_entity_decode( $saved_value, ENT_QUOTES )
+                        if ( !empty( $option_value['dashboards'] ) ) {
+                            foreach ( $option_value['dashboards'] as $i => $dash ) {
+                                $option_value['dashboards'][$i]['iframe'] = html_entity_decode( $option_value['dashboards'][$i]['iframe'], ENT_QUOTES );
+                            }
+                        }
+                        update_option( 'fupi_reports', $option_value );
+                    }
+                    break;
+                case 'fupi_cscr':
+                    if ( $option_value == 'no_value' ) {
+                        delete_option( 'fupi_cscr' );
+                    } else {
+                        // scripts are encoded during sanitisation. We must encode them before they are sanitized with html_entity_decode( $saved_value, ENT_QUOTES )
+                        $placements = array('fupi_head_scripts', 'fupi_footer_scripts');
+                        foreach ( $placements as $placement_name ) {
+                            // gets string 'fupi_head_scripts'
+                            if ( !empty( $option_value[$placement_name] ) ) {
+                                $placement_scripts = $option_value[$placement_name];
+                                $i = 0;
+                                foreach ( $placement_scripts as $single_script_data ) {
+                                    $decoded_val = html_entity_decode( $single_script_data['scr'], ENT_QUOTES );
+                                    $option_value[$placement_name][$i]['scr'] = $decoded_val;
+                                    if ( !empty( $option_value[$placement_name][$i]['html'] ) ) {
+                                        $decoded_html = html_entity_decode( $single_script_data['html'], ENT_QUOTES );
+                                        $option_value[$placement_name][$i]['html'] = $decoded_html;
+                                    }
+                                    $i++;
+                                }
+                            }
+                        }
+                        update_option( 'fupi_cscr', $option_value );
+                    }
+                    break;
+                default:
+                    if ( $option_value == 'no_value' ) {
+                        delete_option( $option_id );
+                    } else {
+                        update_option( $option_id, $option_value );
+                    }
+                    break;
+            }
+        }
+        wp_send_json_success( array(
+            'message' => 'Settings processed successfully',
+        ) );
+    }
+
+    public function fupi_print_scripts() {
+        $screen = get_current_screen();
+        if ( isset( $_GET['page'] ) && $_GET['page'] !== 'full_picture_main' ) {
+            return;
+        }
+        ?>
+		<script>
+		jQuery(document).ready(function($) {
+
+			// DOWNLOAD SETTINGS BUTTON
+			$('.fupi_downl_settings_btn').click(function(e) {
+				e.preventDefault();
+				$.ajax({
+					url: ajaxurl,
+					type: 'POST',
+					data: {
+						action: 'fupi_ajax_download_settings_backup',
+						nonce: '<?php 
+        echo wp_create_nonce( 'wpfullpicture_download_nonce' );
+        ?>'
+					},
+					success: function(response) {
+						if (response.success) {
+							// creates an invisible link and clicks it
+							const url = response.data.file_url;
+							const a = document.createElement('a');
+							a.style.display = 'none';
+							a.href = url;
+							a.download = 'wpfp_settings_backup.json'; // sets filename
+							document.body.appendChild(a);
+							a.click();
+						} else {
+							alert('Error: ' + response.data.message);
+							window.location.reload();
+						}
+					}
+				});
+			});
+
+			// UPLOAD SETTINGS BUTTON
+
+			let upload_field = FP.findID('fupi_main[upload_settings_file]');
+			
+			if ( upload_field ) {
+
+				$('.fupi_upload_settings_btn').click(function(e) {
+					e.preventDefault();
+					if ( 
+						confirm( '<?php 
+        echo esc_html__( "This will overwrite all settings of WP Full Picture. Are you sure?", 'full-picture-analytics-cookie-notice' );
+        ?>' ) 
+					) {
+						upload_field.click();
+					}
+				});
+	
+				upload_field.addEventListener( 'change', e => {
+
+					const file = e.target.files[0];
+
+					if ( file ) {
+						var reader = new FileReader();
+						reader.onload = function(e) {
+							try {
+								var jsonContent = JSON.parse(e.target.result);
+								
+								// console.log('Uploaded JSON content:', jsonContent);
+								
+								$.ajax({
+									url: ajaxurl,
+									type: 'POST',
+									data: {
+										action: 'fupi_process_uploaded_settings',
+										nonce: '<?php 
+        echo wp_create_nonce( 'wpfullpicture_upload_nonce' );
+        ?>',
+										settings: jsonContent
+									},
+									success: function(response) {
+										if (response.success) {
+											alert( '<?php 
+        echo esc_html__( 'Settings uploaded successfully! The page will now reload.', 'full-picture-analytics-cookie-notice' );
+        ?>' );
+											window.location.reload();
+										} else {
+											alert('Error: ' + response.data.message);
+											window.location.reload();
+										}
+									}
+								});
+							} catch (error) {
+								console.error('Error parsing JSON:', error);
+								alert( '<?php 
+        echo esc_html__( 'Invalid JSON file', 'full-picture-analytics-cookie-notice' );
+        ?>' );
+							}
+						};
+						reader.readAsText(file);
+					}
+				});
+			}
+			
+		});
+		</script>
+		<?php 
     }
 
 }

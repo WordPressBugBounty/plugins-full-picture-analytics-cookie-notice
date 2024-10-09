@@ -27,6 +27,12 @@ switch( $a['id'] ){
 		return '<p>' . esc_html__( 'These settings change various aspects of WP Full Picture.' , 'full-picture-analytics-cookie-notice' ) . '</p>';
 	break;
 
+	// IMPORT / EXPORT
+
+	case 'fupi_main_importexport':
+		return '<p>' . esc_html__( 'Use these functions to make a backup of your WP Full Picture\'s settings or move them to a different site.' , 'full-picture-analytics-cookie-notice' ) . '</p>';
+	break;
+
 	// OTHER SETTINGS
 
 	case 'fupi_main_experim':

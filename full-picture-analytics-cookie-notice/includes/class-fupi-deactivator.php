@@ -78,6 +78,10 @@ class Fupi_Deactivator {
 				remove_theme_mod( 'fupi_cookie_notice_h_font_size' );
 				remove_theme_mod( 'fupi_cookie_notice_p_font_size' );
 				remove_theme_mod( 'fupi_cookie_notice_button_font_size' );
+				remove_theme_mod( 'fupi_notice_necessary_switch_color' );
+				remove_theme_mod( 'fupi_toggler_bg_color' );
+				remove_theme_mod( 'fupi_custom_toggler_img' );
+
 			}
 
 			if ( ! empty( $fupi_main['deactiv_email'] ) ) {

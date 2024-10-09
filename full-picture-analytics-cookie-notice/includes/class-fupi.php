@@ -93,6 +93,10 @@ class Fupi {
         }
         // AJAX USER SEARCH (for the settings field)
         $this->loader->add_action( 'wp_ajax_fupi_search_users', $plugin_admin, 'fupi_search_users_callback' );
+        // IMPORT/EXPORT SETTINGS
+        $this->loader->add_action( 'wp_ajax_fupi_ajax_download_settings_backup', $plugin_admin, 'fupi_ajax_download_settings_backup' );
+        $this->loader->add_action( 'admin_footer', $plugin_admin, 'fupi_print_scripts' );
+        $this->loader->add_action( 'wp_ajax_fupi_process_uploaded_settings', $plugin_admin, 'fupi_process_uploaded_settings' );
     }
 
     private function define_public_hooks() {

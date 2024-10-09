@@ -48,7 +48,6 @@ if ( ! empty ( $input ) ) foreach( $input as $key => $value ) {
 			case 'track_forms_goalname':
 			case 'track_contact_links':
 			case 'track_cookie_decline_2':
-			case 'detect_adblock_2':
 			case 'track_woo_purchases':
 			case 'track_woo_purchased_items':
 			case 'track_woo_checkouts':

@@ -4,7 +4,7 @@ Donate link: https://wpfullpicture.com/
 Tags: woocommerce, consent mode, analytics, privacy, cookies
 Requires at least: 5.4.0
 Tested up to: 6.6.2
-Stable tag: 8.0.1
+Stable tag: 8.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -194,6 +194,11 @@ No. WP Full Picture is focused on tracking and privacy. To generate a product ca
 6. View traffic and marketing reports in the admin panel
 
 == Changelog ==
+
+= 8.1.0 (08-10-2024) =
+
+* [New] Import/export of plugin settings
+* [Removed] Adblock usage tracking - removed due to low accuracy
 
 = 8.0.1 (01-10-2024) =
 
@@ -390,33 +395,3 @@ No. WP Full Picture is focused on tracking and privacy. To generate a product ca
 * [Update] Simplified UX
 * [Removed] Saving tasks in checklists
 * [Removed] Hiding Pro settings in the free version
-
-= 7.0.2 (31-01-2023) =
-
-* [Fix] Google Ads conversion tracking - fixed a typo that prevented conversions from being tracked
-* [Fix] [Microsot Ads] Properly marked enhanced conversions as unavailable in Free
-
-= 7.0.0 (18-01-2023) =
-
-* [New] 100% NEW WooCommerce integration with blocks supports & new features
-* [New] [MS Advertising] Enhanced Conversion tracking (Pro only)
-* [New] [Woo] [Pinterest] Added tracking product categories
-* [New] [Woo] Undoing product removals in cart is now tracked
-* [New] [Woo] [Plausible] Revenue data is now automatically sent with purchase information
-* [New] [Woo] Tracking coupons in compatible tools
-* [New] [Plausible] You can now track WP data, search phrases and user role
-* [New] [X / Twitter] WP FP can now send to Twitter / X user’s email address for improved conv. tracking (Pro only)
-* [New] Added Android app redirects to YouTube app, LinkedIn app and Line app (JP)
-* [Update] [Woo] All “begin checkout” events are now tracked. Not only the first one in a path
-* [Update] [All] Phone numbers and email addresses clicked by people on the website are now tracked in a form that prevents them from being considered as PII by tracking tools (hence, not blocked)
-* [Update] [Hotjar] Updated to latest HJ API with “hj(event)"
-* [Update] Modifications and improvements to FP helpers scripts
-* [Update] [Woo] Brand tracking no longer requires selecting brand taxonomy when the WP FP’s brand tax is enabled
-* [Removed] Redirecting to the main page of plugin after activation
-* [Removed] [GTM] Old formatting of data sent to the dataLayer
-* [Fix] [Woo] [Pin] Email address for the Enhanced Match is now correctly sent to Pinterest (Pro only)
-* [Fix] [Woo] [Plausible] Properties for Woo events should now be correctly recognized by Plausible
-* [Fix] [Woo] [Matomo] In certain situations clean page title was not reported to Matomo and the default one was used
-* [Other] Added aria-label to the panels of the cookie notice.
-
-* Find more in [our changelog](https://wpfullpicture.com/releases/)

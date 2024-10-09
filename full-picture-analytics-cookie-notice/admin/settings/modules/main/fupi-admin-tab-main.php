@@ -354,6 +354,35 @@ $sections = array(
 		),
 	),
 
+	// IMPORT/EXPORT SETTINGS
+	array(
+		'section_id' => 'fupi_main_importexport',
+		'section_title' => esc_html__( 'Import / Export', 'full-picture-analytics-cookie-notice' ),
+		'fields' => array(
+			array(
+				'type'	 			=> 'button',
+				'label' 			=> esc_html__( 'Export WP FP settings', 'full-picture-analytics-cookie-notice' ),
+				'button_text' 		=> esc_html__( 'Download file', 'full-picture-analytics-cookie-notice' ),
+				'icon'				=> 'dashicons dashicons-download',
+				'el_class'			=> 'button button-secondary fupi_downl_settings_btn',
+				'field_id' 			=> 'downl_settings_btn',
+				'option_arr_id'		=> $option_arr_id,
+				'under field'		=> '<p>' . esc_html__( 'Download a JSON file with WP FP\'s settings.', 'full-picture-analytics-cookie-notice' ) . '</p>'
+			),
+			array(
+				'type'	 			=> 'upload_button',
+				'label' 			=> esc_html__( 'Import WP FP settings', 'full-picture-analytics-cookie-notice' ),
+				'button_text' 		=> esc_html__( 'Upload file', 'full-picture-analytics-cookie-notice' ),
+				'icon'				=> 'dashicons dashicons-upload',
+				'accept_type'		=> 'application/json',
+				'el_class'			=> 'button button-secondary fupi_upload_settings_btn',
+				'field_id' 			=> 'upload_settings_file',
+				'option_arr_id'		=> $option_arr_id,
+				'under field'		=> '<p>' . esc_html__( 'Send a JSON file with WP FP\'s settings.', 'full-picture-analytics-cookie-notice' ) . '</p>'
+			),
+		)
+	),
+
 	// OTHER SETTINGS
 	
 	array(

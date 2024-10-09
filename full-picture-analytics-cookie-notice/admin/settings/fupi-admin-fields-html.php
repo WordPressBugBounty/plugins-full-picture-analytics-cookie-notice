@@ -365,7 +365,6 @@ switch ( $recipe['type'] ) {
         break;
     // =======
     case 'textarea':
-        // If it is a textarea
         if ( !empty( $recipe['format'] ) ) {
             if ( $recipe['format'] == 'htmlentities' ) {
                 $val = esc_textarea( html_entity_decode( $saved_value, ENT_QUOTES ) );
@@ -387,7 +386,6 @@ switch ( $recipe['type'] ) {
         break;
     // =======
     case 'button':
-        // If it is a textarea
         $button_text = ( !empty( $recipe['button_text'] ) ? esc_attr( $recipe['button_text'] ) : '' );
         $icon = ( !empty( $recipe['icon'] ) ? '<span class="' . esc_attr( $recipe['icon'] ) . '"></span> ' : '' );
         $href = ( !empty( $recipe['href'] ) ? esc_attr( $recipe['href'] ) : '' );
@@ -412,9 +410,23 @@ switch ( $recipe['type'] ) {
             );
         }
         break;
+    case 'upload_button':
+        $button_text = ( !empty( $recipe['button_text'] ) ? esc_attr( $recipe['button_text'] ) : '' );
+        $icon = ( !empty( $recipe['icon'] ) ? '<span class="' . esc_attr( $recipe['icon'] ) . '"></span> ' : '' );
+        $accept_type = ( !empty( $recipe['accept_type'] ) ? esc_attr( $recipe['accept_type'] ) : '' );
+        // allowed file formats. Examples: https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/accept
+        printf(
+            '<button type="button" class="%1$s">%2$s%3$s</button>
+		<input type="file" id="%4$s" accept="%5$s" style="display: none;">',
+            $el_class,
+            $icon,
+            $button_text,
+            $field_id,
+            $accept_type
+        );
+        break;
     // =======
     case 'select':
-        // If it is a select dropdown
         if ( !empty( $recipe['options'] ) && is_array( $recipe['options'] ) ) {
             $options_markup = '';
             foreach ( $recipe['options'] as $key => $label ) {
@@ -436,7 +448,6 @@ switch ( $recipe['type'] ) {
         break;
     // =======
     case 'page_select':
-        // If it is a select dropdown
         $pages = get_pages();
         $options_markup = '<option value="" false>' . esc_attr( 'Choose page', 'full-picture-analytics-cookie-notice' ) . '</option>';
         foreach ( $pages as $page ) {
