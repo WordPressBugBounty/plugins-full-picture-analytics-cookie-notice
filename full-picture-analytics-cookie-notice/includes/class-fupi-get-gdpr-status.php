@@ -44,17 +44,28 @@ class Fupi_compliance_status_checker {
         $cook_data = [];
         if ( !in_array( 'cook', $this->tools ) ) {
             $info = $this->get_module_info( 'cook' );
+            if ( $this->format == 'cdb' ) {
+                $t_alert_1 = 'Consent banner must be enabled for your setup';
+                $t_alert_2 = 'Please enable it in either opt-in mode or one of automatic modes';
+                $t_warning_1 = 'You may need to use the Consent Banner module on your website.';
+                $t_warning_2 = 'Enable it if any of the tracking tools installed on your website track personaly identifiable information, your website loads content from other sites (YouTube video, maps, etc.) or gives warnings in <a href="https://2gdpr.com" target="_blank">2GDPR.com</a>.';
+            } else {
+                $t_alert_1 = esc_html__( 'Consent banner must be enabled for your setup', 'full-picture-analytics-cookie-notice' );
+                $t_alert_2 = esc_html__( 'Please enable it in either opt-in mode or one of automatic modes', 'full-picture-analytics-cookie-notice' );
+                $t_warning_1 = esc_html__( 'You may need to use the Consent Banner module on your website.', 'full-picture-analytics-cookie-notice' );
+                $t_warning_2 = sprintf( esc_html__( 'Enable it if any of the tracking tools installed on your website track personaly identifiable information, your website loads content from other sites (YouTube video, maps, etc.) or gives warnings in %1$s.', 'full-picture-analytics-cookie-notice' ), '<a href="https://2gdpr.com" target="_blank">2GDPR.com</a>' );
+            }
             switch ( $this->req_consent_banner ) {
                 case 'yes':
                     $cook_data = [
                         'module_name' => $info['title'],
-                        'setup'       => [['alert', 'Consent banner must be enabled for your setup', 'Please enable it in either opt-in mode or one of automatic modes']],
+                        'setup'       => [['alert', $t_alert_1, $t_alert_2]],
                     ];
                     break;
                 default:
                     $cook_data = [
                         'module_name' => $info['title'],
-                        'setup'       => [['warning', 'You may need to use the Consent Banner module on your website.', 'Enable it if any of the tracking tools installed on your website track personaly identifiable information, your website loads content from other sites (YouTube video, maps, etc.) or gives warnings in <a href="https://2gdpr.com" target="_blank">2GDPR.com</a>.']],
+                        'setup'       => [['warning', $t_warning_1, $t_warning_2]],
                     ];
                     break;
             }
@@ -68,14 +79,22 @@ class Fupi_compliance_status_checker {
     }
 
     private function get_extra_text( $status = false ) {
+        // TRANSLATIONS
+        if ( $this->format == 'cdb' ) {
+            $t_fixerrors_1 = 'Fix errors in consent banner settings.';
+            $t_fixerrors_2 = 'Make sure the banner is set up correctly.';
+        } else {
+            $t_fixerrors_1 = esc_html__( 'Fix errors in consent banner settings.', 'full-picture-analytics-cookie-notice' );
+            $t_fixerrors_2 = esc_html__( 'Make sure the banner is set up correctly.', 'full-picture-analytics-cookie-notice' );
+        }
         if ( empty( $status ) ) {
             $status = $this->consent_status;
         }
         if ( $status == 'alert' ) {
-            return 'Fix errors in consent banner settings.';
+            return $t_fixerrors_1;
         } else {
             if ( $status == 'warning' ) {
-                return 'Make sure the banner is set up correctly.';
+                return $t_fixerrors_2;
             }
         }
         return '';
@@ -196,7 +215,7 @@ class Fupi_compliance_status_checker {
                                         <span class="dashicons dashicons-welcome-write-blog" style="font-size: 20px; color: #6d2974"></span>
                                     </td>
                                     <td>
-                                        Add to your privacy policy information about additional, personaly identifiable information tracked and sent to the tool:
+                                        ' . esc_html__( 'Add to your privacy policy information about additional, personaly identifiable information tracked and sent to the tool:', 'full-picture-analytics-cookie-notice' ) . '
                                         <ul style="padding-left: 30px; list-style-type: circle;">';
                                 foreach ( $checked_module_data['tracked_extra_data'] as $pp_arr ) {
                                     $output .= '<li>' . $pp_arr[0] . '</li>';
@@ -261,12 +280,18 @@ class Fupi_compliance_status_checker {
         if ( !in_array( 'trackmeta', $this->tools ) ) {
             return;
         }
+        // TRANSLATIONS
+        if ( $this->format == 'cdb' ) {
+            $t_meta = 'User metadata with ID: ';
+        } else {
+            $t_meta = esc_html__( 'User metadata with ID: ', 'full-picture-analytics-cookie-notice' );
+        }
         $var_name = ( $id == 'clar' ? 'tag_cf' : 'track_cf' );
         $tracks_meta = false;
         if ( isset( $settings[$var_name] ) && is_array( $settings[$var_name] ) ) {
             foreach ( $settings[$var_name] as $tracked_meta ) {
                 if ( substr( $tracked_meta['id'], 0, 5 ) == 'user|' ) {
-                    $this->data[$id]['tracked_extra_data'][] = ['User metadata with ID: ' . substr( $tracked_meta['id'], 5 )];
+                    $this->data[$id]['tracked_extra_data'][] = [$t_meta . substr( $tracked_meta['id'], 5 )];
                     $tracks_meta = true;
                 }
             }
@@ -277,9 +302,17 @@ class Fupi_compliance_status_checker {
     }
 
     private function check_url_passthrough( $id ) {
+        // TRANSLATIONS
+        if ( $this->format == 'cdb' ) {
+            $t_warning_1 = 'Link decoration is enabled in the consent banner settings.';
+            $t_warning_2 = 'This setting is a privacy grey area. Make sure you are not breaking any laws while using it. Otherwise, disable link decoration in the settings of the consent banner.';
+        } else {
+            $t_warning_1 = esc_html__( 'Link decoration is enabled in the consent banner settings.', 'full-picture-analytics-cookie-notice' );
+            $t_warning_2 = esc_html__( 'This setting is a privacy grey area. Make sure you are not breaking any laws while using it. Otherwise, disable link decoration in the settings of the consent banner.', 'full-picture-analytics-cookie-notice' );
+        }
         if ( in_array( 'cook', $this->tools ) ) {
             if ( !empty( $this->consb_settings ) && isset( $this->consb_settings['url_passthrough'] ) ) {
-                $this->data[$id]['setup'][] = ['warning', 'Link decoration is enabled in the consent banner settings.', 'This setting is a privacy grey area. Make sure you are not breaking any laws while using it. Otherwise, disable link decoration in the settings of the consent banner.'];
+                $this->data[$id]['setup'][] = ['warning', $t_warning_1, $t_warning_2];
             }
         }
     }
@@ -357,10 +390,22 @@ class Fupi_compliance_status_checker {
             foreach ( $settings['extra_tools'] as $tool ) {
                 $tools[] = $tool['name'];
             }
-            $this->data['privex']['setup'][] = ['ok', 'These additional tracking tools are used on the website: ' . join( ', ', $tools )];
-            $this->data['privex']['pp comments'][] = 'Your privacy policy must include information about these tracking tools: ' . join( ', ', $tools ) . '. Inform your visitors what data they track, what do you and these tools use it for and who the providers of these tools share this data with or sell it to.';
+            if ( $this->format == 'cdb' ) {
+                $t_ok = 'These additional tracking tools are used on the website: ';
+                $t_comment = 'Your privacy policy must include information about these tracking tools: ' . join( ', ', $tools ) . ' Inform your visitors what data they track, what do you and these tools use it for and who the providers of these tools share this data with or sell it to.';
+            } else {
+                $t_ok = esc_html__( 'These additional tracking tools are used on the website: ', 'full-picture-analytics-cookie-notice' );
+                $t_comment = sprintf( esc_html__( 'Your privacy policy must include information about these tracking tools: %1$s Inform your visitors what data they track, what do you and these tools use it for and who the providers of these tools share this data with or sell it to.', 'full-picture-analytics-cookie-notice' ), join( ', ', $tools ) );
+            }
+            $this->data['privex']['setup'][] = ['ok', $t_ok . join( ', ', $tools )];
+            $this->data['privex']['pp comments'][] = $t_comment;
         } else {
-            $this->data['privex']['setup'][] = ['ok', 'No information on additional tracking tools have been provided'];
+            if ( $this->format == 'cdb' ) {
+                $t_setup = 'No information on additional tracking tools have been provided';
+            } else {
+                $t_setup = esc_html__( 'No information on additional tracking tools have been provided', 'full-picture-analytics-cookie-notice' );
+            }
+            $this->data['privex']['setup'][] = ['ok', $t_setup];
         }
     }
 
@@ -369,10 +414,22 @@ class Fupi_compliance_status_checker {
     //
     private function get_integr_status( $id, $info, $settings ) {
         $req_consent = false;
+        if ( $this->format == 'cdb' ) {
+            $t_order_id = 'Order ID';
+            $t_all_ok = 'This tool does not track personally identifiable information and does not need consent banner';
+        } else {
+            $t_order_id = esc_html__( 'Order ID', 'full-picture-analytics-cookie-notice' );
+            $t_all_ok = esc_html__( 'This tool does not track personally identifiable information and does not need consent banner', 'full-picture-analytics-cookie-notice' );
+        }
         if ( $id == 'cegg' ) {
             $req_consent = true;
             if ( isset( $settings['identif_users'] ) ) {
-                $this->data[$id]['tracked_extra_data'][] = ['User ID of a logged in user'];
+                if ( $this->format == 'cdb' ) {
+                    $t_cegg = 'ID of a logged in user';
+                } else {
+                    $t_cegg = esc_html__( 'ID of a logged in user', 'full-picture-analytics-cookie-notice' );
+                }
+                $this->data[$id]['tracked_extra_data'][] = [$t_cegg];
             }
         }
         if ( $id == 'tik' ) {
@@ -383,50 +440,91 @@ class Fupi_compliance_status_checker {
         }
         if ( $id == 'posthog' ) {
             $req_consent = true;
-            if ( isset( $settings['data_in_eu'] ) ) {
-                $this->data[$id]['setup'][] = ['ok', 'Visitor\'s data is being kept on servers in the EU'];
+            if ( $this->format == 'cdb' ) {
+                $t_posthog_ok = 'Visitor\'s data is being kept on servers in the EU';
+                $t_posthog_alert = 'Visitor\'s data is not being kept on servers in the EU';
             } else {
-                $this->data[$id]['setup'][] = ['alert', 'Visitor\'s data is not being kept on servers in the EU'];
+                $t_posthog_ok = esc_html__( 'Visitor\'s data is being kept on servers in the EU', 'full-picture-analytics-cookie-notice' );
+                $t_posthog_alert = esc_html__( 'Visitor\'s data is not being kept on servers in the EU', 'full-picture-analytics-cookie-notice' );
+            }
+            if ( isset( $settings['data_in_eu'] ) ) {
+                $this->data[$id]['setup'][] = ['ok', $t_posthog_ok];
+            } else {
+                $this->data[$id]['setup'][] = ['alert', $t_posthog_alert];
             }
         }
         if ( $id == 'gads' ) {
             $req_consent = true;
             if ( isset( $settings['enh_conv'] ) ) {
-                $this->data[$id]['tracked_extra_data'][] = ['Real name, surname, phone number, email address and physical address of customers and logged-in users (enabled with Enhanced Conversions)'];
+                if ( $this->format == 'cdb' ) {
+                    $t_gads_extra_1 = 'Real name, surname, phone number, email address and physical address of customers and logged-in users (enabled with Enhanced Conversions)';
+                } else {
+                    $t_gads_extra_1 = esc_html__( 'Real name, surname, phone number, email address and physical address of customers and logged-in users (enabled with Enhanced Conversions)', 'full-picture-analytics-cookie-notice' );
+                }
+                $this->data[$id]['tracked_extra_data'][] = [$t_gads_extra_1];
             }
             if ( in_array( 'woo', $this->tools ) ) {
-                $this->data[$id]['tracked_extra_data'][] = ['Purchase order ID'];
+                $this->data[$id]['tracked_extra_data'][] = [$t_order_id];
             }
         }
         if ( $id == 'ga41' || $id == 'ga42' ) {
             $req_consent = true;
             $this->track_metadata_IDs( $id, $settings );
             if ( in_array( 'woo', $this->tools ) ) {
-                $this->data[$id]['tracked_extra_data'][] = ['Purchase order ID'];
+                $this->data[$id]['tracked_extra_data'][] = [$t_order_id];
             }
         }
         if ( $id == 'hotj' ) {
             $req_consent = true;
             if ( isset( $settings['identif_users'] ) ) {
-                $this->data[$id]['tracked_extra_data'][] = ['Unique ID (user email email and/or a unique user id)'];
+                if ( $this->format == 'cdb' ) {
+                    $t_hotj = 'Unique ID (user email email and/or a user id)';
+                } else {
+                    $t_hotj = esc_html__( 'Unique ID (user email email and/or a user id)', 'full-picture-analytics-cookie-notice' );
+                }
+                $this->data[$id]['tracked_extra_data'][] = [$t_hotj];
             }
             if ( isset( $settings['tag_woo_purchases_data'] ) && in_array( 'id', $settings['tag_woo_purchases_data'] ) ) {
-                $this->data[$id]['tracked_extra_data'][] = ['Purchase order ID'];
+                $this->data[$id]['tracked_extra_data'][] = [$t_order_id];
             }
         }
         if ( $id == 'insp' ) {
             $req_consent = true;
+            if ( $this->format == 'cdb' ) {
+                $t_insp_1 = 'The script loads an additional script for A/B testing which requires consent to using visitor\'s data for website personalisation.';
+                $t_insp_2 = 'Unique ID (user email email, user id or username).';
+            } else {
+                $t_insp_1 = esc_html__( 'The script loads an additional script for A/B testing which requires consent to using visitor\'s data for website personalisation.', 'full-picture-analytics-cookie-notice' );
+                $t_insp_2 = esc_html__( 'Unique ID (user email email, user id or username).', 'full-picture-analytics-cookie-notice' );
+            }
             if ( isset( $settings['ab_test_script'] ) ) {
-                $this->data[$id]['setup'][] = [$this->consent_status, 'The script loads an additional script for A/B testing which requires consent to using visitor\'s data for website personalisation.'];
+                $this->data[$id]['setup'][] = [$this->consent_status, $t_insp_1];
             }
             if ( isset( $settings['identif_users'] ) ) {
-                $this->data[$id]['tracked_extra_data'][] = ['Unique ID (user email email, a unique user id or a username).'];
+                $this->data[$id]['tracked_extra_data'][] = [$t_insp_2];
             }
         }
         if ( $id == 'mato' ) {
+            if ( $this->format == 'cdb' ) {
+                $t_mato_1 = 'Matomo works in privacy mode and loads irrespective of user tracking consents. Privacy mode prevents from tracking identifiable information before users agree to tracking in the consent banner (if enabled). Only necessary cookies are loaded, user IDs are not used for cross-browser tracking and order IDs are randomized.';
+                $t_mato_2 = 'User ID - used for cross-browser tracking after visitors agree to cookies.';
+                $t_mato_3 = 'User ID - for cross-browser tracking.';
+                $t_mato_4 = 'Set up a consent banner';
+                $t_mato_5 = 'Make sure the banner is set up correctly';
+                $t_mato_6 = 'Real order ID is tracked when visitors agree to tracking in a consent banner. Random order ID is sent when they don\'t.';
+                $t_mato_7 = 'Privacy mode is enabled. Make sure that this tool doesn\'t track information that can identify users.';
+            } else {
+                $t_mato_1 = esc_html__( 'Matomo works in privacy mode and loads irrespective of user tracking consents. Privacy mode prevents from tracking identifiable information before users agree to tracking in the consent banner (if enabled). Only necessary cookies are loaded, user IDs are not used for cross-browser tracking and order IDs are randomized.', 'full-picture-analytics-cookie-notice' );
+                $t_mato_2 = esc_html__( 'User ID - used for cross-browser tracking after visitors agree to cookies.', 'full-picture-analytics-cookie-notice' );
+                $t_mato_3 = esc_html__( 'User ID - for cross-browser tracking.', 'full-picture-analytics-cookie-notice' );
+                $t_mato_4 = esc_html__( 'Set up a consent banner', 'full-picture-analytics-cookie-notice' );
+                $t_mato_5 = esc_html__( 'Make sure the banner is set up correctly', 'full-picture-analytics-cookie-notice' );
+                $t_mato_6 = esc_html__( 'Real order ID is tracked when visitors agree to tracking in a consent banner. Random order ID is sent when they don\'t.', 'full-picture-analytics-cookie-notice' );
+                $t_mato_7 = esc_html__( 'Privacy mode is enabled. Make sure that this tool doesn\'t track information that can identify users.', 'full-picture-analytics-cookie-notice' );
+            }
             if ( isset( $settings['no_cookies'] ) ) {
                 // when privacy mode is enabled, then script loading always follows GDPR
-                $this->data[$id]['setup'][0] = ['ok', 'Matomo works in privacy mode and loads irrespective of user tracking consents. Privacy mode prevents from tracking identifiable information before users agree to tracking in the consent banner (if enabled). Only necessary cookies are loaded, user IDs are not used for cross-browser tracking and order IDs are randomized.'];
+                $this->data[$id]['setup'][0] = ['ok', $t_mato_1];
             } else {
                 $req_consent = true;
             }
@@ -434,57 +532,79 @@ class Fupi_compliance_status_checker {
                 if ( isset( $settings['no_cookies'] ) ) {
                     if ( in_array( 'cook', $this->tools ) ) {
                         if ( $this->consent_status !== 'ok' ) {
-                            $this->data[$id]['tracked_extra_data'][] = ['User ID - used for cross-browser tracking after visitors agree to cookies.'];
+                            $this->data[$id]['tracked_extra_data'][] = [$t_mato_2];
                         } else {
-                            $this->data[$id]['tracked_extra_data'][] = ['User ID - for cross-browser tracking.'];
+                            $this->data[$id]['tracked_extra_data'][] = [$t_mato_3];
                         }
                     }
                 } else {
                     if ( !in_array( 'cook', $this->tools ) ) {
-                        $this->data[$id]['tracked_extra_data'][] = ['User ID - for cross-browser tracking.', 'Set up a consent banner'];
+                        $this->data[$id]['tracked_extra_data'][] = [$t_mato_3, $t_mato_4];
                     } else {
-                        $this->data[$id]['tracked_extra_data'][] = ['User ID - for cross-browser tracking.', 'Make sure the banner is set up correctly'];
+                        $this->data[$id]['tracked_extra_data'][] = [$t_mato_3, $t_mato_5];
                     }
                 }
             }
             if ( in_array( 'woo', $this->tools ) ) {
                 if ( in_array( 'cook', $this->tools ) ) {
                     if ( isset( $settings['no_cookies'] ) ) {
-                        $this->data[$id]['tracked_extra_data'][] = ['Real order ID is tracked when visitors agree to tracking in a consent banner. Random order ID is sent when they don\'t.'];
+                        $this->data[$id]['tracked_extra_data'][] = [$t_mato_6];
                     } else {
-                        $this->data[$id]['tracked_extra_data'][] = ['Purchase order ID'];
+                        $this->data[$id]['tracked_extra_data'][] = [$t_order_id];
                     }
                 } else {
                     if ( !isset( $settings['no_cookies'] ) ) {
-                        $this->data[$id]['tracked_extra_data'][] = ['Purchase order ID'];
+                        $this->data[$id]['tracked_extra_data'][] = [$t_order_id];
                     }
                 }
             }
-            $priv = ( isset( $settings['no_cookies'] ) ? 'Privacy mode is enabled. Make sure that this tool doesn\'t track information that can identify users.' : false );
+            $priv = ( isset( $settings['no_cookies'] ) ? $t_mato_7 : false );
             $this->track_metadata_IDs( $id, $settings, $priv );
         }
         if ( $id == 'fbp1' ) {
             $req_consent = true;
             if ( isset( $settings['adv_match'] ) ) {
-                $this->data[$id]['tracked_extra_data'][] = ['Advanced Match is enabled. Encrypted addresses, email addresses, phone numbers and user identifiers of your visitors and logged in users are sent to Meta (if known).'];
+                if ( $this->format == 'cdb' ) {
+                    $t_fbp_1 = 'Advanced Match is enabled. Encrypted addresses, email addresses, phone numbers and user identifiers of your visitors and logged in users are sent to Meta (if known).';
+                } else {
+                    $t_fbp_1 = esc_html__( 'Advanced Match is enabled. Encrypted addresses, email addresses, phone numbers and user identifiers of your visitors and logged in users are sent to Meta (if known).', 'full-picture-analytics-cookie-notice' );
+                }
+                $this->data[$id]['tracked_extra_data'][] = [$t_fbp_1];
             }
             if ( isset( $settings['limit_data_use'] ) ) {
-                $this->data[$id]['tracked_extra_data'][] = ['Limited Data Use option is enabled for visitors from the USA.'];
+                if ( $this->format == 'cdb' ) {
+                    $t_fbp_2 = 'Limited Data Use option is enabled for visitors from the USA.';
+                } else {
+                    $t_fbp_2 = esc_html__( 'Limited Data Use option is enabled for visitors from the USA.', 'full-picture-analytics-cookie-notice' );
+                }
+                $this->data[$id]['tracked_extra_data'][] = [$t_fbp_2];
             }
             $this->track_metadata_IDs( $id, $settings );
         }
         if ( $id == 'mads' ) {
             $req_consent = true;
             if ( isset( $settings['enhanced_conv'] ) ) {
-                $this->data[$id]['tracked_extra_data'][] = ['Enhanced Conversions is enabled and sends to MS Advertising the email addresses of clients or logged-in users (if known).'];
+                if ( $this->format == 'cdb' ) {
+                    $t_mads_1 = 'Enhanced Conversions is enabled and sends to MS Advertising the email addresses of clients or logged-in users (if known).';
+                } else {
+                    $t_mads_1 = esc_html__( 'Enhanced Conversions is enabled and sends to MS Advertising the email addresses of clients or logged-in users (if known).', 'full-picture-analytics-cookie-notice' );
+                }
+                $this->data[$id]['tracked_extra_data'][] = [$t_mads_1];
             }
         }
         if ( $id == 'clar' ) {
             $extra = false;
             if ( isset( $settings['no_cookie'] ) ) {
+                if ( $this->format == 'cdb' ) {
+                    $t_clar_1 = 'MS Clarity works in no-cookie mode and loads irrespective of user tracking consents.This prevents from MS Clarity from tracking identifiable information before users agree to tracking in the consent banner (if enabled). Only necessary cookies are loaded.';
+                    $t_clar_2 = 'No-cookie mode is enabled. Make sure that this tool doesn\'t track information that can identify users.';
+                } else {
+                    $t_clar_1 = esc_html__( 'MS Clarity works in no-cookie mode and loads irrespective of user tracking consents.This prevents from MS Clarity from tracking identifiable information before users agree to tracking in the consent banner (if enabled). Only necessary cookies are loaded.', 'full-picture-analytics-cookie-notice' );
+                    $t_clar_2 = esc_html__( 'No-cookie mode is enabled. Make sure that this tool doesn\'t track information that can identify users.', 'full-picture-analytics-cookie-notice' );
+                }
                 // when privacy mode is enabled, then script loading always follows GDPR
-                $this->data[$id]['setup'][0] = ['ok', 'MS Clarity works in no-cookie mode and loads irrespective of user tracking consents. Only necessary cookies are loaded.'];
-                $extra = 'No-cookie mode is enabled. Make sure that this tool doesn\'t track information that can identify users.';
+                $this->data[$id]['setup'][0] = ['ok', $t_clar_1];
+                $extra = $t_clar_2;
             } else {
                 $req_consent = true;
             }
@@ -493,37 +613,78 @@ class Fupi_compliance_status_checker {
         if ( $id == 'pin' ) {
             $req_consent = true;
             if ( isset( $settings['track_user_emails'] ) ) {
-                $this->data[$id]['tracked_extra_data'][] = ['Enhanced Match is enabled. Email addresses of clients and logged-in users are sent to Pinterest.'];
+                if ( $this->format == 'cdb' ) {
+                    $t_pin_1 = 'Enhanced Match is enabled. Email addresses of clients and logged-in users are sent to Pinterest.';
+                } else {
+                    $t_pin_1 = esc_html__( 'Enhanced Match is enabled. Email addresses of clients and logged-in users are sent to Pinterest.', 'full-picture-analytics-cookie-notice' );
+                }
+                $this->data[$id]['tracked_extra_data'][] = [$t_pin_1];
             }
         }
         if ( $id == 'simpl' ) {
-            $this->data[$id]['setup'][] = ['ok', 'This tool does not track personally identifiable information and does not need consent banner'];
+            $this->data[$id]['setup'][] = ['ok', $t_all_ok];
         }
         if ( $id == 'pla' ) {
-            $this->data[$id]['setup'][] = ['ok', 'This tool does not track personally identifiable information and does not need consent banner'];
-            $this->track_metadata_IDs( $id, $settings, 'Due to the nature of Plausible Analytics and its terms and conditions, you cannot sent to it personally identifiable information. Please make sure that no metadata contains it.' );
+            if ( $this->format == 'cdb' ) {
+                $t_pla_1 = 'Due to the nature of Plausible Analytics and its terms and conditions, you cannot sent to it personally identifiable information. Please make sure that no metadata contains it.';
+            } else {
+                $t_pla_1 = esc_html__( 'Due to the nature of Plausible Analytics and its terms and conditions, you cannot sent to it personally identifiable information. Please make sure that no metadata contains it.', 'full-picture-analytics-cookie-notice' );
+            }
+            $this->data[$id]['setup'][] = ['ok', $t_all_ok];
+            $this->track_metadata_IDs( $id, $settings, $t_pla_1 );
         }
         if ( $id == 'twit' ) {
             $req_consent = true;
             if ( isset( $settings['enhanced_conv'] ) ) {
-                $this->data[$id]['tracked_extra_data'][] = ['Enhanced Conversions is enabled. Email addresses of clients and logged-in users are sent to Twitter (if known).'];
+                if ( $this->format == 'cdb' ) {
+                    $t_twit_1 = 'Enhanced Conversions is enabled. Email addresses of clients and logged-in users are sent to Twitter (if known).';
+                } else {
+                    $t_twit_1 = esc_html__( 'Enhanced Conversions is enabled. Email addresses of clients and logged-in users are sent to Twitter (if known).', 'full-picture-analytics-cookie-notice' );
+                }
+                $this->data[$id]['tracked_extra_data'][] = [$t_twit_1];
             }
         }
         // add setup information after we checked all the PPs
         if ( $req_consent ) {
-            if ( in_array( 'cook', $this->tools ) ) {
-                if ( isset( $settings['disreg_cookies'] ) ) {
-                    $this->data[$id]['setup'][] = ['alert', 'The tool is set to overwrite consent banner settings and start tracking without waiting for consent', 'Disable this option in the module\'s settings'];
-                } else {
-                    $extra = $this->get_extra_text();
-                    $main_text = ( $this->consent_status == 'alert' ? 'This tool loads according to incorrectly configured consent banner.' : 'This tool loads according to consent banner settings.' );
-                    $this->data[$id]['setup'][] = [$this->consent_status, $main_text, $extra];
-                }
-            } else {
-                $this->data[$id]['setup'][] = ['alert', 'Consent banner is required', 'Enable consent banner'];
-            }
             if ( isset( $settings['force_load'] ) ) {
-                $this->data[$id]['setup'][] = ['alert', 'The tool is force loaded for all visitors.', 'Disable force loading'];
+                if ( $this->format == 'cdb' ) {
+                    $t_force_1 = 'The tool is force loaded for all visitors.';
+                    $t_force_2 = 'Disable force loading';
+                } else {
+                    $t_force_1 = esc_html__( 'The tool is force loaded for all visitors.', 'full-picture-analytics-cookie-notice' );
+                    $t_force_2 = esc_html__( 'Disable force loading', 'full-picture-analytics-cookie-notice' );
+                }
+                $this->data[$id]['setup'][] = ['alert', $t_force_1, $t_force_2];
+            } else {
+                if ( in_array( 'cook', $this->tools ) ) {
+                    if ( $this->format == 'cdb' ) {
+                        $t_cook_1 = 'The tool is set to disregard consent banner settings and start tracking without waiting for consent';
+                        $t_cook_1_2 = 'Disable this option in the module\'s settings';
+                        $t_cook_2 = 'This tool loads according to incorrectly configured consent banner.';
+                        $t_cook_3 = 'This tool loads according to consent banner settings.';
+                    } else {
+                        $t_cook_1 = esc_html__( 'The tool is set to disregard consent banner settings and start tracking without waiting for consent', 'full-picture-analytics-cookie-notice' );
+                        $t_cook_1_2 = esc_html__( 'Disable this option in the module\'s settings', 'full-picture-analytics-cookie-notice' );
+                        $t_cook_2 = esc_html__( 'This tool loads according to incorrectly configured consent banner.', 'full-picture-analytics-cookie-notice' );
+                        $t_cook_3 = esc_html__( 'This tool loads according to consent banner settings.', 'full-picture-analytics-cookie-notice' );
+                    }
+                    if ( isset( $settings['disreg_cookies'] ) ) {
+                        $this->data[$id]['setup'][] = ['alert', $t_cook_1, $t_cook_1_2];
+                    } else {
+                        $extra = $this->get_extra_text();
+                        $main_text = ( $this->consent_status == 'alert' ? $t_cook_2 : $t_cook_3 );
+                        $this->data[$id]['setup'][] = [$this->consent_status, $main_text, $extra];
+                    }
+                } else {
+                    if ( $this->format == 'cdb' ) {
+                        $t_cons_1 = 'Consent banner is required';
+                        $t_cons_2 = 'Enable consent banner';
+                    } else {
+                        $t_cons_1 = esc_html__( 'Consent banner is required', 'full-picture-analytics-cookie-notice' );
+                        $t_cons_2 = esc_html__( 'Enable consent banner', 'full-picture-analytics-cookie-notice' );
+                    }
+                    $this->data[$id]['setup'][] = ['alert', $t_cons_1, $t_cons_2];
+                }
             }
         }
         if ( $this->req_consent_banner != 'yes' ) {
@@ -541,10 +702,21 @@ class Fupi_compliance_status_checker {
         $module_info = $this->get_module_info( 'safefonts' );
         $this->set_basic_module_info( 'safefonts', $module_info );
         $is_module_enabled = in_array( 'safefonts', $this->tools );
-        if ( $is_module_enabled ) {
-            $this->data['safefonts']['pre-setup'][] = ['Google Fonts are replaced with fonts from Bunny Fonts', 'You enabled replacing Google Fonts with safe fonts from Bunny Fonts but your website can still load them dynamically (after the page loads). Scan your website with <a href="https://fontsplugin.com/google-fonts-checker/" target="_blank">Fonts Checker</a> again. If it finds links to Google Fonts, you need to find the plugin or theme that loads them and disable Google Fonts in their settings.'];
+        if ( $this->format == 'cdb' ) {
+            $t_safe_1 = 'Google Fonts are replaced with fonts from Bunny Fonts';
+            $t_safe_2 = 'You enabled replacing Google Fonts with safe fonts from Bunny Fonts but your website can still load them dynamically (after the page loads). Scan your website with <a href="https://fontsplugin.com/google-fonts-checker/" target="_blank">Fonts Checker</a> again. If it finds links to Google Fonts, you need to find the plugin or theme that loads them and disable Google Fonts in their settings.';
+            $t_safe_3 = 'Check if you need to use the Safe Fonts module';
+            $t_safe_4 = 'Scan your website with <a href="https://fontsplugin.com/google-fonts-checker/" target="_blank">Fonts Checker</a> and check if your website uses Google Fonts. If it does, then either disable them in the settings of your theme or plugin or enable the Safe Fonts module to replace them with GDPR-compliant fonts from Bunny Fonts.';
         } else {
-            $this->data['safefonts']['pre-setup'][] = ['Check if you need to use the Safe Fonts module', 'Scan your website with <a href="https://fontsplugin.com/google-fonts-checker/" target="_blank">Fonts Checker</a> and check if your website uses Google Fonts. If it does, then either disable them in the settings of your theme or plugin or enable the Safe Fonts module to replace them with GDPR-compliant fonts from Bunny Fonts.'];
+            $t_safe_1 = esc_html__( 'Google Fonts are replaced with fonts from Bunny Fonts', 'full-picture-analytics-cookie-notice' );
+            $t_safe_2 = sprintf( esc_html__( 'You enabled replacing Google Fonts with safe fonts from Bunny Fonts but your website can still load them dynamically (after the page loads). Scan your website with %1$s again. If it finds links to Google Fonts, you need to find the plugin or theme that loads them and disable Google Fonts in their settings.', 'full-picture-analytics-cookie-notice' ), '<a href="https://fontsplugin.com/google-fonts-checker/" target="_blank">Fonts Checker</a>' );
+            $t_safe_3 = esc_html__( 'Check if you need to use the Safe Fonts module', 'full-picture-analytics-cookie-notice' );
+            $t_safe_4 = sprintf( esc_html__( 'Scan your website with %1$s and check if your website uses Google Fonts. If it does, then either disable them in the settings of your theme or plugin or enable the Safe Fonts module to replace them with GDPR-compliant fonts from Bunny Fonts.', 'full-picture-analytics-cookie-notice' ), '<a href="https://fontsplugin.com/google-fonts-checker/" target="_blank">Fonts Checker</a>' );
+        }
+        if ( $is_module_enabled ) {
+            $this->data['safefonts']['pre-setup'][] = [$t_safe_1, $t_safe_2];
+        } else {
+            $this->data['safefonts']['pre-setup'][] = [$t_safe_3, $t_safe_4];
         }
     }
 
@@ -553,20 +725,37 @@ class Fupi_compliance_status_checker {
     //
     private function check_woo_module() {
         if ( in_array( 'woo', $this->tools ) ) {
+            if ( $this->format == 'cdb' ) {
+                $t_woo_1 = 'Disable Order Attribution or control the SourceBuster script in WooCommerce';
+                $t_woo_2 = sprintf( 'Recent versions of WooCommerce come with an order attribution feature that uses cookies to track the last source of a purchase. We recommend you either disable this function in WooCommerce > Settings > Advanced > Features or use the Tracking Tools Manager to load the SourceBuster script only to people who agree to statistical cookies. This script is used by the Order Attribution function. %1$sLearn more%2$s', '<a href="https://wpfullpicture.com/blog/does-order-attribution-feature-in-woocommerce-8-5-1-break-gdpr-and-what-to-do-about-it/">', '</a>' );
+                $t_woo_3 = 'SourceBuster script is loaded according to incorrectly set up consent banner';
+                $t_woo_4 = 'Correct consent banner settings';
+                $t_woo_5 = 'SourceBuster script is loaded according to the consent banner settings';
+                $t_woo_6 = 'Enable consent banner to load SourceBuster according to privacy laws';
+                $t_woo_7 = 'Enable consent banner';
+            } else {
+                $t_woo_1 = esc_html__( 'Disable Order Attribution or control the SourceBuster script in WooCommerce', 'full-picture-analytics-cookie-notice' );
+                $t_woo_2 = sprintf( esc_html__( 'Recent versions of WooCommerce come with an order attribution feature that uses cookies to track the last source of a purchase. We recommend you either disable this function in WooCommerce > Settings > Advanced > Features or use the Tracking Tools Manager to load the SourceBuster script only to people who agree to statistical cookies. This script is used by the Order Attribution function. %1$sLearn more%2$s', 'full-picture-analytics-cookie-notice' ), '<a href="https://wpfullpicture.com/blog/does-order-attribution-feature-in-woocommerce-8-5-1-break-gdpr-and-what-to-do-about-it/">', '</a>' );
+                $t_woo_3 = esc_html__( 'SourceBuster script is loaded according to incorrectly set up consent banner', 'full-picture-analytics-cookie-notice' );
+                $t_woo_4 = esc_html__( 'Correct consent banner settings', 'full-picture-analytics-cookie-notice' );
+                $t_woo_5 = esc_html__( 'SourceBuster script is loaded according to the consent banner settings', 'full-picture-analytics-cookie-notice' );
+                $t_woo_6 = esc_html__( 'Enable consent banner to load SourceBuster according to privacy laws', 'full-picture-analytics-cookie-notice' );
+                $t_woo_7 = esc_html__( 'Enable consent banner', 'full-picture-analytics-cookie-notice' );
+            }
             $module_info = $this->get_module_info( 'woo' );
             $this->set_basic_module_info( 'woo', $module_info );
-            $sourcebuster_warning_text = ['Disable or control the SourceBuster script in WooCommerce', sprintf( 'Recent versions of WooCommerce come with a feature that uses cookies to track the last source of a purchase (order attribution). We recommend you either disable this function in WooCommerce > Settings > Advanced > Features or use the Tracking Tools Manager to load it only to people who agreed to statistical cookies. %1$sLearn more%2$s', '<a href="https://wpfullpicture.com/blog/does-order-attribution-feature-in-woocommerce-8-5-1-break-gdpr-and-what-to-do-about-it/">', '</a>' )];
+            $sourcebuster_warning_text = [$t_woo_1, $t_woo_2];
             if ( in_array( 'blockscr', $this->tools ) ) {
                 $blockscr_opts = get_option( 'fupi_blockscr' );
                 if ( !empty( $blockscr_opts ) && !empty( $blockscr_opts['auto_rules'] ) && in_array( 'woo_sbjs', $blockscr_opts['auto_rules'] ) ) {
                     if ( in_array( 'cook', $this->tools ) ) {
                         if ( $this->consent_status == 'alert' ) {
-                            $this->data['woo']['setup'][] = [$this->consent_status == 'alert', 'SourceBuster script is loaded according to incorrectly set up consent banner', 'Correct consent banner settings'];
+                            $this->data['woo']['setup'][] = [$this->consent_status == 'alert', $t_woo_3, $t_woo_4];
                         } else {
-                            $this->data['woo']['setup'][] = ['ok', 'SourceBuster script is loaded according to the consent banner settings'];
+                            $this->data['woo']['setup'][] = ['ok', $t_woo_5];
                         }
                     } else {
-                        $this->data['woo']['setup'][] = ['alert', 'Enable consent banner to load SourceBuster according to privacy laws', 'Enable consent banner'];
+                        $this->data['woo']['setup'][] = ['alert', $t_woo_6, $t_woo_7];
                     }
                 } else {
                     $this->data['woo']['opt-setup'][] = $sourcebuster_warning_text;
@@ -591,45 +780,85 @@ class Fupi_compliance_status_checker {
             if ( !empty( $settings['auto_rules'] ) && is_array( $settings['auto_rules'] ) ) {
                 $this->req_consent_banner = 'yes';
                 $add_extra_info = true;
-                $delimiter = ( count( $settings['auto_rules'] ) == 2 ? ' and ' : ', ' );
+                if ( $this->format == 'cdb' ) {
+                    $delimiter = ( count( $settings['auto_rules'] ) == 2 ? ' and ' : ', ' );
+                    $rules_str = join( $delimiter, $settings['auto_rules'] );
+                    $t_iframe_1 = 'Iframes loaded by ' . $rules_str . ' are loaded according to consent banner settings (require consents for statistics and marketing) or when visitors agree to privacy policies of content hosts.';
+                } else {
+                    $delimiter = ( count( $settings['auto_rules'] ) == 2 ? esc_html__( ' and ', 'full-picture-analytics-cookie-notice' ) : ', ' );
+                    $rules_str = join( $delimiter, $settings['auto_rules'] );
+                    $t_iframe_1 = sprintf( esc_html__( 'Iframes loaded by %1$s are loaded according to consent banner settings (require consents for statistics and marketing) or when visitors agree to privacy policies of content hosts.', 'full-picture-analytics-cookie-notice' ), $rules_str );
+                }
                 $extra = $this->get_extra_text();
-                $this->data['iframeblock']['setup'][] = [$this->consent_status, 'Iframes loaded by ' . join( $delimiter, $settings['auto_rules'] ) . ' are loaded according to consent banner settings (require consents for statistics and marketing) or when visitors agree to privacy policies of content hosts.', $extra];
+                $this->data['iframeblock']['setup'][] = [$this->consent_status, $t_iframe_1, $extra];
             }
             // Add automatic and manual rules together
             if ( !empty( $settings['manual_rules'] ) ) {
                 $add_extra_info = true;
+                if ( $this->format == 'cdb' ) {
+                    $t_iframe_2 = 'statistics';
+                    $t_iframe_3 = 'marketing';
+                    $t_iframe_4 = 'personalisation';
+                } else {
+                    $t_iframe_2 = esc_html__( 'statistics', 'full-picture-analytics-cookie-notice' );
+                    $t_iframe_3 = esc_html__( 'marketing', 'full-picture-analytics-cookie-notice' );
+                    $t_iframe_4 = esc_html__( 'personalisation', 'full-picture-analytics-cookie-notice' );
+                }
                 foreach ( $settings['manual_rules'] as $rules ) {
                     $text = 'Iframes loaded by ' . $rules['iframe_url'];
                     $req_consents = [];
                     $delimiter = ( count( $settings['manual_rules'] ) == 2 ? ' and ' : ', ' );
                     $extra = false;
                     if ( !empty( $rules['stats'] ) ) {
-                        $req_consents[] = 'statistics';
+                        $req_consents[] = $t_iframe_2;
                     }
                     if ( !empty( $rules['market'] ) ) {
-                        $req_consents[] = 'marketing';
+                        $req_consents[] = $t_iframe_3;
                     }
                     if ( !empty( $rules['pers'] ) ) {
-                        $req_consents[] = 'personalisation';
+                        $req_consents[] = $t_iframe_4;
                     }
                     if ( count( $req_consents ) > 0 ) {
                         $this->req_consent_banner = 'yes';
                         $entry_status = $this->consent_status;
-                        $text .= ' are loaded according to consent banner settings (require consents for ' . join( $delimiter, $req_consents ) . ') or when visitors agree to privacy policies of content hosts.';
+                        $req_cons_string = join( $delimiter, $req_consents );
+                        if ( $this->format == 'cdb' ) {
+                            $t_iframe_5 = ' are loaded according to consent banner settings (require consents for ' . $req_cons_string . ') or when visitors agree to privacy policies of content hosts.';
+                        } else {
+                            $t_iframe_5 = sprintf( esc_html__( ' are loaded according to consent banner settings (require consents for %1$s) or when visitors agree to privacy policies of content hosts.', 'full-picture-analytics-cookie-notice' ), $req_cons_string );
+                        }
+                        $text .= $t_iframe_5;
                         $extra = $this->get_extra_text();
                     } else {
+                        if ( $this->format == 'cdb' ) {
+                            $t_iframe_6 = ' are set to load without waiting for consents.';
+                        } else {
+                            $t_iframe_6 = esc_html__( ' are set to load without waiting for consents.', 'full-picture-analytics-cookie-notice' );
+                        }
                         $entry_status = 'warning';
-                        $text .= ' are set to load without waiting for consents.';
+                        $text .= $t_iframe_6;
                     }
                     $this->data['iframeblock']['setup'][] = [$entry_status, $text, $extra];
                 }
             }
             if ( $add_extra_info ) {
-                $this->data['iframeblock']['pp comments'][] = 'Add information in your privacy policy that your website loads content from other sources and what happens with their data after they agree. You can link to their privacy policies.';
+                if ( $this->format == 'cdb' ) {
+                    $t_iframe_7 = 'Add information in your privacy policy that your website loads content from other sources and what happens with their data after they agree. You can link to their privacy policies.';
+                } else {
+                    $t_iframe_7 = esc_html__( 'Add information in your privacy policy that your website loads content from other sources and what happens with their data after they agree. You can link to their privacy policies.', 'full-picture-analytics-cookie-notice' );
+                }
+                $this->data['iframeblock']['pp comments'][] = $t_iframe_7;
             }
             // If module is disabled
         } else {
-            $this->data['iframeblock']['pre-setup'][] = ['Check if you need to enable the Iframes Manager module', 'If you embed on your site any content from other websites (YouTube videos, Google Maps, X/Twitter twits, etc.), please configure the Consent Banner module and Iframes Manager module. This way WP Full Picture will be able to load this content according to provided consents.'];
+            if ( $this->format == 'cdb' ) {
+                $t_iframe_disabl_1 = 'Check if you need to enable the Iframes Manager module';
+                $t_iframe_disabl_2 = 'If you embed on your site any content from other websites (YouTube videos, Google Maps, X/Twitter twits, etc.), please configure the Consent Banner module and Iframes Manager module. This way WP Full Picture will be able to load this content according to provided consents.';
+            } else {
+                $t_iframe_disabl_1 = esc_html__( 'Check if you need to enable the Iframes Manager module', 'full-picture-analytics-cookie-notice' );
+                $t_iframe_disabl_2 = esc_html__( 'If you embed on your site any content from other websites (YouTube videos, Google Maps, X/Twitter twits, etc.), please configure the Consent Banner module and Iframes Manager module. This way WP Full Picture will be able to load this content according to provided consents.', 'full-picture-analytics-cookie-notice' );
+            }
+            $this->data['iframeblock']['pre-setup'][] = [$t_iframe_disabl_1, $t_iframe_disabl_2];
         }
     }
 
@@ -655,53 +884,107 @@ class Fupi_compliance_status_checker {
                         }
                         $adds_scripts = true;
                         $title = ( !empty( $script_settings['title'] ) ? esc_attr( $script_settings['title'] ) : 'Script ' . $script_settings['id'] );
+                        if ( $this->format == 'cdb' ) {
+                            $t_scr_1 = 'WP Full Picture loads a script';
+                        } else {
+                            $t_scr_1 = esc_html__( 'WP Full Picture loads a script', 'full-picture-analytics-cookie-notice' );
+                        }
                         // write description text
-                        $script_info_text = 'WP Full Picture loads a script: "' . $title . '". ';
+                        $script_info_text = $t_scr_1 . ': "' . $title . '". ';
                         // if we have a consent banner
                         if ( in_array( 'cook', $this->tools ) ) {
+                            if ( $this->format == 'cdb' ) {
+                                $t_csrc_3 = 'statistics';
+                                $t_csrc_4 = 'marketing';
+                                $t_csrc_5 = 'personalisation';
+                            } else {
+                                $t_csrc_3 = esc_html__( 'statistics', 'full-picture-analytics-cookie-notice' );
+                                $t_csrc_4 = esc_html__( 'marketing', 'full-picture-analytics-cookie-notice' );
+                                $t_csrc_5 = esc_html__( 'personalisation', 'full-picture-analytics-cookie-notice' );
+                            }
                             $req_consents = [];
                             if ( !empty( $script_settings['stats'] ) ) {
-                                $req_consents[] = 'statistics';
+                                $req_consents[] = $t_csrc_3;
                             }
                             if ( !empty( $script_settings['market'] ) ) {
-                                $req_consents[] = 'marketing';
+                                $req_consents[] = $t_csrc_4;
                             }
                             if ( !empty( $script_settings['pers'] ) ) {
-                                $req_consents[] = 'personalisation';
+                                $req_consents[] = $t_csrc_5;
                             }
                             if ( count( $req_consents ) > 0 ) {
                                 $script_status = 'ok';
-                                $delimiter = ( count( $req_consents ) == 2 ? ' and ' : ', ' );
-                                $script_info_text .= 'It is set to require consents for ' . join( $delimiter, $req_consents );
+                                if ( $this->format == 'cdb' ) {
+                                    $delimiter = ( count( $req_consents ) == 2 ? ' and ' : ', ' );
+                                    $t_csrc_6 = 'It is set to require consents for';
+                                    $t_csrc_7 = 'but it is force-loaded before visitors can make their choices.';
+                                    $t_csrc_8 = 'Do not force-load this script.';
+                                    $t_csrc_9 = 'and loads according to consent banner settings.';
+                                } else {
+                                    $delimiter = ( count( $req_consents ) == 2 ? esc_html__( ' and ', 'full-picture-analytics-cookie-notice' ) : ', ' );
+                                    $t_csrc_6 = esc_html__( 'It is set to require consents for', 'full-picture-analytics-cookie-notice' );
+                                    $t_csrc_7 = esc_html__( 'but it is force-loaded before visitors can make their choices.', 'full-picture-analytics-cookie-notice' );
+                                    $t_csrc_8 = esc_html__( 'Do not force-load this script.', 'full-picture-analytics-cookie-notice' );
+                                    $t_csrc_9 = esc_html__( 'and loads according to consent banner settings.', 'full-picture-analytics-cookie-notice' );
+                                }
+                                $script_info_text .= $t_csrc_6 . ' ' . join( $delimiter, $req_consents );
                                 $extra = $this->get_extra_text();
                                 if ( isset( $script_settings['force_load'] ) ) {
                                     $script_status = 'alert';
-                                    $script_info_text .= ' but it is force-loaded before visitors can make their choices.';
-                                    $extra .= ' Do not force-load this script.';
+                                    $script_info_text .= ' ' . $t_csrc_7;
+                                    $extra .= ' ' . $t_csrc_8;
                                 } else {
-                                    $script_info_text .= ' and loads according to consent banner settings.';
+                                    $script_info_text .= ' ' . $t_csrc_9;
                                 }
                             } else {
+                                if ( $this->format == 'cdb' ) {
+                                    $t_csrc_10 = 'The script loads without waiting for tracking consents.';
+                                    $t_csrc_11 = 'Make sure that this script does not track personaly identifiable information.';
+                                } else {
+                                    $t_csrc_10 = esc_html__( 'The script loads without waiting for tracking consents.', 'full-picture-analytics-cookie-notice' );
+                                    $t_csrc_11 = esc_html__( 'Make sure that this script does not track personaly identifiable information.', 'full-picture-analytics-cookie-notice' );
+                                }
                                 $script_status = 'warning';
-                                $script_info_text .= 'The script loads without waiting for tracking consents.';
-                                $extra = 'Make sure that this script does not track personaly identifiable information.';
+                                $script_info_text .= $t_csrc_10;
+                                $extra = $t_csrc_11;
                             }
                             // if we don't have a consent banner
                         } else {
+                            if ( $this->format == 'cdb' ) {
+                                $t_csrc_12 = 'The script loads without waiting for tracking consents.';
+                                $t_csrc_13 = 'Make sure that this script does not track personaly identifiable information.';
+                            } else {
+                                $t_csrc_12 = esc_html__( 'The script loads without waiting for tracking consents.', 'full-picture-analytics-cookie-notice' );
+                                $t_csrc_13 = esc_html__( 'Make sure that this script does not track personaly identifiable information.', 'full-picture-analytics-cookie-notice' );
+                            }
                             $script_status = 'warning';
-                            $script_info_text .= 'The script loads without waiting for tracking consents.';
-                            $extra = 'Make sure that this script does not track personaly identifiable information.';
+                            $script_info_text .= $t_csrc_12;
+                            $extra = $t_csrc_13;
                         }
                         $this->data['cscr']['setup'][] = [$script_status, $script_info_text, $extra];
                     }
                 }
             }
             if ( !$adds_scripts ) {
-                $this->data['cscr']['pre-setup'][] = ['This module does not install any scripts', 'Make sure that all JavaScript snippets that install tracking tools are loaded with the Custom Scripts module. WP Full Picture will load them according to provided consents.'];
+                if ( $this->format == 'cdb' ) {
+                    $t_cscr_14 = 'This module does not install any scripts';
+                    $t_cscr_15 = 'Make sure that all JavaScript snippets that install tracking tools are loaded with the Custom Scripts module. WP Full Picture will load them according to provided consents.';
+                } else {
+                    $t_cscr_14 = esc_html__( 'This module does not install any scripts', 'full-picture-analytics-cookie-notice' );
+                    $t_cscr_15 = esc_html__( 'Make sure that all JavaScript snippets that install tracking tools are loaded with the Custom Scripts module. WP Full Picture will load them according to provided consents.', 'full-picture-analytics-cookie-notice' );
+                }
+                $this->data['cscr']['pre-setup'][] = [$t_cscr_14, $t_cscr_15];
             }
             // If module is disabled
         } else {
-            $this->data['cscr']['pre-setup'][] = ['Check if you need to enable the Custom Scripts module', 'If you installed any tracking tools with JavaScript snippets, please move these snippets to the "Custom scripts" module (easy) or Google Tag Manager (advanced). This way, WP Full Picture\'s Consent Banner will be able to load these tools according to provided consents.'];
+            if ( $this->format == 'cdb' ) {
+                $t_cscr_16 = 'Check if you need to enable the Custom Scripts module';
+                $t_cscr_17 = 'If you installed any tracking tools with JavaScript snippets, please move these snippets to the "Custom scripts" module (easy) or Google Tag Manager (advanced). This way, WP Full Picture\'s Consent Banner will be able to load these tools according to provided consents.';
+            } else {
+                $t_cscr_16 = esc_html__( 'Check if you need to enable the Custom Scripts module', 'full-picture-analytics-cookie-notice' );
+                $t_cscr_17 = esc_html__( 'If you installed any tracking tools with JavaScript snippets, please move these snippets to the "Custom scripts" module (easy) or Google Tag Manager (advanced). This way, WP Full Picture\'s Consent Banner will be able to load these tools according to provided consents.', 'full-picture-analytics-cookie-notice' );
+            }
+            $this->data['cscr']['pre-setup'][] = [$t_cscr_16, $t_cscr_17];
         }
     }
 
@@ -716,19 +999,46 @@ class Fupi_compliance_status_checker {
         if ( $is_module_enabled ) {
             $add_extra_info = false;
             if ( !empty( $settings['auto_rules'] ) && is_array( $settings['auto_rules'] ) ) {
+                $auto_rules_str = join( ', ', str_replace( '_', ' ', $settings['auto_rules'] ) );
+                if ( $this->format == 'cdb' ) {
+                    $t_auto_1 = 'Tracking plugins loaded according to settings in the consent banner:';
+                    $t_auto_2 = 'Tracking plugin(s) ' . $auto_rules_str . ' must be loaded according to settings in the consent banner but it is not enabled.';
+                    $t_auto_3 = 'Enable consent banner';
+                } else {
+                    $t_auto_1 = esc_html__( 'Tracking plugins loaded according to settings in the consent banner:', 'full-picture-analytics-cookie-notice' );
+                    $t_auto_2 = sprintf( esc_html__( 'Tracking plugin(s) %1$s must be loaded according to settings in the consent banner but it is not enabled.', 'full-picture-analytics-cookie-notice' ), $auto_rules_str );
+                    $t_auto_3 = esc_html__( 'Enable consent banner', 'full-picture-analytics-cookie-notice' );
+                }
                 $this->req_consent_banner = 'yes';
                 $add_extra_info = true;
                 if ( in_array( 'cook', $this->tools ) ) {
+                    if ( $this->format == 'cdb' ) {
+                        $t_auto_1 = 'Tracking plugins loaded according to settings in the consent banner:';
+                    } else {
+                        $t_auto_1 = esc_html__( 'Tracking plugins loaded according to settings in the consent banner:', 'full-picture-analytics-cookie-notice' );
+                    }
                     $extra = $this->get_extra_text();
-                    $this->data['blockscr']['setup'][] = [$this->consent_status, 'Tracking plugins loaded according to settings in the consent banner: ' . join( ', ', str_replace( '_', ' ', $settings['auto_rules'] ) ), $extra];
+                    $this->data['blockscr']['setup'][] = [$this->consent_status, $t_auto_1 . ' ' . $auto_rules_str, $extra];
                 } else {
-                    $this->data['blockscr']['setup'][] = ['alert', 'Tracking plugin(s) ' . join( ', ', str_replace( '_', ' ', $settings['auto_rules'] ) ) . ' must be loaded according to settings in the consent banner but it is not enabled.', 'Enable consent banner'];
+                    if ( $this->format == 'cdb' ) {
+                        $t_auto_2 = 'Tracking plugin(s) ' . $auto_rules_str . ' must be loaded according to settings in the consent banner but it is not enabled.';
+                        $t_auto_3 = 'Enable consent banner';
+                    } else {
+                        $t_auto_2 = sprintf( esc_html__( 'Tracking plugin(s) %1$s must be loaded according to settings in the consent banner but it is not enabled.', 'full-picture-analytics-cookie-notice' ), $auto_rules_str );
+                        $t_auto_3 = esc_html__( 'Enable consent banner', 'full-picture-analytics-cookie-notice' );
+                    }
+                    $this->data['blockscr']['setup'][] = ['alert', $t_auto_2, $t_auto_3];
                 }
             }
             if ( !empty( $settings['blocked_scripts'] ) && is_array( $settings['blocked_scripts'] ) ) {
                 $this->req_consent_banner = 'yes';
                 $add_extra_info = true;
                 foreach ( $settings['blocked_scripts'] as $rules ) {
+                    if ( $this->format == 'cdb' ) {
+                        $t_block_1 = 'No name provided';
+                    } else {
+                        $t_block_1 = esc_html__( 'No name provided', 'full-picture-analytics-cookie-notice' );
+                    }
                     $title = $rules['id'];
                     if ( !empty( $rules['title'] ) ) {
                         $title = $rules['title'];
@@ -736,51 +1046,104 @@ class Fupi_compliance_status_checker {
                         if ( !empty( $rules['name'] ) ) {
                             $title = $rules['name'];
                         } else {
-                            $title = 'No name provided';
+                            $title = $t_block_1;
                         }
                     }
-                    $text = 'Tracking tool with ' . $rules['block_by'] . '="' . $rules['url_part'] . '" and title/ID "' . $title . '"';
+                    if ( $this->format == 'cdb' ) {
+                        $t_block_2 = 'Tracking tool with ' . $rules['block_by'] . '="' . $rules['url_part'] . '" and title/ID "' . $title . '"';
+                        $t_block_3 = 'statistics';
+                        $t_block_4 = 'marketing';
+                        $t_block_5 = 'personalisation';
+                    } else {
+                        $t_block_2 = sprintf(
+                            esc_html__( 'Tracking tool with %1$s="%2$s" and title/ID "%3$s"', 'full-picture-analytics-cookie-notice' ),
+                            $rules['block_by'],
+                            $rules['url_part'],
+                            $title
+                        );
+                        $t_block_3 = esc_html__( 'statistics', 'full-picture-analytics-cookie-notice' );
+                        $t_block_4 = esc_html__( 'marketing', 'full-picture-analytics-cookie-notice' );
+                        $t_block_5 = esc_html__( 'personalisation', 'full-picture-analytics-cookie-notice' );
+                    }
+                    $text = $t_block_2;
                     $extra = false;
                     $req_consents = [];
                     if ( !empty( $rules['stats'] ) ) {
-                        $req_consents[] = 'statistics';
+                        $req_consents[] = $t_block_3;
                     }
                     if ( !empty( $rules['market'] ) ) {
-                        $req_consents[] = 'marketing';
+                        $req_consents[] = $t_block_4;
                     }
                     if ( !empty( $rules['pers'] ) ) {
-                        $req_consents[] = 'personalisation';
+                        $req_consents[] = $t_block_5;
                     }
                     $delimiter = ( count( $req_consents ) == 2 ? ' and ' : ', ' );
                     // Don\'t forget to add "force_load" check
                     if ( count( $req_consents ) > 0 ) {
                         $this->req_consent_banner = 'yes';
                         $entry_status = $this->consent_status;
-                        $text .= ' is marked as using visitor\'s data for ' . join( $delimiter, $req_consents ) . '.';
+                        if ( $this->format == 'cdb' ) {
+                            $t_block_6 = 'is marked as using visitor\'s data for ' . join( $delimiter, $req_consents ) . '.';
+                            $t_block_7 = 'The tool is loaded according to incorrectly set up consent banner';
+                            $t_block_8 = 'The tool is loaded according to consent banner settings';
+                        } else {
+                            $t_block_6 = sprintf( esc_html__( 'is marked as using visitor\'s data for %1$s.', 'full-picture-analytics-cookie-notice' ), join( $delimiter, $req_consents ) );
+                            $t_block_7 = esc_html__( 'The tool is loaded according to incorrectly set up consent banner', 'full-picture-analytics-cookie-notice' );
+                            $t_block_8 = esc_html__( 'The tool is loaded according to consent banner settings', 'full-picture-analytics-cookie-notice' );
+                        }
+                        $text .= ' ' . $t_block_6;
                         if ( in_array( 'cook', $this->tools ) ) {
                             $extra = $this->get_extra_text();
                             if ( $this->consent_status == 'alert' ) {
-                                $text .= ' The tool is loaded according to incorrectly set up consent banner';
+                                $text .= ' ' . $t_block_7;
                             } else {
-                                $text .= ' The tool is loaded according to consent banner settings';
+                                $text .= ' ' . $t_block_8;
                             }
                         }
                     } else {
+                        if ( $this->format == 'cdb' ) {
+                            $t_block_9 = 'is set to load without waiting for consents.';
+                            $t_block_10 = 'Make sure this script does not need consents';
+                        } else {
+                            $t_block_9 = esc_html__( 'is set to load without waiting for consents.', 'full-picture-analytics-cookie-notice' );
+                            $t_block_10 = esc_html__( 'Make sure this script does not need consents', 'full-picture-analytics-cookie-notice' );
+                        }
                         $entry_status = 'warning';
-                        $text .= ' is set to load without waiting for consents.';
-                        $extra = 'Make sure this script does not need consents';
+                        $text .= ' ' . $t_block_9;
+                        $extra = $t_block_10;
                     }
                     $this->data['blockscr']['setup'][] = [$entry_status, $text, $extra];
                 }
             }
             if ( $add_extra_info ) {
-                $this->data['blockscr']['pp comments'][] = 'Add information in your privacy policy about additional tracking tools that you use, what data they collect, how is the data used and who is it shared with.';
+                if ( $this->format == 'cdb' ) {
+                    $t_block_11 = 'Add information in your privacy policy about additional tracking tools that you use, what data they collect, how is the data used and who is it shared with.';
+                    $t_block_12 = 'This module does not manage any tracking tools';
+                    $t_block_13 = 'Are you sure this module needs to stay enabled?';
+                } else {
+                    $t_block_11 = esc_html__( 'Add information in your privacy policy about additional tracking tools that you use, what data they collect, how is the data used and who is it shared with.', 'full-picture-analytics-cookie-notice' );
+                    $t_block_12 = esc_html__( 'This module does not manage any tracking tools', 'full-picture-analytics-cookie-notice' );
+                    $t_block_13 = esc_html__( 'Are you sure this module needs to stay enabled?', 'full-picture-analytics-cookie-notice' );
+                }
+                $this->data['blockscr']['pp comments'][] = $t_block_11;
             } else {
-                $this->data['blockscr']['setup'][] = ['ok', 'This module does not manage any tracking tools', 'Are you use this module needs to stay enabled?'];
+                $this->data['blockscr']['setup'][] = ['ok', $t_block_12, $t_block_13];
             }
             // If module is disabled
         } else {
-            $this->data['blockscr']['pre-setup'][] = ['Check if you need to enable the Tracking Tools Manager module', 'Tracking Tools Manager let\'s you load tracking tools installed outside WP Full Picture according to visitors\' consents. Use it if you installed any tracking tool with a different plugin. If you are unsure, check your website for cookies of other tracking tools with <a href="https://2gdpr.com">2GDPR.com</a>. If you are unsure how to use it, read these <a href="https://wpfullpicture.com/support/documentation/how-to-use-2gdpr-com-to-track-your-visitors-according-to-gdpr/">short instructions</a>.'];
+            if ( $this->format == 'cdb' ) {
+                $t_block_14 = 'Check if you need to enable the Tracking Tools Manager module';
+                $t_block_15 = 'Tracking Tools Manager let\'s you load tracking tools installed outside WP Full Picture according to visitors\' consents. Use it if you installed any tracking tool with a different plugin. If you are unsure, check your website for cookies of other tracking tools with <a href="https://2gdpr.com">2GDPR.com</a>. If you are unsure how to use it, read these <a href="https://wpfullpicture.com/support/documentation/how-to-use-2gdpr-com-to-track-your-visitors-according-to-gdpr/">short instructions</a>.';
+            } else {
+                $t_block_14 = esc_html__( 'Check if you need to enable the Tracking Tools Manager module', 'full-picture-analytics-cookie-notice' );
+                $t_block_15 = sprintf(
+                    esc_html__( 'Tracking Tools Manager let\'s you load tracking tools installed outside WP Full Picture according to visitors\' consents. Use it if you installed any tracking tool with a different plugin. If you are unsure, check your website for cookies of other tracking tools with %1$s. If you are unsure how to use it, read these %2$sshort instructions%3$s.', 'full-picture-analytics-cookie-notice' ),
+                    '<a href="https://2gdpr.com">2GDPR.com</a>',
+                    '<a href="https://wpfullpicture.com/support/documentation/how-to-use-2gdpr-com-to-track-your-visitors-according-to-gdpr/">',
+                    '</a>'
+                );
+            }
+            $this->data['blockscr']['pre-setup'][] = [$t_block_14, $t_block_15];
         }
     }
 
@@ -799,36 +1162,59 @@ class Fupi_compliance_status_checker {
             'module_name' => $info['title'],
             'setup'       => [],
         ];
+        if ( $this->format == 'cdb' ) {
+            $t_cook_1 = 'Check in what countries opt-in, opt-out and notification banners should be used. <a href="https://wpfullpicture.com/support/documentation/countries-that-require-opt-in-or-opt-out-to-cookies/">Read article</a>';
+            $t_cook_2 = 'Consent banner uses strict, automatic setup mode - it chooses the correct mode of work depending on visitor\'s location. Strict mode is intended for websites that use visitor\'s data for marketing purposes and / or collect sensitive information.';
+            $t_cook_3 = 'Opt-in mode is used for visitors from:';
+            $t_cook_4 = 'Opt-out mode is used for visitors from:';
+            $t_cook_5 = 'Visitors from other countries are notified that they are tracked.';
+            $t_cook_6 = 'Fallback mode when no location is found: Opt-in mode.';
+        } else {
+            $t_cook_1 = sprintf( esc_html__( 'Check in what countries opt-in, opt-out and notification banners should be used. %1$sRead article%2$s', 'full-picture-analytics-cookie-notice' ), '<a href="https://wpfullpicture.com/support/documentation/countries-that-require-opt-in-or-opt-out-to-cookies/">', '</a>' );
+            $t_cook_2 = esc_html__( 'Consent banner uses strict, automatic setup mode - it chooses the correct mode of work depending on visitor\'s location. Strict mode is intended for websites that use visitor\'s data for marketing purposes and / or collect sensitive information.', 'full-picture-analytics-cookie-notice' );
+            $t_cook_3 = esc_html__( 'Opt-in mode is used for visitors from:', 'full-picture-analytics-cookie-notice' );
+            $t_cook_4 = esc_html__( 'Opt-out mode is used for visitors from:', 'full-picture-analytics-cookie-notice' );
+            $t_cook_5 = esc_html__( 'Visitors from other countries are notified that they are tracked.', 'full-picture-analytics-cookie-notice' );
+            $t_cook_6 = esc_html__( 'Fallback mode when no location is found: Opt-in mode.', 'full-picture-analytics-cookie-notice' );
+        }
         $status = 'ok';
         // state levels: ok > warning > alert
-        $guide_text = 'Check in what countries opt-in, opt-out and notification banners should be used. <a href="https://wpfullpicture.com/support/documentation/countries-that-require-opt-in-or-opt-out-to-cookies/">Read article</a>';
+        $guide_text = $t_cook_1;
         // texts for the defaults
         $default_geo_texts = [
-            ['ok', 'Consent banner uses strict, automatic setup mode - it chooses the correct mode of work depending on visitor\'s location. Strict mode is intended for websites that use visitor\'s data for marketing purposes and / or collect sensitive information.'],
-            ['ok', 'Opt-in mode is used for visitors from: AT, BE, BG, CY, CZ, DE, DK, ES, EE, FI, FR, GB, GR, HR, HU, IE, IS, IT, LI, LT, LU, LV, MT, NG, NL, NO, PL, PT, RO, SK, SI, SE, MX, GP, GF, MQ, YT, RE, MF, IC, AR, BR, TR, SG, ZA, AU, CA, CL, CN, CO, HK, IN, ID, JP, MA, RU, KR, CH, TW, TH.'],
-            ['ok', 'Opt-out mode is used for visitors from: US (CA), KZ.'],
-            ['ok', 'Visitors from other countries are notified that they are tracked.'],
-            ['ok', 'Fallback mode when no location is found: Opt-in mode.']
+            ['ok', $t_cook_2],
+            ['ok', $t_cook_3 . ' AT, BE, BG, CY, CZ, DE, DK, ES, EE, FI, FR, GB, GR, HR, HU, IE, IS, IT, LI, LT, LU, LV, MT, NG, NL, NO, PL, PT, RO, SK, SI, SE, MX, GP, GF, MQ, YT, RE, MF, IC, AR, BR, TR, SG, ZA, AU, CA, CL, CN, CO, HK, IN, ID, JP, MA, RU, KR, CH, TW, TH.'],
+            ['ok', $t_cook_4 . ' US (CA), KZ.'],
+            ['ok', $t_cook_5],
+            ['ok', $t_cook_6]
         ];
         // default settings
         if ( empty( $settings ) ) {
+            if ( $this->format == 'cdb' ) {
+                $t_cook_7 = 'Consent banner is set to start tracking visitors from all countries only after they consent to tracking (Opt-in mode).';
+                $t_cook_8 = 'Visitors are not asked for new consent when the privacy policy text changes and/or when new tracking modules are enabled.';
+                $t_cook_9 = 'Enable it in the consent banner\'s settings';
+                $t_cook_10 = 'Saving proofs of visitor\'s tracking consents is disabled.';
+                $t_cook_11 = 'Enable saving proofs of consent in the Consent Banner > Saving Consents (Pro only). You may need it during audits or investigations by authorities or data protection agencies, if a user complains about being tracked without permission, in legal cases where privacy issues are involved.';
+            } else {
+                $t_cook_7 = esc_html__( 'Consent banner is set to start tracking visitors from all countries only after they consent to tracking (Opt-in mode).', 'full-picture-analytics-cookie-notice' );
+                $t_cook_8 = esc_html__( 'Visitors are not asked for new consent when the privacy policy text changes and/or when new tracking modules are enabled.', 'full-picture-analytics-cookie-notice' );
+                $t_cook_9 = esc_html__( 'Enable it in the consent banner\'s settings', 'full-picture-analytics-cookie-notice' );
+                $t_cook_10 = esc_html__( 'Saving proofs of visitor\'s tracking consents is disabled.', 'full-picture-analytics-cookie-notice' );
+                $t_cook_11 = esc_html__( 'Enable saving proofs of consent in the Consent Banner > Saving Consents (Pro only). You may need it during audits or investigations by authorities or data protection agencies, if a user complains about being tracked without permission, in legal cases where privacy issues are involved.', 'full-picture-analytics-cookie-notice' );
+            }
             if ( in_array( 'geo', $this->tools ) ) {
                 $this->data['cook']['setup'] = array_merge( $this->data['cook']['setup'], $default_geo_texts );
             } else {
-                $this->data['cook']['setup'][] = ['ok', 'Consent banner is set to start tracking visitors from all countries only after they consent to tracking (Opt-in mode).'];
+                $this->data['cook']['setup'][] = ['ok', $t_cook_7];
             }
             // No asking for consents again
             if ( $status != 'alert' ) {
                 $status = 'alert';
             }
-            $this->data['cook']['setup'][] = ['alert', 'Visitors are not asked for new consent when the privacy policy text changes and/or when new tracking modules are enabled.', 'Enable it in the consent banner\'s settings'];
+            $this->data['cook']['setup'][] = ['alert', $t_cook_8, $t_cook_9];
             // No saving consents
-            $this->data['cook']['setup'][] = [
-                'warning',
-                'Saving proofs of visitor\'s tracking consents is disabled.',
-                'Enable saving proofs of consent in the Consent Banner > Saving Consents (Pro only). You may need it during audits or investigations by authorities or data protection agencies, if a user complains about being tracked without permission, in legal cases where privacy issues are involved.',
-                'full-picture-analytics-cookie-notice'
-            ];
+            $this->data['cook']['setup'][] = ['warning', $t_cook_10, $t_cook_11];
             // check user's settings
         } else {
             if ( in_array( 'geo', $this->tools ) ) {
@@ -839,19 +1225,38 @@ class Fupi_compliance_status_checker {
                 } else {
                     switch ( $settings['mode'] ) {
                         case 'optin':
-                            $this->data['cook']['setup'][] = ['ok', 'Consent banner is set to start tracking visitors from all countries only after they consent to tracking (Opt-in mode).'];
+                            if ( $this->format == 'cdb' ) {
+                                $t_cook_12 = 'Consent banner is set to start tracking visitors from all countries only after they consent to tracking (Opt-in mode).';
+                            } else {
+                                $t_cook_12 = esc_html__( 'Consent banner is set to start tracking visitors from all countries only after they consent to tracking (Opt-in mode).', 'full-picture-analytics-cookie-notice' );
+                            }
+                            $this->data['cook']['setup'][] = ['ok', $t_cook_12];
                             break;
                         case 'optout':
+                            if ( $this->format == 'cdb' ) {
+                                $t_cook_13 = 'Consent banner is set to start tracking visitors from the moment they enter the website but let them decline tracking (Opt-out mode).';
+                                $t_cook_14 = 'Change to the opt-in mode or one of automatic modes.';
+                            } else {
+                                $t_cook_13 = esc_html__( 'Consent banner is set to start tracking visitors from the moment they enter the website but let them decline tracking (Opt-out mode).', 'full-picture-analytics-cookie-notice' );
+                                $t_cook_14 = esc_html__( 'Change to the opt-in mode or one of automatic modes.', 'full-picture-analytics-cookie-notice' );
+                            }
                             if ( $status != 'alert' ) {
                                 $status = 'alert';
                             }
-                            $this->data['cook']['setup'][] = ['alert', 'Consent banner is set to start tracking visitors from the moment they enter the website but let them decline tracking (Opt-out mode).', 'Change to the opt-in mode or one of automatic modes.'];
+                            $this->data['cook']['setup'][] = ['alert', $t_cook_13, $t_cook_14];
                             break;
                         case 'notify':
+                            if ( $this->format == 'cdb' ) {
+                                $t_cook_15 = 'Consent banner is set to track all visitors and only notify them that they are tracked. They cannot decline.';
+                                $t_cook_16 = 'Change to the opt-in mode or one of automatic modes.';
+                            } else {
+                                $t_cook_15 = esc_html__( 'Consent banner is set to track all visitors and only notify them that they are tracked. They cannot decline.', 'full-picture-analytics-cookie-notice' );
+                                $t_cook_16 = esc_html__( 'Change to the opt-in mode or one of automatic modes.', 'full-picture-analytics-cookie-notice' );
+                            }
                             if ( $status != 'alert' ) {
                                 $status = 'alert';
                             }
-                            $this->data['cook']['setup'][] = ['alert', 'Consent banner is set to track all visitors and only notify them that they are tracked. They cannot decline.', 'Change to the opt-in mode or one of automatic modes.'];
+                            $this->data['cook']['setup'][] = ['alert', $t_cook_15, $t_cook_16];
                             break;
                         case 'auto_strict':
                             array_pop( $default_geo_texts );
@@ -859,81 +1264,165 @@ class Fupi_compliance_status_checker {
                             $this->data['cook']['setup'] = array_merge( $this->data['cook']['setup'], $default_geo_texts );
                             break;
                         case 'auto_lax':
+                            $notif_countries = 'KZ, PH';
+                            if ( $this->format == 'cdb' ) {
+                                $t_cook_17 = 'Consent banner uses lax, automatic setup mode - it chooses the correct mode of work depending on visitor\'s location. Lax mode is intended for websites that neither use visitor\'s data for marketing purposes nor collect sensitive information.';
+                                $t_cook_18 = 'Opt-in mode is used for visitors from:';
+                                $t_cook_19 = 'Opt-out mode is used for visitors from:';
+                                $t_cook_20 = 'Visitors from ' . $notif_countries . ' are notified that they are tracked.';
+                                $t_cook_21 = 'Visitors from other countries are tracked without notification.';
+                                $t_cook_22 = 'Consent banner changes the mode of work depending on visitor\'s location. The list of locations was set manually by the user.';
+                            } else {
+                                $t_cook_17 = esc_html__( 'Consent banner uses lax, automatic setup mode - it chooses the correct mode of work depending on visitor\'s location. Lax mode is intended for websites that neither use visitor\'s data for marketing purposes nor collect sensitive information.', 'full-picture-analytics-cookie-notice' );
+                                $t_cook_18 = esc_html__( 'Opt-in mode is used for visitors from:', 'full-picture-analytics-cookie-notice' );
+                                $t_cook_19 = esc_html__( 'Opt-out mode is used for visitors from:', 'full-picture-analytics-cookie-notice' );
+                                $t_cook_20 = sprintf( esc_html__( 'Visitors from %1$s are notified that they are tracked.', 'full-picture-analytics-cookie-notice' ), $notif_countries );
+                                $t_cook_21 = esc_html__( 'Visitors from other countries are tracked without notification.', 'full-picture-analytics-cookie-notice' );
+                            }
                             $this->data['cook']['setup'] = [
-                                ['ok', 'Consent banner uses lax, automatic setup mode - it chooses the correct mode of work depending on visitor\'s location. Strict mode is intended for websites that neither use visitor\'s data for marketing purposes nor collect sensitive information.'],
-                                ['ok', 'Opt-in mode is used for visitors from: AT, BE, BG, CY, CZ, DE, DK, ES, EE, FI, FR, GB, GR, HR, HU, IE, IS, IT, LI, LT, LU, LV, MT, NG, NL, NO, PL, PT, RO, SK, SI, SE, GP, GF, MQ, YT, RE, MF, IC, TR, ZA, AG, BR, CL, CN, CO, ID, MA, RU, KR, TW, TH, CH.'],
-                                ['ok', 'Opt-out mode is used for visitors from: US (CA), JP, CA, IN, MX, SG.'],
-                                ['ok', 'Visitors from KZ, PH are notified that they are tracked.'],
-                                ['ok', 'Visitors from other countries are tracked without notification.']
+                                ['ok', $t_cook_17],
+                                ['ok', $t_cook_18 . ' AT, BE, BG, CY, CZ, DE, DK, ES, EE, FI, FR, GB, GR, HR, HU, IE, IS, IT, LI, LT, LU, LV, MT, NG, NL, NO, PL, PT, RO, SK, SI, SE, GP, GF, MQ, YT, RE, MF, IC, TR, ZA, AG, BR, CL, CN, CO, ID, MA, RU, KR, TW, TH, CH.'],
+                                ['ok', $t_cook_19 . ' US (CA), JP, CA, IN, MX, SG.'],
+                                ['ok', $t_cook_20],
+                                ['ok', $t_cook_21]
                             ];
                             break;
                         case 'manual':
+                            if ( $this->format == 'cdb' ) {
+                                $t_cook_22 = 'Consent banner changes the mode of work depending on visitor\'s location. The list of locations was set manually by the user.';
+                                $t_cook_23 = 'Make sure your setup is correct';
+                            } else {
+                                $t_cook_22 = esc_html__( 'Consent banner changes the mode of work depending on visitor\'s location. The list of locations was set manually by the user.', 'full-picture-analytics-cookie-notice' );
+                                $t_cook_23 = esc_html__( 'Make sure your setup is correct', 'full-picture-analytics-cookie-notice' );
+                            }
                             if ( $status == 'ok' ) {
                                 $status = 'warning';
                             }
-                            $this->data['cook']['setup'][] = ['warning', 'Consent banner changes the mode of work depending on visitor\'s location. The list of locations was set manually by the user.', 'Make sure your setup is correct'];
+                            $this->data['cook']['setup'][] = ['warning', $t_cook_22, $t_cook_23];
                             // Opt-in
                             if ( $settings['optin'] == 'all' ) {
-                                $this->data['cook']['tracked_extra_data'][] = ['Opt-in mode is used for visitors from all countries.'];
+                                if ( $this->format == 'cdb' ) {
+                                    $t_cook_24 = 'Opt-in mode is used for visitors from all countries.';
+                                } else {
+                                    $t_cook_24 = esc_html__( 'Opt-in mode is used for visitors from all countries.', 'full-picture-analytics-cookie-notice' );
+                                }
+                                $this->data['cook']['tracked_extra_data'][] = [$t_cook_24];
                             }
                             if ( $settings['optin'] == 'none' ) {
+                                if ( $this->format == 'cdb' ) {
+                                    $t_cook_25 = 'Opt-in mode is not used for visitors from any country.';
+                                } else {
+                                    $t_cook_25 = esc_html__( 'Opt-in mode is not used for visitors from any country.', 'full-picture-analytics-cookie-notice' );
+                                }
                                 if ( $status != 'alert' ) {
                                     $status = 'alert';
                                 }
-                                $this->data['cook']['setup'][] = ['alert', 'Opt-in mode is not used for visitors from any country.', $guide_text];
+                                $this->data['cook']['setup'][] = ['alert', $t_cook_25, $guide_text];
                             }
                             if ( $settings['optin'] == 'specific' ) {
                                 if ( isset( $settings['optin_countries'] ) ) {
-                                    $this->data['cook']['setup'][] = ['warning', 'Opt-in mode is used for visitors from: ' . $settings['optin_countries'] . '.', $guide_text];
+                                    if ( $this->format == 'cdb' ) {
+                                        $t_cook_26 = 'Opt-in mode is used for visitors from:';
+                                    } else {
+                                        $t_cook_26 = esc_html__( 'Opt-in mode is used for visitors from:', 'full-picture-analytics-cookie-notice' );
+                                    }
+                                    $this->data['cook']['setup'][] = ['warning', $t_cook_26 . ' ' . $settings['optin_countries'] . '.', $guide_text];
                                 } else {
+                                    if ( $this->format == 'cdb' ) {
+                                        $t_cook_27 = 'Opt-in mode is not used for visitors from any country.';
+                                    } else {
+                                        $t_cook_27 = esc_html__( 'Opt-in mode is not used for visitors from any country.', 'full-picture-analytics-cookie-notice' );
+                                    }
                                     if ( $status != 'alert' ) {
                                         $status = 'alert';
                                     }
-                                    $this->data['cook']['setup'][] = ['alert', 'Opt-in mode is not used for visitors from any country.', $guide_text];
+                                    $this->data['cook']['setup'][] = ['alert', $t_cook_27, $guide_text];
                                 }
                             }
                             // Opt-out
                             if ( $settings['optout'] == 'all' ) {
+                                if ( $this->format == 'cdb' ) {
+                                    $t_cook_28 = 'Opt-out mode is used for visitors from all countries.';
+                                } else {
+                                    $t_cook_28 = esc_html__( 'Opt-out mode is used for visitors from all countries.', 'full-picture-analytics-cookie-notice' );
+                                }
                                 if ( $status != 'alert' ) {
                                     $status = 'alert';
                                 }
-                                $this->data['cook']['setup'][] = ['alert', 'Opt-out mode is used for visitors from all countries.', $guide_text];
+                                $this->data['cook']['setup'][] = ['alert', $t_cook_28, $guide_text];
                             }
                             if ( $settings['optout'] == 'none' ) {
-                                $this->data['cook']['setup'][] = ['ok', 'Opt-out mode is not used for visitors from any country.'];
+                                if ( $this->format == 'cdb' ) {
+                                    $t_cook_29 = 'Opt-out mode is not used for visitors from any country.';
+                                } else {
+                                    $t_cook_29 = esc_html__( 'Opt-out mode is not used for visitors from any country.', 'full-picture-analytics-cookie-notice' );
+                                }
+                                $this->data['cook']['setup'][] = ['ok', $t_cook_29];
                             }
                             if ( $settings['optout'] == 'specific' ) {
                                 if ( isset( $settings['optout_countries'] ) ) {
+                                    if ( $this->format == 'cdb' ) {
+                                        $t_cook_30 = 'Opt-out mode is used for visitors from: ' . $settings['optout_countries'] . '.';
+                                    } else {
+                                        $t_cook_30 = sprintf( esc_html__( 'Opt-out mode is used for visitors from: %1$s.', 'full-picture-analytics-cookie-notice' ), $settings['optout_countries'] );
+                                    }
                                     if ( $status == 'ok' ) {
                                         $status = 'warning';
                                     }
-                                    $this->data['cook']['setup'][] = ['warning', 'Opt-out mode is used for visitors from: ' . $settings['optout_countries'] . '.', $guide_text];
+                                    $this->data['cook']['setup'][] = ['warning', $t_cook_30, $guide_text];
                                 } else {
-                                    $this->data['cook']['setup'][] = ['ok', 'Opt-out mode is not used for visitors from any country.'];
+                                    if ( $this->format == 'cdb' ) {
+                                        $t_cook_30_b = 'Opt-out mode is not used for visitors from any country.';
+                                    } else {
+                                        $t_cook_30_b = esc_html__( 'Opt-out mode is not used for visitors from any country.', 'full-picture-analytics-cookie-notice' );
+                                    }
+                                    $this->data['cook']['setup'][] = ['ok', $t_cook_30_b];
                                 }
                             }
                             // Notify
                             if ( $settings['inform'] == 'all' ) {
+                                if ( $this->format == 'cdb' ) {
+                                    $t_cook_31 = 'Visitors from all countries are notified about tracking but can\'t opt-out';
+                                    $t_cook_32 = 'Change to opt-in mode or one of the automatic ones';
+                                } else {
+                                    $t_cook_31 = esc_html__( 'Visitors from all countries are notified about tracking but can\'t opt-out', 'full-picture-analytics-cookie-notice' );
+                                    $t_cook_32 = esc_html__( 'Change to opt-in mode or one of the automatic ones', 'full-picture-analytics-cookie-notice' );
+                                }
                                 if ( $status != 'alert' ) {
                                     $status = 'alert';
                                 }
-                                $this->data['cook']['setup'][] = ['alert', 'Visitors from all countries are notified about tracking but can\'t opt-out', 'Change to opt-in mode or one of the automatic ones'];
+                                $this->data['cook']['setup'][] = ['alert', $t_cook_31, $t_cook_32];
+                            }
+                            if ( $this->format == 'cdb' ) {
+                                $t_cook_33 = 'Visitors from no country are only informed that they are tracked.';
+                                // in 2 places
+                                $t_cook_34 = 'Visitors from these countries are notified about tracking but can\'t opt-out:';
+                            } else {
+                                $t_cook_33 = esc_html__( 'Visitors from no country are only informed that they are tracked.', 'full-picture-analytics-cookie-notice' );
+                                // in 2 places
+                                $t_cook_34 = esc_html__( 'Visitors from these countries are notified about tracking but can\'t opt-out:', 'full-picture-analytics-cookie-notice' );
                             }
                             if ( $settings['inform'] == 'none' ) {
-                                $this->data['cook']['tracked_extra_data'][] = ['Visitors from no country are only informed that they are tracked.'];
-                            }
-                            if ( $settings['inform'] == 'specific' ) {
-                                if ( isset( $settings['inform_countries'] ) ) {
-                                    if ( $status == 'ok' ) {
-                                        $status = 'warning';
+                                $this->data['cook']['tracked_extra_data'][] = [$t_cook_33];
+                            } else {
+                                if ( $settings['inform'] == 'specific' ) {
+                                    if ( isset( $settings['inform_countries'] ) ) {
+                                        if ( $status == 'ok' ) {
+                                            $status = 'warning';
+                                        }
+                                        $this->data['cook']['setup'][] = ['warning', $t_cook_34 . ' ' . $settings['inform_countries'] . '.', $guide_text];
+                                    } else {
+                                        $this->data['cook']['setup'][] = ['ok', $t_cook_33];
                                     }
-                                    $this->data['cook']['setup'][] = ['warning', 'Visitors from these countries are notified about tracking but can\'t opt-out: ' . $settings['optin_countries'] . '.', $guide_text];
-                                } else {
-                                    $this->data['cook']['setup'][] = ['ok', 'Visitors from no country are only informed that they are tracked.'];
                                 }
                             }
                             // Other
-                            $this->data['cook']['setup'][] = ['warning', 'Visitors from other countries are tracked without notification.', $guide_text];
+                            if ( $this->format == 'cdb' ) {
+                                $t_cook_35 = 'Visitors from other countries are tracked without notification.';
+                            } else {
+                                $t_cook_35 = esc_html__( 'Visitors from other countries are tracked without notification.', 'full-picture-analytics-cookie-notice' );
+                            }
+                            $this->data['cook']['setup'][] = ['warning', $t_cook_35, $guide_text];
                             break;
                     }
                     // Geo fallback
@@ -943,19 +1432,38 @@ class Fupi_compliance_status_checker {
                         }
                         switch ( $settings['enable_scripts_after'] ) {
                             case 'optin':
-                                $this->data['cook']['setup'][] = ['ok', 'When no location is found, consent banner will start tracking visitors from all countries only after they consent to tracking (Opt-in mode).'];
+                                if ( $this->format == 'cdb' ) {
+                                    $t_cook_36 = 'When visitor location is not found, consent banner will start tracking visitors only after they consent to tracking (Opt-in mode).';
+                                } else {
+                                    $t_cook_36 = esc_html__( 'When visitor location is not found, consent banner will start tracking visitors only after they consent to tracking (Opt-in mode).', 'full-picture-analytics-cookie-notice' );
+                                }
+                                $this->data['cook']['setup'][] = ['ok', $t_cook_36];
                                 break;
                             case 'optout':
+                                if ( $this->format == 'cdb' ) {
+                                    $t_cook_37 = 'When visitor location is not found, consent banner will start tracking visitors from the moment they enter the website but will let them decline tracking (Opt-out mode)';
+                                    $t_cook_38 = 'Change to opt-in mode.';
+                                } else {
+                                    $t_cook_37 = esc_html__( 'When visitor location is not found, consent banner will start tracking visitors from the moment they enter the website but will let them decline tracking (Opt-out mode)', 'full-picture-analytics-cookie-notice' );
+                                    $t_cook_38 = esc_html__( 'Change to opt-in mode.', 'full-picture-analytics-cookie-notice' );
+                                }
                                 if ( $status != 'alert' ) {
                                     $status = 'alert';
                                 }
-                                $this->data['cook']['setup'][] = ['alert', 'When no location is found, consent banner will start tracking visitors from the moment they enter the website but will let them decline tracking (Opt-out mode)', 'Change to opt-in mode.'];
+                                $this->data['cook']['setup'][] = ['alert', $t_cook_37, $t_cook_38];
                                 break;
                             case 'notify':
+                                if ( $this->format == 'cdb' ) {
+                                    $t_cook_39 = 'When visitor location is not found, visitors will be notified that they are tracked bu they will not be able to decline tracking.';
+                                    $t_cook_40 = 'Change to opt-in mode.';
+                                } else {
+                                    $t_cook_39 = esc_html__( 'When visitor location is not found, visitors will be notified that they are tracked bu they will not be able to decline tracking.', 'full-picture-analytics-cookie-notice' );
+                                    $t_cook_40 = esc_html__( 'Change to opt-in mode.', 'full-picture-analytics-cookie-notice' );
+                                }
                                 if ( $status != 'alert' ) {
                                     $status = 'alert';
                                 }
-                                $this->data['cook']['setup'][] = ['alert', 'When no location is found, visitors will be notified that they are tracked bu they will not be able to decline tracking.', 'Change to opt-in mode.'];
+                                $this->data['cook']['setup'][] = ['alert', $t_cook_39, $t_cook_40];
                                 break;
                         }
                     }
@@ -967,30 +1475,61 @@ class Fupi_compliance_status_checker {
                 }
                 switch ( $settings['enable_scripts_after'] ) {
                     case 'optin':
-                        $this->data['cook']['setup'][] = ['ok', 'Consent banner is set to start tracking visitors from all countries only after they consent to tracking (Opt-in mode).'];
+                        if ( $this->format == 'cdb' ) {
+                            $t_cook_41 = 'Consent banner is set to start tracking visitors from all countries only after they consent to tracking (Opt-in mode).';
+                        } else {
+                            $t_cook_41 = esc_html__( 'Consent banner is set to start tracking visitors from all countries only after they consent to tracking (Opt-in mode).', 'full-picture-analytics-cookie-notice' );
+                        }
+                        $this->data['cook']['setup'][] = ['ok', $t_cook_41];
                         break;
                     case 'optout':
+                        if ( $this->format == 'cdb' ) {
+                            $t_cook_42 = 'Consent banner is set to start tracking visitors from the moment they enter the website but will let them decline tracking (Opt-out mode)';
+                            $t_cook_43 = 'Change to the opt-in mode or one of automatic modes.';
+                        } else {
+                            $t_cook_42 = esc_html__( 'Consent banner is set to start tracking visitors from the moment they enter the website but will let them decline tracking (Opt-out mode)', 'full-picture-analytics-cookie-notice' );
+                            $t_cook_43 = esc_html__( 'Change to the opt-in mode or one of automatic modes.', 'full-picture-analytics-cookie-notice' );
+                        }
                         if ( $status != 'alert' ) {
                             $status = 'alert';
                         }
-                        $this->data['cook']['setup'][] = ['alert', 'Consent banner is set to start tracking visitors from the moment they enter the website but will let them decline tracking (Opt-out mode)', 'Change to the opt-in mode or one of automatic modes.'];
+                        $this->data['cook']['setup'][] = ['alert', $t_cook_42, $t_cook_43];
                         break;
                     case 'notify':
+                        if ( $this->format == 'cdb' ) {
+                            $t_cook_44 = 'Visitors are notified that they are tracked but they are not able to decline tracking.';
+                            $t_cook_45 = 'Change to the opt-in mode or one of automatic modes.';
+                        } else {
+                            $t_cook_44 = esc_html__( 'Visitors are notified that they are tracked but they are not able to decline tracking.', 'full-picture-analytics-cookie-notice' );
+                            $t_cook_45 = esc_html__( 'Change to the opt-in mode or one of automatic modes.', 'full-picture-analytics-cookie-notice' );
+                        }
                         if ( $status != 'alert' ) {
                             $status = 'alert';
                         }
-                        $this->data['cook']['setup'][] = ['alert', 'Visitors will be notified that they are tracked but they will not be able to decline tracking.', 'Change to the opt-in mode or one of automatic modes.'];
+                        $this->data['cook']['setup'][] = ['alert', $t_cook_44, $t_cook_45];
                         break;
                 }
             }
             // reset when modules or PP change
             if ( isset( $settings['ask_for_consent_again'] ) ) {
-                $this->data['cook']['setup'][] = ['ok', 'Visitors are asked for consent again, when the privacy policy text changes or when tracking modules are enabled.'];
+                if ( $this->format == 'cdb' ) {
+                    $t_cook_46 = 'Visitors are asked for consent again, when the privacy policy text changes or when tracking modules are enabled.';
+                } else {
+                    $t_cook_46 = esc_html__( 'Visitors are asked for consent again, when the privacy policy text changes or when tracking modules are enabled.', 'full-picture-analytics-cookie-notice' );
+                }
+                $this->data['cook']['setup'][] = ['ok', $t_cook_46];
             } else {
+                if ( $this->format == 'cdb' ) {
+                    $t_cook_47 = 'Visitors are not asked for new consent when the privacy policy text changes and/or when new tracking modules are enabled.';
+                    $t_cons_48 = 'Enable it in the consent banner\'s settings';
+                } else {
+                    $t_cook_47 = esc_html__( 'Visitors are not asked for new consent when the privacy policy text changes and/or when new tracking modules are enabled.', 'full-picture-analytics-cookie-notice' );
+                    $t_cons_48 = esc_html__( 'Enable it in the consent banner\'s settings', 'full-picture-analytics-cookie-notice' );
+                }
                 if ( $status != 'alert' ) {
                     $status = 'alert';
                 }
-                $this->data['cook']['setup'][] = ['alert', 'Visitors are not asked for new consent when the privacy policy text changes and/or when new tracking modules are enabled.', 'Enable it in the consent banner\'s settings'];
+                $this->data['cook']['setup'][] = ['alert', $t_cook_47, $t_cook_48];
             }
             // URL passthrough (checked later in Google Analytics and Google Ads)
             if ( isset( $settings['url_passthrough'] ) ) {
@@ -999,10 +1538,17 @@ class Fupi_compliance_status_checker {
         }
         // Privacy policy page
         if ( empty( $priv_policy_url ) ) {
+            if ( $this->format == 'cdb' ) {
+                $t_cook_49 = 'Privacy policy page is not set or is not published';
+                $t_cook_50 = 'Please set it in "Settings > Privacy" page and make sure that it is published.';
+            } else {
+                $t_cook_49 = esc_html__( 'Privacy policy page is not set or is not published', 'full-picture-analytics-cookie-notice' );
+                $t_cook_50 = esc_html__( 'Please set it in "Settings > Privacy" page and make sure that it is published.', 'full-picture-analytics-cookie-notice' );
+            }
             if ( $status != 'alert' ) {
                 $status = 'alert';
             }
-            $this->data['cook']['setup'][] = ['alert', 'Privacy policy page is not set or is not published', 'Please set it in "Settings > Privacy" page and make sure that it is published.'];
+            $this->data['cook']['setup'][] = ['alert', $t_cook_49, $t_cook_50];
         }
         // Are consent banner switches pre-selected?
         $styling_options = get_option( 'fupi_cookie_notice' );
@@ -1010,37 +1556,70 @@ class Fupi_compliance_status_checker {
         if ( isset( $styling_options['switches_on'] ) && is_array( $styling_options['switches_on'] ) && !empty( $styling_options['optin_switches'] ) ) {
             // and we are not hiding the whole section with settings
             if ( isset( $styling_options['hide'] ) && is_array( $styling_options['hide'] ) && !in_array( 'settings_btn', $styling_options['hide'] ) ) {
+                if ( $this->format == 'cdb' ) {
+                    $t_cook_51 = 'When visitors are asked for tracking consent (opt-in), switches for choosing allowed uses of tracked data are pre-selected.';
+                    $t_cook_52 = 'Disable pre-selection of switches';
+                } else {
+                    $t_cook_51 = esc_html__( 'When visitors are asked for tracking consent (opt-in), switches for choosing allowed uses of tracked data are pre-selected.', 'full-picture-analytics-cookie-notice' );
+                    $t_cook_52 = esc_html__( 'Disable pre-selection of switches', 'full-picture-analytics-cookie-notice' );
+                }
                 if ( $status != 'alert' ) {
                     $status = 'alert';
                 }
-                $this->data['cook']['setup'][] = ['alert', 'When visitors are asked for tracking consent (opt-in), switches for choosing allowed uses of tracked data are pre-selected.', 'Disable pre-selection of switches'];
+                $this->data['cook']['setup'][] = ['alert', $t_cook_51, $t_cook_52];
             }
         }
-        $pp_cookies_info = ['Add to your privacy policy information that WP Full Picture uses the following cookies:', ['fp_cookie - a necessary cookie. It stores information on visitor\'s tracking consents, a list of tracking tools that a user agreed to and the date of the last update of the privacy policy page. Does not expire.', 'fp_current_session - an optional cookie. It requires consent to tracking statistics. In the free version it does not hold any value and is only used to check if a new session has started. In the Pro version it holds the number and type of pages that a visitor viewed in a session, domain of the traffic source, URL parameters of the first landing page in a session and visitor\'s lead score. Expires when a visitor is inactive for 30 minutes.']];
+        if ( $this->format == 'cdb' ) {
+            $t_cook_53 = 'Add to your privacy policy information that WP Full Picture uses the following cookies:';
+            $t_cook_54 = 'fp_cookie - a necessary cookie. It stores information on visitor\'s tracking consents, a list of tracking tools that a user agreed to and the date of the last update of the privacy policy page. Does not expire.';
+            $t_cook_55 = 'fp_current_session - an optional cookie. It requires consent to tracking statistics. In the free version it does not hold any value and is only used to check if a new session has started. In the Pro version it holds the number and type of pages that a visitor viewed in a session, domain of the traffic source, URL parameters of the first landing page in a session and visitor\'s lead score. Expires when a visitor is inactive for 30 minutes.';
+        } else {
+            $t_cook_53 = esc_html__( 'Add to your privacy policy information that WP Full Picture uses the following cookies:', 'full-picture-analytics-cookie-notice' );
+            $t_cook_54 = esc_html__( 'fp_cookie - a necessary cookie. It stores information on visitor\'s tracking consents, a list of tracking tools that a user agreed to and the date of the last update of the privacy policy page. Does not expire.', 'full-picture-analytics-cookie-notice' );
+            $t_cook_55 = esc_html__( 'fp_current_session - an optional cookie. It requires consent to tracking statistics. In the free version it does not hold any value and is only used to check if a new session has started. In the Pro version it holds the number and type of pages that a visitor viewed in a session, domain of the traffic source, URL parameters of the first landing page in a session and visitor\'s lead score. Expires when a visitor is inactive for 30 minutes.', 'full-picture-analytics-cookie-notice' );
+        }
+        $pp_cookies_info = [$t_cook_53, [$t_cook_54, $t_cook_55]];
         if ( !empty( $settings ) ) {
             // Saving consents
             if ( isset( $settings['cdb_key'] ) && !empty( $priv_policy_url ) ) {
-                $this->data['cook']['setup'][] = ['ok', 'Saving proofs of visitor\'s tracking consents is enabled.'];
+                if ( $this->format == 'cdb' ) {
+                    $t_cook_56 = 'Saving proofs of visitor\'s tracking consents is enabled.';
+                } else {
+                    $t_cook_56 = esc_html__( 'Saving proofs of visitor\'s tracking consents is enabled.', 'full-picture-analytics-cookie-notice' );
+                }
+                $this->data['cook']['setup'][] = ['ok', $t_cook_56];
             } else {
+                if ( $this->format == 'cdb' ) {
+                    $t_cook_57 = 'Saving proofs of visitor\'s tracking consents is disabled.';
+                    $t_cook_58 = 'Enable saving proofs of consent in the Consent Banner > Saving Consents (Pro only). You may need it during audits or investigations by authorities or data protection agencies, if a user complains about being tracked without permission, in legal cases where privacy issues are involved.';
+                } else {
+                    $t_cook_57 = esc_html__( 'Saving proofs of visitor\'s tracking consents is disabled.', 'full-picture-analytics-cookie-notice' );
+                    $t_cook_58 = esc_html__( 'Enable saving proofs of consent in the Consent Banner > Saving Consents (Pro only). You may need it during audits or investigations by authorities or data protection agencies, if a user complains about being tracked without permission, in legal cases where privacy issues are involved.', 'full-picture-analytics-cookie-notice' );
+                }
                 if ( $status != 'alert' ) {
                     $status = 'warning';
                 }
-                $this->data['cook']['setup'][] = [
-                    'warning',
-                    'Saving proofs of visitor\'s tracking consents is disabled.',
-                    'Enable saving proofs of consent in the Consent Banner > Saving Consents (Pro only). You may need it during audits or investigations by authorities or data protection agencies, if a user complains about being tracked without permission, in legal cases where privacy issues are involved.',
-                    'full-picture-analytics-cookie-notice'
-                ];
+                $this->data['cook']['setup'][] = ['warning', $t_cook_57, $t_cook_58];
             }
             if ( isset( $settings['cdb_key'] ) ) {
-                $pp_cookies_info[1][] = 'cdb_id - a necessary cookie. It is saved after visitors set their tracking consents (or decline them) in the consent banner. It stores a random device identifier used to match consents saved in the remote database with the device. Does not expire.';
+                if ( $this->format == 'cdb' ) {
+                    $t_cook_59 = 'cdb_id - a necessary cookie. It is saved after visitors agree or disagree to tracking in the opt-in banner. It stores a random device identifier used to match consents saved in the remote database with the device. Does not expire.';
+                } else {
+                    $t_cook_59 = esc_html__( 'cdb_id - a necessary cookie. It is saved after visitors agree or decline tracking in the opt-in banner. It stores a random device identifier used to match consents saved in the remote database with the device. Does not expire.', 'full-picture-analytics-cookie-notice' );
+                }
+                $pp_cookies_info[1][] = $t_cook_59;
             }
         }
         $this->data['cook']['pp comments'][] = $pp_cookies_info;
         // Button which toggles consent banner
         $toggle_btn_enabled = !empty( $notice_opts['enable_toggle_btn'] );
         if ( $toggle_btn_enabled ) {
-            $this->data['cook']['setup'][] = ['ok', 'Visitors who want to change their tracking preferences can do it in the consent banner which shows after they click an icon in the corner of the screen'];
+            if ( $this->format == 'cdb' ) {
+                $t_cook_62 = 'Visitors who want to change their tracking preferences can do it in the consent banner which shows after they click an icon in the corner of the screen';
+            } else {
+                $t_cook_62 = esc_html__( 'Visitors who want to change their tracking preferences can do it in the consent banner which shows after they click an icon in the corner of the screen', 'full-picture-analytics-cookie-notice' );
+            }
+            $this->data['cook']['setup'][] = ['ok', $t_cook_62];
         } else {
             $priv_policy_id = get_option( 'wp_page_for_privacy_policy' );
             $priv_policy_post = get_post( $priv_policy_id );
@@ -1059,22 +1638,48 @@ class Fupi_compliance_status_checker {
                     }
                 }
                 if ( $toggler_found ) {
-                    $this->data['cook']['setup'][] = ['ok', 'Visitors who want to change their tracking preferences can do it in the consent banner which shows after they click a link/button in the privacy policy.'];
+                    if ( $this->format == 'cdb' ) {
+                        $t_cook_63 = 'Visitors who want to change their tracking preferences can do it in the consent banner which shows after they click a link/button in the privacy policy.';
+                    } else {
+                        $t_cook_63 = esc_html__( 'Visitors who want to change their tracking preferences can do it in the consent banner which shows after they click a link/button in the privacy policy.', 'full-picture-analytics-cookie-notice' );
+                    }
+                    $this->data['cook']['setup'][] = ['ok', $t_cook_63];
                 } else {
                     $toggle_selectors_str = '.fp_show_cookie_notice';
                     if ( !empty( $settings['toggle_selector'] ) && strlen( $settings['toggle_selector'] ) > 3 ) {
                         $toggle_selectors_str = $toggle_selectors_str . ', ' . esc_attr( $settings['toggle_selector'] );
                     }
-                    $this->data['cook']['setup'][] = ['warning', 'Make sure your visitors can open the consent banner popup to change their tracking preferences.', 'Please enable a toggle icon in the theme customizer (Appearance > Customize > Consent Banner) or add a button in your privacy policy with the CSS selector(s): ' . $toggle_selectors_str . '.'];
+                    if ( $this->format == 'cdb' ) {
+                        $t_cook_64 = 'Make sure your visitors can open the consent banner popup to change their tracking preferences.';
+                        $t_cook_65 = 'Please enable a toggle icon in the theme customizer (Appearance > Customize > Consent Banner) or add a button in your privacy policy with the CSS selector(s):';
+                    } else {
+                        $t_cook_64 = esc_html__( 'Make sure your visitors can open the consent banner popup to change their tracking preferences.', 'full-picture-analytics-cookie-notice' );
+                        $t_cook_65 = esc_html__( 'Please enable a toggle icon in the theme customizer (Appearance > Customize > Consent Banner) or add a button in your privacy policy with the CSS selector(s):', 'full-picture-analytics-cookie-notice' );
+                    }
+                    $this->data['cook']['setup'][] = ['warning', $t_cook_64, $t_cook_65 . ' ' . $toggle_selectors_str . '.'];
                 }
             } else {
-                $this->data['cook']['setup'][] = ['alert', 'Privacy policy page is missing or is not marked as such.', 'Create a privacy policy page and mark it as such in in the WordPress admin > Settings menu > Privacy page.'];
+                if ( $this->format == 'cdb' ) {
+                    $t_cook_66 = 'Privacy policy page is missing or is not marked as such.';
+                    $t_cook_67 = 'Create a privacy policy page and mark it as such in in the WordPress admin > Settings menu > Privacy page.';
+                } else {
+                    $t_cook_66 = esc_html__( 'Privacy policy page is missing or is not marked as such.', 'full-picture-analytics-cookie-notice' );
+                    $t_cook_67 = esc_html__( 'Create a privacy policy page and mark it as such in in the WordPress admin > Settings menu > Privacy page.', 'full-picture-analytics-cookie-notice' );
+                }
+                $this->data['cook']['setup'][] = ['alert', $t_cook_66, $t_cook_67];
             }
         }
         // Position of the consent banner
         $notice_position = ( !empty( $notice_opts['position'] ) ? esc_attr( $notice_opts['position'] ) : 'popup' );
         if ( $notice_position != 'popup' ) {
-            $this->data['cook']['opt-setup'][] = ['The notice is not set to display in the central position', 'To collect maximum number of consents we recommend that you place your notice in the central position of the screen. This way people will not be able to navigate the site without making a choice, thus giving you more consents. You will also not lose information on the source of traffic, which can be accessed only on the first page the visitor sees.'];
+            if ( $this->format == 'cdb' ) {
+                $t_cook_68 = 'The consent banner is not set to display in the center of the screen';
+                $t_cook_69 = 'To collect maximum number of consents we recommend that you place your notice in the central position of the screen. This way people will not be able to navigate the site without making a choice, thus giving you more consents. You will also not lose information on the source of traffic, which can be accessed only on the first page the visitor sees.';
+            } else {
+                $t_cook_68 = esc_html__( 'The consent banner is not set to display in the center of the screen', 'full-picture-analytics-cookie-notice' );
+                $t_cook_69 = esc_html__( 'To collect maximum number of consents we recommend that you place your notice in the central position of the screen. This way people will not be able to navigate the site without making a choice, thus giving you more consents. You will also not lose information on the source of traffic, which can be accessed only on the first page the visitor sees.', 'full-picture-analytics-cookie-notice' );
+            }
+            $this->data['cook']['opt-setup'][] = [$t_cook_68, $t_cook_69];
         }
         // TEXTS & STYLING
         $hidden_elements = ( isset( $notice_opts['hide'] ) && is_array( $notice_opts['hide'] ) ? $notice_opts['hide'] : [] );
@@ -1117,24 +1722,43 @@ class Fupi_compliance_status_checker {
         ];
         $this->data['cook']['notice_texts'] = $current_texts;
         if ( count( $hidden_descr ) > 0 ) {
+            if ( $this->format == 'cdb' ) {
+                $t_cook_70 = 'button opening panel with cookie settings';
+                $t_cook_71 = 'section where users can consent to the use of their data for statistics';
+                $t_cook_72 = 'section where users can consent to the use of their data for marketing';
+                $t_cook_73 = 'section where users can consent to the use of their data for personalisation';
+                $t_cook_74 = '"Decline" button';
+                $t_cook_75 = 'The consent banner does not display the "Decline" button';
+                $t_cook_76 = 'Do not hide the "Decline" button';
+                $t_cook_77 = 'Hidden consent baner elements:';
+            } else {
+                $t_cook_70 = esc_html__( 'button opening panel with cookie settings', 'full-picture-analytics-cookie-notice' );
+                $t_cook_71 = esc_html__( 'section where users can consent to the use of their data for statistics', 'full-picture-analytics-cookie-notice' );
+                $t_cook_72 = esc_html__( 'section where users can consent to the use of their data for marketing', 'full-picture-analytics-cookie-notice' );
+                $t_cook_73 = esc_html__( 'section where users can consent to the use of their data for personalisation', 'full-picture-analytics-cookie-notice' );
+                $t_cook_74 = esc_html__( '"Decline" button', 'full-picture-analytics-cookie-notice' );
+                $t_cook_75 = esc_html__( 'The consent banner does not display the "Decline" button', 'full-picture-analytics-cookie-notice' );
+                $t_cook_76 = esc_html__( 'Do not hide the "Decline" button', 'full-picture-analytics-cookie-notice' );
+                $t_cook_77 = esc_html__( 'Hidden consent baner elements:', 'full-picture-analytics-cookie-notice' );
+            }
             if ( in_array( 'settings_btn', $hidden_elements ) ) {
-                $hidden_descr[] = 'button opening panel with cookie settings';
+                $hidden_descr[] = $t_cook_70;
             }
             if ( in_array( 'stats', $hidden_elements ) ) {
-                $hidden_descr[] = 'section where users can consent to the use of their data for statistics';
+                $hidden_descr[] = $t_cook_71;
             }
             if ( in_array( 'market', $hidden_elements ) ) {
-                $hidden_descr[] = 'section where users can consent to the use of their data for marketing';
+                $hidden_descr[] = $t_cook_72;
             }
             if ( in_array( 'pers', $hidden_elements ) ) {
-                $hidden_descr[] = 'section where users can consent to the use of their data for personalisation';
+                $hidden_descr[] = $t_cook_73;
             }
             if ( in_array( 'decline_btn', $hidden_elements ) ) {
                 $status = 'alert';
-                $hidden_descr[] = 'decline cookies button';
-                $this->data['cook']['setup'][] = ['alert', 'The consent banner does not display the "Decline" button', 'Do not hide the decline button'];
+                $hidden_descr[] = $t_cook_74;
+                $this->data['cook']['setup'][] = ['alert', $t_cook_75, $t_cook_76];
             }
-            $this->data['cook']['hidden_elements'] = 'Hidden consent baner elements: ' . join( ', ', $hidden_descr ) . '.';
+            $this->data['cook']['hidden_elements'] = $t_cook_77 . ' ' . join( ', ', $hidden_descr ) . '.';
         }
         $this->consent_status = $status;
     }
@@ -1148,28 +1772,51 @@ class Fupi_compliance_status_checker {
         }
         // PP
         $tracked_priv_info = [];
+        if ( $this->format == 'cdb' ) {
+            $t_gtm_1 = 'User ID';
+            $t_gtm_2 = 'Name and surname of a user or a client';
+            $t_gtm_3 = 'User\'s email address and/or an email address of a client (even when not logged in, collected at the time of purchase)';
+            $t_gtm_4 = 'User\'s phone number and/or phone number of a client (even when not logged in, collected at the time of purchase)';
+            $t_gtm_5 = 'User\'s physical address and/or address of a client (even when not logged in, collected at the time of purchase)';
+        } else {
+            $t_gtm_1 = esc_html__( 'User ID', 'full-picture-analytics-cookie-notice' );
+            $t_gtm_2 = esc_html__( 'Name and surname of a user or a client', 'full-picture-analytics-cookie-notice' );
+            $t_gtm_3 = esc_html__( 'User\'s email address and/or an email address of a client (even when not logged in, collected at the time of purchase)', 'full-picture-analytics-cookie-notice' );
+            $t_gtm_4 = esc_html__( 'User\'s phone number and/or phone number of a client (even when not logged in, collected at the time of purchase)', 'full-picture-analytics-cookie-notice' );
+            $t_gtm_5 = esc_html__( 'User\'s physical address and/or address of a client (even when not logged in, collected at the time of purchase)', 'full-picture-analytics-cookie-notice' );
+        }
         if ( isset( $settings['user_id'] ) ) {
-            $tracked_priv_info[] = 'User ID';
+            $tracked_priv_info[] = $t_gtm_1;
         }
         if ( isset( $settings['user_realname'] ) ) {
-            $tracked_priv_info[] = 'Name and surname of a user or a client';
+            $tracked_priv_info[] = $t_gtm_2;
         }
         if ( isset( $settings['user_email'] ) ) {
-            $tracked_priv_info[] = 'User\'s email address and/or an email address of a client (even when not logged in, collected at the time of purchase)';
+            $tracked_priv_info[] = $t_gtm_3;
         }
         if ( isset( $settings['user_phone'] ) ) {
-            $tracked_priv_info[] = 'User\'s phone number and/or phone number of a client (even when not logged in, collected at the time of purchase)';
+            $tracked_priv_info[] = $t_gtm_4;
         }
         if ( isset( $settings['user_address'] ) ) {
-            $tracked_priv_info[] = 'User\'s physical address and/or address of a client (even when not logged in, collected at the time of purchase)';
+            $tracked_priv_info[] = $t_gtm_5;
         }
         if ( in_array( 'woo', $this->tools ) ) {
-            $tracked_priv_info[] = 'Order ID of a purchase (in WooCommerce)';
+            if ( $this->format == 'cdb' ) {
+                $t_gtm_6 = 'Order ID (in WooCommerce)';
+            } else {
+                $t_gtm_6 = esc_html__( 'Order ID (in WooCommerce)', 'full-picture-analytics-cookie-notice' );
+            }
+            $tracked_priv_info[] = $t_gtm_6;
         }
         if ( isset( $settings['track_cf'] ) && is_array( $settings['track_cf'] ) ) {
             foreach ( $settings['track_cf'] as $tracked_meta ) {
                 if ( substr( $tracked_meta['id'], 0, 5 ) == 'user|' ) {
-                    $tracked_priv_info[] = 'User metadata with ID ' . substr( $tracked_meta['id'], 5 );
+                    if ( $this->format == 'cdb' ) {
+                        $t_gtm_7 = 'User metadata with ID';
+                    } else {
+                        $t_gtm_7 = esc_html__( 'User metadata with ID', 'full-picture-analytics-cookie-notice' );
+                    }
+                    $tracked_priv_info[] = $t_gtm_7 . ' ' . substr( $tracked_meta['id'], 5 );
                 }
             }
         }
@@ -1178,18 +1825,44 @@ class Fupi_compliance_status_checker {
                 $this->data['gtm']['tracked_extra_data'][] = [$str];
             }
         }
-        $this->data['gtm']['pp comments'][] = 'Your privacy policy must include information about tracking tools that are loaded with GTM, what data is tracked, what you and these tools use it for and who the providers of these tools share this data with or sell it to.';
+        if ( $this->format == 'cdb' ) {
+            $t_gtm_8 = 'Your privacy policy must include information about tracking tools that are loaded with GTM, what data is tracked, what you and these tools use it for and who the providers of these tools share this data with or sell it to.';
+        } else {
+            $t_gtm_8 = esc_html__( 'The privacy policy must include information about tracking tools that are loaded with GTM, what data is tracked, what you and these tools use it for and who the providers of these tools share this data with or sell it to.', 'full-picture-analytics-cookie-notice' );
+        }
+        $this->data['gtm']['pp comments'][] = $t_gtm_8;
         // Setup (always second)
         if ( count( $tracked_priv_info ) > 0 ) {
             if ( !in_array( 'cook', $this->tools ) ) {
-                $this->data['gtm']['setup'][] = ['alert', 'Tracking tools loaded with GTM need to be used with a consent banner', 'Enable and set up the consent banner module and trigger GTM tags after visitors consent to tracking.'];
+                if ( $this->format == 'cdb' ) {
+                    $t_gtm_10 = 'Tracking tools loaded with GTM need to be used with a consent banner';
+                    $t_gtm_11 = 'Enable and set up the consent banner module and trigger GTM tags after visitors consent to tracking.';
+                } else {
+                    $t_gtm_10 = esc_html__( 'Tracking tools loaded with GTM need to be used with a consent banner', 'full-picture-analytics-cookie-notice' );
+                    $t_gtm_11 = esc_html__( 'Enable and set up the consent banner module and trigger GTM tags after visitors consent to tracking.', 'full-picture-analytics-cookie-notice' );
+                }
+                $this->data['gtm']['setup'][] = ['alert', $t_gtm_10, $t_gtm_11];
             } else {
                 $gtm_setup_status = ( $this->consent_status == 'alert' ? 'alert' : 'warning' );
-                $extra = $this->get_extra_text() . ' Make sure to trigger GTM tags after visitors consent to tracking.';
-                $this->data['gtm']['setup'][] = [$gtm_setup_status, 'Tracking tools loaded with GTM need to be loaded after visitors consent to tracking in the consent banner.', $extra];
+                if ( $this->format == 'cdb' ) {
+                    $t_gtm_12 = 'Make sure to trigger GTM tags after visitors consent to tracking.';
+                    $t_gtm_13 = 'Tracking tools loaded with GTM need to be loaded after visitors consent to tracking in the consent banner.';
+                } else {
+                    $t_gtm_12 = esc_html__( 'Make sure to trigger GTM tags after visitors consent to tracking.', 'full-picture-analytics-cookie-notice' );
+                    $t_gtm_13 = esc_html__( 'Tracking tools loaded with GTM need to be loaded after visitors consent to tracking in the consent banner.', 'full-picture-analytics-cookie-notice' );
+                }
+                $extra = $this->get_extra_text() . ' ' . $t_gtm_12;
+                $this->data['gtm']['setup'][] = [$gtm_setup_status, $t_gtm_13, $extra];
             }
         } else {
-            $this->data['gtm']['setup'][] = ['warning', 'Tracking tools loaded with GTM may require the use of a consent banner', 'Make sure that none of the tools you install with GTM track personaly indentifiable information.'];
+            if ( $this->format == 'cdb' ) {
+                $t_gtm_14 = 'Tracking tools loaded with GTM may require the use of a consent banner';
+                $t_gtm_15 = 'Make sure that none of the tools you install with GTM track personaly indentifiable information.';
+            } else {
+                $t_gtm_14 = esc_html__( 'Tracking tools loaded with GTM may require the use of a consent banner', 'full-picture-analytics-cookie-notice' );
+                $t_gtm_15 = esc_html__( 'Make sure that none of the tools you install with GTM track personaly indentifiable information.', 'full-picture-analytics-cookie-notice' );
+            }
+            $this->data['gtm']['setup'][] = ['warning', $t_gtm_14, $t_gtm_15];
         }
     }
 

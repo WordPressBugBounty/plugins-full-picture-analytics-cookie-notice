@@ -4,7 +4,7 @@ Donate link: https://wpfullpicture.com/
 Tags: woocommerce, consent mode, analytics, privacy, cookies
 Requires at least: 5.4.0
 Tested up to: 6.6.2
-Stable tag: 8.1.0
+Stable tag: 8.1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -134,7 +134,7 @@ Yes. Consent mode v2 is supported from version 7.1. It works with Google Analyti
 
 = Will I need a consent management plugin or platform (CookieBot, Iubenda, CookieYes, etc.) after I switch to WP Full Picture? =
 
-In most cases, you will not need a different consent sollution. You will however need it if you display on your website ads from platforms like Google Adsense - they require FTC certification from a cookie managment solution and WP Full Picture does not it at the moment.
+In most cases, you will not need a different consent sollution. You will however need it if you display on your website ads from platforms like Google Adsense - they require FTC certification from a cookie managment solution and WP Full Picture does not have it at the moment.
 
 = How does WP Full Picture's cookie notice block cookies?
 
@@ -194,6 +194,15 @@ No. WP Full Picture is focused on tracking and privacy. To generate a product ca
 6. View traffic and marketing reports in the admin panel
 
 == Changelog ==
+
+= 8.1.1 (15-10-2024) =
+
+* [Fix] A few minor fixes to the logic and texts of the GDPR setup helper
+* [Fix] The page no longer refreshes when only Google's tools are loaded and visitors consent to only some cookies
+* [Fix] [Woo] Orders from not logged clients are no longer tracked when they return to the "thank you" page
+* [Removed] Removed checkbox with the "Administrator" role for excluded user roles - unnecessary, since admins are always excluded
+* [Other] The name of the exported settings file now includes the site's domain
+* [Other] Polish translation of the GDPR setup helper
 
 = 8.1.0 (08-10-2024) =
 

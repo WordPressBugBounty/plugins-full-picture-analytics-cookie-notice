@@ -969,12 +969,15 @@ class Fupi_Admin {
 					},
 					success: function(response) {
 						if (response.success) {
+
+							const site_name = document.location.host.replaceAll('.', '_');
+
 							// creates an invisible link and clicks it
 							const url = response.data.file_url;
 							const a = document.createElement('a');
 							a.style.display = 'none';
 							a.href = url;
-							a.download = 'wpfp_settings_backup.json'; // sets filename
+							a.download = site_name + '_wpfp_settings_backup.json'; // sets filename
 							document.body.appendChild(a);
 							a.click();
 						} else {

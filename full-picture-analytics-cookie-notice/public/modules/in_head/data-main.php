@@ -3,11 +3,14 @@
 // these vars will be used in other files too
 // check if current user role should be tracked
 $this->track_current_user = true;
-$disable_for_roles = ( !empty( $this->main ) && isset( $this->main['disable_for_roles'] ) ? $this->main['disable_for_roles'] : ['administrator'] );
+$disable_for_roles = [];
+if ( !empty( $this->main ) && isset( $this->main['disable_for_roles'] ) ) {
+    $disable_for_roles = $this->main['disable_for_roles'];
+}
 $user = wp_get_current_user();
 if ( !empty( $user ) ) {
     foreach ( $user->roles as $role ) {
-        if ( in_array( $role, $disable_for_roles ) ) {
+        if ( $role == 'administrator' || in_array( $role, $disable_for_roles ) ) {
             $this->track_current_user = false;
         }
     }

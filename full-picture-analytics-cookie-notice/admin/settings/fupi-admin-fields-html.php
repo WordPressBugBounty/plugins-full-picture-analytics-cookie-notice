@@ -316,6 +316,9 @@ switch ( $recipe['type'] ) {
         global $wp_roles;
         $roles = $wp_roles->roles;
         foreach ( $roles as $key => $data_arr ) {
+            if ( $key == 'administrator' ) {
+                continue;
+            }
             $checked = false;
             if ( is_array( $saved_value ) ) {
                 if ( in_array( $key, $saved_value ) ) {

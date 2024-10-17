@@ -37,7 +37,7 @@ $sections = array(
 				'el_data_target'	=> 'fupi_load_opts',
 				'option_arr_id'		=> $option_arr_id,
 				'popup3'			=> '<p>' . sprintf( esc_html__( 'Load tracking script and start tracking all visitors - even administrators, bots, excluded users, people browsing from excluded locations and people that didn\'t agree to tracking. %1$sLearn more%2$s.', 'full-picture-analytics-cookie-notice' ), '<a target="_blank" href="https://wpfullpicture.com/support/documentation/validation-mode/?utm_source=fp_admin&utm_medium=referral&utm_campaign=settings_link">', '</a>' ) . '</p>
-					<p style="color: red">' . esc_html__( 'This setting is against GDPR and other laws in countries where users must consent to tracking. Use this option only for testing purposes.', 'full-picture-analytics-cookie-notice' ) . '</p>',
+					<p style="color: red">' . esc_html__( 'Enable this setting only for testing purposes. It breaks GDPR and similar laws in other countries that require visitors to opt-in to tracking.', 'full-picture-analytics-cookie-notice' ) . '</p>',
 			),
 			array(
 				'type'	 			=> 'toggle',
@@ -46,7 +46,7 @@ $sections = array(
 				'must_have'			=> 'cook',
 				'field_id' 			=> 'disreg_cookies',
 				'option_arr_id'		=> $option_arr_id,
-				'popup2'			=> '<p style="color: #e47d00;">' . esc_html__( 'This option should be only enabled for testing purposes. It is illegal in countries that require visitors to opt-in to tracking.', 'full-picture-analytics-cookie-notice' ) . '</p>
+				'popup3'			=> '<p style="color: red">' . esc_html__( 'This option should be only enabled for testing purposes. It breaks GDPR and similar laws in other countries that require visitors to opt-in to tracking.', 'full-picture-analytics-cookie-notice' ) . '</p>
 				<p>' . esc_html__( 'When you enable this option, this tracking tool will start tracking without waiting for consent - even in countries where visitors may be tracked only after they agree to tracking.', 'full-picture-analytics-cookie-notice' ) . '</p>
 				<p>' . esc_html__( 'Visitors will still be able to turn off tracking by declining tracking / cookies.', 'full-picture-analytics-cookie-notice' ) . '</p>'
 			),

@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wpfp\n"
 "Report-Msgid-Bugs-To: Translator Name <translations@example.com>\n"
-"POT-Creation-Date: 2024-10-07 14:53+0200\n"
-"PO-Revision-Date: 2024-10-07 14:56+0200\n"
+"POT-Creation-Date: 2024-10-14 11:50+0200\n"
+"PO-Revision-Date: 2024-10-14 11:52+0200\n"
 "Last-Translator: Krzysztof Planeta <hello@wpfullpicture.com>\n"
 "Language-Team: Polish\n"
 "Language: pl_PL\n"
@@ -247,7 +247,7 @@ msgstr "Które przełączniki mają być wstępnie zaznaczone?"
 #: admin/settings/modules/blockscr/fupi-admin-tab-blockscr.php:53
 #: admin/settings/modules/cscr/fupi-admin-tab-cscr.php:63
 #: admin/settings/modules/iframeblock/fupi-admin-tab-iframeblock.php:78
-#: includes/class-fupi-get-gdpr-status.php:1380
+#: includes/class-fupi-get-gdpr-status.php:2152
 #: public/cookie-notice/fupi-display-cookie-notice.php:71
 msgid "Statistics"
 msgstr "Statystyki"
@@ -257,7 +257,7 @@ msgstr "Statystyki"
 #: admin/settings/modules/blockscr/fupi-admin-tab-blockscr.php:65
 #: admin/settings/modules/cscr/fupi-admin-tab-cscr.php:75
 #: admin/settings/modules/iframeblock/fupi-admin-tab-iframeblock.php:90
-#: includes/class-fupi-get-gdpr-status.php:1382
+#: includes/class-fupi-get-gdpr-status.php:2154
 #: public/cookie-notice/fupi-display-cookie-notice.php:73
 msgid "Personalisation"
 msgstr "Personalizacja"
@@ -268,7 +268,7 @@ msgstr "Personalizacja"
 #: admin/settings/modules/cscr/fupi-admin-tab-cscr.php:69
 #: admin/settings/modules/iframeblock/fupi-admin-tab-iframeblock.php:84
 #: admin/settings/modules/tools/fupi-admin-descr_tools.php:18
-#: includes/class-fupi-get-gdpr-status.php:1384
+#: includes/class-fupi-get-gdpr-status.php:2156
 #: public/cookie-notice/fupi-display-cookie-notice.php:75
 msgid "Marketing"
 msgstr "Marketing"
@@ -508,7 +508,7 @@ msgid "This text will show up at the top of the consent's panel."
 msgstr "Ten tekst pojawi się w górnej części banera zgód."
 
 #: admin/customizer/fupi-customizer-settings.php:1050
-#: includes/class-fupi-get-gdpr-status.php:1371
+#: includes/class-fupi-get-gdpr-status.php:2143
 #: public/cookie-notice/fupi-display-cookie-notice.php:60
 msgid "We use cookies to provide you with the best browsing experience, personalize content of our site, analyse its traffic and show you relevant ads. See our {{privacy policy}} for more information."
 msgstr "Używamy pliki cookie, aby zapewnić Ci najlepsze wrażenia z przeglądania, personalizować zawartość naszej witryny, analizować jej ruch i wyświetlać odpowiednie reklamy. Aby uzyskać więcej informacji, zapoznaj się z naszą {{polityką prywatności}}."
@@ -522,7 +522,7 @@ msgid "Words wrapped with {{ }} will turn into a link to your privacy policy pag
 msgstr "Słowa objęte w {{ }} zamienią się w link do Twojej strony polityki prywatności. Możesz podać własny adres URL po znaku \"|\", na przykład {{my link|https://example/com}}. Możesz także użyć shortcody."
 
 #: admin/customizer/fupi-customizer-settings.php:1067
-#: includes/class-fupi-get-gdpr-status.php:1372
+#: includes/class-fupi-get-gdpr-status.php:2144
 #: public/cookie-notice/fupi-display-cookie-notice.php:62
 msgid "Agree"
 msgstr "Zgadzam się"
@@ -553,7 +553,7 @@ msgid "\"Statistics only\" button"
 msgstr "Przycisk \"Tylko statystyki\""
 
 #: admin/customizer/fupi-customizer-settings.php:1111
-#: includes/class-fupi-get-gdpr-status.php:1373
+#: includes/class-fupi-get-gdpr-status.php:2145
 #: public/cookie-notice/fupi-display-cookie-notice.php:63
 msgid "I understand"
 msgstr "Rozumiem"
@@ -576,7 +576,7 @@ msgid "Button with this text is displayed in the consent banner only to users wh
 msgstr "Przycisk z tym tekstem jest wyświetlany w banerze zgody tylko użytkownikom, którzy dokonali wyboru w przeszłości, ale teraz chcą zmienić swoje preferencje dotyczące śledzenia."
 
 #: admin/customizer/fupi-customizer-settings.php:1170
-#: includes/class-fupi-get-gdpr-status.php:1376
+#: includes/class-fupi-get-gdpr-status.php:2148
 #: public/cookie-notice/fupi-display-cookie-notice.php:66
 msgid "Agree to selected"
 msgstr "Zgadzam się na wybrane"
@@ -586,19 +586,20 @@ msgid "\"Agree to selected\" button"
 msgstr "Tekst w przycisku „Zgadzam się na wybrane”"
 
 #: admin/customizer/fupi-customizer-settings.php:1196
-#: includes/class-fupi-get-gdpr-status.php:1374
+#: includes/class-fupi-get-gdpr-status.php:2146
 #: public/cookie-notice/fupi-display-cookie-notice.php:64
 msgid "Decline"
 msgstr "Odmawiam"
 
 #: admin/customizer/fupi-customizer-settings.php:1200
+#: includes/class-fupi-get-gdpr-status.php:2197
 msgid "\"Decline\" button"
 msgstr "Przycisk \"Odmawiam\""
 
 #: admin/customizer/fupi-customizer-settings.php:1222
 #: admin/settings/modules/reports/fupi-admin-tab-reports.php:91
 #: admin/settings/pages/parts/fupi-page_part-side-nav.php:42
-#: includes/class-fupi-get-gdpr-status.php:1375
+#: includes/class-fupi-get-gdpr-status.php:2147
 #: public/cookie-notice/fupi-display-cookie-notice.php:65
 #: public/cookie-notice/fupi-display-cookie-notice.php:358
 msgid "Settings"
@@ -610,7 +611,7 @@ msgstr "Przycisk \"Ustawienia\""
 
 #: admin/customizer/fupi-customizer-settings.php:1248
 #: admin/settings/pages/parts/fupi-page_part-offscreen.php:6
-#: includes/class-fupi-get-gdpr-status.php:1377
+#: includes/class-fupi-get-gdpr-status.php:2149
 #: public/cookie-notice/fupi-display-cookie-notice.php:67
 msgid "Return"
 msgstr "Powrót"
@@ -647,7 +648,7 @@ msgid "\"Statistics\" section title"
 msgstr "Tytuł sekcji „Statystyki”"
 
 #: admin/customizer/fupi-customizer-settings.php:1350
-#: includes/class-fupi-get-gdpr-status.php:1381
+#: includes/class-fupi-get-gdpr-status.php:2153
 #: public/cookie-notice/fupi-display-cookie-notice.php:72
 msgid "I want to help you make this site better so I will provide you with data about my use of this site."
 msgstr "Chcę pomóc Ci ulepszyć tę witrynę, więc zgadzam się na zbieranie danych o moim korzystaniu z tej witryny."
@@ -668,7 +669,7 @@ msgid "\"Personalisation\" section title"
 msgstr "Tytuł sekcji „Personalizacja”"
 
 #: admin/customizer/fupi-customizer-settings.php:1402
-#: includes/class-fupi-get-gdpr-status.php:1383
+#: includes/class-fupi-get-gdpr-status.php:2155
 #: public/cookie-notice/fupi-display-cookie-notice.php:74
 msgid "I want to have the best experience on this site so I agree to saving my choices, recommending things I may like and modifying the site to my liking"
 msgstr "Chcę mieć jak najlepsze doświadczenia z korzystania z tej witryny, więc zgadzam się na zapisywanie moich wyborów, polecanie rzeczy, które mogą mi się spodobać i modyfikowanie witryny zgodnie z moimi upodobaniami"
@@ -682,7 +683,7 @@ msgid "\"Marketing\" section title"
 msgstr "Tytuł sekcji „Marketing”"
 
 #: admin/customizer/fupi-customizer-settings.php:1454
-#: includes/class-fupi-get-gdpr-status.php:1385
+#: includes/class-fupi-get-gdpr-status.php:2157
 #: public/cookie-notice/fupi-display-cookie-notice.php:76
 msgid "I want to see ads with your offers, coupons and exclusive deals rather than random ads from other advertisers."
 msgstr "Chcę widzieć reklamy z waszymi ofertami, kuponami i ekskluzywnymi zniżkami, a nie losowe reklamy od innych reklamodawców."
@@ -1694,8 +1695,8 @@ msgstr "Załaduj skrypt śledzenia i rozpocznij śledzenie wszystkich odwiedzaj�
 #: admin/settings/modules/posthog/fupi-admin-tab-posthog.php:37
 #: admin/settings/modules/tik/fupi-admin-tab-tik.php:26
 #: admin/settings/modules/twit/fupi-admin-tab-twit.php:34
-msgid "This setting is against GDPR and other laws in countries where users must consent to tracking. Use this option only for testing purposes."
-msgstr "To ustawienie jest niezgodne z RODO i innymi przepisami obowiązującymi w krajach, w których użytkownicy muszą wyrazić zgodę na śledzenie. Używaj tej opcji tylko do celów testowych."
+msgid "Enable this setting only for testing purposes. It breaks GDPR and similar laws in other countries that require visitors to opt-in to tracking."
+msgstr "Włącz to ustawienie tylko do celów testowych. Łamie to RODO i podobne przepisy w innych krajach, które wymagają od odwiedzających wyrażenia zgody na śledzenie."
 
 #: admin/settings/modules/cegg/fupi-admin-tab-cegg.php:44
 #: admin/settings/modules/clar/fupi-admin-tab-clar.php:45
@@ -1728,8 +1729,8 @@ msgstr "Śledź bez czekania na zgodę"
 #: admin/settings/modules/posthog/fupi-admin-tab-posthog.php:46
 #: admin/settings/modules/tik/fupi-admin-tab-tik.php:39
 #: admin/settings/modules/twit/fupi-admin-tab-twit.php:43
-msgid "This option should be only enabled for testing purposes. It is illegal in countries that require visitors to opt-in to tracking."
-msgstr "Ta opcja powinna być włączona tylko do celów testowych. Jest ona nielegalna w krajach, które wymagają od odwiedzających zgody na śledzenie."
+msgid "This option should be only enabled for testing purposes. It breaks GDPR and similar laws in other countries that require visitors to opt-in to tracking."
+msgstr "Ta opcja powinna być włączona tylko do celów testowych. Łamie ona RODO i podobne przepisy w innych krajach, które wymagają od odwiedzających wyrażenia zgody na śledzenie."
 
 #: admin/settings/modules/cegg/fupi-admin-tab-cegg.php:50
 #: admin/settings/modules/clar/fupi-admin-tab-clar.php:51
@@ -2345,7 +2346,7 @@ msgstr "wyświetlenie produktu"
 
 #: admin/settings/modules/clar/fupi-admin-descr_clar.php:47
 msgid "add to wishlist (requires setup on the WooCommerce Tracking settings page)"
-msgstr "Dodanie do listy życzeń (wymaga konfiguracji na stronie ustawień śledzenia WooCommerce)"
+msgstr "dodanie do listy życzeń (wymaga konfiguracji na stronie ustawień śledzenia WooCommerce)"
 
 #: admin/settings/modules/clar/fupi-admin-descr_clar.php:49
 #: admin/settings/modules/fbp1/fupi-admin-descr_fbp1.php:59
@@ -3177,7 +3178,7 @@ msgstr "kliknij zieloną ikonę \"+\" po lewej stronie,"
 
 #: admin/settings/modules/fbp1/checklist_fbp1.php:38
 msgid "choose \"Web\""
-msgstr "Wybierz \"Web\""
+msgstr "wybierz \"Web\" (Sieć)"
 
 #: admin/settings/modules/fbp1/checklist_fbp1.php:39
 msgid "choose \"Do it yourself\" (when you see this option)."
@@ -4979,7 +4980,7 @@ msgstr "Wprowadź adres URL skryptu Workera. %1s Dowiedz się, jak go znaleźć%
 
 #: admin/settings/modules/geo__premium_only/fupi-admin-tab-geo__premium_only.php:48
 msgid "ipdata API key"
-msgstr "Klucz API ipdata"
+msgstr "klucz API ipdata"
 
 #: admin/settings/modules/geo__premium_only/fupi-admin-tab-geo__premium_only.php:56
 msgid "Remember visitor's location for"
@@ -5807,7 +5808,7 @@ msgstr "Przejdź do %1$spulpitu nawigacyjnego Inspectlet%2$s"
 
 #: admin/settings/modules/insp/checklist_insp.php:25
 msgid "choose your website"
-msgstr "Wybierz swoją stronę internetową"
+msgstr "wybierz swoją stronę internetową"
 
 #: admin/settings/modules/insp/checklist_insp.php:26
 msgid "click \"Settings\" (NOT \"Account settings\")"
@@ -5895,6 +5896,7 @@ msgid "Encoded User ID"
 msgstr "Zakodowanego User ID"
 
 #: admin/settings/modules/insp/fupi-admin-tab-insp.php:313
+#: includes/class-fupi-get-gdpr-status.php:2238
 msgid "User ID"
 msgstr "User ID"
 
@@ -7206,7 +7208,7 @@ msgstr "Rozszerzyć możliwości śledzące %1$sstandardowej wtyczki Plausible%2
 
 #: admin/settings/modules/pla/fupi-admin-tab-pla.php:16
 msgid "How do these modes differ"
-msgstr "Czym różnią się te tryby?"
+msgstr "Czym różnią się te tryby"
 
 #: admin/settings/modules/pla/fupi-admin-tab-pla.php:17
 msgid "When Plausible is installed with WP Full Picture, you can track much more data and use unique functions of WP FP."
@@ -8569,7 +8571,7 @@ msgstr "Jak zainstalować X / Twitter pixel"
 
 #: admin/settings/modules/twit/checklist_twit.php:10
 msgid "How to track non-WooCommerce events"
-msgstr "Jak śledzić wydarzenia niezwiązane z WooCommerce?"
+msgstr "Jak śledzić wydarzenia niezwiązane z WooCommerce"
 
 #: admin/settings/modules/twit/checklist_twit.php:14
 msgid "How to track WooCommerce events"
@@ -8914,7 +8916,7 @@ msgstr "Nie widzisz raportu? Upewnij się, że: masz wyłączony bloker reklam (
 #: admin/settings/pages/parts/fupi-page-part-status.php:5
 #: includes/fupi_modules_data.php:254
 msgid "GDPR setup helper"
-msgstr "Pomoc w konfiguracji RODO"
+msgstr "Pomocnik konfiguracji RODO"
 
 #: admin/settings/pages/parts/fupi-page-part-status.php:7
 msgid "Instructions on this page will help you set up tracking tools in a way that complies with GDPR."
@@ -9039,9 +9041,709 @@ msgstr "Wtyczka WP Full Picture została dezaktywowana na stronie %1$s"
 msgid "WP Full Picture plugin has been deactivated. You can re-activate it from your WordPress admin plugin management page"
 msgstr "Wtyczka WP Full Picture została dezaktywowana. Możesz ją ponownie aktywować na stronie zarządzania wtyczkami w panelu administracyjnym WordPress"
 
-#: includes/class-fupi-get-gdpr-status.php:227
+#: includes/class-fupi-get-gdpr-status.php:51
+msgid "Consent banner must be enabled for your setup"
+msgstr "Baner zgody musi być włączony w Twojej konfiguracji"
+
+#: includes/class-fupi-get-gdpr-status.php:52
+msgid "Please enable it in either opt-in mode or one of automatic modes"
+msgstr "Włącz go w trybie opt-in lub w jednym z trybów automatycznych"
+
+#: includes/class-fupi-get-gdpr-status.php:53
+msgid "You may need to use the Consent Banner module on your website."
+msgstr "Być może będziesz musiał użyć moduł Baner Zgody na swojej stronie internetowej."
+
+#: includes/class-fupi-get-gdpr-status.php:54
+#, php-format
+msgid "Enable it if any of the tracking tools installed on your website track personaly identifiable information, your website loads content from other sites (YouTube video, maps, etc.) or gives warnings in %1$s."
+msgstr "Włącz go, jeśli którekolwiek z narzędzi śledzących zainstalowanych w Twojej witrynie śledzi informacje umożliwiające identyfikację użytkownika, Twoja witryna ładuje treści z innych witryn (filmy z YouTube, mapy itp.) lub wyświetla ostrzeżenia w %1$s."
+
+#: includes/class-fupi-get-gdpr-status.php:96
+msgid "Fix errors in consent banner settings."
+msgstr "Napraw błędy w ustawieniach banera zgody."
+
+#: includes/class-fupi-get-gdpr-status.php:97
+msgid "Make sure the banner is set up correctly."
+msgstr "Upewnij się, że baner jest prawidłowo skonfigurowany."
+
+#: includes/class-fupi-get-gdpr-status.php:256
 msgid "There was an error registering the site in ConsentsDB. Save the secret key and try again."
 msgstr "Wystąpił błąd podczas rejestracji witryny w ConsentsDB. Zapisz tajny klucz i spróbuj ponownie."
+
+#: includes/class-fupi-get-gdpr-status.php:360
+msgid "Add to your privacy policy information about additional, personaly identifiable information tracked and sent to the tool:"
+msgstr "Dodaj do swojej polityki prywatności informacje o dodatkowych, umożliwiających identyfikację użytkownika informacjach śledzonych i wysyłanych do narzędzia:"
+
+#: includes/class-fupi-get-gdpr-status.php:439
+msgid "User metadata with ID: "
+msgstr "Metadane użytkownika o ID: "
+
+#: includes/class-fupi-get-gdpr-status.php:466
+msgid "Link decoration is enabled in the consent banner settings."
+msgstr "Dekorowanie linków jest włączone w ustawieniach banerów zgody."
+
+#: includes/class-fupi-get-gdpr-status.php:467
+msgid "This setting is a privacy grey area. Make sure you are not breaking any laws while using it. Otherwise, disable link decoration in the settings of the consent banner."
+msgstr "To ustawienie może być niezgodne z przepisami dotyczącymi prywatności. Upewnij się, że nie łamiesz żadnych przepisów podczas korzystania z niego. W przeciwnym razie wyłącz dekorowanie linków w ustawieniach banera zgody."
+
+#: includes/class-fupi-get-gdpr-status.php:561
+msgid "These additional tracking tools are used on the website: "
+msgstr "Te dodatkowe narzędzia śledzące są używane na stronie internetowej: "
+
+#: includes/class-fupi-get-gdpr-status.php:562
+#, php-format
+msgid "Your privacy policy must include information about these tracking tools: %1$s Inform your visitors what data they track, what do you and these tools use it for and who the providers of these tools share this data with or sell it to."
+msgstr "Twoja polityka prywatności musi zawierać informacje o tych narzędziach śledzących: %1$s Poinformuj odwiedzających, jakie dane śledzą, do czego Ty i te narzędzia ich używacie oraz komu dostawcy tych narzędzi udostępniają lub sprzedają te dane."
+
+#: includes/class-fupi-get-gdpr-status.php:573
+msgid "No information on additional tracking tools have been provided"
+msgstr "Nie podano żadnych informacji na temat dodatkowych narzędzi śledzących"
+
+#: includes/class-fupi-get-gdpr-status.php:592
+msgid "Order ID"
+msgstr "ID zamówienia"
+
+#: includes/class-fupi-get-gdpr-status.php:593
+msgid "This tool does not track personally identifiable information and does not need consent banner"
+msgstr "Narzędzie to nie śledzi informacji umożliwiających identyfikację użytkownika i nie wymaga użycia banera zgody"
+
+#: includes/class-fupi-get-gdpr-status.php:605
+msgid "ID of a logged in user"
+msgstr "ID zalogowanego użytkownika"
+
+#: includes/class-fupi-get-gdpr-status.php:627
+msgid "Visitor's data is being kept on servers in the EU"
+msgstr "Dane odwiedzających są przechowywane na serwerach w UE"
+
+#: includes/class-fupi-get-gdpr-status.php:628
+msgid "Visitor's data is not being kept on servers in the EU"
+msgstr "Dane odwiedzających nie są przechowywane na serwerach w UE"
+
+#: includes/class-fupi-get-gdpr-status.php:647
+msgid "Real name, surname, phone number, email address and physical address of customers and logged-in users (enabled with Enhanced Conversions)"
+msgstr "Prawdziwe imię, nazwisko, numer telefonu, adres e-mail i adres fizyczny klientów i zalogowanych użytkowników (włączone dzięki funkcji Enhanced Conversions)"
+
+#: includes/class-fupi-get-gdpr-status.php:678
+msgid "Unique ID (user email email and/or a user id)"
+msgstr "Unikalne ID (e-mail użytkownika i/lub identyfikator użytkownika)"
+
+#: includes/class-fupi-get-gdpr-status.php:697
+msgid "The script loads an additional script for A/B testing which requires consent to using visitor's data for website personalisation."
+msgstr "Skrypt ładuje dodatkowy skrypt do testów A/B, który wymaga zgody na wykorzystanie danych odwiedzającego do personalizacji witryny."
+
+#: includes/class-fupi-get-gdpr-status.php:698
+msgid "Unique ID (user email email, user id or username)."
+msgstr "Unikalne ID (e-mail użytkownika, id użytkownika lub nazwa użytkownika)."
+
+#: includes/class-fupi-get-gdpr-status.php:721
+msgid "Matomo works in privacy mode and loads irrespective of user tracking consents. Privacy mode prevents from tracking identifiable information before users agree to tracking in the consent banner (if enabled). Only necessary cookies are loaded, user IDs are not used for cross-browser tracking and order IDs are randomized."
+msgstr "Matomo działa w trybie prywatności i ładuje się niezależnie od zgody użytkownika na śledzenie. Tryb prywatności zapobiega śledzeniu informacji umożliwiających identyfikację użytkownika, zanim użytkownicy wyrażą zgodę na śledzenie w banerze zgody (jeśli jest włączony). Ładowane są tylko niezbędne pliki cookie, identyfikatory użytkowników nie są używane do śledzenia w różnych przeglądarkach, a identyfikatory zamówień są losowe."
+
+#: includes/class-fupi-get-gdpr-status.php:722
+msgid "User ID - used for cross-browser tracking after visitors agree to cookies."
+msgstr "Identyfikator użytkownika - używany do śledzenia użytkownika korzystającego z róznych przeglądarek - po wyrażeniu przez niego zgody na pliki cookie."
+
+#: includes/class-fupi-get-gdpr-status.php:723
+msgid "User ID - for cross-browser tracking."
+msgstr "Identyfikator użytkownika - do śledzenia użytkownika korzystającego z różnych przeglądarek."
+
+#: includes/class-fupi-get-gdpr-status.php:724
+msgid "Set up a consent banner"
+msgstr "Skonfiguruj baner zgody"
+
+#: includes/class-fupi-get-gdpr-status.php:725
+msgid "Make sure the banner is set up correctly"
+msgstr "Upewnij się, że baner jest prawidłowo skonfigurowany"
+
+#: includes/class-fupi-get-gdpr-status.php:726
+msgid "Real order ID is tracked when visitors agree to tracking in a consent banner. Random order ID is sent when they don't."
+msgstr "Prawdziwy identyfikator zamówienia jest śledzony, gdy odwiedzający wyrażą zgodę na śledzenie w banerze zgody. Losowy identyfikator zamówienia jest wysyłany, gdy nie wyrażą na to zgody."
+
+#: includes/class-fupi-get-gdpr-status.php:727
+msgid "Privacy mode is enabled. Make sure that this tool doesn't track information that can identify users."
+msgstr "Tryb prywatności jest włączony. Upewnij się, że to narzędzie nie śledzi informacji, które mogą identyfikować użytkowników."
+
+#: includes/class-fupi-get-gdpr-status.php:783
+msgid "Advanced Match is enabled. Encrypted addresses, email addresses, phone numbers and user identifiers of your visitors and logged in users are sent to Meta (if known)."
+msgstr "Zaawansowane dopasowanie (Advanced Match) jest włączone. Zaszyfrowane adresy, adresy e-mail, numery telefonów i identyfikatory użytkowników Twoich odwiedzających i zalogowanych użytkowników są wysyłane do Meta (jeśli są znane)."
+
+#: includes/class-fupi-get-gdpr-status.php:794
+msgid "Limited Data Use option is enabled for visitors from the USA."
+msgstr "Opcja Limited Data Use jest włączona dla odwiedzających z USA."
+
+#: includes/class-fupi-get-gdpr-status.php:812
+msgid "Enhanced Conversions is enabled and sends to MS Advertising the email addresses of clients or logged-in users (if known)."
+msgstr "Ulepszone konwersje (Enhanced Conversions) są włączone i wysyłają do MS Advertising adresy e-mail klientów lub zalogowanych użytkowników (jeśli są znane)."
+
+#: includes/class-fupi-get-gdpr-status.php:827
+msgid "MS Clarity works in no-cookie mode and loads irrespective of user tracking consents.This prevents from MS Clarity from tracking identifiable information before users agree to tracking in the consent banner (if enabled). Only necessary cookies are loaded."
+msgstr "MS Clarity działa w trybie bez plików cookie i ładuje się niezależnie od zgody użytkownika na śledzenie. Zapobiega to śledzeniu przez MS Clarity możliwych do zidentyfikowania informacji, zanim użytkownicy wyrażą zgodę na śledzenie w banerze zgody (jeśli jest włączony). Ładowane są tylko niezbędne pliki cookie."
+
+#: includes/class-fupi-get-gdpr-status.php:828
+msgid "No-cookie mode is enabled. Make sure that this tool doesn't track information that can identify users."
+msgstr "Tryb prywatności jest włączony. Upewnij się, że to narzędzie nie śledzi informacji, które mogą identyfikować użytkowników."
+
+#: includes/class-fupi-get-gdpr-status.php:851
+msgid "Enhanced Match is enabled. Email addresses of clients and logged-in users are sent to Pinterest."
+msgstr "Ulepszone dopasowanie (Enhanced Match) jest włączone. Adresy e-mail klientów i zalogowanych użytkowników są wysyłane do Pinterest."
+
+#: includes/class-fupi-get-gdpr-status.php:867
+msgid "Due to the nature of Plausible Analytics and its terms and conditions, you cannot sent to it personally identifiable information. Please make sure that no metadata contains it."
+msgstr "Ze względu na charakter usługi Plausible Analytics i jej warunki użytkowania, nie możesz przesyłać do niej informacji umożliwiających identyfikację użytkownika. Upewnij się, że żadne metadane ich nie zawierają."
+
+#: includes/class-fupi-get-gdpr-status.php:883
+msgid "Enhanced Conversions is enabled. Email addresses of clients and logged-in users are sent to Twitter (if known)."
+msgstr "Ulepszone konwersje (Enhanced Conversions) są włączone. Adresy e-mail klientów i zalogowanych użytkowników są wysyłane do Twittera (jeśli są znane)."
+
+#: includes/class-fupi-get-gdpr-status.php:900
+msgid "The tool is force loaded for all visitors."
+msgstr "Ładowanie tego narzędzia dla wszystkich odwiedzających jest wymuszone."
+
+#: includes/class-fupi-get-gdpr-status.php:901
+msgid "Disable force loading"
+msgstr "Wyłącz wymuszanie ładowania"
+
+#: includes/class-fupi-get-gdpr-status.php:915
+msgid "The tool is set to disregard consent banner settings and start tracking without waiting for consent"
+msgstr "Narzędzie jest ustawione tak, aby ignorować ustawienia banera zgody i rozpocząć śledzenie bez oczekiwania na zgodę"
+
+#: includes/class-fupi-get-gdpr-status.php:916
+msgid "Disable this option in the module's settings"
+msgstr "Wyłącz tę opcję w ustawieniach modułu"
+
+#: includes/class-fupi-get-gdpr-status.php:917
+msgid "This tool loads according to incorrectly configured consent banner."
+msgstr "To narzędzie ładuje się zgodnie z nieprawidłowo skonfigurowanym banerem zgody."
+
+#: includes/class-fupi-get-gdpr-status.php:918
+msgid "This tool loads according to consent banner settings."
+msgstr "To narzędzie ładuje się zgodnie z ustawieniami banera zgody."
+
+#: includes/class-fupi-get-gdpr-status.php:935
+msgid "Consent banner is required"
+msgstr "Baner zgody jest wymagany"
+
+#: includes/class-fupi-get-gdpr-status.php:936
+#: includes/class-fupi-get-gdpr-status.php:1002
+#: includes/class-fupi-get-gdpr-status.php:1336
+#: includes/class-fupi-get-gdpr-status.php:1359
+msgid "Enable consent banner"
+msgstr "Włączyć moduł 'Baner zgody\""
+
+#: includes/class-fupi-get-gdpr-status.php:967
+msgid "Google Fonts are replaced with fonts from Bunny Fonts"
+msgstr "Czcionki Google Fonts są zastępowane czcionkami Bunny Fonts"
+
+#: includes/class-fupi-get-gdpr-status.php:968
+#, php-format
+msgid "You enabled replacing Google Fonts with safe fonts from Bunny Fonts but your website can still load them dynamically (after the page loads). Scan your website with %1$s again. If it finds links to Google Fonts, you need to find the plugin or theme that loads them and disable Google Fonts in their settings."
+msgstr "Włączyłeś zastępowanie czcionek z Google Fonts bezpiecznymi czcionkami z Bunny Fonts, ale Twoja witryna może nadal ładować je dynamicznie (po załadowaniu strony). Przeskanuj ponownie swoją witrynę za pomocą %1$s. Jeśli skaner znajdzie linki do Google Fonts, musisz znaleźć wtyczkę lub motyw, który je ładuje i wyłączyć Google Fonts w jej ustawieniach."
+
+#: includes/class-fupi-get-gdpr-status.php:969
+msgid "Check if you need to use the Safe Fonts module"
+msgstr "Sprawdź, czy musisz korzystać z modułu Safe Fonts"
+
+#: includes/class-fupi-get-gdpr-status.php:970
+#, php-format
+msgid "Scan your website with %1$s and check if your website uses Google Fonts. If it does, then either disable them in the settings of your theme or plugin or enable the Safe Fonts module to replace them with GDPR-compliant fonts from Bunny Fonts."
+msgstr "Przeskanuj swoją witrynę za pomocą %1$s i sprawdź, czy korzysta ona z czcionek Google Fonts. Jeśli tak, to albo wyłącz je w ustawieniach motywu lub wtyczki, albo włącz moduł Safe Fonts, aby zastąpić je czcionkami zgodnymi z RODO z Bunny Fonts."
+
+#: includes/class-fupi-get-gdpr-status.php:996
+msgid "Disable Order Attribution or control the SourceBuster script in WooCommerce"
+msgstr "Wyłącz Atrybucję Zamówień w WooCommerce lub zacznij kontrolować skrypt SourceBuster"
+
+#: includes/class-fupi-get-gdpr-status.php:997
+#, php-format
+msgid "Recent versions of WooCommerce come with an order attribution feature that uses cookies to track the last source of a purchase. We recommend you either disable this function in WooCommerce > Settings > Advanced > Features or use the Tracking Tools Manager to load the SourceBuster script only to people who agree to statistical cookies. This script is used by the Order Attribution function. %1$sLearn more%2$s"
+msgstr "Najnowsze wersje WooCommerce są wyposażone w funkcję Atrybucji Zamówień, która wykorzystuje pliki cookie do śledzenia ostatniego źródła zakupu. Zalecamy wyłączenie tej funkcji w WooCommerce > Ustawienia > Zaawansowane > Funkcje lub użycie Menedżera Narzędzi Śledzących, aby załadować skrypt SourceBuster tylko osobom, które zgadzają się na statystyczne pliki cookie. Skrypt ten jest używany przez funkcję przypisywania zamówień. %1$sDowiedz się więcej%2$s"
+
+#: includes/class-fupi-get-gdpr-status.php:998
+msgid "SourceBuster script is loaded according to incorrectly set up consent banner"
+msgstr "Skrypt SourceBuster jest ładowany zgodnie z nieprawidłowo ustawionym banerem zgody"
+
+#: includes/class-fupi-get-gdpr-status.php:999
+msgid "Correct consent banner settings"
+msgstr "Popraw ustawienia banera zgody"
+
+#: includes/class-fupi-get-gdpr-status.php:1000
+msgid "SourceBuster script is loaded according to the consent banner settings"
+msgstr "Skrypt SourceBuster jest ładowany zgodnie z ustawieniami banera zgody"
+
+#: includes/class-fupi-get-gdpr-status.php:1001
+msgid "Enable consent banner to load SourceBuster according to privacy laws"
+msgstr "Włącz baner zgody, aby załadować SourceBuster zgodnie z przepisami dotyczącymi prywatności"
+
+#: includes/class-fupi-get-gdpr-status.php:1064
+#: includes/class-fupi-get-gdpr-status.php:1227
+msgid " and "
+msgstr " i "
+
+#: includes/class-fupi-get-gdpr-status.php:1067
+#, php-format
+msgid "Iframes loaded by %1$s are loaded according to consent banner settings (require consents for statistics and marketing) or when visitors agree to privacy policies of content hosts."
+msgstr "Treści z zewnętrznych domen (ramki iframe) ładowane przez %1$s są ładowane zgodnie z ustawieniami banerów zgody (wymagają zgody na statystyki i marketing) lub gdy odwiedzający wyrażają zgodę na politykę prywatności hostów treści."
+
+#: includes/class-fupi-get-gdpr-status.php:1085
+#: includes/class-fupi-get-gdpr-status.php:1202
+#: includes/class-fupi-get-gdpr-status.php:1397
+msgid "statistics"
+msgstr "statystyki"
+
+#: includes/class-fupi-get-gdpr-status.php:1086
+#: includes/class-fupi-get-gdpr-status.php:1203
+#: includes/class-fupi-get-gdpr-status.php:1398
+msgid "marketing"
+msgstr "marketing"
+
+#: includes/class-fupi-get-gdpr-status.php:1087
+#: includes/class-fupi-get-gdpr-status.php:1204
+#: includes/class-fupi-get-gdpr-status.php:1399
+msgid "personalisation"
+msgstr "personalizacja"
+
+#: includes/class-fupi-get-gdpr-status.php:1109
+#, php-format
+msgid " are loaded according to consent banner settings (require consents for %1$s) or when visitors agree to privacy policies of content hosts."
+msgstr " są ładowane zgodnie z ustawieniami banerów zgody (wymagają zgody na %1$s) lub gdy odwiedzający wyrażą zgodę na politykę prywatności źródeł treści."
+
+#: includes/class-fupi-get-gdpr-status.php:1119
+msgid " are set to load without waiting for consents."
+msgstr " są ładowane bez oczekiwania na zgody."
+
+#: includes/class-fupi-get-gdpr-status.php:1136
+msgid "Add information in your privacy policy that your website loads content from other sources and what happens with their data after they agree. You can link to their privacy policies."
+msgstr "Dodaj w swojej polityce prywatności informację, że Twoja witryna ładuje treści z innych źródeł i co dzieje się z ich danymi po wyrażeniu zgody. Możesz zamieścić link do ich polityk prywatności."
+
+#: includes/class-fupi-get-gdpr-status.php:1149
+msgid "Check if you need to enable the Iframes Manager module"
+msgstr "Sprawdź, czy musisz włączyć moduł Zarządzanie Osadzonymi Treściami"
+
+#: includes/class-fupi-get-gdpr-status.php:1150
+msgid "If you embed on your site any content from other websites (YouTube videos, Google Maps, X/Twitter twits, etc.), please configure the Consent Banner module and Iframes Manager module. This way WP Full Picture will be able to load this content according to provided consents."
+msgstr "Jeśli osadzasz w swojej witrynie jakiekolwiek treści z innych witryn (filmy z YouTube, Mapy Google, Twitty itp.), skonfiguruj moduł Baner Zgody i moduł Zarządzanie Osadzonymi Treściami. W ten sposób WP Full Picture będzie w stanie załadować te treści zgodnie z udzielonymi zgodami."
+
+#: includes/class-fupi-get-gdpr-status.php:1187
+msgid "WP Full Picture loads a script"
+msgstr "WP Full Picture ładuje skrypt"
+
+#: includes/class-fupi-get-gdpr-status.php:1229
+msgid "It is set to require consents for"
+msgstr "Został on ustawiony w taki sposób, aby wymagać zgody na"
+
+#: includes/class-fupi-get-gdpr-status.php:1230
+msgid "but it is force-loaded before visitors can make their choices."
+msgstr "ale jego ładowanie jest wymuszone zanim odwiedzający dokonają wyboru w banerze zgody."
+
+#: includes/class-fupi-get-gdpr-status.php:1231
+msgid "Do not force-load this script."
+msgstr "Nie wymuszaj ładowania tego skryptu."
+
+#: includes/class-fupi-get-gdpr-status.php:1232
+msgid "and loads according to consent banner settings."
+msgstr "i ładuje się zgodnie z ustawieniami banera zgody."
+
+#: includes/class-fupi-get-gdpr-status.php:1252
+#: includes/class-fupi-get-gdpr-status.php:1268
+msgid "The script loads without waiting for tracking consents."
+msgstr "Skrypt ładuje się bez oczekiwania na zgodę na śledzenie."
+
+#: includes/class-fupi-get-gdpr-status.php:1253
+#: includes/class-fupi-get-gdpr-status.php:1269
+msgid "Make sure that this script does not track personaly identifiable information."
+msgstr "Upewnij się, że ten skrypt nie śledzi informacji umożliwiających identyfikację użytkownika."
+
+#: includes/class-fupi-get-gdpr-status.php:1288
+msgid "This module does not install any scripts"
+msgstr "Moduł ten nie instaluje żadnych skryptów"
+
+#: includes/class-fupi-get-gdpr-status.php:1289
+msgid "Make sure that all JavaScript snippets that install tracking tools are loaded with the Custom Scripts module. WP Full Picture will load them according to provided consents."
+msgstr "Upewnij się, że wszystkie fragmenty JavaScript, które instalują narzędzia śledzące, są załadowane za pomocą modułu Własne Skrypty. WP Full Picture załaduje je zgodnie z udzielonymi zgodami."
+
+#: includes/class-fupi-get-gdpr-status.php:1302
+msgid "Check if you need to enable the Custom Scripts module"
+msgstr "Sprawdź, czy musisz włączyć moduł Własne Skrypty"
+
+#: includes/class-fupi-get-gdpr-status.php:1303
+msgid "If you installed any tracking tools with JavaScript snippets, please move these snippets to the \"Custom scripts\" module (easy) or Google Tag Manager (advanced). This way, WP Full Picture's Consent Banner will be able to load these tools according to provided consents."
+msgstr "Jeśli zainstalowałeś jakiekolwiek narzędzia do śledzenia za pomocą kodu JavaScript, przenieś ten kod do modułu \"Własne Skrypty \" (proste) lub Google Tag Manager (zaawansowane). W ten sposób baner zgody WP Full Picture będzie mógł załadować te narzędzia zgodnie z otrzymanymi zgodami na śledzenie."
+
+#: includes/class-fupi-get-gdpr-status.php:1334
+#: includes/class-fupi-get-gdpr-status.php:1347
+msgid "Tracking plugins loaded according to settings in the consent banner:"
+msgstr "Wtyczki śledzące ładowane zgodnie z ustawieniami w banerze zgody:"
+
+#: includes/class-fupi-get-gdpr-status.php:1335
+#: includes/class-fupi-get-gdpr-status.php:1358
+#, php-format
+msgid "Tracking plugin(s) %1$s must be loaded according to settings in the consent banner but it is not enabled."
+msgstr "Wtyczka(i) śledzące %1$s muszą być ładowane zgodnie z ustawieniami w banerze zgody, który nie jest włączony."
+
+#: includes/class-fupi-get-gdpr-status.php:1377
+msgid "No name provided"
+msgstr "Nie podano nazwy"
+
+#: includes/class-fupi-get-gdpr-status.php:1396
+#, php-format
+msgid "Tracking tool with %1$s=\"%2$s\" and title/ID \"%3$s\""
+msgstr "Narzędzie śledzące z %1$s=\"%2$s\" i tytułem/ID \"%3$s\""
+
+#: includes/class-fupi-get-gdpr-status.php:1425
+#, php-format
+msgid "is marked as using visitor's data for %1$s."
+msgstr "jest oznaczone jako wykorzystujące dane odwiedzającego dla %1$s."
+
+#: includes/class-fupi-get-gdpr-status.php:1426
+msgid "The tool is loaded according to incorrectly set up consent banner"
+msgstr "Narzędzie jest ładowane zgodnie z nieprawidłowo skonfigurowanym banerem zgody"
+
+#: includes/class-fupi-get-gdpr-status.php:1427
+msgid "The tool is loaded according to consent banner settings"
+msgstr "Narzędzie jest ładowane zgodnie z ustawieniami banera zgody"
+
+#: includes/class-fupi-get-gdpr-status.php:1449
+msgid "is set to load without waiting for consents."
+msgstr "jest ustawione na ładowanie bez oczekiwania na zgodę."
+
+#: includes/class-fupi-get-gdpr-status.php:1450
+msgid "Make sure this script does not need consents"
+msgstr "Upewnij się, że ten skrypt nie wymaga zgód"
+
+#: includes/class-fupi-get-gdpr-status.php:1469
+msgid "Add information in your privacy policy about additional tracking tools that you use, what data they collect, how is the data used and who is it shared with."
+msgstr "Dodaj w swojej polityce prywatności informacje o dodatkowych narzędziach śledzących, z których korzystasz, jakie dane gromadzą, w jaki sposób są one wykorzystywane i komu są udostępniane."
+
+#: includes/class-fupi-get-gdpr-status.php:1470
+msgid "This module does not manage any tracking tools"
+msgstr "Moduł ten nie zarządza żadnymi narzędziami śledzącymi"
+
+#: includes/class-fupi-get-gdpr-status.php:1471
+msgid "Are you sure this module needs to stay enabled?"
+msgstr "Czy jesteś pewien, że ten moduł musi pozostać włączony?"
+
+#: includes/class-fupi-get-gdpr-status.php:1486
+msgid "Check if you need to enable the Tracking Tools Manager module"
+msgstr "Sprawdź, czy musisz włączyć moduł Menedżer Narzędzi Śledzących"
+
+#: includes/class-fupi-get-gdpr-status.php:1487
+#, php-format
+msgid "Tracking Tools Manager let's you load tracking tools installed outside WP Full Picture according to visitors' consents. Use it if you installed any tracking tool with a different plugin. If you are unsure, check your website for cookies of other tracking tools with %1$s. If you are unsure how to use it, read these %2$sshort instructions%3$s."
+msgstr "Menedżer Narzędzi Śledzących pozwala ładować narzędzia śledzące zainstalowane poza WP Full Picture zgodnie ze zgodami odwiedzających. Użyj go, jeśli zainstalowałeś jakiekolwiek narzędzie śledzące za pomocą innej wtyczki. Jeśli nie masz pewności, sprawdź swoją witrynę pod kątem plików cookie innych narzędzi śledzących za pomocą %1$s. Jeśli nie masz pewności, jak go używać, przeczytaj te %2$skrótkie instrukcje%3$s."
+
+#: includes/class-fupi-get-gdpr-status.php:1520
+#, php-format
+msgid "Check in what countries opt-in, opt-out and notification banners should be used. %1$sRead article%2$s"
+msgstr "Sprawdź, w jakich krajach należy stosować banery opt-in, opt-out i powiadomienia o śledzeniu. %1$sPrzeczytaj artykuł%2$s"
+
+#: includes/class-fupi-get-gdpr-status.php:1521
+msgid "Consent banner uses strict, automatic setup mode - it chooses the correct mode of work depending on visitor's location. Strict mode is intended for websites that use visitor's data for marketing purposes and / or collect sensitive information."
+msgstr "Baner zgody korzysta z automatycznego, ścisłego trybu konfiguracji - wybiera odpowiedni tryb pracy w zależności od lokalizacji odwiedzającego. Tryb ścisły jest przeznaczony dla witryn, które wykorzystują dane odwiedzających do celów marketingowych i/lub gromadzą wrażliwe informacje."
+
+#: includes/class-fupi-get-gdpr-status.php:1522
+#: includes/class-fupi-get-gdpr-status.php:1642
+#: includes/class-fupi-get-gdpr-status.php:1701
+msgid "Opt-in mode is used for visitors from:"
+msgstr "Tryb Opt-in jest używany dla odwiedzających z:"
+
+#: includes/class-fupi-get-gdpr-status.php:1523
+#: includes/class-fupi-get-gdpr-status.php:1643
+msgid "Opt-out mode is used for visitors from:"
+msgstr "Tryb Opt-out jest używany dla odwiedzających z:"
+
+#: includes/class-fupi-get-gdpr-status.php:1524
+msgid "Visitors from other countries are notified that they are tracked."
+msgstr "Odwiedzający z innych krajów są powiadamiani o tym, że są śledzeni."
+
+#: includes/class-fupi-get-gdpr-status.php:1525
+msgid "Fallback mode when no location is found: Opt-in mode."
+msgstr "Tryb używany, gdy nie udało się określić lokalizacji użytkownika: Opt-in."
+
+#: includes/class-fupi-get-gdpr-status.php:1551
+#: includes/class-fupi-get-gdpr-status.php:1590
+#: includes/class-fupi-get-gdpr-status.php:1873
+msgid "Consent banner is set to start tracking visitors from all countries only after they consent to tracking (Opt-in mode)."
+msgstr "Baner zgody jest ustawiony tak, aby rozpocząć śledzenie odwiedzających ze wszystkich krajów dopiero po wyrażeniu przez nich zgody na śledzenie (tryb Opt-in)."
+
+#: includes/class-fupi-get-gdpr-status.php:1552
+#: includes/class-fupi-get-gdpr-status.php:1924
+msgid "Visitors are not asked for new consent when the privacy policy text changes and/or when new tracking modules are enabled."
+msgstr "Odwiedzający nie są proszeni o ponowną zgodę, gdy zmienia się tekst polityki prywatności i/lub gdy włączane zostają nowe moduły śledzenia."
+
+#: includes/class-fupi-get-gdpr-status.php:1553
+#: includes/class-fupi-get-gdpr-status.php:1925
+msgid "Enable it in the consent banner's settings"
+msgstr "Włącz to w ustawieniach banera zgody"
+
+#: includes/class-fupi-get-gdpr-status.php:1554
+#: includes/class-fupi-get-gdpr-status.php:2004
+msgid "Saving proofs of visitor's tracking consents is disabled."
+msgstr "Zapisywanie dowodów zgody użytkownika na śledzenie jest wyłączone."
+
+#: includes/class-fupi-get-gdpr-status.php:1555
+#: includes/class-fupi-get-gdpr-status.php:2005
+msgid "Enable saving proofs of consent in the Consent Banner > Saving Consents (Pro only). You may need it during audits or investigations by authorities or data protection agencies, if a user complains about being tracked without permission, in legal cases where privacy issues are involved."
+msgstr "Włącz zapisywanie dowodów zgody w module Baner zgody > Zapisywanie zgód (tylko Pro). Możesz ich potrzebować podczas audytów lub dochodzeń prowadzonych przez władze lub agencje ochrony danych, jeśli jakiś użytkownik poskarży się, że jest śledzony bez pozwolenia lub w sprawach prawnych, w których występują kwestie prywatności."
+
+#: includes/class-fupi-get-gdpr-status.php:1602
+msgid "Consent banner is set to start tracking visitors from the moment they enter the website but let them decline tracking (Opt-out mode)."
+msgstr "Baner zgody jest ustawiony tak, aby rozpocząć śledzenie odwiedzających od momentu ich wejścia na stronę internetową, ale pozwolić im odmówić śledzenia (tryb Opt-out)."
+
+#: includes/class-fupi-get-gdpr-status.php:1603
+#: includes/class-fupi-get-gdpr-status.php:1617
+#: includes/class-fupi-get-gdpr-status.php:1885
+#: includes/class-fupi-get-gdpr-status.php:1899
+msgid "Change to the opt-in mode or one of automatic modes."
+msgstr "Zmień tryb na opt-in lub jeden z automatycznych."
+
+#: includes/class-fupi-get-gdpr-status.php:1616
+msgid "Consent banner is set to track all visitors and only notify them that they are tracked. They cannot decline."
+msgstr "Baner zgody jest ustawiony na śledzenie wszystkich odwiedzających i tylko powiadamia ich tylko o tym, że są śledzeni. Nie mogą oni odmówić."
+
+#: includes/class-fupi-get-gdpr-status.php:1641
+msgid "Consent banner uses lax, automatic setup mode - it chooses the correct mode of work depending on visitor's location. Lax mode is intended for websites that neither use visitor's data for marketing purposes nor collect sensitive information."
+msgstr "Baner zgody używa automatycznego trybu konfiguracji Lax - wybiera odpowiedni tryb pracy w zależności od lokalizacji odwiedzającego. Tryb Lax jest przeznaczony dla witryn, które nie wykorzystują danych odwiedzających do celów marketingowych ani nie zbierają wrażliwych informacji."
+
+#: includes/class-fupi-get-gdpr-status.php:1644
+#, php-format
+msgid "Visitors from %1$s are notified that they are tracked."
+msgstr "Osoby odwiedzające stronę z %1$s są powiadamiane o tym, że są śledzone."
+
+#: includes/class-fupi-get-gdpr-status.php:1645
+#: includes/class-fupi-get-gdpr-status.php:1805
+msgid "Visitors from other countries are tracked without notification."
+msgstr "Odwiedzający z innych krajów są śledzeni bez powiadomienia."
+
+#: includes/class-fupi-get-gdpr-status.php:1663
+msgid "Consent banner changes the mode of work depending on visitor's location. The list of locations was set manually by the user."
+msgstr "Baner zgody zmienia tryb pracy w zależności od lokalizacji odwiedzającego. Lista lokalizacji została ustawiona ręcznie przez użytkownika."
+
+#: includes/class-fupi-get-gdpr-status.php:1664
+msgid "Make sure your setup is correct"
+msgstr "Upewnij się, że Twoja konfiguracja jest prawidłowa"
+
+#: includes/class-fupi-get-gdpr-status.php:1676
+msgid "Opt-in mode is used for visitors from all countries."
+msgstr "Tryb opt-in jest używany dla odwiedzających ze wszystkich krajów."
+
+#: includes/class-fupi-get-gdpr-status.php:1687
+#: includes/class-fupi-get-gdpr-status.php:1710
+msgid "Opt-in mode is not used for visitors from any country."
+msgstr "Tryb Opt-in nie jest używany dla odwiedzających z żadnego kraju."
+
+#: includes/class-fupi-get-gdpr-status.php:1724
+msgid "Opt-out mode is used for visitors from all countries."
+msgstr "Tryb Opt-out jest używany dla odwiedzających ze wszystkich krajów."
+
+#: includes/class-fupi-get-gdpr-status.php:1736
+#: includes/class-fupi-get-gdpr-status.php:1759
+msgid "Opt-out mode is not used for visitors from any country."
+msgstr "Tryb Opt-out nie jest używany dla odwiedzających z żadnego kraju."
+
+#: includes/class-fupi-get-gdpr-status.php:1749
+#, php-format
+msgid "Opt-out mode is used for visitors from: %1$s."
+msgstr "Tryb Opt-out jest używany dla odwiedzających z: %1$s."
+
+#: includes/class-fupi-get-gdpr-status.php:1773
+msgid "Visitors from all countries are notified about tracking but can't opt-out"
+msgstr "Odwiedzający ze wszystkich krajów są powiadamiani o śledzeniu, ale nie mogą z niego zrezygnować"
+
+#: includes/class-fupi-get-gdpr-status.php:1774
+msgid "Change to opt-in mode or one of the automatic ones"
+msgstr "Zmień tryb na opt-in lub jeden z automatycznych"
+
+#: includes/class-fupi-get-gdpr-status.php:1785
+msgid "Visitors from no country are only informed that they are tracked."
+msgstr "Odwiedzający z żadnego kraju nie są jedynie informowani o tym, że są śledzeni."
+
+#: includes/class-fupi-get-gdpr-status.php:1786
+msgid "Visitors from these countries are notified about tracking but can't opt-out:"
+msgstr "Odwiedzający z tych krajów są powiadamiani o śledzeniu, ale nie mogą z niego zrezygnować:"
+
+#: includes/class-fupi-get-gdpr-status.php:1824
+msgid "When visitor location is not found, consent banner will start tracking visitors only after they consent to tracking (Opt-in mode)."
+msgstr "Jeśli lokalizacja odwiedzającego nie zostanie okreslona, baner zgody rozpocznie śledzenie odwiedzających dopiero po wyrażeniu przez nich zgody na śledzenie (tryb Opt-in)."
+
+#: includes/class-fupi-get-gdpr-status.php:1835
+msgid "When visitor location is not found, consent banner will start tracking visitors from the moment they enter the website but will let them decline tracking (Opt-out mode)"
+msgstr "Jeśli lokalizacja odwiedzającego nie zostanie określona, baner zgody rozpocznie śledzenie odwiedzających od momentu ich wejścia na stronę internetową, ale pozwoli im odmówić śledzenia (tryb Opt-out)"
+
+#: includes/class-fupi-get-gdpr-status.php:1836
+#: includes/class-fupi-get-gdpr-status.php:1851
+msgid "Change to opt-in mode."
+msgstr "Zmień na tryb opt-in."
+
+#: includes/class-fupi-get-gdpr-status.php:1850
+msgid "When visitor location is not found, visitors will be notified that they are tracked bu they will not be able to decline tracking."
+msgstr "Jeśli lokalizacja odwiedzającego nie zostanie określona, odwiedzający zostaną powiadomieni, że są śledzeni i nie będą mogli odmówić śledzenia."
+
+#: includes/class-fupi-get-gdpr-status.php:1884
+msgid "Consent banner is set to start tracking visitors from the moment they enter the website but will let them decline tracking (Opt-out mode)"
+msgstr "Baner zgody jest ustawiony tak, aby rozpocząć śledzenie odwiedzających od momentu ich wejścia na stronę internetową, ale pozwoli im odmówić śledzenia (tryb Opt-out)"
+
+#: includes/class-fupi-get-gdpr-status.php:1898
+msgid "Visitors are notified that they are tracked but they are not able to decline tracking."
+msgstr "Odwiedzający są powiadamiani o tym, że są śledzeni, ale nie mogą odmówić śledzenia."
+
+#: includes/class-fupi-get-gdpr-status.php:1914
+msgid "Visitors are asked for consent again, when the privacy policy text changes or when tracking modules are enabled."
+msgstr "Odwiedzający są ponownie proszeni o wyrażenie zgody, gdy zmienia się tekst polityki prywatności lub gdy włączone są moduły śledzące."
+
+#: includes/class-fupi-get-gdpr-status.php:1945
+msgid "Privacy policy page is not set or is not published"
+msgstr "Strona polityki prywatności nie jest ustawiona lub nie jest opublikowana"
+
+#: includes/class-fupi-get-gdpr-status.php:1946
+msgid "Please set it in \"Settings > Privacy\" page and make sure that it is published."
+msgstr "Ustaw ją na stronie \"Ustawienia > Prywatność\" i upewnij się, że została opublikowana."
+
+#: includes/class-fupi-get-gdpr-status.php:1965
+msgid "When visitors are asked for tracking consent (opt-in), switches for choosing allowed uses of tracked data are pre-selected."
+msgstr "Gdy odwiedzający są proszeni o wyrażenie zgody na śledzenie (opt-in), przełączniki umożliwiające wybór dozwolonych zastosowań śledzonych danych są wstępnie zaznaczone."
+
+#: includes/class-fupi-get-gdpr-status.php:1966
+msgid "Disable pre-selection of switches"
+msgstr "Wyłącz preselekcję przełączników"
+
+#: includes/class-fupi-get-gdpr-status.php:1979
+msgid "Add to your privacy policy information that WP Full Picture uses the following cookies:"
+msgstr "Dodaj do swojej polityki prywatności informację, że WP Full Picture wykorzystuje następujące pliki cookie:"
+
+#: includes/class-fupi-get-gdpr-status.php:1980
+msgid "fp_cookie - a necessary cookie. It stores information on visitor's tracking consents, a list of tracking tools that a user agreed to and the date of the last update of the privacy policy page. Does not expire."
+msgstr "fp_cookie - niezbędny plik cookie. Przechowuje informacje o zgodach użytkownika na śledzenie, listę narzędzi śledzących, na które użytkownik wyraził zgodę oraz datę ostatniej aktualizacji strony polityki prywatności. Nie wygasa."
+
+#: includes/class-fupi-get-gdpr-status.php:1981
+msgid "fp_current_session - an optional cookie. It requires consent to tracking statistics. In the free version it does not hold any value and is only used to check if a new session has started. In the Pro version it holds the number and type of pages that a visitor viewed in a session, domain of the traffic source, URL parameters of the first landing page in a session and visitor's lead score. Expires when a visitor is inactive for 30 minutes."
+msgstr "fp_current_session - opcjonalny plik cookie. Wymaga zgody na śledzenie statystyk. W wersji darmowej wtyczki nie przechowuje żadnych wartości i służy jedynie do sprawdzania, czy rozpoczęła się nowa sesja. W wersji Pro przechowuje liczbę i typ stron, które odwiedzający przeglądał w sesji, domenę źródła ruchu, parametry URL pierwszej strony docelowej w sesji i wynik leadowy odwiedzającego. Wygasa, gdy odwiedzający jest nieaktywny przez 30 minut."
+
+#: includes/class-fupi-get-gdpr-status.php:1994
+msgid "Saving proofs of visitor's tracking consents is enabled."
+msgstr "Zapisywanie dowodów zgody odwiedzającego na śledzenie jest włączone."
+
+#: includes/class-fupi-get-gdpr-status.php:2017
+msgid "cdb_id - a necessary cookie. It is saved after visitors agree or decline tracking in the opt-in banner. It stores a random device identifier used to match consents saved in the remote database with the device. Does not expire."
+msgstr "cdb_id - niezbędny plik cookie. Jest zapisywany po tym, jak odwiedzający zgodzą się lub nie wyrażą zgody na śledzenie w banerze zgody. Przechowuje losowy identyfikator urządzenia używany do dopasowania zgód zapisanych w zdalnej bazie danych do urządzenia. Nie wygasa."
+
+#: includes/class-fupi-get-gdpr-status.php:2029
+msgid "fp_country - a necessary cookie used when the geolocation module is enabled. It is used by the plugin to apply the correct tracking mechanism and consent banner mode (opt-in, opt-out, inform-only). Expires after the time specified by the website administrator (30 days by default)."
+msgstr "fp_country - niezbędny plik cookie używany, gdy włączony jest moduł geolokalizacji. Jest wykorzystywany przez wtyczkę do wybrania prawidłowego mechanizmu śledzenia i trybu banera zgody (opt-in, opt-out, informacyjny). Wygasa po czasie określonym przez administratora witryny (domyślnie 30 dni)."
+
+#: includes/class-fupi-get-gdpr-status.php:2030
+msgid "fp_recent_sessions - an optional cookie used for tracking visitor's behavior across multiple sessions. It requires consent to tracking statistics. Holds the number and type of pages that a visitor viewed during recent sessions. Expires after 30 days from the last visit."
+msgstr "fp_recent_sessions - opcjonalny plik cookie używany do śledzenia zachowania odwiedzającego w wielu sesjach. Wymaga zgody na śledzenie statystyk. Przechowuje liczbę i typ stron, które odwiedzający przeglądał podczas ostatnich sesji. Wygasa po 30 dniach od ostatniej wizyty."
+
+#: includes/class-fupi-get-gdpr-status.php:2051
+msgid "Visitors who want to change their tracking preferences can do it in the consent banner which shows after they click an icon in the corner of the screen"
+msgstr "Odwiedzający, którzy chcą zmienić swoje preferencje dotyczące śledzenia, mogą to zrobić w banerze zgody, który pojawia się po kliknięciu ikony w rogu ekranu"
+
+#: includes/class-fupi-get-gdpr-status.php:2082
+msgid "Visitors who want to change their tracking preferences can do it in the consent banner which shows after they click a link/button in the privacy policy."
+msgstr "Odwiedzający, którzy chcą zmienić swoje preferencje dotyczące śledzenia, mogą to zrobić w banerze zgody, który pojawia się po kliknięciu linku/przycisku w polityce prywatności."
+
+#: includes/class-fupi-get-gdpr-status.php:2098
+msgid "Make sure your visitors can open the consent banner popup to change their tracking preferences."
+msgstr "Upewnij się, że odwiedzający mogą otworzyć wyskakujące okienko banera zgody, aby zmienić swoje preferencje śledzenia."
+
+#: includes/class-fupi-get-gdpr-status.php:2099
+msgid "Please enable a toggle icon in the theme customizer (Appearance > Customize > Consent Banner) or add a button in your privacy policy with the CSS selector(s):"
+msgstr "Włącz ikonę przełącznika w narzędziu do dostosowywania motywu (Wygląd > Dostosuj > Baner zgody) lub dodaj przycisk w polityce prywatności za pomocą selektorów CSS:"
+
+#: includes/class-fupi-get-gdpr-status.php:2111
+msgid "Privacy policy page is missing or is not marked as such."
+msgstr "Brakuje strony polityki prywatności lub nie jest ona oznaczona jako taka."
+
+#: includes/class-fupi-get-gdpr-status.php:2112
+msgid "Create a privacy policy page and mark it as such in in the WordPress admin > Settings menu > Privacy page."
+msgstr "Utwórz stronę polityki prywatności i oznacz ją jako taką w panelu administracyjnym WordPress > menu Ustawienia > strona Prywatność."
+
+#: includes/class-fupi-get-gdpr-status.php:2129
+msgid "The consent banner is not set to display in the center of the screen"
+msgstr "Baner zgody nie jest ustawiony na wyświetlanie na środku ekranu"
+
+#: includes/class-fupi-get-gdpr-status.php:2130
+msgid "To collect maximum number of consents we recommend that you place your notice in the central position of the screen. This way people will not be able to navigate the site without making a choice, thus giving you more consents. You will also not lose information on the source of traffic, which can be accessed only on the first page the visitor sees."
+msgstr "Aby zebrać maksymalną liczbę zgód, zalecamy umieszczenie banera zgód w centralnym miejscu ekranu. W ten sposób użytkownicy nie będą w stanie poruszać się po stronie bez dokonania wyboru, co zapewni Ci większą liczbę zgód. Nie stracisz również informacji o źródle ruchu, które są dostępne tylko na pierwszej stronie, którą widzi odwiedzający."
+
+#: includes/class-fupi-get-gdpr-status.php:2193
+msgid "button opening panel with cookie settings"
+msgstr "przycisk otwierający panel z ustawieniami plików cookie"
+
+#: includes/class-fupi-get-gdpr-status.php:2194
+msgid "section where users can consent to the use of their data for statistics"
+msgstr "sekcja, w której użytkownicy mogą wyrazić zgodę na wykorzystanie ich danych do celów statystycznych"
+
+#: includes/class-fupi-get-gdpr-status.php:2195
+msgid "section where users can consent to the use of their data for marketing"
+msgstr "sekcja, w której użytkownicy mogą wyrazić zgodę na wykorzystanie ich danych do celów marketingowych"
+
+#: includes/class-fupi-get-gdpr-status.php:2196
+msgid "section where users can consent to the use of their data for personalisation"
+msgstr "sekcja, w której użytkownicy mogą wyrazić zgodę na wykorzystanie ich danych do celów personalizacji"
+
+#: includes/class-fupi-get-gdpr-status.php:2198
+msgid "The consent banner does not display the \"Decline\" button"
+msgstr "Baner zgody nie wyświetla przycisku \"Odmów\""
+
+#: includes/class-fupi-get-gdpr-status.php:2199
+msgid "Do not hide the \"Decline\" button"
+msgstr "Nie ukrywaj przycisku \"Odmów\""
+
+#: includes/class-fupi-get-gdpr-status.php:2200
+msgid "Hidden consent baner elements:"
+msgstr "Ukryte elementy banera zgody:"
+
+#: includes/class-fupi-get-gdpr-status.php:2239
+msgid "Name and surname of a user or a client"
+msgstr "Imię i nazwisko użytkownika lub klienta"
+
+#: includes/class-fupi-get-gdpr-status.php:2240
+msgid "User's email address and/or an email address of a client (even when not logged in, collected at the time of purchase)"
+msgstr "Adres e-mail użytkownika i/lub adres e-mail klienta (nawet niezalogowanego, zbierane w momencie zakupu)"
+
+#: includes/class-fupi-get-gdpr-status.php:2241
+msgid "User's phone number and/or phone number of a client (even when not logged in, collected at the time of purchase)"
+msgstr "Numer telefonu użytkownika i/lub numer telefonu klienta (nawet jeśli nie jest zalogowany, zebrane w momencie zakupu)"
+
+#: includes/class-fupi-get-gdpr-status.php:2242
+msgid "User's physical address and/or address of a client (even when not logged in, collected at the time of purchase)"
+msgstr "Adres fizyczny użytkownika i/lub adres klienta (nawet niezalogowanego, zbierane w momencie zakupu)"
+
+#: includes/class-fupi-get-gdpr-status.php:2256
+msgid "Order ID (in WooCommerce)"
+msgstr "ID zamówienia (w WooCommerce)"
+
+#: includes/class-fupi-get-gdpr-status.php:2269
+msgid "User metadata with ID"
+msgstr "Metadane użytkownika o ID"
+
+#: includes/class-fupi-get-gdpr-status.php:2286
+msgid "The privacy policy must include information about tracking tools that are loaded with GTM, what data is tracked, what you and these tools use it for and who the providers of these tools share this data with or sell it to."
+msgstr "Polityka prywatności musi zawierać informacje o narzędziach śledzących, które są ładowane przez GTM, jakie dane są śledzone, do czego Ty i te narzędzia ich używacie oraz komu dostawcy tych narzędzi udostępniają lub sprzedają te dane."
+
+#: includes/class-fupi-get-gdpr-status.php:2299
+msgid "Tracking tools loaded with GTM need to be used with a consent banner"
+msgstr "Narzędzia śledzące ładowane za pomocą GTM muszą być używane z banerem zgody"
+
+#: includes/class-fupi-get-gdpr-status.php:2300
+msgid "Enable and set up the consent banner module and trigger GTM tags after visitors consent to tracking."
+msgstr "Włącz i skonfiguruj moduł Baner Zgody i uruchamiaj tagi GTM po wyrażeniu przez odwiedzających zgody na śledzenie."
+
+#: includes/class-fupi-get-gdpr-status.php:2311
+msgid "Make sure to trigger GTM tags after visitors consent to tracking."
+msgstr "Upewnij się, że tagi w GTM uruchamiają się po wyrażeniu zgody na śledzenie."
+
+#: includes/class-fupi-get-gdpr-status.php:2312
+msgid "Tracking tools loaded with GTM need to be loaded after visitors consent to tracking in the consent banner."
+msgstr "Narzędzia śledzące zainstalowane za pomocą GTM muszą być ładowane po tym, jak odwiedzający wyrażą zgodę na śledzenie w banerze zgody."
+
+#: includes/class-fupi-get-gdpr-status.php:2324
+msgid "Tracking tools loaded with GTM may require the use of a consent banner"
+msgstr "Narzędzia śledzące załadowane za pomocą GTM mogą wymagać użycia banera zgody"
+
+#: includes/class-fupi-get-gdpr-status.php:2325
+msgid "Make sure that none of the tools you install with GTM track personaly indentifiable information."
+msgstr "Upewnij się, że żadne z narzędzi instalowanych za pomocą GTM nie śledzi danych osobowych."
 
 #: includes/fupi_modules_data.php:14
 msgid "Modules"

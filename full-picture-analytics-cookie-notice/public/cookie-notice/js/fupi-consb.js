@@ -619,9 +619,9 @@
 		let stats_checkbox = FP.findID('fupi_stats_agree'),
 			perso_checkbox = FP.findID('fupi_pers_agree'),
 			marke_checkbox = FP.findID('fupi_marketing_agree'),
-			some_scripts_are_loaded = fp.loaded.includes('woo') ? fp.loaded.length > 1 : fp.loaded.length > 0,
+			some_scripts_are_loaded = fp.loaded.some( el => el !== 'woo' && el !== 'gtm' && el !== 'gtg' && el !== 'ga41' && el !== 'ga42' && el !== 'gads'), // checks for scripts that do not adjust its behavior depending on consents
 			prev_consents = fpdata.cookies;
-
+		
 		fpdata.cookies = {
 				'stats': stats_checkbox ? stats_checkbox.checked : false,
 				'personalisation': perso_checkbox ? perso_checkbox.checked : false,

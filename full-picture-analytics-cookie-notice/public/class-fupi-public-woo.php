@@ -226,23 +226,27 @@ class Fupi_Woo extends Fupi_Public {
         }
         global $wp;
         $order_id = ( isset( $wp->query_vars['order-received'] ) ? $wp->query_vars['order-received'] : false );
-        if ( $order_id === false ) {
+        if ( empty( $order_id ) ) {
             return;
         }
         $order = new WC_Order($order_id);
+        $order_number = $order->get_order_number();
+        if ( empty( $order_number ) ) {
+            return;
+        }
         if ( $order->has_status( 'failed' ) ) {
             return;
         }
         // Mark order as tracked
-        $thank_you_viewed = get_post_meta( $order_id, 'fupi_thankyou_viewed', true );
+        $thank_you_viewed = get_post_meta( $order_number, 'fupi_thankyou_viewed', true );
         if ( !(empty( $thank_you_viewed ) || isset( $_GET["trackit"] )) ) {
             return;
         }
-        update_post_meta( $order_id, 'fupi_thankyou_viewed', '1' );
+        update_post_meta( $order_number, 'fupi_thankyou_viewed', '1' );
         // Get data
         $shipping_cost = ( $this->incl_tax ? (float) $order->get_total_shipping() + (float) $order->get_shipping_tax() : (float) $order->get_total_shipping() );
         $order_data = [
-            'id'              => $order->get_order_number(),
+            'id'              => $order_number,
             'fees'            => $order->get_fees(),
             'coupons'         => $order->get_coupon_codes(),
             'discount_no_tax' => round( (float) $order->get_discount_total(), 2 ),
