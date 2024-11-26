@@ -130,6 +130,9 @@ class Fupi_Admin {
 				box-sizing: border-box;
 				text-align: center;
 			}
+			#wptrt-notice-fupi_blackfriday_2024 strong{
+				font-size: 16px;
+			}
 		</style>';
     }
 
@@ -739,6 +742,7 @@ class Fupi_Admin {
         // 		)
         // 	);
         // }
+        // OceanWP warning
         $theme = wp_get_theme();
         if ( $this->cook_enabled && $theme->get( 'Name' ) == 'OceanWP' ) {
             $fupi_notices->add(
@@ -747,6 +751,18 @@ class Fupi_Admin {
                 sprintf( esc_html__( 'WP Full Picture plugin has detected that you are using OceanWP theme. This theme breaks the controls for styling Consent Banner in the WordPress theme customizer. %1$sLearn what to do about it%2$s.', 'full-picture-analytics-cookie-notice' ), '<a href="https://wpfullpicture.com/support/documentation/how-to-go-around-the-incompatibility-issues-with-oceanwp-theme/" target="_blank">', '</a>' ),
                 array(
                     'type'  => 'error',
+                    'scope' => 'user',
+                )
+            );
+        }
+        // check if the current date is earlier than 9th of December 2024
+        if ( fupi_fs()->is_not_paying() && date( 'Ymd' ) < '20241209' ) {
+            $fupi_notices->add(
+                'fupi_blackfriday_2024',
+                '',
+                '<strong>' . esc_html__( 'WP Full Picture Black Friday Deal', 'full-picture-analytics-cookie-notice' ) . '</strong><br>' . esc_html__( 'Get 50% OFF on the best Analytics and Privacy Toolkit for WordPress!', 'full-picture-analytics-cookie-notice' ) . ' <a href="https://wpfullpicture.com/pricing/" target="_blank" class="button button-primary">' . esc_html__( 'Get the deal', 'full-picture-analytics-cookie-notice' ) . '</a>',
+                array(
+                    'type'  => 'warning',
                     'scope' => 'user',
                 )
             );

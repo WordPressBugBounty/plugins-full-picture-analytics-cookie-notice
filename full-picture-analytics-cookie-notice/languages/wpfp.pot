@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WP Full Picture\n"
 "Report-Msgid-Bugs-To: Translator Name <translations@example.com>\n"
-"POT-Creation-Date: 2024-10-14 11:50+0200\n"
+"POT-Creation-Date: 2024-11-26 16:25+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Your Name <you@example.com>\n"
 "Language-Team: WP Full Picture Team <hello@wpfullpicture.com>\n"
@@ -29,16 +29,16 @@ msgstr ""
 msgid "Enable WooCommerce plugin and WooCommerce Tracking module."
 msgstr ""
 
-#: admin/class-fupi-admin.php:204
+#: admin/class-fupi-admin.php:207
 msgid "You do not have sufficient permissions to access this page."
 msgstr ""
 
-#: admin/class-fupi-admin.php:417
+#: admin/class-fupi-admin.php:420
 #: admin/settings/modules/reports/fupi-admin-tab-reports.php:9
 msgid "Reports"
 msgstr ""
 
-#: admin/class-fupi-admin.php:991
+#: admin/class-fupi-admin.php:995
 #, php-format
 msgid ""
 "WP Full Picture plugin has detected that you are using OceanWP theme. "
@@ -46,43 +46,57 @@ msgid ""
 "WordPress theme customizer. %1$sLearn what to do about it%2$s."
 msgstr ""
 
+#: admin/class-fupi-admin.php:1008
+msgid "WP Full Picture Black Friday Deal"
+msgstr ""
+
+#: admin/class-fupi-admin.php:1009
+msgid ""
+"Get 50% OFF on the best Analytics and Privacy Toolkit for WordPress!"
+msgstr ""
+
 #: admin/class-fupi-admin.php:1010
+#: admin/settings/pages/parts/fupi-page_part-side-nav.php:89
+msgid "Get the deal"
+msgstr ""
+
+#: admin/class-fupi-admin.php:1029
 msgid "Order conf. seen"
 msgstr ""
 
-#: admin/class-fupi-admin.php:1020
+#: admin/class-fupi-admin.php:1039
 msgid "Order confirmation page seen"
 msgstr ""
 
-#: admin/class-fupi-admin.php:1020
+#: admin/class-fupi-admin.php:1039
 msgid "Order confirmation page not seen"
 msgstr ""
 
-#: admin/class-fupi-admin.php:1122
+#: admin/class-fupi-admin.php:1141
 msgid "File not found"
 msgstr ""
 
-#: admin/class-fupi-admin.php:1125 admin/class-fupi-admin.php:1134
+#: admin/class-fupi-admin.php:1144 admin/class-fupi-admin.php:1153
 msgid "Permission denied"
 msgstr ""
 
-#: admin/class-fupi-admin.php:1140
+#: admin/class-fupi-admin.php:1159
 msgid "No settings data received"
 msgstr ""
 
-#: admin/class-fupi-admin.php:1145
+#: admin/class-fupi-admin.php:1164
 msgid "Invalid JSON format"
 msgstr ""
 
-#: admin/class-fupi-admin.php:1265
+#: admin/class-fupi-admin.php:1287
 msgid "This will overwrite all settings of WP Full Picture. Are you sure?"
 msgstr ""
 
-#: admin/class-fupi-admin.php:1293
+#: admin/class-fupi-admin.php:1315
 msgid "Settings uploaded successfully! The page will now reload."
 msgstr ""
 
-#: admin/class-fupi-admin.php:1303
+#: admin/class-fupi-admin.php:1325
 msgid "Invalid JSON file"
 msgstr ""
 
@@ -462,7 +476,7 @@ msgid "Border style"
 msgstr ""
 
 #: admin/customizer/fupi-customizer-settings.php:875
-#: admin/settings/fupi-admin-fields-html.php:476
+#: admin/settings/fupi-admin-fields-html.php:478
 #: admin/settings/modules/main/fupi-admin-tab-main.php:135
 msgid "None"
 msgstr ""
@@ -788,12 +802,12 @@ msgstr ""
 msgid "Search users..."
 msgstr ""
 
-#: admin/settings/fupi-admin-fields-html.php:491
-#: admin/settings/fupi-admin-fields-html.php:530
+#: admin/settings/fupi-admin-fields-html.php:493
+#: admin/settings/fupi-admin-fields-html.php:532
 msgid "Please select"
 msgstr ""
 
-#: admin/settings/fupi-admin-fields-html.php:609
+#: admin/settings/fupi-admin-fields-html.php:611
 #: admin/settings/pages/fupi-admin-page-display.php:40
 msgid "Required"
 msgstr ""
@@ -1130,11 +1144,11 @@ msgstr ""
 #: admin/settings/modules/cook/fupi-admin-tab-cook.php:79
 #: admin/settings/modules/main/fupi-admin-tab-main.php:352
 #: admin/settings/modules/tools/fupi-admin-tab-tools.php:376
-#: admin/settings/pages/parts/fupi-page_part-side-nav.php:87
-#: admin/settings/pages/parts/fupi-page_part-side-nav.php:91
-#: admin/settings/pages/parts/fupi-page_part-side-nav.php:95
-#: admin/settings/pages/parts/fupi-page_part-side-nav.php:100
-#: admin/settings/pages/parts/fupi-page_part-side-nav.php:104
+#: admin/settings/pages/parts/fupi-page_part-side-nav.php:102
+#: admin/settings/pages/parts/fupi-page_part-side-nav.php:106
+#: admin/settings/pages/parts/fupi-page_part-side-nav.php:110
+#: admin/settings/pages/parts/fupi-page_part-side-nav.php:115
+#: admin/settings/pages/parts/fupi-page_part-side-nav.php:119
 msgid "Learn more"
 msgstr ""
 
@@ -10770,36 +10784,46 @@ msgid ""
 "Please enable some modules. Links to enabled modules will show up here."
 msgstr ""
 
-#: admin/settings/pages/parts/fupi-page_part-side-nav.php:82
+#: admin/settings/pages/parts/fupi-page_part-side-nav.php:87
+msgid "Get WP FP Pro 50% OFF"
+msgstr ""
+
+#: admin/settings/pages/parts/fupi-page_part-side-nav.php:88
+msgid ""
+"Our Black Friday Deal is live. Get the best Analytics and Privacy "
+"Toolkit for WordPress for the lowest price this year!"
+msgstr ""
+
+#: admin/settings/pages/parts/fupi-page_part-side-nav.php:97
 msgid "With PRO you can..."
 msgstr ""
 
-#: admin/settings/pages/parts/fupi-page_part-side-nav.php:86
+#: admin/settings/pages/parts/fupi-page_part-side-nav.php:101
 msgid "See what traffic sources bring you the best traffic"
 msgstr ""
 
-#: admin/settings/pages/parts/fupi-page_part-side-nav.php:90
+#: admin/settings/pages/parts/fupi-page_part-side-nav.php:105
 msgid "Learn how many visitors are interested in your offer"
 msgstr ""
 
-#: admin/settings/pages/parts/fupi-page_part-side-nav.php:94
+#: admin/settings/pages/parts/fupi-page_part-side-nav.php:109
 msgid "Save tracking consents in the cloud*"
 msgstr ""
 
-#: admin/settings/pages/parts/fupi-page_part-side-nav.php:96
+#: admin/settings/pages/parts/fupi-page_part-side-nav.php:111
 msgid "*free until 31st August, 2025."
 msgstr ""
 
-#: admin/settings/pages/parts/fupi-page_part-side-nav.php:99
+#: admin/settings/pages/parts/fupi-page_part-side-nav.php:114
 msgid "Increase the number of tracked conversions with Meta Pixel's CAPI"
 msgstr ""
 
-#: admin/settings/pages/parts/fupi-page_part-side-nav.php:103
+#: admin/settings/pages/parts/fupi-page_part-side-nav.php:118
 msgid "Recognize traffic from popular Android applications"
 msgstr ""
 
-#: admin/settings/pages/parts/fupi-page_part-side-nav.php:109
-msgid "Get Pro in 2 minutes"
+#: admin/settings/pages/parts/fupi-page_part-side-nav.php:124
+msgid "Get Pro"
 msgstr ""
 
 #: includes/class-fupi-deactivator.php:90

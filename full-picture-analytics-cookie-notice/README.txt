@@ -3,8 +3,8 @@ Contributors: chrisplaneta, freemius
 Donate link: https://wpfullpicture.com/
 Tags: woocommerce, consent mode, analytics, privacy, cookies
 Requires at least: 5.4.0
-Tested up to: 6.6.2
-Stable tag: 8.1.1
+Tested up to: 6.7.1
+Stable tag: 8.1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -194,6 +194,11 @@ No. WP Full Picture is focused on tracking and privacy. To generate a product ca
 6. View traffic and marketing reports in the admin panel
 
 == Changelog ==
+
+= 8.1.2 (26-11-2024) =
+
+* [Other] Checked compatibility with latest WP version
+* [Other] Added Black Friday deal info
 
 = 8.1.1 (15-10-2024) =
 
