@@ -4,36 +4,28 @@ $sections = array(
 
 	array(
 		'section_id' => 'fupi_woo_main',
-		'section_title' => esc_html__( 'WooCommerce', 'full-picture-analytics-cookie-notice' ),
+		'section_title' => esc_html__( 'Basic settings', 'full-picture-analytics-cookie-notice' ),
 		'fields' => array(
 			array(
 				'type' 				=> 'toggle',
 				'label' 			=> esc_html__('Use SKU as a product id','full-picture-analytics-cookie-notice'),
 				'field_id' 			=> 'sku_is_id',
 				'option_arr_id'		=> $option_arr_id,
-				'under field'		=> esc_html__('If SKU is not set, a default product id will be used. This value must be the same as the one in your product feeds, e.g. Merchant Center feed or Facebook catalog (if you use it).','full-picture-analytics-cookie-notice'),
+				'popup'				=> esc_html__('If SKU is not set, a default product id will be used. This value must be the same as the one in your product feeds, e.g. Merchant Center feed or Facebook catalog (if you use it).','full-picture-analytics-cookie-notice'),
 			),
 			array(
 				'type' 				=> 'toggle',
 				'label' 			=> esc_html__('Track prices with tax','full-picture-analytics-cookie-notice'),
 				'field_id' 			=> 'incl_tax_in_price',
 				'option_arr_id'		=> $option_arr_id,
+				'popup'				=> esc_html__('This also applies to the shipping cost','full-picture-analytics-cookie-notice'),
 			),
 			array(
 				'type' 				=> 'toggle',
 				'label' 			=> esc_html__('Include shipping costs in order total','full-picture-analytics-cookie-notice'),
 				'field_id' 			=> 'incl_shipping_in_total',
 				'option_arr_id'		=> $option_arr_id,
-			),
-			array(
-				'type' 				=> 'toggle',
-				'label' 			=> esc_html__('Add to the "Orders" page an icon indicating whether the client saw the "confirmation" page','full-picture-analytics-cookie-notice'),
-				'field_id' 			=> 'show_order_column',
-				'must_have'			=> 'pro',
-				'option_arr_id'		=> $option_arr_id,
-				'popup'				=> '<h3>' . esc_html__( 'How does it work?', 'full-picture-analytics-cookie-notice' ) . '</h3>
-				<p>' . esc_html__('Purchases are tracked on the "order confirmation" page. If a customer does not see it (e.g. when they do not return to your website after they make the payment) then the order will not be tracked.','full-picture-analytics-cookie-notice') . '</p>
-				<p>' . esc_html__('When you enable this function, you will see a small icon next to each order on the "Orders" admin page. The icon indicates whether the order confirmation page was seen or not.','full-picture-analytics-cookie-notice') . '</p>',
+				'popup'				=> esc_html__('This setting only applies to the total value of the purchase. If a tracking tool allows for tracking shipping cost as a separate value, then it will be tracked no matter whether this option is turned on or off.','full-picture-analytics-cookie-notice'),
 			),
 			array(
 				'type' 				=> 'toggle',
@@ -82,6 +74,31 @@ $sections = array(
 				'label_for' 		=> $option_arr_id . '[wishlist_btn_sel]',
 				'placeholder'		=> esc_html__('e.g. .my-add-to-wishlist', 'full-picture-analytics-cookie-notice' ),
 				'popup'		 		=> '<p>' . esc_html__('Enter CSS selector of an "add to wishlist" button used on your site (if it uses any). The wishlist button needs to be positioned in your HTML right after the "Add to cart" button to work. Other placements may not work correctly. The tracking doesn\'t work with grouped products.', 'full-picture-analytics-cookie-notice') . '</p>',
+			),
+		),
+	),
+
+	array(
+		'section_id' => 'fupi_woo_adv',
+		'section_title' => esc_html__( 'Advanced order tracking', 'full-picture-analytics-cookie-notice' ),
+		'fields' => array(
+			array(
+				'type' 				=> 'woo_order_statuses',
+				'label' 			=> esc_html__( 'Track new orders when they get these statuses', 'full-picture-analytics-cookie-notice' ),
+				'field_id' 			=> 'server_track_on_statuses',
+				'must_have'			=> 'pro',
+				'default'			=> array( 'wc-processing', 'wc-on-hold' ),
+				'option_arr_id'		=> $option_arr_id,
+				'popup'		 		=> '<p>' . esc_html__('You can enter here multiple order statuses indicating that an order has been made. The "purchase" event will be sent only the first time an order gets a matching status.', 'full-picture-analytics-cookie-notice') . '</p>',
+			),
+			array(
+				'type' 				=> 'woo_order_statuses',
+				'label' 			=> esc_html__( 'Track order cancellations when they get these statuses', 'full-picture-analytics-cookie-notice' ),
+				'must_have'			=> 'pro',
+				'field_id' 			=> 'server_cancel_on_statuses',
+				'default'			=> array( 'wc-cancelled', 'wc-refunded' ),
+				'option_arr_id'		=> $option_arr_id,
+				'popup'		 		=> '<p>' . esc_html__('You can enter here multiple order statuses indicating that the order has been cancelled or refunded. The "refund" event will be sent only the first time an order gets a matching status.', 'full-picture-analytics-cookie-notice') . '</p>',
 			),
 		),
 	),

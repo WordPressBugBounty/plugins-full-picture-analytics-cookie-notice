@@ -50,7 +50,6 @@ class Fupi_Admin {
         $this->trackmeta = get_option( 'fupi_trackmeta' );
         $this->user_cap = 'manage_options';
         $this->is_woo_enabled = false;
-        $this->enable_woo_descr_text = '<div class="fupi_enable_woo_notice">' . esc_html__( 'Enable WooCommerce plugin and WooCommerce Tracking module.', 'full-picture-analytics-cookie-notice' ) . '</div>';
         $this->licence = 'free';
         // changed below
         $this->sync_run = false;
@@ -62,6 +61,20 @@ class Fupi_Admin {
                 $this->is_woo_enabled = true;
                 $this->enable_woo_descr_text = '';
             }
+        }
+    }
+
+    public function fupi_listen_to_pp_page_updates( $post_id, $post ) {
+        $pp_id = get_option( 'wp_page_for_privacy_policy' );
+        if ( $post_id != $pp_id ) {
+            return;
+        }
+        $page_status = get_post_status( $post_id );
+        if ( $page_status == 'publish' ) {
+            include_once 'settings/modules/cook/register-cdb.php';
+            // loads consent checker to send the config data to CDB
+            $cdb = new Fupi_send_to_CDB();
+            $clean_data = $cdb->send_privacy_policy();
         }
     }
 
@@ -130,13 +143,11 @@ class Fupi_Admin {
 				box-sizing: border-box;
 				text-align: center;
 			}
-			#wptrt-notice-fupi_blackfriday_2024 strong{
-				font-size: 16px;
-			}
 		</style>';
     }
 
     public function fupi_enqueue_scripts( $hook ) {
+        $req = array();
         // everything that is not customizer
         if ( !is_customize_preview() ) {
             wp_enqueue_script(
@@ -148,13 +159,13 @@ class Fupi_Admin {
             );
             wp_register_style(
                 'fupi-select2-css',
-                'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css',
+                plugin_dir_url( __FILE__ ) . 'settings/css/select2.min.css',
                 array(),
                 '4.1.0-rc.0'
             );
             wp_register_script(
                 'fupi-select2-js',
-                'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js',
+                plugin_dir_url( __FILE__ ) . 'settings/js/select2.min.js',
                 array('jquery', 'fupi-admin-helpers-js'),
                 '4.1.0-rc.0'
             );
@@ -162,7 +173,6 @@ class Fupi_Admin {
         // SETTINGS PAGE
         if ( strrpos( $hook, 'full_picture_' ) !== false ) {
             // for top level page use "toplevel_page_fupi"
-            $req = array();
             // Add WP Internal Pointers...
             // https://stackoverflow.com/questions/30945793/how-do-you-create-a-basic-wordpress-admin-pointer
             // wp_enqueue_style( 'wp-pointer' );
@@ -189,6 +199,15 @@ class Fupi_Admin {
                 $this->version,
                 true
             );
+            if ( strrpos( $hook, 'full_picture_main' ) !== false ) {
+                wp_enqueue_script(
+                    'fupi-admin-import-export-js',
+                    plugin_dir_url( __FILE__ ) . 'settings/js/fupi-admin-import-export.js',
+                    $req,
+                    $this->version,
+                    true
+                );
+            }
         }
         // REPORTS PAGE
         if ( strrpos( $hook, 'fp_reports' ) !== false ) {
@@ -293,6 +312,7 @@ class Fupi_Admin {
     // ADMIN SETTINGS
     public function fupi_add_admin_page() {
         include FUPI_PATH . '/includes/fupi_modules_data.php';
+        include FUPI_PATH . '/includes/fupi_modules_names.php';
         $fupi_page_title = ( !empty( $this->main ) && isset( $this->main['custom_menu_title'] ) ? esc_attr( $this->main['custom_menu_title'] ) : "WP Full Picture" );
         $show_main = false;
         add_menu_page(
@@ -321,9 +341,9 @@ class Fupi_Admin {
                     array_push( $modules_opts, [
                         'full_picture_tools',
                         // parent slug
-                        $module['title'],
+                        $fupi_modules_names[$module['id']],
                         // page title
-                        $module['title'],
+                        $fupi_modules_names[$module['id']],
                         // menu title
                         $this->user_cap,
                         // capability
@@ -521,6 +541,10 @@ class Fupi_Admin {
     public function fupi_sanitize_fields_cook( $input ) {
         include 'settings/modules/cook/fupi-admin-sanitize-cook.php';
         include 'settings/fupi-clear-cache.php';
+        include_once 'settings/modules/cook/register-cdb.php';
+        // loads consent checker to send the config data to CDB
+        $cdb = new Fupi_send_to_CDB();
+        $clean_data = $cdb->register_new_site( $clean_data );
         return $clean_data;
     }
 
@@ -674,6 +698,9 @@ class Fupi_Admin {
         include FUPI_PATH . '/includes/fupi_modules_data.php';
         $arr = explode( '_', $a['id'] );
         $tab_slug = $arr[1];
+        if ( !$this->is_woo_enabled ) {
+            $this->enable_woo_descr_text = '<div class="fupi_enable_woo_notice">' . esc_html__( 'Enable WooCommerce plugin and WooCommerce Tracking module.', 'full-picture-analytics-cookie-notice' ) . '</div>';
+        }
         foreach ( $fupi_modules as $module ) {
             if ( $module['id'] == $tab_slug ) {
                 if ( !$module['is_addon'] ) {
@@ -742,7 +769,6 @@ class Fupi_Admin {
         // 		)
         // 	);
         // }
-        // OceanWP warning
         $theme = wp_get_theme();
         if ( $this->cook_enabled && $theme->get( 'Name' ) == 'OceanWP' ) {
             $fupi_notices->add(
@@ -755,41 +781,12 @@ class Fupi_Admin {
                 )
             );
         }
-        // check if the current date is earlier than 9th of December 2024
-        if ( fupi_fs()->is_not_paying() && date( 'Ymd' ) < '20241209' ) {
-            $fupi_notices->add(
-                'fupi_blackfriday_2024',
-                '',
-                '<strong>' . esc_html__( 'WP Full Picture Black Friday Deal', 'full-picture-analytics-cookie-notice' ) . '</strong><br>' . esc_html__( 'Get 50% OFF on the best Analytics and Privacy Toolkit for WordPress!', 'full-picture-analytics-cookie-notice' ) . ' <a href="https://wpfullpicture.com/pricing/" target="_blank" class="button button-primary">' . esc_html__( 'Get the deal', 'full-picture-analytics-cookie-notice' ) . '</a>',
-                array(
-                    'type'  => 'warning',
-                    'scope' => 'user',
-                )
-            );
-        }
         // init
         $fupi_notices->boot();
     }
 
-    //
-    // ADD CUSTOM COLUMNS TO WOOCOMMERCE ORDERS
-    //
-    // register
-    public function fupi_register_woo_admin_columns( $defaults ) {
-        $defaults['fupi_order_data'] = '<span class="screen-reader-text">' . esc_html__( 'Order conf. seen', 'full-picture-analytics-cookie-notice' ) . '</span><img title="Order confirmation page seen" src="' . FUPI_URL . '/admin/settings/img/fp-ico.svg" style="width: 24px; height: 24px; opacity: .8; display: block; margin: 0 auto;">';
-        return $defaults;
-    }
-
-    // fill the columns with values
-    public function fupi_add_values_to_woo_admin_columns( $column_name, $post_id ) {
-        if ( $column_name == 'fupi_order_data' ) {
-            $order_confirmation_page_seen = get_post_meta( $post_id, 'fupi_thankyou_viewed', false );
-            echo ( !empty( $order_confirmation_page_seen ) ? '<img src="' . FUPI_URL . '/admin/settings/img/success_ico.png" style="width: 20px; height: 20px" title="' . esc_html__( 'Order confirmation page seen', 'full-picture-analytics-cookie-notice' ) . '">' : '<img src="' . FUPI_URL . '/admin/settings/img/almost_ico.png" style="width: 20px; height: 20px" title="' . esc_html__( 'Order confirmation page not seen', 'full-picture-analytics-cookie-notice' ) . '">' );
-        }
-    }
-
     // IMPORT/EXPORT SETTINGS
-    private function fupi_save_settings_to_file() {
+    private function fupi_save_settings_to_file( $filename ) {
         include FUPI_PATH . '/includes/fupi_modules_data.php';
         $saved_options = array();
         // get modules options
@@ -849,53 +846,121 @@ class Fupi_Admin {
         if ( !file_exists( $folder_path ) ) {
             mkdir( $folder_path, 0755, true );
         }
-        $file_path = $folder_path . '/wpfp_settings_backup.json';
+        $file_path = $folder_path . '/' . $filename;
         $result = file_put_contents( $file_path, $json_data );
-        if ( $result !== false ) {
-            return true;
+        // check if index.php file is in the same folder
+        $index_file_path = $folder_path . '/index.php';
+        if ( !file_exists( $index_file_path ) ) {
+            $index_file_content = '<?php
+	header("HTTP/1.0 403 Forbidden");
+	echo "Access denied.";
+	exit;';
+            file_put_contents( $index_file_path, $index_file_content );
+        }
+        return $result !== false;
+    }
+
+    public function fupi_ajax_remove_settings_backup() {
+        // check permissions
+        $correct_nonce = check_ajax_referer( 'wpfullpicture_import_export_nonce', 'nonce' );
+        if ( !current_user_can( 'manage_options' ) || !$correct_nonce ) {
+            wp_send_json_error( array(
+                'message' => esc_html__( 'Permission denied', 'full-picture-analytics-cookie-notice' ),
+            ) );
+        }
+        // get file_name
+        $file_name = ( isset( $_POST['file_name'] ) ? $_POST['file_name'] : false );
+        if ( empty( $file_name ) ) {
+            wp_send_json_error( array(
+                'message' => esc_html__( 'Backup file not found', 'full-picture-analytics-cookie-notice' ),
+            ) );
+        }
+        // remove file
+        $file_path = trailingslashit( wp_upload_dir()['basedir'] ) . 'wpfp/backups/' . $file_name;
+        if ( file_exists( $file_path ) ) {
+            unlink( $file_path );
+            // deletes the file
+            wp_send_json_success( array(
+                'message' => esc_html__( 'File deleted', 'full-picture-analytics-cookie-notice' ),
+            ) );
         } else {
-            return false;
+            wp_send_json_error( array(
+                'message' => esc_html__( 'File not found', 'full-picture-analytics-cookie-notice' ),
+            ) );
         }
     }
 
     public function fupi_ajax_download_settings_backup() {
-        check_ajax_referer( 'wpfullpicture_download_nonce', 'nonce' );
-        if ( current_user_can( 'manage_options' ) ) {
-            $this->fupi_save_settings_to_file();
-            $file_path = trailingslashit( wp_upload_dir()['basedir'] ) . 'wpfp/backups/wpfp_settings_backup.json';
-            if ( file_exists( $file_path ) ) {
-                $file_url = trailingslashit( wp_upload_dir()['baseurl'] ) . 'wpfp/backups/wpfp_settings_backup.json';
-                wp_send_json_success( array(
-                    'file_url' => $file_url,
-                ) );
-            } else {
-                wp_send_json_error( array(
-                    'message' => esc_html__( 'File not found', 'full-picture-analytics-cookie-notice' ),
-                ) );
-            }
-        } else {
+        // check permissions
+        $correct_nonce = check_ajax_referer( 'wpfullpicture_import_export_nonce', 'nonce' );
+        if ( !current_user_can( 'manage_options' ) || !$correct_nonce ) {
             wp_send_json_error( array(
                 'message' => esc_html__( 'Permission denied', 'full-picture-analytics-cookie-notice' ),
+            ) );
+        }
+        // get file_name
+        $file_name = ( isset( $_POST['file_name'] ) ? $_POST['file_name'] : false );
+        if ( empty( $file_name ) ) {
+            wp_send_json_error( array(
+                'message' => esc_html__( 'Backup file not found', 'full-picture-analytics-cookie-notice' ),
+            ) );
+        }
+        // send link to file back to the user
+        $file_path = trailingslashit( wp_upload_dir()['basedir'] ) . 'wpfp/backups/' . $file_name;
+        if ( file_exists( $file_path ) ) {
+            $file_url = trailingslashit( wp_upload_dir()['baseurl'] ) . 'wpfp/backups/' . $file_name;
+            wp_send_json_success( array(
+                'file_url' => $file_url,
+            ) );
+        } else {
+            wp_send_json_error( array(
+                'message' => esc_html__( 'File not found', 'full-picture-analytics-cookie-notice' ),
             ) );
         }
     }
 
-    public function fupi_process_uploaded_settings() {
-        check_ajax_referer( 'wpfullpicture_upload_nonce', 'nonce' );
-        if ( !current_user_can( 'manage_options' ) ) {
+    public function fupi_ajax_make_new_backup() {
+        // check permissions
+        $correct_nonce = check_ajax_referer( 'wpfullpicture_import_export_nonce', 'nonce' );
+        if ( !current_user_can( 'manage_options' ) || !$correct_nonce ) {
             wp_send_json_error( array(
                 'message' => esc_html__( 'Permission denied', 'full-picture-analytics-cookie-notice' ),
             ) );
         }
+        // make filename
+        $file_suffix = substr( str_shuffle( 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789' ), 0, 24 );
+        $filename = 'wpfp_backup_' . $file_suffix . '.json';
+        // save data to file
+        $file_created = $this->fupi_save_settings_to_file( $filename );
+        if ( $file_created ) {
+            $file_url = trailingslashit( wp_upload_dir()['baseurl'] ) . 'wpfp/backups/' . $filename;
+            wp_send_json_success( array(
+                'file_url' => $file_url,
+            ) );
+        } else {
+            wp_send_json_error( array(
+                'message' => esc_html__( 'There was an error saving the backup file', 'full-picture-analytics-cookie-notice' ),
+            ) );
+        }
+    }
+
+    public function fupi_ajax_upload_settings_from_file() {
+        // check permissions
+        $correct_nonce = check_ajax_referer( 'wpfullpicture_import_export_nonce', 'nonce' );
+        if ( !current_user_can( 'manage_options' ) || !$correct_nonce ) {
+            wp_send_json_error( array(
+                'message' => esc_html__( 'Permission denied', 'full-picture-analytics-cookie-notice' ),
+            ) );
+        }
+        // Restore settings
         $uploaded_settings = ( isset( $_POST['settings'] ) ? $_POST['settings'] : '' );
+        $this->fupi_restore_settings( $uploaded_settings );
+    }
+
+    private function fupi_restore_settings( $uploaded_settings ) {
         if ( empty( $uploaded_settings ) ) {
             wp_send_json_error( array(
                 'message' => esc_html__( 'No settings data received', 'full-picture-analytics-cookie-notice' ),
-            ) );
-        }
-        if ( !is_array( $uploaded_settings ) ) {
-            wp_send_json_error( array(
-                'message' => esc_html__( 'Invalid JSON format', 'full-picture-analytics-cookie-notice' ),
             ) );
         }
         // Update the settings
@@ -962,114 +1027,31 @@ class Fupi_Admin {
         ) );
     }
 
-    public function fupi_print_scripts() {
-        $screen = get_current_screen();
-        if ( isset( $_GET['page'] ) && $_GET['page'] !== 'full_picture_main' ) {
-            return;
+    public function fupi_ajax_restore_settings_backup() {
+        // check permissions
+        $correct_nonce = check_ajax_referer( 'wpfullpicture_import_export_nonce', 'nonce' );
+        if ( !current_user_can( 'manage_options' ) || !$correct_nonce ) {
+            wp_send_json_error( array(
+                'message' => esc_html__( 'Permission denied', 'full-picture-analytics-cookie-notice' ),
+            ) );
         }
-        ?>
-		<script>
-		jQuery(document).ready(function($) {
-
-			// DOWNLOAD SETTINGS BUTTON
-			$('.fupi_downl_settings_btn').click(function(e) {
-				e.preventDefault();
-				$.ajax({
-					url: ajaxurl,
-					type: 'POST',
-					data: {
-						action: 'fupi_ajax_download_settings_backup',
-						nonce: '<?php 
-        echo wp_create_nonce( 'wpfullpicture_download_nonce' );
-        ?>'
-					},
-					success: function(response) {
-						if (response.success) {
-
-							const site_name = document.location.host.replaceAll('.', '_');
-
-							// creates an invisible link and clicks it
-							const url = response.data.file_url;
-							const a = document.createElement('a');
-							a.style.display = 'none';
-							a.href = url;
-							a.download = site_name + '_wpfp_settings_backup.json'; // sets filename
-							document.body.appendChild(a);
-							a.click();
-						} else {
-							alert('Error: ' + response.data.message);
-							window.location.reload();
-						}
-					}
-				});
-			});
-
-			// UPLOAD SETTINGS BUTTON
-
-			let upload_field = FP.findID('fupi_main[upload_settings_file]');
-			
-			if ( upload_field ) {
-
-				$('.fupi_upload_settings_btn').click(function(e) {
-					e.preventDefault();
-					if ( 
-						confirm( '<?php 
-        echo esc_html__( "This will overwrite all settings of WP Full Picture. Are you sure?", 'full-picture-analytics-cookie-notice' );
-        ?>' ) 
-					) {
-						upload_field.click();
-					}
-				});
-	
-				upload_field.addEventListener( 'change', e => {
-
-					const file = e.target.files[0];
-
-					if ( file ) {
-						var reader = new FileReader();
-						reader.onload = function(e) {
-							try {
-								var jsonContent = JSON.parse(e.target.result);
-								
-								// console.log('Uploaded JSON content:', jsonContent);
-								
-								$.ajax({
-									url: ajaxurl,
-									type: 'POST',
-									data: {
-										action: 'fupi_process_uploaded_settings',
-										nonce: '<?php 
-        echo wp_create_nonce( 'wpfullpicture_upload_nonce' );
-        ?>',
-										settings: jsonContent
-									},
-									success: function(response) {
-										if (response.success) {
-											alert( '<?php 
-        echo esc_html__( 'Settings uploaded successfully! The page will now reload.', 'full-picture-analytics-cookie-notice' );
-        ?>' );
-											window.location.reload();
-										} else {
-											alert('Error: ' + response.data.message);
-											window.location.reload();
-										}
-									}
-								});
-							} catch (error) {
-								console.error('Error parsing JSON:', error);
-								alert( '<?php 
-        echo esc_html__( 'Invalid JSON file', 'full-picture-analytics-cookie-notice' );
-        ?>' );
-							}
-						};
-						reader.readAsText(file);
-					}
-				});
-			}
-			
-		});
-		</script>
-		<?php 
+        // get file name
+        $file_name = ( isset( $_POST['file_name'] ) ? $_POST['file_name'] : false );
+        if ( empty( $file_name ) ) {
+            wp_send_json_error( array(
+                'message' => esc_html__( 'Backup file not found', 'full-picture-analytics-cookie-notice' ),
+            ) );
+        }
+        // get file
+        $file_path = trailingslashit( wp_upload_dir()['basedir'] ) . 'wpfp/backups/' . $file_name;
+        if ( !file_exists( $file_path ) ) {
+            wp_send_json_error( array(
+                'message' => esc_html__( 'File not found', 'full-picture-analytics-cookie-notice' ),
+            ) );
+        }
+        // Restore settings
+        $file_contents = json_decode( file_get_contents( $file_path ), true );
+        $this->fupi_restore_settings( $file_contents );
     }
 
 }

@@ -1,5 +1,7 @@
 <?php
 
+$ga41_data = get_option('fupi_ga41');
+
 // INSTALLATION
 
 $basic_sect_fields = array(
@@ -14,6 +16,16 @@ $basic_sect_fields = array(
 		'placeholder'		=> 'G-0000000000',
 		'under field'		=> sprintf( esc_html__( '%1$sLearn where to find it%2$s', 'full-picture-analytics-cookie-notice'), '<a href="https://wpfullpicture.com/support/documentation/how-to-install-google-analytics-4/">', '</a>'),
 	),
+		array(
+			'type'	 			=> 'text',
+			'label' 			=> esc_html__( 'Measurement Protocol API secret key (for server-side tracking)', 'full-picture-analytics-cookie-notice' ),
+			'field_id' 			=> 'mp_secret_key',
+			'must_have'			=> 'pro',
+			'class'				=> 'fupi_sub',
+			'option_arr_id'		=> $option_arr_id,
+			'label_for' 		=> $option_arr_id . '[mp_secret_key]',
+			'popup'				=> '<p>' . esc_html__( 'Measurement Protocol is used for WooCommerce Advanced Order Tracking. See "WooCommerce Tracking" section for more information.', 'full-picture-analytics-cookie-notice' ) . '</p>',
+		),
 	array(
 		'type' 				=> 'toggle',
 		'label' 			=> esc_html__( 'Avoid issues when using multiple GAs on a single site', 'full-picture-analytics-cookie-notice' ),
@@ -21,6 +33,23 @@ $basic_sect_fields = array(
 		'option_arr_id'		=> $option_arr_id,
 		'popup2'			=> '<p>' . esc_html__( 'Enable this function if you installed another GA tracking script with a different plugin, the Custom Scripts module or a Google Tag Manager.', 'full-picture-analytics-cookie-notice') . '</p>',
 	),
+	array(
+		'type'	 			=> 'toggle',
+		'label' 			=> esc_html__( 'Enhanced Conversions', 'full-picture-analytics-cookie-notice' ),
+		'field_id' 			=> 'enh_conv',
+		'must_have'			=> 'pro',
+		'option_arr_id'		=> $option_arr_id,
+		'popup3'			=> '<p style="color: red">' . esc_html__( 'This function only has an effect if you link your Google Analytics with your Google Ads account.', 'full-picture-analytics-cookie-notice' ) . '</p>
+		<p>' . esc_html__( 'Enhanced Conversions improves the accuracy of conversion tracking in Google Ads when it is linked with Google Analytics. This option sends to Google your visitors\' personal information, like their email address, first and last name and physical address. This information is later used by Google to better match the conversions with specific users.', 'full-picture-analytics-cookie-notice' ) . '</p>
+			<p>' . esc_html__( 'To implement Enhanced Conversions in Google Ads via Google Analytics follow the steps below.', 'full-picture-analytics-cookie-notice') . '</p>
+			<ol>
+				<li>' . esc_html__('Go to your Google Analytics panel > Admin (settings page) > Data Collection > and enable "User-provided data collection" ', 'full-picture-analytics-cookie-notice') . '</li>
+				<li>' . esc_html__('Go back to the Admin page (settings page) > and link your GA with G Ads in Google Ads links section" ', 'full-picture-analytics-cookie-notice') . '</li>
+				<li>' . esc_html__('Enable "Enhanced Conversions" via Google Tag in your Google Ads account. You will find it in "Goals" > "Conversions" > "Settings" > "Enhanced conversions" > and select "Google tag" from the dropdown. If you can\'t see these menu elements, please switch to the new menu using the "Appearance" switch in the top.', 'full-picture-analytics-cookie-notice') . '</li>
+				<li>' . sprintf( esc_html__( 'Make sure you agree and comply with Google\'s %1$sCustomer Data policies%2$s, %3$sGoogle Ads Data Processing Terms%2$s and privacy law in your country.', 'full-picture-analytics-cookie-notice' ), '<a href="https://support.google.com/adspolicy/answer/7475709?sjid=6953114821919544275-EU">', '</a>', '<a href="https://business.safety.google/adsprocessorterms/">' ) . '</li>
+				<li>' . esc_html__('Add information to your privacy policy that you send personal user data to Google.', 'full-picture-analytics-cookie-notice' ) . '</li>
+			</ol>',
+	)
 );
 
 // LOADING
@@ -629,9 +658,10 @@ $adv_triggers_section = array(
 
 $sections = array_merge( $sections, $adv_triggers_section );
 
-// OTHER TRACKING SETTINGS
+$other_sections = array(
 
-$other_section = array(
+	// OTHER TRACKING SETTINGS
+
 	array(
 		'section_id' => 'fupi_ga41_other',
 		'section_title' => esc_html__( 'Other', 'full-picture-analytics-cookie-notice' ),
@@ -644,30 +674,28 @@ $other_section = array(
 				'option_arr_id'		=> $option_arr_id,
 				'popup2'				=> '<p>' .  esc_html__( 'This will send to Google Analytics descriptions of JavaScript errors on your site. Use it with caution! If your site has many errors, the number of events may exceed Google Analytics\' limit. Events descriptions are limited to 100 characters (Google\'s limit).', 'full-picture-analytics-cookie-notice') . '</p><p>' . sprintf ( esc_html__( 'To see this data in reports you need to %3$sregister a custom dimension in GA%4$s with event parameter %1$sjs_error_details%2$s.', 'full-picture-analytics-cookie-notice') , ' <span style="background: #fdf3ce;">', '</span>', '<a href="https://wpfullpicture.com/support/documentation/how-to-set-up-custom-definitions-in-google-analytics-4/?utm_source=fp_admin&utm_medium=referral&utm_campaign=documentation_link">', '</a>' ) . '</p>',
 			),
-			array(
-				'type'	 			=> 'toggle',
-				'label' 			=> esc_html__( 'Enable DebugView (for all visitors)', 'full-picture-analytics-cookie-notice' ),
-				'field_id' 			=> 'debug_ga',
-				'option_arr_id'		=> $option_arr_id,
-				'popup'				=> '<p>' . esc_html__( 'DebugView is specific to Google Analytics 4 and is used for debugging purposes. We recommend you use it together with WP Full Picture\'s debug mode (enable it on the "General settings" page).', 'full-picture-analytics-cookie-notice') . '</p>
-				<p>' . esc_html__( 'You can find debug data in your GA4 dashboard > Configure > Debug View.', 'full-picture-analytics-cookie-notice') . '</p>
-				<p>' . esc_html__( 'Attention! There are 2 methods to enable DebugView - with this option (it will enable it for all visitors who are NOT excluded from tracking) and with a parameter "?ga4_debug=on" added to this site\'s URL (this will enable it only for the user who used the parameter).', 'full-picture-analytics-cookie-notice') . '</p>
-				<p>' . esc_html__( 'If you choose to use the URL parameter option and want to disable the DebugView, simply add "?ga4_debug=off" to your site\'s URL.', 'full-picture-analytics-cookie-notice') . '</p>',
-			),
 		),
 	),
+
+	// WOOCPMMERCE
+	array(
+		'section_id' => 'fupi_ga41_ecomm',
+		'section_title' => esc_html__( 'WooCommerce tracking', 'full-picture-analytics-cookie-notice' ),
+		'fields' => array(
+			array(
+				'type'	 			=> 'toggle',
+				'label' 			=> esc_html__( 'Advanced Order Tracking with Measurement Protocol', 'full-picture-analytics-cookie-notice' ),
+				'field_id' 			=> 'adv_orders',
+				'must_have'			=> 'pro woo', // field|fupi_ga41|mp_secret_key|exists|' . esc_html__("Measurement_Protocol_Secret_Key")
+				'option_arr_id'		=> $option_arr_id,
+				'popup2'			=> '<p class="fupi_warning_text">' . esc_html__( 'This feature requires the use of Measurement Protocol. Please check if you entered its key in the "Installation" section of this module\'s settings.', 'full-picture-analytics-cookie-notice') . '</p>
+					<p>' . sprintf( esc_html__( 'Advanced order tracking improves the number of tracked orders by up to 30 percent and lets you track order cancellations and refunds (see %1$show to create a "refunds" report %2$s).', 'full-picture-analytics-cookie-notice' ), '<a href="https://wpfullpicture.com/support/documentation/how-to-make-a-refunds-report-in-google-analytics-4/">', '</a>' ) . '</p>
+					<p>' . esc_html__( 'For more information please go to the "WooCommerce tracking" page > "Advanced order tracking" section.', 'full-picture-analytics-cookie-notice' ) . '</p>',
+			),
+		),
+	)
 );
 
-$sections = array_merge( $sections, $other_section );
-
-	$woo_section = array(
-		array(
-			'section_id' => 'fupi_ga41_ecomm',
-			'section_title' => esc_html__( 'WooCommerce tracking', 'full-picture-analytics-cookie-notice' ),
-			'class' => 'any_class_will_appear'
-		)
-	);
-
-	$sections = array_merge( $sections, $woo_section );
+$sections = array_merge( $sections, $other_sections );
 
 ?>

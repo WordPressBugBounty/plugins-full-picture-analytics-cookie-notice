@@ -16,7 +16,7 @@ $basic_fields = array(
 		'field_id' 			=> 'enh_conv',
 		'must_have'			=> 'pro',
 		'option_arr_id'		=> $option_arr_id,
-		'popup2'			=> '<p>' . esc_html__( 'Enhanced Conversion improves the accuracy of conversion tracking by sending to Google your visitors\' personal information, like their email address, first and last name and physical address. This information is later used by Google to better match the conversions with specific users.', 'full-picture-analytics-cookie-notice' ) . '</p>
+		'popup2'			=> '<p class="fupi_warning_text">' . esc_html__( 'Enhanced Conversion improves the accuracy of conversion tracking by sending to Google your visitors\' personal information, like their email address, first and last name and physical address. This information is later used by Google to better match the conversions with specific users.', 'full-picture-analytics-cookie-notice' ) . '</p>
 			<p>' . esc_html__( 'To implement Enhanced Conversions follow the steps below.', 'full-picture-analytics-cookie-notice') . '</p>
 			<ol>
 				<li>' . esc_html__('Enable "Enhanced Conversions" via Google Tag in your Google Ads account. You will find it in "Goals" > "Conversions" > "Settings" > "Enhanced conversions" > and select "Google tag" from the dropdown. If you can\'t see these menu elements, please switch to the new menu using the "Appearance" switch in the top.', 'full-picture-analytics-cookie-notice') . '</li>

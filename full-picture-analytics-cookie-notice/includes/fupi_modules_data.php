@@ -2,7 +2,6 @@
     // order is important - modules will show up in this order in the side menu (except the 1st one which is hardcoded to always go 1st)!
     // [
     //     'id' => 'home',
-    //     'title' => 'Home',
     //     'is_avail' => true, // can be used in current plan
     //     'is_premium' => false,
     //     'has_settings_page' => true,
@@ -11,7 +10,6 @@
     // ],
     [
         'id' => 'tools',
-        'title' => esc_attr__('Modules', 'full-picture-analytics-cookie-notice' ),
         'is_avail' => true,
         'is_premium' => false,
         'has_settings_page' => true,
@@ -20,7 +18,6 @@
     ],
     [ 
         'id' => 'main', 
-        'title' => esc_attr__('General settings', 'full-picture-analytics-cookie-notice' ), 
         'is_avail' => true, 
         'is_premium' => false, 
         'has_settings_page' => true, 
@@ -30,7 +27,6 @@
     [ 
         'id' => 'cegg', 
         'requires' => ['script_src'],
-        'title' => 'Crazy Egg', 
         'is_avail' => true, 
         'is_premium' => false, 
         'has_settings_page' => true,
@@ -42,7 +38,6 @@
     [ 
         'id' => 'gads',
         'requires' => ['id'],
-        'title' => 'Google Ads', 
         'is_avail' => true, 
         'is_premium' => false, 
         'has_settings_page' => true, 
@@ -54,7 +49,6 @@
     [ 
         'id' => 'ga41',
         'requires' => ['id'],
-        'title' => 'Google Analytics', 
         'is_avail' => true, 
         'is_premium' => false, 
         'has_settings_page' => true, 
@@ -66,7 +60,6 @@
     [ 
         'id' => 'ga42',
         'requires' => ['id'],
-        'title' => 'Google Analytics #2', 
         'is_avail' => fupi_fs()->can_use_premium_code(), 
         'is_premium' => true, 
         'has_settings_page' => true, 
@@ -78,7 +71,6 @@
     [ 
         'id' => 'hotj',
         'requires' => ['id'],
-        'title' => 'Hotjar',
         'is_avail' => true, 
         'is_premium' => false, 
         'has_settings_page' => true, 
@@ -90,7 +82,6 @@
     [ 
         'id' => 'insp',
         'requires' => ['id'],
-        'title' => 'Inspectlet', 
         'is_avail' => true, 
         'is_premium' => false, 
         'has_settings_page' => true, 
@@ -102,7 +93,6 @@
     [ 
         'id' => 'linkd',
         'requires' => ['id'],
-        'title' => 'LinkedIn Insight', 
         'is_avail' => true, 
         'is_premium' => false, 
         'has_settings_page' => true, 
@@ -114,7 +104,6 @@
     [ 
         'id' => 'mato',
         'requires' => ['id', 'url'],
-        'title' => 'Matomo', 
         'is_avail' => true, 
         'is_premium' => false, 
         'has_settings_page' => true, 
@@ -126,7 +115,6 @@
     [ 
         'id' => 'fbp1',
         'requires' => ['pixel_id'],
-        'title' => 'Meta Pixel', 
         'is_avail' => true, 
         'is_premium' => false, 
         'has_settings_page' => true, 
@@ -138,7 +126,6 @@
     [ 
         'id' => 'mads',
         'requires' => ['id'],
-        'title' => 'Microsoft Advertising', 
         'is_avail' => true, 
         'is_premium' => false, 
         'has_settings_page' => true, 
@@ -150,7 +137,6 @@
     [ 
         'id' => 'clar',
         'requires' => ['id'],
-        'title' => 'Microsoft Clarity', 
         'is_avail' => true, 
         'is_premium' => false, 
         'has_settings_page' => true, 
@@ -162,7 +148,6 @@
     [ 
         'id' => 'pin',
         'requires' => ['id'],
-        'title' => 'Pinterest Tag', 
         'is_avail' => true, 
         'is_premium' => false, 
         'has_settings_page' => true, 
@@ -173,7 +158,6 @@
     ],
     [ 
         'id' => 'pla',
-        'title' => 'Plausible', 
         'is_avail' => true, 
         'is_premium' => false, 
         'has_settings_page' => true, 
@@ -184,7 +168,6 @@
     [ 
         'id' => 'posthog',
         'requires' => ['api_key'],
-        'title' => 'PostHog', 
         'is_avail' => true, 
         'is_premium' => false, 
         'has_settings_page' => true, 
@@ -195,7 +178,6 @@
     ],
     [ 
         'id' => 'simpl',
-        'title' => 'Simple Analytics', 
         'is_avail' => true, 
         'is_premium' => false, 
         'has_settings_page' => true, 
@@ -206,7 +188,6 @@
     [ 
         'id' => 'tik',
         'requires' => ['id'],
-        'title' => 'TikTok Pixel', 
         'is_avail' => true, 
         'is_premium' => false, 
         'has_settings_page' => true, 
@@ -218,7 +199,6 @@
     [ 
         'id' => 'twit',
         'requires' => ['id'],
-        'title' => 'X Ads (Twitter Ads)', 
         'is_avail' => true, 
         'is_premium' => false, 
         'has_settings_page' => true, 
@@ -230,28 +210,27 @@
     [ 
         'id' => 'gtm',
         'requires' => ['id'],
-        'title' => 'Google Tag Manager', 
         'is_avail' => true, 
         'is_premium' => false, 
         'has_settings_page' => true, 
         'is_addon' => false,
         'type' => 'tagman', 
         'check_gdpr' => true,
+        'load_in_customizer' => true,
         'pp' => 'https://business.safety.google/privacy/'
     ],
     [ 
         'id' => 'cscr', 
-        'title' => esc_attr__('Custom scripts', 'full-picture-analytics-cookie-notice' ), 
         'is_avail' => true, 
         'is_premium' => false, 
         'has_settings_page' => true, 
         'is_addon' => false,
         'type' => 'tagman',
+        'load_in_customizer' => true,
         'check_gdpr' => true,
     ],
     [ 
         'id' => 'status',
-        'title' => esc_attr__('GDPR setup helper', 'full-picture-analytics-cookie-notice' ),
         'is_avail' => true,
         'is_premium' => false, 
         'has_settings_page' => true, 
@@ -261,27 +240,26 @@
     ],
     [ 
         'id' => 'cook', 
-        'title' => esc_attr__('Consent banner', 'full-picture-analytics-cookie-notice' ), 
         'is_avail' => true, 
         'is_premium' => false, 
         'has_settings_page' => true, 
         'is_addon' => false,
         'type' => 'priv', 
         'check_gdpr' => true,
+        'load_in_customizer' => true,
     ],
     [ 
         'id' => 'iframeblock', 
-        'title' => esc_attr__('Iframes manager', 'full-picture-analytics-cookie-notice' ), 
         'is_avail' => true, 
         'is_premium' => false, 
         'has_settings_page' => true, 
         'is_addon' => false,
         'type' => 'priv', 
         'check_gdpr' => true,
+        'load_in_customizer' => true,
     ],
     [ 
         'id' => 'safefonts', 
-        'title' => esc_attr__('Safe fonts', 'full-picture-analytics-cookie-notice' ), 
         'is_avail' => true,
         'is_premium' => false,
         'has_settings_page' => false,
@@ -291,17 +269,16 @@
     ],
     [ 
         'id' => 'privex', 
-        'title' => esc_attr__('Privacy policy extras', 'full-picture-analytics-cookie-notice' ), 
         'is_avail' => true, 
         'is_premium' => false, 
         'has_settings_page' => true, 
         'is_addon' => false,
         'type' => 'priv', 
         'check_gdpr' => true,
+        'load_in_customizer' => true,
     ],
     [ 
         'id' => 'blockscr', 
-        'title' => esc_attr__('Tracking tools manager', 'full-picture-analytics-cookie-notice' ), 
         'is_avail' => true, 
         'is_premium' => false, 
         'has_settings_page' => true, 
@@ -311,7 +288,6 @@
     ], 
     [ 
         'id' => 'woo', 
-        'title' => esc_attr__('WooCommerce tracking', 'full-picture-analytics-cookie-notice' ), 
         'is_avail' => true, 
         'is_premium' => false, 
         'has_settings_page' => true, 
@@ -320,7 +296,6 @@
     ],
     [ 
         'id' => 'reports', 
-        'title' => esc_attr__('Reports & statistics', 'full-picture-analytics-cookie-notice' ), 
         'is_avail' => true, 
         'is_premium' => false, 
         'has_settings_page' => true,
@@ -329,7 +304,6 @@
     ],
     [ 
         'id' => 'atrig', 
-        'title' => esc_attr__('Advanced triggers', 'full-picture-analytics-cookie-notice' ), 
         'is_avail' => fupi_fs()->can_use_premium_code(), 
         'is_premium' => true, 
         'has_settings_page' => true, 
@@ -338,7 +312,6 @@
     ],
     [ 
         'id' => 'trackmeta', 
-        'title' => esc_attr__('Metadata tracking', 'full-picture-analytics-cookie-notice' ), 
         'is_avail' => true, 
         'is_premium' => true, 
         'has_settings_page' => true, 
@@ -347,7 +320,6 @@
     ],
     [ 
         'id' => 'geo', 
-        'title' => esc_attr__('Geolocation', 'full-picture-analytics-cookie-notice' ), 
         'is_avail' => fupi_fs()->can_use_premium_code(),
         'is_premium' => true, 
         'has_settings_page' => true, 
@@ -356,7 +328,6 @@
     ],
     [ 
         'id' => 'labelpages', 
-        'title' => esc_attr__('Page labels', 'full-picture-analytics-cookie-notice' ), 
         'is_avail' => true, 
         'is_premium' => true, 
         'has_settings_page' => false,
@@ -365,7 +336,6 @@
     ],
     [ 
         'id' => 'track404', 
-        'title' => esc_attr__('Broken links tracking', 'full-picture-analytics-cookie-notice' ), 
         'is_avail' => true, 
         'is_premium' => false, 
         'has_settings_page' => true, 

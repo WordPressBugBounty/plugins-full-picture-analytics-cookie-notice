@@ -192,3 +192,61 @@
 		change_slide_on_click( slider, slide_dots, slides );
 	})
 })();
+
+// ENABLE SELCT2 FIELSDS THAT ARE NOT IN A REPEATER
+
+jQuery( document ).ready( function($) {
+	if ( jQuery.isFunction(jQuery.fn.select2) ){
+		jQuery('.fupi_select2:not(.fupi_select2_enabled)').each( function(){
+			$select2 = jQuery(this);
+
+			if ( $select2.hasClass('fupi_user_search') ) {
+
+				$select2.select2({
+					ajax: {
+						url: ajaxurl,
+						dataType: 'json',
+						delay: 250,
+						data: function (params) {
+							return {
+								q: params.term,
+								action: 'fupi_search_users',
+							};
+						},
+						processResults: function(data) {
+							return {
+								results: data
+							};
+						},
+						cache: true
+					},
+					width: '100%',
+					minimumInputLength: 2,
+					placeholder: $select2.data('placeholder_text')
+				});
+
+			} else {
+				$select2.select2();
+			}
+
+			$select2.addClass('fupi_select2_enabled');
+		})
+	};
+});
+
+// HIDE WOOCOMMERCE SETTINGS FIELDS (e.g. in the GAds module) when Woo is not enabled
+
+(()=>{
+	let woo_not_installed_notice = FP.findFirst('.fupi_enable_woo_notice');
+
+	if ( woo_not_installed_notice ) {
+		// get description wrapper
+		let descr = woo_not_installed_notice.parentElement;
+		// get the next HTML element after description wrapper
+		let next_element = descr.nextElementSibling;
+		// check if next element is a table
+		if ( next_element.tagName === 'TABLE' ) {
+			next_element.style.display = 'none';
+		}
+	}
+})();

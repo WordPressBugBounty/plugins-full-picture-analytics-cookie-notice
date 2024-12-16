@@ -53,7 +53,7 @@ if ( ! empty( $input ) ) foreach( $input as $key => $value ) {
 						if ( empty( $section['atrig_id'] ) || empty( $section['evt_name'] ) ) continue;
 						$clean_val[$j]['atrig_id'] = sanitize_key( $section['atrig_id'] );
 						$clean_val[$j]['evt_name'] = sanitize_text_field( $section['evt_name'] );
-						$clean_val[$j]['repeat'] = sanitize_key( $section['repeat'] );
+						$clean_val[$j]['repeat'] = empty( $section['repeat'] ) ? 'no' :  sanitize_key( $section['repeat'] );
 						$clean_val[$j]['capi'] = ! empty( $section['capi'] );
 						$j++;
 					}
@@ -64,6 +64,8 @@ if ( ! empty( $input ) ) foreach( $input as $key => $value ) {
 			case 'track_scroll':
 			case 'test_code':
 			case 'test_code_2':
+			case 'pixel_id':
+			case 'pixel_id_2':
 				$clean_val = trim( sanitize_text_field( $value ) );
 				break;
 			case 'track_cf':

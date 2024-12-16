@@ -40,7 +40,7 @@
 	function destroy_all_select2s(){
 		(($)=>{
 			if ( $.isFunction($.fn.select2) ){
-				$('.fupi_select2_enabled.fupi_select2').each( function(){
+				$('.fupi_r3_repeater .fupi_select2_enabled.fupi_select2').each( function(){
 					$select2 = $(this);
 					$select2.select2('destroy');
 					$select2.removeClass('fupi_select2_enabled');
@@ -55,7 +55,7 @@
 
 			if ( $.isFunction($.fn.select2) ){
 
-				$('.fupi_select2').each( function(){
+				$('.fupi_r3_repeater .fupi_select2').each( function(){
 
 					$select2 = $(this);
 
@@ -201,7 +201,9 @@
 		} );
 		
 		FP.findAll('select', section).forEach( sel => {
-			sel.value = FP.findFirst('option', sel).value;
+			let option_el = FP.findFirst('option', sel);
+			if ( option_el && option_el.value ) sel.value = option_el.value;
+			
 			if ( sel.classList.contains('fupi_req') ) sel.parentElement.classList.add('fupi_empty');
 		} );
 		

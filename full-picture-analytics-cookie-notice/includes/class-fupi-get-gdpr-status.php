@@ -21,6 +21,8 @@ class Fupi_compliance_status_checker {
 
     private $is_first_reg;
 
+    private $modules_names;
+
     public function __construct( $output_format, $cook_settings = false, $is_first_reg = false ) {
         $this->is_first_reg = $is_first_reg;
         $this->format = $output_format;
@@ -58,13 +60,13 @@ class Fupi_compliance_status_checker {
             switch ( $this->req_consent_banner ) {
                 case 'yes':
                     $cook_data = [
-                        'module_name' => $info['title'],
+                        'module_name' => $this->modules_names['cook'],
                         'setup'       => [['alert', $t_alert_1, $t_alert_2]],
                     ];
                     break;
                 default:
                     $cook_data = [
-                        'module_name' => $info['title'],
+                        'module_name' => $this->modules_names['cook'],
                         'setup'       => [['warning', $t_warning_1, $t_warning_2]],
                     ];
                     break;
@@ -75,7 +77,9 @@ class Fupi_compliance_status_checker {
 
     private function include_modules_datafile() {
         include FUPI_PATH . '/includes/fupi_modules_data.php';
+        include FUPI_PATH . '/includes/fupi_modules_names.php';
         $this->modules_info = $fupi_modules;
+        $this->modules_names = $fupi_modules_names;
     }
 
     private function get_extra_text( $status = false ) {
@@ -142,6 +146,89 @@ class Fupi_compliance_status_checker {
 
     private function output() {
         if ( $this->format == 'cdb' ) {
+            foreach ( $this->data as $module_id => $module_data ) {
+                // remove pre-setup
+                if ( !empty( $module_data['pre-setup'] ) ) {
+                    // unset empty extra data
+                    unset($this->data[$module_id]['pre-setup']);
+                }
+                // remove opt-setup
+                if ( !empty( $module_data['opt-setup'] ) ) {
+                    // unset empty extra data
+                    unset($this->data[$module_id]['opt-setup']);
+                }
+                // join extra data
+                if ( !empty( $module_data['tracked_extra_data'] ) ) {
+                    $new_extra_data = [];
+                    foreach ( $module_data['tracked_extra_data'] as $arr ) {
+                        $new_extra_data[] = $arr[0];
+                    }
+                    $this->data[$module_id]['tracked_extra_data'] = $new_extra_data;
+                } else {
+                    // unset empty extra data
+                    unset($this->data[$module_id]['tracked_extra_data']);
+                }
+                // join setup
+                if ( !empty( $module_data['setup'] ) ) {
+                    $new_setup_data = [];
+                    foreach ( $module_data['setup'] as $arr ) {
+                        $new_setup_data[] = $arr[1];
+                    }
+                    $this->data[$module_id]['setup'] = $new_setup_data;
+                }
+                // remove pp comments
+                if ( !empty( $module_data['pp comments'] ) ) {
+                    unset($this->data[$module_id]['pp comments']);
+                }
+                // remove top comments
+                if ( !empty( $module_data['top comments'] ) ) {
+                    unset($this->data[$module_id]['top comments']);
+                }
+            }
+            // generate md5
+            $md5 = md5( json_encode( $this->data ) );
+            // sent settings data if settings with this MD5 have not been sent yet
+            $versions_opts = get_option( 'fupi_versions' );
+            if ( $this->is_first_reg || !empty( $versions_opts ) && (empty( $versions_opts['md5'] ) || $versions_opts['md5'] !== $md5) ) {
+                // add MD5 && WP FP version number
+                $this->data['md5'] = $md5;
+                $this->data['wpfpVersion'] = $versions_opts[0];
+                // send request
+                $header_arr = ['Content-Type: application/json', 'x-api-key: ' . $this->cdb_key];
+                $payload = [
+                    'installID'    => fupi_fs()->get_site()->id,
+                    'wpfpSettings' => $this->data,
+                ];
+                $ch = curl_init();
+                curl_setopt( $ch, CURLOPT_URL, 'https://prod-fr.consentsdb.com/api/configuration/new' );
+                // curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
+                curl_setopt( $ch, CURLOPT_POST, true );
+                curl_setopt( $ch, CURLOPT_POSTFIELDS, json_encode( $payload ) );
+                curl_setopt( $ch, CURLOPT_HTTPHEADER, $header_arr );
+                curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
+                $server_output = curl_exec( $ch );
+                curl_close( $ch );
+                $serverReponseObject = json_decode( $server_output );
+                // save in an option
+                if ( $serverReponseObject->status == 'success' ) {
+                    trigger_error( '[FP] Plugin configuration sent to ConsentsDB' );
+                    $versions_opts['md5'] = $md5;
+                    update_option( 'fupi_versions', $versions_opts );
+                } else {
+                    trigger_error( '[FP] There was an error registering the site to the ConsentsDB. Response object: ' . json_encode( $serverReponseObject->status ) );
+                    add_settings_error(
+                        'fupi_cook',
+                        'settings_updated',
+                        esc_attr__( 'There was an error registering the site in ConsentsDB. Save the secret key and try again.', 'full-picture-analytics-cookie-notice' ),
+                        'error'
+                    );
+                    if ( !empty( $clean_data ) ) {
+                        unset($clean_data['cdb_key']);
+                        $this->cdb_key = false;
+                        return $clean_data;
+                    }
+                }
+            }
         } else {
             if ( $this->format == 'html' ) {
                 $output = '';
@@ -332,7 +419,7 @@ class Fupi_compliance_status_checker {
 
     private function set_basic_module_info( $module_id, $module_info ) {
         $this->data[$module_id] = [
-            'module_name'        => $module_info['title'],
+            'module_name'        => $this->modules_names[$module_id],
             'setup'              => [],
             'tracked_extra_data' => [],
         ];
@@ -1159,7 +1246,7 @@ class Fupi_compliance_status_checker {
         $notice_opts = get_option( 'fupi_cookie_notice' );
         $priv_policy_url = get_privacy_policy_url();
         $this->data['cook'] = [
-            'module_name' => $info['title'],
+            'module_name' => $this->modules_names['cook'],
             'setup'       => [],
         ];
         if ( $this->format == 'cdb' ) {
@@ -1521,10 +1608,10 @@ class Fupi_compliance_status_checker {
             } else {
                 if ( $this->format == 'cdb' ) {
                     $t_cook_47 = 'Visitors are not asked for new consent when the privacy policy text changes and/or when new tracking modules are enabled.';
-                    $t_cons_48 = 'Enable it in the consent banner\'s settings';
+                    $t_cook_48 = 'Enable it in the consent banner\'s settings';
                 } else {
                     $t_cook_47 = esc_html__( 'Visitors are not asked for new consent when the privacy policy text changes and/or when new tracking modules are enabled.', 'full-picture-analytics-cookie-notice' );
-                    $t_cons_48 = esc_html__( 'Enable it in the consent banner\'s settings', 'full-picture-analytics-cookie-notice' );
+                    $t_cook_48 = esc_html__( 'Enable it in the consent banner\'s settings', 'full-picture-analytics-cookie-notice' );
                 }
                 if ( $status != 'alert' ) {
                     $status = 'alert';
@@ -1590,16 +1677,14 @@ class Fupi_compliance_status_checker {
                 $this->data['cook']['setup'][] = ['ok', $t_cook_56];
             } else {
                 if ( $this->format == 'cdb' ) {
-                    $t_cook_57 = 'Saving proofs of visitor\'s tracking consents is disabled.';
-                    $t_cook_58 = 'Enable saving proofs of consent in the Consent Banner > Saving Consents (Pro only). You may need it during audits or investigations by authorities or data protection agencies, if a user complains about being tracked without permission, in legal cases where privacy issues are involved.';
+                    $t_cook_57 = 'You are not collecting records of consents.';
+                    $t_cook_58 = 'Enable saving proofs of consent in the Consent Banner > Records of Consents. You may need it during audits or investigations by authorities or data protection agencies, if a user complains about being tracked without permission, in legal cases where privacy issues are involved.';
                 } else {
-                    $t_cook_57 = esc_html__( 'Saving proofs of visitor\'s tracking consents is disabled.', 'full-picture-analytics-cookie-notice' );
-                    $t_cook_58 = esc_html__( 'Enable saving proofs of consent in the Consent Banner > Saving Consents (Pro only). You may need it during audits or investigations by authorities or data protection agencies, if a user complains about being tracked without permission, in legal cases where privacy issues are involved.', 'full-picture-analytics-cookie-notice' );
+                    $t_cook_57 = esc_html__( 'You are not collecting records of consents.', 'full-picture-analytics-cookie-notice' );
+                    $t_cook_58 = esc_html__( 'Enable saving proofs of consent in the Consent Banner > Records of Consents. Under Article 7 GDPR, the controller must be able to demonstrate that they have obtained data subjects’ valid consent, especially whether it was informed, freely given, unambiguous and specific.', 'full-picture-analytics-cookie-notice' );
                 }
-                if ( $status != 'alert' ) {
-                    $status = 'warning';
-                }
-                $this->data['cook']['setup'][] = ['warning', $t_cook_57, $t_cook_58];
+                $status = 'alert';
+                $this->data['cook']['setup'][] = ['alert', $t_cook_57, $t_cook_58];
             }
             if ( isset( $settings['cdb_key'] ) ) {
                 if ( $this->format == 'cdb' ) {

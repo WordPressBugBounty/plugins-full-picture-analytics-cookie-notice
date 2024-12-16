@@ -98,12 +98,12 @@ body,
 	text-align: center;
 	margin: 0 auto;
 	border-radius: 4px;
-	background-color: #3661a2;
+	background-color: #1f6395;
 	font-weight: 500;
 	padding: 5px 10px;
 	border: 0;
 	&:hover, &:focus{
-		background-color: lighten(#3661a2, 10%);
+		background-color: lighten(#1f6395, 10%);
 	}
 	.dashicons{
 		font-size: 17px;

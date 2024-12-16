@@ -1,6 +1,7 @@
 <?php
 
 include FUPI_PATH . '/includes/fupi_modules_data.php';
+include FUPI_PATH . '/includes/fupi_modules_names.php';
 // fupi_field_html($recipe, $values, $arr_id)
 // -	$recipe 		array 		no default			recipe for setting up a single field
 // -	$field_id 		string  	default: false 		field's name and ID (optional - passed by r3)
@@ -74,13 +75,34 @@ if ( !empty( $recipe['must_have'] ) ) {
                         if ( !$this->is_woo_enabled ) {
                             $must_have_parts[] = esc_html__( 'WooCommerce Tracking module', 'full-picture-analytics-cookie-notice' );
                         }
-                        // check for missing modules
                     } else {
-                        if ( !isset( $this->tools[$must_have] ) ) {
-                            foreach ( $fupi_modules as $module ) {
-                                if ( $module['id'] == $must_have ) {
-                                    $must_have_parts[] = esc_html__( 'Module', 'full-picture-analytics-cookie-notice' ) . ' "' . $module['title'] . '"';
-                                    break;
+                        if ( str_starts_with( $must_have, 'field' ) ) {
+                            $field_params_a = explode( '|', $must_have );
+                            if ( count( $field_params_a ) == 5 ) {
+                                $other_opt_name = $field_params_a[1];
+                                $other_field_id = $field_params_a[2];
+                                $expected_field_val = $field_params_a[3];
+                                $must_have_text = str_replace( '"', '', $field_params_a[4] );
+                                $must_have_text = str_replace( '_', ' ', $must_have_text );
+                                $other_option_data = get_option( $other_opt_name );
+                                if ( empty( $other_option_data ) || empty( $other_option_data[$other_field_id] ) ) {
+                                    $must_have_parts[] = $must_have_text;
+                                } else {
+                                    $field_value = $other_option_data[$other_field_id];
+                                    $value_matches = $expected_field_val == 'exists' || $expected_field_val == $field_value;
+                                    if ( !$value_matches ) {
+                                        $must_have_parts[] = $must_have_text;
+                                    }
+                                }
+                            }
+                            // check for missing modules
+                        } else {
+                            if ( !isset( $this->tools[$must_have] ) ) {
+                                foreach ( $fupi_modules as $module ) {
+                                    if ( $module['id'] == $must_have ) {
+                                        $must_have_parts[] = esc_html__( 'Module', 'full-picture-analytics-cookie-notice' ) . ' "' . $fupi_modules_names[$module['id']] . '"';
+                                        break;
+                                    }
                                 }
                             }
                         }
@@ -342,7 +364,7 @@ switch ( $recipe['type'] ) {
     // =======
     case 'taxonomies multi checkbox':
         $taxonomies = get_taxonomies();
-        $fupi_main = get_option( 'fupi_main' );
+        // $fupi_main = get_option('fupi_main');
         foreach ( $taxonomies as $tax_slug ) {
             if ( $tax_slug == 'fupi_page_labels' || $tax_slug == 'category' || $tax_slug == 'post_tag' || $tax_slug == 'post_format' ) {
                 continue;
@@ -365,6 +387,23 @@ switch ( $recipe['type'] ) {
                 $el_class
             );
         }
+        break;
+    // =======
+    case 'woo_order_statuses':
+        $statuses = wc_get_order_statuses();
+        wp_enqueue_style( 'fupi-select2-css' );
+        wp_enqueue_script( 'fupi-select2-js' );
+        $output = '<select name="' . $field_id . '[]" class="fupi_select2 fupi_select2_keep_always_enabled ' . $el_class . '" multiple="multiple">';
+        foreach ( $statuses as $status_slug => $status_name ) {
+            if ( $status_slug == 'wc-pending' ) {
+                continue;
+            }
+            // Get html that marks option as selected
+            $selected_html = ( in_array( $status_slug, $saved_value ) ? 'selected="selected"' : '' );
+            $output .= '<option value="' . $status_slug . '" ' . $selected_html . '>' . $status_name . '</option>';
+        }
+        $output .= '</select>';
+        echo $output;
         break;
     // =======
     case 'textarea':

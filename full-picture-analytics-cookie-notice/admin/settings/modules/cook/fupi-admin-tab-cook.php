@@ -10,7 +10,7 @@ $is_oceanWP_theme = $current_theme->get( 'Name' ) == 'OceanWP';
 $modes_selector = '<div id="fupi_cookie_notice_mode_selector">
 	<div id="fupi_cookie_optin" class="fupi_cn_mode">
 		<p class="fupi_title"><strong>' . esc_html__( 'Opt-in mode', 'full-picture-analytics-cookie-notice' ) . '</strong></p>
-		<p class="fupi_descr">' . esc_html__( 'Tracking starts when visitors agree to tracking. This mode is accepted in all countries.', 'full-picture-analytics-cookie-notice' ) . ' <button type="button" class="fupi_open_popup fupi_faux_link" data-popup="fupi_all_optin_popup" >' . esc_html__( 'Learn more', 'full-picture-analytics-cookie-notice' ) . '</button></p>
+		<p class="fupi_descr">' . esc_html__( 'Tracking starts when visitors agree to it.', 'full-picture-analytics-cookie-notice' ) . '<br><br><strong>' . esc_html__( 'This mode is accepted in all countries.', 'full-picture-analytics-cookie-notice' ) . '</strong> <button type="button" class="fupi_open_popup fupi_faux_link" data-popup="fupi_all_optin_popup" >' . esc_html__( 'Learn more', 'full-picture-analytics-cookie-notice' ) . '</button></p>
 		<div id="fupi_all_optin_popup" class="fupi_popup_content fupi_do_not_create_popup_icon">
 			<p>' . esc_html__( 'When you choose this mode, tools that collect personal information will not be allowed to track your users until they agree to tracking them. Tools that do not use cookies or are running in consent mode / privacy mode, will track basic data until visitors agree to full tracking.', 'full-picture-analytics-cookie-notice' ) . '</p>
 			<p>' . sprintf( esc_html__( 'Please %1$sread this article%2$s to see in what countries you have to use this mode.', 'full-picture-analytics-cookie-notice' ), '<a href="https://wpfullpicture.com/support/documentation/countries-that-require-opt-in-or-opt-out-to-cookies/?utm_source=fp_admin&utm_medium=referral&utm_campaign=documentation_link">', '</a>' ) . '</p>
@@ -19,7 +19,7 @@ $modes_selector = '<div id="fupi_cookie_notice_mode_selector">
 	</div>
 	<div id="fupi_cookie_optout" class="fupi_cn_mode">
 		<p class="fupi_title"><strong>' . esc_html__( 'Opt-out mode', 'full-picture-analytics-cookie-notice' ) . '</strong></p>
-		<p class="fupi_descr">' . esc_html__( 'Visitors are tracked until they decline tracking. This mode is against the law in the EU and 30+ other countries.', 'full-picture-analytics-cookie-notice' ) . ' <button type="button" class="fupi_open_popup fupi_faux_link" data-popup="fupi_all_optout_popup" >' . esc_html__( 'Learn more', 'full-picture-analytics-cookie-notice' ) . '</button></p>
+		<p class="fupi_descr">' . esc_html__( 'Visitors are tracked until they decline tracking.', 'full-picture-analytics-cookie-notice' ) . '<br><br><strong>' . esc_html__( 'This mode is against the law in the EU and 30+ other countries.', 'full-picture-analytics-cookie-notice' ) . '</strong> <button type="button" class="fupi_open_popup fupi_faux_link" data-popup="fupi_all_optout_popup" >' . esc_html__( 'Learn more', 'full-picture-analytics-cookie-notice' ) . '</button></p>
 		<div id="fupi_all_optout_popup" class="fupi_popup_content fupi_do_not_create_popup_icon">
 			<p>' . esc_html__( 'When you choose this mode, tools that collect personal information will track your users from the moment they visit your website until they decline tracking in the consent banner. Tools that do not use cookies or those that can run in consent mode / privacy mode, will then only track basic data. All other tools will be disabled.', 'full-picture-analytics-cookie-notice' ) . '</p>
 			<p>' . sprintf( esc_html__( 'Please %1$sread this article%2$s to see in what countries you can use this mode.', 'full-picture-analytics-cookie-notice' ), '<a href="https://wpfullpicture.com/support/documentation/countries-that-require-opt-in-or-opt-out-to-cookies/?utm_source=fp_admin&utm_medium=referral&utm_campaign=documentation_link">', '</a>' ) . '</p>
@@ -28,7 +28,7 @@ $modes_selector = '<div id="fupi_cookie_notice_mode_selector">
 	</div>
 	<div id="fupi_cookie_notify" class="fupi_cn_mode">
 		<p class="fupi_title"><strong>' . esc_html__( 'Notify-only mode', 'full-picture-analytics-cookie-notice' ) . '</strong></p>
-		<p class="fupi_descr">' . esc_html__( 'Visitors from every country are informed that they are tracked but cannot decline it. This mode is against the law in the EU and 30+ other countries.', 'full-picture-analytics-cookie-notice' ) . ' <button type="button" class="fupi_open_popup fupi_faux_link" data-popup="fupi_all_inform_popup" >' . esc_html__( 'Learn more', 'full-picture-analytics-cookie-notice' ) . '</button></p>
+		<p class="fupi_descr">' . esc_html__( 'Visitors from every country are informed that they are tracked but cannot decline it.', 'full-picture-analytics-cookie-notice' ) . '<br><br><strong>' . esc_html__( 'This mode is against the law in the EU and 30+ other countries.', 'full-picture-analytics-cookie-notice' ) . '</strong> <button type="button" class="fupi_open_popup fupi_faux_link" data-popup="fupi_all_inform_popup" >' . esc_html__( 'Learn more', 'full-picture-analytics-cookie-notice' ) . '</button></p>
 		<div id="fupi_all_inform_popup" class="fupi_popup_content fupi_do_not_create_popup_icon">
 			<p>' . esc_html__( 'When you choose this mode, all tracking tools installed on your website will track your visitors. People will not be able to decline tracking. They will only be informed that they are tracked.', 'full-picture-analytics-cookie-notice' ) . '</p>
 			<p>' . sprintf( esc_html__( 'Please %1$sread this article%2$s to see in what countries you can use this mode.', 'full-picture-analytics-cookie-notice' ), '<a href="https://wpfullpicture.com/support/documentation/countries-that-require-opt-in-or-opt-out-to-cookies/?utm_source=fp_admin&utm_medium=referral&utm_campaign=documentation_link">', '</a>' ) . '</p>
@@ -38,7 +38,7 @@ $modes_selector = '<div id="fupi_cookie_notice_mode_selector">
 	<div id="fupi_cookie_auto_strict" class="fupi_cn_mode ' . $field_disabled . '">
 		' . $must_have_html . '
 		<p class="fupi_title"><strong>' . esc_html__( 'Automatic mode', 'full-picture-analytics-cookie-notice' ) . '</strong> (strict)</p>
-		<p class="fupi_descr">' . esc_html__( 'Automatically apply opt-in, opt-out or notification mode, depending on the location of the visitor.', 'full-picture-analytics-cookie-notice' ) . '<br><br>' . esc_html__( 'The Strict mode is for sites that use visitors\' data for marketing or collect sensitive data.', 'full-picture-analytics-cookie-notice' ) . ' <button type="button" class="fupi_open_popup fupi_faux_link" data-popup="fupi_auto_strict_popup">' . esc_html__( 'Learn more', 'full-picture-analytics-cookie-notice' ) . '</button></p>
+		<p class="fupi_descr">' . esc_html__( 'Automatically apply opt-in, opt-out or notification mode, depending on the location of the visitor.', 'full-picture-analytics-cookie-notice' ) . '<br><br><strong>' . esc_html__( 'This mode is accepted in all countries.', 'full-picture-analytics-cookie-notice' ) . '</strong><br><br> (' . esc_html__( 'The Strict mode is for sites that use visitors\' data for marketing or collect sensitive data.', 'full-picture-analytics-cookie-notice' ) . ') <button type="button" class="fupi_open_popup fupi_faux_link" data-popup="fupi_auto_strict_popup">' . esc_html__( 'Learn more', 'full-picture-analytics-cookie-notice' ) . '</button></p>
 		<div id="fupi_auto_strict_popup" class="fupi_popup_content fupi_do_not_create_popup_icon">
 			<p>' . esc_html__( 'When you choose this mode, WP Full Picture will check the location of your visitors and automatically choose the tracking mode (opt-in, opt-out or inform) that complies with privacy regulations in their countries.', 'full-picture-analytics-cookie-notice' ) . '</p>
 			<p>' . sprintf( esc_html__( 'Use this mode if your website uses visitor\'s data for marketing purposes or collect %1$ssensitive data%2$s', 'full-picture-analytics-cookie-notice' ), '<a href="https://commission.europa.eu/law/law-topic/data-protection/reform/rules-business-and-organisations/legal-grounds-processing-data/sensitive-data/what-personal-data-considered-sensitive_en">', '</a>' ) . '.</p>
@@ -49,7 +49,7 @@ $modes_selector = '<div id="fupi_cookie_notice_mode_selector">
 	<div id="fupi_cookie_auto_lax" class="fupi_cn_mode ' . $field_disabled . '">
 		' . $must_have_html . '
 		<p class="fupi_title"><strong>' . esc_html__( 'Automatic mode', 'full-picture-analytics-cookie-notice' ) . '</strong> (lax)</p>
-		<p class="fupi_descr">' . esc_html__( 'Automatically apply opt-in, opt-out or notification mode, depending on the location of the visitor.', 'full-picture-analytics-cookie-notice' ) . '<br><br>' . esc_html__( 'The Lax mode is for sites that don\'t use visitors\' data for marketing or collect sensitive data.', 'full-picture-analytics-cookie-notice' ) . ' <button type="button" class="fupi_open_popup fupi_faux_link" data-popup="fupi_auto_strict_popup">' . esc_html__( 'Learn more', 'full-picture-analytics-cookie-notice' ) . '</button></p>
+		<p class="fupi_descr">' . esc_html__( 'Automatically apply opt-in, opt-out or notification mode, depending on the location of the visitor.', 'full-picture-analytics-cookie-notice' ) . '<br><br><strong>' . esc_html__( 'This mode is accepted in all countries.', 'full-picture-analytics-cookie-notice' ) . '</strong><br><br>(' . esc_html__( 'The Lax mode is for sites that don\'t use visitors\' data for marketing or collect sensitive data.', 'full-picture-analytics-cookie-notice' ) . ') <button type="button" class="fupi_open_popup fupi_faux_link" data-popup="fupi_auto_strict_popup">' . esc_html__( 'Learn more', 'full-picture-analytics-cookie-notice' ) . '</button></p>
 		<div id="fupi_auto_lax_popup" class="fupi_popup_content fupi_do_not_create_popup_icon">
 			<p>' . esc_html__( 'When you choose this mode, WP Full Picture will check the location of your visitors and automatically choose the tracking mode (opt-in, opt-out or inform) that complies with privacy regulations in their countries.', 'full-picture-analytics-cookie-notice' ) . '</p>
 			<p>' . sprintf( esc_html__( 'Use this mode if your website doesn\'t use visitor\'s data for marketing purposes nor collect %1$ssensitive data%2$s', 'full-picture-analytics-cookie-notice' ), '<a href="https://commission.europa.eu/law/law-topic/data-protection/reform/rules-business-and-organisations/legal-grounds-processing-data/sensitive-data/what-personal-data-considered-sensitive_en">', '</a>' ) . '.</p>
@@ -69,7 +69,7 @@ $modes_selector = '<div id="fupi_cookie_notice_mode_selector">
 </div>';
 $cook_fields = array(array(
     'type'          => 'radio',
-    'label'         => esc_html__( 'How should the consent banner behave?', 'full-picture-analytics-cookie-notice' ),
+    'label'         => esc_html__( 'How the consent banner should behave', 'full-picture-analytics-cookie-notice' ),
     'field_id'      => 'enable_scripts_after',
     'class'         => 'fupi_cookie_notice_modes fupi_fullwidth_tr fupi_hide_manual_mode',
     'option_arr_id' => $option_arr_id,
@@ -115,7 +115,6 @@ $cook_fields = array_merge( $cook_fields, array(array(
     'under field'   => esc_html__( 'Leave empty to use the default .fp_show_cookie_notice', 'full-picture-analytics-cookie-notice' ),
     'popup'         => '<p>' . esc_html__( 'We recommend that you point at a link or a button in your privacy policy. This is required in most countries that require consent banners.', 'full-picture-analytics-cookie-notice' ) . '</p>',
 )) );
-$cdb_descr = '';
 $sections = array(
     // Consent Banner
     array(
@@ -126,20 +125,20 @@ $sections = array(
     // Saving consents
     array(
         'section_id'    => 'fupi_cook_cdb',
-        'section_title' => esc_html__( 'Saving consents', 'full-picture-analytics-cookie-notice' ),
+        'section_title' => esc_html__( 'Records of consents', 'full-picture-analytics-cookie-notice' ),
         'fields'        => array(array(
             'type'          => 'text',
             'label'         => esc_html__( 'ConsentsDB secret key', 'full-picture-analytics-cookie-notice' ),
             'field_id'      => 'cdb_key',
-            'must_have'     => 'pro privacy_policy',
+            'must_have'     => 'privacy_policy',
             'option_arr_id' => $option_arr_id,
-            'after field'   => $cdb_descr,
+            'after field'   => '<p>' . esc_html__( 'You will get the key after you registrer this website on ConsentsDB.com', 'full-picture-analytics-cookie-notice' ) . '</p>' . $install_id_text,
         ), array(
             'type'          => 'toggle',
             'label'         => esc_html__( 'Do not filter bot traffic', 'full-picture-analytics-cookie-notice' ),
             'field_id'      => 'save_all_consents',
             'option_arr_id' => $option_arr_id,
-            'must_have'     => 'pro privacy_policy',
+            'must_have'     => 'privacy_policy',
             'popup'         => '<p>' . esc_html__( 'By default, WP Full Picture does not save consents of visitors recognized as bots and those who consented within 1 second from the moment the page has loaded.', 'full-picture-analytics-cookie-notice' ) . '</p>
 				<p>' . sprintf( esc_html__( 'If, for any reason, this filters too much traffic, please %1$slet us know about it%2$s and either enable this option or change the "Bot detection list" in the General Settings page.', 'full-picture-analytics-cookie-notice' ), '<a href="https://wpfullpicture.com/contact/" target="_blank">', '</a>' ) . '</p>',
         )),

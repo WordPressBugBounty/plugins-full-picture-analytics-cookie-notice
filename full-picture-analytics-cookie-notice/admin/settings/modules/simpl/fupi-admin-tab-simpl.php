@@ -5,14 +5,15 @@
 $basic_fields = array(
 	array(
 		'type'	 			=> 'toggle',
-		'label' 			=> esc_html__( 'Use server-side tracking INSTEAD of browser tracking', 'full-picture-analytics-cookie-notice' ),
+		'label' 			=> esc_html__( 'Use server-side tracking INSTEAD of browser tracking (deprecated by SA)', 'full-picture-analytics-cookie-notice' ),
 		'field_id' 			=> 'server_side',
 		'must_have'			=> 'pro',
 		'el_class'			=> 'fupi_condition fupi_condition_reverse',
 		'el_data_target'	=> 'fupi_serverside_cond',
 		'option_arr_id'		=> $option_arr_id,
 		'label_for' 		=> $option_arr_id . '[server_side]',
-		'popup'				=> '<p>' . sprintf( esc_html__( 'When this option is enabled, data about your visitors will be sent to Simple Analytics via server, and not their browser. This will bypass ad-blockers and increase accuracy of your data. However most of the options below will become unavailable. %1$sLearn more%2$s', 'full-picture-analytics-cookie-notice' ), '<a href="https://docs.simpleanalytics.com/script#developers">', '</a>' ) . '</p>',
+		'popup3'			=> '<p style="color: red">' . esc_html__( 'Server-side tracking has been deprecated by Simple Analytics. Use this feature at your own risk. It may be removed at any moment.', 'full-picture-analytics-cookie-notice' ) . '</p>
+		<p><p>' . sprintf( esc_html__( 'When this option is enabled, data about your visitors will be sent to Simple Analytics via server, and not their browser. This will bypass ad-blockers and increase accuracy of your data. However most of the options below will become unavailable. %1$sLearn more%2$s', 'full-picture-analytics-cookie-notice' ), '<a href="https://docs.simpleanalytics.com/script#developers">', '</a>' ) . '</p>',
 	),
 	array(
 		'type'	 			=> 'text',

@@ -12,7 +12,7 @@ $basic_fields = array(
 	),
 	array(
 		'type'	 			=> 'text',
-		'label' 			=> esc_html__( 'Conversion API token', 'full-picture-analytics-cookie-notice' ),
+		'label' 			=> esc_html__( 'Conversion API token (for server-side tracking)', 'full-picture-analytics-cookie-notice' ),
 		'field_id' 			=> 'capi_token',
 		'class'				=> 'fupi_sub',
 		'must_have'			=> 'pro',
@@ -20,8 +20,7 @@ $basic_fields = array(
 		'el_data_target'	=> 'fupi_capi_opts',
 		'option_arr_id'		=> $option_arr_id,
 		'label_for' 		=> $option_arr_id . '[capi_token]',
-		'popup2'			=> '<p style="color: #e47d00">' . esc_html__( 'Attention! Do not disable Rest API in your WP installation. CAPI requires Rest API to work.', 'full-picture-analytics-cookie-notice' ) . '</p>
-			<p>' . esc_html__( 'After you enable Conversion API, the data you track, will be sent to Meta by both, the tracking pixel and your server. This way, you will be able to track visitors who use ad blockers (they block tracking pixels). Enabling Conversion API will put a strain on your server, requiring it to do additional work. Do not enable Conversion API on hosting that is at its limits.', 'full-picture-analytics-cookie-notice' ) . '</p>
+		'popup'				=> '<p>' . esc_html__( 'After you enable Conversion API, the data you track, will be sent to Meta by both, the tracking pixel and your server. This way, you will be able to track visitors who use ad blockers (they block tracking pixels). Enabling Conversion API will put a strain on your server, requiring it to do additional work. Do not enable Conversion API on hosting that is at its limits.', 'full-picture-analytics-cookie-notice' ) . '</p>
 			<p><a href="https://wpfullpicture.com/support/documentation/3-ways-to-test-and-debug-meta-pixel-integration/">' . esc_html__('See the installation guide', 'full-picture-analytics-cookie-notice') . '</a></p>',
 	),
 		array(
@@ -51,7 +50,7 @@ $basic_fields = array(
 			'class'				=> 'fupi_sub fupi_2nd_opts fupi_disabled',
 			'must_have'			=> 'pro',
 			'option_arr_id'		=> $option_arr_id,
-			'label_for' 		=> $option_arr_id . '[pixel_id]',
+			'label_for' 		=> $option_arr_id . '[pixel_id_2]',
 		),
 		array(
 			'type'	 			=> 'text',
@@ -60,7 +59,7 @@ $basic_fields = array(
 			'class'				=> 'fupi_sub fupi_2nd_opts fupi_disabled',
 			'must_have'			=> 'pro',
 			'option_arr_id'		=> $option_arr_id,
-			'label_for' 		=> $option_arr_id . '[capi_token]',
+			'label_for' 		=> $option_arr_id . '[capi_token_2]',
 		),
 		array(
 			'type'	 			=> 'text',
@@ -69,7 +68,7 @@ $basic_fields = array(
 			'class'				=> 'fupi_sub fupi_2nd_opts fupi_disabled',
 			'must_have'			=> 'pro',
 			'option_arr_id'		=> $option_arr_id,
-			'label_for' 		=> $option_arr_id . '[test_code]',
+			'label_for' 		=> $option_arr_id . '[test_code_2]',
 		),
 	array(
 		'type'	 			=> 'toggle',
@@ -408,7 +407,7 @@ $sections = array(
 						<li>' . esc_html__( 'In the second field you can also use a placeholder [name]. It will be replaced with the first 20 characters of the text inside the clicked element. Make sure it has any.', 'full-picture-analytics-cookie-notice' ) . '</li>
 					</ol>
 					<h3>' . esc_html__( 'Attention!', 'full-picture-analytics-cookie-notice') . '</h3>
-					<p style="color: #e47d00;">' . esc_html__( 'To correctly track clicks in page elements OTHER than links (e.g. buttons), you need to provide CSS selectors of ALL clickable elements inside that element.', 'full-picture-analytics-cookie-notice' ) . '</p>
+					<p class="fupi_warning_text">' . esc_html__( 'To correctly track clicks in page elements OTHER than links (e.g. buttons), you need to provide CSS selectors of ALL clickable elements inside that element.', 'full-picture-analytics-cookie-notice' ) . '</p>
 					<p>' . esc_html__( 'The easiest way to do it is to use the asterisk symbol "*". For example, to track clicks in buttons provide:', 'full-picture-analytics-cookie-notice' ) . ' <code>.my_button, .my_button *</code>.</p>
 					<p><a href="https://wpfullpicture.com/support/documentation/how-to-track-clicks-in-page-page-elements/" target="_blank">' . esc_html__( 'Learn more about tracking clicks', 'full-picture-analytics-cookie-notice' ) . '</a></p>',
 			),
@@ -445,7 +444,7 @@ $sections = array(
 						'required'			=> true,
 					),
 				),
-				'popup2'			=> '<p style="color: #e47d00;">' . esc_html__( 'There are 4 methods of tracking form. Please choose the one that is best suited for your forms. Otherwise form tracking may not work correctly' , 'full-picture-analytics-cookie-notice' ) . '<p>
+				'popup2'			=> '<p class="fupi_warning_text">' . esc_html__( 'There are 4 methods of tracking form. Please choose the one that is best suited for your forms. Otherwise form tracking may not work correctly' , 'full-picture-analytics-cookie-notice' ) . '<p>
 					<p><a class="button-secondary" target="_blank" href="https://wpfullpicture.com/support/documentation/how-to-choose-the-best-way-to-track-form-submissions/">' . esc_html__( 'Choose correct method to track your forms.' , 'full-picture-analytics-cookie-notice' ) . '</a></p>
 					<p>' . esc_html__( 'Tracked as a parameter "form" of the "form submit" event', 'full-picture-analytics-cookie-notice' ) . '</p>',
 			),
@@ -513,7 +512,7 @@ $sections = array(
 					'class'				=> 'fupi_sub',
 					'must_have'			=> 'pro',
 					'option_arr_id'		=> $option_arr_id,
-					'popup2'			=> '<p style="color: #e47d00;">' . esc_html__( 'Tracking scroll with server can greatly decrease its performance. It is NOT recommended to enable this function on slow hosting.', 'full-picture-analytics-cookie-notice') . '</p>'
+					'popup2'			=> '<p class="fupi_warning_text">' . esc_html__( 'Tracking scroll with server can greatly decrease its performance. It is NOT recommended to enable this function on slow hosting.', 'full-picture-analytics-cookie-notice') . '</p>'
 				),
 			array(
 				'type'	 			=> 'toggle',
@@ -530,7 +529,7 @@ $sections = array(
 					'class'				=> 'fupi_sub',
 					'must_have'			=> 'pro',
 					'option_arr_id'		=> $option_arr_id,
-					'popup2'			=> '<p style="color: #e47d00;">' . esc_html__( 'Tracking engagement time with server will decrease its performance. It is NOT recommended to enable this function on slow hosting.', 'full-picture-analytics-cookie-notice') . '</p>'
+					'popup2'			=> '<p class="fupi_warning_text">' . esc_html__( 'Tracking engagement time with server will decrease its performance. It is NOT recommended to enable this function on slow hosting.', 'full-picture-analytics-cookie-notice') . '</p>'
 				),
 		),
 	),
@@ -604,6 +603,17 @@ $woo_section = array(
 	array(
 		'section_id' => 'fupi_fbp1_ecomm',
 		'section_title' => esc_html__( 'Tracking WooCommerce', 'full-picture-analytics-cookie-notice' ),
+		'fields' => array(
+			array(
+				'type'	 			=> 'toggle',
+				'label' 			=> esc_html__( 'Advanced Order Tracking with Conversion API', 'full-picture-analytics-cookie-notice' ),
+				'field_id' 			=> 'adv_orders',
+				'must_have'			=> 'pro woo', //field|fupi_fbp1|capi_token|exists|' . esc_html__("Conversion_API_token")
+				'option_arr_id'		=> $option_arr_id,
+				'popup2'			=> '<p class="fupi_warning_text">' . esc_html__( 'This feature requires the use of Conversion API. Please check if you entered CAPI key in the "Installation" section of this module\'s settings.', 'full-picture-analytics-cookie-notice') . '</p>
+					<p>' . esc_html__( 'Advanced order tracking improves the number of tracked orders by up to 30%. For more information please go to the "WooCommerce tracking" page > "Advanced order tracking" section.', 'full-picture-analytics-cookie-notice') . '</p>',
+			),
+		),
 	),
 );
 

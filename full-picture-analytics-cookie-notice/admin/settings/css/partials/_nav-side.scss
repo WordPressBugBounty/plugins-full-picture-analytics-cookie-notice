@@ -33,7 +33,7 @@
 	}
 	.fupi_active_title{
 		font-weight: 500;
-		background-color: #567eb4;
+		background-color: #2672ab;
 		color: #fff;
 	}
 }
@@ -107,21 +107,7 @@
 		font-weight: 500;
 		margin: 0;
 		padding: 18px 0 7px;
-	}
-	&.fupi_blackFriday{
-		background: linear-gradient(90deg,#000000 0%, #093873 97%);
-		color: #fff;
-		p{
-			font-size: 15px;
-			text-align: center;
-			margin-bottom: 25px;
-		}
-		h3{
-			color: #ffdd62;
-			text-align: center;
-			font-size: 24px;
-		}
-	}
+	}	
 }
 
 // Feature slider

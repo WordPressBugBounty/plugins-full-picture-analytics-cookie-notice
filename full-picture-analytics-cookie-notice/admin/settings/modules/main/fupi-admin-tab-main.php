@@ -106,11 +106,7 @@ $sections = array(
 					<li>' . esc_html__( 'click an "eye" icon in the bottom-left corner of the screen (on the visitor-facing website),','full-picture-analytics-cookie-notice') . '</li>
 					<li>' . esc_html__( 'clear cookies in their browser.','full-picture-analytics-cookie-notice') . '</li>
 				</ol>
-				<h3>' . esc_html__( 'Other uses of a link','full-picture-analytics-cookie-notice') . '</h3>
-				<ol>
-					<li><strong>' . $magic_keyword . '=on</strong> or <strong>' . $magic_keyword . '=reset</strong>: ' . esc_html__( 'resets visitor\'s tracking preferences','full-picture-analytics-cookie-notice') . '</li>
-					<li><strong>' . $magic_keyword . '=ga4_debug</strong>: ' . esc_html__( 'Turns on debugging mode in the Google Analytics (this is different to WP Full Picture\'s debugging in General Settings > Other > Debug mode)','full-picture-analytics-cookie-notice') . '</li>
-				</ol>
+				<p><strong>' . $magic_keyword . '=on</strong> or <strong>' . $magic_keyword . '=reset</strong>: ' . esc_html__( 'resets visitor\'s tracking preferences','full-picture-analytics-cookie-notice') . '</p>
 				',
 			),
 		),
@@ -126,17 +122,23 @@ $sections = array(
 				'type'	 			=> 'select',
 				'label' 			=> esc_html__( 'Bot detection list', 'full-picture-analytics-cookie-notice' ),
 				'field_id' 			=> 'bot_list',
-				'must_have'			=> 'pro',
 				'option_arr_id'		=> $option_arr_id,
 				'label_for' 		=> $option_arr_id . '[bot_list]',
+				'el_class'			=> 'fupi_condition fupi_condition_reverse',
+				'el_data_target'	=> 'fupi_bots_opts',
 				'options'				=> array(
 					'basic'			=> esc_html__( 'Basic list (fast, only checks for the most common bots)', 'full-picture-analytics-cookie-notice' ),
-					'big'			=> esc_html__( 'Big list (slower but much more accurate and checks for AI bots)', 'full-picture-analytics-cookie-notice' ),
+					'big'			=> esc_html__( 'Big list (slower but much more accurate and blocks some AI bots)', 'full-picture-analytics-cookie-notice' ),
 					'none'			=> esc_html__( 'None', 'full-picture-analytics-cookie-notice' ),
 				),
 				'default'			=> 'basic',
-				'popup'				=> '<p>' . esc_html__( 'Bot detection is used to prevent unnecessary geolocation checks and to prevent collecting tracking consents from bots.','full-picture-analytics-cookie-notice' ) . '</p>
-				<p>' . sprintf( esc_html__( 'The Big list is based on the %1$slist of crawler user agents%2$s by bentsi.','full-picture-analytics-cookie-notice' ), '<a href="https://github.com/monperrus/crawler-user-agents/blob/master/crawler-user-agents.json">', '</a>' ) . '</p>',
+				'popup'				=> '<p>' . esc_html__( 'Bot detection is used to prevent bots from:','full-picture-analytics-cookie-notice' ) . '</p>
+					<ol>
+						<li>' . esc_html__( 'triggering server events (for tools supporting server-side tracking)','full-picture-analytics-cookie-notice' ) . '</li>
+						<li>' . esc_html__( 'making unnecessary geolocation checks (when the geolocation module is enabled),','full-picture-analytics-cookie-notice' ) . '</li>
+						<li>' . esc_html__( 'saving cookie consents','full-picture-analytics-cookie-notice' ) . '</li>
+					</ol>
+					<p>' . sprintf( esc_html__( 'The Big list is based on the %1$slist of crawler user agents%2$s by bentsi.','full-picture-analytics-cookie-notice' ), '<a href="https://github.com/monperrus/crawler-user-agents/blob/master/crawler-user-agents.json">', '</a>' ) . '</p>',
 			),
 			array(
 				'type'	 			=> 'select',
@@ -357,30 +359,7 @@ $sections = array(
 	// IMPORT/EXPORT SETTINGS
 	array(
 		'section_id' => 'fupi_main_importexport',
-		'section_title' => esc_html__( 'Import / Export', 'full-picture-analytics-cookie-notice' ),
-		'fields' => array(
-			array(
-				'type'	 			=> 'button',
-				'label' 			=> esc_html__( 'Export WP FP settings', 'full-picture-analytics-cookie-notice' ),
-				'button_text' 		=> esc_html__( 'Download file', 'full-picture-analytics-cookie-notice' ),
-				'icon'				=> 'dashicons dashicons-download',
-				'el_class'			=> 'button button-secondary fupi_downl_settings_btn',
-				'field_id' 			=> 'downl_settings_btn',
-				'option_arr_id'		=> $option_arr_id,
-				'under field'		=> '<p>' . esc_html__( 'Download a JSON file with WP FP\'s settings.', 'full-picture-analytics-cookie-notice' ) . '</p>'
-			),
-			array(
-				'type'	 			=> 'upload_button',
-				'label' 			=> esc_html__( 'Import WP FP settings', 'full-picture-analytics-cookie-notice' ),
-				'button_text' 		=> esc_html__( 'Upload file', 'full-picture-analytics-cookie-notice' ),
-				'icon'				=> 'dashicons dashicons-upload',
-				'accept_type'		=> 'application/json',
-				'el_class'			=> 'button button-secondary fupi_upload_settings_btn',
-				'field_id' 			=> 'upload_settings_file',
-				'option_arr_id'		=> $option_arr_id,
-				'under field'		=> '<p>' . esc_html__( 'Send a JSON file with WP FP\'s settings.', 'full-picture-analytics-cookie-notice' ) . '</p>'
-			),
-		)
+		'section_title' => esc_html__( 'Backups', 'full-picture-analytics-cookie-notice' ),
 	),
 
 	// OTHER SETTINGS
