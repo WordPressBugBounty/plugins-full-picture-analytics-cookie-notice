@@ -4,7 +4,7 @@ Donate link: https://wpfullpicture.com/
 Tags: woocommerce, consent mode, analytics, privacy, cookies
 Requires at least: 5.4.0
 Tested up to: 6.6.2
-Stable tag: 8.2.0
+Stable tag: 8.2.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -100,7 +100,7 @@ Easily see your website's traffic stats and marketing performance right from you
 
 Create reports with tools like Looker Studio, Databox, or other similar platforms, and view them directly in your WordPress admin area. Plus, if the platform you choose, has an app, then you can also check your reports on your phone. This makes it simple to keep track of visitor trends, marketing costs, and how well your campaigns are doing - all from one place.
 
-## 💎 WP FULL PICTURE PRO -  Advanced Analytics for Professional Marketers
+## 💎 WP FULL PICTURE PRO -  Advanced Solutions for Businesses
 
 WP Full Picture Pro is a powerful tool for businesses. It offers:
 
@@ -201,7 +201,12 @@ No. WP Full Picture is focused on tracking and privacy. To generate a product ca
 
 == Changelog ==
 
-= 8.2.0 (11-12-2024) =
+= 8.2.1 (18-12-2024) =
+
+* [Fix] [Pro] When changing status of an order which contained a coupon code, Advanced Order Tracking for GA 4 gave error
+* [Fix] GDPR Setup Helper no longer shows empty categories when modules are enabled without saved configuration settings
+
+= 8.2.0 (16-12-2024) =
 
 * [New] Free users can now use the ConsentsDB service
 * [New] [GA] [Pro] Enhanced conversions is now also available for GA
@@ -415,30 +420,3 @@ No. WP Full Picture is focused on tracking and privacy. To generate a product ca
 * [Fix] [Twitter] [Free] Remove code for sending email (it does not work in Free)
 * [Other] Clicking the "account" link in WP admin will now redirect to website's account login page
 * [Other] replaced a PO file with a POT file for translations
-
-= 7.1.4 (11-02-2024) =
-
-* [Fix] [Woo] When WooCommerce plugin was deactivated while WooCommerce Tracking module was active, all Gutenberg blocks disappeared
-
-= 7.1.3 (09-02-2024) =
-
-* [Fix] [Meta] Switch to enable enagagement time tracking did not show up
-
-= 7.1.2 (08-02-2024) =
-
-* [New] [Free] Added a button to the Pro pricing page
-* [Fix] Tracking exclusion with a link
-
-= 7.1.1 (07-02-2024) =
-
-* [Fix] [Pro] Removed a piece of code that marked available features as Pro
-
-= 7.1.0 (07-02-2024) =
-
-* [New] Consent Mode v2 is now added to GTM
-* [New] [Consent Banner] Consent banner can now be set to re-appear when a privacy policy is updated or new tracking tools are enabled
-* [Update] [Privacy] Google's Consent Mode updated to v2
-* [Update] [MS Clarity] Improved privacy / consent mode
-* [Update] Simplified UX
-* [Removed] Saving tasks in checklists
-* [Removed] Hiding Pro settings in the free version

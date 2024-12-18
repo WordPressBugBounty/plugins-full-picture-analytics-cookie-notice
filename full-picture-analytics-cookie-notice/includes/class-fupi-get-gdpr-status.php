@@ -861,10 +861,20 @@ class Fupi_compliance_status_checker {
         $this->set_basic_module_info( 'iframeblock', $module_info );
         $is_module_enabled = in_array( 'iframeblock', $this->tools );
         $settings = get_option( 'fupi_iframeblock' );
+        // Default
+        if ( $this->format == 'cdb' ) {
+            $t_iframe_disabl_1 = 'Check if you need to use the Iframes Manager module';
+            $t_iframe_disabl_2 = 'If you embed on your site any content from other websites (YouTube videos, Google Maps, X/Twitter twits, etc.), please configure the Consent Banner module and Iframes Manager module. This way WP Full Picture will be able to load this content according to provided consents.';
+        } else {
+            $t_iframe_disabl_1 = esc_html__( 'Check if you need to use the Iframes Manager module', 'full-picture-analytics-cookie-notice' );
+            $t_iframe_disabl_2 = esc_html__( 'If you embed on your site any content from other websites (YouTube videos, Google Maps, X/Twitter twits, etc.), please configure the Consent Banner module and Iframes Manager module. This way WP Full Picture will be able to load this content according to provided consents.', 'full-picture-analytics-cookie-notice' );
+        }
+        $this->data['iframeblock']['pre-setup'][] = [$t_iframe_disabl_1, $t_iframe_disabl_2];
         if ( $is_module_enabled ) {
             $add_extra_info = false;
             // Automatic iframe rules
             if ( !empty( $settings['auto_rules'] ) && is_array( $settings['auto_rules'] ) ) {
+                unset($this->data['iframeblock']['pre-setup']);
                 $this->req_consent_banner = 'yes';
                 $add_extra_info = true;
                 if ( $this->format == 'cdb' ) {
@@ -936,16 +946,6 @@ class Fupi_compliance_status_checker {
                 }
                 $this->data['iframeblock']['pp comments'][] = $t_iframe_7;
             }
-            // If module is disabled
-        } else {
-            if ( $this->format == 'cdb' ) {
-                $t_iframe_disabl_1 = 'Check if you need to enable the Iframes Manager module';
-                $t_iframe_disabl_2 = 'If you embed on your site any content from other websites (YouTube videos, Google Maps, X/Twitter twits, etc.), please configure the Consent Banner module and Iframes Manager module. This way WP Full Picture will be able to load this content according to provided consents.';
-            } else {
-                $t_iframe_disabl_1 = esc_html__( 'Check if you need to enable the Iframes Manager module', 'full-picture-analytics-cookie-notice' );
-                $t_iframe_disabl_2 = esc_html__( 'If you embed on your site any content from other websites (YouTube videos, Google Maps, X/Twitter twits, etc.), please configure the Consent Banner module and Iframes Manager module. This way WP Full Picture will be able to load this content according to provided consents.', 'full-picture-analytics-cookie-notice' );
-            }
-            $this->data['iframeblock']['pre-setup'][] = [$t_iframe_disabl_1, $t_iframe_disabl_2];
         }
     }
 
@@ -1083,9 +1083,24 @@ class Fupi_compliance_status_checker {
         $this->set_basic_module_info( 'blockscr', $module_info );
         $is_module_enabled = in_array( 'blockscr', $this->tools );
         $settings = get_option( 'fupi_blockscr' );
+        // defaults
+        if ( $this->format == 'cdb' ) {
+            $t_block_14 = 'Check if you need to use the Tracking Tools Manager module';
+            $t_block_15 = 'Tracking Tools Manager let\'s you load tracking tools installed outside WP Full Picture according to visitors\' consents. Use it if you installed any tracking tool with a different plugin. If you are unsure, check your website for cookies of other tracking tools with <a href="https://2gdpr.com">2GDPR.com</a>. If you are unsure how to use it, read these <a href="https://wpfullpicture.com/support/documentation/how-to-use-2gdpr-com-to-track-your-visitors-according-to-gdpr/">short instructions</a>.';
+        } else {
+            $t_block_14 = esc_html__( 'Check if you need to use the Tracking Tools Manager module', 'full-picture-analytics-cookie-notice' );
+            $t_block_15 = sprintf(
+                esc_html__( 'Tracking Tools Manager let\'s you load tracking tools installed outside WP Full Picture according to visitors\' consents. Use it if you installed any tracking tool with a different plugin. If you are unsure, check your website for cookies of other tracking tools with %1$s. If you are unsure how to use it, read these %2$sshort instructions%3$s.', 'full-picture-analytics-cookie-notice' ),
+                '<a href="https://2gdpr.com">2GDPR.com</a>',
+                '<a href="https://wpfullpicture.com/support/documentation/how-to-use-2gdpr-com-to-track-your-visitors-according-to-gdpr/">',
+                '</a>'
+            );
+        }
+        $this->data['blockscr']['pre-setup'][] = [$t_block_14, $t_block_15];
         if ( $is_module_enabled ) {
             $add_extra_info = false;
             if ( !empty( $settings['auto_rules'] ) && is_array( $settings['auto_rules'] ) ) {
+                unset($this->data['blockscr']['pre-setup']);
                 $auto_rules_str = join( ', ', str_replace( '_', ' ', $settings['auto_rules'] ) );
                 if ( $this->format == 'cdb' ) {
                     $t_auto_1 = 'Tracking plugins loaded according to settings in the consent banner:';
@@ -1118,6 +1133,7 @@ class Fupi_compliance_status_checker {
                 }
             }
             if ( !empty( $settings['blocked_scripts'] ) && is_array( $settings['blocked_scripts'] ) ) {
+                unset($this->data['blockscr']['pre-setup']);
                 $this->req_consent_banner = 'yes';
                 $add_extra_info = true;
                 foreach ( $settings['blocked_scripts'] as $rules ) {
@@ -1202,35 +1218,20 @@ class Fupi_compliance_status_checker {
                     $this->data['blockscr']['setup'][] = [$entry_status, $text, $extra];
                 }
             }
+            if ( $this->format == 'cdb' ) {
+                $t_block_11 = 'Add information in your privacy policy about additional tracking tools that you use, what data they collect, how is the data used and who is it shared with.';
+                $t_block_12 = 'This module does not manage any tracking tools';
+                $t_block_13 = 'Are you sure this module needs to stay enabled?';
+            } else {
+                $t_block_11 = esc_html__( 'Add information in your privacy policy about additional tracking tools that you use, what data they collect, how is the data used and who is it shared with.', 'full-picture-analytics-cookie-notice' );
+                $t_block_12 = esc_html__( 'This module does not manage any tracking tools', 'full-picture-analytics-cookie-notice' );
+                $t_block_13 = esc_html__( 'Are you sure this module needs to stay enabled?', 'full-picture-analytics-cookie-notice' );
+            }
             if ( $add_extra_info ) {
-                if ( $this->format == 'cdb' ) {
-                    $t_block_11 = 'Add information in your privacy policy about additional tracking tools that you use, what data they collect, how is the data used and who is it shared with.';
-                    $t_block_12 = 'This module does not manage any tracking tools';
-                    $t_block_13 = 'Are you sure this module needs to stay enabled?';
-                } else {
-                    $t_block_11 = esc_html__( 'Add information in your privacy policy about additional tracking tools that you use, what data they collect, how is the data used and who is it shared with.', 'full-picture-analytics-cookie-notice' );
-                    $t_block_12 = esc_html__( 'This module does not manage any tracking tools', 'full-picture-analytics-cookie-notice' );
-                    $t_block_13 = esc_html__( 'Are you sure this module needs to stay enabled?', 'full-picture-analytics-cookie-notice' );
-                }
                 $this->data['blockscr']['pp comments'][] = $t_block_11;
             } else {
                 $this->data['blockscr']['setup'][] = ['ok', $t_block_12, $t_block_13];
             }
-            // If module is disabled
-        } else {
-            if ( $this->format == 'cdb' ) {
-                $t_block_14 = 'Check if you need to enable the Tracking Tools Manager module';
-                $t_block_15 = 'Tracking Tools Manager let\'s you load tracking tools installed outside WP Full Picture according to visitors\' consents. Use it if you installed any tracking tool with a different plugin. If you are unsure, check your website for cookies of other tracking tools with <a href="https://2gdpr.com">2GDPR.com</a>. If you are unsure how to use it, read these <a href="https://wpfullpicture.com/support/documentation/how-to-use-2gdpr-com-to-track-your-visitors-according-to-gdpr/">short instructions</a>.';
-            } else {
-                $t_block_14 = esc_html__( 'Check if you need to enable the Tracking Tools Manager module', 'full-picture-analytics-cookie-notice' );
-                $t_block_15 = sprintf(
-                    esc_html__( 'Tracking Tools Manager let\'s you load tracking tools installed outside WP Full Picture according to visitors\' consents. Use it if you installed any tracking tool with a different plugin. If you are unsure, check your website for cookies of other tracking tools with %1$s. If you are unsure how to use it, read these %2$sshort instructions%3$s.', 'full-picture-analytics-cookie-notice' ),
-                    '<a href="https://2gdpr.com">2GDPR.com</a>',
-                    '<a href="https://wpfullpicture.com/support/documentation/how-to-use-2gdpr-com-to-track-your-visitors-according-to-gdpr/">',
-                    '</a>'
-                );
-            }
-            $this->data['blockscr']['pre-setup'][] = [$t_block_14, $t_block_15];
         }
     }
 
@@ -1281,14 +1282,10 @@ class Fupi_compliance_status_checker {
                 $t_cook_7 = 'Consent banner is set to start tracking visitors from all countries only after they consent to tracking (Opt-in mode).';
                 $t_cook_8 = 'Visitors are not asked for new consent when the privacy policy text changes and/or when new tracking modules are enabled.';
                 $t_cook_9 = 'Enable it in the consent banner\'s settings';
-                $t_cook_10 = 'Saving proofs of visitor\'s tracking consents is disabled.';
-                $t_cook_11 = 'Enable saving proofs of consent in the Consent Banner > Saving Consents (Pro only). You may need it during audits or investigations by authorities or data protection agencies, if a user complains about being tracked without permission, in legal cases where privacy issues are involved.';
             } else {
                 $t_cook_7 = esc_html__( 'Consent banner is set to start tracking visitors from all countries only after they consent to tracking (Opt-in mode).', 'full-picture-analytics-cookie-notice' );
                 $t_cook_8 = esc_html__( 'Visitors are not asked for new consent when the privacy policy text changes and/or when new tracking modules are enabled.', 'full-picture-analytics-cookie-notice' );
                 $t_cook_9 = esc_html__( 'Enable it in the consent banner\'s settings', 'full-picture-analytics-cookie-notice' );
-                $t_cook_10 = esc_html__( 'Saving proofs of visitor\'s tracking consents is disabled.', 'full-picture-analytics-cookie-notice' );
-                $t_cook_11 = esc_html__( 'Enable saving proofs of consent in the Consent Banner > Saving Consents (Pro only). You may need it during audits or investigations by authorities or data protection agencies, if a user complains about being tracked without permission, in legal cases where privacy issues are involved.', 'full-picture-analytics-cookie-notice' );
             }
             if ( in_array( 'geo', $this->tools ) ) {
                 $this->data['cook']['setup'] = array_merge( $this->data['cook']['setup'], $default_geo_texts );
@@ -1300,8 +1297,6 @@ class Fupi_compliance_status_checker {
                 $status = 'alert';
             }
             $this->data['cook']['setup'][] = ['alert', $t_cook_8, $t_cook_9];
-            // No saving consents
-            $this->data['cook']['setup'][] = ['warning', $t_cook_10, $t_cook_11];
             // check user's settings
         } else {
             if ( in_array( 'geo', $this->tools ) ) {
@@ -1666,26 +1661,33 @@ class Fupi_compliance_status_checker {
             $t_cook_55 = esc_html__( 'fp_current_session - an optional cookie. It requires consent to tracking statistics. In the free version it does not hold any value and is only used to check if a new session has started. In the Pro version it holds the number and type of pages that a visitor viewed in a session, domain of the traffic source, URL parameters of the first landing page in a session and visitor\'s lead score. Expires when a visitor is inactive for 30 minutes.', 'full-picture-analytics-cookie-notice' );
         }
         $pp_cookies_info = [$t_cook_53, [$t_cook_54, $t_cook_55]];
+        // Saving consents
+        // The data is from fupi_cook but shows in a separate section
+        $cdb_section_title = ( $this->format == 'cdb' ? 'Saving consents' : esc_html__( 'Saving consents', 'full-picture-analytics-cookie-notice' ) );
+        $this->data['cdb'] = [
+            'module_name' => $cdb_section_title,
+            'setup'       => [],
+        ];
+        // Default
+        if ( $this->format == 'cdb' ) {
+            $t_cook_10 = 'Saving proofs of visitor\'s tracking consents is disabled.';
+            $t_cook_11 = 'Enable saving proofs of consent in the Consent Banner > Saving Consents. You may need it during audits or investigations by authorities or data protection agencies, if a user complains about being tracked without permission, in legal cases where privacy issues are involved.';
+        } else {
+            $t_cook_10 = esc_html__( 'Saving proofs of visitor\'s tracking consents is disabled.', 'full-picture-analytics-cookie-notice' );
+            $t_cook_11 = esc_html__( 'Enable saving proofs of consent in the Consent Banner > Saving Consents. You may need it during audits or investigations by authorities or data protection agencies, if a user complains about being tracked without permission, in legal cases where privacy issues are involved.', 'full-picture-analytics-cookie-notice' );
+        }
+        $is_cdb_enabled = false;
         if ( !empty( $settings ) ) {
-            // Saving consents
             if ( isset( $settings['cdb_key'] ) && !empty( $priv_policy_url ) ) {
                 if ( $this->format == 'cdb' ) {
                     $t_cook_56 = 'Saving proofs of visitor\'s tracking consents is enabled.';
                 } else {
                     $t_cook_56 = esc_html__( 'Saving proofs of visitor\'s tracking consents is enabled.', 'full-picture-analytics-cookie-notice' );
                 }
-                $this->data['cook']['setup'][] = ['ok', $t_cook_56];
-            } else {
-                if ( $this->format == 'cdb' ) {
-                    $t_cook_57 = 'You are not collecting records of consents.';
-                    $t_cook_58 = 'Enable saving proofs of consent in the Consent Banner > Records of Consents. You may need it during audits or investigations by authorities or data protection agencies, if a user complains about being tracked without permission, in legal cases where privacy issues are involved.';
-                } else {
-                    $t_cook_57 = esc_html__( 'You are not collecting records of consents.', 'full-picture-analytics-cookie-notice' );
-                    $t_cook_58 = esc_html__( 'Enable saving proofs of consent in the Consent Banner > Records of Consents. Under Article 7 GDPR, the controller must be able to demonstrate that they have obtained data subjects’ valid consent, especially whether it was informed, freely given, unambiguous and specific.', 'full-picture-analytics-cookie-notice' );
-                }
-                $status = 'alert';
-                $this->data['cook']['setup'][] = ['alert', $t_cook_57, $t_cook_58];
+                $is_cdb_enabled = true;
+                $this->data['cdb']['setup'][] = ['ok', $t_cook_56];
             }
+            // Back to cookie notice settings
             if ( isset( $settings['cdb_key'] ) ) {
                 if ( $this->format == 'cdb' ) {
                     $t_cook_59 = 'cdb_id - a necessary cookie. It is saved after visitors agree or disagree to tracking in the opt-in banner. It stores a random device identifier used to match consents saved in the remote database with the device. Does not expire.';
@@ -1694,6 +1696,9 @@ class Fupi_compliance_status_checker {
                 }
                 $pp_cookies_info[1][] = $t_cook_59;
             }
+        }
+        if ( !$is_cdb_enabled ) {
+            $this->data['cdb']['setup'][] = ['alert', $t_cook_10, $t_cook_11];
         }
         $this->data['cook']['pp comments'][] = $pp_cookies_info;
         // Button which toggles consent banner

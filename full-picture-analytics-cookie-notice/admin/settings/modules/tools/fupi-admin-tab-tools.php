@@ -317,7 +317,7 @@ $privacy_fields = array(
         'el_class'       => 'fupi_condition',
         'el_data_target' => 'fupi_cook_cond',
         'option_arr_id'  => $option_arr_id,
-        'popup'          => '<p>' . esc_html__( 'This module helps you track your visitors according to privacy regulations and save their tracking choices in a cloud database (Pro only).', 'full-picture-analytics-cookie-notice' ) . '</p>
+        'popup'          => '<p>' . esc_html__( 'This module helps you track your visitors according to privacy regulations and save their tracking choices in a cloud database.', 'full-picture-analytics-cookie-notice' ) . '</p>
 			<p>' . esc_html__( 'Read this article if you do not know if you need it', 'full-picture-analytics-cookie-notice' ) . ' <a href="https://wpfullpicture.com/support/documentation/countries-that-require-opt-in-or-opt-out-to-cookies/" target="_blank" class="button-secondary">' . esc_html__( 'Read now', 'full-picture-analytics-cookie-notice' ) . '</a></p>',
     ),
     array(
