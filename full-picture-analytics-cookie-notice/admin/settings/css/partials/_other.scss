@@ -107,7 +107,7 @@
 	}
 }
 
-// CUSTOM TRACKING BUILDER
+// CUSTOM EVENTS BUILDER
 
 .fupi_events_builder{
 	.fupi_field_type_button{
@@ -145,6 +145,33 @@
 	.fupi_r3_btns{
 		align-self: center;
 	}
+}
+
+// CUSTOM SCRIPTS MODULE
+
+.fupi_r3_scr{
+	.fupi_field_adv_trigger_wrap{
+		background: #e8f0f5;
+		padding: 10px;
+		margin-bottom: 10px;
+		border-radius: 5px;
+	}
+}
+
+.fupi_r3_scr.fupi_cscr_missing_atrig{
+	border: 2px solid #b75216;
+	.fupi_field_adv_trigger_wrap{
+		background: #ffe6c1;
+	}
+}
+.fupi_cscr_missing_atrig_msg{
+	color: lightyellow;
+    padding: 10px;
+    border-radius: 3px;
+    background-color: #b75216;
+    margin-bottom: -5px;
+    z-index: 10;
+    position: relative;
 }
 
 // STATUS PAGE

@@ -38,6 +38,7 @@ class Fupi_compliance_status_checker {
         $this->check_safefonts_module();
         $this->check_woo_module();
         $this->check_other_modules();
+        $this->add_extra_info_section();
         $this->is_cons_banner_req();
         $this->output();
     }
@@ -57,16 +58,17 @@ class Fupi_compliance_status_checker {
                 $t_warning_1 = esc_html__( 'You may need to use the Consent Banner module on your website.', 'full-picture-analytics-cookie-notice' );
                 $t_warning_2 = sprintf( esc_html__( 'Enable it if any of the tracking tools installed on your website track personaly identifiable information, your website loads content from other sites (YouTube video, maps, etc.) or gives warnings in %1$s.', 'full-picture-analytics-cookie-notice' ), '<a href="https://2gdpr.com" target="_blank">2GDPR.com</a>' );
             }
+            $cook_module_name = ( $this->format == 'cdb' ? 'Consent Banner' : $this->modules_names['cook'] );
             switch ( $this->req_consent_banner ) {
                 case 'yes':
                     $cook_data = [
-                        'module_name' => $this->modules_names['cook'],
+                        'module_name' => $cook_module_name,
                         'setup'       => [['alert', $t_alert_1, $t_alert_2]],
                     ];
                     break;
                 default:
                     $cook_data = [
-                        'module_name' => $this->modules_names['cook'],
+                        'module_name' => $cook_module_name,
                         'setup'       => [['warning', $t_warning_1, $t_warning_2]],
                     ];
                     break;
@@ -465,6 +467,18 @@ class Fupi_compliance_status_checker {
                     }
                     break;
             }
+        }
+    }
+
+    private function add_extra_info_section() {
+        // do not send to CDB - output only on the settings page
+        if ( $this->format !== 'cdb' ) {
+            $this->data['other'] = [
+                'module_name'        => esc_attr__( 'Other recommendations', 'full-picture-analytics-cookie-notice' ),
+                'setup'              => [],
+                'opt-setup'          => [[esc_attr__( 'Google reCaptcha warning', 'full-picture-analytics-cookie-notice' ), esc_attr__( 'Google reCaptcha does not comply with GDPR and there is no known method of making it comply with it. Make sure to replace it with a GDPR compliant solution, for example Cloudflare Turnstile (free and paid) or Friendly Captcha (paid for commercial use). Attention. You may read online, that there are ways to make Google reCaptcha compatible with GDPR. This is not true. The proposed solution of conditionally loading reCaptcha\'s scripts prevents access to content if visitors do not agree to tracking, which is against GDPR.', 'full-picture-analytics-cookie-notice' )]],
+                'tracked_extra_data' => [],
+            ];
         }
     }
 

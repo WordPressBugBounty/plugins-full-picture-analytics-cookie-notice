@@ -174,8 +174,8 @@ foreach ( $blockscr_rules as $scr_data ) {
             $pattern, 
             function( $matches ) use ( $scr_id, $force_load, $permissions, $geo ) {
                 return '<!--noptimize-->
-                <script id="'.$scr_id .'_temp" type="text/plain" data-no-optimize="1">' . $matches[1] . '</script>
-                <script data-no-optimize="1">fp.blocked_scripts.push( [ false, "empty","' . $scr_id . '", ' . $force_load . ', ' . $permissions . ', ' . $geo . ', \'script\' ] )</script>
+                <script id="'.$scr_id .'_temp" type="text/plain" data-no-optimize="1" nowprocket>' . $matches[1] . '</script>
+                <script data-no-optimize="1" nowprocket>fp.blocked_scripts.push( [ false, "empty","' . $scr_id . '", ' . $force_load . ', ' . $permissions . ', ' . $geo . ', \'script\' ] )</script>
                 <!--/noptimize-->';
             }, 
             $html
@@ -222,7 +222,7 @@ foreach ( $blockscr_rules as $scr_data ) {
                 $atts = '"' . trim($atts) . '"';
                 if ( empty( $atts ) ) $atts = 'empty';
                 
-                return '<!--noptimize--><script data-no-optimize="1">fp.blocked_scripts.push( [ ' . $url . ', ' . $atts . ', "' . $scr_id . '", ' . $force_load . ', ' . $permissions . ', ' . $geo . ', "' . $type . '" ] )</script><!--/noptimize-->';
+                return '<!--noptimize--><script data-no-optimize="1" nowprocket>fp.blocked_scripts.push( [ ' . $url . ', ' . $atts . ', "' . $scr_id . '", ' . $force_load . ', ' . $permissions . ', ' . $geo . ', "' . $type . '" ] )</script><!--/noptimize-->';
             },
             $html
         );

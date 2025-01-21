@@ -40,6 +40,14 @@ $sections = array(
 					<h3>' . esc_html__('Read this if you run dynamic ad campaigns!','full-picture-analytics-cookie-notice') . '</h3>
 					<p>' . esc_html__('If you enable this option, then your tracking tools will report that a parent product was purchased - and not its variant. If you run dynamic ad campaigns (with ads dynamically generated with a product feed), you need to make sure, that the main product data is in your product feeds, and not the data of the variants.','full-picture-analytics-cookie-notice') . '</p>',
 			),
+			// array(
+			// 	'type' 				=> 'toggle',
+			// 	'label' 			=> esc_html__('Send additional "product view" event when user selects a variant','full-picture-analytics-cookie-notice'),
+			// 	'class'				=> 'fupi_sub',
+			// 	'field_id' 			=> 'extra_variant_product_views',
+			// 	'option_arr_id'		=> $option_arr_id,
+			// 	'popup'				=> esc_html__('The event will contain the data of the selected variant and will be sent only once per-variant (multiple product views of the same variant will not be sent).','full-picture-analytics-cookie-notice'),
+			// ),
 			array(
 				'type' 				=> 'toggle',
 				'label' 			=> esc_html__('Do not track product views after a page is refreshed','full-picture-analytics-cookie-notice'),

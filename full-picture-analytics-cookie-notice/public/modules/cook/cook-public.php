@@ -45,9 +45,20 @@ class Fupi_COOK_public {
             $priv_policy_id,
             false
         ) : null );
+        // check if the banner should be hidden on the current page
+        $hide_on_this_page = is_privacy_policy();
+        if ( !$hide_on_this_page ) {
+            if ( isset( $this->settings['hide_on_pages'] ) && is_array( $this->settings['hide_on_pages'] ) ) {
+                $current_id = get_the_ID();
+                if ( !empty( $current_id ) && in_array( $current_id, $this->settings['hide_on_pages'] ) ) {
+                    $hide_on_this_page = true;
+                }
+            }
+        }
         // BUILD BASIC OBJECT
         $fp['notice'] = [
             'enabled'               => true,
+            'display_notice'        => !$hide_on_this_page,
             'gtag_no_cookie_mode'   => isset( $this->settings['gtag_no_cookie_mode'] ),
             'url_passthrough'       => isset( $this->settings['url_passthrough'] ),
             'ask_for_consent_again' => isset( $this->settings['ask_for_consent_again'] ),

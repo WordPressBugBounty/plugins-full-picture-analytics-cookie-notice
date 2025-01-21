@@ -225,6 +225,31 @@ jQuery( document ).ready( function($) {
 					placeholder: $select2.data('placeholder_text')
 				});
 
+			} else if ( $select2.hasClass('fupi_page_search') ) {
+
+				$select2.select2({
+					ajax: {
+						url: ajaxurl,
+						dataType: 'json',
+						delay: 250,
+						data: function (params) {
+							return {
+								q: params.term,
+								action: 'fupi_search_pages',
+							};
+						},
+						processResults: function(data) {
+							return {
+								results: data
+							};
+						},
+						cache: true
+					},
+					width: '100%',
+					minimumInputLength: 2,
+					placeholder: $select2.data('placeholder_text')
+				});
+	
 			} else {
 				$select2.select2();
 			}

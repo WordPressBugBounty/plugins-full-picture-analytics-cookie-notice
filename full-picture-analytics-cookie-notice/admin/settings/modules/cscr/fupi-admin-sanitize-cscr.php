@@ -42,6 +42,13 @@ if ( ! empty( $input ) ) foreach( $input as $key => $value ) {
 							$clean_val[$i]['method'] = sanitize_key( $section['method'] );
 							$clean_val[$i]['countries'] = trim( sanitize_text_field( $section['countries'] ) );
 						}
+
+						if ( ! empty( $section['not_installer'] ) ) $clean_val[$i]['not_installer'] = '1';
+
+						if ( ! empty( $section['adv_trigger'] ) && ! empty( $section['adv_trigger']['atrig_id'] ) ) {
+							$clean_val[$i]['adv_trigger']['atrig_id'] = sanitize_key( $section['adv_trigger']['atrig_id'] );
+							$clean_val[$i]['adv_trigger']['repeat'] = empty( $section['adv_trigger']['repeat'] ) ? 'no' :  sanitize_key( $section['adv_trigger']['repeat'] );
+						};
 					}
 				};
 			break;

@@ -85,7 +85,7 @@ $basic_fields = array_merge( $basic_fields, array(
 					'excl'				=> esc_html__('All except', 'full-picture-analytics-cookie-notice'),
 					'incl'				=> esc_html__('Only in', 'full-picture-analytics-cookie-notice'),
 				),
-				'wrap_class'		=> 'fupi_col_20',
+				'class'		=> 'fupi_col_20',
 			),
 			array(
 				'type'				=> 'text',

@@ -34,6 +34,6 @@ if ( is_array( $scripts_a ) && isset( $scripts_a['fupi_footer_scripts'] ) && is_
         $geo = 0;
         // OUTPUT
         $output = "if ( FP.isAllowedToLoad_basic( '{$scr_id}', {$force_load}, {$permissions}, {$geo} ) ) {\r\n\t\t\tFP.loadScript('{$scr_id}');\r\n\t\t} else {\r\n\t\t\tfp.blocked_scripts.push( [ false, 'empty', '{$scr_id}', {$force_load}, {$permissions}, {$geo} ] );\r\n\t\t}";
-        echo $html_before_script . "<!--noptimize--><script id='{$scr_id}_temp' type='text/plain' data-no-optimize=\"1\">" . html_entity_decode( $script_data['scr'], ENT_QUOTES ) . '</script><script class="fupi_cscr_head" data-no-optimize="1">' . $output . '</script><!--/noptimize-->';
+        echo $html_before_script . "<!--noptimize--><script id='{$scr_id}_temp' type='text/plain' data-no-optimize=\"1\" nowprocket>" . html_entity_decode( $script_data['scr'], ENT_QUOTES ) . '</script><script class="fupi_cscr_head" data-no-optimize="1" nowprocket>' . $output . '</script><!--/noptimize-->';
     }
 }

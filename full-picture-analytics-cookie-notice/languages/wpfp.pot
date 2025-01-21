@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WP Full Picture\n"
 "Report-Msgid-Bugs-To: Translator Name <translations@example.com>\n"
-"POT-Creation-Date: 2024-12-18 14:04+0100\n"
+"POT-Creation-Date: 2025-01-21 14:28+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Your Name <you@example.com>\n"
 "Language-Team: WP Full Picture Team <hello@wpfullpicture.com>\n"
@@ -25,20 +25,20 @@ msgstr ""
 "X-Generator: Poedit 3.5\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: admin/class-fupi-admin.php:206
+#: admin/class-fupi-admin.php:206 admin/class-fupi-admin.php:232
 msgid "You do not have sufficient permissions to access this page."
 msgstr ""
 
-#: admin/class-fupi-admin.php:420
+#: admin/class-fupi-admin.php:444
 #: admin/settings/modules/reports/fupi-admin-tab-reports.php:9
 msgid "Reports"
 msgstr ""
 
-#: admin/class-fupi-admin.php:905
+#: admin/class-fupi-admin.php:907
 msgid "Enable WooCommerce plugin and WooCommerce Tracking module."
 msgstr ""
 
-#: admin/class-fupi-admin.php:997
+#: admin/class-fupi-admin.php:999
 #, php-format
 msgid ""
 "WP Full Picture plugin has detected that you are using OceanWP theme. "
@@ -46,31 +46,31 @@ msgid ""
 "WordPress theme customizer. %1$sLearn what to do about it%2$s."
 msgstr ""
 
-#: admin/class-fupi-admin.php:1105 admin/class-fupi-admin.php:1126
-#: admin/class-fupi-admin.php:1148 admin/class-fupi-admin.php:1169
-#: admin/class-fupi-admin.php:1257
+#: admin/class-fupi-admin.php:1153 admin/class-fupi-admin.php:1174
+#: admin/class-fupi-admin.php:1196 admin/class-fupi-admin.php:1217
+#: admin/class-fupi-admin.php:1305
 msgid "Permission denied"
 msgstr ""
 
-#: admin/class-fupi-admin.php:1109 admin/class-fupi-admin.php:1130
-#: admin/class-fupi-admin.php:1261
+#: admin/class-fupi-admin.php:1157 admin/class-fupi-admin.php:1178
+#: admin/class-fupi-admin.php:1309
 msgid "Backup file not found"
 msgstr ""
 
-#: admin/class-fupi-admin.php:1116
+#: admin/class-fupi-admin.php:1164
 msgid "File deleted"
 msgstr ""
 
-#: admin/class-fupi-admin.php:1118 admin/class-fupi-admin.php:1140
-#: admin/class-fupi-admin.php:1265
+#: admin/class-fupi-admin.php:1166 admin/class-fupi-admin.php:1188
+#: admin/class-fupi-admin.php:1313
 msgid "File not found"
 msgstr ""
 
-#: admin/class-fupi-admin.php:1161
+#: admin/class-fupi-admin.php:1209
 msgid "There was an error saving the backup file"
 msgstr ""
 
-#: admin/class-fupi-admin.php:1178
+#: admin/class-fupi-admin.php:1226
 msgid "No settings data received"
 msgstr ""
 
@@ -254,9 +254,9 @@ msgstr ""
 #: admin/customizer/fupi-customizer-settings.php:456
 #: admin/customizer/fupi-customizer-settings.php:1324
 #: admin/settings/modules/blockscr/fupi-admin-tab-blockscr.php:53
-#: admin/settings/modules/cscr/fupi-admin-tab-cscr.php:63
+#: admin/settings/modules/cscr/fupi-admin-tab-cscr.php:69
 #: admin/settings/modules/iframeblock/fupi-admin-tab-iframeblock.php:78
-#: includes/class-fupi-get-gdpr-status.php:2171
+#: includes/class-fupi-get-gdpr-status.php:2195
 #: public/modules/cook/fupi-display-cookie-notice.php:71
 msgid "Statistics"
 msgstr ""
@@ -264,9 +264,9 @@ msgstr ""
 #: admin/customizer/fupi-customizer-settings.php:457
 #: admin/customizer/fupi-customizer-settings.php:1376
 #: admin/settings/modules/blockscr/fupi-admin-tab-blockscr.php:65
-#: admin/settings/modules/cscr/fupi-admin-tab-cscr.php:75
+#: admin/settings/modules/cscr/fupi-admin-tab-cscr.php:81
 #: admin/settings/modules/iframeblock/fupi-admin-tab-iframeblock.php:90
-#: includes/class-fupi-get-gdpr-status.php:2173
+#: includes/class-fupi-get-gdpr-status.php:2197
 #: public/modules/cook/fupi-display-cookie-notice.php:73
 msgid "Personalisation"
 msgstr ""
@@ -274,10 +274,10 @@ msgstr ""
 #: admin/customizer/fupi-customizer-settings.php:458
 #: admin/customizer/fupi-customizer-settings.php:1428
 #: admin/settings/modules/blockscr/fupi-admin-tab-blockscr.php:59
-#: admin/settings/modules/cscr/fupi-admin-tab-cscr.php:69
+#: admin/settings/modules/cscr/fupi-admin-tab-cscr.php:75
 #: admin/settings/modules/iframeblock/fupi-admin-tab-iframeblock.php:84
 #: admin/settings/modules/tools/fupi-admin-descr_tools.php:18
-#: includes/class-fupi-get-gdpr-status.php:2175
+#: includes/class-fupi-get-gdpr-status.php:2199
 #: public/modules/cook/fupi-display-cookie-notice.php:75
 msgid "Marketing"
 msgstr ""
@@ -450,8 +450,8 @@ msgid "Border style"
 msgstr ""
 
 #: admin/customizer/fupi-customizer-settings.php:875
-#: admin/settings/fupi-admin-fields-html.php:529
-#: admin/settings/modules/main/fupi-admin-tab-main.php:132
+#: admin/settings/fupi-admin-fields-html.php:547
+#: admin/settings/modules/main/fupi-admin-tab-main.php:175
 msgid "None"
 msgstr ""
 
@@ -525,7 +525,7 @@ msgid "This text will show up at the top of the consent's panel."
 msgstr ""
 
 #: admin/customizer/fupi-customizer-settings.php:1050
-#: includes/class-fupi-get-gdpr-status.php:2162
+#: includes/class-fupi-get-gdpr-status.php:2186
 #: public/modules/cook/fupi-display-cookie-notice.php:60
 msgid ""
 "We use cookies to provide you with the best browsing experience, "
@@ -545,7 +545,7 @@ msgid ""
 msgstr ""
 
 #: admin/customizer/fupi-customizer-settings.php:1067
-#: includes/class-fupi-get-gdpr-status.php:2163
+#: includes/class-fupi-get-gdpr-status.php:2187
 #: public/modules/cook/fupi-display-cookie-notice.php:62
 msgid "Agree"
 msgstr ""
@@ -576,7 +576,7 @@ msgid "\"Statistics only\" button"
 msgstr ""
 
 #: admin/customizer/fupi-customizer-settings.php:1111
-#: includes/class-fupi-get-gdpr-status.php:2164
+#: includes/class-fupi-get-gdpr-status.php:2188
 #: public/modules/cook/fupi-display-cookie-notice.php:63
 msgid "I understand"
 msgstr ""
@@ -602,7 +602,7 @@ msgid ""
 msgstr ""
 
 #: admin/customizer/fupi-customizer-settings.php:1170
-#: includes/class-fupi-get-gdpr-status.php:2167
+#: includes/class-fupi-get-gdpr-status.php:2191
 #: public/modules/cook/fupi-display-cookie-notice.php:66
 msgid "Agree to selected"
 msgstr ""
@@ -612,20 +612,20 @@ msgid "\"Agree to selected\" button"
 msgstr ""
 
 #: admin/customizer/fupi-customizer-settings.php:1196
-#: includes/class-fupi-get-gdpr-status.php:2165
+#: includes/class-fupi-get-gdpr-status.php:2189
 #: public/modules/cook/fupi-display-cookie-notice.php:64
 msgid "Decline"
 msgstr ""
 
 #: admin/customizer/fupi-customizer-settings.php:1200
-#: includes/class-fupi-get-gdpr-status.php:2216
+#: includes/class-fupi-get-gdpr-status.php:2240
 msgid "\"Decline\" button"
 msgstr ""
 
 #: admin/customizer/fupi-customizer-settings.php:1222
 #: admin/settings/modules/reports/fupi-admin-tab-reports.php:91
 #: admin/settings/pages/parts/fupi-page_part-side-nav.php:43
-#: includes/class-fupi-get-gdpr-status.php:2166
+#: includes/class-fupi-get-gdpr-status.php:2190
 #: public/modules/cook/fupi-display-cookie-notice.php:65
 #: public/modules/cook/fupi-display-cookie-notice.php:358
 msgid "Settings"
@@ -637,7 +637,7 @@ msgstr ""
 
 #: admin/customizer/fupi-customizer-settings.php:1248
 #: admin/settings/pages/parts/fupi-page_part-offscreen.php:6
-#: includes/class-fupi-get-gdpr-status.php:2168
+#: includes/class-fupi-get-gdpr-status.php:2192
 #: public/modules/cook/fupi-display-cookie-notice.php:67
 msgid "Return"
 msgstr ""
@@ -679,7 +679,7 @@ msgid "\"Statistics\" section title"
 msgstr ""
 
 #: admin/customizer/fupi-customizer-settings.php:1350
-#: includes/class-fupi-get-gdpr-status.php:2172
+#: includes/class-fupi-get-gdpr-status.php:2196
 #: public/modules/cook/fupi-display-cookie-notice.php:72
 msgid ""
 "I want to help you make this site better so I will provide you with data "
@@ -702,7 +702,7 @@ msgid "\"Personalisation\" section title"
 msgstr ""
 
 #: admin/customizer/fupi-customizer-settings.php:1402
-#: includes/class-fupi-get-gdpr-status.php:2174
+#: includes/class-fupi-get-gdpr-status.php:2198
 #: public/modules/cook/fupi-display-cookie-notice.php:74
 msgid ""
 "I want to have the best experience on this site so I agree to saving my "
@@ -719,7 +719,7 @@ msgid "\"Marketing\" section title"
 msgstr ""
 
 #: admin/customizer/fupi-customizer-settings.php:1454
-#: includes/class-fupi-get-gdpr-status.php:2176
+#: includes/class-fupi-get-gdpr-status.php:2200
 #: public/modules/cook/fupi-display-cookie-notice.php:76
 msgid ""
 "I want to see ads with your offers, coupons and exclusive deals rather "
@@ -773,16 +773,20 @@ msgstr ""
 msgid "Requires"
 msgstr ""
 
-#: admin/settings/fupi-admin-fields-html.php:313
+#: admin/settings/fupi-admin-fields-html.php:312
 msgid "Search users..."
 msgstr ""
 
-#: admin/settings/fupi-admin-fields-html.php:544
-#: admin/settings/fupi-admin-fields-html.php:583
+#: admin/settings/fupi-admin-fields-html.php:331
+msgid "Search pages..."
+msgstr ""
+
+#: admin/settings/fupi-admin-fields-html.php:562
+#: admin/settings/fupi-admin-fields-html.php:621
 msgid "Please select"
 msgstr ""
 
-#: admin/settings/fupi-admin-fields-html.php:662
+#: admin/settings/fupi-admin-fields-html.php:700
 #: admin/settings/pages/fupi-admin-page-display.php:40
 msgid "Required"
 msgstr ""
@@ -1065,12 +1069,12 @@ msgid "When should I use the Tracking Tools Manager?"
 msgstr ""
 
 #: admin/settings/modules/blockscr/checklist_blockscr.php:19
-#: admin/settings/modules/main/fupi-admin-tab-main.php:315
+#: admin/settings/modules/main/fupi-admin-tab-main.php:299
 msgid "How to set it up"
 msgstr ""
 
 #: admin/settings/modules/blockscr/checklist_blockscr.php:23
-#: admin/settings/modules/cscr/checklist_cscr.php:19
+#: admin/settings/modules/cscr/checklist_cscr.php:15
 msgid "How to load tracking tools only in specific countries"
 msgstr ""
 
@@ -1118,7 +1122,7 @@ msgstr ""
 #: admin/settings/modules/cook/fupi-admin-tab-cook.php:56
 #: admin/settings/modules/cook/fupi-admin-tab-cook.php:67
 #: admin/settings/modules/cook/fupi-admin-tab-cook.php:78
-#: admin/settings/modules/main/fupi-admin-tab-main.php:354
+#: admin/settings/modules/main/fupi-admin-tab-main.php:338
 #: admin/settings/modules/tools/fupi-admin-tab-tools.php:376
 #: admin/settings/modules/woo/fupi-admin-descr_woo.php:12
 #: admin/settings/pages/parts/fupi-page_part-side-nav.php:91
@@ -1406,12 +1410,10 @@ msgid "Filename, full URL, URL part or unique text content"
 msgstr ""
 
 #: admin/settings/modules/blockscr/fupi-admin-tab-blockscr.php:33
-#: admin/settings/modules/cscr/fupi-admin-tab-cscr.php:23
 msgid "Script ID"
 msgstr ""
 
 #: admin/settings/modules/blockscr/fupi-admin-tab-blockscr.php:44
-#: admin/settings/modules/cscr/fupi-admin-tab-cscr.php:56
 #: admin/settings/modules/iframeblock/fupi-admin-tab-iframeblock.php:71
 msgid "What is visitor's data used for?"
 msgstr ""
@@ -1421,19 +1423,18 @@ msgid "Tool's privacy policy URL"
 msgstr ""
 
 #: admin/settings/modules/blockscr/fupi-admin-tab-blockscr.php:79
-#: admin/settings/modules/cscr/fupi-admin-tab-cscr.php:20
 msgid "(Used by the \"Privacy Policy Extras\" module)"
 msgstr ""
 
 #: admin/settings/modules/blockscr/fupi-admin-tab-blockscr.php:88
-#: admin/settings/modules/cscr/fupi-admin-tab-cscr.php:92
+#: admin/settings/modules/cscr/fupi-admin-tab-cscr.php:101
 msgid "Load only in specific countries (leave blank to use everywhere)"
 msgstr ""
 
 #: admin/settings/modules/blockscr/fupi-admin-tab-blockscr.php:98
 #: admin/settings/modules/cegg/fupi-admin-tab-cegg.php:67
 #: admin/settings/modules/clar/fupi-admin-tab-clar.php:73
-#: admin/settings/modules/cscr/fupi-admin-tab-cscr.php:102
+#: admin/settings/modules/cscr/fupi-admin-tab-cscr.php:111
 #: admin/settings/modules/fbp1/fupi-admin-tab-fbp1.php:139
 #: admin/settings/modules/ga41/fupi-admin-tab-ga41.php:95
 #: admin/settings/modules/gads/fupi-admin-tab-gads.php:68
@@ -1454,7 +1455,7 @@ msgstr ""
 #: admin/settings/modules/blockscr/fupi-admin-tab-blockscr.php:99
 #: admin/settings/modules/cegg/fupi-admin-tab-cegg.php:68
 #: admin/settings/modules/clar/fupi-admin-tab-clar.php:74
-#: admin/settings/modules/cscr/fupi-admin-tab-cscr.php:103
+#: admin/settings/modules/cscr/fupi-admin-tab-cscr.php:112
 #: admin/settings/modules/fbp1/fupi-admin-tab-fbp1.php:140
 #: admin/settings/modules/ga41/fupi-admin-tab-ga41.php:96
 #: admin/settings/modules/gads/fupi-admin-tab-gads.php:69
@@ -1474,7 +1475,7 @@ msgstr ""
 
 #: admin/settings/modules/blockscr/fupi-admin-tab-blockscr.php:106
 #: admin/settings/modules/cegg/fupi-admin-tab-cegg.php:75
-#: admin/settings/modules/cscr/fupi-admin-tab-cscr.php:110
+#: admin/settings/modules/cscr/fupi-admin-tab-cscr.php:119
 #: admin/settings/modules/fbp1/fupi-admin-tab-fbp1.php:147
 #: admin/settings/modules/insp/fupi-admin-tab-insp.php:77
 #: admin/settings/modules/mato/fupi-admin-tab-mato.php:116
@@ -1802,7 +1803,7 @@ msgstr ""
 
 #: admin/settings/modules/cegg/fupi-admin-tab-cegg.php:34
 #: admin/settings/modules/clar/fupi-admin-tab-clar.php:31
-#: admin/settings/modules/cscr/fupi-admin-tab-cscr.php:123
+#: admin/settings/modules/cscr/fupi-admin-tab-cscr.php:164
 #: admin/settings/modules/fbp1/fupi-admin-tab-fbp1.php:99
 #: admin/settings/modules/ga41/fupi-admin-tab-ga41.php:60
 #: admin/settings/modules/gads/fupi-admin-tab-gads.php:34
@@ -3148,35 +3149,51 @@ msgid ""
 "policy. This is required in most countries that require consent banners."
 msgstr ""
 
-#: admin/settings/modules/cook/fupi-admin-tab-cook.php:269
+#: admin/settings/modules/cook/fupi-admin-tab-cook.php:264
+msgid "Hide consent banner on these pages"
+msgstr ""
+
+#: admin/settings/modules/cook/fupi-admin-tab-cook.php:267
+msgid ""
+"By default, WP Full Picture hides consent banner on the privacy policy "
+"page. Select other pages, where the banner should be hidden."
+msgstr ""
+
+#: admin/settings/modules/cook/fupi-admin-tab-cook.php:268
+msgid ""
+"Hiding the banner only hides it visually. It does not automatically give "
+"consent to tracking."
+msgstr ""
+
+#: admin/settings/modules/cook/fupi-admin-tab-cook.php:278
 msgid "Consent banner settings"
 msgstr ""
 
-#: admin/settings/modules/cook/fupi-admin-tab-cook.php:277
+#: admin/settings/modules/cook/fupi-admin-tab-cook.php:286
 msgid "Records of consents"
 msgstr ""
 
-#: admin/settings/modules/cook/fupi-admin-tab-cook.php:281
+#: admin/settings/modules/cook/fupi-admin-tab-cook.php:290
 msgid "ConsentsDB secret key"
 msgstr ""
 
-#: admin/settings/modules/cook/fupi-admin-tab-cook.php:285
+#: admin/settings/modules/cook/fupi-admin-tab-cook.php:294
 msgid ""
 "You will get the key after you registrer this website on ConsentsDB.com"
 msgstr ""
 
-#: admin/settings/modules/cook/fupi-admin-tab-cook.php:289
+#: admin/settings/modules/cook/fupi-admin-tab-cook.php:298
 msgid "Do not filter bot traffic"
 msgstr ""
 
-#: admin/settings/modules/cook/fupi-admin-tab-cook.php:293
+#: admin/settings/modules/cook/fupi-admin-tab-cook.php:302
 msgid ""
 "By default, WP Full Picture does not save consents of visitors "
 "recognized as bots and those who consented within 1 second from the "
 "moment the page has loaded."
 msgstr ""
 
-#: admin/settings/modules/cook/fupi-admin-tab-cook.php:294
+#: admin/settings/modules/cook/fupi-admin-tab-cook.php:303
 #, php-format
 msgid ""
 "If, for any reason, this filters too much traffic, please %1$slet us "
@@ -3184,57 +3201,57 @@ msgid ""
 "detection list\" in the General Settings page."
 msgstr ""
 
-#: admin/settings/modules/cook/fupi-admin-tab-cook.php:303
+#: admin/settings/modules/cook/fupi-admin-tab-cook.php:312
 msgid "Privacy settings for Google's tools"
 msgstr ""
 
-#: admin/settings/modules/cook/fupi-admin-tab-cook.php:307
+#: admin/settings/modules/cook/fupi-admin-tab-cook.php:316
 msgid "Enable Advanced Consent Mode v2 for Google Analytics and Google Ads"
 msgstr ""
 
-#: admin/settings/modules/cook/fupi-admin-tab-cook.php:312
+#: admin/settings/modules/cook/fupi-admin-tab-cook.php:321
 #, php-format
 msgid ""
 "When this option is %1$sdisabled%2$s, Google Analytics and Google Ads "
 "will use the basic consent mode v2."
 msgstr ""
 
-#: admin/settings/modules/cook/fupi-admin-tab-cook.php:313
+#: admin/settings/modules/cook/fupi-admin-tab-cook.php:322
 msgid ""
 "Advanced Consent Mode only benefits websites with traffic greater then "
 "1000 consenting users/day or 700 ad clicks/day."
 msgstr ""
 
-#: admin/settings/modules/cook/fupi-admin-tab-cook.php:314
+#: admin/settings/modules/cook/fupi-admin-tab-cook.php:323
 msgid "Everything you need to know about it"
 msgstr ""
 
-#: admin/settings/modules/cook/fupi-admin-tab-cook.php:318
+#: admin/settings/modules/cook/fupi-admin-tab-cook.php:327
 msgid "Use link decoration to improve conversion tracking"
 msgstr ""
 
-#: admin/settings/modules/cook/fupi-admin-tab-cook.php:322
+#: admin/settings/modules/cook/fupi-admin-tab-cook.php:331
 msgid ""
 "This will enable Google's \"url_passthrough\" feature for link "
 "decoration. It will add a Google's advertising identifier to all links "
 "on your website which will improve conversion tracking."
 msgstr ""
 
-#: admin/settings/modules/cook/fupi-admin-tab-cook.php:323
+#: admin/settings/modules/cook/fupi-admin-tab-cook.php:332
 msgid ""
 "Attention! Using link decoration is a legal grey area and may be illegal "
 "in countries where consent before tracking is necessary (opt-in). Use at "
 "your own risk."
 msgstr ""
 
-#: admin/settings/modules/cook/fupi-admin-tab-cook.php:324
+#: admin/settings/modules/cook/fupi-admin-tab-cook.php:333
 msgid ""
 "Attention! Link decoration may, in very rare cases, cause problems on a "
 "website. To test it, visit your website from a Google advertisement and "
 "finish the whole conversion path."
 msgstr ""
 
-#: admin/settings/modules/cook/fupi-admin-tab-cook.php:325
+#: admin/settings/modules/cook/fupi-admin-tab-cook.php:334
 msgid ""
 "Attention! Link decoration will only be used in countries where consent "
 "banner lets users decline tracking."
@@ -3254,200 +3271,137 @@ msgid ""
 msgstr ""
 
 #: admin/settings/modules/cscr/checklist_cscr.php:6
-msgid "How to install tools with this module"
+msgid "How to install and set up custom scripts"
 msgstr ""
 
-#: admin/settings/modules/cscr/checklist_cscr.php:10
+#: admin/settings/modules/cscr/checklist_cscr.php:11
 msgid "How to load tracking tools in compliance with privacy laws"
 msgstr ""
 
-#: admin/settings/modules/cscr/checklist_cscr.php:15
-msgid "How to improve tracking accuracy"
-msgstr ""
-
-#: admin/settings/modules/cscr/checklist_cscr.php:23
-msgid "How to list these tracking tools in your privacy policy"
-msgstr ""
-
-#: admin/settings/modules/cscr/checklist_cscr.php:27
+#: admin/settings/modules/cscr/checklist_cscr.php:19
 msgid "How to use variables in scripts"
 msgstr ""
 
-#: admin/settings/modules/cscr/checklist_cscr.php:31
+#: admin/settings/modules/cscr/checklist_cscr.php:23
 msgid "How to test if everything works fine"
 msgstr ""
 
-#: admin/settings/modules/cscr/checklist_cscr.php:40
-msgid "To install additional tools:"
-msgstr ""
-
-#: admin/settings/modules/cscr/checklist_cscr.php:42
-msgid "log in to the dashboard of the tool you want to install,"
-msgstr ""
-
-#: admin/settings/modules/cscr/checklist_cscr.php:43
-msgid "find its installation script,"
-msgstr ""
-
-#: admin/settings/modules/cscr/checklist_cscr.php:44
-msgid "paste the script in the correct field,"
-msgstr ""
-
-#: admin/settings/modules/cscr/checklist_cscr.php:45
-msgid ""
-"give it a name, a simple \"Script ID\" and fill in other fields (if they "
-"are available)."
-msgstr ""
-
-#: admin/settings/modules/cscr/checklist_cscr.php:47
-msgid ""
-"Attention! Paste only one script in every \"Script\" field. Click \"+\" "
-"button to add more fields where you can paste other scripts."
-msgstr ""
-
-#: admin/settings/modules/cscr/checklist_cscr.php:51
+#: admin/settings/modules/cscr/checklist_cscr.php:32
 msgid "To load tracking tools in compliance with privacy laws:"
 msgstr ""
 
-#: admin/settings/modules/cscr/checklist_cscr.php:53
+#: admin/settings/modules/cscr/checklist_cscr.php:34
 msgid "enable and set up the Consent Banner module,"
 msgstr ""
 
-#: admin/settings/modules/cscr/checklist_cscr.php:54
+#: admin/settings/modules/cscr/checklist_cscr.php:35
 msgid ""
 "refresh this page. You will see new checkboxes under the \"Script\" "
 "field."
 msgstr ""
 
-#: admin/settings/modules/cscr/checklist_cscr.php:56
+#: admin/settings/modules/cscr/checklist_cscr.php:37
 msgid ""
 "If you don't select any checkbox, the script will load with the pageload."
 msgstr ""
 
-#: admin/settings/modules/cscr/checklist_cscr.php:60
+#: admin/settings/modules/cscr/checklist_cscr.php:41
 msgid "To load tracking tools only in specific countries:"
 msgstr ""
 
-#: admin/settings/modules/cscr/checklist_cscr.php:62
+#: admin/settings/modules/cscr/checklist_cscr.php:43
 msgid "enable the geolocation module,"
 msgstr ""
 
-#: admin/settings/modules/cscr/checklist_cscr.php:63
+#: admin/settings/modules/cscr/checklist_cscr.php:44
 msgid ""
 "refresh this page. You will see new fields where you will be able to "
 "choose where the scripts should load."
 msgstr ""
 
-#: admin/settings/modules/cscr/checklist_cscr.php:68
+#: admin/settings/modules/cscr/checklist_cscr.php:49
 msgid ""
-"To improve tracking accuracy of all the tools installed with this module:"
+"To add variables/custom data to custom scripts, you need to make sure "
+"that the data is available before the script has triggered."
 msgstr ""
 
-#: admin/settings/modules/cscr/checklist_cscr.php:70
+#: admin/settings/modules/cscr/checklist_cscr.php:50
 msgid ""
-"go to the \"General Settings\" page > \"Tracking accuracy tweaks\" "
-"section,"
+"The easiest way to ensure that, is to use the data provided by the "
+"fpdata JavaScript object. Its contents are updated to reflect user "
+"actions."
 msgstr ""
 
-#: admin/settings/modules/cscr/checklist_cscr.php:71
+#: admin/settings/modules/cscr/checklist_cscr.php:51
 msgid ""
-"set up the options you find there. They will help you get better data."
+"Please enter \"fpdata\" in your browser's console to see what data is "
+"available and how it changes depending on what you do on the site."
 msgstr ""
 
-#: admin/settings/modules/cscr/checklist_cscr.php:76
-msgid ""
-"To include in your privacy policy an always-current list of tracking "
-"tools:"
-msgstr ""
-
-#: admin/settings/modules/cscr/checklist_cscr.php:78
-msgid "Enable and set up the \"Privacy policy extras\" module"
-msgstr ""
-
-#: admin/settings/modules/cscr/checklist_cscr.php:79
-msgid ""
-"Return to this page and look for a field labeled \"Name displayed by the "
-"[fp_info] shortcode\""
-msgstr ""
-
-#: admin/settings/modules/cscr/checklist_cscr.php:80
-msgid ""
-"Enter there the name that you would like to display in your privacy "
-"policy."
-msgstr ""
-
-#: admin/settings/modules/cscr/checklist_cscr.php:85
-msgid "You can include in your custom scripts 3 types of data:"
-msgstr ""
-
-#: admin/settings/modules/cscr/checklist_cscr.php:87
-msgid ""
-"Static - like page titles, user login status, user country, page author "
-"names, etc."
-msgstr ""
-
-#: admin/settings/modules/cscr/checklist_cscr.php:88
-msgid "Dynamic - last clicked element, submitted form, time on page, etc."
-msgstr ""
-
-#: admin/settings/modules/cscr/checklist_cscr.php:89
-msgid "WooCommerce - static and dynamic"
-msgstr ""
-
-#: admin/settings/modules/cscr/checklist_cscr.php:91
-msgid ""
-"You can find all this data in a JS object \"fpdata\". You can check the "
-"values it holds in browser console."
-msgstr ""
-
-#: admin/settings/modules/cscr/checklist_cscr.php:92
+#: admin/settings/modules/cscr/checklist_cscr.php:52
 #, php-format
+msgid "%1$sLearn more about the fpdata object%2$s."
+msgstr ""
+
+#: admin/settings/modules/cscr/checklist_cscr.php:56
 msgid ""
-"Dynamic data is accessible only after a visitor makes an action (like "
-"clicking a button) so all scripts that use this data need to be wrapped "
-"in %1$sWP FP's custom events functions%2$s."
+"To test if your custom scripts are installed correctly, you need to "
+"visit your website and simulate situations in which they would be "
+"triggered. To do this:"
 msgstr ""
 
-#: admin/settings/modules/cscr/checklist_cscr.php:96
-msgid "To test if your tools are installed correctly"
+#: admin/settings/modules/cscr/checklist_cscr.php:57
+msgid "Step 1. Preparation"
 msgstr ""
 
-#: admin/settings/modules/cscr/checklist_cscr.php:98
+#: admin/settings/modules/cscr/checklist_cscr.php:58
+msgid ""
+"First, you need to make sure, that no ad blocker, VPN or other solution "
+"will prevent your custom script from working. To do this:"
+msgstr ""
+
+#: admin/settings/modules/cscr/checklist_cscr.php:60
+msgid ""
+"If you have geolocation enabled, make sure that your script is set to "
+"load in the country you are in."
+msgstr ""
+
+#: admin/settings/modules/cscr/checklist_cscr.php:61
+msgid "Turn off your VPN (if you use it)"
+msgstr ""
+
+#: admin/settings/modules/cscr/checklist_cscr.php:62
 msgid "Open incognito mode in your browser"
 msgstr ""
 
-#: admin/settings/modules/cscr/checklist_cscr.php:99
+#: admin/settings/modules/cscr/checklist_cscr.php:63
 msgid "Turn off your ad blocker (if you have any)"
 msgstr ""
 
-#: admin/settings/modules/cscr/checklist_cscr.php:100
-msgid "Turn off your VPN (if you have any)"
+#: admin/settings/modules/cscr/checklist_cscr.php:64
+msgid "Visit your website."
 msgstr ""
 
-#: admin/settings/modules/cscr/checklist_cscr.php:101
-msgid "(Optional) If you have a Consent Banner enabled, agree to cookies."
+#: admin/settings/modules/cscr/checklist_cscr.php:65
+msgid "Agree to all cookies in the consent banner (if you use it)."
 msgstr ""
 
-#: admin/settings/modules/cscr/checklist_cscr.php:102
+#: admin/settings/modules/cscr/checklist_cscr.php:67
+msgid "Step 2. Testing"
+msgstr ""
+
+#: admin/settings/modules/cscr/checklist_cscr.php:68
 msgid ""
-"(Optional) If you have geolocation enabled, make sure that you are not "
-"in a country excluded from tracking."
+"Some scripts make visual changes to the website, so it is easy to see if "
+"they work correctly. Other scripts are used to work behind the scenes."
 msgstr ""
 
-#: admin/settings/modules/cscr/checklist_cscr.php:103
+#: admin/settings/modules/cscr/checklist_cscr.php:69
 msgid ""
-"Open browser console (Click right mouse button anywhere on the page > "
-"Choose \"Inspect element\" > Click \"Console\" tab in the popup)"
-msgstr ""
-
-#: admin/settings/modules/cscr/checklist_cscr.php:104
-msgid "Enter \"fp.loaded\" and press enter"
-msgstr ""
-
-#: admin/settings/modules/cscr/checklist_cscr.php:105
-msgid ""
-"If you can't see the Script ID name, click the \"Force load\" checkbox "
-"on this page and try again."
+"To see if they get triggered, you need to open your browser console "
+"(click the right mouse button anywhere on the page > Choose \"Inspect "
+"element\" > Click \"Console\" tab in the popup)The console log will be "
+"filled with information about loaded scripts"
 msgstr ""
 
 #: admin/settings/modules/cscr/fupi-admin-descr_cscr.php:6
@@ -3457,49 +3411,69 @@ msgid ""
 "do it in the \"Footer Scripts\" section."
 msgstr ""
 
-#: admin/settings/modules/cscr/fupi-admin-descr_cscr.php:10
+#: admin/settings/modules/cscr/fupi-admin-descr_cscr.php:8
+msgid "Script disabled. The script's trigger has been deleted."
+msgstr ""
+
+#: admin/settings/modules/cscr/fupi-admin-descr_cscr.php:9
+msgid "Set a trigger"
+msgstr ""
+
+#: admin/settings/modules/cscr/fupi-admin-descr_cscr.php:14
 msgid ""
 "Use these fields to add scripts and HTML (optional) before the end of "
 "the &lt;/body&gt; tag."
 msgstr ""
 
-#: admin/settings/modules/cscr/fupi-admin-tab-cscr.php:16
-msgid "Script's privacy policy URL"
-msgstr ""
-
-#: admin/settings/modules/cscr/fupi-admin-tab-cscr.php:30
+#: admin/settings/modules/cscr/fupi-admin-tab-cscr.php:22
 msgid "(Required) Script only - no HTML"
 msgstr ""
 
-#: admin/settings/modules/cscr/fupi-admin-tab-cscr.php:36
+#: admin/settings/modules/cscr/fupi-admin-tab-cscr.php:28
 #, php-format
 msgid ""
 "%1$s%5$s tags will be automatically removed (or replaced) from the code "
 "above so that WP Full Picture can manage it. %6$sLearn more%7$s.%2$s"
 msgstr ""
 
-#: admin/settings/modules/cscr/fupi-admin-tab-cscr.php:41
-msgid "(Optional) HTML"
+#: admin/settings/modules/cscr/fupi-admin-tab-cscr.php:32
+msgid "This script does not install a tracking tool"
+msgstr ""
+
+#: admin/settings/modules/cscr/fupi-admin-tab-cscr.php:38
+msgid ""
+"Script's privacy policy URL (Used by the \"Privacy Policy Extras\" "
+"module if the script installs a tracking tool)"
 msgstr ""
 
 #: admin/settings/modules/cscr/fupi-admin-tab-cscr.php:47
+msgid "(Optional) HTML"
+msgstr ""
+
+#: admin/settings/modules/cscr/fupi-admin-tab-cscr.php:53
 msgid ""
 "HTML added in this field will be loaded on the page before the script. "
 "Attention! Make sure you enter HTML without errors. Buggy HTML may break "
 "the page."
 msgstr ""
 
-#: admin/settings/modules/cscr/fupi-admin-tab-cscr.php:129
+#: admin/settings/modules/cscr/fupi-admin-tab-cscr.php:62
+msgid ""
+"Load when visitors agree to using their data for these purposes (leave "
+"blank to load instantly)"
+msgstr ""
+
+#: admin/settings/modules/cscr/fupi-admin-tab-cscr.php:170
 msgid "Disable script"
 msgstr ""
 
-#: admin/settings/modules/cscr/fupi-admin-tab-cscr.php:145
-#: admin/settings/modules/cscr/fupi-admin-tab-cscr.php:149
+#: admin/settings/modules/cscr/fupi-admin-tab-cscr.php:186
+#: admin/settings/modules/cscr/fupi-admin-tab-cscr.php:190
 msgid "Head scripts"
 msgstr ""
 
-#: admin/settings/modules/cscr/fupi-admin-tab-cscr.php:164
-#: admin/settings/modules/cscr/fupi-admin-tab-cscr.php:168
+#: admin/settings/modules/cscr/fupi-admin-tab-cscr.php:205
+#: admin/settings/modules/cscr/fupi-admin-tab-cscr.php:209
 msgid "Footer scripts"
 msgstr ""
 
@@ -5214,7 +5188,7 @@ msgstr ""
 
 #: admin/settings/modules/ga41/fupi-admin-tab-ga41.php:667
 #: admin/settings/modules/ga42__premium_only/fupi-admin-tab-ga42__premium_only.php:509
-#: admin/settings/modules/main/fupi-admin-tab-main.php:369
+#: admin/settings/modules/main/fupi-admin-tab-main.php:389
 msgid "Other"
 msgstr ""
 
@@ -6904,7 +6878,7 @@ msgid "Encoded User ID"
 msgstr ""
 
 #: admin/settings/modules/insp/fupi-admin-tab-insp.php:313
-#: includes/class-fupi-get-gdpr-status.php:2257
+#: includes/class-fupi-get-gdpr-status.php:2281
 msgid "User ID"
 msgstr ""
 
@@ -7420,56 +7394,31 @@ msgid ""
 msgstr ""
 
 #: admin/settings/modules/main/fupi-admin-tab-main.php:36
-msgid "Defer non-critical scripts"
-msgstr ""
-
-#: admin/settings/modules/main/fupi-admin-tab-main.php:39
-msgid ""
-"Slightly improves page-loading speed. We recommend to enable this option "
-"instead of deferring script-loading with caching tools / plugins (may "
-"cause issues)."
-msgstr ""
-
-#: admin/settings/modules/main/fupi-admin-tab-main.php:43
 msgid "Enable debug mode"
 msgstr ""
 
-#: admin/settings/modules/main/fupi-admin-tab-main.php:46
+#: admin/settings/modules/main/fupi-admin-tab-main.php:39
 #, php-format
 msgid " %1$sLearn more%2$s."
 msgstr ""
 
-#: admin/settings/modules/main/fupi-admin-tab-main.php:50
-msgid "Remove jQuery dependancy"
-msgstr ""
-
-#: admin/settings/modules/main/fupi-admin-tab-main.php:53
-msgid ""
-"This will remove jQuery dependancy from scripts where it is not "
-"absolutely necessary."
-msgstr ""
-
-#: admin/settings/modules/main/fupi-admin-tab-main.php:54
-msgid "This will be added as default if no errors are reported by users. "
-msgstr ""
-
-#: admin/settings/modules/main/fupi-admin-tab-main.php:58
+#: admin/settings/modules/main/fupi-admin-tab-main.php:43
 msgid "Change \"WP Full Picture\" menu item text to:"
 msgstr ""
 
-#: admin/settings/modules/main/fupi-admin-tab-main.php:65
+#: admin/settings/modules/main/fupi-admin-tab-main.php:50
 msgid "Remove all WP Full Picture's settings on deactivation"
 msgstr ""
 
-#: admin/settings/modules/main/fupi-admin-tab-main.php:79
+#: admin/settings/modules/main/fupi-admin-tab-main.php:64
 msgid "Tracking exclusions"
 msgstr ""
 
-#: admin/settings/modules/main/fupi-admin-tab-main.php:83
+#: admin/settings/modules/main/fupi-admin-tab-main.php:68
 msgid "Do not track logged-in users with these roles:"
 msgstr ""
 
-#: admin/settings/modules/main/fupi-admin-tab-main.php:88
+#: admin/settings/modules/main/fupi-admin-tab-main.php:73
 msgid ""
 "Site administrator is always excluded from tracking. If you want to test "
 "a tracking tool while being logged in as an administrator, please enable "
@@ -7477,142 +7426,71 @@ msgid ""
 "you want to test."
 msgstr ""
 
-#: admin/settings/modules/main/fupi-admin-tab-main.php:92
+#: admin/settings/modules/main/fupi-admin-tab-main.php:77
 msgid "Do not track visitors who enter the site from this link:"
 msgstr ""
 
-#: admin/settings/modules/main/fupi-admin-tab-main.php:103
+#: admin/settings/modules/main/fupi-admin-tab-main.php:88
 msgid ""
 "When someone clicks this link they will no longer be tracked no matter "
 "whether they are logged in or not. This state will be remembered by "
 "their browser until they:"
 msgstr ""
 
-#: admin/settings/modules/main/fupi-admin-tab-main.php:105
+#: admin/settings/modules/main/fupi-admin-tab-main.php:90
 msgid "visit the site from address that ends with \""
 msgstr ""
 
-#: admin/settings/modules/main/fupi-admin-tab-main.php:106
+#: admin/settings/modules/main/fupi-admin-tab-main.php:91
 msgid ""
 "click an \"eye\" icon in the bottom-left corner of the screen (on the "
 "visitor-facing website),"
 msgstr ""
 
-#: admin/settings/modules/main/fupi-admin-tab-main.php:107
+#: admin/settings/modules/main/fupi-admin-tab-main.php:92
 msgid "clear cookies in their browser."
 msgstr ""
 
-#: admin/settings/modules/main/fupi-admin-tab-main.php:109
+#: admin/settings/modules/main/fupi-admin-tab-main.php:94
 msgid "resets visitor's tracking preferences"
 msgstr ""
 
-#: admin/settings/modules/main/fupi-admin-tab-main.php:119
+#: admin/settings/modules/main/fupi-admin-tab-main.php:104
 msgid "Default tracking settings"
 msgstr ""
 
-#: admin/settings/modules/main/fupi-admin-tab-main.php:123
-msgid "Bot detection list"
+#: admin/settings/modules/main/fupi-admin-tab-main.php:108
+msgid "Delay page redirect after clicking links"
 msgstr ""
 
-#: admin/settings/modules/main/fupi-admin-tab-main.php:130
-msgid "Basic list (fast, only checks for the most common bots)"
-msgstr ""
-
-#: admin/settings/modules/main/fupi-admin-tab-main.php:131
-msgid "Big list (slower but much more accurate and blocks some AI bots)"
-msgstr ""
-
-#: admin/settings/modules/main/fupi-admin-tab-main.php:135
-msgid "Bot detection is used to prevent bots from:"
-msgstr ""
-
-#: admin/settings/modules/main/fupi-admin-tab-main.php:137
+#: admin/settings/modules/main/fupi-admin-tab-main.php:111
 msgid ""
-"triggering server events (for tools supporting server-side tracking)"
+"This setting pauses page redirects until all tools finish tracking link "
+"clicks."
 msgstr ""
 
-#: admin/settings/modules/main/fupi-admin-tab-main.php:138
+#: admin/settings/modules/main/fupi-admin-tab-main.php:112
 msgid ""
-"making unnecessary geolocation checks (when the geolocation module is "
-"enabled),"
+"This can be useful when you track clicks on many elements, with many "
+"tracking tools and/or when your website is super fast."
 msgstr ""
 
-#: admin/settings/modules/main/fupi-admin-tab-main.php:139
-msgid "saving cookie consents"
-msgstr ""
-
-#: admin/settings/modules/main/fupi-admin-tab-main.php:141
-#, php-format
+#: admin/settings/modules/main/fupi-admin-tab-main.php:113
 msgid ""
-"The Big list is based on the %1$slist of crawler user agents%2$s by "
-"bentsi."
+"Attention! Test before using in production. On rare occasions enabling "
+"this setting can cause issues with clicks on dynamic page elements like "
+"galleries or sliders."
 msgstr ""
 
-#: admin/settings/modules/main/fupi-admin-tab-main.php:145
-msgid "Method of communication with the server"
-msgstr ""
-
-#: admin/settings/modules/main/fupi-admin-tab-main.php:151
-msgid "Rest API (default)"
-msgstr ""
-
-#: admin/settings/modules/main/fupi-admin-tab-main.php:152
-msgid "AJAX"
-msgstr ""
-
-#: admin/settings/modules/main/fupi-admin-tab-main.php:154
-msgid ""
-"The method you choose here will be used to send data from the visitors's "
-"browser to your server. This is used for server-side tracking and for "
-"sending visitor consents."
-msgstr ""
-
-#: admin/settings/modules/main/fupi-admin-tab-main.php:155
-msgid "Rest API is generally faster and less resource-intensive."
-msgstr ""
-
-#: admin/settings/modules/main/fupi-admin-tab-main.php:159
-msgid "DOM Listener"
-msgstr ""
-
-#: admin/settings/modules/main/fupi-admin-tab-main.php:163
-msgid ""
-"DOM Listener \"listens\" for changes in the HTML of your site after it "
-"has loaded. At the moment, it is used only to track when visitors see on "
-"screen popups, ads or other dynamically added page elements."
-msgstr ""
-
-#: admin/settings/modules/main/fupi-admin-tab-main.php:164
-msgid ""
-"Attention! Test on weaker devices before using in production. This "
-"function uses DOM Mutation Observer, which can be taxing for weak "
-"processors."
-msgstr ""
-
-#: admin/settings/modules/main/fupi-admin-tab-main.php:168
-msgid "Set when elements are considered to be visible on screen"
-msgstr ""
-
-#: admin/settings/modules/main/fupi-admin-tab-main.php:173
-msgid "Leave empty to use default values"
-msgstr ""
-
-#: admin/settings/modules/main/fupi-admin-tab-main.php:174
-msgid ""
-"By default this is set to \"-200px 0px -200px 0px\", which means, that "
-"elements will be considered as visible, when their top or bottom edge is "
-"200 pixels inside the visible area of the screen."
-msgstr ""
-
-#: admin/settings/modules/main/fupi-admin-tab-main.php:178
+#: admin/settings/modules/main/fupi-admin-tab-main.php:117
 msgid "Do not track form submissions if they happen within:"
 msgstr ""
 
-#: admin/settings/modules/main/fupi-admin-tab-main.php:183
+#: admin/settings/modules/main/fupi-admin-tab-main.php:122
 msgid "seconds after the page loads"
 msgstr ""
 
-#: admin/settings/modules/main/fupi-admin-tab-main.php:184
+#: admin/settings/modules/main/fupi-admin-tab-main.php:123
 msgid ""
 "Humans don't usually send forms right after they open a page. Set this "
 "value to a minimum of 3 seconds to prevent tracking form submittions "
@@ -7620,15 +7498,15 @@ msgid ""
 "Default is 3 seconds."
 msgstr ""
 
-#: admin/settings/modules/main/fupi-admin-tab-main.php:188
+#: admin/settings/modules/main/fupi-admin-tab-main.php:127
 msgid "Prevent tracking multi-clicks that happen within:"
 msgstr ""
 
-#: admin/settings/modules/main/fupi-admin-tab-main.php:193
+#: admin/settings/modules/main/fupi-admin-tab-main.php:132
 msgid "miliseconds"
 msgstr ""
 
-#: admin/settings/modules/main/fupi-admin-tab-main.php:194
+#: admin/settings/modules/main/fupi-admin-tab-main.php:133
 msgid ""
 "When your visitors click the same elements multiple times in a very "
 "short time (like \"double clicks\" or \"rage clicks\") you should track "
@@ -7639,88 +7517,159 @@ msgid ""
 "300ms."
 msgstr ""
 
-#: admin/settings/modules/main/fupi-admin-tab-main.php:198
+#: admin/settings/modules/main/fupi-admin-tab-main.php:137
 msgid "Prevent tracking page scroll depth if visitor scrolled less than:"
 msgstr ""
 
-#: admin/settings/modules/main/fupi-admin-tab-main.php:203
+#: admin/settings/modules/main/fupi-admin-tab-main.php:142
 msgid "pixels."
 msgstr ""
 
-#: admin/settings/modules/main/fupi-admin-tab-main.php:204
+#: admin/settings/modules/main/fupi-admin-tab-main.php:143
 msgid ""
 "This setting prevents tracking scrolls on short pages, when even a very "
 "small scroll can reach the bottom of the page. Default is 200px."
 msgstr ""
 
-#: admin/settings/modules/main/fupi-admin-tab-main.php:208
+#: admin/settings/modules/main/fupi-admin-tab-main.php:147
 msgid "Prevent tracking page scroll depth if it happened in the first:"
 msgstr ""
 
-#: admin/settings/modules/main/fupi-admin-tab-main.php:213
+#: admin/settings/modules/main/fupi-admin-tab-main.php:152
 msgid "seconds"
 msgstr ""
 
-#: admin/settings/modules/main/fupi-admin-tab-main.php:214
+#: admin/settings/modules/main/fupi-admin-tab-main.php:153
 msgid ""
 "This setting prevents tracking \"exploratory\" scrolls - quick scrolls "
 "performed by visitors who want to see the contents of the page before "
 "devoting more time to read it."
 msgstr ""
 
-#: admin/settings/modules/main/fupi-admin-tab-main.php:214
+#: admin/settings/modules/main/fupi-admin-tab-main.php:153
 msgid ""
 "After the set time has passed page's scroll depth will be tracked "
 "normally."
 msgstr ""
 
-#: admin/settings/modules/main/fupi-admin-tab-main.php:214
+#: admin/settings/modules/main/fupi-admin-tab-main.php:153
 msgid "Default is 5 seconds."
 msgstr ""
 
-#: admin/settings/modules/main/fupi-admin-tab-main.php:218
+#: admin/settings/modules/main/fupi-admin-tab-main.php:157
+msgid "DOM Listener"
+msgstr ""
+
+#: admin/settings/modules/main/fupi-admin-tab-main.php:161
+msgid ""
+"DOM Listener \"listens\" for changes in the HTML of your site after it "
+"has loaded. At the moment, it is used only to track when visitors see on "
+"screen popups, ads or other dynamically added page elements."
+msgstr ""
+
+#: admin/settings/modules/main/fupi-admin-tab-main.php:162
+msgid ""
+"Attention! Test on weaker devices before using in production. This "
+"function uses DOM Mutation Observer, which can be taxing for weak "
+"processors."
+msgstr ""
+
+#: admin/settings/modules/main/fupi-admin-tab-main.php:166
+msgid "Bot detection list"
+msgstr ""
+
+#: admin/settings/modules/main/fupi-admin-tab-main.php:173
+msgid "Basic list (fast, only checks for the most common bots)"
+msgstr ""
+
+#: admin/settings/modules/main/fupi-admin-tab-main.php:174
+msgid "Big list (slower but much more accurate and blocks some AI bots)"
+msgstr ""
+
+#: admin/settings/modules/main/fupi-admin-tab-main.php:178
+msgid "Bot detection is used to prevent bots from:"
+msgstr ""
+
+#: admin/settings/modules/main/fupi-admin-tab-main.php:180
+msgid ""
+"triggering server events (for tools supporting server-side tracking)"
+msgstr ""
+
+#: admin/settings/modules/main/fupi-admin-tab-main.php:181
+msgid ""
+"making unnecessary geolocation checks (when the geolocation module is "
+"enabled),"
+msgstr ""
+
+#: admin/settings/modules/main/fupi-admin-tab-main.php:182
+msgid "saving cookie consents"
+msgstr ""
+
+#: admin/settings/modules/main/fupi-admin-tab-main.php:184
+#, php-format
+msgid ""
+"The Big list is based on the %1$slist of crawler user agents%2$s by "
+"bentsi."
+msgstr ""
+
+#: admin/settings/modules/main/fupi-admin-tab-main.php:188
+msgid "Method of communication with the server"
+msgstr ""
+
+#: admin/settings/modules/main/fupi-admin-tab-main.php:193
+msgid "Rest API (default)"
+msgstr ""
+
+#: admin/settings/modules/main/fupi-admin-tab-main.php:194
+msgid "AJAX"
+msgstr ""
+
+#: admin/settings/modules/main/fupi-admin-tab-main.php:196
+msgid ""
+"The method you choose here will be used to send data from the visitors's "
+"browser to your server. This is used for server-side tracking and for "
+"sending visitor consents."
+msgstr ""
+
+#: admin/settings/modules/main/fupi-admin-tab-main.php:197
+msgid "Rest API is generally faster and less resource-intensive."
+msgstr ""
+
+#: admin/settings/modules/main/fupi-admin-tab-main.php:201
+msgid "Set when elements are considered to be visible on screen"
+msgstr ""
+
+#: admin/settings/modules/main/fupi-admin-tab-main.php:206
+msgid "Leave empty to use default values"
+msgstr ""
+
+#: admin/settings/modules/main/fupi-admin-tab-main.php:207
+msgid ""
+"By default this is set to \"-200px 0px -200px 0px\", which means, that "
+"elements will be considered as visible, when their top or bottom edge is "
+"200 pixels inside the visible area of the screen."
+msgstr ""
+
+#: admin/settings/modules/main/fupi-admin-tab-main.php:211
 msgid "Allow tracking terms of these taxonomies:"
 msgstr ""
 
-#: admin/settings/modules/main/fupi-admin-tab-main.php:222
+#: admin/settings/modules/main/fupi-admin-tab-main.php:215
 msgid ""
 "By default, WP Full Picture lets you track tags, categories and formats "
 "of your posts and pages. Use this setting to mark other term taxonomies "
 "that you may want to track."
 msgstr ""
 
-#: admin/settings/modules/main/fupi-admin-tab-main.php:226
-msgid "Delay page redirect after clicking links"
-msgstr ""
-
-#: admin/settings/modules/main/fupi-admin-tab-main.php:229
-msgid ""
-"This setting pauses page redirects until all tools finish tracking link "
-"clicks."
-msgstr ""
-
-#: admin/settings/modules/main/fupi-admin-tab-main.php:230
-msgid ""
-"This can be useful when you track clicks on many elements, with many "
-"tracking tools and/or when your website is super fast."
-msgstr ""
-
-#: admin/settings/modules/main/fupi-admin-tab-main.php:231
-msgid ""
-"Attention! Test before using in production. On rare occasions enabling "
-"this setting can cause issues with clicks on dynamic page elements like "
-"galleries or sliders."
-msgstr ""
-
-#: admin/settings/modules/main/fupi-admin-tab-main.php:235
+#: admin/settings/modules/main/fupi-admin-tab-main.php:219
 msgid "Reset engagement time counter after clicks in anchors"
 msgstr ""
 
-#: admin/settings/modules/main/fupi-admin-tab-main.php:239
+#: admin/settings/modules/main/fupi-admin-tab-main.php:223
 msgid "Learn more about engagement time"
 msgstr ""
 
-#: admin/settings/modules/main/fupi-admin-tab-main.php:240
+#: admin/settings/modules/main/fupi-admin-tab-main.php:224
 msgid ""
 "Enable this option if your website is a single page and you use anchors "
 "to navigate between its sections. Engagement time will be sent to "
@@ -7729,40 +7678,40 @@ msgid ""
 "calculated normally."
 msgstr ""
 
-#: admin/settings/modules/main/fupi-admin-tab-main.php:244
+#: admin/settings/modules/main/fupi-admin-tab-main.php:228
 msgid "Allow tracking IDs of content authors"
 msgstr ""
 
-#: admin/settings/modules/main/fupi-admin-tab-main.php:247
+#: admin/settings/modules/main/fupi-admin-tab-main.php:231
 msgid ""
 "This option adds tracking ID of content authors to Google Analytics, "
 "Matomo and GTM. After you enable it a new tracking option will show up "
 "on their settings pages. Turn it on to start tracking author IDs."
 msgstr ""
 
-#: admin/settings/modules/main/fupi-admin-tab-main.php:248
+#: admin/settings/modules/main/fupi-admin-tab-main.php:232
 msgid ""
 "Do not enable this option if authors of content of your site have "
 "administrator rights. This will expose their IDs making attacks easier. "
 "Don't help attackers hack your site."
 msgstr ""
 
-#: admin/settings/modules/main/fupi-admin-tab-main.php:257
+#: admin/settings/modules/main/fupi-admin-tab-main.php:241
 msgid "Tracking accuracy tweaks"
 msgstr ""
 
-#: admin/settings/modules/main/fupi-admin-tab-main.php:261
+#: admin/settings/modules/main/fupi-admin-tab-main.php:245
 msgid ""
 "Make tracking tools correctly recognize traffic from Android applications"
 msgstr ""
 
-#: admin/settings/modules/main/fupi-admin-tab-main.php:276
+#: admin/settings/modules/main/fupi-admin-tab-main.php:260
 msgid ""
 "This function fixes incorrect traffic source recognition by Google "
 "Analytics and other tracking tools."
 msgstr ""
 
-#: admin/settings/modules/main/fupi-admin-tab-main.php:277
+#: admin/settings/modules/main/fupi-admin-tab-main.php:261
 msgid ""
 "When you enable these options, traffic from chosen applications will no "
 "longer be labelled as \"Direct\" but will be recognized as coming from "
@@ -7770,80 +7719,140 @@ msgid ""
 "Facebook.com, etc."
 msgstr ""
 
-#: admin/settings/modules/main/fupi-admin-tab-main.php:278
+#: admin/settings/modules/main/fupi-admin-tab-main.php:262
 msgid ""
 "Traffic from Line app will be marked as coming from https://line-android-"
 "app.jp/."
 msgstr ""
 
-#: admin/settings/modules/main/fupi-admin-tab-main.php:282
+#: admin/settings/modules/main/fupi-admin-tab-main.php:266
 msgid ""
 "Make tracking tools correctly recognize traffic from other Android "
 "applications"
 msgstr ""
 
-#: admin/settings/modules/main/fupi-admin-tab-main.php:291
+#: admin/settings/modules/main/fupi-admin-tab-main.php:275
 msgid "When traffic source"
 msgstr ""
 
-#: admin/settings/modules/main/fupi-admin-tab-main.php:294
+#: admin/settings/modules/main/fupi-admin-tab-main.php:278
 msgid "Starts with"
 msgstr ""
 
-#: admin/settings/modules/main/fupi-admin-tab-main.php:295
+#: admin/settings/modules/main/fupi-admin-tab-main.php:279
 msgid "Equals"
 msgstr ""
 
-#: admin/settings/modules/main/fupi-admin-tab-main.php:296
+#: admin/settings/modules/main/fupi-admin-tab-main.php:280
 msgid "Includes"
 msgstr ""
 
-#: admin/settings/modules/main/fupi-admin-tab-main.php:309
+#: admin/settings/modules/main/fupi-admin-tab-main.php:293
 msgid "Report as traffic from this address"
 msgstr ""
 
-#: admin/settings/modules/main/fupi-admin-tab-main.php:310
+#: admin/settings/modules/main/fupi-admin-tab-main.php:294
 msgid "e.g. android-g-search-box.com"
 msgstr ""
 
-#: admin/settings/modules/main/fupi-admin-tab-main.php:319
+#: admin/settings/modules/main/fupi-admin-tab-main.php:303
 msgid "Prevent tracking conversions from payment gateways"
 msgstr ""
 
-#: admin/settings/modules/main/fupi-admin-tab-main.php:328
+#: admin/settings/modules/main/fupi-admin-tab-main.php:312
 msgid "When this page is visited"
 msgstr ""
 
-#: admin/settings/modules/main/fupi-admin-tab-main.php:329
+#: admin/settings/modules/main/fupi-admin-tab-main.php:313
 msgid "e.g. Order confirmation page URL"
 msgstr ""
 
-#: admin/settings/modules/main/fupi-admin-tab-main.php:335
+#: admin/settings/modules/main/fupi-admin-tab-main.php:319
 msgid "Always report as traffic from"
 msgstr ""
 
-#: admin/settings/modules/main/fupi-admin-tab-main.php:336
+#: admin/settings/modules/main/fupi-admin-tab-main.php:320
 msgid "e.g. Checkout page URL (has to start with https://)"
 msgstr ""
 
-#: admin/settings/modules/main/fupi-admin-tab-main.php:341
+#: admin/settings/modules/main/fupi-admin-tab-main.php:325
 msgid ""
 "This will make sure that your conversions, will be attributed to the "
 "real sources of conversion, rather than the payment gateways."
 msgstr ""
 
-#: admin/settings/modules/main/fupi-admin-tab-main.php:345
+#: admin/settings/modules/main/fupi-admin-tab-main.php:329
 msgid "Combine similar URLs of referring domains"
 msgstr ""
 
-#: admin/settings/modules/main/fupi-admin-tab-main.php:354
+#: admin/settings/modules/main/fupi-admin-tab-main.php:338
 msgid ""
 "Facebook, Instagram and Pinterest use multiple URLs that redirect "
 "traffic to your site, e.g. l.facebook.com, lm.facebook.com, etc. Enable "
 "this function to combine them and analyse traffic sources more easily."
 msgstr ""
 
+#: admin/settings/modules/main/fupi-admin-tab-main.php:346
+msgid "Performance"
+msgstr ""
+
+#: admin/settings/modules/main/fupi-admin-tab-main.php:350
+msgid "Defer non-critical scripts"
+msgstr ""
+
+#: admin/settings/modules/main/fupi-admin-tab-main.php:353
+msgid "Slightly improves page-loading speed."
+msgstr ""
+
+#: admin/settings/modules/main/fupi-admin-tab-main.php:354
+msgid ""
+"Do not defer WP FP's scripts using a different plugin or solution. Not "
+"all WP FP's scripts can be safely deferred."
+msgstr ""
+
+#: admin/settings/modules/main/fupi-admin-tab-main.php:358
+msgid "Save main JS functions in a file (beta)"
+msgstr ""
+
+#: admin/settings/modules/main/fupi-admin-tab-main.php:361
+msgid ""
+"If you enable this option, WP FP will save some of its main JavaScript "
+"functions in a file, instead of printing them directly in the HTML."
+msgstr ""
+
 #: admin/settings/modules/main/fupi-admin-tab-main.php:362
+#: admin/settings/modules/main/fupi-admin-tab-main.php:372
+msgid ""
+"This is done to slightly improve performance and avoid issues with some "
+"caching configurations."
+msgstr ""
+
+#: admin/settings/modules/main/fupi-admin-tab-main.php:363
+#: admin/settings/modules/main/fupi-admin-tab-main.php:373
+msgid ""
+"The files will be placed in a folder at \"wp-content/uploads/sites(for "
+"WP Multisite)/site_number(for WP Multisite)/wpfp/js/\""
+msgstr ""
+
+#: admin/settings/modules/main/fupi-admin-tab-main.php:364
+#: admin/settings/modules/main/fupi-admin-tab-main.php:374
+#, php-format
+msgid ""
+"This feature is in beta. Please report issues in %1$sthe support "
+"forum%2$s."
+msgstr ""
+
+#: admin/settings/modules/main/fupi-admin-tab-main.php:368
+msgid "Save Custom Scripts in files (beta)"
+msgstr ""
+
+#: admin/settings/modules/main/fupi-admin-tab-main.php:371
+msgid ""
+"If you enable this option, WP FP will put scripts from the Custom "
+"Scripts module in files, instead of printing them directly in the HTML."
+msgstr ""
+
+#: admin/settings/modules/main/fupi-admin-tab-main.php:382
 msgid "Backups"
 msgstr ""
 
@@ -9998,7 +10007,6 @@ msgstr ""
 
 #: admin/settings/modules/tools/fupi-admin-tab-tools.php:461
 #: admin/settings/modules/trackmeta__premium_only/checklist_trackmeta__premium_only.php:15
-#: admin/settings/modules/trackmeta__premium_only/fupi-admin-descr_trackmeta__premium_only.php:8
 msgid ""
 "With this module you can track metadata of users, posts, pages, products "
 "(e.g. WooCommerce), custom post types, tags, categories or terms of any "
@@ -10185,8 +10193,9 @@ msgstr ""
 
 #: admin/settings/modules/trackmeta__premium_only/checklist_trackmeta__premium_only.php:20
 msgid ""
-"track this data with the compatible tools - Google Analytics, Matomo, "
-"Meta/Facebook Pixel, Google Tag Manager and Microsoft Clarity."
+"set up tracking this data in the settings of supported tools - Google "
+"Analytics, Matomo, Meta/Facebook Pixel, Google Tag Manager and Microsoft "
+"Clarity."
 msgstr ""
 
 #: admin/settings/modules/trackmeta__premium_only/checklist_trackmeta__premium_only.php:22
@@ -10194,6 +10203,22 @@ msgid ""
 "At this moment, you can only track data that is of these types: string "
 "(text), boolean (true/false), integer (number without decimals) and "
 "float (number with decimals)."
+msgstr ""
+
+#: admin/settings/modules/trackmeta__premium_only/checklist_trackmeta__premium_only.php:23
+msgid ""
+"Do not track personal or protected data. Tracked data will be available "
+"in the \"fpdata\" variable on the front-end so that tracking scripts can "
+"access it. User data will only be available to track when the users are "
+"logged-in."
+msgstr ""
+
+#: admin/settings/modules/trackmeta__premium_only/fupi-admin-descr_trackmeta__premium_only.php:8
+#, php-format
+msgid ""
+"With this module you can track metadata of users, posts, pages, products "
+"(e.g. WooCommerce), custom post types, tags, categories or terms of any "
+"taxonomy. %1$sLearn how it works%2$s"
 msgstr ""
 
 #: admin/settings/modules/trackmeta__premium_only/fupi-admin-tab-trackmeta__premium_only.php:9
@@ -10702,53 +10727,53 @@ msgid ""
 "and not the data of the variants."
 msgstr ""
 
-#: admin/settings/modules/woo/fupi-admin-tab-woo.php:45
+#: admin/settings/modules/woo/fupi-admin-tab-woo.php:53
 msgid "Do not track product views after a page is refreshed"
 msgstr ""
 
-#: admin/settings/modules/woo/fupi-admin-tab-woo.php:48
+#: admin/settings/modules/woo/fupi-admin-tab-woo.php:56
 msgid "Recommended for most stores"
 msgstr ""
 
-#: admin/settings/modules/woo/fupi-admin-tab-woo.php:49
+#: admin/settings/modules/woo/fupi-admin-tab-woo.php:57
 msgid ""
 "This option is recommended for all stores where product pages are "
 "refreshed after a product is added to cart."
 msgstr ""
 
-#: admin/settings/modules/woo/fupi-admin-tab-woo.php:53
+#: admin/settings/modules/woo/fupi-admin-tab-woo.php:61
 msgid "Add \"brand\" field to \"edit product\" pages"
 msgstr ""
 
-#: admin/settings/modules/woo/fupi-admin-tab-woo.php:58
+#: admin/settings/modules/woo/fupi-admin-tab-woo.php:66
 msgid ""
 "Brands are often required in product feeds (catalogs) made for "
 "advertising platforms, like Meta Business or Google Merchant Center."
 msgstr ""
 
-#: admin/settings/modules/woo/fupi-admin-tab-woo.php:62
+#: admin/settings/modules/woo/fupi-admin-tab-woo.php:70
 msgid "Select a taxonomy that contains product brand"
 msgstr ""
 
-#: admin/settings/modules/woo/fupi-admin-tab-woo.php:66
+#: admin/settings/modules/woo/fupi-admin-tab-woo.php:74
 msgid ""
 "Use this field if you added a \"brand\" field to product pages using a "
 "different plugin."
 msgstr ""
 
-#: admin/settings/modules/woo/fupi-admin-tab-woo.php:70
+#: admin/settings/modules/woo/fupi-admin-tab-woo.php:78
 msgid "Track clicks on \"Add to wishlist\" button"
 msgstr ""
 
-#: admin/settings/modules/woo/fupi-admin-tab-woo.php:71
+#: admin/settings/modules/woo/fupi-admin-tab-woo.php:79
 msgid "Enter CSS class or ID"
 msgstr ""
 
-#: admin/settings/modules/woo/fupi-admin-tab-woo.php:75
+#: admin/settings/modules/woo/fupi-admin-tab-woo.php:83
 msgid "e.g. .my-add-to-wishlist"
 msgstr ""
 
-#: admin/settings/modules/woo/fupi-admin-tab-woo.php:76
+#: admin/settings/modules/woo/fupi-admin-tab-woo.php:84
 msgid ""
 "Enter CSS selector of an \"add to wishlist\" button used on your site "
 "(if it uses any). The wishlist button needs to be positioned in your "
@@ -10756,26 +10781,26 @@ msgid ""
 "may not work correctly. The tracking doesn't work with grouped products."
 msgstr ""
 
-#: admin/settings/modules/woo/fupi-admin-tab-woo.php:83
+#: admin/settings/modules/woo/fupi-admin-tab-woo.php:91
 msgid "Advanced order tracking"
 msgstr ""
 
-#: admin/settings/modules/woo/fupi-admin-tab-woo.php:87
+#: admin/settings/modules/woo/fupi-admin-tab-woo.php:95
 msgid "Track new orders when they get these statuses"
 msgstr ""
 
-#: admin/settings/modules/woo/fupi-admin-tab-woo.php:92
+#: admin/settings/modules/woo/fupi-admin-tab-woo.php:100
 msgid ""
 "You can enter here multiple order statuses indicating that an order has "
 "been made. The \"purchase\" event will be sent only the first time an "
 "order gets a matching status."
 msgstr ""
 
-#: admin/settings/modules/woo/fupi-admin-tab-woo.php:96
+#: admin/settings/modules/woo/fupi-admin-tab-woo.php:104
 msgid "Track order cancellations when they get these statuses"
 msgstr ""
 
-#: admin/settings/modules/woo/fupi-admin-tab-woo.php:101
+#: admin/settings/modules/woo/fupi-admin-tab-woo.php:109
 msgid ""
 "You can enter here multiple order statuses indicating that the order has "
 "been cancelled or refunded. The \"refund\" event will be sent only the "
@@ -10944,19 +10969,19 @@ msgid ""
 "your WordPress admin plugin management page"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:52
+#: includes/class-fupi-get-gdpr-status.php:53
 msgid "Consent banner must be enabled for your setup"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:53
+#: includes/class-fupi-get-gdpr-status.php:54
 msgid "Please enable it in either opt-in mode or one of automatic modes"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:54
+#: includes/class-fupi-get-gdpr-status.php:55
 msgid "You may need to use the Consent Banner module on your website."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:55
+#: includes/class-fupi-get-gdpr-status.php:56
 #, php-format
 msgid ""
 "Enable it if any of the tracking tools installed on your website track "
@@ -10964,46 +10989,66 @@ msgid ""
 "other sites (YouTube video, maps, etc.) or gives warnings in %1$s."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:99
+#: includes/class-fupi-get-gdpr-status.php:102
 msgid "Fix errors in consent banner settings."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:100
+#: includes/class-fupi-get-gdpr-status.php:103
 msgid "Make sure the banner is set up correctly."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:257
+#: includes/class-fupi-get-gdpr-status.php:260
 msgid ""
 "There was an error registering the site in ConsentsDB. Save the secret "
 "key and try again."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:360
+#: includes/class-fupi-get-gdpr-status.php:363
 msgid ""
 "Add to your privacy policy information about additional, personaly "
 "identifiable information tracked and sent to the tool:"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:439
+#: includes/class-fupi-get-gdpr-status.php:442
 msgid "User metadata with ID: "
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:466
+#: includes/class-fupi-get-gdpr-status.php:469
 msgid "Link decoration is enabled in the consent banner settings."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:467
+#: includes/class-fupi-get-gdpr-status.php:470
 msgid ""
 "This setting is a privacy grey area. Make sure you are not breaking any "
 "laws while using it. Otherwise, disable link decoration in the settings "
 "of the consent banner."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:561
+#: includes/class-fupi-get-gdpr-status.php:553
+msgid "Other recommendations"
+msgstr ""
+
+#: includes/class-fupi-get-gdpr-status.php:557
+msgid "Google reCaptcha warning"
+msgstr ""
+
+#: includes/class-fupi-get-gdpr-status.php:558
+msgid ""
+"Google reCaptcha does not comply with GDPR and there is no known method "
+"of making it comply with it. Make sure to replace it with a GDPR "
+"compliant solution, for example Cloudflare Turnstile (free and paid) or "
+"Friendly Captcha (paid for commercial use). Attention. You may read "
+"online, that there are ways to make Google reCaptcha compatible with "
+"GDPR. This is not true. The proposed solution of conditionally loading "
+"reCaptcha's scripts prevents access to content if visitors do not agree "
+"to tracking, which is against GDPR."
+msgstr ""
+
+#: includes/class-fupi-get-gdpr-status.php:581
 msgid "These additional tracking tools are used on the website: "
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:562
+#: includes/class-fupi-get-gdpr-status.php:582
 #, php-format
 msgid ""
 "Your privacy policy must include information about these tracking tools: "
@@ -11012,54 +11057,54 @@ msgid ""
 "with or sell it to."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:573
+#: includes/class-fupi-get-gdpr-status.php:593
 msgid "No information on additional tracking tools have been provided"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:592
+#: includes/class-fupi-get-gdpr-status.php:612
 msgid "Order ID"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:593
+#: includes/class-fupi-get-gdpr-status.php:613
 msgid ""
 "This tool does not track personally identifiable information and does "
 "not need consent banner"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:605
+#: includes/class-fupi-get-gdpr-status.php:625
 msgid "ID of a logged in user"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:627
+#: includes/class-fupi-get-gdpr-status.php:647
 msgid "Visitor's data is being kept on servers in the EU"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:628
+#: includes/class-fupi-get-gdpr-status.php:648
 msgid "Visitor's data is not being kept on servers in the EU"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:647
-#: includes/class-fupi-get-gdpr-status.php:670
+#: includes/class-fupi-get-gdpr-status.php:667
+#: includes/class-fupi-get-gdpr-status.php:690
 msgid ""
 "Real name, surname, phone number, email address and physical address of "
 "customers and logged-in users (enabled with Enhanced Conversions)"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:691
+#: includes/class-fupi-get-gdpr-status.php:711
 msgid "Unique ID (user email email and/or a user id)"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:710
+#: includes/class-fupi-get-gdpr-status.php:730
 msgid ""
 "The script loads an additional script for A/B testing which requires "
 "consent to using visitor's data for website personalisation."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:711
+#: includes/class-fupi-get-gdpr-status.php:731
 msgid "Unique ID (user email email, user id or username)."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:734
+#: includes/class-fupi-get-gdpr-status.php:754
 msgid ""
 "Matomo works in privacy mode and loads irrespective of user tracking "
 "consents. Privacy mode prevents from tracking identifiable information "
@@ -11068,54 +11113,54 @@ msgid ""
 "tracking and order IDs are randomized."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:735
+#: includes/class-fupi-get-gdpr-status.php:755
 msgid ""
 "User ID - used for cross-browser tracking after visitors agree to "
 "cookies."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:736
+#: includes/class-fupi-get-gdpr-status.php:756
 msgid "User ID - for cross-browser tracking."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:737
+#: includes/class-fupi-get-gdpr-status.php:757
 msgid "Set up a consent banner"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:738
+#: includes/class-fupi-get-gdpr-status.php:758
 msgid "Make sure the banner is set up correctly"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:739
+#: includes/class-fupi-get-gdpr-status.php:759
 msgid ""
 "Real order ID is tracked when visitors agree to tracking in a consent "
 "banner. Random order ID is sent when they don't."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:740
+#: includes/class-fupi-get-gdpr-status.php:760
 msgid ""
 "Privacy mode is enabled. Make sure that this tool doesn't track "
 "information that can identify users."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:796
+#: includes/class-fupi-get-gdpr-status.php:816
 msgid ""
 "Advanced Match is enabled. Encrypted addresses, email addresses, phone "
 "numbers and user identifiers of your visitors and logged in users are "
 "sent to Meta (if known)."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:807
+#: includes/class-fupi-get-gdpr-status.php:827
 msgid "Limited Data Use option is enabled for visitors from the USA."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:825
+#: includes/class-fupi-get-gdpr-status.php:845
 msgid ""
 "Enhanced Conversions is enabled and sends to MS Advertising the email "
 "addresses of clients or logged-in users (if known)."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:840
+#: includes/class-fupi-get-gdpr-status.php:860
 msgid ""
 "MS Clarity works in no-cookie mode and loads irrespective of user "
 "tracking consents.This prevents from MS Clarity from tracking "
@@ -11123,73 +11168,73 @@ msgid ""
 "banner (if enabled). Only necessary cookies are loaded."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:841
+#: includes/class-fupi-get-gdpr-status.php:861
 msgid ""
 "No-cookie mode is enabled. Make sure that this tool doesn't track "
 "information that can identify users."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:864
+#: includes/class-fupi-get-gdpr-status.php:884
 msgid ""
 "Enhanced Match is enabled. Email addresses of clients and logged-in "
 "users are sent to Pinterest."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:880
+#: includes/class-fupi-get-gdpr-status.php:900
 msgid ""
 "Due to the nature of Plausible Analytics and its terms and conditions, "
 "you cannot sent to it personally identifiable information. Please make "
 "sure that no metadata contains it."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:896
+#: includes/class-fupi-get-gdpr-status.php:916
 msgid ""
 "Enhanced Conversions is enabled. Email addresses of clients and logged-"
 "in users are sent to Twitter (if known)."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:913
+#: includes/class-fupi-get-gdpr-status.php:933
 msgid "The tool is force loaded for all visitors."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:914
+#: includes/class-fupi-get-gdpr-status.php:934
 msgid "Disable force loading"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:928
+#: includes/class-fupi-get-gdpr-status.php:948
 msgid ""
 "The tool is set to disregard consent banner settings and start tracking "
 "without waiting for consent"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:929
+#: includes/class-fupi-get-gdpr-status.php:949
 msgid "Disable this option in the module's settings"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:930
+#: includes/class-fupi-get-gdpr-status.php:950
 msgid "This tool loads according to incorrectly configured consent banner."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:931
+#: includes/class-fupi-get-gdpr-status.php:951
 msgid "This tool loads according to consent banner settings."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:948
+#: includes/class-fupi-get-gdpr-status.php:968
 msgid "Consent banner is required"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:949
-#: includes/class-fupi-get-gdpr-status.php:1015
-#: includes/class-fupi-get-gdpr-status.php:1363
-#: includes/class-fupi-get-gdpr-status.php:1386
+#: includes/class-fupi-get-gdpr-status.php:969
+#: includes/class-fupi-get-gdpr-status.php:1035
+#: includes/class-fupi-get-gdpr-status.php:1383
+#: includes/class-fupi-get-gdpr-status.php:1406
 msgid "Enable consent banner"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:980
+#: includes/class-fupi-get-gdpr-status.php:1000
 msgid "Google Fonts are replaced with fonts from Bunny Fonts"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:981
+#: includes/class-fupi-get-gdpr-status.php:1001
 #, php-format
 msgid ""
 "You enabled replacing Google Fonts with safe fonts from Bunny Fonts but "
@@ -11199,11 +11244,11 @@ msgid ""
 "Fonts in their settings."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:982
+#: includes/class-fupi-get-gdpr-status.php:1002
 msgid "Check if you need to use the Safe Fonts module"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:983
+#: includes/class-fupi-get-gdpr-status.php:1003
 #, php-format
 msgid ""
 "Scan your website with %1$s and check if your website uses Google Fonts. "
@@ -11212,13 +11257,13 @@ msgid ""
 "compliant fonts from Bunny Fonts."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1009
+#: includes/class-fupi-get-gdpr-status.php:1029
 msgid ""
 "Disable Order Attribution or control the SourceBuster script in "
 "WooCommerce"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1010
+#: includes/class-fupi-get-gdpr-status.php:1030
 #, php-format
 msgid ""
 "Recent versions of WooCommerce come with an order attribution feature "
@@ -11229,31 +11274,31 @@ msgid ""
 "used by the Order Attribution function. %1$sLearn more%2$s"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1011
+#: includes/class-fupi-get-gdpr-status.php:1031
 msgid ""
 "SourceBuster script is loaded according to incorrectly set up consent "
 "banner"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1012
+#: includes/class-fupi-get-gdpr-status.php:1032
 msgid "Correct consent banner settings"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1013
+#: includes/class-fupi-get-gdpr-status.php:1033
 msgid ""
 "SourceBuster script is loaded according to the consent banner settings"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1014
+#: includes/class-fupi-get-gdpr-status.php:1034
 msgid ""
 "Enable consent banner to load SourceBuster according to privacy laws"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1063
+#: includes/class-fupi-get-gdpr-status.php:1083
 msgid "Check if you need to use the Iframes Manager module"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1064
+#: includes/class-fupi-get-gdpr-status.php:1084
 msgid ""
 "If you embed on your site any content from other websites (YouTube "
 "videos, Google Maps, X/Twitter twits, etc.), please configure the "
@@ -11261,12 +11306,12 @@ msgid ""
 "Picture will be able to load this content according to provided consents."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1090
-#: includes/class-fupi-get-gdpr-status.php:1240
+#: includes/class-fupi-get-gdpr-status.php:1110
+#: includes/class-fupi-get-gdpr-status.php:1260
 msgid " and "
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1093
+#: includes/class-fupi-get-gdpr-status.php:1113
 #, php-format
 msgid ""
 "Iframes loaded by %1$s are loaded according to consent banner settings "
@@ -11274,90 +11319,90 @@ msgid ""
 "to privacy policies of content hosts."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1111
-#: includes/class-fupi-get-gdpr-status.php:1215
-#: includes/class-fupi-get-gdpr-status.php:1426
+#: includes/class-fupi-get-gdpr-status.php:1131
+#: includes/class-fupi-get-gdpr-status.php:1235
+#: includes/class-fupi-get-gdpr-status.php:1446
 msgid "statistics"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1112
-#: includes/class-fupi-get-gdpr-status.php:1216
-#: includes/class-fupi-get-gdpr-status.php:1427
+#: includes/class-fupi-get-gdpr-status.php:1132
+#: includes/class-fupi-get-gdpr-status.php:1236
+#: includes/class-fupi-get-gdpr-status.php:1447
 msgid "marketing"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1113
-#: includes/class-fupi-get-gdpr-status.php:1217
-#: includes/class-fupi-get-gdpr-status.php:1428
+#: includes/class-fupi-get-gdpr-status.php:1133
+#: includes/class-fupi-get-gdpr-status.php:1237
+#: includes/class-fupi-get-gdpr-status.php:1448
 msgid "personalisation"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1135
+#: includes/class-fupi-get-gdpr-status.php:1155
 #, php-format
 msgid ""
 " are loaded according to consent banner settings (require consents for "
 "%1$s) or when visitors agree to privacy policies of content hosts."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1145
+#: includes/class-fupi-get-gdpr-status.php:1165
 msgid " are set to load without waiting for consents."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1162
+#: includes/class-fupi-get-gdpr-status.php:1182
 msgid ""
 "Add information in your privacy policy that your website loads content "
 "from other sources and what happens with their data after they agree. "
 "You can link to their privacy policies."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1200
+#: includes/class-fupi-get-gdpr-status.php:1220
 msgid "WP Full Picture loads a script"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1242
+#: includes/class-fupi-get-gdpr-status.php:1262
 msgid "It is set to require consents for"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1243
+#: includes/class-fupi-get-gdpr-status.php:1263
 msgid "but it is force-loaded before visitors can make their choices."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1244
+#: includes/class-fupi-get-gdpr-status.php:1264
 msgid "Do not force-load this script."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1245
+#: includes/class-fupi-get-gdpr-status.php:1265
 msgid "and loads according to consent banner settings."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1265
-#: includes/class-fupi-get-gdpr-status.php:1281
+#: includes/class-fupi-get-gdpr-status.php:1285
+#: includes/class-fupi-get-gdpr-status.php:1301
 msgid "The script loads without waiting for tracking consents."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1266
-#: includes/class-fupi-get-gdpr-status.php:1282
+#: includes/class-fupi-get-gdpr-status.php:1286
+#: includes/class-fupi-get-gdpr-status.php:1302
 msgid ""
 "Make sure that this script does not track personaly identifiable "
 "information."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1301
+#: includes/class-fupi-get-gdpr-status.php:1321
 msgid "This module does not install any scripts"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1302
+#: includes/class-fupi-get-gdpr-status.php:1322
 msgid ""
 "Make sure that all JavaScript snippets that install tracking tools are "
 "loaded with the Custom Scripts module. WP Full Picture will load them "
 "according to provided consents."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1315
+#: includes/class-fupi-get-gdpr-status.php:1335
 msgid "Check if you need to enable the Custom Scripts module"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1316
+#: includes/class-fupi-get-gdpr-status.php:1336
 msgid ""
 "If you installed any tracking tools with JavaScript snippets, please "
 "move these snippets to the \"Custom scripts\" module (easy) or Google "
@@ -11365,11 +11410,11 @@ msgid ""
 "be able to load these tools according to provided consents."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1340
+#: includes/class-fupi-get-gdpr-status.php:1360
 msgid "Check if you need to use the Tracking Tools Manager module"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1341
+#: includes/class-fupi-get-gdpr-status.php:1361
 #, php-format
 msgid ""
 "Tracking Tools Manager let's you load tracking tools installed outside "
@@ -11379,73 +11424,73 @@ msgid ""
 "how to use it, read these %2$sshort instructions%3$s."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1361
-#: includes/class-fupi-get-gdpr-status.php:1374
+#: includes/class-fupi-get-gdpr-status.php:1381
+#: includes/class-fupi-get-gdpr-status.php:1394
 msgid ""
 "Tracking plugins loaded according to settings in the consent banner:"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1362
-#: includes/class-fupi-get-gdpr-status.php:1385
+#: includes/class-fupi-get-gdpr-status.php:1382
+#: includes/class-fupi-get-gdpr-status.php:1405
 #, php-format
 msgid ""
 "Tracking plugin(s) %1$s must be loaded according to settings in the "
 "consent banner but it is not enabled."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1406
+#: includes/class-fupi-get-gdpr-status.php:1426
 msgid "No name provided"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1425
+#: includes/class-fupi-get-gdpr-status.php:1445
 #, php-format
 msgid "Tracking tool with %1$s=\"%2$s\" and title/ID \"%3$s\""
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1454
+#: includes/class-fupi-get-gdpr-status.php:1474
 #, php-format
 msgid "is marked as using visitor's data for %1$s."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1455
+#: includes/class-fupi-get-gdpr-status.php:1475
 msgid "The tool is loaded according to incorrectly set up consent banner"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1456
+#: includes/class-fupi-get-gdpr-status.php:1476
 msgid "The tool is loaded according to consent banner settings"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1478
+#: includes/class-fupi-get-gdpr-status.php:1498
 msgid "is set to load without waiting for consents."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1479
+#: includes/class-fupi-get-gdpr-status.php:1499
 msgid "Make sure this script does not need consents"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1496
+#: includes/class-fupi-get-gdpr-status.php:1516
 msgid ""
 "Add information in your privacy policy about additional tracking tools "
 "that you use, what data they collect, how is the data used and who is it "
 "shared with."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1497
+#: includes/class-fupi-get-gdpr-status.php:1517
 msgid "This module does not manage any tracking tools"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1498
+#: includes/class-fupi-get-gdpr-status.php:1518
 msgid "Are you sure this module needs to stay enabled?"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1536
+#: includes/class-fupi-get-gdpr-status.php:1556
 #, php-format
 msgid ""
 "Check in what countries opt-in, opt-out and notification banners should "
 "be used. %1$sRead article%2$s"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1537
+#: includes/class-fupi-get-gdpr-status.php:1557
 msgid ""
 "Consent banner uses strict, automatic setup mode - it chooses the "
 "correct mode of work depending on visitor's location. Strict mode is "
@@ -11453,65 +11498,65 @@ msgid ""
 "and / or collect sensitive information."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1538
-#: includes/class-fupi-get-gdpr-status.php:1651
-#: includes/class-fupi-get-gdpr-status.php:1710
+#: includes/class-fupi-get-gdpr-status.php:1558
+#: includes/class-fupi-get-gdpr-status.php:1671
+#: includes/class-fupi-get-gdpr-status.php:1730
 msgid "Opt-in mode is used for visitors from:"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1539
-#: includes/class-fupi-get-gdpr-status.php:1652
+#: includes/class-fupi-get-gdpr-status.php:1559
+#: includes/class-fupi-get-gdpr-status.php:1672
 msgid "Opt-out mode is used for visitors from:"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1540
+#: includes/class-fupi-get-gdpr-status.php:1560
 msgid "Visitors from other countries are notified that they are tracked."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1541
+#: includes/class-fupi-get-gdpr-status.php:1561
 msgid "Fallback mode when no location is found: Opt-in mode."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1565
-#: includes/class-fupi-get-gdpr-status.php:1599
-#: includes/class-fupi-get-gdpr-status.php:1882
+#: includes/class-fupi-get-gdpr-status.php:1585
+#: includes/class-fupi-get-gdpr-status.php:1619
+#: includes/class-fupi-get-gdpr-status.php:1902
 msgid ""
 "Consent banner is set to start tracking visitors from all countries only "
 "after they consent to tracking (Opt-in mode)."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1566
-#: includes/class-fupi-get-gdpr-status.php:1933
+#: includes/class-fupi-get-gdpr-status.php:1586
+#: includes/class-fupi-get-gdpr-status.php:1953
 msgid ""
 "Visitors are not asked for new consent when the privacy policy text "
 "changes and/or when new tracking modules are enabled."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1567
-#: includes/class-fupi-get-gdpr-status.php:1934
+#: includes/class-fupi-get-gdpr-status.php:1587
+#: includes/class-fupi-get-gdpr-status.php:1954
 msgid "Enable it in the consent banner's settings"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1611
+#: includes/class-fupi-get-gdpr-status.php:1631
 msgid ""
 "Consent banner is set to start tracking visitors from the moment they "
 "enter the website but let them decline tracking (Opt-out mode)."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1612
-#: includes/class-fupi-get-gdpr-status.php:1626
-#: includes/class-fupi-get-gdpr-status.php:1894
-#: includes/class-fupi-get-gdpr-status.php:1908
+#: includes/class-fupi-get-gdpr-status.php:1632
+#: includes/class-fupi-get-gdpr-status.php:1646
+#: includes/class-fupi-get-gdpr-status.php:1914
+#: includes/class-fupi-get-gdpr-status.php:1928
 msgid "Change to the opt-in mode or one of automatic modes."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1625
+#: includes/class-fupi-get-gdpr-status.php:1645
 msgid ""
 "Consent banner is set to track all visitors and only notify them that "
 "they are tracked. They cannot decline."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1650
+#: includes/class-fupi-get-gdpr-status.php:1670
 msgid ""
 "Consent banner uses lax, automatic setup mode - it chooses the correct "
 "mode of work depending on visitor's location. Lax mode is intended for "
@@ -11519,144 +11564,144 @@ msgid ""
 "collect sensitive information."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1653
+#: includes/class-fupi-get-gdpr-status.php:1673
 #, php-format
 msgid "Visitors from %1$s are notified that they are tracked."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1654
-#: includes/class-fupi-get-gdpr-status.php:1814
+#: includes/class-fupi-get-gdpr-status.php:1674
+#: includes/class-fupi-get-gdpr-status.php:1834
 msgid "Visitors from other countries are tracked without notification."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1672
+#: includes/class-fupi-get-gdpr-status.php:1692
 msgid ""
 "Consent banner changes the mode of work depending on visitor's location. "
 "The list of locations was set manually by the user."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1673
+#: includes/class-fupi-get-gdpr-status.php:1693
 msgid "Make sure your setup is correct"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1685
+#: includes/class-fupi-get-gdpr-status.php:1705
 msgid "Opt-in mode is used for visitors from all countries."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1696
-#: includes/class-fupi-get-gdpr-status.php:1719
+#: includes/class-fupi-get-gdpr-status.php:1716
+#: includes/class-fupi-get-gdpr-status.php:1739
 msgid "Opt-in mode is not used for visitors from any country."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1733
+#: includes/class-fupi-get-gdpr-status.php:1753
 msgid "Opt-out mode is used for visitors from all countries."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1745
-#: includes/class-fupi-get-gdpr-status.php:1768
+#: includes/class-fupi-get-gdpr-status.php:1765
+#: includes/class-fupi-get-gdpr-status.php:1788
 msgid "Opt-out mode is not used for visitors from any country."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1758
+#: includes/class-fupi-get-gdpr-status.php:1778
 #, php-format
 msgid "Opt-out mode is used for visitors from: %1$s."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1782
+#: includes/class-fupi-get-gdpr-status.php:1802
 msgid ""
 "Visitors from all countries are notified about tracking but can't opt-out"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1783
+#: includes/class-fupi-get-gdpr-status.php:1803
 msgid "Change to opt-in mode or one of the automatic ones"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1794
+#: includes/class-fupi-get-gdpr-status.php:1814
 msgid "Visitors from no country are only informed that they are tracked."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1795
+#: includes/class-fupi-get-gdpr-status.php:1815
 msgid ""
 "Visitors from these countries are notified about tracking but can't opt-"
 "out:"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1833
+#: includes/class-fupi-get-gdpr-status.php:1853
 msgid ""
 "When visitor location is not found, consent banner will start tracking "
 "visitors only after they consent to tracking (Opt-in mode)."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1844
+#: includes/class-fupi-get-gdpr-status.php:1864
 msgid ""
 "When visitor location is not found, consent banner will start tracking "
 "visitors from the moment they enter the website but will let them "
 "decline tracking (Opt-out mode)"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1845
-#: includes/class-fupi-get-gdpr-status.php:1860
+#: includes/class-fupi-get-gdpr-status.php:1865
+#: includes/class-fupi-get-gdpr-status.php:1880
 msgid "Change to opt-in mode."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1859
+#: includes/class-fupi-get-gdpr-status.php:1879
 msgid ""
 "When visitor location is not found, visitors will be notified that they "
 "are tracked bu they will not be able to decline tracking."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1893
+#: includes/class-fupi-get-gdpr-status.php:1913
 msgid ""
 "Consent banner is set to start tracking visitors from the moment they "
 "enter the website but will let them decline tracking (Opt-out mode)"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1907
+#: includes/class-fupi-get-gdpr-status.php:1927
 msgid ""
 "Visitors are notified that they are tracked but they are not able to "
 "decline tracking."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1923
+#: includes/class-fupi-get-gdpr-status.php:1943
 msgid ""
 "Visitors are asked for consent again, when the privacy policy text "
 "changes or when tracking modules are enabled."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1954
+#: includes/class-fupi-get-gdpr-status.php:1974
 msgid "Privacy policy page is not set or is not published"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1955
+#: includes/class-fupi-get-gdpr-status.php:1975
 msgid ""
 "Please set it in \"Settings > Privacy\" page and make sure that it is "
 "published."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1974
+#: includes/class-fupi-get-gdpr-status.php:1994
 msgid ""
 "When visitors are asked for tracking consent (opt-in), switches for "
 "choosing allowed uses of tracked data are pre-selected."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1975
+#: includes/class-fupi-get-gdpr-status.php:1995
 msgid "Disable pre-selection of switches"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1988
+#: includes/class-fupi-get-gdpr-status.php:2008
 msgid ""
 "Add to your privacy policy information that WP Full Picture uses the "
 "following cookies:"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1989
+#: includes/class-fupi-get-gdpr-status.php:2009
 msgid ""
 "fp_cookie - a necessary cookie. It stores information on visitor's "
 "tracking consents, a list of tracking tools that a user agreed to and "
 "the date of the last update of the privacy policy page. Does not expire."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1990
+#: includes/class-fupi-get-gdpr-status.php:2010
 msgid ""
 "fp_current_session - an optional cookie. It requires consent to tracking "
 "statistics. In the free version it does not hold any value and is only "
@@ -11667,15 +11712,15 @@ msgid ""
 "30 minutes."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1998
+#: includes/class-fupi-get-gdpr-status.php:2018
 msgid "Saving consents"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:2010
+#: includes/class-fupi-get-gdpr-status.php:2030
 msgid "Saving proofs of visitor's tracking consents is disabled."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:2011
+#: includes/class-fupi-get-gdpr-status.php:2031
 msgid ""
 "Enable saving proofs of consent in the Consent Banner > Saving Consents. "
 "You may need it during audits or investigations by authorities or data "
@@ -11683,11 +11728,11 @@ msgid ""
 "permission, in legal cases where privacy issues are involved."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:2023
+#: includes/class-fupi-get-gdpr-status.php:2043
 msgid "Saving proofs of visitor's tracking consents is enabled."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:2036
+#: includes/class-fupi-get-gdpr-status.php:2058
 msgid ""
 "cdb_id - a necessary cookie. It is saved after visitors agree or decline "
 "tracking in the opt-in banner. It stores a random device identifier used "
@@ -11695,7 +11740,7 @@ msgid ""
 "expire."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:2048
+#: includes/class-fupi-get-gdpr-status.php:2072
 msgid ""
 "fp_country - a necessary cookie used when the geolocation module is "
 "enabled. It is used by the plugin to apply the correct tracking "
@@ -11704,7 +11749,7 @@ msgid ""
 "by default)."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:2049
+#: includes/class-fupi-get-gdpr-status.php:2073
 msgid ""
 "fp_recent_sessions - an optional cookie used for tracking visitor's "
 "behavior across multiple sessions. It requires consent to tracking "
@@ -11712,49 +11757,49 @@ msgid ""
 "during recent sessions. Expires after 30 days from the last visit."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:2070
+#: includes/class-fupi-get-gdpr-status.php:2094
 msgid ""
 "Visitors who want to change their tracking preferences can do it in the "
 "consent banner which shows after they click an icon in the corner of the "
 "screen"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:2101
+#: includes/class-fupi-get-gdpr-status.php:2125
 msgid ""
 "Visitors who want to change their tracking preferences can do it in the "
 "consent banner which shows after they click a link/button in the privacy "
 "policy."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:2117
+#: includes/class-fupi-get-gdpr-status.php:2141
 msgid ""
 "Make sure your visitors can open the consent banner popup to change "
 "their tracking preferences."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:2118
+#: includes/class-fupi-get-gdpr-status.php:2142
 msgid ""
 "Please enable a toggle icon in the theme customizer (Appearance > "
 "Customize > Consent Banner) or add a button in your privacy policy with "
 "the CSS selector(s):"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:2130
+#: includes/class-fupi-get-gdpr-status.php:2154
 msgid "Privacy policy page is missing or is not marked as such."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:2131
+#: includes/class-fupi-get-gdpr-status.php:2155
 msgid ""
 "Create a privacy policy page and mark it as such in in the WordPress "
 "admin > Settings menu > Privacy page."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:2148
+#: includes/class-fupi-get-gdpr-status.php:2172
 msgid ""
 "The consent banner is not set to display in the center of the screen"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:2149
+#: includes/class-fupi-get-gdpr-status.php:2173
 msgid ""
 "To collect maximum number of consents we recommend that you place your "
 "notice in the central position of the screen. This way people will not "
@@ -11763,69 +11808,69 @@ msgid ""
 "traffic, which can be accessed only on the first page the visitor sees."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:2212
+#: includes/class-fupi-get-gdpr-status.php:2236
 msgid "button opening panel with cookie settings"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:2213
+#: includes/class-fupi-get-gdpr-status.php:2237
 msgid ""
 "section where users can consent to the use of their data for statistics"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:2214
+#: includes/class-fupi-get-gdpr-status.php:2238
 msgid ""
 "section where users can consent to the use of their data for marketing"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:2215
+#: includes/class-fupi-get-gdpr-status.php:2239
 msgid ""
 "section where users can consent to the use of their data for "
 "personalisation"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:2217
+#: includes/class-fupi-get-gdpr-status.php:2241
 msgid "The consent banner does not display the \"Decline\" button"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:2218
+#: includes/class-fupi-get-gdpr-status.php:2242
 msgid "Do not hide the \"Decline\" button"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:2219
+#: includes/class-fupi-get-gdpr-status.php:2243
 msgid "Hidden consent baner elements:"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:2258
+#: includes/class-fupi-get-gdpr-status.php:2282
 msgid "Name and surname of a user or a client"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:2259
+#: includes/class-fupi-get-gdpr-status.php:2283
 msgid ""
 "User's email address and/or an email address of a client (even when not "
 "logged in, collected at the time of purchase)"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:2260
+#: includes/class-fupi-get-gdpr-status.php:2284
 msgid ""
 "User's phone number and/or phone number of a client (even when not "
 "logged in, collected at the time of purchase)"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:2261
+#: includes/class-fupi-get-gdpr-status.php:2285
 msgid ""
 "User's physical address and/or address of a client (even when not logged "
 "in, collected at the time of purchase)"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:2275
+#: includes/class-fupi-get-gdpr-status.php:2299
 msgid "Order ID (in WooCommerce)"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:2288
+#: includes/class-fupi-get-gdpr-status.php:2312
 msgid "User metadata with ID"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:2305
+#: includes/class-fupi-get-gdpr-status.php:2329
 msgid ""
 "The privacy policy must include information about tracking tools that "
 "are loaded with GTM, what data is tracked, what you and these tools use "
@@ -11833,33 +11878,33 @@ msgid ""
 "it to."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:2318
+#: includes/class-fupi-get-gdpr-status.php:2342
 msgid ""
 "Tracking tools loaded with GTM need to be used with a consent banner"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:2319
+#: includes/class-fupi-get-gdpr-status.php:2343
 msgid ""
 "Enable and set up the consent banner module and trigger GTM tags after "
 "visitors consent to tracking."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:2330
+#: includes/class-fupi-get-gdpr-status.php:2354
 msgid "Make sure to trigger GTM tags after visitors consent to tracking."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:2331
+#: includes/class-fupi-get-gdpr-status.php:2355
 msgid ""
 "Tracking tools loaded with GTM need to be loaded after visitors consent "
 "to tracking in the consent banner."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:2343
+#: includes/class-fupi-get-gdpr-status.php:2367
 msgid ""
 "Tracking tools loaded with GTM may require the use of a consent banner"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:2344
+#: includes/class-fupi-get-gdpr-status.php:2368
 msgid ""
 "Make sure that none of the tools you install with GTM track personaly "
 "indentifiable information."
@@ -11906,79 +11951,79 @@ msgstr ""
 msgid "Broken links tracking"
 msgstr ""
 
-#: public/class-fupi-public.php:126 public/class-fupi-public.php:128
+#: public/class-fupi-public.php:139 public/class-fupi-public.php:141
 msgid "Labels"
 msgstr ""
 
-#: public/class-fupi-public.php:127
+#: public/class-fupi-public.php:140
 msgid "Label"
 msgstr ""
 
-#: public/class-fupi-public.php:129
+#: public/class-fupi-public.php:142
 msgid "All labels"
 msgstr ""
 
-#: public/class-fupi-public.php:130
+#: public/class-fupi-public.php:143
 msgid "Parent label"
 msgstr ""
 
-#: public/class-fupi-public.php:131
+#: public/class-fupi-public.php:144
 msgid "Parent label:"
 msgstr ""
 
-#: public/class-fupi-public.php:132
+#: public/class-fupi-public.php:145
 msgid "New Label Name"
 msgstr ""
 
-#: public/class-fupi-public.php:133
+#: public/class-fupi-public.php:146
 msgid "Add New Label"
 msgstr ""
 
-#: public/class-fupi-public.php:134
+#: public/class-fupi-public.php:147
 msgid "Edit Label"
 msgstr ""
 
-#: public/class-fupi-public.php:135
+#: public/class-fupi-public.php:148
 msgid "Update Label"
 msgstr ""
 
-#: public/class-fupi-public.php:136
+#: public/class-fupi-public.php:149
 msgid "View Label"
 msgstr ""
 
-#: public/class-fupi-public.php:137
+#: public/class-fupi-public.php:150
 msgid "Separate labels with commas"
 msgstr ""
 
-#: public/class-fupi-public.php:138
+#: public/class-fupi-public.php:151
 msgid "Add or remove labels"
 msgstr ""
 
-#: public/class-fupi-public.php:139 public/modules/woo/woo-public.php:221
+#: public/class-fupi-public.php:152 public/modules/woo/woo-public.php:219
 msgid "Choose from the most used"
 msgstr ""
 
-#: public/class-fupi-public.php:140
+#: public/class-fupi-public.php:153
 msgid "Popular labels"
 msgstr ""
 
-#: public/class-fupi-public.php:141
+#: public/class-fupi-public.php:154
 msgid "Search labels"
 msgstr ""
 
-#: public/class-fupi-public.php:142 public/modules/woo/woo-public.php:224
+#: public/class-fupi-public.php:155 public/modules/woo/woo-public.php:222
 msgid "Not Found"
 msgstr ""
 
-#: public/class-fupi-public.php:143
+#: public/class-fupi-public.php:156
 msgid "No labels"
 msgstr ""
 
-#: public/class-fupi-public.php:144
+#: public/class-fupi-public.php:157
 msgid "Labels list"
 msgstr ""
 
-#: public/class-fupi-public.php:145
+#: public/class-fupi-public.php:158
 msgid "Labels list navigation"
 msgstr ""
 
@@ -11990,76 +12035,76 @@ msgstr ""
 msgid "Change cookie preferences"
 msgstr ""
 
-#: public/modules/woo/woo-public.php:208
+#: public/modules/woo/woo-public.php:206
 msgctxt "Taxonomy General Name"
 msgid "Brands"
 msgstr ""
 
-#: public/modules/woo/woo-public.php:209
+#: public/modules/woo/woo-public.php:207
 msgctxt "Taxonomy Singular Name"
 msgid "Brand"
 msgstr ""
 
-#: public/modules/woo/woo-public.php:210
+#: public/modules/woo/woo-public.php:208
 msgid "Brands"
 msgstr ""
 
-#: public/modules/woo/woo-public.php:211
+#: public/modules/woo/woo-public.php:209
 msgid "All brands"
 msgstr ""
 
-#: public/modules/woo/woo-public.php:212
+#: public/modules/woo/woo-public.php:210
 msgid "Parent brand"
 msgstr ""
 
-#: public/modules/woo/woo-public.php:213
+#: public/modules/woo/woo-public.php:211
 msgid "Parent Brand:"
 msgstr ""
 
-#: public/modules/woo/woo-public.php:214
+#: public/modules/woo/woo-public.php:212
 msgid "New Brand Name"
 msgstr ""
 
-#: public/modules/woo/woo-public.php:215
+#: public/modules/woo/woo-public.php:213
 msgid "Add New Brand"
 msgstr ""
 
-#: public/modules/woo/woo-public.php:216
+#: public/modules/woo/woo-public.php:214
 msgid "Edit Brand"
 msgstr ""
 
-#: public/modules/woo/woo-public.php:217
+#: public/modules/woo/woo-public.php:215
 msgid "Update Brand"
 msgstr ""
 
-#: public/modules/woo/woo-public.php:218
+#: public/modules/woo/woo-public.php:216
 msgid "View Brand"
 msgstr ""
 
-#: public/modules/woo/woo-public.php:219
+#: public/modules/woo/woo-public.php:217
 msgid "Separate brands with commas"
 msgstr ""
 
-#: public/modules/woo/woo-public.php:220
+#: public/modules/woo/woo-public.php:218
 msgid "Add or remove brands"
 msgstr ""
 
-#: public/modules/woo/woo-public.php:222
+#: public/modules/woo/woo-public.php:220
 msgid "Popular brands"
 msgstr ""
 
-#: public/modules/woo/woo-public.php:223
+#: public/modules/woo/woo-public.php:221
 msgid "Search brands"
 msgstr ""
 
-#: public/modules/woo/woo-public.php:225
+#: public/modules/woo/woo-public.php:223
 msgid "No brands"
 msgstr ""
 
-#: public/modules/woo/woo-public.php:226
+#: public/modules/woo/woo-public.php:224
 msgid "Brands list"
 msgstr ""
 
-#: public/modules/woo/woo-public.php:227
+#: public/modules/woo/woo-public.php:225
 msgid "Brands list navigation"
 msgstr ""

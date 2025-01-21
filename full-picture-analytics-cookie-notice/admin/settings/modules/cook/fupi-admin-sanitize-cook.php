@@ -26,6 +26,9 @@ if ( ! empty( $input ) ) foreach( $input as $key => $value ) {
 			case 'priv_policy_page':
 				$clean_val = (int) $value;
 			break;
+			case 'hide_on_pages':
+				$clean_val = array_map( 'sanitize_key', $value );
+			break;
 			default:
 				if ( ! is_array( $value ) ){
 					$clean_val = strip_tags( stripslashes( $value ) );

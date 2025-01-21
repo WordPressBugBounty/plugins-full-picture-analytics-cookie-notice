@@ -16,7 +16,9 @@ if ( !empty( $user ) ) {
     }
 }
 $fp['vars'] = [
+    'bot_list'              => ( !empty( $this->main['bot_list'] ) ? esc_attr( $this->main['bot_list'] ) : 'none' ),
     'url'                   => FUPI_URL,
+    'is_pro'                => fupi_fs()->can_use_premium_code(),
     'uploads_url'           => trailingslashit( wp_upload_dir()['baseurl'] ),
     'is_customizer'         => is_customize_preview(),
     'debug'                 => isset( $this->main['debug'] ),

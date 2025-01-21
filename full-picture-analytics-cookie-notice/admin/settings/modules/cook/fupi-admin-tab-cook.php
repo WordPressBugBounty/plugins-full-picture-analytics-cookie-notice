@@ -85,36 +85,48 @@ $theme_compat_notice = '';
 if ( $is_oceanWP_theme ) {
     $theme_compat_notice = '<p style="color: red;">' . sprintf( esc_html__( 'Attention. OceanWP theme breaks the controls for styling the consent banner. They will not be available when using OceanWP. %1$sLearn what to do about it%2$s.', 'full-picture-analytics-cookie-notice' ), '<a href="https://wpfullpicture.com/support/documentation/how-to-go-around-the-incompatibility-issues-with-oceanwp-theme/" target="_blank">', '</a>' ) . '</p>';
 }
-$cook_fields = array_merge( $cook_fields, array(array(
-    'type'          => 'button',
-    'label'         => esc_html__( 'Customize the banner', 'full-picture-analytics-cookie-notice' ),
-    'button_text'   => esc_html__( 'Customize the banner', 'full-picture-analytics-cookie-notice' ),
-    'icon'          => 'dashicons dashicons-admin-appearance',
-    'href'          => wp_customize_url() . '?autofocus[panel]=fupi_notice',
-    'target'        => '_blank',
-    'class'         => 'fupi_customizer_link_wrap',
-    'el_class'      => 'button button-secondary fupi_customize_notice_btn',
-    'field_id'      => 'customize_notice_btn',
-    'option_arr_id' => $option_arr_id,
-    'after field'   => $theme_compat_notice,
-    'under field'   => '<p>' . esc_html__( 'You must save changes before you can start customizing.', 'full-picture-analytics-cookie-notice' ) . '</p>',
-), array(
-    'type'          => 'toggle',
-    'label'         => esc_html__( 'Ask visitors for consent again, when new tracking tools get enabled or when privacy policy is updated', 'full-picture-analytics-cookie-notice' ),
-    'field_id'      => 'ask_for_consent_again',
-    'option_arr_id' => $option_arr_id,
-    'popup2'        => '<p style="color: #e47d00">' . esc_html__( 'Attention. WP Full Picture is not aware of what tools the GTM installs. When new tools get installed inside GTM\'s container, visitors will not be asked for consent again.', 'full-picture-analytics-cookie-notice' ) . '</p>',
-    'under field'   => '<p>' . esc_html__( 'Highly recommended. Required in most countries.', 'full-picture-analytics-cookie-notice' ) . '</p>' . $priv_policy_url_text,
-), array(
-    'type'          => 'text',
-    'label'         => esc_html__( 'Show consent banner when visitors click this page element', 'full-picture-analytics-cookie-notice' ),
-    'field_id'      => 'toggle_selector',
-    'option_arr_id' => $option_arr_id,
-    'label_for'     => $option_arr_id . '[toggle_selector]',
-    'placeholder'   => esc_html__( 'e.g. #some_button', 'full-picture-analytics-cookie-notice' ),
-    'under field'   => esc_html__( 'Leave empty to use the default .fp_show_cookie_notice', 'full-picture-analytics-cookie-notice' ),
-    'popup'         => '<p>' . esc_html__( 'We recommend that you point at a link or a button in your privacy policy. This is required in most countries that require consent banners.', 'full-picture-analytics-cookie-notice' ) . '</p>',
-)) );
+$cook_fields = array_merge( $cook_fields, array(
+    array(
+        'type'          => 'button',
+        'label'         => esc_html__( 'Customize the banner', 'full-picture-analytics-cookie-notice' ),
+        'button_text'   => esc_html__( 'Customize the banner', 'full-picture-analytics-cookie-notice' ),
+        'icon'          => 'dashicons dashicons-admin-appearance',
+        'href'          => wp_customize_url() . '?autofocus[panel]=fupi_notice',
+        'target'        => '_blank',
+        'class'         => 'fupi_customizer_link_wrap',
+        'el_class'      => 'button button-secondary fupi_customize_notice_btn',
+        'field_id'      => 'customize_notice_btn',
+        'option_arr_id' => $option_arr_id,
+        'after field'   => $theme_compat_notice,
+        'under field'   => '<p>' . esc_html__( 'You must save changes before you can start customizing.', 'full-picture-analytics-cookie-notice' ) . '</p>',
+    ),
+    array(
+        'type'          => 'toggle',
+        'label'         => esc_html__( 'Ask visitors for consent again, when new tracking tools get enabled or when privacy policy is updated', 'full-picture-analytics-cookie-notice' ),
+        'field_id'      => 'ask_for_consent_again',
+        'option_arr_id' => $option_arr_id,
+        'popup2'        => '<p style="color: #e47d00">' . esc_html__( 'Attention. WP Full Picture is not aware of what tools the GTM installs. When new tools get installed inside GTM\'s container, visitors will not be asked for consent again.', 'full-picture-analytics-cookie-notice' ) . '</p>',
+        'under field'   => '<p>' . esc_html__( 'Highly recommended. Required in most countries.', 'full-picture-analytics-cookie-notice' ) . '</p>' . $priv_policy_url_text,
+    ),
+    array(
+        'type'          => 'text',
+        'label'         => esc_html__( 'Show consent banner when visitors click this page element', 'full-picture-analytics-cookie-notice' ),
+        'field_id'      => 'toggle_selector',
+        'option_arr_id' => $option_arr_id,
+        'label_for'     => $option_arr_id . '[toggle_selector]',
+        'placeholder'   => esc_html__( 'e.g. #some_button', 'full-picture-analytics-cookie-notice' ),
+        'under field'   => esc_html__( 'Leave empty to use the default .fp_show_cookie_notice', 'full-picture-analytics-cookie-notice' ),
+        'popup'         => '<p>' . esc_html__( 'We recommend that you point at a link or a button in your privacy policy. This is required in most countries that require consent banners.', 'full-picture-analytics-cookie-notice' ) . '</p>',
+    ),
+    array(
+        'type'          => 'page_search',
+        'field_id'      => 'hide_on_pages',
+        'label'         => esc_html__( 'Hide consent banner on these pages', 'full-picture-analytics-cookie-notice' ),
+        'option_arr_id' => $option_arr_id,
+        'popup'         => '<p>' . esc_html__( 'By default, WP Full Picture hides consent banner on the privacy policy page. Select other pages, where the banner should be hidden.', 'full-picture-analytics-cookie-notice' ) . '</p>
+		<p>' . esc_html__( 'Hiding the banner only hides it visually. It does not automatically give consent to tracking.', 'full-picture-analytics-cookie-notice' ) . '</p>',
+    )
+) );
 $sections = array(
     // Consent Banner
     array(

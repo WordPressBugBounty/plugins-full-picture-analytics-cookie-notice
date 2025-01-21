@@ -21,7 +21,7 @@
 			if ( ! fbc || ! fbc.includes( fpdata.current_session.landing_page.url_params.fbclid ) ) {
 				// create new _fbc
 				fbc = 'fb.1.' + Date.now() + '.' + fpdata.current_session.landing_page.url_params.fbclid;
-				setCookie( '_fbc', fbc, 90 );
+				FP.setCookie( '_fbc', fbc, 90 );
 			}
 		}
 

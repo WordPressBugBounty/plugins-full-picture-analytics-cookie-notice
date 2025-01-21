@@ -292,7 +292,7 @@ echo '<!-- WP Full Picture - Consent Banner & Analytics - START -->
 				<button type="button" data-classes="fupi_button" class="fupi_close_banner_btn fupi_button fupi_hidden ' . $btn_class . '">' . $current_texts['close'] . '</button>
 			</div>
 			<div class="fupi_cdb_info fupi_hidden">Consent ID: <span class="fupi_cdb_info_id"></span><br> Consent date: <span class="fupi_cdb_info_date"></span></div>
-			<p class="fupi_poweredBy">Powered by <a class="fupi_poweredBy_link" href="https://wpfullpicture.com/?utm_source=usersite&utm_medium=poweredby&utm_campaign=' . $fupi_campaignName . '" rel="nofollow">WP Full Picture ' . $fupi_version . '</a></p>
+			<p class="fupi_poweredBy">Powered by <a class="fupi_poweredBy_link" href="https://wpfullpicture.com/?utm_source=usersite&utm_medium=poweredby&utm_campaign=' . $fupi_campaignName . '" rel="nofollow noopener">WP Full Picture ' . $fupi_version . '</a></p>
 		</div>
 	</div>';
 if ( is_customize_preview() || (!$hidden_elements || $hidden_elements && !in_array( 'settings_btn', $hidden_elements )) ) {
@@ -340,7 +340,7 @@ if ( is_customize_preview() || (!$hidden_elements || $hidden_elements && !in_arr
 					<button type="button" data-classes="fupi_button" class="fupi_close_banner_btn fupi_button fupi_hidden ' . $btn_class . '">' . $current_texts['close'] . '</button>
 				</div>
 				<div class="fupi_cdb_info fupi_hidden">Consent ID: <span class="fupi_cdb_info_id"></span><br> Consent date: <span class="fupi_cdb_info_date"></span></div>
-				<p class="fupi_poweredBy">Powered by <a class="fupi_poweredBy_link" href="https://wpfullpicture.com/?utm_source=usersite&utm_medium=poweredby&utm_campaign=' . $fupi_campaignName . '" rel="nofollow">WP Full Picture ' . $fupi_version . '</a></p>
+				<p class="fupi_poweredBy">Powered by <a class="fupi_poweredBy_link" href="https://wpfullpicture.com/?utm_source=usersite&utm_medium=poweredby&utm_campaign=' . $fupi_campaignName . '" rel="nofollow noopener">WP Full Picture ' . $fupi_version . '</a></p>
 			</div>
 		</div>';
 }

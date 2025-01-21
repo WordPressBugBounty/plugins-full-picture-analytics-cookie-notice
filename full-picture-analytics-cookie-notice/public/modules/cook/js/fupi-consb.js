@@ -31,7 +31,7 @@
 	};
 
 	function setup_notice(){
-		
+
 		// hidden
 		if ( fp.notice.mode == 'hide' ){
 			
@@ -49,8 +49,9 @@
 				show_notice_on_link_click(true); // true == set switches
 			} else {
 				set_default_switches();
-				if ( fp.vars.track_current_user ) 
-					show_notice();
+				if ( fp.vars.track_current_user ) {
+					fp.notice.display_notice ? show_notice() : show_toggler();
+				};
 				show_notice_on_link_click(true);
 			};
 

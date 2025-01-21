@@ -108,14 +108,14 @@
 
 			let current_sect_nums = [...parent_sect_nums, sect_i]; // starts as [0]
 
-			// get all the field wrappers that are direct descendants of the section or are inside a fupi_r3_sub_section wrapper
+			// get all the field wrappers that are direct descendants of the section or are inside a fupi_r3_fields_group wrapper
 			let section_children_arr = FP.nl2Arr( section.children ),
 				field_wrappers = [];
 
 			section_children_arr.forEach( child => {
 				if ( child.classList.contains( 'fupi_r3_field' ) && ! child.classList.contains('fupi_field_type_label') ) {
 					field_wrappers.push( child );
-				} else if ( child.classList.contains( 'fupi_r3_sub_section' ) ) {
+				} else if ( child.classList.contains( 'fupi_r3_fields_group' ) ) {
 					let sub_section_children_arr = FP.nl2Arr( child.children );
 					sub_section_children_arr.forEach( sub_child => {
 						if ( sub_child.classList.contains( 'fupi_r3_field' ) && ! sub_child.classList.contains('fupi_field_type_label') ) {

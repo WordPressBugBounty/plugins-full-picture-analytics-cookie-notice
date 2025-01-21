@@ -33,25 +33,10 @@ $other_settings = array_merge( $other_settings, array(
 	),
 	array(
 		'type' 				=> 'toggle',
-		'label' 			=> esc_html__( 'Defer non-critical scripts', 'full-picture-analytics-cookie-notice' ),
-		'field_id' 			=> 'async_scripts',
-		'option_arr_id'		=> $option_arr_id,
-		'popup'		 		=> esc_html__('Slightly improves page-loading speed. We recommend to enable this option instead of deferring script-loading with caching tools / plugins (may cause issues).', 'full-picture-analytics-cookie-notice' ),
-	),
-	array(
-		'type' 				=> 'toggle',
 		'label' 			=> esc_html__( 'Enable debug mode', 'full-picture-analytics-cookie-notice' ),
 		'field_id' 			=> 'debug',
 		'option_arr_id'		=> $option_arr_id,
 		'after field' 		=> sprintf(esc_html__(' %1$sLearn more%2$s.', 'full-picture-analytics-cookie-notice'), ' <a href="https://wpfullpicture.com/support/documentation/debug-mode-features/?utm_source=fp_admin&utm_medium=referral&utm_campaign=settings_link" target="_blank">', '</a>'),
-	),
-	array(
-		'type'	 			=> 'toggle',
-		'label' 			=> esc_html__('Remove jQuery dependancy', 'full-picture-analytics-cookie-notice'),
-		'field_id' 			=> 'no_jquery',
-		'option_arr_id'		=> $option_arr_id,
-		'popup'				=> '<p>'. esc_html__('This will remove jQuery dependancy from scripts where it is not absolutely necessary.', 'full-picture-analytics-cookie-notice') . '</p>
-		<p>'. esc_html__('This will be added as default if no errors are reported by users. ', 'full-picture-analytics-cookie-notice') . '</p>',
 	),
 	array(
 		'type' 				=> 'text',
@@ -119,59 +104,13 @@ $sections = array(
 		'section_title' => esc_html__( 'Default tracking settings', 'full-picture-analytics-cookie-notice' ),
 		'fields' => array(
 			array(
-				'type'	 			=> 'select',
-				'label' 			=> esc_html__( 'Bot detection list', 'full-picture-analytics-cookie-notice' ),
-				'field_id' 			=> 'bot_list',
-				'option_arr_id'		=> $option_arr_id,
-				'label_for' 		=> $option_arr_id . '[bot_list]',
-				'el_class'			=> 'fupi_condition fupi_condition_reverse',
-				'el_data_target'	=> 'fupi_bots_opts',
-				'options'				=> array(
-					'basic'			=> esc_html__( 'Basic list (fast, only checks for the most common bots)', 'full-picture-analytics-cookie-notice' ),
-					'big'			=> esc_html__( 'Big list (slower but much more accurate and blocks some AI bots)', 'full-picture-analytics-cookie-notice' ),
-					'none'			=> esc_html__( 'None', 'full-picture-analytics-cookie-notice' ),
-				),
-				'default'			=> 'basic',
-				'popup'				=> '<p>' . esc_html__( 'Bot detection is used to prevent bots from:','full-picture-analytics-cookie-notice' ) . '</p>
-					<ol>
-						<li>' . esc_html__( 'triggering server events (for tools supporting server-side tracking)','full-picture-analytics-cookie-notice' ) . '</li>
-						<li>' . esc_html__( 'making unnecessary geolocation checks (when the geolocation module is enabled),','full-picture-analytics-cookie-notice' ) . '</li>
-						<li>' . esc_html__( 'saving cookie consents','full-picture-analytics-cookie-notice' ) . '</li>
-					</ol>
-					<p>' . sprintf( esc_html__( 'The Big list is based on the %1$slist of crawler user agents%2$s by bentsi.','full-picture-analytics-cookie-notice' ), '<a href="https://github.com/monperrus/crawler-user-agents/blob/master/crawler-user-agents.json">', '</a>' ) . '</p>',
-			),
-			array(
-				'type'	 			=> 'select',
-				'label' 			=> esc_html__( 'Method of communication with the server', 'full-picture-analytics-cookie-notice' ),
-				'field_id' 			=> 'server_method',
-				'must_have'			=> 'pro',
-				'option_arr_id'		=> $option_arr_id,
-				'label_for' 		=> $option_arr_id . '[server_method]',
-				'options'				=> array(
-					'rest'			=> esc_html__( 'Rest API (default)', 'full-picture-analytics-cookie-notice' ),
-					'ajax'			=> esc_html__( 'AJAX', 'full-picture-analytics-cookie-notice' ),
-				),
-				'popup'				=> '<p>' . esc_html__( 'The method you choose here will be used to send data from the visitors\'s browser to your server. This is used for server-side tracking and for sending visitor consents.', 'full-picture-analytics-cookie-notice' ) . '</p>
-					<p>' . esc_html__( 'Rest API is generally faster and less resource-intensive.', 'full-picture-analytics-cookie-notice' ) . '</p>',
-			),
-			array(
 				'type'	 			=> 'toggle',
-				'label' 			=> esc_html__('DOM Listener', 'full-picture-analytics-cookie-notice'),
-				'field_id' 			=> 'use_mutation_observer',
+				'label' 			=> esc_html__('Delay page redirect after clicking links', 'full-picture-analytics-cookie-notice'),
+				'field_id' 			=> 'link_click_delay',
 				'option_arr_id'		=> $option_arr_id,
-				'popup2' 			=> '
-					<p>' . esc_html__('DOM Listener "listens" for changes in the HTML of your site after it has loaded. At the moment, it is used only to track when visitors see on screen popups, ads or other dynamically added page elements.', 'full-picture-analytics-cookie-notice') . '</p>
-					<p style="color: #e47d00;">' . esc_html__('Attention! Test on weaker devices before using in production. This function uses DOM Mutation Observer, which can be taxing for weak processors.', 'full-picture-analytics-cookie-notice') . '</p>',
-			),
-			array(
-				'type'	 			=> 'text',
-				'label' 			=> esc_html__( 'Set when elements are considered to be visible on screen', 'full-picture-analytics-cookie-notice' ),
-				'field_id' 			=> 'intersections',
-				'option_arr_id'		=> $option_arr_id,
-				'label_for' 		=> $option_arr_id . '[intersections]',
-				'placeholder'		=> 'Top Right Bottom Left',
-				'under field'		=> esc_html__( 'Leave empty to use default values', 'full-picture-analytics-cookie-notice' ) . ' -200px 0px -200px 0px',
-				'popup'				=> '<p>' . esc_html__( 'By default this is set to "-200px 0px -200px 0px", which means, that elements will be considered as visible, when their top or bottom edge is 200 pixels inside the visible area of the screen.', 'full-picture-analytics-cookie-notice' ) . '</p>',	
+				'popup2' 			=> '<p>' . esc_html__('This setting pauses page redirects until all tools finish tracking link clicks.', 'full-picture-analytics-cookie-notice') . '</p>
+					<p>' . esc_html__('This can be useful when you track clicks on many elements, with many tracking tools and/or when your website is super fast.', 'full-picture-analytics-cookie-notice') . '</p>
+					<p style="color: #e47d00;">' . esc_html__('Attention! Test before using in production. On rare occasions enabling this setting can cause issues with clicks on dynamic page elements like galleries or sliders.', 'full-picture-analytics-cookie-notice') . '</p>',
 			),
 			array(
 				'type'	 			=> 'number',
@@ -214,21 +153,66 @@ $sections = array(
 				'popup'				=> '<p>' . esc_html__( 'This setting prevents tracking "exploratory" scrolls - quick scrolls performed by visitors who want to see the contents of the page before devoting more time to read it.','full-picture-analytics-cookie-notice') . '</p><p>' . esc_html__('After the set time has passed page\'s scroll depth will be tracked normally.','full-picture-analytics-cookie-notice') . '</p><p>' . esc_html__('Default is 5 seconds.', 'full-picture-analytics-cookie-notice') . '</p>',
 			),
 			array(
+				'type'	 			=> 'toggle',
+				'label' 			=> esc_html__('DOM Listener', 'full-picture-analytics-cookie-notice'),
+				'field_id' 			=> 'use_mutation_observer',
+				'option_arr_id'		=> $option_arr_id,
+				'popup2' 			=> '
+					<p>' . esc_html__('DOM Listener "listens" for changes in the HTML of your site after it has loaded. At the moment, it is used only to track when visitors see on screen popups, ads or other dynamically added page elements.', 'full-picture-analytics-cookie-notice') . '</p>
+					<p style="color: #e47d00;">' . esc_html__('Attention! Test on weaker devices before using in production. This function uses DOM Mutation Observer, which can be taxing for weak processors.', 'full-picture-analytics-cookie-notice') . '</p>',
+			),
+			array(
+				'type'	 			=> 'select',
+				'label' 			=> esc_html__( 'Bot detection list', 'full-picture-analytics-cookie-notice' ),
+				'field_id' 			=> 'bot_list',
+				'option_arr_id'		=> $option_arr_id,
+				'label_for' 		=> $option_arr_id . '[bot_list]',
+				'el_class'			=> 'fupi_condition fupi_condition_reverse',
+				'el_data_target'	=> 'fupi_bots_opts',
+				'options'				=> array(
+					'basic'			=> esc_html__( 'Basic list (fast, only checks for the most common bots)', 'full-picture-analytics-cookie-notice' ),
+					'big'			=> esc_html__( 'Big list (slower but much more accurate and blocks some AI bots)', 'full-picture-analytics-cookie-notice' ),
+					'none'			=> esc_html__( 'None', 'full-picture-analytics-cookie-notice' ),
+				),
+				'default'			=> 'basic',
+				'popup'				=> '<p>' . esc_html__( 'Bot detection is used to prevent bots from:','full-picture-analytics-cookie-notice' ) . '</p>
+					<ol>
+						<li>' . esc_html__( 'triggering server events (for tools supporting server-side tracking)','full-picture-analytics-cookie-notice' ) . '</li>
+						<li>' . esc_html__( 'making unnecessary geolocation checks (when the geolocation module is enabled),','full-picture-analytics-cookie-notice' ) . '</li>
+						<li>' . esc_html__( 'saving cookie consents','full-picture-analytics-cookie-notice' ) . '</li>
+					</ol>
+					<p>' . sprintf( esc_html__( 'The Big list is based on the %1$slist of crawler user agents%2$s by bentsi.','full-picture-analytics-cookie-notice' ), '<a href="https://github.com/monperrus/crawler-user-agents/blob/master/crawler-user-agents.json">', '</a>' ) . '</p>',
+			),
+			array(
+				'type'	 			=> 'select',
+				'label' 			=> esc_html__( 'Method of communication with the server', 'full-picture-analytics-cookie-notice' ),
+				'field_id' 			=> 'server_method',
+				'option_arr_id'		=> $option_arr_id,
+				'label_for' 		=> $option_arr_id . '[server_method]',
+				'options'				=> array(
+					'rest'			=> esc_html__( 'Rest API (default)', 'full-picture-analytics-cookie-notice' ),
+					'ajax'			=> esc_html__( 'AJAX', 'full-picture-analytics-cookie-notice' ),
+				),
+				'popup'				=> '<p>' . esc_html__( 'The method you choose here will be used to send data from the visitors\'s browser to your server. This is used for server-side tracking and for sending visitor consents.', 'full-picture-analytics-cookie-notice' ) . '</p>
+					<p>' . esc_html__( 'Rest API is generally faster and less resource-intensive.', 'full-picture-analytics-cookie-notice' ) . '</p>',
+			),
+			array(
+				'type'	 			=> 'text',
+				'label' 			=> esc_html__( 'Set when elements are considered to be visible on screen', 'full-picture-analytics-cookie-notice' ),
+				'field_id' 			=> 'intersections',
+				'option_arr_id'		=> $option_arr_id,
+				'label_for' 		=> $option_arr_id . '[intersections]',
+				'placeholder'		=> 'Top Right Bottom Left',
+				'under field'		=> esc_html__( 'Leave empty to use default values', 'full-picture-analytics-cookie-notice' ) . ' -200px 0px -200px 0px',
+				'popup'				=> '<p>' . esc_html__( 'By default this is set to "-200px 0px -200px 0px", which means, that elements will be considered as visible, when their top or bottom edge is 200 pixels inside the visible area of the screen.', 'full-picture-analytics-cookie-notice' ) . '</p>',	
+			),
+			array(
 				'type'	 			=> 'taxonomies multi checkbox',
 				'label' 			=> esc_html__( 'Allow tracking terms of these taxonomies:', 'full-picture-analytics-cookie-notice' ),
 				'field_id' 			=> 'tracked_taxonomies',
 				'option_arr_id'		=> $option_arr_id,
 				'label_for' 		=> $option_arr_id . '[tracked_taxonomies]',
 				'popup'		 		=> '<p>' . esc_html__('By default, WP Full Picture lets you track tags, categories and formats of your posts and pages. Use this setting to mark other term taxonomies that you may want to track.', 'full-picture-analytics-cookie-notice') . '</p>'
-			),
-			array(
-				'type'	 			=> 'toggle',
-				'label' 			=> esc_html__('Delay page redirect after clicking links', 'full-picture-analytics-cookie-notice'),
-				'field_id' 			=> 'link_click_delay',
-				'option_arr_id'		=> $option_arr_id,
-				'popup2' 			=> '<p>' . esc_html__('This setting pauses page redirects until all tools finish tracking link clicks.', 'full-picture-analytics-cookie-notice') . '</p>
-					<p>' . esc_html__('This can be useful when you track clicks on many elements, with many tracking tools and/or when your website is super fast.', 'full-picture-analytics-cookie-notice') . '</p>
-					<p style="color: #e47d00;">' . esc_html__('Attention! Test before using in production. On rare occasions enabling this setting can cause issues with clicks on dynamic page elements like galleries or sliders.', 'full-picture-analytics-cookie-notice') . '</p>',
 			),
 			array(
 				'type'	 			=> 'toggle',
@@ -295,7 +279,7 @@ $sections = array(
 							'eq'				=> esc_html__('Equals','full-picture-analytics-cookie-notice'),
 							'incl'				=> esc_html__('Includes','full-picture-analytics-cookie-notice'),
 						),
-						'wrap_class'		=> 'fupi_col_20',
+						'class'		=> 'fupi_col_20',
 					),
 					array(
 						'type'				=> 'text',
@@ -352,6 +336,42 @@ $sections = array(
 					'pin'		=> 'Pinterest',
 				),
 				'popup'				=> '<p>' . esc_html__( 'Facebook, Instagram and Pinterest use multiple URLs that redirect traffic to your site, e.g. l.facebook.com, lm.facebook.com, etc. Enable this function to combine them and analyse traffic sources more easily.', 'full-picture-analytics-cookie-notice') . ' <a target="_blank" href="https://wpfullpicture.com/support/documentation/how-to-get-better-traffic-sources-information/?utm_source=fp_admin&utm_medium=referral&utm_campaign=documentation_link">' . esc_html__('Learn more', 'full-picture-analytics-cookie-notice') . '</a>.</p>',
+			),
+		),
+	),
+
+	// PERFORMANCE
+	array(
+		'section_id' => 'fupi_main_perf',
+		'section_title' => esc_html__( 'Performance', 'full-picture-analytics-cookie-notice' ),
+		'fields' => array(
+			array(
+				'type' 				=> 'toggle',
+				'label' 			=> esc_html__( 'Defer non-critical scripts', 'full-picture-analytics-cookie-notice' ),
+				'field_id' 			=> 'async_scripts',
+				'option_arr_id'		=> $option_arr_id,
+				'popup2'		 	=> '<p>'. esc_html__('Slightly improves page-loading speed.', 'full-picture-analytics-cookie-notice') . '</p>
+				<p class="fupi_warning_text">'. esc_html__('Do not defer WP FP\'s scripts using a different plugin or solution. Not all WP FP\'s scripts can be safely deferred.', 'full-picture-analytics-cookie-notice') . '</p>' 
+			),
+			array(
+				'type'	 			=> 'toggle',
+				'label' 			=> esc_html__('Save main JS functions in a file (beta)', 'full-picture-analytics-cookie-notice'),
+				'field_id' 			=> 'save_settings_file',
+				'option_arr_id'		=> $option_arr_id,
+				'popup2'			=> '<p>'. esc_html__('If you enable this option, WP FP will save some of its main JavaScript functions in a file, instead of printing them directly in the HTML.', 'full-picture-analytics-cookie-notice') . '</p>
+				<p>'. esc_html__('This is done to slightly improve performance and avoid issues with some caching configurations.', 'full-picture-analytics-cookie-notice') . '</p>
+				<p>'. esc_html__('The files will be placed in a folder at "wp-content/uploads/sites(for WP Multisite)/site_number(for WP Multisite)/wpfp/js/"', 'full-picture-analytics-cookie-notice') . '</p>
+				<p class="fupi_warning_text">'. sprintf( esc_html__('This feature is in beta. Please report issues in %1$sthe support forum%2$s.', 'full-picture-analytics-cookie-notice'),'<a href="https://wordpress.org/support/plugin/full-picture-analytics-cookie-notice/" target="_blank">', '</a>' ). '</p>',
+			),
+			array(
+				'type'	 			=> 'toggle',
+				'label' 			=> esc_html__('Save Custom Scripts in files (beta)', 'full-picture-analytics-cookie-notice'),
+				'field_id' 			=> 'save_cscr_file',
+				'option_arr_id'		=> $option_arr_id,
+				'popup2'			=> '<p>'. esc_html__('If you enable this option, WP FP will put scripts from the Custom Scripts module in files, instead of printing them directly in the HTML.', 'full-picture-analytics-cookie-notice') . '</p>
+				<p>'. esc_html__('This is done to slightly improve performance and avoid issues with some caching configurations.', 'full-picture-analytics-cookie-notice') . '</p>
+				<p>'. esc_html__('The files will be placed in a folder at "wp-content/uploads/sites(for WP Multisite)/site_number(for WP Multisite)/wpfp/js/"', 'full-picture-analytics-cookie-notice') . '</p>
+				<p class="fupi_warning_text">'. sprintf( esc_html__('This feature is in beta. Please report issues in %1$sthe support forum%2$s.', 'full-picture-analytics-cookie-notice'),'<a href="https://wordpress.org/support/plugin/full-picture-analytics-cookie-notice/" target="_blank">', '</a>' ). '</p>',
 			),
 		),
 	),

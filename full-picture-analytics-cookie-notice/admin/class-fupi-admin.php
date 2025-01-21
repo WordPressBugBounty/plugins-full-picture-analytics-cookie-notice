@@ -249,6 +249,27 @@ class Fupi_Admin {
         wp_send_json( $results );
     }
 
+    public function fupi_search_pages_callback() {
+        // Check if the current user is an administrator
+        if ( !current_user_can( 'manage_options' ) ) {
+            wp_die( __( 'You do not have sufficient permissions to access this page.', 'full-picture-analytics-cookie-notice' ) );
+        }
+        $search = ( isset( $_GET['q'] ) ? sanitize_text_field( $_GET['q'] ) : '' );
+        $pages = get_posts( array(
+            's'         => "{$search}",
+            'post_type' => 'page',
+            'number'    => 20,
+        ) );
+        $results = array();
+        foreach ( $pages as $page ) {
+            $results[] = array(
+                'id'   => $page->ID,
+                'text' => sprintf( '%s (%s)', $page->post_title, $page->post_status ),
+            );
+        }
+        wp_send_json( $results );
+    }
+
     // CUSTOMIZER
     // Register customizer settings
     public function fupi_customize_register( $wp_customize ) {
@@ -270,6 +291,10 @@ class Fupi_Admin {
 
     // Send customizer settings to CDB
     public function fupi_customize_save_after() {
+        if ( $this->run_cdb ) {
+            include_once FUPI_PATH . '/includes/class-fupi-get-gdpr-status.php';
+            new Fupi_compliance_status_checker('cdb', $this->cook);
+        }
     }
 
     // Enqueue customizer preview scripts
@@ -528,34 +553,56 @@ class Fupi_Admin {
     // SANITIZATION
     public function fupi_sanitize_fields_tools( $input ) {
         include 'settings/modules/tools/fupi-admin-sanitize-tools.php';
+        $priv_policy_url = get_privacy_policy_url();
+        if ( !empty( $clean_data ) && isset( $clean_data['cook'] ) && !empty( $this->cook ) && !empty( $this->cook['cdb_key'] ) && !empty( $priv_policy_url ) ) {
+            include_once FUPI_PATH . '/includes/class-fupi-get-gdpr-status.php';
+            new Fupi_compliance_status_checker('cdb', $this->cook);
+        }
+        if ( isset( $this->main ) && !empty( $this->main['save_settings_file'] ) ) {
+            $this->fupi_make_head_js_file( 'tools', $clean_data );
+        }
+        if ( isset( $clean_data ) && !empty( $clean_data['cscr'] ) && (empty( $this->tools ) || empty( $this->tools['cscr'] )) && (isset( $this->main ) && !empty( $this->main['save_cscr_file'] )) ) {
+            $this->fupi_make_cscr_js_files( false );
+        }
         include 'settings/fupi-clear-cache.php';
         return $clean_data;
     }
 
     public function fupi_sanitize_fields_main( $input ) {
         include 'settings/modules/main/fupi-admin-sanitize-main.php';
+        if ( isset( $clean_data ) && isset( $clean_data['save_settings_file'] ) && (empty( $this->main ) || empty( $this->main['save_settings_file'] )) ) {
+            $this->fupi_make_head_js_file( 'main', $clean_data );
+        }
         include 'settings/fupi-clear-cache.php';
         return $clean_data;
     }
 
     public function fupi_sanitize_fields_cook( $input ) {
         include 'settings/modules/cook/fupi-admin-sanitize-cook.php';
-        include 'settings/fupi-clear-cache.php';
         include_once 'settings/modules/cook/register-cdb.php';
         // loads consent checker to send the config data to CDB
         $cdb = new Fupi_send_to_CDB();
         $clean_data = $cdb->register_new_site( $clean_data );
+        include 'settings/fupi-clear-cache.php';
         return $clean_data;
     }
 
     public function fupi_sanitize_fields_ga41( $input ) {
         include 'settings/modules/ga41/fupi-admin-sanitize-ga4.php';
+        if ( $this->run_cdb ) {
+            include_once FUPI_PATH . '/includes/class-fupi-get-gdpr-status.php';
+            new Fupi_compliance_status_checker('cdb', $this->cook);
+        }
         include 'settings/fupi-clear-cache.php';
         return $clean_data;
     }
 
     public function fupi_sanitize_fields_gads( $input ) {
         include 'settings/modules/gads/fupi-admin-sanitize-gads.php';
+        if ( $this->run_cdb ) {
+            include_once FUPI_PATH . '/includes/class-fupi-get-gdpr-status.php';
+            new Fupi_compliance_status_checker('cdb', $this->cook);
+        }
         include 'settings/fupi-clear-cache.php';
         return $clean_data;
     }
@@ -563,18 +610,30 @@ class Fupi_Admin {
     public function fupi_sanitize_fields_pla( $input ) {
         $pla_opts = get_option( 'fupi_pla' );
         include 'settings/modules/pla/fupi-admin-sanitize-pla.php';
+        if ( $this->run_cdb ) {
+            include_once FUPI_PATH . '/includes/class-fupi-get-gdpr-status.php';
+            new Fupi_compliance_status_checker('cdb', $this->cook);
+        }
         include 'settings/fupi-clear-cache.php';
         return $clean_data;
     }
 
     public function fupi_sanitize_fields_clar( $input ) {
         include 'settings/modules/clar/fupi-admin-sanitize-clar.php';
+        if ( $this->run_cdb ) {
+            include_once FUPI_PATH . '/includes/class-fupi-get-gdpr-status.php';
+            new Fupi_compliance_status_checker('cdb', $this->cook);
+        }
         include 'settings/fupi-clear-cache.php';
         return $clean_data;
     }
 
     public function fupi_sanitize_fields_cegg( $input ) {
         include 'settings/modules/cegg/fupi-admin-sanitize-cegg.php';
+        if ( $this->run_cdb ) {
+            include_once FUPI_PATH . '/includes/class-fupi-get-gdpr-status.php';
+            new Fupi_compliance_status_checker('cdb', $this->cook);
+        }
         include 'settings/fupi-clear-cache.php';
         return $clean_data;
     }
@@ -587,60 +646,100 @@ class Fupi_Admin {
 
     public function fupi_sanitize_fields_mato( $input ) {
         include 'settings/modules/mato/fupi-admin-sanitize-mato.php';
+        if ( $this->run_cdb ) {
+            include_once FUPI_PATH . '/includes/class-fupi-get-gdpr-status.php';
+            new Fupi_compliance_status_checker('cdb', $this->cook);
+        }
         include 'settings/fupi-clear-cache.php';
         return $clean_data;
     }
 
     public function fupi_sanitize_fields_mads( $input ) {
         include 'settings/modules/mads/fupi-admin-sanitize-mads.php';
+        if ( $this->run_cdb ) {
+            include_once FUPI_PATH . '/includes/class-fupi-get-gdpr-status.php';
+            new Fupi_compliance_status_checker('cdb', $this->cook);
+        }
         include 'settings/fupi-clear-cache.php';
         return $clean_data;
     }
 
     public function fupi_sanitize_fields_fbp1( $input ) {
         include 'settings/modules/fbp1/fupi-admin-sanitize-fb.php';
+        if ( $this->run_cdb ) {
+            include_once FUPI_PATH . '/includes/class-fupi-get-gdpr-status.php';
+            new Fupi_compliance_status_checker('cdb', $this->cook);
+        }
         include 'settings/fupi-clear-cache.php';
         return $clean_data;
     }
 
     public function fupi_sanitize_fields_gtm( $input ) {
         include 'settings/modules/gtm/fupi-admin-sanitize-gtm.php';
+        if ( $this->run_cdb ) {
+            include_once FUPI_PATH . '/includes/class-fupi-get-gdpr-status.php';
+            new Fupi_compliance_status_checker('cdb', $this->cook);
+        }
         include 'settings/fupi-clear-cache.php';
         return $clean_data;
     }
 
     public function fupi_sanitize_fields_twit( $input ) {
         include 'settings/modules/twit/fupi-admin-sanitize-twit.php';
+        if ( $this->run_cdb ) {
+            include_once FUPI_PATH . '/includes/class-fupi-get-gdpr-status.php';
+            new Fupi_compliance_status_checker('cdb', $this->cook);
+        }
         include 'settings/fupi-clear-cache.php';
         return $clean_data;
     }
 
     public function fupi_sanitize_fields_pin( $input ) {
         include 'settings/modules/pin/fupi-admin-sanitize-pin.php';
+        if ( $this->run_cdb ) {
+            include_once FUPI_PATH . '/includes/class-fupi-get-gdpr-status.php';
+            new Fupi_compliance_status_checker('cdb', $this->cook);
+        }
         include 'settings/fupi-clear-cache.php';
         return $clean_data;
     }
 
     public function fupi_sanitize_fields_hotj( $input ) {
         include 'settings/modules/hotj/fupi-admin-sanitize-hotj.php';
+        if ( $this->run_cdb ) {
+            include_once FUPI_PATH . '/includes/class-fupi-get-gdpr-status.php';
+            new Fupi_compliance_status_checker('cdb', $this->cook);
+        }
         include 'settings/fupi-clear-cache.php';
         return $clean_data;
     }
 
     public function fupi_sanitize_fields_linkd( $input ) {
         include 'settings/modules/linkd/fupi-admin-sanitize-linkd.php';
+        if ( $this->run_cdb ) {
+            include_once FUPI_PATH . '/includes/class-fupi-get-gdpr-status.php';
+            new Fupi_compliance_status_checker('cdb', $this->cook);
+        }
         include 'settings/fupi-clear-cache.php';
         return $clean_data;
     }
 
     public function fupi_sanitize_fields_tik( $input ) {
         include 'settings/modules/tik/fupi-admin-sanitize-tik.php';
+        if ( $this->run_cdb ) {
+            include_once FUPI_PATH . '/includes/class-fupi-get-gdpr-status.php';
+            new Fupi_compliance_status_checker('cdb', $this->cook);
+        }
         include 'settings/fupi-clear-cache.php';
         return $clean_data;
     }
 
     public function fupi_sanitize_fields_posthog( $input ) {
         include 'settings/modules/posthog/fupi-admin-sanitize-posthog.php';
+        if ( $this->run_cdb ) {
+            include_once FUPI_PATH . '/includes/class-fupi-get-gdpr-status.php';
+            new Fupi_compliance_status_checker('cdb', $this->cook);
+        }
         include 'settings/fupi-clear-cache.php';
         return $clean_data;
     }
@@ -653,18 +752,33 @@ class Fupi_Admin {
 
     public function fupi_sanitize_fields_insp( $input ) {
         include 'settings/modules/insp/fupi-admin-sanitize-insp.php';
+        if ( $this->run_cdb ) {
+            include_once FUPI_PATH . '/includes/class-fupi-get-gdpr-status.php';
+            new Fupi_compliance_status_checker('cdb', $this->cook);
+        }
         include 'settings/fupi-clear-cache.php';
         return $clean_data;
     }
 
     public function fupi_sanitize_fields_cscr( $input ) {
         include 'settings/modules/cscr/fupi-admin-sanitize-cscr.php';
+        if ( $this->run_cdb ) {
+            include_once FUPI_PATH . '/includes/class-fupi-get-gdpr-status.php';
+            new Fupi_compliance_status_checker('cdb', $this->cook);
+        }
+        if ( !empty( $this->main ) && !empty( $this->main['save_cscr_file'] ) ) {
+            $this->fupi_make_cscr_js_files( $clean_data );
+        }
         include 'settings/fupi-clear-cache.php';
         return $clean_data;
     }
 
     public function fupi_sanitize_fields_privex( $input ) {
         include 'settings/modules/privex/fupi-admin-sanitize-privex.php';
+        if ( $this->run_cdb ) {
+            include_once FUPI_PATH . '/includes/class-fupi-get-gdpr-status.php';
+            new Fupi_compliance_status_checker('cdb', $this->cook);
+        }
         include 'settings/fupi-clear-cache.php';
         return $clean_data;
     }
@@ -677,12 +791,20 @@ class Fupi_Admin {
 
     public function fupi_sanitize_fields_iframeblock( $input ) {
         include 'settings/modules/iframeblock/fupi-admin-sanitize-iframeblock.php';
+        if ( $this->run_cdb ) {
+            include_once FUPI_PATH . '/includes/class-fupi-get-gdpr-status.php';
+            new Fupi_compliance_status_checker('cdb', $this->cook);
+        }
         include 'settings/fupi-clear-cache.php';
         return $clean_data;
     }
 
     public function fupi_sanitize_fields_blockscr( $input ) {
         include 'settings/modules/blockscr/fupi-admin-sanitize-blockscr.php';
+        if ( $this->run_cdb ) {
+            include_once FUPI_PATH . '/includes/class-fupi-get-gdpr-status.php';
+            new Fupi_compliance_status_checker('cdb', $this->cook);
+        }
         include 'settings/fupi-clear-cache.php';
         return $clean_data;
     }
@@ -783,6 +905,42 @@ class Fupi_Admin {
         }
         // init
         $fupi_notices->boot();
+    }
+
+    // SAVE HEAD JS TO FILE
+    private function fupi_make_head_js_file( $updated_settings_id, $clean_data ) {
+        $output = '';
+        // the variable $output is also used in the head-js
+        // GET contents of head_js
+        include_once FUPI_PATH . '/public/in_head/head-js.php';
+        $js_folder_path = trailingslashit( wp_upload_dir()['basedir'] ) . 'wpfp/js/';
+        if ( !file_exists( $js_folder_path ) ) {
+            mkdir( $js_folder_path, 0755, true );
+        }
+        $head_js_file_path = $js_folder_path . '/head.js';
+        // GET contents of helpers.js
+        $common_folder_path = FUPI_URL . '/public/common/';
+        $output .= "\r\r" . file_get_contents( $common_folder_path . 'fupi-helpers.js' );
+        // combine head and helpers JS
+        $result = file_put_contents( $head_js_file_path, $output );
+        // check if index.php file is in the same folder
+        $index_file_path = $js_folder_path . '/index.php';
+        if ( !file_exists( $index_file_path ) ) {
+            $index_file_content = '<?php
+			header("HTTP/1.0 403 Forbidden");
+			echo "Access denied.";
+			exit;';
+            file_put_contents( $index_file_path, $index_file_content );
+        }
+    }
+
+    // SAVE CSCR JS IN FILES
+    private function fupi_make_cscr_js_files( $cscr_settings ) {
+        if ( empty( $cscr_settings ) ) {
+            $cscr_settings = get_option( 'fupi_cscr' );
+        }
+        include_once FUPI_PATH . '/public/modules/cscr/class-generate-cscr-files.php';
+        new Fupi_generate_cscr_files($cscr_settings);
     }
 
     // IMPORT/EXPORT SETTINGS

@@ -1,9 +1,7 @@
 <?php
 
 // BROKEN LINK TRACKING + REDIRECT TO A CUSTOM 404 PAGE
-$output .= '
-
-fpdata.timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+$output .= 'fpdata.timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 fp.notice.vars = {};
 
 (function (FP) {
@@ -169,114 +167,110 @@ fp.notice.vars = {};
 	// CHECK FOR BOT TRAFFIC
 	// -- modified version of https://stackoverflow.com/a/65563155/7702522
 	
-	
 	// BOT CHECK (instant)
 	fpdata.is_robot = (() => {
-		';
-// default list
-$robots_check = 'const robots = new RegExp([/bot/,/spider/,/crawl/,/APIs-Google/,/AdsBot/,/Googlebot/,/mediapartners/,/Google Favicon/,/FeedFetcher/,/Google-Read-Aloud/,/googleweblight/,/bingbot/,/yandex/,/baidu/,/duckduck/,/Yahoo Link Preview/,/ia_archiver/,/facebookexternalhit/,/pinterest\\.combot/,/redditbot/,/slackbot/,/Twitterbot/,/WhatsApp/,/S[eE][mM]rushBot/].map((r) => r.source).join("|"),"i");
+		
+		// SMALL list
+		if ( fp.vars.bot_list == "basic" ) {
+			
+			const robots = new RegExp([/bot/,/spider/,/crawl/,/APIs-Google/,/AdsBot/,/Googlebot/,/mediapartners/,/Google Favicon/,/FeedFetcher/,/Google-Read-Aloud/,/googleweblight/,/bingbot/,/yandex/,/baidu/,/duckduck/,/Yahoo Link Preview/,/ia_archiver/,/facebookexternalhit/,/pinterest\\.combot/,/redditbot/,/slackbot/,/Twitterbot/,/WhatsApp/,/S[eE][mM]rushBot/].map((r) => r.source).join("|"),"i");
 
-		return robots.test(navigator.userAgent);';
-// big list & no list
-if ( isset( $this->main ) && !empty( $this->main['bot_list'] ) ) {
-    switch ( $this->main['bot_list'] ) {
-        case 'big':
-            $robots_check = 'const robots = new RegExp([
-  /Googlebot/, /AdsBot/, /Feedfetcher-Google/, /Mediapartners-Google/, /Mediapartners/, /APIs-Google/, 
-  /Google-InspectionTool/, /Storebot-Google/, /GoogleOther/, /bingbot/, /Slurp/, /wget/, /LinkedInBot/, 
-  /Python-urllib/, /python-requests/, /aiohttp/, /httpx/, /libwww-perl/, /httpunit/, /Nutch/, 
-  /Go-http-client/, /phpcrawl/, /msnbot/, /jyxobot/, /FAST-WebCrawler/, /FAST Enterprise Crawler/, 
-  /BIGLOTRON/, /Teoma/, /convera/, /seekbot/, /Gigabot/, /Gigablast/, /exabot/, /ia_archiver/, 
-  /GingerCrawler/, /webmon/, /HTTrack/, /grub\\.org/, /UsineNouvelleCrawler/, /antibot/, 
-  /netresearchserver/, /speedy/, /fluffy/, /findlink/, /msrbot/, /panscient/, /yacybot/, /AISearchBot/, 
-  /ips-agent/, /tagoobot/, /MJ12bot/, /woriobot/, /yanga/, /buzzbot/, /mlbot/, /yandex\\.combots/, 
-  /purebot/, /Linguee Bot/, /CyberPatrol/, /voilabot/, /Baiduspider/, /citeseerxbot/, /spbot/, 
-  /twengabot/, /postrank/, /Turnitin/, /scribdbot/, /page2rss/, /sitebot/, /linkdex/, /Adidxbot/, 
-  /ezooms/, /dotbot/, /Mail\\.RU_Bot/, /discobot/, /heritrix/, /findthatfile/, /europarchive\\.org/, 
-  /NerdByNature\\.Bot/, /sistrix crawler/, /Ahrefs/, /fuelbot/, /CrunchBot/, /IndeedBot/, 
-  /mappydata/, /woobot/, /ZoominfoBot/, /PrivacyAwareBot/, /Multiviewbot/, /SWIMGBot/, /Grobbot/, 
-  /eright/, /Apercite/, /semanticbot/, /Aboundex/, /domaincrawler/, /wbsearchbot/, /summify/, /CCBot/, 
-  /edisterbot/, /SeznamBot/, /ec2linkfinder/, /gslfbot/, /aiHitBot/, /intelium_bot/, 
-  /facebookexternalhit/, /Yeti/, /RetrevoPageAnalyzer/, /lb-spider/, /Sogou/, /lssbot/, /careerbot/, 
-  /wotbox/, /wocbot/, /ichiro/, /DuckDuckBot/, /lssrocketcrawler/, /drupact/, /webcompanycrawler/, 
-  /acoonbot/, /openindexspider/, /gnam gnam spider/, /web-archive-net\\.com\\.bot/, /backlinkcrawler/, 
-  /coccoc/, /integromedb/, /content crawler spider/, /toplistbot/, /it2media-domain-crawler/, 
-  /ip-web-crawler\\.com/, /siteexplorer\\.info/, /elisabot/, /proximic/, /changedetection/, /arabot/, 
-  /WeSEE:Search/, /niki-bot/, /CrystalSemanticsBot/, /rogerbot/, /360Spider/, /psbot/, 
-  /InterfaxScanBot/, /CC Metadata Scaper/, /g00g1e\\.net/, /GrapeshotCrawler/, /urlappendbot/, 
-  /brainobot/, /fr-crawler/, /binlar/, /SimpleCrawler/, /Twitterbot/, /cXensebot/, /smtbot/, 
-  /bnf\\.fr_bot/, /A6-Indexer/, /ADmantX/, /Facebot/, /OrangeBot/, /memorybot/, /AdvBot/, 
-  /MegaIndex/, /SemanticScholarBot/, /ltx71/, /nerdybot/, /xovibot/, /BUbiNG/, /Qwantify/, 
-  /archive\\.org_bot/, /Applebot/, /TweetmemeBot/, /crawler4j/, /findxbot/, /SemrushBot/, 
-  /yoozBot/, /lipperhey/, /Y!J/, /Domain Re-Animator Bot/, /AddThis/, /Screaming Frog SEO Spider/, 
-  /MetaURI/, /Scrapy/, /Livelapbot/, /OpenHoseBot/, /CapsuleChecker/, /collection@infegy\\.com/, 
-  /IstellaBot/, /DeuSu/, /betaBot/, /Cliqzbot/, /MojeekBot/, /netEstate NE Crawler/, 
-  /SafeSearch microdata crawler/, /Gluten Free Crawler/, /Sonic/, /Sysomos/, /Trove/, /deadlinkchecker/, 
-  /Slack-ImgProxy/, /Embedly/, /RankActiveLinkBot/, /iskanie/, /SafeDNSBot/, /SkypeUriPreview/, 
-  /Veoozbot/, /Slackbot/, /redditbot/, /datagnionbot/, /Google-Adwords-Instant/, /adbeat_bot/, 
-  /WhatsApp/, /contxbot/, /pinterest\\.combot/, /electricmonk/, /GarlikCrawler/, /BingPreview/, 
-  /vebidoobot/, /FemtosearchBot/, /Yahoo Link Preview/, /MetaJobBot/, /DomainStatsBot/, /mindUpBot/, 
-  /Daum/, /Jugendschutzprogramm-Crawler/, /Xenu Link Sleuth/, /Pcore-HTTP/, /moatbot/, /KosmioBot/, 
-  /pingdom/, /AppInsights/, /PhantomJS/, /Gowikibot/, /PiplBot/, /Discordbot/, /TelegramBot/, 
-  /Jetslide/, /newsharecounts/, /James BOT/, /Barkrowler/, /TinEye/, /SocialRankIOBot/, 
-  /trendictionbot/, /Ocarinabot/, /epicbot/, /Primalbot/, /DuckDuckGo-Favicons-Bot/, /GnowitNewsbot/, 
-  /Leikibot/, /LinkArchiver/, /YaK/, /PaperLiBot/, /Digg Deeper/, /dcrawl/, /Snacktory/, /AndersPinkBot/, 
-  /Fyrebot/, /EveryoneSocialBot/, /Mediatoolkitbot/, /Luminator-robots/, /ExtLinksBot/, /SurveyBot/, 
-  /NING/, /okhttp/, /Nuzzel/, /omgili/, /PocketParser/, /YisouSpider/, /um-LN/, /ToutiaoSpider/, 
-  /MuckRack/, /Jamie\'s Spider/, /AHC/, /NetcraftSurveyAgent/, /Laserlikebot/, /^Apache-HttpClient/, 
-  /AppEngine-Google/, /Jetty/, /Upflow/, /Thinklab/, /Traackr\\.com/, /Twurly/, /Mastodon/, /http_get/, 
-  /DnyzBot/, /botify/, /007ac9 Crawler/, /BehloolBot/, /BrandVerity/, /check_http/, /BDCbot/, 
-  /ZumBot/, /EZID/, /ICC-Crawler/, /ArchiveBot/, /^LCC /, /filterdb\\.iss\\.netcrawler/, /BLP_bbot/, 
-  /BomboraBot/, /Buck/, /Companybook-Crawler/, /Genieo/, /magpie-crawler/, /MeltwaterNews/,
-  /Moreover/,/newspaper/,/ScoutJet/,/sentry/,/StorygizeBot/,/UptimeRobot/,/OutclicksBot/,
-  /seoscanners/,/Hatena/,/Google Web Preview/,/MauiBot/,/AlphaBot/,/SBL-BOT/,/IAS crawler/,
-  /adscanner/,/Netvibes/,/acapbot/,/Baidu-YunGuanCe/,/bitlybot/,/blogmuraBot/,/Bot\\.AraTurka\\.com/,
-  /bot-pge\\.chlooe\\.com/,/BoxcarBot/,/BTWebClient/,/ContextAd Bot/,/Digincore bot/,/Disqus/,/Feedly/,
-  /Fetch/,/Fever/,/Flamingo_SearchEngine/,/FlipboardProxy/,/g2reader-bot/,/G2 Web Services/,/imrbot/,
-  /K7MLWCBot/,/Kemvibot/,/Landau-Media-Spider/,/linkapediabot/,/vkShare/,/Siteimprove\\.com/,/BLEXBot/,
-  /DareBoost/,/ZuperlistBot/,/Miniflux/,/Feedspot/,/Diffbot/,/SEOkicks/,/tracemyfile/,/Nimbostratus-Bot/,
-  /zgrab/,/PR-CY\\.RU/,/AdsTxtCrawler/,/Datafeedwatch/,/Zabbix/,/TangibleeBot/,/google-xrawler/,/axios/,
-  /Amazon CloudFront/,/Pulsepoint/,/CloudFlare-AlwaysOnline/,/Google-Structured-Data-Testing-Tool/,
-  /WordupInfoSearch/,/WebDataStats/,/HttpUrlConnection/,/Seekport Crawler/,/ZoomBot/,/VelenPublicWebCrawler/,
-  /MoodleBot/,/jpg-newsbot/,/outbrain/,/W3C_Validator/,/Validator\\.nu/,/W3C-checklink/,/W3C-mobileOK/,
-  /W3C_I18n-Checker/,/FeedValidator/,/W3C_CSS_Validator/,/W3C_Unicorn/,/Google-PhysicalWeb/,/Blackboard/,
-  /ICBot/,/BazQux/,/Twingly/,/Rivva/,/Experibot/,/awesomecrawler/,/Dataprovider\\.com/,/GroupHigh/,
-  /theoldreader\\.com/,/AnyEvent/,/Uptimebot\\.org/,/Nmap Scripting Engine/,/2ip\\.ru/,/Clickagy/,
-  /Caliperbot/,/MBCrawler/,/online-webceo-bot/,/B2B Bot/,/AddSearchBot/,/Google Favicon/,/HubSpot/,
-  /Chrome-Lighthouse/,/HeadlessChrome/,/CheckMarkNetwork/,/www\\.uptime\\.com/,/Streamline3Bot/,/serpstatbot/,
-  /MixnodeCache/,/^curl/,/SimpleScraper/,/RSSingBot/,/Jooblebot/,/fedoraplanet/,/Friendica/,/NextCloud/,
-  /Tiny Tiny RSS/,/RegionStuttgartBot/,/Bytespider/,/Datanyze/,/Google-Site-Verification/,/TrendsmapResolver/,
-  /tweetedtimes/,/NTENTbot/,/Gwene/,/SimplePie/,/SearchAtlas/,/Superfeedr/,/feedbot/,/UT-Dorkbot/,/Amazonbot/,
-  /SerendeputyBot/,/Eyeotabot/,/officestorebot/,/Neticle Crawler/,/SurdotlyBot/,/LinkisBot/,/AwarioSmartBot/,
-  /AwarioRssBot/,/RyteBot/,/FreeWebMonitoring SiteChecker/,/AspiegelBot/,/NAVER Blog Rssbot/,/zenback bot/,
-  /SentiBot/,/Domains Project/,/Pandalytics/,/VKRobot/,/bidswitchbot/,/tigerbot/,/NIXStatsbot/,/Atom Feed Robot/,
-  /curebot/,/PagePeeker/,/Vigil/,/rssbot/,/startmebot/,/JobboerseBot/,/seewithkids/,/NINJA bot/,/Cutbot/,
-  /BublupBot/,/BrandONbot/,/RidderBot/,/Taboolabot/,/Dubbotbot/,/FindITAnswersbot/,/infoobot/,/Refindbot/,
-  /BlogTraffic\\d\\.\\d+ Feed-Fetcher/,/SeobilityBot/,/Cincraw/,/Dragonbot/,/VoluumDSP-content-bot/,/FreshRSS/,
-  /BitBot/,/^PHP-Curl-Class/,/Google-Certificates-Bridge/,/centurybot/,/Viber/,/e\\.ventures Investment Crawler/,
-  /evc-batch/,/PetalBot/,/virustotal/,/(^| )PTST/,/minicrawler/,/Cookiebot/,/trovitBot/,/seostar\\.co/,/IonCrawl/,
-  /Uptime-Kuma/,/SeekportBot/,/FreshpingBot/,/Feedbin/,/CriteoBot/,/Snap URL Preview Service/,/Better Uptime Bot/,
-  /RuxitSynthetic/,/Google-Read-Aloud/,/ValveSteam/,/OdklBot/,/GPTBot/,/ChatGPT-User/,/YandexRenderResourcesBot/,
-  /LightspeedSystemsCrawler/,/ev-crawler/,/BitSightBot/,/woorankreview/,/Google-Safety/,/AwarioBot/,/DataForSeoBot/,
-  /Linespider/,/WellKnownBot/,/A Patent Crawler/,/StractBot/,/search\\.marginalia\\.nu/,/YouBot/,/Nicecrawler/,/Neevabot/,
-  /BrightEdge Crawler/,/SiteCheckerBotCrawler/,/TombaPublicWebCrawler/,/CrawlyProjectCrawler/,/KomodiaBot/,/KStandBot/,
-  /CISPA Webcrawler/,/MTRobot/,/hyscore\\.io/,/AlexandriaOrgBot/,/2ip bot/,/Yellowbrandprotectionbot/,/SEOlizer/,
-  /vuhuvBot/,/INETDEX-BOT/,/Synapse/,/t3versionsBot/,/deepnoc/,/Cocolyzebot/,/hypestat/,/ReverseEngineeringBot/,
-  /sempi\\.tech/,/Iframely/,/MetaInspector/,/node-fetch/,/lkxscan/,/python-opengraph/,/OpenGraphCheck/,
-  /developers\\.google\\.com\\+websnippet/,/SenutoBot/,/MaCoCu/,/NewsBlur/,/inoreader/,/NetSystemsResearch/,/PageThing/,
-  /WordPress/,/PhxBot/,/ImagesiftBot/,/Expanse/,/InternetMeasurement/,/^BW/,/GeedoBot/,/Audisto Crawler/,
-  /PerplexityBot/,/claudebot/,/Monsidobot/,/GroupMeBot/].map((r) => r.source).join("|"),"i");
+			return robots.test(navigator.userAgent);
 
-					return robots.test(navigator.userAgent);
-					';
-            break;
-        case 'none':
-            $robots_check = 'return false;';
-            break;
-    }
-}
-// End of robot check
-$output .= $robots_check . '
+		// BIG list
+		} else if ( fp.vars.bot_list == "big" ) {
+
+			const robots = new RegExp([
+				/Googlebot/, /AdsBot/, /Feedfetcher-Google/, /Mediapartners-Google/, /Mediapartners/, /APIs-Google/, 
+				/Google-InspectionTool/, /Storebot-Google/, /GoogleOther/, /bingbot/, /Slurp/, /wget/, /LinkedInBot/, 
+				/Python-urllib/, /python-requests/, /aiohttp/, /httpx/, /libwww-perl/, /httpunit/, /Nutch/, 
+				/Go-http-client/, /phpcrawl/, /msnbot/, /jyxobot/, /FAST-WebCrawler/, /FAST Enterprise Crawler/, 
+				/BIGLOTRON/, /Teoma/, /convera/, /seekbot/, /Gigabot/, /Gigablast/, /exabot/, /ia_archiver/, 
+				/GingerCrawler/, /webmon/, /HTTrack/, /grub\\.org/, /UsineNouvelleCrawler/, /antibot/, 
+				/netresearchserver/, /speedy/, /fluffy/, /findlink/, /msrbot/, /panscient/, /yacybot/, /AISearchBot/, 
+				/ips-agent/, /tagoobot/, /MJ12bot/, /woriobot/, /yanga/, /buzzbot/, /mlbot/, /yandex\\.combots/, 
+				/purebot/, /Linguee Bot/, /CyberPatrol/, /voilabot/, /Baiduspider/, /citeseerxbot/, /spbot/, 
+				/twengabot/, /postrank/, /Turnitin/, /scribdbot/, /page2rss/, /sitebot/, /linkdex/, /Adidxbot/, 
+				/ezooms/, /dotbot/, /Mail\\.RU_Bot/, /discobot/, /heritrix/, /findthatfile/, /europarchive\\.org/, 
+				/NerdByNature\\.Bot/, /sistrix crawler/, /Ahrefs/, /fuelbot/, /CrunchBot/, /IndeedBot/, 
+				/mappydata/, /woobot/, /ZoominfoBot/, /PrivacyAwareBot/, /Multiviewbot/, /SWIMGBot/, /Grobbot/, 
+				/eright/, /Apercite/, /semanticbot/, /Aboundex/, /domaincrawler/, /wbsearchbot/, /summify/, /CCBot/, 
+				/edisterbot/, /SeznamBot/, /ec2linkfinder/, /gslfbot/, /aiHitBot/, /intelium_bot/, 
+				/facebookexternalhit/, /Yeti/, /RetrevoPageAnalyzer/, /lb-spider/, /Sogou/, /lssbot/, /careerbot/, 
+				/wotbox/, /wocbot/, /ichiro/, /DuckDuckBot/, /lssrocketcrawler/, /drupact/, /webcompanycrawler/, 
+				/acoonbot/, /openindexspider/, /gnam gnam spider/, /web-archive-net\\.com\\.bot/, /backlinkcrawler/, 
+				/coccoc/, /integromedb/, /content crawler spider/, /toplistbot/, /it2media-domain-crawler/, 
+				/ip-web-crawler\\.com/, /siteexplorer\\.info/, /elisabot/, /proximic/, /changedetection/, /arabot/, 
+				/WeSEE:Search/, /niki-bot/, /CrystalSemanticsBot/, /rogerbot/, /360Spider/, /psbot/, 
+				/InterfaxScanBot/, /CC Metadata Scaper/, /g00g1e\\.net/, /GrapeshotCrawler/, /urlappendbot/, 
+				/brainobot/, /fr-crawler/, /binlar/, /SimpleCrawler/, /Twitterbot/, /cXensebot/, /smtbot/, 
+				/bnf\\.fr_bot/, /A6-Indexer/, /ADmantX/, /Facebot/, /OrangeBot/, /memorybot/, /AdvBot/, 
+				/MegaIndex/, /SemanticScholarBot/, /ltx71/, /nerdybot/, /xovibot/, /BUbiNG/, /Qwantify/, 
+				/archive\\.org_bot/, /Applebot/, /TweetmemeBot/, /crawler4j/, /findxbot/, /SemrushBot/, 
+				/yoozBot/, /lipperhey/, /Y!J/, /Domain Re-Animator Bot/, /AddThis/, /Screaming Frog SEO Spider/, 
+				/MetaURI/, /Scrapy/, /Livelapbot/, /OpenHoseBot/, /CapsuleChecker/, /collection@infegy\\.com/, 
+				/IstellaBot/, /DeuSu/, /betaBot/, /Cliqzbot/, /MojeekBot/, /netEstate NE Crawler/, 
+				/SafeSearch microdata crawler/, /Gluten Free Crawler/, /Sonic/, /Sysomos/, /Trove/, /deadlinkchecker/, 
+				/Slack-ImgProxy/, /Embedly/, /RankActiveLinkBot/, /iskanie/, /SafeDNSBot/, /SkypeUriPreview/, 
+				/Veoozbot/, /Slackbot/, /redditbot/, /datagnionbot/, /Google-Adwords-Instant/, /adbeat_bot/, 
+				/WhatsApp/, /contxbot/, /pinterest\\.combot/, /electricmonk/, /GarlikCrawler/, /BingPreview/, 
+				/vebidoobot/, /FemtosearchBot/, /Yahoo Link Preview/, /MetaJobBot/, /DomainStatsBot/, /mindUpBot/, 
+				/Daum/, /Jugendschutzprogramm-Crawler/, /Xenu Link Sleuth/, /Pcore-HTTP/, /moatbot/, /KosmioBot/, 
+				/pingdom/, /AppInsights/, /PhantomJS/, /Gowikibot/, /PiplBot/, /Discordbot/, /TelegramBot/, 
+				/Jetslide/, /newsharecounts/, /James BOT/, /Barkrowler/, /TinEye/, /SocialRankIOBot/, 
+				/trendictionbot/, /Ocarinabot/, /epicbot/, /Primalbot/, /DuckDuckGo-Favicons-Bot/, /GnowitNewsbot/, 
+				/Leikibot/, /LinkArchiver/, /YaK/, /PaperLiBot/, /Digg Deeper/, /dcrawl/, /Snacktory/, /AndersPinkBot/, 
+				/Fyrebot/, /EveryoneSocialBot/, /Mediatoolkitbot/, /Luminator-robots/, /ExtLinksBot/, /SurveyBot/, 
+				/NING/, /okhttp/, /Nuzzel/, /omgili/, /PocketParser/, /YisouSpider/, /um-LN/, /ToutiaoSpider/, 
+				/MuckRack/, /Jamie\'s Spider/, /AHC/, /NetcraftSurveyAgent/, /Laserlikebot/, /^Apache-HttpClient/, 
+				/AppEngine-Google/, /Jetty/, /Upflow/, /Thinklab/, /Traackr\\.com/, /Twurly/, /Mastodon/, /http_get/, 
+				/DnyzBot/, /botify/, /007ac9 Crawler/, /BehloolBot/, /BrandVerity/, /check_http/, /BDCbot/, 
+				/ZumBot/, /EZID/, /ICC-Crawler/, /ArchiveBot/, /^LCC /, /filterdb\\.iss\\.netcrawler/, /BLP_bbot/, 
+				/BomboraBot/, /Buck/, /Companybook-Crawler/, /Genieo/, /magpie-crawler/, /MeltwaterNews/,
+				/Moreover/,/newspaper/,/ScoutJet/,/sentry/,/StorygizeBot/,/UptimeRobot/,/OutclicksBot/,
+				/seoscanners/,/Hatena/,/Google Web Preview/,/MauiBot/,/AlphaBot/,/SBL-BOT/,/IAS crawler/,
+				/adscanner/,/Netvibes/,/acapbot/,/Baidu-YunGuanCe/,/bitlybot/,/blogmuraBot/,/Bot\\.AraTurka\\.com/,
+				/bot-pge\\.chlooe\\.com/,/BoxcarBot/,/BTWebClient/,/ContextAd Bot/,/Digincore bot/,/Disqus/,/Feedly/,
+				/Fetch/,/Fever/,/Flamingo_SearchEngine/,/FlipboardProxy/,/g2reader-bot/,/G2 Web Services/,/imrbot/,
+				/K7MLWCBot/,/Kemvibot/,/Landau-Media-Spider/,/linkapediabot/,/vkShare/,/Siteimprove\\.com/,/BLEXBot/,
+				/DareBoost/,/ZuperlistBot/,/Miniflux/,/Feedspot/,/Diffbot/,/SEOkicks/,/tracemyfile/,/Nimbostratus-Bot/,
+				/zgrab/,/PR-CY\\.RU/,/AdsTxtCrawler/,/Datafeedwatch/,/Zabbix/,/TangibleeBot/,/google-xrawler/,/axios/,
+				/Amazon CloudFront/,/Pulsepoint/,/CloudFlare-AlwaysOnline/,/Google-Structured-Data-Testing-Tool/,
+				/WordupInfoSearch/,/WebDataStats/,/HttpUrlConnection/,/Seekport Crawler/,/ZoomBot/,/VelenPublicWebCrawler/,
+				/MoodleBot/,/jpg-newsbot/,/outbrain/,/W3C_Validator/,/Validator\\.nu/,/W3C-checklink/,/W3C-mobileOK/,
+				/W3C_I18n-Checker/,/FeedValidator/,/W3C_CSS_Validator/,/W3C_Unicorn/,/Google-PhysicalWeb/,/Blackboard/,
+				/ICBot/,/BazQux/,/Twingly/,/Rivva/,/Experibot/,/awesomecrawler/,/Dataprovider\\.com/,/GroupHigh/,
+				/theoldreader\\.com/,/AnyEvent/,/Uptimebot\\.org/,/Nmap Scripting Engine/,/2ip\\.ru/,/Clickagy/,
+				/Caliperbot/,/MBCrawler/,/online-webceo-bot/,/B2B Bot/,/AddSearchBot/,/Google Favicon/,/HubSpot/,
+				/Chrome-Lighthouse/,/HeadlessChrome/,/CheckMarkNetwork/,/www\\.uptime\\.com/,/Streamline3Bot/,/serpstatbot/,
+				/MixnodeCache/,/^curl/,/SimpleScraper/,/RSSingBot/,/Jooblebot/,/fedoraplanet/,/Friendica/,/NextCloud/,
+				/Tiny Tiny RSS/,/RegionStuttgartBot/,/Bytespider/,/Datanyze/,/Google-Site-Verification/,/TrendsmapResolver/,
+				/tweetedtimes/,/NTENTbot/,/Gwene/,/SimplePie/,/SearchAtlas/,/Superfeedr/,/feedbot/,/UT-Dorkbot/,/Amazonbot/,
+				/SerendeputyBot/,/Eyeotabot/,/officestorebot/,/Neticle Crawler/,/SurdotlyBot/,/LinkisBot/,/AwarioSmartBot/,
+				/AwarioRssBot/,/RyteBot/,/FreeWebMonitoring SiteChecker/,/AspiegelBot/,/NAVER Blog Rssbot/,/zenback bot/,
+				/SentiBot/,/Domains Project/,/Pandalytics/,/VKRobot/,/bidswitchbot/,/tigerbot/,/NIXStatsbot/,/Atom Feed Robot/,
+				/curebot/,/PagePeeker/,/Vigil/,/rssbot/,/startmebot/,/JobboerseBot/,/seewithkids/,/NINJA bot/,/Cutbot/,
+				/BublupBot/,/BrandONbot/,/RidderBot/,/Taboolabot/,/Dubbotbot/,/FindITAnswersbot/,/infoobot/,/Refindbot/,
+				/BlogTraffic\\d\\.\\d+ Feed-Fetcher/,/SeobilityBot/,/Cincraw/,/Dragonbot/,/VoluumDSP-content-bot/,/FreshRSS/,
+				/BitBot/,/^PHP-Curl-Class/,/Google-Certificates-Bridge/,/centurybot/,/Viber/,/e\\.ventures Investment Crawler/,
+				/evc-batch/,/PetalBot/,/virustotal/,/(^| )PTST/,/minicrawler/,/Cookiebot/,/trovitBot/,/seostar\\.co/,/IonCrawl/,
+				/Uptime-Kuma/,/SeekportBot/,/FreshpingBot/,/Feedbin/,/CriteoBot/,/Snap URL Preview Service/,/Better Uptime Bot/,
+				/RuxitSynthetic/,/Google-Read-Aloud/,/ValveSteam/,/OdklBot/,/GPTBot/,/ChatGPT-User/,/YandexRenderResourcesBot/,
+				/LightspeedSystemsCrawler/,/ev-crawler/,/BitSightBot/,/woorankreview/,/Google-Safety/,/AwarioBot/,/DataForSeoBot/,
+				/Linespider/,/WellKnownBot/,/A Patent Crawler/,/StractBot/,/search\\.marginalia\\.nu/,/YouBot/,/Nicecrawler/,/Neevabot/,
+				/BrightEdge Crawler/,/SiteCheckerBotCrawler/,/TombaPublicWebCrawler/,/CrawlyProjectCrawler/,/KomodiaBot/,/KStandBot/,
+				/CISPA Webcrawler/,/MTRobot/,/hyscore\\.io/,/AlexandriaOrgBot/,/2ip bot/,/Yellowbrandprotectionbot/,/SEOlizer/,
+				/vuhuvBot/,/INETDEX-BOT/,/Synapse/,/t3versionsBot/,/deepnoc/,/Cocolyzebot/,/hypestat/,/ReverseEngineeringBot/,
+				/sempi\\.tech/,/Iframely/,/MetaInspector/,/node-fetch/,/lkxscan/,/python-opengraph/,/OpenGraphCheck/,
+				/developers\\.google\\.com\\+websnippet/,/SenutoBot/,/MaCoCu/,/NewsBlur/,/inoreader/,/NetSystemsResearch/,/PageThing/,
+				/WordPress/,/PhxBot/,/ImagesiftBot/,/Expanse/,/InternetMeasurement/,/^BW/,/GeedoBot/,/Audisto Crawler/,
+				/PerplexityBot/,/claudebot/,/Monsidobot/,/GroupMeBot/].map((r) => r.source).join("|"),"i");
+
+				return robots.test(navigator.userAgent);
+
+		} else {
+			return false;
+		};
 	})();
 
 	// GENERATE A RANDOM STRING FOR VARIOUS USES
@@ -381,16 +375,18 @@ $output .= $robots_check . '
 	// CONSENT BANNER 
 	//
 
-	// BLUR BACKGROUND
-
-	if ( fp.vars.track_current_user && ! fp.vars.is_customizer && fp.notice.enabled && ! fpdata.cookies && fp.notice.blur_page ) {
-		document.getElementsByTagName( \'html\' )[0].classList.add(\'fupi_blur\');
-	}
 	
-	// LOCK PAGESCROLL
-
-	if ( ! fp.vars.is_customizer && fp.notice.enabled && ! fpdata.cookies && fp.notice.scroll_lock ) {
-		document.getElementsByTagName( \'html\' )[0].classList.add(\'fupi_scroll_lock\');
+	if ( fp.vars.track_current_user && ! fp.vars.is_customizer && fp.notice.enabled && ! fpdata.cookies && fp.notice.display_notice ) {
+		
+		// BLUR BACKGROUND
+		if ( fp.notice.blur_page ) {
+			document.getElementsByTagName( \'html\' )[0].classList.add(\'fupi_blur\');
+		}
+		
+		// LOCK PAGESCROLL
+		if ( fp.notice.scroll_lock ) {
+			document.getElementsByTagName( \'html\' )[0].classList.add(\'fupi_scroll_lock\');
+		}
 	}
 
 	FP.updateConsents = () => {
@@ -422,9 +418,9 @@ $output .= $robots_check . '
 					\'can_track_market\' : true,
 				}
 			}
-		}';
-if ( !is_customize_preview() ) {
-    $output .= '
+		}
+
+		if ( ! fp.vars.is_customizer ) {
 		
 			// Set GTAG consents
 
@@ -486,9 +482,8 @@ if ( !is_customize_preview() ) {
 			// we set URL Passthrough for standard GTAG
 			if ( fp.notice.enabled && fp.notice.gtag_no_cookie_mode && fp.notice.url_passthrough && ( fp.notice.mode == "optin" || fp.notice.mode == "optout" ) ) {
 				window.gtag("set", "url_passthrough", true);
-			}';
-}
-$output .= '
+			};
+		}
     }
 	
 	let uses_geo = false;

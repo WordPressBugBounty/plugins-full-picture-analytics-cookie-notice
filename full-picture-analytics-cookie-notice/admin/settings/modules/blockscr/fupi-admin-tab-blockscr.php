@@ -6,7 +6,7 @@ $scr_fields = array(
 		'field_id'			=> 'title',
 		'el_class'			=> 'fupi_internal_title',
 		'placeholder'		=> esc_html__('Name', 'full-picture-analytics-cookie-notice' ),
-		'wrap_class'		=> 'fupi_col_100',
+		'class'		=> 'fupi_col_100',
 		'required'			=> true, // made required in v8. When empty, the value will be filled in with script ID
 		'under field'		=> esc_html__('(Used on the GDPR setup helper page, data saved with visitors consents and by the "Privacy Policy Extras" module)', 'full-picture-analytics-cookie-notice' ),
 	),
@@ -20,21 +20,21 @@ $scr_fields = array(
 			'link_href'			=> esc_html__('HTML <link> tag with a specific filename or URL','full-picture-analytics-cookie-notice'),
 			'img_src'			=> esc_html__('Image with a specific filename or URL','full-picture-analytics-cookie-notice'),
 		),
-		'wrap_class'		=> 'fupi_col_30',
+		'class'		=> 'fupi_col_30',
 	),
 	array(
 		'type'				=> 'text',
 		'field_id'			=> 'url_part',
 		'label'				=> esc_html__('Filename, full URL, URL part or unique text content', 'full-picture-analytics-cookie-notice' ),
 		'required'			=> true,
-		'wrap_class'		=> 'fupi_col_50',
+		'class'		=> 'fupi_col_50',
 	),
 	array(
 		'label'				=> esc_html__('Script ID', 'full-picture-analytics-cookie-notice' ),
 		'type'				=> 'text',
 		'field_id'			=> 'id',
 		'required'			=> true,
-		'wrap_class'		=> 'fupi_col_20',
+		'class'		=> 'fupi_col_20',
 	),
 );
 
@@ -45,25 +45,25 @@ if ( isset($this->tools['cook'] ) ) {
 			'type'				=> 'label',
 			'field_id'			=> 'types_label',
 			'start_sub_section' =>  true,
-			'wrap_class'		=> 'fupi_col_40',
+			'class'		=> 'fupi_col_40',
 		),
 		array(
 			'type'				=> 'checkbox',
 			'field_id'			=> 'stats',
 			'label'             => esc_html__('Statistics', 'full-picture-analytics-cookie-notice' ),
-			'wrap_class'		=> 'fupi_col_20',
+			'class'		=> 'fupi_col_20',
 		),
 		array(
 			'type'				=> 'checkbox',
 			'field_id'			=> 'market',
 			'label'             => esc_html__('Marketing', 'full-picture-analytics-cookie-notice' ),
-			'wrap_class'		=> 'fupi_col_20',
+			'class'		=> 'fupi_col_20',
 		),
 		array(
 			'type'				=> 'checkbox',
 			'field_id'			=> 'pers',
 			'label'             => esc_html__('Personalisation', 'full-picture-analytics-cookie-notice' ),
-			'wrap_class'		=> 'fupi_col_20',
+			'class'		=> 'fupi_col_20',
 			'end_sub_section' 	=>  true,
 		),
 	) );
@@ -75,7 +75,7 @@ $scr_fields = array_merge( $scr_fields, array(
 		'label'				=> esc_html__('Tool\'s privacy policy URL', 'full-picture-analytics-cookie-notice' ),
 		'type'				=> 'url',
 		'field_id'			=> 'pp_url',
-		'wrap_class'		=> 'fupi_col_50_grow',
+		'class'		=> 'fupi_col_50_grow',
 		'under field'		=> esc_html__('(Used by the "Privacy Policy Extras" module)', 'full-picture-analytics-cookie-notice' ),
 	),
 ) );
@@ -89,7 +89,7 @@ if ( $this->geo_enabled ){
 			'type'				=> 'label',
 			'field_id'			=> 'countries_label',
 			'start_sub_section' =>  true,
-			'wrap_class'		=> 'fupi_col_100',
+			'class'		=> 'fupi_col_100',
 		),
 		array(
 			'type'				=> 'select',
@@ -98,14 +98,14 @@ if ( $this->geo_enabled ){
 				'excl'				=> esc_html__('All except','full-picture-analytics-cookie-notice'),
 				'incl'				=> esc_html__('Only in','full-picture-analytics-cookie-notice'),
 			),
-			'wrap_class'		=> 'fupi_col_20',
+			'class'		=> 'fupi_col_20',
 		),
 		array(
 			'type'				=> 'text',
 			'field_id'			=> 'countries',
 			'placeholder'		=> esc_html__('e.g. GB, DE, FR, AU, etc.', 'full-picture-analytics-cookie-notice' ),
 			'end_sub_section' =>  true,
-			'wrap_class'		=> 'fupi_col_50',
+			'class'		=> 'fupi_col_50',
 		),
 	);
 
@@ -117,7 +117,7 @@ $scr_fields = array_merge( $scr_fields, array(
 		'label'				=> esc_html__('Temporarily stop WP Full Picture from managing this script (blocking, conditional-loading, etc.)', 'full-picture-analytics-cookie-notice' ),
 		'type'				=> 'checkbox',
 		'field_id'			=> 'force_load',
-		'wrap_class'		=> 'fupi_col_66_grow',
+		'class'		=> 'fupi_col_66_grow',
 	),
 ));
 

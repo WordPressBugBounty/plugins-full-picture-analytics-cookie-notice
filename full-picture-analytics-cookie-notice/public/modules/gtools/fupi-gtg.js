@@ -12,6 +12,8 @@
 
 	function load_gtag( enable_ga4, enable_gads ) {
 
+		if ( ! enable_ga4 && ! enable_gads ) return;
+
 		if ( fp.gads && fp.gads.id && fp.gads.id.indexOf('AW-') != 0 ) fp.gads.id = 'AW-' + fp.gads.id;
 
 		let script_id = enable_ga4 ? fp.ga41.id :
@@ -40,13 +42,11 @@
 	}
 
 	function enable_tags( enable_ga4, enable_gads ){
-		
+
 		if ( ! fp.loaded.includes('gtg') ) {
 			window.gtag('js', new Date());
 			fp.loaded.push('gtg');
 		}
-
-		if ( ! enable_ga4 && ! enable_gads) return;
 
 		let can_load_ga42 = false,
 			enh_conv_active = false;

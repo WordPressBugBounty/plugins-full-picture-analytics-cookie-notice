@@ -1,8 +1,7 @@
 <?php
 
 class Fupi {
-    public $fupi_versions;
-
+    // public $fupi_versions;
     protected $version;
 
     protected $loader;
@@ -24,7 +23,7 @@ class Fupi {
         $this->plugin_name = 'full_picture';
         $this->tools = get_option( 'fupi_tools' );
         $this->main = get_option( 'fupi_main' );
-        $this->fupi_versions = get_option( 'fupi_versions' );
+        // $this->fupi_versions = get_option('fupi_versions');
         $this->load_dependencies();
         $this->set_locale();
         $this->define_admin_hooks();
@@ -96,6 +95,7 @@ class Fupi {
         );
         // AJAX USER SEARCH (for the settings field)
         $this->loader->add_action( 'wp_ajax_fupi_search_users', $plugin_admin, 'fupi_search_users_callback' );
+        $this->loader->add_action( 'wp_ajax_fupi_search_pages', $plugin_admin, 'fupi_search_pages_callback' );
         // IMPORT/EXPORT SETTINGS
         $this->loader->add_action( 'wp_ajax_fupi_ajax_make_new_backup', $plugin_admin, 'fupi_ajax_make_new_backup' );
         $this->loader->add_action( 'wp_ajax_fupi_ajax_upload_settings_from_file', $plugin_admin, 'fupi_ajax_upload_settings_from_file' );

@@ -143,20 +143,19 @@ switch ( $recipe['type'] ) {
         $el_class .= ( $repeater ? ' fupi_r3_repeater' : '' );
         $btns_class = ( !empty( $recipe['btns_class'] ) ? $recipe['btns_class'] : '' );
         $sections_nr = ( $repeater && is_array( $saved_value ) ? count( $saved_value ) : 0 );
-        $section_class = ( !empty( $recipe['wrap_class'] ) ? $recipe['wrap_class'] : '' );
         $i = 0;
         for ($i = 0; $i <= $sections_nr; $i++) {
             // here we want to show empty section if there is no data yet or we want to remove an empty section if it doesn't have any values
             if ( empty( $saved_value[$i] ) && $sections_nr > 0 ) {
                 continue;
             }
-            echo '<div class="fupi_r3_section ' . $el_class . ' ' . $section_class . '">';
+            echo '<div class="fupi_r3_section ' . $el_class . '">';
             foreach ( $fields as $field_recipe ) {
                 $f_id = ( !empty( $field_recipe['field_id'] ) ? $field_recipe['field_id'] : '' );
                 $f_default = ( !empty( $field_recipe['default'] ) ? $field_recipe['default'] : '' );
                 $f_label = ( !empty( $field_recipe['label'] ) ? $field_recipe['label'] : false );
                 $f_type = ( !empty( $field_recipe['type'] ) ? $field_recipe['type'] : '' );
-                $wrap_class = ( !empty( $field_recipe['wrap_class'] ) ? $field_recipe['wrap_class'] : '' );
+                $class = ( !empty( $field_recipe['class'] ) ? $field_recipe['class'] : '' );
                 if ( $repeater ) {
                     $f_name = $field_id . '[' . $i . '][' . $f_id . ']';
                     $f_val = ( isset( $saved_value[$i][$f_id] ) ? $saved_value[$i][$f_id] : $f_default );
@@ -164,11 +163,11 @@ switch ( $recipe['type'] ) {
                     $f_name = $field_id . '[' . $f_id . ']';
                     $f_val = ( isset( $saved_value[$f_id] ) ? $saved_value[$f_id] : $f_default );
                 }
-                // (optional) start a new sub section wrapper
+                // (optional) start a wrapper around a group of fields
                 if ( isset( $field_recipe['start_sub_section'] ) ) {
-                    echo '<div class="fupi_r3_sub_section">';
+                    echo '<div class="fupi_r3_fields_group">';
                 }
-                echo '<div class="fupi_r3_field fupi_field_type_' . $f_type . ' fupi_field_' . $f_id . '_wrap ' . $wrap_class . '">';
+                echo '<div class="fupi_r3_field fupi_field_type_' . $f_type . ' fupi_field_' . $f_id . '_wrap ' . $class . '">';
                 if ( !empty( $f_label ) && $f_type != 'checkbox' ) {
                     if ( $f_type == 'r3' ) {
                         echo '<p class="fupi_r3_section_label">' . esc_attr( $f_label ) . '</p>';
@@ -296,6 +295,20 @@ switch ( $recipe['type'] ) {
             $user = get_userdata( $user_id );
             if ( $user ) {
                 echo '<option value="' . $user_id . '" selected>' . esc_html( $user->user_login ) . ' (' . esc_html( $user->user_email ) . ')</option>';
+            }
+        }
+        echo '</select>';
+        break;
+    // =======
+    case 'page_search':
+        wp_enqueue_style( 'fupi-select2-css' );
+        wp_enqueue_script( 'fupi-select2-js' );
+        $selected_pages = ( current_user_can( 'manage_options' ) && is_array( $saved_value ) ? $saved_value : array() );
+        echo '<select name="' . $field_id . '[]" id="' . $field_id . '" class="fupi_select2 fupi_page_search ' . $el_class . '" multiple="multiple" data-placeholder_text="' . esc_html__( 'Search pages...', 'full-picture-analytics-cookie-notice' ) . '">';
+        foreach ( $selected_pages as $page_id ) {
+            $page = get_post( $page_id );
+            if ( !empty( $page ) ) {
+                echo '<option value="' . $page_id . '" selected>' . esc_html( $page->post_title ) . ' (' . esc_html( $page->post_status ) . ')</option>';
             }
         }
         echo '</select>';
@@ -533,15 +546,21 @@ switch ( $recipe['type'] ) {
     // =======
     case 'atrig_select':
         $atrig_opts = get_option( 'fupi_atrig' );
-        $options_markup = '<option value=\'\'>' . esc_html__( 'Please select', 'full-picture-analytics-cookie-notice' ) . '</option>';
+        $default_option_text = ( !empty( $recipe['default_option_text'] ) ? esc_attr( $recipe['default_option_text'] ) : esc_attr__( 'Please select', 'full-picture-analytics-cookie-notice' ) );
+        $options_markup = '<option value=\'\'>' . $default_option_text . '</option>';
+        $selected_trigger_active = false;
         if ( !empty( $atrig_opts ) ) {
             // add advanced triggers options
             if ( !empty( $atrig_opts['triggers'] ) && count( $atrig_opts['triggers'] ) > 0 ) {
                 foreach ( $atrig_opts['triggers'] as $trigger ) {
+                    $selected = selected( $saved_value, $trigger['id'], false );
+                    if ( !empty( $selected ) ) {
+                        $selected_trigger_active = true;
+                    }
                     $options_markup .= sprintf(
                         '<option value="%1$s" %2$s>%3$s</option>',
                         $trigger['id'],
-                        selected( $saved_value, $trigger['id'], false ),
+                        $selected,
                         $trigger['name']
                     );
                 }
@@ -553,6 +572,10 @@ switch ( $recipe['type'] ) {
                 $score_levels = array_map( 'trim', $split_array );
                 if ( count( $score_levels ) > 0 ) {
                     foreach ( $score_levels as $level ) {
+                        $selected = selected( $saved_value, $trigger['id'], false );
+                        if ( !empty( $selected ) ) {
+                            $selected_trigger_active = true;
+                        }
                         $options_markup .= sprintf(
                             '<option value="fp_leadscore_%1$s" %2$s>Reached Lead Score %3$s</option>',
                             $level,
@@ -563,12 +586,23 @@ switch ( $recipe['type'] ) {
                 }
             }
         }
+        $trigger_status = false;
+        if ( empty( $saved_value ) ) {
+            $trigger_status = 'not chosen';
+        } else {
+            if ( $selected_trigger_active ) {
+                $trigger_status = 'set';
+            } else {
+                $trigger_status = 'removed';
+            }
+        }
         printf(
-            '<select name="%1$s" id="%1$s" class="%2$s" data-target="%3$s">%4$s</select>',
+            '<select name="%1$s" id="%1$s" class="%2$s" data-target="%3$s" data-trigger="%5$s">%4$s</select>',
             $field_id,
             $el_class,
             $el_data_target,
-            $options_markup
+            $options_markup,
+            $trigger_status
         );
         break;
     // =======

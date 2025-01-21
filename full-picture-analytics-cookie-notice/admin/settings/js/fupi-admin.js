@@ -488,14 +488,14 @@
 
 			let current_sect_nums = [...parent_sect_nums, sect_i]; // starts as [0]
 
-			// get all the field wrappers that are direct descendants of the section or are inside a fupi_r3_sub_section wrapper
+			// get all the field wrappers that are direct descendants of the section or are inside a fupi_r3_fields_group wrapper
 			let section_children_arr = FP.nl2Arr( section.children ),
 				field_wrappers = [];
 
 			section_children_arr.forEach( child => {
 				if ( child.classList.contains( 'fupi_r3_field' ) && ! child.classList.contains('fupi_field_type_label') ) {
 					field_wrappers.push( child );
-				} else if ( child.classList.contains( 'fupi_r3_sub_section' ) ) {
+				} else if ( child.classList.contains( 'fupi_r3_fields_group' ) ) {
 					let sub_section_children_arr = FP.nl2Arr( child.children );
 					sub_section_children_arr.forEach( sub_child => {
 						if ( sub_child.classList.contains( 'fupi_r3_field' ) && ! sub_child.classList.contains('fupi_field_type_label') ) {
@@ -1091,6 +1091,40 @@
 
 (()=>{
 
+    // Used in Custom Scripts module
+    // Mark sections which contain scripts that can no longer trigger because they were triggered by advanced triggers that have been removed
+
+    let atrig_selectors = FP.findAll('.fupi_r3_scr .fupi_field_atrig_id_wrap select');
+
+    atrig_selectors.forEach( selector => {
+
+        if ( selector.dataset.trigger == 'removed' || selector.value == 'removed' ) {
+            
+            let cscr_section = selector.closest( '.fupi_r3_scr' ),
+                cscr_missing_atrig_text_el = FP.findID('fupi_cscr_missing_atrig_text'),
+                cscr_missing_atrig_option_text_el = FP.findID('fupi_cscr_missing_atrig_select_text');
+            
+            cscr_section.classList.add('fupi_cscr_missing_atrig');
+
+            // add notification above the script section
+            if ( cscr_missing_atrig_text_el ) {
+                $error_text = cscr_missing_atrig_text_el.textContent;
+                cscr_section.insertAdjacentHTML('beforebegin', '<div class="fupi_cscr_missing_atrig_msg">' + $error_text + '</div>');
+            }
+
+            // add an option to the triggers select field
+            if ( cscr_missing_atrig_option_text_el ) {
+                $option_text = cscr_missing_atrig_option_text_el.textContent;
+                selector.insertAdjacentHTML('afterbegin', '<option value="removed">' + $option_text + '</option>');
+                selector.value = 'removed';
+            }
+        }
+    } );
+
+})();
+
+(()=>{
+
     // clear sections that contain not existing (expired) custom meta
 
     let builder_sections = FP.findAll('.fupi_metadata_tracker .fupi_r3_section');
@@ -1333,6 +1367,31 @@ jQuery( document ).ready( function($) {
 					placeholder: $select2.data('placeholder_text')
 				});
 
+			} else if ( $select2.hasClass('fupi_page_search') ) {
+
+				$select2.select2({
+					ajax: {
+						url: ajaxurl,
+						dataType: 'json',
+						delay: 250,
+						data: function (params) {
+							return {
+								q: params.term,
+								action: 'fupi_search_pages',
+							};
+						},
+						processResults: function(data) {
+							return {
+								results: data
+							};
+						},
+						cache: true
+					},
+					width: '100%',
+					minimumInputLength: 2,
+					placeholder: $select2.data('placeholder_text')
+				});
+	
 			} else {
 				$select2.select2();
 			}

@@ -61,7 +61,7 @@ $loading_fields = array_merge( $loading_fields, array(
 					'excl'				=> esc_html__('All except','full-picture-analytics-cookie-notice'),
 					'incl'				=> esc_html__('Only in','full-picture-analytics-cookie-notice'),
 				),
-				'wrap_class'		=> 'fupi_col_20',
+				'class'		=> 'fupi_col_20',
 			),
 			array(
 				'type'				=> 'text',
@@ -141,14 +141,14 @@ $sections = array(
 						'placeholder'		=> esc_html__( 'CSS selector e.g. #sth img', 'full-picture-analytics-cookie-notice' ),
 						'type'				=> 'text',
 						'field_id'			=> 'sel',
-						'wrap_class'		=> 'fupi_col_35_grow',
+						'class'		=> 'fupi_col_35_grow',
 						'required'			=> true,
 					),
 					array(
 						'placeholder'		=> esc_html__( 'your_custom_event_name (required)', 'full-picture-analytics-cookie-notice' ),
 						'type'				=> 'text',
 						'field_id'			=> 'val',
-						'wrap_class'		=> 'fupi_col_35_grow',
+						'class'		=> 'fupi_col_35_grow',
 						'required'			=> true,
 					),
 				)
@@ -171,14 +171,14 @@ $sections = array(
 						'placeholder'		=> esc_html__( 'CSS selector e.g. #form_id', 'full-picture-analytics-cookie-notice' ),
 						'type'				=> 'text',
 						'field_id'			=> 'sel',
-						'wrap_class'		=> 'fupi_col_35_grow',
+						'class'		=> 'fupi_col_35_grow',
 						'required'			=> true,
 					),
 					array(
 						'placeholder'		=> esc_html__( 'your_custom_event_name (required)', 'full-picture-analytics-cookie-notice' ),
 						'type'				=> 'text',
 						'field_id'			=> 'val',
-						'wrap_class'		=> 'fupi_col_35_grow',
+						'class'		=> 'fupi_col_35_grow',
 						'required'			=> true,
 					),
 				)

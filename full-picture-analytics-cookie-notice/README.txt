@@ -3,8 +3,8 @@ Contributors: chrisplaneta, freemius
 Donate link: https://wpfullpicture.com/
 Tags: woocommerce, consent mode, analytics, privacy, cookies
 Requires at least: 5.4.0
-Tested up to: 6.6.2
-Stable tag: 8.2.1
+Tested up to: 6.7.1
+Stable tag: 8.3.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -201,6 +201,27 @@ No. WP Full Picture is focused on tracking and privacy. To generate a product ca
 
 == Changelog ==
 
+= 8.3.0 (21-01-2025) =
+
+* [New] [Consent banner] Added an option to hide the banner on selected pages
+* [New] [Performance] You can now save WP FP's main JS and Custom Scripts in files
+* [New] Free users can now send data to the website's server via AJAX
+* [Update] Added "nowprocket" parameter to inline JS so that WP Rocket does not break the plugin
+* [Update] Custom Script now only output important data to fp.cscr object
+* [Update] Added a browser console notification when a custom script is loaded and triggered
+* [Update] Updated Freemius SDK
+* [Fix] [GTM] Re-added mistakenly removed noscript fallback
+* [Fix] [Free] WP FP settings didn't get sent to CDB after they were changed
+* [Fix] Consent banner did not hide on the privacy page
+* [Fix] [i18n] Updated loading of translation files
+* [Removed] Default jQuery file dependency (it is now only added when Woo is enabled)
+* [Removed] [Custom Scripts] Removed a condition which prevented scripts from loading in the customizer if the "force load" was active
+* [Removed] [Custom Scripts] ID field in a script section (it is not necessary)
+* [Other] [GDPR Compliance Helper] Add information that Google reCaptcha is not GDPR compliant and must be replaced
+* [Other] Added licence is_pro checks to all JS files
+* [Other] [Woo] Moved loading of inline script with the checkout data lower the head element (100 value) to make sure that it loads after the helpers FILE
+* [Other] [Consent banner] Added "noopener" attribute to "Powered by" link to remove the warning in ahrefs
+
 = 8.2.1 (18-12-2024) =
 
 * [Fix] [Pro] When changing status of an order which contained a coupon code, Advanced Order Tracking for GA 4 gave error
@@ -389,34 +410,3 @@ No. WP Full Picture is focused on tracking and privacy. To generate a product ca
 * [Removal] Splitbee module
 * [Other] [Consent Banner] Improved script creating optional headline text
 * [Other] Small UI improvements
-
-= 7.2.5 (28-02-2024) =
-
-* [Fix] GTM consent mode did not run in a very specific situations
-
-= 7.2.4 (27-02-2024) =
-
-* [Fix] Posthog integration fix
-* [Fix] [Custom Scripts] Disabling scripts is now correctly saved
-
-= 7.2.3 (27-02-2024) =
-
-* [New] Added an HTML field to custom script module
-* [Fix] GTM data did not load
-
-= 7.2.2 (26-02-2024) =
-
-* [Update] Made jquery dependancy an experimental option
-* [Fix] Tracking clicks in contact links - when users clicked phone or email links, full addresses/number were sent to some tracking tools. Now only parts of number or email addresses are sent
-* [Fix] [Hotjar] [Woo] Hotjar tried to track checkouts and purchases even when the options for tracking them were disabled.
-
-= 7.2.1 (20-02-2024) =
-
-* [Fix] [Pro] Custom events tracking did not accept uppercase letters
-
-= 7.2.0 (19-02-2024) =
-
-* [Update] [UX/UI] Make all conditional settings that require other modules, to be visible but inactive
-* [Fix] [Twitter] [Free] Remove code for sending email (it does not work in Free)
-* [Other] Clicking the "account" link in WP admin will now redirect to website's account login page
-* [Other] replaced a PO file with a POT file for translations

@@ -114,7 +114,7 @@ class Fupi_WOO_public {
         // Any page - for adding products to cart with a URL parameter add-to-cart - ok
         add_action( 'wp_footer', array($this, 'fupi_woo_add_to_cart_from_url'), 999 );
         // checkout - checkout page and order confirmation page - ok
-        add_action( 'wp_head', array($this, 'fupi_woo_get_order_data'), 5 );
+        add_action( 'wp_head', array($this, 'fupi_woo_get_order_data'), 100 );
         // TO DO:
         // CROSS-SELL in cart. No hooks available right now (6.3.0)
         // FEATURED PRODUCT BLOCK. No hooks available right now (6.3.0)
@@ -142,8 +142,8 @@ class Fupi_WOO_public {
             return $fp;
         }
         $fp['woo']['variable_as_simple'] = isset( $this->settings['variable_as_simple'] );
+        $fp['woo']['extra_variant_product_views'] = isset( $this->settings['extra_variant_product_views'] );
         $fp['woo']['incl_tax_in_price'] = isset( $this->settings['incl_tax_in_price'] );
-        $fp['woo']['adv_order_tracking'] = isset( $this->settings['adv_order_tracking'] );
         $fp['woo']['incl_shipping_in_total'] = isset( $this->settings['incl_shipping_in_total'] );
         $fp['woo']['sku_is_id'] = isset( $this->settings['sku_is_id'] );
         $fp['woo']['dont_track_views_after_refresh'] = isset( $this->settings['refresh_no_track_views'] );
@@ -472,7 +472,7 @@ class Fupi_WOO_public {
                 $customer_data_json = json_encode( $customer_data );
                 $output .= "fpdata.user = {...fpdata.user, ...{$customer_data_json}};";
             }
-            echo '<!--noptimize--><script data-no-optimize="1" >
+            echo '<!--noptimize--><script data-no-optimize="1" nowprocket>
 				' . $output . ';
 				fp.woo.order_data_ready = true;
 			</script><!--/noptimize-->';
@@ -484,7 +484,7 @@ class Fupi_WOO_public {
         if ( !empty( $cart ) && !$cart->is_empty() ) {
             $cart_data = json_encode( $this->get_cart_data( $cart ) );
             $checkout_nonce = wp_create_nonce( 'wpfp_checkout_nonce' );
-            echo "<!--noptimize--><script data-no-optimize='1' id='fupi_woo_checkout_data'>\r\n\t\t\t\tif ( fpdata.woo.cart.value ) fpdata.woo.cart_old = { ...fpdata.woo.cart };\r\n\t\t\t\tfpdata.woo.cart = {$cart_data};\r\n\t\t\t\tfp.woo.checkout_start_nonce = '{$checkout_nonce}';\r\n\t\t\t\tfp.woo.checkout_data_ready = true;\r\n\t\t\t\tFP.sendEvt( 'fupi_woo_checkout_data_ready' );\r\n\t\t\t</script><!--/noptimize-->";
+            echo "<!--noptimize--><script data-no-optimize='1' id='fupi_woo_checkout_data' nowprocket>\r\n\t\t\t\tif ( fpdata.woo.cart.value ) fpdata.woo.cart_old = { ...fpdata.woo.cart };\r\n\t\t\t\tfpdata.woo.cart = {$cart_data};\r\n\t\t\t\tfp.woo.checkout_start_nonce = '{$checkout_nonce}';\r\n\t\t\t\tfp.woo.checkout_data_ready = true;\r\n\t\t\t\tFP.sendEvt( 'fupi_woo_checkout_data_ready' );\r\n\t\t\t</script><!--/noptimize-->";
         }
     }
 
@@ -514,7 +514,7 @@ class Fupi_WOO_public {
         $cart = WC()->cart;
         if ( !empty( $cart ) && !$cart->is_empty() ) {
             $cart_data = json_encode( $this->get_cart_data( $cart ) );
-            echo "<!--noptimize--><script data-no-optimize='1' id='fupi_mini_cart_data'>\r\n\t\t\t\tif ( fpdata.woo.cart.value ) fpdata.woo.cart_old = { ...fpdata.woo.cart };\r\n\t\t\t\tfpdata.woo.cart = {$cart_data};\r\n\t\t\t</script><!--/noptimize-->";
+            echo "<!--noptimize--><script data-no-optimize='1' id='fupi_mini_cart_data' nowprocket>\r\n\t\t\t\tif ( fpdata.woo.cart.value ) fpdata.woo.cart_old = { ...fpdata.woo.cart };\r\n\t\t\t\tfpdata.woo.cart = {$cart_data};\r\n\t\t\t</script><!--/noptimize-->";
         }
     }
 
@@ -550,7 +550,7 @@ class Fupi_WOO_public {
             // ATTENTION! Shortcode [products] also returns teasers that have loop name "products". Hence "woo product list" can list names of typical product teasers as well as products displayed by the said shortcode
             $list_name = ( empty( $woocommerce_loop['name'] ) ? ( empty( $woocommerce_loop['is_search'] ) ? 'woo products' : 'woo search' ) : 'woo ' . $woocommerce_loop['name'] );
         }
-        echo "<!--noptimize--><script data-no-optimize='1' class='fupi_prod_data' data-id='{$id}' data-list_name='{$list_name}' data-type='teaser'>FP.prepareProduct( 'teaser', {$id}, {$json_data} );</script><!--/noptimize-->";
+        echo "<!--noptimize--><script data-no-optimize='1' nowprocket class='fupi_prod_data' data-id='{$id}' data-list_name='{$list_name}' data-type='teaser'>FP.prepareProduct( 'teaser', {$id}, {$json_data} );</script><!--/noptimize-->";
     }
 
     // WOO BLOCKS
@@ -572,7 +572,7 @@ class Fupi_WOO_public {
                 $parent_product,
                 $parent_id
             ) );
-            $script = "<!--noptimize--><script data-no-optimize='1' class='fupi_prod_data fupi_woo_block_teaser' data-id='{$id}' data-type='teaser'>FP.prepareProduct( 'teaser', {$id}, {$json_data} );</script><!--/noptimize-->";
+            $script = "<!--noptimize--><script data-no-optimize='1' nowprocket class='fupi_prod_data fupi_woo_block_teaser' data-id='{$id}' data-type='teaser'>FP.prepareProduct( 'teaser', {$id}, {$json_data} );</script><!--/noptimize-->";
             // $script = "<!-- some text --><span class='fupi_prod_data_html' style='display: none !important' data-id='{$id}' data-type='teaser'>{$json_data}</span>";
             return substr( $html, 0, -5 ) . $script . '</li>';
         }
@@ -599,7 +599,7 @@ class Fupi_WOO_public {
                     $parent_product,
                     $parent_id
                 ) );
-                return $block_content . "<script data-no-optimize='1' class='fupi_prod_data fupi_woo_fse_block_teaser' data-id='{$id}' data-type='teaser'>FP.prepareProduct( 'teaser', {$id}, {$prod_data} );</script>";
+                return $block_content . "<script data-no-optimize='1' nowprocket class='fupi_prod_data fupi_woo_fse_block_teaser' data-id='{$id}' data-type='teaser'>FP.prepareProduct( 'teaser', {$id}, {$prod_data} );</script>";
                 // <!--noptimize--> comment removed in 7.5.1
             }
             // cart & mini cart blocks
@@ -611,7 +611,7 @@ class Fupi_WOO_public {
                 // get products if not empty
                 if ( !empty( $cart ) && !$cart->is_empty() ) {
                     $cart_data = json_encode( $this->get_cart_data( $cart ) );
-                    return "<!--noptimize--><script data-no-optimize='1' id='fupi_woo_cart_block'>\r\n\t\t\t\t\tif ( fpdata.woo.cart.value ) fpdata.woo.cart_old = { ...fpdata.woo.cart };\r\n\t\t\t\t\tfpdata.woo.cart = {$cart_data};\r\n\t\t\t\t</script><!--/noptimize-->" . $block_content;
+                    return "<!--noptimize--><script data-no-optimize='1' id='fupi_woo_cart_block' nowprocket>\r\n\t\t\t\t\tif ( fpdata.woo.cart.value ) fpdata.woo.cart_old = { ...fpdata.woo.cart };\r\n\t\t\t\t\tfpdata.woo.cart = {$cart_data};\r\n\t\t\t\t</script><!--/noptimize-->" . $block_content;
                 }
             }
         }
@@ -645,7 +645,7 @@ class Fupi_WOO_public {
                 }
             }
         }
-        echo "<!--noptimize--><script data-no-optimize='1' class='fupi_prod_data' data-id='{$id}' data-list_name='{$list_name}' data-type='teaser'>FP.prepareProduct( 'teaser', {$id}, {$json_data} );</script><!--/noptimize-->";
+        echo "<!--noptimize--><script data-no-optimize='1' nowprocket class='fupi_prod_data' data-id='{$id}' data-list_name='{$list_name}' data-type='teaser'>FP.prepareProduct( 'teaser', {$id}, {$json_data} );</script><!--/noptimize-->";
     }
 
     // SINGLE PRODUCTS - SIMPLE AND VARIABLE
@@ -680,7 +680,7 @@ class Fupi_WOO_public {
             ) );
             $output .= "FP.prepareProduct( 'variant', {$variation_id}, {$variant_data} );";
         }
-        echo "<!--noptimize--><script data-no-optimize='1' class='fupi_prod_data' data-id='{$id}' data-type='single'>{$output}</script><!--/noptimize-->";
+        echo "<!--noptimize--><script data-no-optimize='1' nowprocket class='fupi_prod_data' data-id='{$id}' data-type='single'>{$output}</script><!--/noptimize-->";
     }
 
     // SINGLE PRODUCTS - GROUPED
@@ -700,7 +700,7 @@ class Fupi_WOO_public {
             $parent_product,
             $parent_id
         ) );
-        return "<!--noptimize--><script data-no-optimize='1' class='fupi_woo_group_item'>FP.prepareProduct( 'group_item', {$id}, {$prod_data} );</script><!--/noptimize-->" . $html;
+        return "<!--noptimize--><script data-no-optimize='1' nowprocket class='fupi_woo_group_item'>FP.prepareProduct( 'group_item', {$id}, {$prod_data} );</script><!--/noptimize-->" . $html;
     }
 
     public function fupi_woo_add_to_cart_from_url() {
@@ -712,7 +712,7 @@ class Fupi_WOO_public {
             }
             $prod_data = json_encode( $this->get_prod_data( $product, $id ) );
             $qty = ( isset( $_GET['quantity'] ) ? (int) $_GET['quantity'] : 1 );
-            echo "<!--noptimize--><script data-no-optimize='1' class='fupi_add_to_cart_prod_data'>\r\n\t\t\t\t\r\n\t\t\t\tlet prod = {$prod_data},\r\n\t\t\t\t\tqty = {$qty},\r\n\t\t\t\t\tvalue = Math.round( prod.price * qty * 100 ) / 100;\r\n\r\n\t\t\t\tsetTimeout( \r\n\t\t\t\t\t()=>{\r\n\r\n\t\t\t\t\t\tFP.doActions( \r\n\t\t\t\t\t\t\t'woo_add_to_cart', \r\n\t\t\t\t\t\t\t{ \r\n\t\t\t\t\t\t\t\t'products' : [[prod, qty]],\r\n\t\t\t\t\t\t\t\t'value' : value\r\n\t\t\t\t\t\t \t}\r\n\t\t\t\t\t\t);\r\n\t\t\t\t\t}, 200 // a little bit of extra time in case any of the footer scripts did not load\r\n\t\t\t\t);\r\n\t\t\t\t</script><!--/noptimize-->";
+            echo "<!--noptimize--><script data-no-optimize='1' nowprocket class='fupi_add_to_cart_prod_data'>\r\n\t\t\t\t\r\n\t\t\t\tlet prod = {$prod_data},\r\n\t\t\t\t\tqty = {$qty},\r\n\t\t\t\t\tvalue = Math.round( prod.price * qty * 100 ) / 100;\r\n\r\n\t\t\t\tsetTimeout( \r\n\t\t\t\t\t()=>{\r\n\r\n\t\t\t\t\t\tFP.doActions( \r\n\t\t\t\t\t\t\t'woo_add_to_cart', \r\n\t\t\t\t\t\t\t{ \r\n\t\t\t\t\t\t\t\t'products' : [[prod, qty]],\r\n\t\t\t\t\t\t\t\t'value' : value\r\n\t\t\t\t\t\t \t}\r\n\t\t\t\t\t\t);\r\n\t\t\t\t\t}, 200 // a little bit of extra time in case any of the footer scripts did not load\r\n\t\t\t\t);\r\n\t\t\t\t</script><!--/noptimize-->";
         }
     }
 

@@ -68,7 +68,7 @@ $loading_fields = array(
 					'excl'				=> esc_html__('All except','full-picture-analytics-cookie-notice'),
 					'incl'				=> esc_html__('Only in','full-picture-analytics-cookie-notice'),
 				),
-				'wrap_class'		=> 'fupi_col_20',
+				'class'		=> 'fupi_col_20',
 			),
 			array(
 				'type'				=> 'text',
@@ -134,14 +134,14 @@ $sections = array(
 						'placeholder'		=> esc_html__( 'URL part, e.g. /go/', 'full-picture-analytics-cookie-notice' ),
 						'type'				=> 'text',
 						'field_id'			=> 'sel',
-						'wrap_class'		=> 'fupi_col_35_grow',
+						'class'		=> 'fupi_col_35_grow',
 						'required'			=> true,
 					),
 					array(
 						'placeholder'		=> esc_html__( 'Conversion label (required)', 'full-picture-analytics-cookie-notice' ),
 						'type'				=> 'text',
 						'field_id'			=> 'val',
-						'wrap_class'		=> 'fupi_col_35_grow',
+						'class'		=> 'fupi_col_35_grow',
 						'required'			=> true,
 					),
 				)
@@ -168,14 +168,14 @@ $sections = array(
 						'placeholder'		=> esc_html__( 'CSS selector e.g. #sth img', 'full-picture-analytics-cookie-notice' ),
 						'type'				=> 'text',
 						'field_id'			=> 'sel',
-						'wrap_class'		=> 'fupi_col_35_grow',
+						'class'		=> 'fupi_col_35_grow',
 						'required'			=> true,
 					),
 					array(
 						'placeholder'		=> esc_html__( 'Conversion label (required)', 'full-picture-analytics-cookie-notice' ),
 						'type'				=> 'text',
 						'field_id'			=> 'val',
-						'wrap_class'		=> 'fupi_col_35_grow',
+						'class'		=> 'fupi_col_35_grow',
 						'required'			=> true,
 					),
 				)
@@ -195,14 +195,14 @@ $sections = array(
 						'placeholder'		=> esc_html__( 'CSS selector e.g. #form_id', 'full-picture-analytics-cookie-notice' ),
 						'type'				=> 'text',
 						'field_id'			=> 'sel',
-						'wrap_class'		=> 'fupi_col_35_grow',
+						'class'		=> 'fupi_col_35_grow',
 						'required'			=> true,
 					),
 					array(
 						'placeholder'		=> esc_html__( 'Conversion label (required)', 'full-picture-analytics-cookie-notice' ),
 						'type'				=> 'text',
 						'field_id'			=> 'val',
-						'wrap_class'		=> 'fupi_col_35_grow',
+						'class'		=> 'fupi_col_35_grow',
 						'required'			=> true,
 					),
 				)
@@ -222,14 +222,14 @@ $sections = array(
 						'placeholder'		=> esc_html__( 'CSS selector e.g. .side img', 'full-picture-analytics-cookie-notice' ),
 						'type'				=> 'text',
 						'field_id'			=> 'sel',
-						'wrap_class'		=> 'fupi_col_35_grow',
+						'class'		=> 'fupi_col_35_grow',
 						'required'			=> true,
 					),
 					array(
 						'placeholder'		=> esc_html__( 'Conversion label (required)', 'full-picture-analytics-cookie-notice' ),
 						'type'				=> 'text',
 						'field_id'			=> 'val',
-						'wrap_class'		=> 'fupi_col_35_grow',
+						'class'		=> 'fupi_col_35_grow',
 						'required'			=> true,
 					),
 				)
@@ -256,7 +256,7 @@ $adv_triggers_section = array(
 						'label'				=> esc_html__( 'When this happens', 'full-picture-analytics-cookie-notice' ),
 						'type' 				=> 'atrig_select',
 						'field_id'			=> 'atrig_id',
-						'wrap_class'		=> 'fupi_col_40',
+						'class'		=> 'fupi_col_40',
 						'required'			=> true,
 						'format'			=> 'key'
 					),
@@ -265,7 +265,7 @@ $adv_triggers_section = array(
 						'label' 			=> esc_html__( '...for...', 'full-picture-analytics-cookie-notice' ),
 						'field_id' 			=> 'repeat',
 						'option_arr_id'		=> $option_arr_id,
-						'wrap_class'		=> 'fupi_col_20',
+						'class'		=> 'fupi_col_20',
 						'options'			=> array(
 							'no'				=> esc_html__( 'The first time', 'full-picture-analytics-cookie-notice' ),
 							'yes'				=> esc_html__( 'Every time', 'full-picture-analytics-cookie-notice' ),
@@ -278,7 +278,7 @@ $adv_triggers_section = array(
 						'field_id'			=> 'conv_label',
 						'el_class'			=> 'fupi_events_builder_evt',
 						'required'			=> true,
-						'wrap_class'		=> 'fupi_col_25',
+						'class'		=> 'fupi_col_25',
 					),
 				),
 			)

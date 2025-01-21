@@ -100,7 +100,7 @@ class Fupi_HTMLMODS_public {
 				// replace iframe
 
 				$new_content = str_replace( '<iframe', '<div class="fupi_blocked_iframe" data-stats="' . $stats . '" data-market="' . $market . '" data-pers="' . $pers . '" ' . $placeholder . $name . $privacy . '><div class="fupi_iframe_data"', $content );
-				$output = str_replace( '/iframe>', '/div></div>', $new_content ) . '<!--noptimize--><script data-no-optimize="1">FP.manageIframes();</script><!--/noptimize-->';
+				$output = str_replace( '/iframe>', '/div></div>', $new_content ) . '<!--noptimize--><script data-no-optimize="1" nowprocket>FP.manageIframes();</script><!--/noptimize-->';
 
 				return $output;
 			};

@@ -103,7 +103,7 @@ class Fupi_policy_generator {
 
             if ( ! empty( $scripts_a['fupi_head_scripts'] ) && is_array( $scripts_a['fupi_head_scripts'] ) ){
                 foreach( $scripts_a['fupi_head_scripts'] as $data ){
-                    if ( ! isset( $data['disable'] ) ) {
+                    if ( ! ( isset( $data['disable'] ) || isset( $data['not_installer'] ) ) ) {
                         $name   = ! empty( $data['title'] ) ? esc_attr( $data['title'] ) : false;
                         $url    = ! empty( $data['pp_url'] ) ? esc_attr( $data['pp_url'] ) : false;
                         $this->data[] = [ $name, $url ];
@@ -113,7 +113,7 @@ class Fupi_policy_generator {
 
             if ( ! empty( $scripts_a['fupi_footer_scripts'] ) && is_array( $scripts_a['fupi_footer_scripts'] ) ){
                 foreach( $scripts_a['fupi_footer_scripts'] as $data ){
-                    if ( ! isset( $data['disable'] ) ) {
+                    if ( ! ( isset( $data['disable'] ) || isset( $data['not_installer'] ) ) ) {
                         $name   = ! empty( $data['title'] ) ? esc_attr( $data['title'] ) : false;
                         $url    = ! empty( $data['pp_url'] ) ? esc_attr( $data['pp_url'] ) : false;
                         $this->data[] = [ $name, $url ];

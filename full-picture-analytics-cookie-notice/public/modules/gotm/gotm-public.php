@@ -20,6 +20,7 @@ class Fupi_GOTM_public {
     private function add_actions_and_filters(){
         add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
         add_filter( 'fupi_modify_fp_object', array($this, 'add_data_to_fp_object'), 10, 1 );
+        add_action( 'wp_body_open', array( $this, 'add_gtm_noscript_fallback') );
     }
 
     public function add_data_to_fp_object( $fp ){
@@ -42,5 +43,13 @@ class Fupi_GOTM_public {
 
         /* ^ */ wp_enqueue_script( 'fupi-gotm-head-js', FUPI_URL . 'public/modules/gotm/fupi-gotm.js', array( 'fupi-helpers-js' ), FUPI_VERSION, $head_args );
         /* _ */ wp_enqueue_script( 'fupi-gotm-footer-js', FUPI_URL . 'public/modules/gotm/fupi-gotm-footer.js', $reqs, FUPI_VERSION, $footer_args );
+    }
+
+    public function add_gtm_noscript_fallback(){
+        if ( ! empty( $this->settings ) && ! empty( $this->settings['id'] ) ) {
+            echo '<!-- START Google Tag Manager (noscript) -->
+                <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=' . esc_attr( $this->settings['id'] ) . '" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+            <!-- END Google Tag Manager (noscript) -->';
+        }
     }
 }

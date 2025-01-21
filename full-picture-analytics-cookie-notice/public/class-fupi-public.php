@@ -89,34 +89,53 @@ class Fupi_Public {
         $fp = apply_filters( 'fupi_modify_fp_object', $fp );
         $fpdata = apply_filters( 'fupi_modify_fpdata_object', $fpdata );
         // OUTPUT THE DATA
-        $output = '<!--noptimize--><script id=\'fp_data_js\' type="text/javascript" data-no-optimize="1">
+        $output = '<!--noptimize--><script id=\'fp_data_js\' type="text/javascript" data-no-optimize="1" nowprocket>
 			
 			var fp_premium = ' . json_encode( fupi_fs()->can_use_premium_code() ) . ',
 				FP = { \'fns\' : {} },
 				fp = ' . json_encode( $fp ) . ',
 				fpdata = ' . json_encode( $fpdata ) . ';';
         // fp_nonce = "' . wp_create_nonce('wp_rest'). '";'; // It has to be "wp_rest" This is required!
-        include_once dirname( __FILE__ ) . '/in_head/head-js.php';
+        if ( !empty( $this->main ) && empty( $this->main['save_settings_file'] ) ) {
+            include_once dirname( __FILE__ ) . '/in_head/head-js.php';
+        }
         $output .= '</script><!--/noptimize-->';
         echo $output;
     }
 
     public function fupi_enqueue_js_helpers() {
-        $footer_helpers_req = ( isset( $this->main['no_jquery'] ) ? array('fupi-helpers-js') : array('fupi-helpers-js', 'jquery') );
-        /* ^ */
-        wp_enqueue_script(
-            'fupi-helpers-js',
-            FUPI_URL . 'public/common/fupi-helpers.js',
-            array(),
-            $this->version,
-            false
-        );
-        // can delete fp_cookies when ?tracking=off
+        if ( !empty( $this->main ) && !empty( $this->main['save_settings_file'] ) ) {
+            $file_url = trailingslashit( wp_upload_dir()['baseurl'] ) . 'wpfp/js/head.js';
+            $file_path = trailingslashit( wp_upload_dir()['basedir'] ) . 'wpfp/js/head.js';
+            // if $file_url starts with "http:" but FUPI_URL starts with httpS, then replace it with "https:"
+            if ( substr( $file_url, 0, 5 ) === 'http:' && substr( FUPI_URL, 0, 6 ) === 'https:' ) {
+                $file_url = 'https:' . substr( $file_url, 5 );
+            }
+            /* ^ */
+            wp_enqueue_script(
+                'fupi-helpers-js',
+                $file_url,
+                array(),
+                filemtime( $file_path ),
+                false
+            );
+            // can delete fp_cookies when ?tracking=off
+        } else {
+            /* ^ */
+            wp_enqueue_script(
+                'fupi-helpers-js',
+                FUPI_URL . 'public/common/fupi-helpers.js',
+                array(),
+                $this->version,
+                false
+            );
+            // can delete fp_cookies when ?tracking=off
+        }
         /* _ */
         wp_enqueue_script(
             'fupi-helpers-footer-js',
             FUPI_URL . 'public/common/fupi-helpers-footer.js',
-            $footer_helpers_req,
+            array('fupi-helpers-js'),
             $this->version,
             true
         );
