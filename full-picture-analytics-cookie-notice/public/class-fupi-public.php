@@ -96,7 +96,7 @@ class Fupi_Public {
 				fp = ' . json_encode( $fp ) . ',
 				fpdata = ' . json_encode( $fpdata ) . ';';
         // fp_nonce = "' . wp_create_nonce('wp_rest'). '";'; // It has to be "wp_rest" This is required!
-        if ( !empty( $this->main ) && empty( $this->main['save_settings_file'] ) ) {
+        if ( empty( $this->main ) || empty( $this->main['save_settings_file'] ) ) {
             include_once dirname( __FILE__ ) . '/in_head/head-js.php';
         }
         $output .= '</script><!--/noptimize-->';
