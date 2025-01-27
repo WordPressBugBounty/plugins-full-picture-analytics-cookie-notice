@@ -4,7 +4,7 @@ Donate link: https://wpfullpicture.com/
 Tags: woocommerce, consent mode, analytics, privacy, cookies
 Requires at least: 5.4.0
 Tested up to: 6.7.1
-Stable tag: 8.3.1
+Stable tag: 8.3.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -200,6 +200,10 @@ No. WP Full Picture is focused on tracking and privacy. To generate a product ca
 6. View traffic and marketing reports in the admin panel
 
 == Changelog ==
+
+= 8.3.2 (27-01-2025) =
+
+* [Update] Freemius SDK
 
 = 8.3.1 (22-01-2025) =
 
