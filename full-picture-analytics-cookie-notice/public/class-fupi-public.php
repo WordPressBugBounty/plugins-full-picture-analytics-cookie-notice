@@ -24,6 +24,10 @@ class Fupi_Public {
     }
 
     public function load_module( $moduleName, $is_premium = false ) {
+        if ( $is_premium && !fupi_fs()->can_use_premium_code() ) {
+            return;
+        }
+        // do not load premium modules
         // do not load a module that is already loaded
         $moduleClass = 'Fupi_' . strtoupper( $moduleName ) . '_public';
         if ( class_exists( $moduleClass ) ) {
@@ -96,6 +100,10 @@ class Fupi_Public {
 				fp = ' . json_encode( $fp ) . ',
 				fpdata = ' . json_encode( $fpdata ) . ';';
         // fp_nonce = "' . wp_create_nonce('wp_rest'). '";'; // It has to be "wp_rest" This is required!
+        $extra_scr = apply_filters( 'fupi_add_js_to_head_data', '' );
+        if ( !empty( $extra_scr ) ) {
+            $output .= $extra_scr;
+        }
         if ( empty( $this->main ) || empty( $this->main['save_settings_file'] ) ) {
             include_once dirname( __FILE__ ) . '/in_head/head-js.php';
         }
@@ -187,11 +195,13 @@ class Fupi_Public {
         // MAKE PAYLOAD
         $visit_info->ip = $userIP;
         $payload = [
-            'installID'       => fupi_fs()->get_site()->id,
             'serverTimezone'  => $timezone,
             'serverTimestamp' => current_time( 'Y-m-d H:i:s' ),
             'visit'           => $visit_info,
         ];
+        if ( fupi_fs()->can_use_premium_code() ) {
+            $payload['installID'] = fupi_fs()->get_site()->id;
+        }
         // RETURN REQUEST DATA
         $requests_a[] = [
             'url'             => 'https://prod-fr.consentsdb.com/api/cookies',

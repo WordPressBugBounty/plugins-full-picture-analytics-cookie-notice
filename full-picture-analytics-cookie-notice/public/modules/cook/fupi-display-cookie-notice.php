@@ -278,7 +278,7 @@ $tag = ( !empty( $tag_val ) ? esc_attr( $tag_val ) : 'p' );
 $notif_headline = ( !empty( $current_texts['notif_h'] ) ? '<' . $tag . ' id="fupi_main_headline" class="fupi_headline">' . $current_texts['notif_h'] . '</' . $tag . '>' : '' );
 // GENERATE HTML
 echo '<!-- WP Full Picture - Consent Banner & Analytics - START -->
-<aside id="fupi_cookie_notice" class="fupi_hidden ' . $overlay_class . ' fupi_notice_btn_' . $btn_size . '" data-position="' . $notice_position . '" data-position_inform="' . $notice_position_inform . '" data-paddings="' . $notice_paddings . '" data-btn_config="' . $btn_config . '" data-headlinetag="' . $tag . '">
+<aside id="fupi_cookie_notice" class="fupi_hidden ' . $overlay_class . ' fupi_notice_btn_' . $btn_size . '" style="display: none;" data-position="' . $notice_position . '" data-position_inform="' . $notice_position_inform . '" data-paddings="' . $notice_paddings . '" data-btn_config="' . $btn_config . '" data-headlinetag="' . $tag . '">
 	<div id="fupi_welcome_panel" class="fupi_panel fupi_hidden" role="dialog" aria-label="' . esc_attr__( 'Consent banner', 'full-picture-analytics-cookie-notice' ) . '" aria-modal="true" aria-describedby="fupi_main_descr">
 		<div class="fupi_inner">
 			<div class="fupi_content">' . $notif_headline . '
@@ -366,7 +366,7 @@ if ( !$is_mode_notify && (is_customize_preview() || isset( $notice_opts ) && !em
         $toggler_class = ( empty( $notice_opts['enable_toggle_btn'] ) ? '' : 'fupi_active fupi_animated fupi_fadeInUp ' );
         $toggler_tooltip = '<span class="fupi_tooltiptext">' . esc_html__( 'This button is only active on the live site', 'full-picture-analytics-cookie-notice' ) . '</span>';
     }
-    echo '<aside><button id="fupi_notice_toggler" class="fp_show_cookie_notice fupi_tooltip ' . $toggler_class . '"><span class="fupi_srt">' . esc_attr__( 'Change cookie preferences', 'full-picture-analytics-cookie-notice' ) . '</span><img src="' . $img_src . '">' . $toggler_tooltip . '</button></aside>';
+    echo '<aside><button id="fupi_notice_toggler" class="fp_show_cookie_notice fupi_tooltip ' . $toggler_class . '" style="display: none;"><span class="fupi_srt">' . esc_attr__( 'Change cookie preferences', 'full-picture-analytics-cookie-notice' ) . '</span><img src="' . $img_src . '">' . $toggler_tooltip . '</button></aside>';
 }
 echo '<!-- WP Full Picture - Consent Banner & Analytics - END -->';
 ob_end_flush();

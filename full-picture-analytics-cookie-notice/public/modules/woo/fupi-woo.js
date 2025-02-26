@@ -134,7 +134,12 @@
 			// mark teasers
 			if ( type == 'teaser' ){
 				
-				prod_wrap = script_el.closest("li") || script_el.parentElement;
+				let wrapper_selector = 'li';
+				if ( fp.woo.teaser_wrapper_sel ) {
+					wrapper_selector += ', ' + fp.woo.teaser_wrapper_sel;
+				}
+
+				prod_wrap = script_el.closest( wrapper_selector ) || script_el.parentElement;
 				list_name = get_teaser_list_name( prod_wrap, script_el );
 				prod_wrap.classList.add("fupi_woo_teaser", "fupi_woo_product");
 				

@@ -13,27 +13,22 @@ class Fupi_Admin {
 
     private $cook_enabled;
 
-    private $geo_enabled;
-
+    // private $geo_enabled;
     private $cook;
 
     private $user_cap;
 
-    private $trackmeta;
-
+    // private $trackmeta;
     private $is_woo_enabled;
-
-    private $licence;
 
     private $reports;
 
-    private $enable_woo_descr_text;
-
-    private $sync_run;
-
+    // private $sync_run;
     private $fupi_report_pages = [];
 
-    private $run_cdb;
+    private $modules = [];
+
+    private $fupi_modules = [];
 
     public function __construct( $plugin_name, $version ) {
         $this->plugin_name = $plugin_name;
@@ -43,129 +38,99 @@ class Fupi_Admin {
         $this->reports = get_option( 'fupi_reports' );
         $this->main = get_option( 'fupi_main' );
         $this->cook_enabled = !empty( $this->tools ) && isset( $this->tools['cook'] );
-        // makes 2 checks for backwards compat.
-        $this->geo_enabled = !empty( $this->tools ) && isset( $this->tools['geo'] );
+        // $this->geo_enabled 					= ! empty( $this->tools ) && isset ( $this->tools['geo'] );
         $this->cook = get_option( 'fupi_cook' );
-        $this->run_cdb = $this->cook_enabled && !empty( $this->cook ) && !empty( $this->cook['cdb_key'] );
-        $this->trackmeta = get_option( 'fupi_trackmeta' );
+        // $this->trackmeta 					= get_option('fupi_trackmeta');
         $this->user_cap = 'manage_options';
         $this->is_woo_enabled = false;
-        $this->licence = 'free';
-        // changed below
-        $this->sync_run = false;
+        // $this->sync_run						= false;
+        $this->get_modules_data();
         // Test to see if WooCommerce is active (including network activated).
         // https://woocommerce.com/document/create-a-plugin/#section-1
         if ( isset( $this->tools['woo'] ) ) {
             $plugin_path = trailingslashit( WP_PLUGIN_DIR ) . 'woocommerce/woocommerce.php';
             if ( function_exists( 'wp_get_active_and_valid_plugins' ) && in_array( $plugin_path, wp_get_active_and_valid_plugins() ) || function_exists( 'wp_get_active_network_plugins' ) && in_array( $plugin_path, wp_get_active_network_plugins() ) ) {
                 $this->is_woo_enabled = true;
-                $this->enable_woo_descr_text = '';
             }
         }
     }
 
-    public function fupi_listen_to_pp_page_updates( $post_id, $post ) {
-        $pp_id = get_option( 'wp_page_for_privacy_policy' );
-        if ( $post_id != $pp_id ) {
+    public function get_modules_data() {
+        include FUPI_PATH . '/includes/fupi_modules_data.php';
+        $this->fupi_modules = $fupi_modules;
+        // ( Do not add here any filters or actions - it's too early and they will not trigger at all )
+    }
+
+    public function load_module( $moduleName, $is_premium = false ) {
+        if ( $is_premium && !fupi_fs()->can_use_premium_code() ) {
             return;
         }
-        $page_status = get_post_status( $post_id );
-        if ( $page_status == 'publish' ) {
-            include_once 'settings/modules/cook/register-cdb.php';
-            // loads consent checker to send the config data to CDB
-            $cdb = new Fupi_send_to_CDB();
-            $clean_data = $cdb->send_privacy_policy();
+        // do not load premium modules
+        // do not load a module that is already loaded
+        $moduleClass = 'Fupi_' . strtoupper( $moduleName ) . '_admin';
+        if ( class_exists( $moduleClass ) ) {
+            trigger_error( "Module {$moduleName} is already loaded.", E_USER_WARNING );
+            return;
         }
-    }
-
-    public function string_settings_to_array( $opt_name, $settings_names = [], $simple_arr_settings_names = [] ) {
-        $opt = get_option( $opt_name );
-        if ( isset( $opt ) ) {
-            if ( count( $settings_names ) > 0 ) {
-                foreach ( $settings_names as $set_name ) {
-                    if ( isset( $opt[$set_name] ) && is_string( $opt[$set_name] ) ) {
-                        $set_val = $opt[$set_name];
-                        $lines_arr = explode( PHP_EOL, $set_val );
-                        $ret_arr = [];
-                        foreach ( $lines_arr as $line ) {
-                            $line = trim( $line );
-                            $sub_arr = [];
-                            if ( str_contains( $line, '@' ) ) {
-                                $vals = explode( '@', $line );
-                                $sub_arr['sel'] = trim( $vals[0] );
-                                $sub_arr['val'] = trim( $vals[1] );
-                                array_push( $ret_arr, $sub_arr );
-                            } else {
-                                $sub_arr['sel'] = $line;
-                                array_push( $ret_arr, $sub_arr );
-                            }
-                        }
-                        $opt[$set_name] = $ret_arr;
-                    }
-                }
-            }
-            if ( count( $simple_arr_settings_names ) > 0 ) {
-                foreach ( $simple_arr_settings_names as $simp_name ) {
-                    if ( isset( $opt[$simp_name] ) && is_string( $opt[$simp_name] ) ) {
-                        $ret_arr = [];
-                        $vals = explode( '@', $opt[$simp_name] );
-                        $ret_arr['sel'] = trim( $vals[0] );
-                        $ret_arr['val'] = trim( $vals[1] );
-                        $opt[$simp_name] = $ret_arr;
-                    }
-                }
-            }
-            update_option( $opt_name, $opt );
+        // load file
+        if ( $is_premium ) {
+            $modulePath = FUPI_PATH . "/admin/modules/{$moduleName}__premium_only/{$moduleName}-admin.php";
+        } else {
+            $modulePath = FUPI_PATH . "/admin/modules/{$moduleName}/{$moduleName}-admin.php";
         }
+        if ( !file_exists( $modulePath ) ) {
+            return;
+        }
+        require_once $modulePath;
+        // return if the loaded file has no necessary class
+        if ( !class_exists( $moduleClass ) ) {
+            return;
+        }
+        // // Check if this module has dependencies
+        // if (method_exists($moduleClass, 'getDependencies')) {
+        //     $dependencies = $moduleClass::getDependencies();
+        //     foreach ($dependencies as $dependency) {
+        //         if (!isset($this->modules[$dependency])) {
+        //             $this->loadModule($dependency);
+        //         }
+        //     }
+        // }
+        // Add the module to the main class
+        new $moduleClass();
+        // $this->modules[$moduleName] = new $moduleClass(); // you can pass $this here or any other vars if needed. Passing $this will let the module access the main class and all of its methods and properties.
     }
 
-    public function perform_updates() {
-        // clears cache at the end
-        require_once FUPI_PATH . '/includes/fupi_updater.php';
-    }
-
-    // Plugin activation callback. Registers option to redirect on next admin load.
-    // Saves user ID to ensure it only redirects for the user who activated the plugin.
-    // public function fupi_activation_redirect() {
-    // 	// Make sure it's the correct user
-    // 	if ( !wp_doing_ajax() && intval( get_option( 'fupi_activation_redirect' ) ) === wp_get_current_user()->ID ) {
-    // 		// Make sure we don't redirect again after this one
-    // 		delete_option( 'fupi_activation_redirect' );
-    // 		wp_safe_redirect( admin_url( '/admin.php?page=full_picture_tools' ) );
-    // 		exit;
-    // 	}
+    // public function __call($method, $args) {
+    //     foreach ($this->modules as $module) {
+    //         if (method_exists($module, $method)) {
+    //             return call_user_func_array([$module, $method], $args);
+    //         }
+    //     }
+    //     throw new Exception("Method {$method} not found.");
     // }
-    public function fupi_custom_admin_styles() {
-        echo '<style>
-			.column-fupi_order_data{
-				width: 30px !important;
-				max-width: 30px !important;
-				box-sizing: border-box;
-				text-align: center;
-			}
-		</style>';
-    }
-
+    //
+    // ADD NECESSARY SCRIPTS
+    //
     public function fupi_enqueue_scripts( $hook ) {
         $req = array();
         // everything that is not customizer
         if ( !is_customize_preview() ) {
             wp_enqueue_script(
                 'fupi-whole_admin-js',
-                plugin_dir_url( __FILE__ ) . 'settings/js/fupi-whole-admin.js',
+                plugin_dir_url( __FILE__ ) . 'assets/js/fupi-whole-admin.js',
                 array(),
                 $this->version,
                 true
             );
             wp_register_style(
                 'fupi-select2-css',
-                plugin_dir_url( __FILE__ ) . 'settings/css/select2.min.css',
+                plugin_dir_url( __FILE__ ) . 'assets/css/select2.min.css',
                 array(),
                 '4.1.0-rc.0'
             );
             wp_register_script(
                 'fupi-select2-js',
-                plugin_dir_url( __FILE__ ) . 'settings/js/select2.min.js',
+                plugin_dir_url( __FILE__ ) . 'assets/js/select2.min.js',
                 array('jquery', 'fupi-admin-helpers-js'),
                 '4.1.0-rc.0'
             );
@@ -180,21 +145,21 @@ class Fupi_Admin {
             array_push( $req, 'jquery', 'fupi-admin-helpers-js' );
             wp_enqueue_style(
                 'fupi-admin',
-                plugin_dir_url( __FILE__ ) . 'settings/css/fupi-admin.min.css',
+                plugin_dir_url( __FILE__ ) . 'assets/css/fupi-admin.min.css',
                 array(),
                 $this->version,
                 'all'
             );
             wp_enqueue_script(
                 'fupi-admin-helpers-js',
-                plugin_dir_url( __FILE__ ) . 'settings/js/fupi-admin-helpers.js',
+                plugin_dir_url( __FILE__ ) . 'assets/js/fupi-admin-helpers.js',
                 array(),
                 $this->version,
                 true
             );
             wp_enqueue_script(
                 'fupi-admin-js',
-                plugin_dir_url( __FILE__ ) . 'settings/js/fupi-admin.js',
+                plugin_dir_url( __FILE__ ) . 'assets/js/fupi-admin.js',
                 $req,
                 $this->version,
                 true
@@ -202,7 +167,7 @@ class Fupi_Admin {
             if ( strrpos( $hook, 'full_picture_main' ) !== false ) {
                 wp_enqueue_script(
                     'fupi-admin-import-export-js',
-                    plugin_dir_url( __FILE__ ) . 'settings/js/fupi-admin-import-export.js',
+                    plugin_dir_url( __FILE__ ) . 'assets/js/fupi-admin-import-export.js',
                     $req,
                     $this->version,
                     true
@@ -210,17 +175,18 @@ class Fupi_Admin {
             }
         }
         // REPORTS PAGE
+        // this cannot be called in the reports-admin since reports page is also shown when plausible stats are enabled
         if ( strrpos( $hook, 'fp_reports' ) !== false ) {
             wp_enqueue_style(
                 'fupi-admin-reports',
-                plugin_dir_url( __FILE__ ) . 'settings/pages/fupi_reports.css',
+                plugin_dir_url( __FILE__ ) . 'common/pages/fupi_reports.css',
                 array(),
                 $this->version,
                 'all'
             );
             wp_enqueue_script(
                 'fupi-admin-helpers-js',
-                plugin_dir_url( __FILE__ ) . 'settings/js/fupi-admin-helpers.js',
+                plugin_dir_url( __FILE__ ) . 'assets/js/fupi-admin-helpers.js',
                 array(),
                 $this->version,
                 true
@@ -228,118 +194,26 @@ class Fupi_Admin {
         }
     }
 
-    public function fupi_search_users_callback() {
-        // Check if the current user is an administrator
-        if ( !current_user_can( 'manage_options' ) ) {
-            wp_die( __( 'You do not have sufficient permissions to access this page.', 'full-picture-analytics-cookie-notice' ) );
-        }
-        $search = ( isset( $_GET['q'] ) ? sanitize_text_field( $_GET['q'] ) : '' );
-        $users = get_users( array(
-            'search'         => "*{$search}*",
-            'search_columns' => array('user_login', 'user_email'),
-            'number'         => 20,
-        ) );
-        $results = array();
-        foreach ( $users as $user ) {
-            $results[] = array(
-                'id'   => $user->ID,
-                'text' => sprintf( '%s (%s)', $user->user_login, $user->user_email ),
-            );
-        }
-        wp_send_json( $results );
+    public function fupi_custom_admin_styles() {
+        echo '<style>
+			.column-fupi_order_data{
+				width: 30px !important;
+				max-width: 30px !important;
+				box-sizing: border-box;
+				text-align: center;
+			}
+		</style>';
     }
 
-    public function fupi_search_pages_callback() {
-        // Check if the current user is an administrator
-        if ( !current_user_can( 'manage_options' ) ) {
-            wp_die( __( 'You do not have sufficient permissions to access this page.', 'full-picture-analytics-cookie-notice' ) );
-        }
-        $search = ( isset( $_GET['q'] ) ? sanitize_text_field( $_GET['q'] ) : '' );
-        $pages = get_posts( array(
-            's'         => "{$search}",
-            'post_type' => 'page',
-            'number'    => 20,
-        ) );
-        $results = array();
-        foreach ( $pages as $page ) {
-            $results[] = array(
-                'id'   => $page->ID,
-                'text' => sprintf( '%s (%s)', $page->post_title, $page->post_status ),
-            );
-        }
-        wp_send_json( $results );
-    }
-
-    // CUSTOMIZER
-    // Register customizer settings
-    public function fupi_customize_register( $wp_customize ) {
-        if ( $this->cook_enabled ) {
-            if ( !function_exists( 'fupi_disable_customizer' ) ) {
-                include_once 'customizer/fupi-customizer-settings.php';
-            }
-        }
-    }
-
-    // Sanitize customizer settings
-    public function fupi_customizer_sanitize( $val, $setting ) {
-        if ( !function_exists( 'fupi_disable_customizer' ) ) {
-            $sanitized = (include 'customizer/fupi-customizer-sanitize.php');
-            // a workaround to get the value returned from the included file
-            return $sanitized;
-        }
-    }
-
-    // Send customizer settings to CDB
-    public function fupi_customize_save_after() {
-        if ( $this->run_cdb ) {
-            include_once FUPI_PATH . '/includes/class-fupi-get-gdpr-status.php';
-            new Fupi_compliance_status_checker('cdb', $this->cook);
-        }
-    }
-
-    // Enqueue customizer preview scripts
-    public function fupi_customizer_preview_scripts() {
-        if ( !function_exists( 'fupi_disable_customizer' ) && $this->cook_enabled ) {
-            wp_enqueue_script(
-                'fupi-customizer-preview',
-                plugin_dir_url( __FILE__ ) . 'customizer/js/fupi-customizer-preview.js',
-                array('customize-preview', 'jquery'),
-                $this->version,
-                true
-            );
-        }
-    }
-
-    // Enqueue customizer controls scripts and styles
-    public function fupi_enqueue_customizer_css_js() {
-        if ( $this->cook_enabled ) {
-            if ( !function_exists( 'fupi_disable_customizer' ) ) {
-                wp_enqueue_style( 'wp-color-picker' );
-                wp_enqueue_script( 'wp-color-picker' );
-                wp_enqueue_script(
-                    'fupi-customizer-controls',
-                    plugin_dir_url( __FILE__ ) . 'customizer/js/fupi-customizer-controls.js',
-                    array('jquery', 'customize-controls'),
-                    $this->version,
-                    true
-                );
-                wp_enqueue_style(
-                    'fupi-customizer-css',
-                    plugin_dir_url( __FILE__ ) . 'customizer/css/fupi-customizer.css',
-                    array(),
-                    $this->version,
-                    'all'
-                );
-            }
-        }
-    }
-
-    // ADMIN SETTINGS
-    public function fupi_add_admin_page() {
-        include FUPI_PATH . '/includes/fupi_modules_data.php';
+    //
+    // ADD PAGE LINKS TO ADMIN MENU
+    //
+    public function fupi_add_admin_page_links() {
         include FUPI_PATH . '/includes/fupi_modules_names.php';
+        // Main menu item text
         $fupi_page_title = ( !empty( $this->main ) && isset( $this->main['custom_menu_title'] ) ? esc_attr( $this->main['custom_menu_title'] ) : "WP Full Picture" );
         $show_main = false;
+        // MAIN PAGE
         add_menu_page(
             'WP Full Picture',
             // page title
@@ -353,41 +227,136 @@ class Fupi_Admin {
             'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+Cjxzdmcgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDU5NSA2MzciIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgeG1sbnM6c2VyaWY9Imh0dHA6Ly93d3cuc2VyaWYuY29tLyIgc3R5bGU9ImZpbGwtcnVsZTpldmVub2RkO2NsaXAtcnVsZTpldmVub2RkO3N0cm9rZS1saW5lam9pbjpyb3VuZDtzdHJva2UtbWl0ZXJsaW1pdDoyOyI+CiAgICA8ZyB0cmFuc2Zvcm09Im1hdHJpeCgyLjk5NTM2LDAsMCwyLjk5NTM2LC01NTcuMzQ0LC04NjYuNTA0KSI+CiAgICAgICAgPHBhdGggZD0iTTM2My43ODQsNDk4LjQ5MkwzMzkuOTI5LDQ3NC42NzJDMzM5LjMzNCw0NzQuMDcgMzM4LjgxMSw0NzMuNDMyIDMzOC4zODgsNDcyLjc1MkMzMjMuMDYsNDgyLjQxOCAzMDQuOTAyLDQ4OC4wMjIgMjg1LjQzOSw0ODguMDIyQzIzMC41NzcsNDg4LjAyMiAxODYuMDQ4LDQ0My41IDE4Ni4wNjksMzg4LjY2NkMxODYuMDU1LDMzMy43OTcgMjMwLjU4NCwyODkuMjgyIDI4NS40MjUsMjg5LjI4MkMzNDAuMjgsMjg5LjI3NSAzODQuODA5LDMzMy43OTcgMzg0LjgwMiwzODguNjY2QzM4NC44MDksNDE1Ljg0IDM3My44ODEsNDQwLjQ3NiAzNTYuMTc0LDQ1OC40MzRMMzgwLjAzNyw0ODIuMjU0QzM4NC40ODcsNDg2Ljc1NCAzODQuNTA4LDQ5NC4wMiAzODAuMDIyLDQ5OC40OTJDMzc1LjU0NCw1MDIuOTkyIDM2OC4yNjMsNTAyLjk5MiAzNjMuNzg0LDQ5OC40OTJaTTM2NC4wMzUsMzg4LjY1MkMzNjQuMDM1LDM0NS43NjQgMzI5LjI0NCwzMTAuOTk1IDI4Ni4zODUsMzEwLjk5NUMyNDMuNTExLDMxMC45OTUgMjA4LjcxMywzNDUuNzcxIDIwOC43MTMsMzg4LjY2NkMyMDguNzEzLDQzMS41MjYgMjQzLjUwNCw0NjYuMzE3IDI4Ni4zNjMsNDY2LjMxN0MzMjkuMjQ0LDQ2Ni4zMTcgMzY0LjA0Miw0MzEuNTI2IDM2NC4wMzUsMzg4LjY1MloiLz4KICAgIDwvZz4KICAgIDxnIHRyYW5zZm9ybT0ibWF0cml4KDIuOTk1MzYsMCwwLDIuOTk1MzYsLTU1Ny4zNDQsLTc1Ni4yOTYpIj4KICAgICAgICA8cGF0aCBkPSJNMjM2Ljc5NywzNjkuNDk3TDIzNi43OTcsMzg1Ljk3N0MyMzYuNzk3LDM5NC42NjUgMjQxLjk4OCw0MDEuNzE5IDI0OC4zODEsNDAxLjcxOUwyNDguMzg0LDQwMS43MTlDMjU0Ljc3Nyw0MDEuNzE5IDI1OS45NjgsMzk0LjY2NSAyNTkuOTY4LDM4NS45NzdMMjU5Ljk2OCwzNjkuNDk3QzI1OS45NjgsMzYwLjgwOSAyNTQuNzc3LDM1My43NTUgMjQ4LjM4NCwzNTMuNzU1TDI0OC4zODEsMzUzLjc1NUMyNDEuOTg4LDM1My43NTUgMjM2Ljc5NywzNjAuODA5IDIzNi43OTcsMzY5LjQ5N1oiLz4KICAgIDwvZz4KICAgIDxnIHRyYW5zZm9ybT0ibWF0cml4KDIuOTk1MzYsMCwwLDIuOTk1MzYsLTU1Ny4zNDQsLTgyMy4zNSkiPgogICAgICAgIDxwYXRoIGQ9Ik0yNzMuODI3LDM2OS41MDJMMjczLjgyNyw0MDguMzU4QzI3My44MjcsNDE3LjA0NiAyNzkuMDE4LDQyNC4xIDI4NS40MTQsNDI0LjFMMjg1LjQxOCw0MjQuMUMyOTEuODE0LDQyNC4xIDI5Ny4wMDUsNDE3LjA0NiAyOTcuMDA1LDQwOC4zNThMMjk3LjAwNSwzNjkuNTAyQzI5Ny4wMDUsMzYwLjgxNCAyOTEuODE0LDM1My43NiAyODUuNDE4LDM1My43NkwyODUuNDE0LDM1My43NkMyNzkuMDE4LDM1My43NiAyNzMuODI3LDM2MC44MTQgMjczLjgyNywzNjkuNTAyWiIvPgogICAgPC9nPgogICAgPGcgdHJhbnNmb3JtPSJtYXRyaXgoMi45OTUzNiwwLDAsMi45OTUzNiwtNTU3LjM0NCwtODk5LjkzOCkiPgogICAgICAgIDxwYXRoIGQ9Ik0zMTAuODg1LDM2OS41MDFMMzEwLjg4NSw0MzMuOTI4QzMxMC44ODUsNDQyLjYxNiAzMTYuMDc3LDQ0OS42NyAzMjIuNDY5LDQ0OS42N0wzMjIuNDczLDQ0OS42N0MzMjguODY1LDQ0OS42NyAzMzQuMDU3LDQ0Mi42MTYgMzM0LjA1Nyw0MzMuOTI4TDMzNC4wNTcsMzY5LjUwMUMzMzQuMDU3LDM2MC44MTMgMzI4Ljg2NSwzNTMuNzU5IDMyMi40NzMsMzUzLjc1OUwzMjIuNDY5LDM1My43NTlDMzE2LjA3NywzNTMuNzU5IDMxMC44ODUsMzYwLjgxMyAzMTAuODg1LDM2OS41MDFaIi8+CiAgICA8L2c+Cjwvc3ZnPgo=',
             90
         );
-        // MODULES
+        // SUBPAGES
         $modules_opts = [];
-        // TOOLS, GENERAL SETTINGS
-        foreach ( $fupi_modules as $module ) {
-            if ( $module['is_avail'] && $module['has_settings_page'] ) {
-                if ( $module['id'] == 'main' || $module['id'] == 'tools' || $module['id'] == 'status' || isset( $this->tools[$module['id']] ) ) {
-                    // do not add a page for Woo settings if the plugin is deactivated
-                    if ( $module['id'] == 'woo' && empty( $this->is_woo_enabled ) ) {
-                        continue;
-                    }
-                    array_push( $modules_opts, [
-                        'full_picture_tools',
-                        // parent slug
-                        $fupi_modules_names[$module['id']],
-                        // page title
-                        $fupi_modules_names[$module['id']],
-                        // menu title
-                        $this->user_cap,
-                        // capability
-                        'full_picture_' . $module['id'],
-                        // menu slug
-                        array($this, 'fupi_display_admin_page'),
-                    ] );
+        foreach ( $this->fupi_modules as $module ) {
+            if ( !$module['is_avail'] || !$module['has_admin_page'] ) {
+                continue;
+            }
+            if ( $module['id'] == 'main' || $module['id'] == 'tools' || $module['id'] == 'status' || isset( $this->tools[$module['id']] ) ) {
+                // do not add a page for Woo settings if the plugin is deactivated
+                if ( $module['id'] == 'woo' && empty( $this->is_woo_enabled ) ) {
+                    continue;
                 }
+                array_push( $modules_opts, [
+                    'full_picture_tools',
+                    // parent slug
+                    $fupi_modules_names[$module['id']],
+                    // page title
+                    $fupi_modules_names[$module['id']],
+                    // menu title
+                    $this->user_cap,
+                    // capability
+                    'full_picture_' . $module['id'],
+                    // menu slug
+                    array($this, 'fupi_display_admin_page'),
+                ] );
             }
         }
+        $addons_opts = apply_filters( 'fupi_add_page', [] );
+        // !! ADDON
+        $modules_opts = array_merge( $modules_opts, $addons_opts );
         foreach ( $modules_opts as $mod_opts ) {
+            // make sure that only premium users can use premium function
+            if ( empty( $mod_opts[3] ) ) {
+                $mod_opts[3] = ( fupi_fs()->can_use_premium_code() ? $this->user_cap : 'manage_options' );
+            }
+            if ( empty( $mod_opts[5] ) ) {
+                $mod_opts[5] = array($this, 'fupi_display_admin_page');
+            }
             add_submenu_page( ...$mod_opts );
         }
+    }
+
+    public function fupi_display_admin_page() {
+        include_once 'common/pages/fupi-admin-page-display.php';
     }
 
     public function fupi_settings_permissions( $cap ) {
         return $this->user_cap;
     }
 
+    //
+    // GENERATE CONTENT OF SETTINGS PAGES
+    //
+    public function fupi_field_html( $recipe, $field_id = false, $saved_value = false ) {
+        include 'common/fupi-admin-fields-html.php';
+    }
+
+    public function fupi_register_settings() {
+        $active_slug = false;
+        $active_page = ( isset( $_GET['page'] ) ? sanitize_html_class( $_GET['page'] ) : false );
+        // find active slug
+        if ( $active_page !== false && strpos( $active_page, 'full_picture_' ) === 0 ) {
+            $active_slug = str_replace( 'full_picture_', '', $active_page );
+        }
+        // ADD addons settings
+        $addons_data = apply_filters( 'fupi_register_addon', [] );
+        // ! ADDON
+        $all_modules_data = array_merge( $this->fupi_modules, $addons_data );
+        // register all options and display the requested page
+        foreach ( $all_modules_data as $module ) {
+            if ( !$module['is_avail'] || !empty( $module['custom_page_content'] ) ) {
+                continue;
+            }
+            $option_group_name = 'fupi_' . $module['id'];
+            $option_arr_id = 'fupi_' . $module['id'];
+            // $slug_part = empty ( $module['is_premium'] ) ? $module['id'] . '__premium_only' : $module['id'];
+            do_action( 'fupi_register_setting_' . $module['id'] );
+            if ( $active_slug == $module['id'] ) {
+                $sections = apply_filters( 'fupi_' . $module['id'] . '_add_fields_settings', [] );
+                foreach ( $sections as $section ) {
+                    add_settings_section(
+                        $section['section_id'],
+                        esc_html( $section['section_title'] ),
+                        array($this, 'fupi_sections_descriptions'),
+                        $option_arr_id
+                    );
+                    // ! ADDON
+                    $section_fields = ( isset( $section['fields'] ) ? $section['fields'] : array() );
+                    // $fields = apply_filters( 'fupi_add_fields_in_section_' . $section['section_id'], $section_fields, $option_arr_id); // ! ADDON ??
+                    if ( isset( $section_fields ) ) {
+                        foreach ( $section_fields as $field ) {
+                            add_settings_field(
+                                $field['field_id'],
+                                $field['label'],
+                                array($this, 'fupi_field_html'),
+                                $option_arr_id,
+                                $section['section_id'],
+                                $field
+                            );
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // DESCRIPTIONS
+    public function fupi_sections_descriptions( $a ) {
+        $arr = explode( '_', $a['id'] );
+        $tab_slug = $arr[1];
+        $no_woo_descr_text = '';
+        if ( !$this->is_woo_enabled ) {
+            $no_woo_descr_text = '<div class="fupi_enable_woo_notice">' . esc_html__( 'Enable WooCommerce plugin and WooCommerce Tracking module.', 'full-picture-analytics-cookie-notice' ) . '</div>';
+        }
+        $addons_data = apply_filters( 'fupi_register_addon', [] );
+        // ! ADDON
+        $all_modules_data = array_merge( $this->fupi_modules, $addons_data );
+        foreach ( $all_modules_data as $module ) {
+            if ( $module['id'] == $tab_slug ) {
+                $ret_txt = apply_filters( 'fupi_' . $module['id'] . '_get_page_descr', $a['id'], $no_woo_descr_text );
+                if ( !empty( $ret_txt ) ) {
+                    echo '<div class="fupi_section_descr fupi_el">' . $ret_txt . '</div>';
+                    break;
+                }
+            }
+        }
+    }
+
+    //
+    // ADD REPORTS PAGES
+    //
     public function fupi_add_stats_reports_pages() {
         $current_user_id = get_current_user_id();
         $user_is_admin = current_user_can( 'manage_options' );
@@ -466,384 +435,12 @@ class Fupi_Admin {
         }
     }
 
-    public function fupi_display_admin_page() {
-        include_once 'settings/pages/fupi-admin-page-display.php';
-    }
-
     public function fupi_display_reports_page() {
-        include_once 'settings/pages/fupi-reports-page-display.php';
-    }
-
-    public function fupi_field_html( $recipe, $field_id = false, $saved_value = false ) {
-        include 'settings/fupi-admin-fields-html.php';
-    }
-
-    public function fupi_clear_cache() {
-        include 'settings/fupi-clear-cache.php';
-    }
-
-    public function fupi_register_settings() {
-        include FUPI_PATH . '/includes/fupi_modules_data.php';
-        $active_slug = false;
-        $active_page = ( isset( $_GET['page'] ) ? sanitize_html_class( $_GET['page'] ) : false );
-        // $disable_for_free_class > $extra_classes
-        // find active slug
-        if ( $active_page !== false && strpos( $active_page, 'full_picture_' ) === 0 ) {
-            $active_slug = str_replace( 'full_picture_', '', $active_page );
-        }
-        // register all options and display the requested page
-        foreach ( $fupi_modules as $module ) {
-            if ( !isset( $module['content'] ) ) {
-                $module['content'] = 'settings';
-            }
-            if ( !$module['is_avail'] || $module['content'] == 'info' ) {
-                continue;
-            }
-            $option_group_name = 'fupi_' . $module['id'];
-            $option_arr_id = 'fupi_' . $module['id'];
-            $slug_part = ( $module['is_premium'] ? $module['id'] . '__premium_only' : $module['id'] );
-            $sections = array();
-            if ( !$module['is_addon'] ) {
-                register_setting( $option_group_name, $option_arr_id, array(
-                    'sanitize_callback' => array($this, 'fupi_sanitize_fields_' . $slug_part),
-                ) );
-            } else {
-                do_action( 'fupi_register_setting_' . $module['id'] );
-            }
-            if ( $active_slug !== false && $active_slug == $module['id'] ) {
-                if ( !$module['is_addon'] ) {
-                    include_once 'settings/modules/' . $slug_part . '/fupi-admin-tab-' . $slug_part . '.php';
-                }
-                $sections = apply_filters( 'fupi_' . $module['id'] . '_settings', $sections, $option_arr_id );
-                foreach ( $sections as $section ) {
-                    add_settings_section(
-                        $section['section_id'],
-                        esc_html( $section['section_title'] ),
-                        array($this, 'fupi_sections_descriptions'),
-                        $option_arr_id
-                    );
-                    $section_fields = ( isset( $section['fields'] ) ? $section['fields'] : array() );
-                    $fields = apply_filters( 'mod_fields_in_section_' . $section['section_id'], $section_fields, $option_arr_id );
-                    if ( isset( $fields ) ) {
-                        foreach ( $fields as $field ) {
-                            add_settings_field(
-                                $field['field_id'],
-                                $field['label'],
-                                array($this, 'fupi_field_html'),
-                                $option_arr_id,
-                                $section['section_id'],
-                                $field
-                            );
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    // private function generate_rand_filename($id){
-    // 	$chr = 'abcdefghijklmnopqrstuvwxyz';
-    // 	$name = $id . '_';
-    // 	for ($i = 0; $i < 6; $i++) {
-    // 		$j = mt_rand(0, strlen($chr) - 1);
-    // 		$name .= $chr[$j];
-    // 	}
-    // 	return $name;
-    // }
-    // SANITIZATION
-    public function fupi_sanitize_fields_tools( $input ) {
-        include 'settings/modules/tools/fupi-admin-sanitize-tools.php';
-        $priv_policy_url = get_privacy_policy_url();
-        if ( !empty( $clean_data ) && isset( $clean_data['cook'] ) && !empty( $this->cook ) && !empty( $this->cook['cdb_key'] ) && !empty( $priv_policy_url ) ) {
-            include_once FUPI_PATH . '/includes/class-fupi-get-gdpr-status.php';
-            new Fupi_compliance_status_checker('cdb', $this->cook);
-        }
-        if ( isset( $this->main ) && !empty( $this->main['save_settings_file'] ) ) {
-            $this->fupi_make_head_js_file( 'tools', $clean_data );
-        }
-        if ( isset( $clean_data ) && !empty( $clean_data['cscr'] ) && (empty( $this->tools ) || empty( $this->tools['cscr'] )) && (isset( $this->main ) && !empty( $this->main['save_cscr_file'] )) ) {
-            $this->fupi_make_cscr_js_files( false );
-        }
-        include 'settings/fupi-clear-cache.php';
-        return $clean_data;
-    }
-
-    public function fupi_sanitize_fields_main( $input ) {
-        include 'settings/modules/main/fupi-admin-sanitize-main.php';
-        if ( isset( $clean_data ) && isset( $clean_data['save_settings_file'] ) && (empty( $this->main ) || empty( $this->main['save_settings_file'] )) ) {
-            $this->fupi_make_head_js_file( 'main', $clean_data );
-        }
-        include 'settings/fupi-clear-cache.php';
-        return $clean_data;
-    }
-
-    public function fupi_sanitize_fields_cook( $input ) {
-        include 'settings/modules/cook/fupi-admin-sanitize-cook.php';
-        include_once 'settings/modules/cook/register-cdb.php';
-        // loads consent checker to send the config data to CDB
-        $cdb = new Fupi_send_to_CDB();
-        $clean_data = $cdb->register_new_site( $clean_data );
-        include 'settings/fupi-clear-cache.php';
-        return $clean_data;
-    }
-
-    public function fupi_sanitize_fields_ga41( $input ) {
-        include 'settings/modules/ga41/fupi-admin-sanitize-ga4.php';
-        if ( $this->run_cdb ) {
-            include_once FUPI_PATH . '/includes/class-fupi-get-gdpr-status.php';
-            new Fupi_compliance_status_checker('cdb', $this->cook);
-        }
-        include 'settings/fupi-clear-cache.php';
-        return $clean_data;
-    }
-
-    public function fupi_sanitize_fields_gads( $input ) {
-        include 'settings/modules/gads/fupi-admin-sanitize-gads.php';
-        if ( $this->run_cdb ) {
-            include_once FUPI_PATH . '/includes/class-fupi-get-gdpr-status.php';
-            new Fupi_compliance_status_checker('cdb', $this->cook);
-        }
-        include 'settings/fupi-clear-cache.php';
-        return $clean_data;
-    }
-
-    public function fupi_sanitize_fields_pla( $input ) {
-        $pla_opts = get_option( 'fupi_pla' );
-        include 'settings/modules/pla/fupi-admin-sanitize-pla.php';
-        if ( $this->run_cdb ) {
-            include_once FUPI_PATH . '/includes/class-fupi-get-gdpr-status.php';
-            new Fupi_compliance_status_checker('cdb', $this->cook);
-        }
-        include 'settings/fupi-clear-cache.php';
-        return $clean_data;
-    }
-
-    public function fupi_sanitize_fields_clar( $input ) {
-        include 'settings/modules/clar/fupi-admin-sanitize-clar.php';
-        if ( $this->run_cdb ) {
-            include_once FUPI_PATH . '/includes/class-fupi-get-gdpr-status.php';
-            new Fupi_compliance_status_checker('cdb', $this->cook);
-        }
-        include 'settings/fupi-clear-cache.php';
-        return $clean_data;
-    }
-
-    public function fupi_sanitize_fields_cegg( $input ) {
-        include 'settings/modules/cegg/fupi-admin-sanitize-cegg.php';
-        if ( $this->run_cdb ) {
-            include_once FUPI_PATH . '/includes/class-fupi-get-gdpr-status.php';
-            new Fupi_compliance_status_checker('cdb', $this->cook);
-        }
-        include 'settings/fupi-clear-cache.php';
-        return $clean_data;
-    }
-
-    public function fupi_sanitize_fields_woo( $input ) {
-        include 'settings/modules/woo/fupi-admin-sanitize-woo.php';
-        include 'settings/fupi-clear-cache.php';
-        return $clean_data;
-    }
-
-    public function fupi_sanitize_fields_mato( $input ) {
-        include 'settings/modules/mato/fupi-admin-sanitize-mato.php';
-        if ( $this->run_cdb ) {
-            include_once FUPI_PATH . '/includes/class-fupi-get-gdpr-status.php';
-            new Fupi_compliance_status_checker('cdb', $this->cook);
-        }
-        include 'settings/fupi-clear-cache.php';
-        return $clean_data;
-    }
-
-    public function fupi_sanitize_fields_mads( $input ) {
-        include 'settings/modules/mads/fupi-admin-sanitize-mads.php';
-        if ( $this->run_cdb ) {
-            include_once FUPI_PATH . '/includes/class-fupi-get-gdpr-status.php';
-            new Fupi_compliance_status_checker('cdb', $this->cook);
-        }
-        include 'settings/fupi-clear-cache.php';
-        return $clean_data;
-    }
-
-    public function fupi_sanitize_fields_fbp1( $input ) {
-        include 'settings/modules/fbp1/fupi-admin-sanitize-fb.php';
-        if ( $this->run_cdb ) {
-            include_once FUPI_PATH . '/includes/class-fupi-get-gdpr-status.php';
-            new Fupi_compliance_status_checker('cdb', $this->cook);
-        }
-        include 'settings/fupi-clear-cache.php';
-        return $clean_data;
-    }
-
-    public function fupi_sanitize_fields_gtm( $input ) {
-        include 'settings/modules/gtm/fupi-admin-sanitize-gtm.php';
-        if ( $this->run_cdb ) {
-            include_once FUPI_PATH . '/includes/class-fupi-get-gdpr-status.php';
-            new Fupi_compliance_status_checker('cdb', $this->cook);
-        }
-        include 'settings/fupi-clear-cache.php';
-        return $clean_data;
-    }
-
-    public function fupi_sanitize_fields_twit( $input ) {
-        include 'settings/modules/twit/fupi-admin-sanitize-twit.php';
-        if ( $this->run_cdb ) {
-            include_once FUPI_PATH . '/includes/class-fupi-get-gdpr-status.php';
-            new Fupi_compliance_status_checker('cdb', $this->cook);
-        }
-        include 'settings/fupi-clear-cache.php';
-        return $clean_data;
-    }
-
-    public function fupi_sanitize_fields_pin( $input ) {
-        include 'settings/modules/pin/fupi-admin-sanitize-pin.php';
-        if ( $this->run_cdb ) {
-            include_once FUPI_PATH . '/includes/class-fupi-get-gdpr-status.php';
-            new Fupi_compliance_status_checker('cdb', $this->cook);
-        }
-        include 'settings/fupi-clear-cache.php';
-        return $clean_data;
-    }
-
-    public function fupi_sanitize_fields_hotj( $input ) {
-        include 'settings/modules/hotj/fupi-admin-sanitize-hotj.php';
-        if ( $this->run_cdb ) {
-            include_once FUPI_PATH . '/includes/class-fupi-get-gdpr-status.php';
-            new Fupi_compliance_status_checker('cdb', $this->cook);
-        }
-        include 'settings/fupi-clear-cache.php';
-        return $clean_data;
-    }
-
-    public function fupi_sanitize_fields_linkd( $input ) {
-        include 'settings/modules/linkd/fupi-admin-sanitize-linkd.php';
-        if ( $this->run_cdb ) {
-            include_once FUPI_PATH . '/includes/class-fupi-get-gdpr-status.php';
-            new Fupi_compliance_status_checker('cdb', $this->cook);
-        }
-        include 'settings/fupi-clear-cache.php';
-        return $clean_data;
-    }
-
-    public function fupi_sanitize_fields_tik( $input ) {
-        include 'settings/modules/tik/fupi-admin-sanitize-tik.php';
-        if ( $this->run_cdb ) {
-            include_once FUPI_PATH . '/includes/class-fupi-get-gdpr-status.php';
-            new Fupi_compliance_status_checker('cdb', $this->cook);
-        }
-        include 'settings/fupi-clear-cache.php';
-        return $clean_data;
-    }
-
-    public function fupi_sanitize_fields_posthog( $input ) {
-        include 'settings/modules/posthog/fupi-admin-sanitize-posthog.php';
-        if ( $this->run_cdb ) {
-            include_once FUPI_PATH . '/includes/class-fupi-get-gdpr-status.php';
-            new Fupi_compliance_status_checker('cdb', $this->cook);
-        }
-        include 'settings/fupi-clear-cache.php';
-        return $clean_data;
-    }
-
-    public function fupi_sanitize_fields_simpl( $input ) {
-        include 'settings/modules/simpl/fupi-admin-sanitize-simpl.php';
-        include 'settings/fupi-clear-cache.php';
-        return $clean_data;
-    }
-
-    public function fupi_sanitize_fields_insp( $input ) {
-        include 'settings/modules/insp/fupi-admin-sanitize-insp.php';
-        if ( $this->run_cdb ) {
-            include_once FUPI_PATH . '/includes/class-fupi-get-gdpr-status.php';
-            new Fupi_compliance_status_checker('cdb', $this->cook);
-        }
-        include 'settings/fupi-clear-cache.php';
-        return $clean_data;
-    }
-
-    public function fupi_sanitize_fields_cscr( $input ) {
-        include 'settings/modules/cscr/fupi-admin-sanitize-cscr.php';
-        if ( $this->run_cdb ) {
-            include_once FUPI_PATH . '/includes/class-fupi-get-gdpr-status.php';
-            new Fupi_compliance_status_checker('cdb', $this->cook);
-        }
-        if ( !empty( $this->main ) && !empty( $this->main['save_cscr_file'] ) ) {
-            $this->fupi_make_cscr_js_files( $clean_data );
-        }
-        include 'settings/fupi-clear-cache.php';
-        return $clean_data;
-    }
-
-    public function fupi_sanitize_fields_privex( $input ) {
-        include 'settings/modules/privex/fupi-admin-sanitize-privex.php';
-        if ( $this->run_cdb ) {
-            include_once FUPI_PATH . '/includes/class-fupi-get-gdpr-status.php';
-            new Fupi_compliance_status_checker('cdb', $this->cook);
-        }
-        include 'settings/fupi-clear-cache.php';
-        return $clean_data;
-    }
-
-    public function fupi_sanitize_fields_track404( $input ) {
-        include 'settings/modules/track404/fupi-admin-sanitize-track404.php';
-        include 'settings/fupi-clear-cache.php';
-        return $clean_data;
-    }
-
-    public function fupi_sanitize_fields_iframeblock( $input ) {
-        include 'settings/modules/iframeblock/fupi-admin-sanitize-iframeblock.php';
-        if ( $this->run_cdb ) {
-            include_once FUPI_PATH . '/includes/class-fupi-get-gdpr-status.php';
-            new Fupi_compliance_status_checker('cdb', $this->cook);
-        }
-        include 'settings/fupi-clear-cache.php';
-        return $clean_data;
-    }
-
-    public function fupi_sanitize_fields_blockscr( $input ) {
-        include 'settings/modules/blockscr/fupi-admin-sanitize-blockscr.php';
-        if ( $this->run_cdb ) {
-            include_once FUPI_PATH . '/includes/class-fupi-get-gdpr-status.php';
-            new Fupi_compliance_status_checker('cdb', $this->cook);
-        }
-        include 'settings/fupi-clear-cache.php';
-        return $clean_data;
-    }
-
-    public function fupi_sanitize_fields_reports( $input ) {
-        include 'settings/modules/reports/fupi-admin-sanitize-reports.php';
-        include 'settings/fupi-clear-cache.php';
-        return $clean_data;
-    }
-
-    // DESCRIPTIONS
-    public function fupi_sections_descriptions( $a ) {
-        include FUPI_PATH . '/includes/fupi_modules_data.php';
-        $arr = explode( '_', $a['id'] );
-        $tab_slug = $arr[1];
-        if ( !$this->is_woo_enabled ) {
-            $this->enable_woo_descr_text = '<div class="fupi_enable_woo_notice">' . esc_html__( 'Enable WooCommerce plugin and WooCommerce Tracking module.', 'full-picture-analytics-cookie-notice' ) . '</div>';
-        }
-        foreach ( $fupi_modules as $module ) {
-            if ( $module['id'] == $tab_slug ) {
-                if ( !$module['is_addon'] ) {
-                    if ( $module['is_premium'] ) {
-                        $tab_slug = $tab_slug . '__premium_only';
-                    }
-                    // get a description
-                    $ret_txt = (include 'settings/modules/' . $tab_slug . '/fupi-admin-descr_' . $tab_slug . '.php');
-                } else {
-                    $ret_txt = apply_filters( 'fupi_get_setting_descr', $a['id'] );
-                }
-            }
-        }
-        // wrap the text in descr HTML and echo
-        if ( !empty( $ret_txt ) ) {
-            echo '<div class="fupi_section_descr fupi_el">' . $ret_txt . '</div>';
-        }
+        include_once 'common/pages/fupi-reports-page-display.php';
     }
 
     //
-    // ADMIN NOTICES #1
+    // ADD ADMIN NOTICES
     //
     public function fupi_admin_notices() {
         // show notices only to admins
@@ -907,309 +504,103 @@ class Fupi_Admin {
         $fupi_notices->boot();
     }
 
-    // SAVE HEAD JS TO FILE
-    private function fupi_make_head_js_file( $updated_settings_id, $clean_data ) {
-        $output = '';
-        // the variable $output is also used in the head-js
-        // GET contents of head_js
-        include_once FUPI_PATH . '/public/in_head/head-js.php';
-        $js_folder_path = trailingslashit( wp_upload_dir()['basedir'] ) . 'wpfp/js/';
-        if ( !file_exists( $js_folder_path ) ) {
-            mkdir( $js_folder_path, 0755, true );
-        }
-        $head_js_file_path = $js_folder_path . '/head.js';
-        // GET contents of helpers.js
-        $common_folder_path = FUPI_URL . '/public/common/';
-        $output .= "\r\r" . file_get_contents( $common_folder_path . 'fupi-helpers.js' );
-        // combine head and helpers JS
-        $result = file_put_contents( $head_js_file_path, $output );
-        // check if index.php file is in the same folder
-        $index_file_path = $js_folder_path . '/index.php';
-        if ( !file_exists( $index_file_path ) ) {
-            $index_file_content = '<?php
-			header("HTTP/1.0 403 Forbidden");
-			echo "Access denied.";
-			exit;';
-            file_put_contents( $index_file_path, $index_file_content );
-        }
-    }
-
-    // SAVE CSCR JS IN FILES
-    private function fupi_make_cscr_js_files( $cscr_settings ) {
-        if ( empty( $cscr_settings ) ) {
-            $cscr_settings = get_option( 'fupi_cscr' );
-        }
-        include_once FUPI_PATH . '/public/modules/cscr/class-generate-cscr-files.php';
-        new Fupi_generate_cscr_files($cscr_settings);
-    }
-
-    // IMPORT/EXPORT SETTINGS
-    private function fupi_save_settings_to_file( $filename ) {
-        include FUPI_PATH . '/includes/fupi_modules_data.php';
-        $saved_options = array();
-        // get modules options
-        foreach ( $fupi_modules as $module ) {
-            $option_id = 'fupi_' . $module['id'];
-            $option_value = get_option( $option_id );
-            if ( !empty( $option_value ) ) {
-                $saved_options[$option_id] = $option_value;
-            } else {
-                $saved_options[$option_id] = 'no_value';
-            }
-        }
-        // get consent banner options
-        $banner_options = get_option( 'fupi_cookie_notice' );
-        if ( !empty( $banner_options ) ) {
-            $saved_options['fupi_cookie_notice'] = $banner_options;
-        } else {
-            $saved_options['fupi_cookie_notice'] = 'no_value';
-        }
-        // get theme mods
-        $banner_style_mods = array(
-            'fupi_notice_bg_color',
-            'fupi_notice_h_color',
-            'fupi_notice_text_color',
-            'fupi_notice_cta_color',
-            'fupi_notice_cta_txt_color',
-            'fupi_notice_cta_color_hover',
-            'fupi_notice_cta_txt_color_hover',
-            'fupi_notice_btn_color',
-            'fupi_notice_btn_txt_color',
-            'fupi_notice_btn_color_hover',
-            'fupi_notice_btn_txt_color_hover',
-            'fupi_notice_switch_color',
-            'fupi_cookie_notice_border',
-            'fupi_notice_border_color',
-            'fupi_cookie_notice_size',
-            'fupi_notice_round_corners',
-            'fupi_cookie_notice_heading_tag',
-            'fupi_cookie_notice_h_font_size',
-            'fupi_cookie_notice_p_font_size',
-            'fupi_cookie_notice_button_font_size',
-            'fupi_notice_necessary_switch_color',
-            'fupi_toggler_bg_color',
-            'fupi_custom_toggler_img'
-        );
-        $saved_options['theme_mods'] = [];
-        foreach ( $banner_style_mods as $mod_id ) {
-            $value = get_theme_mod( $mod_id );
-            if ( empty( $value ) ) {
-                $saved_options['theme_mods'][$mod_id] = 'no_value';
-            } else {
-                $saved_options['theme_mods'][$mod_id] = get_theme_mod( $mod_id );
-            }
-        }
-        $json_data = json_encode( $saved_options, JSON_PRETTY_PRINT );
-        $folder_path = trailingslashit( wp_upload_dir()['basedir'] ) . 'wpfp/backups/';
-        if ( !file_exists( $folder_path ) ) {
-            mkdir( $folder_path, 0755, true );
-        }
-        $file_path = $folder_path . '/' . $filename;
-        $result = file_put_contents( $file_path, $json_data );
-        // check if index.php file is in the same folder
-        $index_file_path = $folder_path . '/index.php';
-        if ( !file_exists( $index_file_path ) ) {
-            $index_file_content = '<?php
-	header("HTTP/1.0 403 Forbidden");
-	echo "Access denied.";
-	exit;';
-            file_put_contents( $index_file_path, $index_file_content );
-        }
-        return $result !== false;
-    }
-
-    public function fupi_ajax_remove_settings_backup() {
-        // check permissions
-        $correct_nonce = check_ajax_referer( 'wpfullpicture_import_export_nonce', 'nonce' );
-        if ( !current_user_can( 'manage_options' ) || !$correct_nonce ) {
-            wp_send_json_error( array(
-                'message' => esc_html__( 'Permission denied', 'full-picture-analytics-cookie-notice' ),
-            ) );
-        }
-        // get file_name
-        $file_name = ( isset( $_POST['file_name'] ) ? $_POST['file_name'] : false );
-        if ( empty( $file_name ) ) {
-            wp_send_json_error( array(
-                'message' => esc_html__( 'Backup file not found', 'full-picture-analytics-cookie-notice' ),
-            ) );
-        }
-        // remove file
-        $file_path = trailingslashit( wp_upload_dir()['basedir'] ) . 'wpfp/backups/' . $file_name;
-        if ( file_exists( $file_path ) ) {
-            unlink( $file_path );
-            // deletes the file
-            wp_send_json_success( array(
-                'message' => esc_html__( 'File deleted', 'full-picture-analytics-cookie-notice' ),
-            ) );
-        } else {
-            wp_send_json_error( array(
-                'message' => esc_html__( 'File not found', 'full-picture-analytics-cookie-notice' ),
-            ) );
-        }
-    }
-
-    public function fupi_ajax_download_settings_backup() {
-        // check permissions
-        $correct_nonce = check_ajax_referer( 'wpfullpicture_import_export_nonce', 'nonce' );
-        if ( !current_user_can( 'manage_options' ) || !$correct_nonce ) {
-            wp_send_json_error( array(
-                'message' => esc_html__( 'Permission denied', 'full-picture-analytics-cookie-notice' ),
-            ) );
-        }
-        // get file_name
-        $file_name = ( isset( $_POST['file_name'] ) ? $_POST['file_name'] : false );
-        if ( empty( $file_name ) ) {
-            wp_send_json_error( array(
-                'message' => esc_html__( 'Backup file not found', 'full-picture-analytics-cookie-notice' ),
-            ) );
-        }
-        // send link to file back to the user
-        $file_path = trailingslashit( wp_upload_dir()['basedir'] ) . 'wpfp/backups/' . $file_name;
-        if ( file_exists( $file_path ) ) {
-            $file_url = trailingslashit( wp_upload_dir()['baseurl'] ) . 'wpfp/backups/' . $file_name;
-            wp_send_json_success( array(
-                'file_url' => $file_url,
-            ) );
-        } else {
-            wp_send_json_error( array(
-                'message' => esc_html__( 'File not found', 'full-picture-analytics-cookie-notice' ),
-            ) );
-        }
-    }
-
-    public function fupi_ajax_make_new_backup() {
-        // check permissions
-        $correct_nonce = check_ajax_referer( 'wpfullpicture_import_export_nonce', 'nonce' );
-        if ( !current_user_can( 'manage_options' ) || !$correct_nonce ) {
-            wp_send_json_error( array(
-                'message' => esc_html__( 'Permission denied', 'full-picture-analytics-cookie-notice' ),
-            ) );
-        }
-        // make filename
-        $file_suffix = substr( str_shuffle( 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789' ), 0, 24 );
-        $filename = 'wpfp_backup_' . $file_suffix . '.json';
-        // save data to file
-        $file_created = $this->fupi_save_settings_to_file( $filename );
-        if ( $file_created ) {
-            $file_url = trailingslashit( wp_upload_dir()['baseurl'] ) . 'wpfp/backups/' . $filename;
-            wp_send_json_success( array(
-                'file_url' => $file_url,
-            ) );
-        } else {
-            wp_send_json_error( array(
-                'message' => esc_html__( 'There was an error saving the backup file', 'full-picture-analytics-cookie-notice' ),
-            ) );
-        }
-    }
-
-    public function fupi_ajax_upload_settings_from_file() {
-        // check permissions
-        $correct_nonce = check_ajax_referer( 'wpfullpicture_import_export_nonce', 'nonce' );
-        if ( !current_user_can( 'manage_options' ) || !$correct_nonce ) {
-            wp_send_json_error( array(
-                'message' => esc_html__( 'Permission denied', 'full-picture-analytics-cookie-notice' ),
-            ) );
-        }
-        // Restore settings
-        $uploaded_settings = ( isset( $_POST['settings'] ) ? $_POST['settings'] : '' );
-        $this->fupi_restore_settings( $uploaded_settings );
-    }
-
-    private function fupi_restore_settings( $uploaded_settings ) {
-        if ( empty( $uploaded_settings ) ) {
-            wp_send_json_error( array(
-                'message' => esc_html__( 'No settings data received', 'full-picture-analytics-cookie-notice' ),
-            ) );
-        }
-        // Update the settings
-        foreach ( $uploaded_settings as $option_id => $option_value ) {
-            switch ( $option_id ) {
-                case 'theme_mods':
-                    foreach ( $option_value as $mod_id => $value ) {
-                        if ( $value == "no_value" ) {
-                            remove_theme_mod( $mod_id );
-                        } else {
-                            set_theme_mod( $mod_id, $value );
-                        }
-                    }
-                    break;
-                case 'fupi_reports':
-                    if ( $option_value == 'no_value' ) {
-                        delete_option( 'fupi_reports' );
-                    } else {
-                        // scripts are encoded during sanitisation. We must encode them before they are sanitized with html_entity_decode( $saved_value, ENT_QUOTES )
-                        if ( !empty( $option_value['dashboards'] ) ) {
-                            foreach ( $option_value['dashboards'] as $i => $dash ) {
-                                $option_value['dashboards'][$i]['iframe'] = html_entity_decode( $option_value['dashboards'][$i]['iframe'], ENT_QUOTES );
+    //
+    // SETTINGS UPDATER
+    //
+    public function string_settings_to_array( $opt_name, $settings_names = [], $simple_arr_settings_names = [] ) {
+        $opt = get_option( $opt_name );
+        if ( isset( $opt ) ) {
+            if ( count( $settings_names ) > 0 ) {
+                foreach ( $settings_names as $set_name ) {
+                    if ( isset( $opt[$set_name] ) && is_string( $opt[$set_name] ) ) {
+                        $set_val = $opt[$set_name];
+                        $lines_arr = explode( PHP_EOL, $set_val );
+                        $ret_arr = [];
+                        foreach ( $lines_arr as $line ) {
+                            $line = trim( $line );
+                            $sub_arr = [];
+                            if ( str_contains( $line, '@' ) ) {
+                                $vals = explode( '@', $line );
+                                $sub_arr['sel'] = trim( $vals[0] );
+                                $sub_arr['val'] = trim( $vals[1] );
+                                array_push( $ret_arr, $sub_arr );
+                            } else {
+                                $sub_arr['sel'] = $line;
+                                array_push( $ret_arr, $sub_arr );
                             }
                         }
-                        update_option( 'fupi_reports', $option_value );
+                        $opt[$set_name] = $ret_arr;
                     }
-                    break;
-                case 'fupi_cscr':
-                    if ( $option_value == 'no_value' ) {
-                        delete_option( 'fupi_cscr' );
-                    } else {
-                        // scripts are encoded during sanitisation. We must encode them before they are sanitized with html_entity_decode( $saved_value, ENT_QUOTES )
-                        $placements = array('fupi_head_scripts', 'fupi_footer_scripts');
-                        foreach ( $placements as $placement_name ) {
-                            // gets string 'fupi_head_scripts'
-                            if ( !empty( $option_value[$placement_name] ) ) {
-                                $placement_scripts = $option_value[$placement_name];
-                                $i = 0;
-                                foreach ( $placement_scripts as $single_script_data ) {
-                                    $decoded_val = html_entity_decode( $single_script_data['scr'], ENT_QUOTES );
-                                    $option_value[$placement_name][$i]['scr'] = $decoded_val;
-                                    if ( !empty( $option_value[$placement_name][$i]['html'] ) ) {
-                                        $decoded_html = html_entity_decode( $single_script_data['html'], ENT_QUOTES );
-                                        $option_value[$placement_name][$i]['html'] = $decoded_html;
-                                    }
-                                    $i++;
-                                }
-                            }
-                        }
-                        update_option( 'fupi_cscr', $option_value );
-                    }
-                    break;
-                default:
-                    if ( $option_value == 'no_value' ) {
-                        delete_option( $option_id );
-                    } else {
-                        update_option( $option_id, $option_value );
-                    }
-                    break;
+                }
             }
+            if ( count( $simple_arr_settings_names ) > 0 ) {
+                foreach ( $simple_arr_settings_names as $simp_name ) {
+                    if ( isset( $opt[$simp_name] ) && is_string( $opt[$simp_name] ) ) {
+                        $ret_arr = [];
+                        $vals = explode( '@', $opt[$simp_name] );
+                        $ret_arr['sel'] = trim( $vals[0] );
+                        $ret_arr['val'] = trim( $vals[1] );
+                        $opt[$simp_name] = $ret_arr;
+                    }
+                }
+            }
+            update_option( $opt_name, $opt );
         }
-        wp_send_json_success( array(
-            'message' => 'Settings processed successfully',
+    }
+
+    public function perform_updates() {
+        if ( !empty( $this->versions ) && $this->versions[1] == FUPI_VERSION ) {
+            return;
+        }
+        require_once FUPI_PATH . '/admin/common/fupi_updater.php';
+        // clears cache at the end
+    }
+
+    //
+    // FEATURES OF SETTINGS FIELDS
+    //
+    //  Search users with Ajax
+    public function fupi_search_users_callback() {
+        // Check if the current user is an administrator
+        if ( !current_user_can( 'manage_options' ) ) {
+            wp_die( __( 'You do not have sufficient permissions to access this page.', 'full-picture-analytics-cookie-notice' ) );
+        }
+        $search = ( isset( $_GET['q'] ) ? sanitize_text_field( $_GET['q'] ) : '' );
+        $users = get_users( array(
+            'search'         => "*{$search}*",
+            'search_columns' => array('user_login', 'user_email'),
+            'number'         => 20,
         ) );
+        $results = array();
+        foreach ( $users as $user ) {
+            $results[] = array(
+                'id'   => $user->ID,
+                'text' => sprintf( '%s (%s)', $user->user_login, $user->user_email ),
+            );
+        }
+        wp_send_json( $results );
     }
 
-    public function fupi_ajax_restore_settings_backup() {
-        // check permissions
-        $correct_nonce = check_ajax_referer( 'wpfullpicture_import_export_nonce', 'nonce' );
-        if ( !current_user_can( 'manage_options' ) || !$correct_nonce ) {
-            wp_send_json_error( array(
-                'message' => esc_html__( 'Permission denied', 'full-picture-analytics-cookie-notice' ),
-            ) );
+    // Search pages with Ajax
+    public function fupi_search_pages_callback() {
+        // Check if the current user is an administrator
+        if ( !current_user_can( 'manage_options' ) ) {
+            wp_die( __( 'You do not have sufficient permissions to access this page.', 'full-picture-analytics-cookie-notice' ) );
         }
-        // get file name
-        $file_name = ( isset( $_POST['file_name'] ) ? $_POST['file_name'] : false );
-        if ( empty( $file_name ) ) {
-            wp_send_json_error( array(
-                'message' => esc_html__( 'Backup file not found', 'full-picture-analytics-cookie-notice' ),
-            ) );
+        $search = ( isset( $_GET['q'] ) ? sanitize_text_field( $_GET['q'] ) : '' );
+        $pages = get_posts( array(
+            's'         => "{$search}",
+            'post_type' => 'page',
+            'number'    => 20,
+        ) );
+        $results = array();
+        foreach ( $pages as $page ) {
+            $results[] = array(
+                'id'   => $page->ID,
+                'text' => sprintf( '%s (%s)', $page->post_title, $page->post_status ),
+            );
         }
-        // get file
-        $file_path = trailingslashit( wp_upload_dir()['basedir'] ) . 'wpfp/backups/' . $file_name;
-        if ( !file_exists( $file_path ) ) {
-            wp_send_json_error( array(
-                'message' => esc_html__( 'File not found', 'full-picture-analytics-cookie-notice' ),
-            ) );
-        }
-        // Restore settings
-        $file_contents = json_decode( file_get_contents( $file_path ), true );
-        $this->fupi_restore_settings( $file_contents );
+        wp_send_json( $results );
     }
 
 }

@@ -430,14 +430,24 @@ fp.notice.vars = {};
 
 				// if the user made a choice in the past
 				if ( fpdata.cookies ){
-					
+
 					window[tag_name]("consent", "default", {
+						"ad_storage": "denied",
+						"ad_user_data" : "denied",
+						"ad_personalization" : "denied",
+						"analytics_storage": "denied",
+						"personalization_storage": "denied",
+						"functionality_storage": "denied",
+						"security_storage": "granted",
+					});
+					
+					window[tag_name]("consent", "update", {
 						"ad_storage": fpdata.cookies.marketing ? "granted" : "denied",
 						"ad_user_data" : fpdata.cookies.marketing ? "granted" : "denied",
 						"ad_personalization" : fpdata.cookies.marketing ? "granted" : "denied",
 						"analytics_storage": fpdata.cookies.stats ? "granted" : "denied",
 						"personalization_storage": fpdata.cookies.personalisation ? "granted" : "denied",
-						"functionality_storage": "granted",
+						"functionality_storage": fpdata.cookies.personalisation ? "granted" : "denied",
 						"security_storage": "granted",
 					});
 					
@@ -455,7 +465,7 @@ fp.notice.vars = {};
 							"ad_personalization" : "denied",
 							"analytics_storage": "denied",
 							"personalization_storage": "denied",
-							"functionality_storage": "granted",
+							"functionality_storage": "denied",
 							"security_storage": "granted",
 						});
 					

@@ -88,6 +88,7 @@
 	}
 
 	function show_notice() {
+		notice.setAttribute("style","");
 		notice.classList.remove( 'fupi_fadeOutDown', 'fupi_hidden' );
 		notice.classList.add( 'fupi_fadeInUp', 'fupi_animated' );
 	}

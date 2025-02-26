@@ -198,9 +198,11 @@ class Fupi_compliance_status_checker {
                 // send request
                 $header_arr = ['Content-Type: application/json', 'x-api-key: ' . $this->cdb_key];
                 $payload = [
-                    'installID'    => fupi_fs()->get_site()->id,
                     'wpfpSettings' => $this->data,
                 ];
+                if ( fupi_fs()->can_use_premium_code() ) {
+                    $payload['installID'] = fupi_fs()->get_site()->id;
+                }
                 $ch = curl_init();
                 curl_setopt( $ch, CURLOPT_URL, 'https://prod-fr.consentsdb.com/api/configuration/new' );
                 // curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
@@ -440,7 +442,7 @@ class Fupi_compliance_status_checker {
             }
             // STOP if a module has no settings even though has a settings page
             $module_settings = get_option( 'fupi_' . $module_id );
-            if ( !empty( $module_settings['has_settings_page'] ) && empty( $module_settings ) ) {
+            if ( !empty( $module_settings['has_admin_page'] ) && empty( $module_settings ) ) {
                 continue;
             }
             // STOP if required data is not provided
@@ -805,14 +807,24 @@ class Fupi_compliance_status_checker {
         $is_module_enabled = in_array( 'safefonts', $this->tools );
         if ( $this->format == 'cdb' ) {
             $t_safe_1 = 'Google Fonts are replaced with fonts from Bunny Fonts';
-            $t_safe_2 = 'You enabled replacing Google Fonts with safe fonts from Bunny Fonts but your website can still load them dynamically (after the page loads). Scan your website with <a href="https://fontsplugin.com/google-fonts-checker/" target="_blank">Fonts Checker</a> again. If it finds links to Google Fonts, you need to find the plugin or theme that loads them and disable Google Fonts in their settings.';
+            $t_safe_2 = 'You enabled replacing Google Fonts with safe fonts from Bunny Fonts but your website can still load them dynamically (after the page loads). Scan your website with <a href="https://fontsplugin.com/google-fonts-checker/" target="_blank">Fonts Checker</a> again. If it finds links to Google Fonts, you need to find the plugin or theme that loads them and disable Google Fonts in their settings. Alternatively, you can use an %2$sOMGF%3$s plugin.';
             $t_safe_3 = 'Check if you need to use the Safe Fonts module';
-            $t_safe_4 = 'Scan your website with <a href="https://fontsplugin.com/google-fonts-checker/" target="_blank">Fonts Checker</a> and check if your website uses Google Fonts. If it does, then either disable them in the settings of your theme or plugin or enable the Safe Fonts module to replace them with GDPR-compliant fonts from Bunny Fonts.';
+            $t_safe_4 = 'Scan your website with <a href="https://fontsplugin.com/google-fonts-checker/" target="_blank">Fonts Checker</a> and check if your website uses Google Fonts. If it does, then either disable them in the settings of your website, enable the Safe Fonts module to replace them with GDPR-compliant fonts from Bunny Fonts or use a plugin OMGF (free).';
         } else {
             $t_safe_1 = esc_html__( 'Google Fonts are replaced with fonts from Bunny Fonts', 'full-picture-analytics-cookie-notice' );
-            $t_safe_2 = sprintf( esc_html__( 'You enabled replacing Google Fonts with safe fonts from Bunny Fonts but your website can still load them dynamically (after the page loads). Scan your website with %1$s again. If it finds links to Google Fonts, you need to find the plugin or theme that loads them and disable Google Fonts in their settings.', 'full-picture-analytics-cookie-notice' ), '<a href="https://fontsplugin.com/google-fonts-checker/" target="_blank">Fonts Checker</a>' );
+            $t_safe_2 = sprintf(
+                esc_html__( 'You enabled replacing Google Fonts with safe fonts from Bunny Fonts but your website can still load them dynamically (after the page loads). Scan your website with %1$s again. If it finds links to Google Fonts, you need to find the plugin or theme that loads them and disable Google Fonts in their settings. Alternatively, you can use an %2$sOMGF%3$s plugin.', 'full-picture-analytics-cookie-notice' ),
+                '<a href="https://fontsplugin.com/google-fonts-checker/" target="_blank">Fonts Checker</a>',
+                '<a href="https://wordpress.org/plugins/host-webfonts-local/" target="_blank">',
+                '</a>'
+            );
             $t_safe_3 = esc_html__( 'Check if you need to use the Safe Fonts module', 'full-picture-analytics-cookie-notice' );
-            $t_safe_4 = sprintf( esc_html__( 'Scan your website with %1$s and check if your website uses Google Fonts. If it does, then either disable them in the settings of your theme or plugin or enable the Safe Fonts module to replace them with GDPR-compliant fonts from Bunny Fonts.', 'full-picture-analytics-cookie-notice' ), '<a href="https://fontsplugin.com/google-fonts-checker/" target="_blank">Fonts Checker</a>' );
+            $t_safe_4 = sprintf(
+                esc_html__( 'Scan your website with %1$s and check if your website uses Google Fonts. If it does, then either disable them in the settings of your website, enable the Safe Fonts module to replace them with GDPR-compliant fonts from Bunny Fonts or use a plugin %2$sOMGF (free)%3$s.', 'full-picture-analytics-cookie-notice' ),
+                '<a href="https://fontsplugin.com/google-fonts-checker/" target="_blank">Fonts Checker</a>',
+                '<a href="https://wordpress.org/plugins/host-webfonts-local/" target="_blank">',
+                '</a>'
+            );
         }
         if ( $is_module_enabled ) {
             $this->data['safefonts']['pre-setup'][] = [$t_safe_1, $t_safe_2];

@@ -3,8 +3,8 @@ Contributors: chrisplaneta, freemius
 Donate link: https://wpfullpicture.com/
 Tags: woocommerce, consent mode, analytics, privacy, cookies
 Requires at least: 5.4.0
-Tested up to: 6.7.1
-Stable tag: 8.3.2
+Tested up to: 6.7.2
+Stable tag: 8.4.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -182,6 +182,7 @@ Attention! We noticed that WP Multisite installations with LiteSpeed Cache plugi
 
 Yes. So far we have noticed that the plugin has problems with:
 
+- PixelYourSite plugin - on December 27, PYS got an update which modifies WP Full Picture's code and breaks it. To avoid it, please go to General Settings page > Performance section > and enable option "Save main JS functions in a file"
 - OceanWP theme - Consent Banner settings do not show in the Theme Customizer
 - Kubio theme - the theme uses CSS styles that makes WP FP's Consent Banner show in the center of the page instead of the screen. To fix it, please add to your website this custom CSS `body#kubio{transform: none !important;}`
 - Vertice theme - the same problem and solution as above
@@ -200,6 +201,20 @@ No. WP Full Picture is focused on tracking and privacy. To generate a product ca
 6. View traffic and marketing reports in the admin panel
 
 == Changelog ==
+
+= 8.4.0 (26-02-2025) =
+
+* [New] [Woo] Added an option to provide a custom selector for product teasers
+* [Update] Major rewrite of the internal file structure of the admin section of the plugin
+* [Update] Function for assigning non-HTTP referrers to proper sources no longer changes document.referrer if it contains a UTM
+* [Update] WooCommerce default brand taxonomy is now tracked by default. All other ones are now optional.
+* [Fix] Custom scripts were not saved in files right after the option was enabled in the general settings
+* [Fix] [Woo] In some situations user data was not being sent on the purchase confirmation page
+* [Fix] [Google Consent Mode] Changed the default state of "functionality" to "denied" (set to "granted" after visitors agree to  personalisation cookies)
+* [Other] Added a default style "display:none" to consent banner and toggler to hide them when custom content customizers are enabled (e.g. CartFlows setup manager or Kandence Email Customizer)
+* [Other] Added an early "return" to the updater function
+* [Other] Added a check to make sure that no premium modules are loaded when the user cancels Pro and gets a refund
+* [Other] Change links to YT videos to links to the documentation
 
 = 8.3.2 (27-01-2025) =
 
@@ -287,7 +302,6 @@ No. WP Full Picture is focused on tracking and privacy. To generate a product ca
 * [Fix] [Facebook] If user.id is missing, no external_id is set
 * [Fix] [Woo] Semicolons are now removed from product titles and categories to prevent JSON parsing errors
 * [Other] If OceanWP theme is active, then we disable the customizer controls for the Consent Banner and show in-admin notifications.
-
 
 = 8.0.0 (24-09-2024) =
 

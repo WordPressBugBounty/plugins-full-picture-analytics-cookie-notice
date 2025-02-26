@@ -69,39 +69,30 @@ class Fupi {
         $plugin_admin = new Fupi_Admin($this->get_plugin_name(), $this->get_version());
         // Perform updates
         $this->loader->add_action( 'init', $plugin_admin, 'perform_updates' );
+        // LOAD MODULES
+        foreach ( $this->modules as $module ) {
+            if ( $module['type'] != 'settings' && empty( $this->tools[$module['id']] ) ) {
+                continue;
+            }
+            if ( is_customize_preview() && empty( $module['load_in_customizer'] ) ) {
+                continue;
+            }
+            switch ( $module['id'] ) {
+                default:
+                    $plugin_admin->load_module( $module['id'], $module['is_premium'] );
+                    break;
+            }
+        }
         $this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'fupi_enqueue_scripts' );
         $this->loader->add_action( 'admin_head', $plugin_admin, 'fupi_custom_admin_styles' );
-        $this->loader->add_action( 'admin_menu', $plugin_admin, 'fupi_add_admin_page' );
+        $this->loader->add_action( 'admin_menu', $plugin_admin, 'fupi_add_admin_page_links' );
         $this->loader->add_action( 'admin_menu', $plugin_admin, 'fupi_add_stats_reports_pages' );
         $this->loader->add_action( 'admin_init', $plugin_admin, 'fupi_register_settings' );
         // $this->loader->add_action( 'admin_init', $plugin_admin, 'fupi_activation_redirect' );
         $this->loader->add_action( 'admin_init', $plugin_admin, 'fupi_admin_notices' );
-        // CUSTOMIZER
-        // UseEnable customizer functions if we are NOT using OceanWP theme
-        $theme = wp_get_theme();
-        if ( $theme->get( 'Name' ) != 'OceanWP' ) {
-            $this->loader->add_action( 'customize_register', $plugin_admin, 'fupi_customize_register' );
-            $this->loader->add_action( 'customize_save_after', $plugin_admin, 'fupi_customize_save_after' );
-            $this->loader->add_action( 'customize_preview_init', $plugin_admin, 'fupi_customizer_preview_scripts' );
-            $this->loader->add_action( 'customize_controls_enqueue_scripts', $plugin_admin, 'fupi_enqueue_customizer_css_js' );
-        }
-        // CDB - Privacy page updates listener
-        $this->loader->add_action(
-            'publish_page',
-            $plugin_admin,
-            'fupi_listen_to_pp_page_updates',
-            10,
-            2
-        );
         // AJAX USER SEARCH (for the settings field)
         $this->loader->add_action( 'wp_ajax_fupi_search_users', $plugin_admin, 'fupi_search_users_callback' );
         $this->loader->add_action( 'wp_ajax_fupi_search_pages', $plugin_admin, 'fupi_search_pages_callback' );
-        // IMPORT/EXPORT SETTINGS
-        $this->loader->add_action( 'wp_ajax_fupi_ajax_make_new_backup', $plugin_admin, 'fupi_ajax_make_new_backup' );
-        $this->loader->add_action( 'wp_ajax_fupi_ajax_upload_settings_from_file', $plugin_admin, 'fupi_ajax_upload_settings_from_file' );
-        $this->loader->add_action( 'wp_ajax_fupi_ajax_download_settings_backup', $plugin_admin, 'fupi_ajax_download_settings_backup' );
-        $this->loader->add_action( 'wp_ajax_fupi_ajax_restore_settings_backup', $plugin_admin, 'fupi_ajax_restore_settings_backup' );
-        $this->loader->add_action( 'wp_ajax_fupi_ajax_remove_settings_backup', $plugin_admin, 'fupi_ajax_remove_settings_backup' );
     }
 
     //

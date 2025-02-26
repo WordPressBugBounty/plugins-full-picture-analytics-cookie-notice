@@ -141,6 +141,7 @@ class Fupi_WOO_public {
         if ( !$this->is_woo_enabled ) {
             return $fp;
         }
+        $fp['woo']['teaser_wrapper_sel'] = ( !empty( $this->settings['teaser_wrapper_sel'] ) ? esc_attr( $this->settings['teaser_wrapper_sel'] ) : false );
         $fp['woo']['variable_as_simple'] = isset( $this->settings['variable_as_simple'] );
         $fp['woo']['extra_variant_product_views'] = isset( $this->settings['extra_variant_product_views'] );
         $fp['woo']['incl_tax_in_price'] = isset( $this->settings['incl_tax_in_price'] );
@@ -157,6 +158,7 @@ class Fupi_WOO_public {
         if ( !$this->is_woo_enabled ) {
             return $fpdata;
         }
+        $user_data_provided = false;
         $fpdata['woo'] = [
             'products' => [],
             'lists'    => [],
@@ -202,16 +204,40 @@ class Fupi_WOO_public {
                             } else {
                                 if ( is_checkout() && !is_wc_endpoint_url( 'order-received' ) ) {
                                     $fpdata['page_type'] = 'Woo Checkout';
-                                    // order received page
+                                    // order confirmation page
                                 } else {
                                     if ( is_wc_endpoint_url( 'order-received' ) ) {
                                         $fpdata['page_type'] = 'Woo Order Received';
+                                        // customer data is available only if the order has not been viewed before
+                                        if ( method_exists( $this, 'get_customer_data__premium_only' ) ) {
+                                            global $wp;
+                                            $order_id = ( isset( $wp->query_vars['order-received'] ) ? $wp->query_vars['order-received'] : false );
+                                            if ( !empty( $order_id ) ) {
+                                                $thank_you_viewed = get_post_meta( $order_id, 'fupi_thankyou_viewed', true );
+                                                if ( !$thank_you_viewed ) {
+                                                    $order = new WC_Order($order_id);
+                                                    $user_data_provided = true;
+                                                    $customer_data = $this->get_customer_data__premium_only( $order );
+                                                    if ( !empty( $fpdata['user'] ) && count( $customer_data ) > 0 ) {
+                                                        $fpdata['user'] = array_merge( $fpdata['user'], $customer_data );
+                                                    }
+                                                }
+                                            }
+                                        }
                                     }
                                 }
                             }
                         }
                     }
                 }
+            }
+        }
+        // user data (sent only when there is no customer data provided)
+        if ( !$user_data_provided && is_user_logged_in() && method_exists( $this, 'get_user_data__premium_only' ) ) {
+            $user_data_provided = true;
+            $user_data = $this->get_user_data__premium_only();
+            if ( !empty( $fpdata['user'] ) && count( $user_data ) > 0 ) {
+                $fpdata['user'] = array_merge( $fpdata['user'], $user_data );
             }
         }
         return $fpdata;
@@ -258,10 +284,15 @@ class Fupi_WOO_public {
         $brands_a = [];
         $brands = false;
         if ( isset( $this->settings['add_brand_tax'] ) ) {
+            // from WP FP
             $brands = get_the_terms( $postID, 'fupi_woo_brand' );
         } else {
             if ( isset( $this->settings['brand_tax'] ) ) {
+                // Custom
                 $brands = get_the_terms( $postID, $this->settings['brand_tax'] );
+            } else {
+                $brands = get_the_terms( $postID, 'product_brand' );
+                // in WooCommerce core
             }
         }
         if ( $brands !== false && !is_wp_error( $brands ) && !empty( $brands ) ) {
@@ -465,26 +496,10 @@ class Fupi_WOO_public {
             // get user data and put it all together
             $json_order_data = json_encode( $order_data );
             $output = "fpdata['woo']['order']={$json_order_data};";
-            // output customer data (premium)
-            if ( method_exists( $this, 'get_customer_data__premium_only' ) ) {
-                $is_premium = true;
-                $customer_data = $this->get_customer_data__premium_only( $order );
-                $customer_data_json = json_encode( $customer_data );
-                $output .= "fpdata.user = {...fpdata.user, ...{$customer_data_json}};";
-            }
             echo '<!--noptimize--><script data-no-optimize="1" nowprocket>
 				' . $output . ';
 				fp.woo.order_data_ready = true;
 			</script><!--/noptimize-->';
-        }
-    }
-
-    private function get_checkout_data() {
-        $cart = WC()->cart;
-        if ( !empty( $cart ) && !$cart->is_empty() ) {
-            $cart_data = json_encode( $this->get_cart_data( $cart ) );
-            $checkout_nonce = wp_create_nonce( 'wpfp_checkout_nonce' );
-            echo "<!--noptimize--><script data-no-optimize='1' id='fupi_woo_checkout_data' nowprocket>\r\n\t\t\t\tif ( fpdata.woo.cart.value ) fpdata.woo.cart_old = { ...fpdata.woo.cart };\r\n\t\t\t\tfpdata.woo.cart = {$cart_data};\r\n\t\t\t\tfp.woo.checkout_start_nonce = '{$checkout_nonce}';\r\n\t\t\t\tfp.woo.checkout_data_ready = true;\r\n\t\t\t\tFP.sendEvt( 'fupi_woo_checkout_data_ready' );\r\n\t\t\t</script><!--/noptimize-->";
         }
     }
 
@@ -493,7 +508,13 @@ class Fupi_WOO_public {
             if ( is_wc_endpoint_url( 'order-received' ) ) {
                 $this->get_order_completed_data();
             } else {
-                $this->get_checkout_data();
+                // CHECKOUT DATA
+                $cart = WC()->cart;
+                if ( !empty( $cart ) && !$cart->is_empty() ) {
+                    $cart_data = json_encode( $this->get_cart_data( $cart ) );
+                    $checkout_nonce = wp_create_nonce( 'wpfp_checkout_nonce' );
+                    echo "<!--noptimize--><script data-no-optimize='1' id='fupi_woo_checkout_data' nowprocket>\r\n\t\t\t\t\t\tif ( fpdata.woo.cart.value ) fpdata.woo.cart_old = { ...fpdata.woo.cart };\r\n\t\t\t\t\t\tfpdata.woo.cart = {$cart_data};\r\n\t\t\t\t\t\tfp.woo.checkout_start_nonce = '{$checkout_nonce}';\r\n\t\t\t\t\t\tfp.woo.checkout_data_ready = true;\r\n\t\t\t\t\t\tFP.sendEvt( 'fupi_woo_checkout_data_ready' );\r\n\t\t\t\t\t</script><!--/noptimize-->";
+                }
             }
         }
     }

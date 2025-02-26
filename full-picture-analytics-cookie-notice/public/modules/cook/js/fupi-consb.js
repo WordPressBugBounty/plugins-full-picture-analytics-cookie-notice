@@ -5,6 +5,7 @@
 	'use strict';
 
 	let notice = FP.findID('fupi_cookie_notice'),
+		toggler = FP.findID('fupi_notice_toggler'),
 		panel = {},
 		setup_done = false;
 
@@ -171,6 +172,7 @@
 		permissions['ad_storage'] = fpdata.cookies.marketing ? 'granted' : 'denied';
 		permissions['ad_user_data'] = fpdata.cookies.marketing ? 'granted' : 'denied';
 		permissions['ad_personalization'] = fpdata.cookies.marketing ? 'granted' : 'denied';
+		permissions['functionality_storage'] = fpdata.cookies.personalisation ? 'granted' : 'denied';
 
 		fpdata.consents = {
 			'can_track_stats' : fpdata.cookies.stats || false,
@@ -737,15 +739,14 @@
 	}
 	
 	function show_toggler(){
-		let toggler = FP.findID('fupi_notice_toggler');
 		if ( toggler && fp.notice.mode !== 'hidden' && fp.notice.mode !== 'notify' ) {
+			toggler.setAttribute("style","");
 			toggler.classList.add( 'fupi_active', 'fupi_fadeInUp' );
 			toggler.classList.remove( 'fupi_fadeOutDown' );
 		}
 	}
 
 	function hide_toggler(){
-		let toggler = FP.findID('fupi_notice_toggler');
 		if ( toggler && toggler.classList.contains('fupi_active') ) {
 			toggler.classList.remove( 'fupi_fadeInUp');
 			toggler.classList.add( 'fupi_fadeOutDown' );
@@ -753,6 +754,7 @@
 	}
 
 	function show_notice_wrapper() {
+		notice.setAttribute("style","");
 		notice.classList.remove('fupi_fadeOutDown');
 		notice.classList.remove('fupi_hidden');
 		notice.classList.add('fupi_fadeInUp');
@@ -806,11 +808,11 @@
 
 		});
 	}
-
+	
 	function show_notice() {
-
+		
 		priorFocus = document.activeElement;
-
+		
 		lock_scroll();
 		show_notice_wrapper();
 		show_panel('welcome');

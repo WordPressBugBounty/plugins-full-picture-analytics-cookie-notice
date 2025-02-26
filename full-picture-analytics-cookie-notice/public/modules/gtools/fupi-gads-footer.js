@@ -32,7 +32,7 @@ FP.fns.gads_woo_events = () => {
 			let payload_o = { 
 				'items' : items_a, 
 				'value' : value,
-				'send_to' : fp.gads.id,
+				'send_to' : fp.gads.id2 || fp.gads.id,
 			};
 
 			gtag('event', 'view_item', payload_o );
@@ -69,7 +69,7 @@ FP.fns.gads_woo_events = () => {
 		let payload_event = {
 			'items' : items_a,
 			'value' : event_value, 
-			'send_to' : fp.gads.id,
+			'send_to' : fp.gads.id2 || fp.gads.id,
 		};
 
 		gtag('event', 'add_to_cart', payload_event );
@@ -80,7 +80,7 @@ FP.fns.gads_woo_events = () => {
 		let payload_conversion = {
 			'items' : items_a, 
 			'value' : event_value,
-			'send_to' : fp.gads.id + '/' + fp.gads.woo_add_to_cart_conv_id,
+			'send_to' : ( fp.gads.id2 || fp.gads.id ) + '/' + fp.gads.woo_add_to_cart_conv_id,
 			'currency' : fpdata.woo.currency,
 		}
 
@@ -118,7 +118,7 @@ FP.fns.gads_woo_events = () => {
 		let payload_event = {
 			'items' : items_a, 
 			'value' : cart.value,
-			'send_to' : fp.gads.id,
+			'send_to' : fp.gads.id2 || fp.gads.id,
 		};
 		
 		gtag( 'event', 'checkout', payload_event );
@@ -129,7 +129,7 @@ FP.fns.gads_woo_events = () => {
 		let payload_conversion = {
 			'items' : items_a, 
 			'value' : cart.value,
-			'send_to' : fp.gads.id + '/' + fp.gads.woo_checkout_conv_id,
+			'send_to' : ( fp.gads.id2 || fp.gads.id ) + '/' + fp.gads.woo_checkout_conv_id,
 			'currency' : fpdata.woo.currency,
 		}
 
@@ -180,7 +180,7 @@ FP.fns.gads_woo_events = () => {
 		let payload_event = {
 			'items' : items_a, 
 			'value' : cart.value,
-			'send_to' : fp.gads.id,
+			'send_to' : fp.gads.id2 || fp.gads.id,
 		};
 
 		gtag('event', 'purchase', payload_event );
@@ -193,7 +193,7 @@ FP.fns.gads_woo_events = () => {
 		let payload_conversion = {
 			'items' : items_a, 
 			'value' : cart.value,
-			'send_to' : fp.gads.id + '/' + fp.gads.woo_conv_id,
+			'send_to' : ( fp.gads.id2 || fp.gads.id ) + '/' + fp.gads.woo_conv_id,
 			'currency' : fpdata.woo.currency, 
 			'transaction_id': fpdata.woo.order.id,
 		}
@@ -212,8 +212,8 @@ FP.fns.gads_standard_events = () => {
 	if ( fp.gads.track_email ) {
 		FP.addAction( ['click'], function(){
 			if ( fpdata.clicked.link && fpdata.clicked.link.is_email ) {
-				gtag( 'event', 'conversion', {'send_to': fp.gads.id + '/' + fp.gads.track_email } );
-				if ( fp.vars.debug ) console.log('[FP] GAds conversion event: email link click', fp.gads.id + '/' + fp.gads.track_email );
+				gtag( 'event', 'conversion', {'send_to': ( fp.gads.id2 || fp.gads.id ) + '/' + fp.gads.track_email } );
+				if ( fp.vars.debug ) console.log('[FP] GAds conversion event: email link click', ( fp.gads.id2 || fp.gads.id ) + '/' + fp.gads.track_email );
 			}
 		} );
 	}
@@ -223,8 +223,8 @@ FP.fns.gads_standard_events = () => {
 	if ( fp.gads.track_tel ) {
 		FP.addAction( ['click'], function(){
 			if ( fpdata.clicked.link && fpdata.clicked.link.is_tel ) {
-				gtag( 'event', 'conversion', {'send_to': fp.gads.id + '/' + fp.gads.track_tel } );
-				if ( fp.vars.debug ) console.log('[FP] GAds conversion event: tel link click', fp.gads.id + '/' + fp.gads.track_tel );
+				gtag( 'event', 'conversion', {'send_to': ( fp.gads.id2 || fp.gads.id ) + '/' + fp.gads.track_tel } );
+				if ( fp.vars.debug ) console.log('[FP] GAds conversion event: tel link click', ( fp.gads.id2 || fp.gads.id ) + '/' + fp.gads.track_tel );
 			}
 		} );
 	}
@@ -238,9 +238,9 @@ FP.fns.gads_standard_events = () => {
 
 			if ( typeof gtag === 'undefined' ) return;
 
-			gtag( 'event', 'conversion', {'send_to': fp.gads.id + '/' + el.dataset['gads_view'] } );
+			gtag( 'event', 'conversion', {'send_to': ( fp.gads.id2 || fp.gads.id ) + '/' + el.dataset['gads_view'] } );
 			
-			if ( fp.vars.debug ) console.log('[FP] GAds conversion event: element view', fp.gads.id + '/' + el.dataset['gads_view'] );
+			if ( fp.vars.debug ) console.log('[FP] GAds conversion event: element view', ( fp.gads.id2 || fp.gads.id ) + '/' + el.dataset['gads_view'] );
 		};
 		
 		FP.intersectionObserver( newly_added_els, fp.gads.track_views, 'gads', send_el_view_evt, true);
@@ -257,8 +257,8 @@ FP.fns.gads_standard_events = () => {
 		FP.addAction( ['click'], function(){
 			var trackedAffLink_convID = FP.getTrackedAffiliateLink( fp.gads.track_affiliate );
 			if ( trackedAffLink_convID ) {
-				gtag( 'event', 'conversion', {'send_to' : fp.gads.id + '/' + trackedAffLink_convID });
-				if ( fp.vars.debug ) console.log('[FP] GAds conversion event: affiliate click', fp.gads.id + '/' + trackedAffLink_convID );
+				gtag( 'event', 'conversion', {'send_to' : ( fp.gads.id2 || fp.gads.id ) + '/' + trackedAffLink_convID });
+				if ( fp.vars.debug ) console.log('[FP] GAds conversion event: affiliate click', ( fp.gads.id2 || fp.gads.id ) + '/' + trackedAffLink_convID );
 			}
 		} );
 	}
@@ -269,8 +269,8 @@ FP.fns.gads_standard_events = () => {
 		FP.addAction( ['form_submit'], function(){
 			var submittedForm_convID = FP.getSubmittedForm( fp.gads.track_forms );
 			if ( submittedForm_convID ){
-				gtag( 'event', 'conversion', {'send_to' : fp.gads.id + '/' + submittedForm_convID } );
-				if ( fp.vars.debug ) console.log('[FP] GAds conversion event: form submit', fp.gads.id + '/' + submittedForm_convID);
+				gtag( 'event', 'conversion', {'send_to' : ( fp.gads.id2 || fp.gads.id ) + '/' + submittedForm_convID } );
+				if ( fp.vars.debug ) console.log('[FP] GAds conversion event: form submit', ( fp.gads.id2 || fp.gads.id ) + '/' + submittedForm_convID);
 			}
 		})
 	}
@@ -281,8 +281,8 @@ FP.fns.gads_standard_events = () => {
 		FP.addAction( ['click'], function(){
 			var trackedEl_convID  = FP.getClickTarget( fp.gads.track_elems );
 			if ( trackedEl_convID ) {
-				gtag( 'event', 'conversion', { 'send_to' : fp.gads.id + '/' + trackedEl_convID } );
-				if ( fp.vars.debug ) console.log('[FP] GAds conversion event: element click', fp.gads.id + '/' + trackedEl_convID );
+				gtag( 'event', 'conversion', { 'send_to' : ( fp.gads.id2 || fp.gads.id ) + '/' + trackedEl_convID } );
+				if ( fp.vars.debug ) console.log('[FP] GAds conversion event: element click', ( fp.gads.id2 || fp.gads.id ) + '/' + trackedEl_convID );
 			}
 		})
 	}

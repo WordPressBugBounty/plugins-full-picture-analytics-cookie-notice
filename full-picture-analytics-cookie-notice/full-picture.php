@@ -4,7 +4,7 @@
  * Plugin Name:       WP Full Picture
  * Plugin URI:        https://wpfullpicture.com/
  * Description:       All-in-1 privacy and analytics plugin. Install Google Analytics, Meta Pixel, GTM and other tools and use them according to privacy laws.
- * Version:           8.3.2
+ * Version:           8.4.0
  * Requires at least: 5.4
  * Requires PHP:      7.4
  * Author:            Krzysztof Planeta
@@ -20,7 +20,7 @@ if ( !defined( 'ABSPATH' ) ) {
 if ( function_exists( 'fupi_fs' ) ) {
     fupi_fs()->set_basename( false, __FILE__ );
 } else {
-    define( 'FUPI_VERSION', '8.3.2' );
+    define( 'FUPI_VERSION', '8.4.0' );
     define( 'FUPI_URL', plugin_dir_url( __FILE__ ) );
     define( 'FUPI_PATH', __DIR__ );
     // DO NOT REMOVE THIS IF, IT IS ESSENTIAL FOR THE `function_exists` CALL ABOVE TO PROPERLY WORK.
@@ -66,7 +66,7 @@ if ( function_exists( 'fupi_fs' ) ) {
     fupi_fs()->add_filter( 'hide_billing_and_payments_info', '__return_true' );
     // CUSTOM FP ICON
     function fupi_fs_custom_icon() {
-        return plugin_dir_path( __FILE__ ) . 'admin/settings/img/fp_logo_2_160.png';
+        return plugin_dir_path( __FILE__ ) . 'admin/assets/img/fp_logo_2_160.png';
     }
 
     fupi_fs()->add_filter( 'plugin_icon', 'fupi_fs_custom_icon' );
@@ -75,7 +75,7 @@ if ( function_exists( 'fupi_fs' ) ) {
     // ACTIVATE
     function activate_fupi() {
         // require_once plugin_dir_path( __FILE__ ) . 'includes/class-fupi-activator.php';
-        require_once FUPI_PATH . '/admin/settings/fupi-clear-cache.php';
+        require_once FUPI_PATH . '/admin/common/fupi-clear-cache.php';
         // Fupi_Activator::activate();
     }
 
@@ -83,7 +83,7 @@ if ( function_exists( 'fupi_fs' ) ) {
     // DEACTIVATE
     function deactivate_fupi() {
         require_once plugin_dir_path( __FILE__ ) . 'includes/class-fupi-deactivator.php';
-        require_once FUPI_PATH . '/admin/settings/fupi-clear-cache.php';
+        require_once FUPI_PATH . '/admin/common/fupi-clear-cache.php';
         Fupi_Deactivator::deactivate();
     }
 
