@@ -112,44 +112,6 @@ jQuery(document).ready( function($) {
         }
     } );
 
-    // DOWNLOAD FILE
-
-    $('.fupi_backup_download').click(function(e) {
-        
-        e.preventDefault();
-
-        let filename_el = e.target.closest('.fupi_pseudo_table_row'),
-            filename = filename_el.dataset.file;
-
-        $.ajax({
-            url: ajaxurl,
-            type: 'POST',
-            data: {
-                action: 'fupi_ajax_download_settings_backup',
-                nonce: fupi_import_export_data.import_export_nonce,
-                file_name: filename
-            },
-            success: function(response) {
-                if (response.success) {
-
-                    const site_name = document.location.host.replaceAll('.', '_');
-
-                    // creates an invisible link and clicks it
-                    const url = response.data.file_url;
-                    const a = document.createElement('a');
-                    a.style.display = 'none';
-                    a.href = url;
-                    a.download = filename; // sets filename
-                    document.body.appendChild(a);
-                    a.click();
-                } else {
-                    alert('Error: ' + response.data.message);
-                    window.location.reload();
-                }
-            }
-        });
-    });
-
     // DELETE FILE
     
     $('.fupi_backup_delete').click(function(e) {

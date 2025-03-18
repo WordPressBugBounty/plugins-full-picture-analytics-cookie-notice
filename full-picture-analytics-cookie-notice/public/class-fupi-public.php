@@ -185,29 +185,31 @@ class Fupi_Public {
     }
 
     // PREPARE REQUEST TO CDB
-    private function prepare_cdb_data( $requests_a, $event_payload, $userIP ) {
+    private function prepare_cdb_data( $requests_a, $event_payload ) {
         $visit_info = (object) $event_payload;
-        $gmt_offset = get_option( 'gmt_offset' );
-        $timezone = ( $gmt_offset >= 0 ? '+' . $gmt_offset : $gmt_offset . '' );
+        $cdbID = $visit_info->cdbID;
+        if ( empty( $cdbID ) ) {
+            return;
+        }
         if ( !(isset( $this->cook ) && isset( $this->cook['cdb_key'] )) ) {
             return;
         }
         // MAKE PAYLOAD
-        $visit_info->ip = $userIP;
+        $gmt_offset = get_option( 'gmt_offset' );
+        $timezone = ( $gmt_offset >= 0 ? '+' . $gmt_offset : $gmt_offset . '' );
         $payload = [
+            'installID'       => fupi_fs()->get_site()->id,
+            'consentID'       => $cdbID . '_' . $visit_info->timestamp,
             'serverTimezone'  => $timezone,
             'serverTimestamp' => current_time( 'Y-m-d H:i:s' ),
             'visit'           => $visit_info,
         ];
-        if ( fupi_fs()->can_use_premium_code() ) {
-            $payload['installID'] = fupi_fs()->get_site()->id;
-        }
         // RETURN REQUEST DATA
         $requests_a[] = [
             'url'             => 'https://prod-fr.consentsdb.com/api/cookies',
             'headers'         => ['Content-Type: application/json', 'x-api-key: ' . $this->cook['cdb_key']],
             'payload'         => $payload,
-            'return_response' => ( isset( $this->main['debug'] ) ? 'CDB' : false ),
+            'return_response' => 'CDB',
         ];
         return $requests_a;
     }
@@ -245,7 +247,7 @@ class Fupi_Public {
             $event_id = $event_data[1];
             $event_payload = $event_data[2];
             if ( $event_type == 'cdb' ) {
-                $requests_a = $this->prepare_cdb_data( $requests_a, $event_payload, $userIP );
+                $requests_a = $this->prepare_cdb_data( $requests_a, $event_payload );
             } else {
                 if ( $event_type == 'send' ) {
                     $requests_a = apply_filters(
@@ -264,11 +266,11 @@ class Fupi_Public {
         }
         // send results to servers and return the response
         if ( empty( $requests_a ) ) {
-            return '[FP] Server data has been processed. To view debug information enable WordPress debug.log and Debug Mode in WP Full Picture.';
+            return 'Server call has been processed.';
         } else {
             $responses = [];
             include_once FUPI_PATH . '/public/common/send-to-remote-server.php';
-            return ( count( $responses ) > 0 ? $responses : '[FP] Server data has been processed. To view debug information enable WordPress debug.log and Debug Mode in WP Full Picture.' );
+            return ( count( $responses ) > 0 ? $responses : 'Server call has been processed.' );
         }
     }
 

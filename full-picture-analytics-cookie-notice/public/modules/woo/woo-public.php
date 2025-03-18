@@ -7,7 +7,7 @@ class Fupi_WOO_public {
 
     private $incl_tax = false;
 
-    private $variable_as_simple = false;
+    private $variable_tracking_method = 'default';
 
     private $incl_shipping_in_total = false;
 
@@ -18,7 +18,7 @@ class Fupi_WOO_public {
         $this->incl_shipping_in_total = !empty( $this->settings['incl_shipping_in_total'] );
         $this->sku_is_id = !empty( $this->settings['sku_is_id'] );
         $this->incl_tax = isset( $this->settings['incl_tax_in_price'] );
-        $this->variable_as_simple = !empty( $this->settings['variable_as_simple'] );
+        $this->variable_tracking_method = ( !empty( $this->settings['variable_tracking_method'] ) ? esc_attr( $this->settings['variable_tracking_method'] ) : 'default' );
         $this->add_filters_and_actions();
     }
 
@@ -142,8 +142,8 @@ class Fupi_WOO_public {
             return $fp;
         }
         $fp['woo']['teaser_wrapper_sel'] = ( !empty( $this->settings['teaser_wrapper_sel'] ) ? esc_attr( $this->settings['teaser_wrapper_sel'] ) : false );
-        $fp['woo']['variable_as_simple'] = isset( $this->settings['variable_as_simple'] );
-        $fp['woo']['extra_variant_product_views'] = isset( $this->settings['extra_variant_product_views'] );
+        $fp['woo']['variable_tracking_method'] = $this->variable_tracking_method;
+        $fp['woo']['track_variant_views'] = isset( $this->settings['track_variant_views'] );
         $fp['woo']['incl_tax_in_price'] = isset( $this->settings['incl_tax_in_price'] );
         $fp['woo']['incl_shipping_in_total'] = isset( $this->settings['incl_shipping_in_total'] );
         $fp['woo']['sku_is_id'] = isset( $this->settings['sku_is_id'] );
@@ -160,10 +160,11 @@ class Fupi_WOO_public {
         }
         $user_data_provided = false;
         $fpdata['woo'] = [
-            'products' => [],
-            'lists'    => [],
-            'cart'     => [],
-            'order'    => [],
+            'products'        => [],
+            'lists'           => [],
+            'cart'            => [],
+            'order'           => [],
+            'viewed_variants' => [],
         ];
         $fpdata['woo']['currency'] = get_woocommerce_currency();
         // product
@@ -364,7 +365,7 @@ class Fupi_WOO_public {
             $cart_data['subtotal_tax'] += (wc_get_price_including_tax( $product ) - wc_get_price_excluding_tax( $product )) * $item_qty;
             // if we are dealing with a variant BUT we are tracking it as simple products
             // we need to take data of cart with merged variants too
-            if ( $this->variable_as_simple ) {
+            if ( $this->variable_tracking_method == 'track_parents' ) {
                 // we join variable products
                 if ( !empty( $parent_id ) ) {
                     // if we have product with this ID already in the cart
@@ -497,8 +498,16 @@ class Fupi_WOO_public {
             $json_order_data = json_encode( $order_data );
             $output = "fpdata['woo']['order']={$json_order_data};";
             echo '<!--noptimize--><script data-no-optimize="1" nowprocket>
+			
+			// get session order cookie
+			let order_cookie = FP.readCookie(\'fp_orders\') || "";
+			
+			if ( ! order_cookie || ! order_cookie.includes("' . $order_number . '") ) {
+				order_cookie += "' . $order_number . ' ";
+				FP.setCookie(\'fp_orders\', order_cookie ); // session cookie
 				' . $output . ';
 				fp.woo.order_data_ready = true;
+			};
 			</script><!--/noptimize-->';
         }
     }

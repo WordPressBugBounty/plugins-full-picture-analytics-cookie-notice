@@ -603,6 +603,16 @@ if ( version_compare( $prev_version, '7.6.56' ) == -1 ) {
         }
     }
 }
+// For version 8.5.0
+if ( version_compare( $prev_version, '8.4.0.4' ) == -1 ) {
+    // 0 if equal, -1 if prev is lower
+    $woo_data = get_option( 'fupi_woo' );
+    if ( !empty( $woo_data ) && !empty( $woo_data['variable_as_simple'] ) ) {
+        $updated = true;
+        $woo_data['variable_tracking_method'] = 'track_parents';
+        update_option( 'fupi_woo', $woo_data );
+    }
+}
 // Update version number to match the current version
 $versions = get_option( 'fupi_versions' );
 $versions[1] = FUPI_VERSION;

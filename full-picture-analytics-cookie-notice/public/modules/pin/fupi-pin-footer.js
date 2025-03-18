@@ -22,7 +22,7 @@ FP.fns.load_pin_footer = function() {
 
     // TRACK IMPRESSIONS
 
-	function track_woo_impress( caller_id ) {
+	function track_woo_impress() {
 		
 		if ( ! fpdata.woo.lists.single ) return;
 		if ( ! fp.woo.pin ) fp.woo.pin = { 'single' : [] };
@@ -60,9 +60,35 @@ FP.fns.load_pin_footer = function() {
 	};
 
 	if ( ! ( fp.woo.dont_track_views_after_refresh && fpdata.refreshed ) ){
-		track_woo_impress( 'pin' );
+		track_woo_impress();
 		FP.addAction( ['woo_impress'], track_woo_impress );
 	};
+	
+	// TRACK DEFAULT VARIANT VIEW
+	// TRACK VARIANT VIEWS
+
+	function woo_variant_view( variant_id ){
+
+		let prod = fpdata.woo.products[variant_id],
+			item = {
+				'product_id': FP.fns.get_woo_prod_id(prod),
+				'product_name': FP.fns.get_woo_prod_name(prod),
+				'product_price': prod.price,
+			};
+
+		item = add_brand(item, prod);
+		item = add_first_category(item, prod);
+
+		let payload_o = {
+			'line_items': [item],
+			'currency': fpdata.woo.currency,
+		};
+
+		track_pin_event('pagevisit', payload_o);
+	}
+
+	FP.addAction( ['woo_variant_view'], woo_variant_view );
+	FP.addAction( ['woo_def_variant_view'], woo_variant_view );
 
 	// TRACK ADD TO CART
 
@@ -106,7 +132,7 @@ FP.fns.load_pin_footer = function() {
 
 	function track_purchase(){
 
-		let items_type = fp.woo.variable_as_simple ? 'joined_items' : 'items',
+		let items_type = fp.woo.variable_tracking_method == 'track_parents' ? 'joined_items' : 'items',
 			items_a = [],
 			order = fpdata.woo.order;
 

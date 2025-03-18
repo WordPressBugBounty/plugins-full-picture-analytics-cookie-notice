@@ -588,9 +588,15 @@
             FP.startActivityTimer();
             
             var cookies = FP.readCookie('fp_cookie');
-            fpdata.cookies = cookies ? JSON.parse(cookies) : false;
 
-            FP.updateConsents();
+            if ( cookies ) {
+                if ( fpdata.cookies && cookies == JSON.stringify( fpdata.cookies ) ) return;
+                cookies = JSON.parse(cookies);
+                fpdata.cookies = cookies;
+                FP.updateConsents();
+            } else {
+                fpdata.cookies = false;
+            }
             
             FP.updateSessionData();
 

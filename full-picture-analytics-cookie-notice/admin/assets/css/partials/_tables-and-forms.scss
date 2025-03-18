@@ -134,8 +134,7 @@ tr.fupi_required{
 }
 
 tr.fupi_deprecated{
-	border: 2px solid #e76262;
-	background-color: #fff !important;
+	background-color: #f0e5e5 !important;
 	th{
 		position: relative;
 		&:after{
@@ -523,6 +522,12 @@ tr.fupi_disabled{
 		top: -5px !important;
 		right: -5px !important;
 	}
+}
+
+// JOINED OPTIONS
+
+.fupi_join{
+	margin-top: -30px;
 }
 
 // SUB OPTIONS

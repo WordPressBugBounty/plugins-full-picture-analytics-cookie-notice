@@ -142,7 +142,6 @@ fp.notice.vars = {};
 		}
 
 		d.getElementsByTagName("head")[0].appendChild(s);
-		if (fp.vars.debug) console.log("[FP] Script loaded: ", url);
 		if (cb) s.onload = cb;
 	};
 
@@ -352,9 +351,11 @@ fp.notice.vars = {};
 
 			} else if ( fp.notice ) {
 
-				if ( fp.notice.priv_policy_update ){
-				
-					if ( ! cookies.pp_pub || cookies.pp_pub != fp.notice.priv_policy_update ) changed = true;
+				if ( fp.notice.ask_for_consent_again ){
+
+					if ( fp.notice.priv_policy_update ) {
+						if ( ! cookies.pp_pub || cookies.pp_pub != fp.notice.priv_policy_update ) changed = true;
+					}
 					
 					if ( fp.tools ){
 						if ( ! cookies.tools || ! fp.tools.every( id => cookies.tools.includes(id) ) ) changed = true;
@@ -391,6 +392,8 @@ fp.notice.vars = {};
 
 	FP.updateConsents = () => {
 
+		if ( fp.vars.debug ) console.log(\'[FP] Updating consents\');
+		
 		// if the user made a choice in the past
 		if ( fpdata.cookies ){
 			fpdata.consents = {
@@ -498,14 +501,14 @@ fp.notice.vars = {};
 	
 	let uses_geo = false;
 
-	FP.postToServer = ( event_data_a ) => {
+	FP.postToServer = ( event_data_a, cb = false ) => {
 
 		if ( fpdata.is_robot ) return;
 		if ( fp.vars.debug ) console.log( "[FP] Posting to server", event_data_a );
 
 		let fetch_url = fp.vars.server_method == "rest" ? "/index.php?rest_route=/fupi/v1/sender" : "/wp-admin/admin-ajax.php?action=fupi_ajax";
 
-		if ( fp.vars.debug ) {
+		if ( fp.vars.debug || event_data_a[0][0] == \'cdb\') {
 		
 			fetch( fetch_url, {
 				method: "POST",
@@ -514,10 +517,16 @@ fp.notice.vars = {};
 				headers: {
 					"Content-type": "application/json; charset=UTF-8",
 					// "X-WP-Nonce": fp_nonce
-					}
-					})
-				.then((response) => response.json())
-				.then((json) => console.log(json));
+				}
+			})
+			.then((response) => response.json())
+			.then((json) => {
+				if ( cb ) { 
+					cb(json);
+				} else {
+					console.log( "[FP] Server response", json);
+				}
+			});
 
 		} else {
 

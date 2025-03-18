@@ -28,7 +28,7 @@ FP.fns.mads_woo_events = ()=>{
 
 	// TRACK IMPRESSIONS
 
-	function track_woo_impress( caller_id ) {
+	function track_woo_impress() {
 
 		if ( ! fp.woo.mads ) fp.woo.mads = {};
 		
@@ -96,9 +96,33 @@ FP.fns.mads_woo_events = ()=>{
 	};
 
 	if ( ! ( fp.woo.dont_track_views_after_refresh && fpdata.refreshed ) ){
-		track_woo_impress( 'mads' );
+		track_woo_impress();
 		FP.addAction( ['woo_impress'], track_woo_impress );
 	}
+
+	// TRACK DEFAULT VARIANT VIEW
+	// TRACK VARIANT VIEWS
+
+	function woo_variant_view( variant_id ){
+
+		let page_type = FP.fns.mads_woo_get_pagetype(),
+			prod = fpdata.woo.products[variant_id];
+		
+		let payload_o = {
+			'currency': fpdata.woo.currency,
+			'event_value': prod.price,
+			'ecomm_prodid': [FP.fns.get_woo_prod_id(prod)],
+			'ecomm_pagetype': page_type
+		};
+
+		if ( fpdata.content_id ) payload_o['ecomm_category'] = fpdata.content_id;
+
+		window.uetq.push( 'event', 'woo product view', payload_o );
+		if ( fp.vars.debug ) console.log('[FP] MS Ads "woo product view" event action', payload_o);
+	}
+
+	FP.addAction( ['woo_variant_view'], woo_variant_view );
+	FP.addAction( ['woo_def_variant_view'], woo_variant_view );
 
 	// TRACK ADD TO CART
 
@@ -150,7 +174,7 @@ FP.fns.mads_woo_events = ()=>{
 
 	function track_cart( event_name ){ // type can be either "checkout" or "order"
 
-		let items_type = fp.woo.variable_as_simple ? 'joined_items' : 'items',
+		let items_type = fp.woo.variable_tracking_method == 'track_parents' ? 'joined_items' : 'items',
 			items_a = [],
 			items_ids_a = [],
 			cart = event_name == 'checkout' ? fpdata.woo.cart : fpdata.woo.order;

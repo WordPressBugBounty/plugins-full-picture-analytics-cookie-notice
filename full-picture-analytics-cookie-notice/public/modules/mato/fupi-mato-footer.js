@@ -107,7 +107,7 @@ FP.fns.mato_woo_events = () => {
 	
 	// TRACK IMPRESSIONS
 
-	function track_woo_impress( caller_id ) {
+	function track_woo_impress() {
 		
 		if ( ! fpdata.woo.lists.single ) return;
 		if ( ! fp.woo.mato ) fp.woo.mato = { 'single' : [] };
@@ -135,9 +135,32 @@ FP.fns.mato_woo_events = () => {
 	};
 
 	if ( ! ( fp.woo.dont_track_views_after_refresh && fpdata.refreshed ) ){
-		track_woo_impress( 'mato' );
+		track_woo_impress();
 		FP.addAction( ['woo_impress'], track_woo_impress );
 	}
+
+	// TRACK DEFAULT VARIANT VIEW
+	// TRACK VARIANT VIEWS
+
+	function woo_variant_view( variant_id ){
+		
+		let prod = fpdata.woo.products[variant_id],
+		 	prod_id = FP.fns.get_woo_prod_id(prod),
+			prod_name = FP.fns.get_woo_prod_name(prod),
+			prod_cat = prod.categories && prod.categories.length > 0 ? prod.categories.slice(0,5) : [];
+
+		_paq.push(['setEcommerceView',
+			prod_id,
+			prod_name, 
+			prod_cat,
+			prod.price
+		]);
+		
+		if ( fp.vars.debug ) console.log('[FP] Matomo "setEcommerceView" event: ', [prod_id, prod_name, prod_cat, prod.price]);
+	}
+
+	FP.addAction( ['woo_variant_view'], woo_variant_view );
+	FP.addAction( ['woo_def_variant_view'], woo_variant_view );
 
 	// TRACK ADD TO CART
 
@@ -177,7 +200,7 @@ FP.fns.mato_woo_events = () => {
 
 	function track_purchase(){
 
-		let items_type = fp.woo.variable_as_simple ? 'joined_items' : 'items',
+		let items_type = fp.woo.variable_tracking_method == 'track_parents' ? 'joined_items' : 'items',
 			order = fpdata.woo.order;
 
 		for ( const id in order[items_type] ) {

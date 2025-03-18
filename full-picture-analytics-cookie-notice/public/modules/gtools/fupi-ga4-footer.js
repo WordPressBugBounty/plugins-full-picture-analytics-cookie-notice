@@ -45,7 +45,7 @@ FP.fns.ga4_woo_events = ()=>{
 
 	// TRACK IMPRESSIONS
 
-	function track_woo_impress( caller_id ) {
+	function track_woo_impress() {
 
 		if ( typeof gtag === 'undefined' ) return;
 
@@ -120,9 +120,41 @@ FP.fns.ga4_woo_events = ()=>{
 	};
 
 	if ( ! ( fp.woo.dont_track_views_after_refresh && fpdata.refreshed ) ){
-		track_woo_impress( 'ga4' );
+		track_woo_impress();
 		FP.addAction( ['woo_impress'], track_woo_impress );
 	}
+
+	// TRACK DEFAULT VARIANT VIEW
+	// TRACK VARIANT VIEWS
+
+	function woo_variant_view( variant_id ){
+
+		if (typeof gtag === 'undefined' || !fpdata.woo.products[variant_id]) return;
+
+		let prod = fpdata.woo.products[variant_id],
+			item = {
+				'item_id': FP.fns.get_woo_prod_id(prod),
+				'item_name': FP.fns.get_woo_prod_name(prod),
+				'item_list_name' : 'single',
+				'price': prod.price
+			};
+
+		item = add_brand(item, prod);
+		item = add_categories(item, prod);
+
+		let payload_o = {
+			'items': [item],
+			'currency': fpdata.woo.currency,
+			'value': prod.price,
+			'send_to': 'fupi_ga4'
+		};
+
+		gtag('event', 'view_item', payload_o);
+		if (fp.vars.debug) console.log('[FP] GA view_item event:', payload_o);
+	}
+
+	FP.addAction( ['woo_variant_view'], woo_variant_view );
+	FP.addAction( ['woo_def_variant_view'], woo_variant_view );
 
 	// TRACK TEASER CLICKS
 	// TRACK ADD TO CART / REMOVE FROM CART
@@ -182,28 +214,7 @@ FP.fns.ga4_woo_events = ()=>{
 		track_items( data, 'remove_from_cart' );
 	} );
 
-	if ( fp.ga41.server_side && fp.ga41.adv_orders ) {
-
-		FP.addAction( ['woo_prepare_for_server_tracking_order'], server_data => {
-			
-			if ( typeof gtag === 'undefined' || ! fp.ga41.vars.clientID || ! fpdata.consents.can_track_stats ) return;
-
-			let ga4_data = {
-				'ga41_client_id' 	: fp.ga41.vars.clientID,
-				'ga41_session_id'	: fp.ga41.vars.sessionID,
-				'enable_debug_view'	: fpdata.cookies.ga4_debug == 'on',
-			};
-
-			if ( fp.ga42 && fp.ga42.mp_secret_key ) { // adv_orders already set in ga41
-				ga4_data['ga42_client_id'] = fp.ga42?.vars?.clientID || false;
-				ga4_data['ga42_session_id']	= fp.ga42?.vars?.sessionID || false;
-			}
-
-			// prepare data for the server-side purchase tracking
-			server_data.push( ['ga4', ga4_data] );
-			return server_data;
-		} );
-	}
+	
 
 	// TRACK CHECKOUT
 	// TRACK ORDER
@@ -212,7 +223,7 @@ FP.fns.ga4_woo_events = ()=>{
 
 		if ( typeof gtag === 'undefined' ) return;
 
-		let items_type = fp.woo.variable_as_simple ? 'joined_items' : 'items',
+		let items_type = fp.woo.variable_tracking_method == 'track_parents' ? 'joined_items' : 'items',
 			items_a = [],
 			cart = type == 'checkout' ? fpdata.woo.cart : fpdata.woo.order,
 			event_name = type == 'checkout' ? 'begin_checkout' : 'purchase';
@@ -255,7 +266,13 @@ FP.fns.ga4_woo_events = ()=>{
 	}
 
 	// track order
-	if ( fp.woo.order_data_ready && ! ( fp.ga41.server_side && fp.ga41.adv_orders ) ) track_cart('order');
+	if ( fp.woo.order_data_ready ) {
+		if ( ! fp.vars.is_pro || ! ( fp.ga41.server_side && fp.ga41.adv_orders ) ) {
+			track_cart('order');
+		} else {
+			if ( fp.vars.debug ) console.log( '[FP] GA purchase event is tracked by the server-side script' );
+		}
+	};
 
 	// track the start of checkout (except when the whole page or its part is refreshed)
 	if ( ! fpdata.refreshed ) {

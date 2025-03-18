@@ -34,7 +34,7 @@ switch( $section_id ){
 	// LOADING
 	
 	case 'fupi_mato_loading':
-		$ret_text = '<p>' . esc_html__( 'If you have consent banner enabled in the opt-in or one of automatic modes, Matomo will start working after visitors consent to using their data for statistics. This can be avoided if you enable the privacy mode below.', 'full-picture-analytics-cookie-notice') . '</p>';
+		$ret_text = '<p>' . esc_html__( 'Change when this tool loads and starts tracking visitors.', 'full-picture-analytics-cookie-notice') . '</p>';
 	break;
 
 	// WP DATA TRACKING

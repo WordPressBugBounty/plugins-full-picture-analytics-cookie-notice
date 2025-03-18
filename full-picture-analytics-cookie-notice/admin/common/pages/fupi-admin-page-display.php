@@ -57,14 +57,14 @@
     <div class="fupi_adv_headline_html_template" style="display: none;">
         <div class="fupi_adv_headline">
             <div class="fupi_adv_headline_title"><?php esc_html_e( 'Extended integrations','full-picture-analytics-cookie-notice' ) ?></div>
-            <p><?php esc_html_e( 'Extended integrations let you track more data without custom coding.','full-picture-analytics-cookie-notice' ) ?></p>
+            <p><?php esc_html_e( 'Extended integrations let you install tools, use their standard features and set up custom tracking.','full-picture-analytics-cookie-notice' ) ?></p>
         </div>
     </div>
 
     <div class="fupi_basic_headline_html_template" style="display: none;">
         <div class="fupi_basic_headline">
             <div class="fupi_basic_headline_title"><?php esc_html_e( 'Basic integrations','full-picture-analytics-cookie-notice' ) ?></div>
-            <p><?php esc_html_e( 'Basic integrations let you use standard tracking features.','full-picture-analytics-cookie-notice' ) ?></p>
+            <p><?php esc_html_e( 'Basic integrations only let you install tools and use their standard features.','full-picture-analytics-cookie-notice' ) ?></p>
         </div>
     </div>
 

@@ -18,24 +18,16 @@
     </div>
     
     <div id="fupi_adv_tracking_popup" class="fupi_popup_content">
-        <h3>' . esc_html__('Advanced Order Tracking vs Standard Tracking', 'full-picture-analytics-cookie-notice' ) . '</h3>    
-        <p>' . esc_html__( 'Typically, orders are tracked on the order confirmation page (a.k.a "Thank you" page). However, many customers do not view this page, which leads to incomplete conversions data.', 'full-picture-analytics-cookie-notice' ) . '</p>
-        <p>' . esc_html__('Advanced Order Tracking (AOT) solves this problem by tracking orders only when they get a specific status. By default, WP Full Picture tracks orders with the statuses "Processing" and "On Hold."', 'full-picture-analytics-cookie-notice' ) . '</p>
-        <ol>
-            <li>' . esc_html__('Processing - this is the status that orders get after they are succesfully paid for through gateways like PayPal, Stripe, and others.', 'full-picture-analytics-cookie-notice' ) . '</li>
-            <li>' . esc_html__('On hold - this is the default status for orders where customers select manual bank transfer as the payment method.', 'full-picture-analytics-cookie-notice' ) . '</li>
-        </ol>
-        <p>' . esc_html__( 'In addition to tracking orders, AOT can also track refunds and cancellations in compatible tools. Currently, this feature is supported in Google Analytics.', 'full-picture-analytics-cookie-notice' ) . '</p>
+        <p>' . esc_html__( 'Status-Based Order Tracking is an alternative method of tracking purchases. Instead of tracking them on order confirmation pages, orders are tracked when their status changes.', 'full-picture-analytics-cookie-notice' ) . '</p>
+        <p>' . esc_html__( 'This method of tracking is recommended for stores that use payment gateways, which do not redirect back to the order confirmation page.', 'full-picture-analytics-cookie-notice' ) . '</p>
         <h3>' . esc_html__('Supported Tools', 'full-picture-analytics-cookie-notice' ) . '</h3>
-        <p>' . esc_html__( 'AOT is supported in Google Analytics and Meta Pixel.', 'full-picture-analytics-cookie-notice' ) . '</p>
-        <h3>' . esc_html__('How to Enable Advanced Order Tracking', 'full-picture-analytics-cookie-notice' ) . '</h3>
+        <p>' . esc_html__( 'SBOT is supported in Google Analytics and Meta Pixel.', 'full-picture-analytics-cookie-notice' ) . '</p>
+        <h3>' . esc_html__('How to enable Status-Based Order Tracking', 'full-picture-analytics-cookie-notice' ) . '</h3>
+        <p>' . esc_html__('Visit the settings pages of the Google Analytics and Meta Pixel modules. When you are there, go to the "WooCommerce Tracking" section and follow instructions you find there.', 'full-picture-analytics-cookie-notice' ) . '</p>
+        <h3>' . esc_html__('Good to know', 'full-picture-analytics-cookie-notice' ) . '</h3>
         <ol>
-            <li>' . esc_html__('Open the settings for the Google Analytics or Meta Pixel module.', 'full-picture-analytics-cookie-notice' ) . '</li>
-            <li>' . esc_html__('Provide a server tracking key in the in the relevant field in the "Installation" section.', 'full-picture-analytics-cookie-notice' ) . '</li>
-            <li>' . esc_html__('Enable AOT in the "WooCommerce Tracking" section of these modules.', 'full-picture-analytics-cookie-notice' ) . '</li>
+            <li>' . esc_html__( 'Purchases are attributed to users and sessions just like with standard tracking.', 'full-picture-analytics-cookie-notice' ) . '</li>
+            <li>' . esc_html__( 'SBOT does not track orders added manually in the WooCommerce admin panel, since they cannot be attributed to any website users.', 'full-picture-analytics-cookie-notice' ) . '</li>
         </ol>
-        <h3>' . esc_html__('Limitations', 'full-picture-analytics-cookie-notice' ) . '</h3>
-        <p>' . esc_html__( 'AOT does not track orders added manually in the WooCommerce admin panel.', 'full-picture-analytics-cookie-notice' ) . '</p>
-        <p>' . esc_html__( 'Partial refunds are not tracked. Only full refunds are tracked when the order status changes to "Refunded".', 'full-picture-analytics-cookie-notice' ) . '</p>
     </div>';
 ?>

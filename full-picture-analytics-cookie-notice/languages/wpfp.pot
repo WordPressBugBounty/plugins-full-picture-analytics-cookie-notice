@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WP Full Picture\n"
 "Report-Msgid-Bugs-To: Translator Name <translations@example.com>\n"
-"POT-Creation-Date: 2025-02-22 17:47+0100\n"
+"POT-Creation-Date: 2025-03-18 17:52+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Your Name <you@example.com>\n"
 "Language-Team: WP Full Picture Team <hello@wpfullpicture.com>\n"
@@ -110,7 +110,8 @@ msgstr ""
 
 #: admin/common/pages/fupi-admin-page-display.php:60
 msgid ""
-"Extended integrations let you track more data without custom coding."
+"Extended integrations let you install tools, use their standard features "
+"and set up custom tracking."
 msgstr ""
 
 #: admin/common/pages/fupi-admin-page-display.php:66
@@ -118,7 +119,9 @@ msgid "Basic integrations"
 msgstr ""
 
 #: admin/common/pages/fupi-admin-page-display.php:67
-msgid "Basic integrations let you use standard tracking features."
+msgid ""
+"Basic integrations only let you install tools and use their standard "
+"features."
 msgstr ""
 
 #: admin/common/pages/fupi-admin-page-display.php:78
@@ -213,7 +216,7 @@ msgstr ""
 
 #: admin/common/pages/parts/fupi-page_part-offscreen.php:6
 #: admin/modules/cook/customizer/fupi-customizer-settings.php:1248
-#: includes/class-fupi-get-gdpr-status.php:2193
+#: includes/class-fupi-get-gdpr-status.php:2218
 #: public/modules/cook/fupi-display-cookie-notice.php:67
 msgid "Return"
 msgstr ""
@@ -229,9 +232,9 @@ msgstr ""
 #: admin/common/pages/parts/fupi-page_part-side-nav.php:45
 #: admin/modules/cook/customizer/fupi-customizer-settings.php:1222
 #: admin/modules/reports/reports-fields.php:9
-#: includes/class-fupi-get-gdpr-status.php:2191
+#: includes/class-fupi-get-gdpr-status.php:2216
 #: public/modules/cook/fupi-display-cookie-notice.php:65
-#: public/modules/cook/fupi-display-cookie-notice.php:358
+#: public/modules/cook/fupi-display-cookie-notice.php:360
 msgid "Settings"
 msgstr ""
 
@@ -922,7 +925,7 @@ msgstr ""
 #: admin/modules/cook/customizer/fupi-customizer-settings.php:1324
 #: admin/modules/cscr/cscr-fields.php:70
 #: admin/modules/iframeblock/iframeblock-fields.php:79
-#: includes/class-fupi-get-gdpr-status.php:2196
+#: includes/class-fupi-get-gdpr-status.php:2221
 #: public/modules/cook/fupi-display-cookie-notice.php:71
 msgid "Statistics"
 msgstr ""
@@ -933,7 +936,7 @@ msgstr ""
 #: admin/modules/cscr/cscr-fields.php:76
 #: admin/modules/iframeblock/iframeblock-fields.php:85
 #: admin/modules/tools/tools-descr.php:20
-#: includes/class-fupi-get-gdpr-status.php:2200
+#: includes/class-fupi-get-gdpr-status.php:2225
 #: public/modules/cook/fupi-display-cookie-notice.php:75
 msgid "Marketing"
 msgstr ""
@@ -943,7 +946,7 @@ msgstr ""
 #: admin/modules/cook/customizer/fupi-customizer-settings.php:1376
 #: admin/modules/cscr/cscr-fields.php:82
 #: admin/modules/iframeblock/iframeblock-fields.php:91
-#: includes/class-fupi-get-gdpr-status.php:2198
+#: includes/class-fupi-get-gdpr-status.php:2223
 #: public/modules/cook/fupi-display-cookie-notice.php:73
 msgid "Personalisation"
 msgstr ""
@@ -965,8 +968,8 @@ msgstr ""
 #: admin/modules/cegg/cegg-fields.php:69
 #: admin/modules/clar/clar-fields.php:75
 #: admin/modules/cscr/cscr-fields.php:112
-#: admin/modules/fbp1/fbp1-fields.php:140
-#: admin/modules/ga41/ga41-fields.php:106
+#: admin/modules/fbp1/fbp1-fields.php:141
+#: admin/modules/ga41/ga41-fields.php:95
 #: admin/modules/gads/gads-fields.php:81
 #: admin/modules/hotj/hotj-fields.php:66
 #: admin/modules/insp/insp-fields.php:64
@@ -985,8 +988,8 @@ msgstr ""
 #: admin/modules/cegg/cegg-fields.php:70
 #: admin/modules/clar/clar-fields.php:76
 #: admin/modules/cscr/cscr-fields.php:113
-#: admin/modules/fbp1/fbp1-fields.php:141
-#: admin/modules/ga41/ga41-fields.php:107
+#: admin/modules/fbp1/fbp1-fields.php:142
+#: admin/modules/ga41/ga41-fields.php:96
 #: admin/modules/gads/gads-fields.php:82
 #: admin/modules/hotj/hotj-fields.php:67
 #: admin/modules/insp/insp-fields.php:65
@@ -1004,7 +1007,7 @@ msgstr ""
 #: admin/modules/blockscr/blockscr-fields.php:108
 #: admin/modules/cegg/cegg-fields.php:77
 #: admin/modules/cscr/cscr-fields.php:120
-#: admin/modules/fbp1/fbp1-fields.php:148
+#: admin/modules/fbp1/fbp1-fields.php:149
 #: admin/modules/insp/insp-fields.php:72
 #: admin/modules/mato/mato-fields.php:118
 #: admin/modules/pin/pin-fields.php:85 admin/modules/pla/pla-fields.php:98
@@ -1127,10 +1130,18 @@ msgid "The data is collected by script "
 msgstr ""
 
 #: admin/modules/cegg/cegg-descr.php:26
-msgid ""
-"If you have consent banner enabled in the opt-in or one of automatic "
-"modes, Crazy Egg will start working after visitors consent to using "
-"their data for statistics and personalisation purposes."
+#: admin/modules/clar/clar-descr.php:26
+#: admin/modules/fbp1/fbp1-descr.php:25
+#: admin/modules/ga41/ga41-descr.php:25
+#: admin/modules/gads/gads-descr.php:26
+#: admin/modules/hotj/hotj-descr.php:25
+#: admin/modules/insp/insp-descr.php:26
+#: admin/modules/linkd/linkd-descr.php:26
+#: admin/modules/mads/mads-descr.php:24
+#: admin/modules/mato/mato-descr.php:37 admin/modules/pin/pin-descr.php:26
+#: admin/modules/posthog/posthog-descr.php:25
+#: admin/modules/tik/tik-descr.php:26 admin/modules/twit/twit-descr.php:24
+msgid "Change when this tool loads and starts tracking visitors."
 msgstr ""
 
 #: admin/modules/cegg/cegg-descr.php:32
@@ -1153,8 +1164,8 @@ msgstr ""
 #: admin/modules/cegg/cegg-descr.php:49
 #: admin/modules/clar/clar-descr.php:43
 #: admin/modules/fbp1/fbp1-descr.php:54
-#: admin/modules/ga41/ga41-descr.php:54
-#: admin/modules/ga42__premium_only/ga42-descr.php:47
+#: admin/modules/ga41/ga41-descr.php:55
+#: admin/modules/ga42__premium_only/ga42-descr.php:48
 #: admin/modules/gtm/gtm-descr.php:46 admin/modules/insp/insp-descr.php:49
 #: admin/modules/mads/mads-descr.php:37 admin/modules/pin/pin-descr.php:36
 #: admin/modules/tik/tik-descr.php:43 admin/modules/twit/twit-descr.php:41
@@ -1164,8 +1175,8 @@ msgstr ""
 #: admin/modules/cegg/cegg-descr.php:50
 #: admin/modules/clar/clar-descr.php:44
 #: admin/modules/fbp1/fbp1-descr.php:55
-#: admin/modules/ga41/ga41-descr.php:55
-#: admin/modules/ga42__premium_only/ga42-descr.php:48
+#: admin/modules/ga41/ga41-descr.php:56
+#: admin/modules/ga42__premium_only/ga42-descr.php:49
 #: admin/modules/gtm/gtm-descr.php:47 admin/modules/insp/insp-descr.php:50
 #: admin/modules/mads/mads-descr.php:38 admin/modules/tik/tik-descr.php:44
 #: admin/modules/twit/twit-descr.php:42
@@ -1175,8 +1186,8 @@ msgstr ""
 #: admin/modules/cegg/cegg-descr.php:51
 #: admin/modules/clar/clar-descr.php:46
 #: admin/modules/fbp1/fbp1-descr.php:57
-#: admin/modules/ga41/ga41-descr.php:59
-#: admin/modules/ga42__premium_only/ga42-descr.php:52
+#: admin/modules/ga41/ga41-descr.php:60
+#: admin/modules/ga42__premium_only/ga42-descr.php:53
 #: admin/modules/gtm/gtm-descr.php:51 admin/modules/insp/insp-descr.php:52
 #: admin/modules/mads/mads-descr.php:39 admin/modules/pin/pin-descr.php:38
 #: admin/modules/tik/tik-descr.php:46 admin/modules/twit/twit-descr.php:44
@@ -1185,16 +1196,16 @@ msgstr ""
 
 #: admin/modules/cegg/cegg-descr.php:52
 #: admin/modules/clar/clar-descr.php:47
-#: admin/modules/ga41/ga41-descr.php:60
-#: admin/modules/ga42__premium_only/ga42-descr.php:53
+#: admin/modules/ga41/ga41-descr.php:61
+#: admin/modules/ga42__premium_only/ga42-descr.php:54
 #: admin/modules/gtm/gtm-descr.php:52 admin/modules/insp/insp-descr.php:53
 msgid "remove from cart"
 msgstr ""
 
 #: admin/modules/cegg/cegg-descr.php:53
 #: admin/modules/fbp1/fbp1-descr.php:58
-#: admin/modules/ga41/ga41-descr.php:61
-#: admin/modules/ga42__premium_only/ga42-descr.php:54
+#: admin/modules/ga41/ga41-descr.php:62
+#: admin/modules/ga42__premium_only/ga42-descr.php:55
 #: admin/modules/gtm/gtm-descr.php:53 admin/modules/tik/tik-descr.php:47
 #: admin/modules/twit/twit-descr.php:45
 msgid "add to wishlist (if you set it up on the WooCommerce Tracking page)"
@@ -1209,8 +1220,8 @@ msgstr ""
 #: admin/modules/cegg/cegg-descr.php:56
 #: admin/modules/clar/clar-descr.php:51
 #: admin/modules/fbp1/fbp1-descr.php:62
-#: admin/modules/ga41/ga41-descr.php:64
-#: admin/modules/ga42__premium_only/ga42-descr.php:57
+#: admin/modules/ga41/ga41-descr.php:65
+#: admin/modules/ga42__premium_only/ga42-descr.php:58
 #: admin/modules/gads/gads-descr.php:47 admin/modules/gtm/gtm-descr.php:55
 #: admin/modules/insp/insp-descr.php:56
 #: admin/modules/mads/mads-descr.php:50
@@ -1223,8 +1234,8 @@ msgstr ""
 #: admin/modules/cegg/cegg-descr.php:56
 #: admin/modules/clar/clar-descr.php:51
 #: admin/modules/fbp1/fbp1-descr.php:62
-#: admin/modules/ga41/ga41-descr.php:64
-#: admin/modules/ga42__premium_only/ga42-descr.php:57
+#: admin/modules/ga41/ga41-descr.php:65
+#: admin/modules/ga42__premium_only/ga42-descr.php:58
 #: admin/modules/gads/gads-descr.php:47 admin/modules/gtm/gtm-descr.php:55
 #: admin/modules/insp/insp-descr.php:56
 #: admin/modules/mads/mads-descr.php:50
@@ -1241,8 +1252,8 @@ msgstr ""
 #: admin/modules/cegg/cegg-descr.php:56
 #: admin/modules/clar/clar-descr.php:51
 #: admin/modules/fbp1/fbp1-descr.php:62
-#: admin/modules/ga41/ga41-descr.php:64
-#: admin/modules/ga42__premium_only/ga42-descr.php:57
+#: admin/modules/ga41/ga41-descr.php:65
+#: admin/modules/ga42__premium_only/ga42-descr.php:58
 #: admin/modules/gads/gads-descr.php:47 admin/modules/gtm/gtm-descr.php:55
 #: admin/modules/insp/insp-descr.php:56
 #: admin/modules/mads/mads-descr.php:50
@@ -1258,7 +1269,7 @@ msgstr ""
 
 #: admin/modules/cegg/cegg-fields.php:13
 #: admin/modules/clar/clar-fields.php:293
-#: admin/modules/fbp1/fbp1-fields.php:276
+#: admin/modules/fbp1/fbp1-fields.php:277
 #: admin/modules/ga41/ga41-fields.php:12
 #: admin/modules/ga42__premium_only/ga42-fields.php:13
 #: admin/modules/gads/gads-fields.php:103
@@ -1286,8 +1297,8 @@ msgstr ""
 
 #: admin/modules/cegg/cegg-fields.php:32
 #: admin/modules/clar/clar-fields.php:301
-#: admin/modules/fbp1/fbp1-fields.php:284
-#: admin/modules/ga41/ga41-fields.php:67
+#: admin/modules/fbp1/fbp1-fields.php:285
+#: admin/modules/ga41/ga41-fields.php:56
 #: admin/modules/gads/gads-fields.php:111
 #: admin/modules/hotj/hotj-fields.php:96
 #: admin/modules/insp/insp-fields.php:94
@@ -1304,8 +1315,8 @@ msgstr ""
 #: admin/modules/cegg/cegg-fields.php:36
 #: admin/modules/clar/clar-fields.php:33
 #: admin/modules/cscr/cscr-fields.php:165
-#: admin/modules/fbp1/fbp1-fields.php:100
-#: admin/modules/ga41/ga41-fields.php:71
+#: admin/modules/fbp1/fbp1-fields.php:101
+#: admin/modules/ga41/ga41-fields.php:60
 #: admin/modules/gads/gads-fields.php:47
 #: admin/modules/hotj/hotj-fields.php:32
 #: admin/modules/insp/insp-fields.php:31
@@ -1322,8 +1333,8 @@ msgstr ""
 
 #: admin/modules/cegg/cegg-fields.php:41
 #: admin/modules/clar/clar-fields.php:38
-#: admin/modules/fbp1/fbp1-fields.php:105
-#: admin/modules/ga41/ga41-fields.php:76
+#: admin/modules/fbp1/fbp1-fields.php:106
+#: admin/modules/ga41/ga41-fields.php:65
 #: admin/modules/gads/gads-fields.php:52
 #: admin/modules/hotj/hotj-fields.php:37
 #: admin/modules/insp/insp-fields.php:36
@@ -1343,8 +1354,8 @@ msgstr ""
 
 #: admin/modules/cegg/cegg-fields.php:42
 #: admin/modules/clar/clar-fields.php:39
-#: admin/modules/fbp1/fbp1-fields.php:106
-#: admin/modules/ga41/ga41-fields.php:77
+#: admin/modules/fbp1/fbp1-fields.php:107
+#: admin/modules/ga41/ga41-fields.php:66
 #: admin/modules/gads/gads-fields.php:53
 #: admin/modules/hotj/hotj-fields.php:38
 #: admin/modules/insp/insp-fields.php:37
@@ -1363,8 +1374,8 @@ msgstr ""
 
 #: admin/modules/cegg/cegg-fields.php:46
 #: admin/modules/clar/clar-fields.php:47
-#: admin/modules/fbp1/fbp1-fields.php:113
-#: admin/modules/ga41/ga41-fields.php:82
+#: admin/modules/fbp1/fbp1-fields.php:114
+#: admin/modules/ga41/ga41-fields.php:71
 #: admin/modules/gads/gads-fields.php:58
 #: admin/modules/hotj/hotj-fields.php:42
 #: admin/modules/insp/insp-fields.php:41
@@ -1380,8 +1391,8 @@ msgstr ""
 
 #: admin/modules/cegg/cegg-fields.php:51
 #: admin/modules/clar/clar-fields.php:52
-#: admin/modules/fbp1/fbp1-fields.php:118
-#: admin/modules/ga41/ga41-fields.php:87
+#: admin/modules/fbp1/fbp1-fields.php:119
+#: admin/modules/ga41/ga41-fields.php:76
 #: admin/modules/gads/gads-fields.php:63
 #: admin/modules/hotj/hotj-fields.php:47
 #: admin/modules/insp/insp-fields.php:46
@@ -1400,7 +1411,7 @@ msgstr ""
 
 #: admin/modules/cegg/cegg-fields.php:52
 #: admin/modules/clar/clar-fields.php:53
-#: admin/modules/fbp1/fbp1-fields.php:119
+#: admin/modules/fbp1/fbp1-fields.php:120
 #: admin/modules/gads/gads-fields.php:64
 #: admin/modules/insp/insp-fields.php:47
 #: admin/modules/linkd/linkd-fields.php:51
@@ -1418,8 +1429,8 @@ msgstr ""
 
 #: admin/modules/cegg/cegg-fields.php:53
 #: admin/modules/clar/clar-fields.php:54
-#: admin/modules/fbp1/fbp1-fields.php:120
-#: admin/modules/ga41/ga41-fields.php:90
+#: admin/modules/fbp1/fbp1-fields.php:121
+#: admin/modules/ga41/ga41-fields.php:79
 #: admin/modules/gads/gads-fields.php:65
 #: admin/modules/hotj/hotj-fields.php:49
 #: admin/modules/insp/insp-fields.php:48
@@ -1437,8 +1448,8 @@ msgstr ""
 
 #: admin/modules/cegg/cegg-fields.php:57
 #: admin/modules/clar/clar-fields.php:63
-#: admin/modules/fbp1/fbp1-fields.php:128
-#: admin/modules/ga41/ga41-fields.php:94
+#: admin/modules/fbp1/fbp1-fields.php:129
+#: admin/modules/ga41/ga41-fields.php:83
 #: admin/modules/gads/gads-fields.php:69
 #: admin/modules/insp/insp-fields.php:52
 #: admin/modules/linkd/linkd-fields.php:56
@@ -1454,8 +1465,8 @@ msgstr ""
 
 #: admin/modules/cegg/cegg-fields.php:63
 #: admin/modules/clar/clar-fields.php:69
-#: admin/modules/fbp1/fbp1-fields.php:134
-#: admin/modules/ga41/ga41-fields.php:100
+#: admin/modules/fbp1/fbp1-fields.php:135
+#: admin/modules/ga41/ga41-fields.php:89
 #: admin/modules/gads/gads-fields.php:75
 #: admin/modules/hotj/hotj-fields.php:60
 #: admin/modules/insp/insp-fields.php:58
@@ -1474,7 +1485,7 @@ msgstr ""
 
 #: admin/modules/cegg/cegg-fields.php:63
 #: admin/modules/clar/clar-fields.php:69
-#: admin/modules/fbp1/fbp1-fields.php:134
+#: admin/modules/fbp1/fbp1-fields.php:135
 #: admin/modules/gads/gads-fields.php:75
 #: admin/modules/hotj/hotj-fields.php:60
 #: admin/modules/insp/insp-fields.php:58
@@ -1518,8 +1529,8 @@ msgstr ""
 #: admin/modules/cegg/cegg-fields.php:172
 #: admin/modules/clar/clar-fields.php:122
 #: admin/modules/clar/clar-fields.php:158
-#: admin/modules/fbp1/fbp1-fields.php:333
-#: admin/modules/fbp1/fbp1-fields.php:408
+#: admin/modules/fbp1/fbp1-fields.php:334
+#: admin/modules/fbp1/fbp1-fields.php:409
 #: admin/modules/gtm/gtm-fields.php:52 admin/modules/gtm/gtm-fields.php:106
 #: admin/modules/hotj/hotj-fields.php:121
 #: admin/modules/hotj/hotj-fields.php:174
@@ -1539,7 +1550,7 @@ msgstr ""
 
 #: admin/modules/cegg/cegg-fields.php:108
 #: admin/modules/clar/clar-fields.php:109
-#: admin/modules/fbp1/fbp1-fields.php:320
+#: admin/modules/fbp1/fbp1-fields.php:321
 #: admin/modules/gads/gads-fields.php:147
 #: admin/modules/gtm/gtm-fields.php:55
 #: admin/modules/hotj/hotj-fields.php:125
@@ -1563,8 +1574,8 @@ msgstr ""
 
 #: admin/modules/cegg/cegg-fields.php:127
 #: admin/modules/clar/clar-fields.php:129
-#: admin/modules/fbp1/fbp1-fields.php:368
-#: admin/modules/ga41/ga41-fields.php:147
+#: admin/modules/fbp1/fbp1-fields.php:369
+#: admin/modules/ga41/ga41-fields.php:136
 #: admin/modules/ga42__premium_only/ga42-fields.php:55
 #: admin/modules/hotj/hotj-fields.php:144
 #: admin/modules/insp/insp-fields.php:141
@@ -1601,8 +1612,8 @@ msgstr ""
 
 #: admin/modules/cegg/cegg-fields.php:154
 #: admin/modules/clar/clar-fields.php:166
-#: admin/modules/fbp1/fbp1-fields.php:389
-#: admin/modules/ga41/ga41-fields.php:246
+#: admin/modules/fbp1/fbp1-fields.php:390
+#: admin/modules/ga41/ga41-fields.php:235
 #: admin/modules/ga42__premium_only/ga42-fields.php:154
 #: admin/modules/gads/gads-fields.php:181
 #: admin/modules/gtm/gtm-fields.php:88
@@ -1617,8 +1628,8 @@ msgstr ""
 
 #: admin/modules/cegg/cegg-fields.php:161
 #: admin/modules/cegg/cegg-fields.php:225
-#: admin/modules/fbp1/fbp1-fields.php:396
-#: admin/modules/fbp1/fbp1-fields.php:478
+#: admin/modules/fbp1/fbp1-fields.php:397
+#: admin/modules/fbp1/fbp1-fields.php:479
 #: admin/modules/gtm/gtm-fields.php:95 admin/modules/gtm/gtm-fields.php:166
 #: admin/modules/pla/pla-fields.php:291
 #: admin/modules/pla/pla-fields.php:389
@@ -1627,8 +1638,8 @@ msgstr ""
 
 #: admin/modules/cegg/cegg-fields.php:168
 #: admin/modules/clar/clar-fields.php:154
-#: admin/modules/fbp1/fbp1-fields.php:404
-#: admin/modules/ga41/ga41-fields.php:234
+#: admin/modules/fbp1/fbp1-fields.php:405
+#: admin/modules/ga41/ga41-fields.php:223
 #: admin/modules/ga42__premium_only/ga42-fields.php:142
 #: admin/modules/gads/gads-fields.php:170
 #: admin/modules/gtm/gtm-fields.php:102
@@ -1645,8 +1656,8 @@ msgstr ""
 
 #: admin/modules/cegg/cegg-fields.php:170
 #: admin/modules/clar/clar-fields.php:156
-#: admin/modules/fbp1/fbp1-fields.php:406
-#: admin/modules/ga41/ga41-fields.php:236
+#: admin/modules/fbp1/fbp1-fields.php:407
+#: admin/modules/ga41/ga41-fields.php:225
 #: admin/modules/ga42__premium_only/ga42-fields.php:144
 #: admin/modules/gads/gads-fields.php:172
 #: admin/modules/gtm/gtm-fields.php:104
@@ -1665,8 +1676,8 @@ msgstr ""
 
 #: admin/modules/cegg/cegg-fields.php:171
 #: admin/modules/clar/clar-fields.php:157
-#: admin/modules/fbp1/fbp1-fields.php:407
-#: admin/modules/ga41/ga41-fields.php:237
+#: admin/modules/fbp1/fbp1-fields.php:408
+#: admin/modules/ga41/ga41-fields.php:226
 #: admin/modules/ga42__premium_only/ga42-fields.php:145
 #: admin/modules/gads/gads-fields.php:173
 #: admin/modules/gtm/gtm-fields.php:105
@@ -1685,8 +1696,8 @@ msgstr ""
 
 #: admin/modules/cegg/cegg-fields.php:174
 #: admin/modules/clar/clar-fields.php:160
-#: admin/modules/fbp1/fbp1-fields.php:410
-#: admin/modules/ga41/ga41-fields.php:240
+#: admin/modules/fbp1/fbp1-fields.php:411
+#: admin/modules/ga41/ga41-fields.php:229
 #: admin/modules/ga42__premium_only/ga42-fields.php:148
 #: admin/modules/gads/gads-fields.php:175
 #: admin/modules/gtm/gtm-fields.php:108
@@ -1703,8 +1714,8 @@ msgstr ""
 
 #: admin/modules/cegg/cegg-fields.php:175
 #: admin/modules/clar/clar-fields.php:161
-#: admin/modules/fbp1/fbp1-fields.php:411
-#: admin/modules/ga41/ga41-fields.php:241
+#: admin/modules/fbp1/fbp1-fields.php:412
+#: admin/modules/ga41/ga41-fields.php:230
 #: admin/modules/ga42__premium_only/ga42-fields.php:149
 #: admin/modules/gads/gads-fields.php:176
 #: admin/modules/gtm/gtm-fields.php:109
@@ -1724,8 +1735,8 @@ msgstr ""
 
 #: admin/modules/cegg/cegg-fields.php:176
 #: admin/modules/clar/clar-fields.php:162
-#: admin/modules/fbp1/fbp1-fields.php:412
-#: admin/modules/ga41/ga41-fields.php:242
+#: admin/modules/fbp1/fbp1-fields.php:413
+#: admin/modules/ga41/ga41-fields.php:231
 #: admin/modules/ga42__premium_only/ga42-fields.php:150
 #: admin/modules/gads/gads-fields.php:177
 #: admin/modules/gtm/gtm-fields.php:110
@@ -1744,8 +1755,8 @@ msgstr ""
 
 #: admin/modules/cegg/cegg-fields.php:177
 #: admin/modules/clar/clar-fields.php:163
-#: admin/modules/fbp1/fbp1-fields.php:413
-#: admin/modules/ga41/ga41-fields.php:243
+#: admin/modules/fbp1/fbp1-fields.php:414
+#: admin/modules/ga41/ga41-fields.php:232
 #: admin/modules/ga42__premium_only/ga42-fields.php:151
 #: admin/modules/gads/gads-fields.php:178
 #: admin/modules/gtm/gtm-fields.php:111
@@ -1768,7 +1779,7 @@ msgstr ""
 
 #: admin/modules/cegg/cegg-fields.php:187
 #: admin/modules/clar/clar-fields.php:189
-#: admin/modules/fbp1/fbp1-fields.php:448
+#: admin/modules/fbp1/fbp1-fields.php:449
 #: admin/modules/gads/gads-fields.php:204
 #: admin/modules/gtm/gtm-fields.php:121
 #: admin/modules/hotj/hotj-fields.php:205
@@ -1785,7 +1796,7 @@ msgstr ""
 
 #: admin/modules/cegg/cegg-fields.php:188
 #: admin/modules/clar/clar-fields.php:190
-#: admin/modules/fbp1/fbp1-fields.php:449
+#: admin/modules/fbp1/fbp1-fields.php:450
 #: admin/modules/gads/gads-faq.php:56
 #: admin/modules/gads/gads-fields.php:205
 #: admin/modules/gtm/gtm-fields.php:122
@@ -1801,8 +1812,8 @@ msgstr ""
 
 #: admin/modules/cegg/cegg-fields.php:191
 #: admin/modules/clar/clar-fields.php:193
-#: admin/modules/fbp1/fbp1-fields.php:434
-#: admin/modules/ga41/ga41-fields.php:285
+#: admin/modules/fbp1/fbp1-fields.php:435
+#: admin/modules/ga41/ga41-fields.php:274
 #: admin/modules/ga42__premium_only/ga42-fields.php:193
 #: admin/modules/gads/gads-fields.php:208
 #: admin/modules/gtm/gtm-fields.php:125
@@ -1830,8 +1841,8 @@ msgstr ""
 
 #: admin/modules/cegg/cegg-fields.php:214
 #: admin/modules/clar/clar-fields.php:216
-#: admin/modules/fbp1/fbp1-fields.php:485
-#: admin/modules/ga41/ga41-fields.php:313
+#: admin/modules/fbp1/fbp1-fields.php:486
+#: admin/modules/ga41/ga41-fields.php:302
 #: admin/modules/ga42__premium_only/ga42-fields.php:221
 #: admin/modules/gads/gads-fields.php:231
 #: admin/modules/gtm/gtm-fields.php:155
@@ -1850,8 +1861,8 @@ msgstr ""
 
 #: admin/modules/cegg/cegg-fields.php:215
 #: admin/modules/clar/clar-fields.php:217
-#: admin/modules/fbp1/fbp1-fields.php:487
-#: admin/modules/ga41/ga41-fields.php:323
+#: admin/modules/fbp1/fbp1-fields.php:488
+#: admin/modules/ga41/ga41-fields.php:312
 #: admin/modules/ga42__premium_only/ga42-fields.php:231
 #: admin/modules/gads/gads-fields.php:232
 #: admin/modules/gtm/gtm-fields.php:156
@@ -1932,14 +1943,6 @@ msgstr ""
 msgid "The data is sent to a project with ID "
 msgstr ""
 
-#: admin/modules/clar/clar-descr.php:26
-msgid ""
-"If you have consent banner enabled in the opt-in or one of automatic "
-"modes, Clarity will start working after visitors consent to using their "
-"data for statistics. This can be avoided if you enable the consent mode "
-"below."
-msgstr ""
-
 #: admin/modules/clar/clar-descr.php:41
 #: admin/modules/insp/insp-descr.php:47
 msgid ""
@@ -1949,8 +1952,8 @@ msgstr ""
 
 #: admin/modules/clar/clar-descr.php:45
 #: admin/modules/fbp1/fbp1-descr.php:56
-#: admin/modules/ga41/ga41-descr.php:56
-#: admin/modules/ga42__premium_only/ga42-descr.php:49
+#: admin/modules/ga41/ga41-descr.php:57
+#: admin/modules/ga42__premium_only/ga42-descr.php:50
 #: admin/modules/gtm/gtm-descr.php:48 admin/modules/insp/insp-descr.php:51
 #: admin/modules/mads/mads-descr.php:40 admin/modules/pin/pin-descr.php:37
 #: admin/modules/tik/tik-descr.php:45 admin/modules/twit/twit-descr.php:43
@@ -1965,8 +1968,8 @@ msgstr ""
 
 #: admin/modules/clar/clar-descr.php:50
 #: admin/modules/fbp1/fbp1-descr.php:60
-#: admin/modules/ga41/ga41-descr.php:63
-#: admin/modules/ga42__premium_only/ga42-descr.php:56
+#: admin/modules/ga41/ga41-descr.php:64
+#: admin/modules/ga42__premium_only/ga42-descr.php:57
 #: admin/modules/gads/gads-descr.php:46
 #: admin/modules/mads/mads-descr.php:43 admin/modules/pin/pin-descr.php:40
 #: admin/modules/tik/tik-descr.php:49 admin/modules/twit/twit-descr.php:49
@@ -2100,8 +2103,8 @@ msgid "Tag (required)"
 msgstr ""
 
 #: admin/modules/clar/clar-fields.php:220
-#: admin/modules/fbp1/fbp1-fields.php:471
-#: admin/modules/ga41/ga41-fields.php:335
+#: admin/modules/fbp1/fbp1-fields.php:472
+#: admin/modules/ga41/ga41-fields.php:324
 #: admin/modules/ga42__premium_only/ga42-fields.php:243
 #: admin/modules/gads/gads-fields.php:235
 #: admin/modules/gtm/gtm-fields.php:159
@@ -2134,8 +2137,8 @@ msgid "Tag with custom metadata"
 msgstr ""
 
 #: admin/modules/clar/clar-fields.php:265
-#: admin/modules/fbp1/fbp1-fields.php:262
-#: admin/modules/ga41/ga41-fields.php:560
+#: admin/modules/fbp1/fbp1-fields.php:263
+#: admin/modules/ga41/ga41-fields.php:549
 #: admin/modules/ga42__premium_only/ga42-fields.php:468
 #: admin/modules/gtm/gtm-fields.php:337
 #: admin/modules/mato/mato-fields.php:240
@@ -2161,66 +2164,55 @@ msgstr ""
 #: admin/modules/cook/cook-descr.php:13
 #, php-format
 msgid ""
-"Keeping records of consents is %1$srequired by GDPR%2$s. Save 1000 "
-"consents for free in our cloud database."
+"Keeping records of consents is %1$srequired by GDPR%2$s. Most WordPress "
+"plugins save them in the site's database, but this makes them easy to "
+"modify, and they may not be considered as valid proofs. That is why we "
+"created a cloud database, where you can keep your consents safely and "
+"with all necessary data. You can save 1000 proofs for free and purchase "
+"one of %3$svery affordable plans%4$s when you need more."
 msgstr ""
 
-#: admin/modules/cook/cook-descr.php:17
+#: admin/modules/cook/cook-descr.php:16
 #, php-format
 msgid ""
 "As a Premium user, you can save additional %1$s500 records of consent/"
-"decline a day%2$s, for free, until the end of August 2025. To save more, "
-"please purchase one of the %3$spay-as-you-go plans%4$s"
+"decline a day%2$s, for free, until the end of August 2025."
 msgstr ""
 
-#: admin/modules/cook/cook-descr.php:23
+#: admin/modules/cook/cook-descr.php:22
 msgid "To start saving consents:"
 msgstr ""
 
-#: admin/modules/cook/cook-descr.php:25
+#: admin/modules/cook/cook-descr.php:24
 msgid ""
 "Go to the \"GDPR setup helper\" (see menu on the left) and make sure "
 "your site is set up correctly."
 msgstr ""
 
-#: admin/modules/cook/cook-descr.php:26
+#: admin/modules/cook/cook-descr.php:25
 msgid "Create an account at ConsentsDB.com."
 msgstr ""
 
-#: admin/modules/cook/cook-descr.php:27
+#: admin/modules/cook/cook-descr.php:26
 msgid ""
 "Add this website to your account. You will get your secret key (to paste "
 "in the field below) and a free package of 1000 records."
 msgstr ""
 
-#: admin/modules/cook/cook-descr.php:31
+#: admin/modules/cook/cook-descr.php:30
 msgid "Learn more:"
 msgstr ""
 
-#: admin/modules/cook/cook-descr.php:33
+#: admin/modules/cook/cook-descr.php:32
 msgid "Pricing"
 msgstr ""
 
-#: admin/modules/cook/cook-descr.php:34
+#: admin/modules/cook/cook-descr.php:33
 msgid "About ConsentsDB"
 msgstr ""
 
-#: admin/modules/cook/cook-descr.php:35
+#: admin/modules/cook/cook-descr.php:34
 msgid "Setup guide"
-msgstr ""
-
-#: admin/modules/cook/cook-descr.php:43
-#, php-format
-msgid ""
-"These settings will apply to Google Analytics and Google Ads installed "
-"with WP Full Picture %1$sand other plugins or methods%2$s."
-msgstr ""
-
-#: admin/modules/cook/cook-descr.php:44
-msgid ""
-"If you use the Google Tag Manager module, WP Full Picture automatically "
-"sends to GTM's dataLayer information on user consents in the format "
-"required by Google."
 msgstr ""
 
 #: admin/modules/cook/cook-faq.php:6
@@ -2608,80 +2600,157 @@ msgid "You must save changes before you can start customizing."
 msgstr ""
 
 #: admin/modules/cook/cook-fields.php:247
+msgid "Enable Advanced Consent Mode v2 for Google Analytics and Google Ads"
+msgstr ""
+
+#: admin/modules/cook/cook-fields.php:252
+#, php-format
+msgid ""
+"When this option is %1$sdisabled%2$s, Google Analytics and Google Ads "
+"will use the basic consent mode v2."
+msgstr ""
+
+#: admin/modules/cook/cook-fields.php:253
+msgid ""
+"Advanced Consent Mode only benefits websites with traffic greater then "
+"1000 consenting users/day or 700 ad clicks/day."
+msgstr ""
+
+#: admin/modules/cook/cook-fields.php:254
+msgid "Everything you need to know about it"
+msgstr ""
+
+#: admin/modules/cook/cook-fields.php:255
+msgid "For users of Google Tag Manager"
+msgstr ""
+
+#: admin/modules/cook/cook-fields.php:256
+msgid ""
+"If you use the Google Tag Manager module, WP Full Picture automatically "
+"sends to GTM's dataLayer information on user consents in the format "
+"required by Google."
+msgstr ""
+
+#: admin/modules/cook/cook-fields.php:257
+msgid ""
+"Tag \"Google Tag\" automatically recognizes consent information sent by "
+"WP FP and starts Google Analytics and Ads based on the provided "
+"consents. Other tags need to be manually configured to respect consents."
+msgstr ""
+
+#: admin/modules/cook/cook-fields.php:258
+msgid ""
+"To do this, open the settings of a tag in GTM and click \"Advanced "
+"Settings\" > \"Consent Settings (beta)\" > \"Require additional "
+"consents\" and choose the consents you need."
+msgstr ""
+
+#: admin/modules/cook/cook-fields.php:262
+msgid "Use link decoration to improve conversion tracking"
+msgstr ""
+
+#: admin/modules/cook/cook-fields.php:266
+msgid ""
+"This will enable Google's \"url_passthrough\" feature for link "
+"decoration. It will add a Google's advertising identifier to all links "
+"on your website which will improve conversion tracking."
+msgstr ""
+
+#: admin/modules/cook/cook-fields.php:267
+msgid ""
+"Attention! Using link decoration is a legal grey area and may be illegal "
+"in countries where consent before tracking is necessary (opt-in). Use at "
+"your own risk."
+msgstr ""
+
+#: admin/modules/cook/cook-fields.php:268
+msgid ""
+"Attention! Link decoration may, in very rare cases, cause problems on a "
+"website. To test it, visit your website from a Google advertisement and "
+"finish the whole conversion path."
+msgstr ""
+
+#: admin/modules/cook/cook-fields.php:269
+msgid ""
+"Attention! Link decoration will only be used in countries where consent "
+"banner lets users decline tracking."
+msgstr ""
+
+#: admin/modules/cook/cook-fields.php:273
 msgid ""
 "Ask visitors for consent again, when new tracking tools get enabled or "
 "when privacy policy is updated"
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:250
+#: admin/modules/cook/cook-fields.php:276
 msgid ""
 "Attention. WP Full Picture is not aware of what tools the GTM installs. "
 "When new tools get installed inside GTM's container, visitors will not "
 "be asked for consent again."
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:251
+#: admin/modules/cook/cook-fields.php:277
 msgid "Highly recommended. Required in most countries."
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:255
+#: admin/modules/cook/cook-fields.php:281
 msgid "Show consent banner when visitors click this page element"
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:259
+#: admin/modules/cook/cook-fields.php:285
 msgid "e.g. #some_button"
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:260
+#: admin/modules/cook/cook-fields.php:286
 msgid "Leave empty to use the default .fp_show_cookie_notice"
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:261
+#: admin/modules/cook/cook-fields.php:287
 msgid ""
 "We recommend that you point at a link or a button in your privacy "
 "policy. This is required in most countries that require consent banners."
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:266
+#: admin/modules/cook/cook-fields.php:292
 msgid "Hide consent banner on these pages"
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:268
+#: admin/modules/cook/cook-fields.php:294
 msgid ""
 "By default, WP Full Picture hides consent banner on the privacy policy "
 "page. Select other pages, where the banner should be hidden."
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:269
+#: admin/modules/cook/cook-fields.php:295
 msgid ""
 "Hiding the banner only hides it visually. It does not automatically give "
 "consent to tracking."
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:279
+#: admin/modules/cook/cook-fields.php:305
 msgid "Consent banner settings"
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:287
+#: admin/modules/cook/cook-fields.php:313
 msgid "Records of consents"
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:291
+#: admin/modules/cook/cook-fields.php:317
 msgid "ConsentsDB secret key"
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:299
+#: admin/modules/cook/cook-fields.php:325
 msgid "Do not filter bot traffic"
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:303
+#: admin/modules/cook/cook-fields.php:329
 msgid ""
 "By default, WP Full Picture does not save consents of visitors "
 "recognized as bots and those who consented within 1 second from the "
 "moment the page has loaded."
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:304
+#: admin/modules/cook/cook-fields.php:330
 #, php-format
 msgid ""
 "If, for any reason, this filters too much traffic, please %1$slet us "
@@ -2689,60 +2758,39 @@ msgid ""
 "detection list\" in the General Settings page."
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:313
-msgid "Privacy settings for Google's tools"
+#: admin/modules/cook/cook-fields.php:334
+msgid "Allow site visitors to view consent data (beta)"
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:317
-msgid "Enable Advanced Consent Mode v2 for Google Analytics and Google Ads"
+#: admin/modules/cook/cook-fields.php:338
+msgid ""
+"Let your visitors view all the information that was collected about "
+"their consent, the same way you see it in the ConsentsDB.com."
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:322
+#: admin/modules/cook/cook-fields.php:339
+msgid ""
+"When the consent is properly saved, Consent ID that is at the bottom of "
+"the consent banner will turn into a link."
+msgstr ""
+
+#: admin/modules/cook/cook-fields.php:340
+msgid ""
+"Consent may not be properly saved if you run out of available consents "
+"to save. In that case, please top up your account by purchasing one of "
+"the available plans."
+msgstr ""
+
+#: admin/modules/cook/cook-fields.php:341
+msgid "How to enable it"
+msgstr ""
+
+#: admin/modules/cook/cook-fields.php:342
 #, php-format
 msgid ""
-"When this option is %1$sdisabled%2$s, Google Analytics and Google Ads "
-"will use the basic consent mode v2."
-msgstr ""
-
-#: admin/modules/cook/cook-fields.php:323
-msgid ""
-"Advanced Consent Mode only benefits websites with traffic greater then "
-"1000 consenting users/day or 700 ad clicks/day."
-msgstr ""
-
-#: admin/modules/cook/cook-fields.php:324
-msgid "Everything you need to know about it"
-msgstr ""
-
-#: admin/modules/cook/cook-fields.php:328
-msgid "Use link decoration to improve conversion tracking"
-msgstr ""
-
-#: admin/modules/cook/cook-fields.php:332
-msgid ""
-"This will enable Google's \"url_passthrough\" feature for link "
-"decoration. It will add a Google's advertising identifier to all links "
-"on your website which will improve conversion tracking."
-msgstr ""
-
-#: admin/modules/cook/cook-fields.php:333
-msgid ""
-"Attention! Using link decoration is a legal grey area and may be illegal "
-"in countries where consent before tracking is necessary (opt-in). Use at "
-"your own risk."
-msgstr ""
-
-#: admin/modules/cook/cook-fields.php:334
-msgid ""
-"Attention! Link decoration may, in very rare cases, cause problems on a "
-"website. To test it, visit your website from a Google advertisement and "
-"finish the whole conversion path."
-msgstr ""
-
-#: admin/modules/cook/cook-fields.php:335
-msgid ""
-"Attention! Link decoration will only be used in countries where consent "
-"banner lets users decline tracking."
+"To use this feature, you need to enable two settings - this one and the "
+"option to \"Allow site visitors to view consent data\" in the settings "
+"of your website in ConsentsDB. %1$sLearn more%2$s"
 msgstr ""
 
 #: admin/modules/cook/cook-register-cdb.php:73
@@ -3172,7 +3220,7 @@ msgid "This text will show up at the top of the consent's panel."
 msgstr ""
 
 #: admin/modules/cook/customizer/fupi-customizer-settings.php:1050
-#: includes/class-fupi-get-gdpr-status.php:2187
+#: includes/class-fupi-get-gdpr-status.php:2212
 #: public/modules/cook/fupi-display-cookie-notice.php:60
 msgid ""
 "We use cookies to provide you with the best browsing experience, "
@@ -3192,7 +3240,7 @@ msgid ""
 msgstr ""
 
 #: admin/modules/cook/customizer/fupi-customizer-settings.php:1067
-#: includes/class-fupi-get-gdpr-status.php:2188
+#: includes/class-fupi-get-gdpr-status.php:2213
 #: public/modules/cook/fupi-display-cookie-notice.php:62
 msgid "Agree"
 msgstr ""
@@ -3223,7 +3271,7 @@ msgid "\"Statistics only\" button"
 msgstr ""
 
 #: admin/modules/cook/customizer/fupi-customizer-settings.php:1111
-#: includes/class-fupi-get-gdpr-status.php:2189
+#: includes/class-fupi-get-gdpr-status.php:2214
 #: public/modules/cook/fupi-display-cookie-notice.php:63
 msgid "I understand"
 msgstr ""
@@ -3249,7 +3297,7 @@ msgid ""
 msgstr ""
 
 #: admin/modules/cook/customizer/fupi-customizer-settings.php:1170
-#: includes/class-fupi-get-gdpr-status.php:2192
+#: includes/class-fupi-get-gdpr-status.php:2217
 #: public/modules/cook/fupi-display-cookie-notice.php:66
 msgid "Agree to selected"
 msgstr ""
@@ -3259,13 +3307,13 @@ msgid "\"Agree to selected\" button"
 msgstr ""
 
 #: admin/modules/cook/customizer/fupi-customizer-settings.php:1196
-#: includes/class-fupi-get-gdpr-status.php:2190
+#: includes/class-fupi-get-gdpr-status.php:2215
 #: public/modules/cook/fupi-display-cookie-notice.php:64
 msgid "Decline"
 msgstr ""
 
 #: admin/modules/cook/customizer/fupi-customizer-settings.php:1200
-#: includes/class-fupi-get-gdpr-status.php:2241
+#: includes/class-fupi-get-gdpr-status.php:2266
 msgid "\"Decline\" button"
 msgstr ""
 
@@ -3310,7 +3358,7 @@ msgid "\"Statistics\" section title"
 msgstr ""
 
 #: admin/modules/cook/customizer/fupi-customizer-settings.php:1350
-#: includes/class-fupi-get-gdpr-status.php:2197
+#: includes/class-fupi-get-gdpr-status.php:2222
 #: public/modules/cook/fupi-display-cookie-notice.php:72
 msgid ""
 "I want to help you make this site better so I will provide you with data "
@@ -3333,7 +3381,7 @@ msgid "\"Personalisation\" section title"
 msgstr ""
 
 #: admin/modules/cook/customizer/fupi-customizer-settings.php:1402
-#: includes/class-fupi-get-gdpr-status.php:2199
+#: includes/class-fupi-get-gdpr-status.php:2224
 #: public/modules/cook/fupi-display-cookie-notice.php:74
 msgid ""
 "I want to have the best experience on this site so I agree to saving my "
@@ -3350,7 +3398,7 @@ msgid "\"Marketing\" section title"
 msgstr ""
 
 #: admin/modules/cook/customizer/fupi-customizer-settings.php:1454
-#: includes/class-fupi-get-gdpr-status.php:2201
+#: includes/class-fupi-get-gdpr-status.php:2226
 #: public/modules/cook/fupi-display-cookie-notice.php:76
 msgid ""
 "I want to see ads with your offers, coupons and exclusive deals rather "
@@ -3593,13 +3641,6 @@ msgstr ""
 msgid "The data is sent to a dataset with an ID "
 msgstr ""
 
-#: admin/modules/fbp1/fbp1-descr.php:25
-msgid ""
-"If you have consent banner enabled in the opt-in or one of automatic "
-"modes, Facebook Pixel will start working after visitors consent to using "
-"their data for statistics and marketing purposes."
-msgstr ""
-
 #: admin/modules/fbp1/fbp1-descr.php:31
 #: admin/modules/mato/mato-descr.php:49
 msgid "Track actions that visitors take on your website."
@@ -3623,8 +3664,8 @@ msgid ""
 msgstr ""
 
 #: admin/modules/fbp1/fbp1-descr.php:52
-#: admin/modules/ga41/ga41-descr.php:52
-#: admin/modules/ga42__premium_only/ga42-descr.php:45
+#: admin/modules/ga41/ga41-descr.php:53
+#: admin/modules/ga42__premium_only/ga42-descr.php:46
 #: admin/modules/pin/pin-descr.php:34 admin/modules/tik/tik-descr.php:41
 msgid "You are now automatically tracking WooCommerce events:"
 msgstr ""
@@ -3692,7 +3733,7 @@ msgstr ""
 msgid "Test event code"
 msgstr ""
 
-#: admin/modules/fbp1/fbp1-fields.php:35
+#: admin/modules/fbp1/fbp1-fields.php:36
 msgid ""
 "Use this option if you want to test the events in the events manager. "
 "You can find your test code in the \"Facebook Events Manager\" > \"Test "
@@ -3701,37 +3742,37 @@ msgid ""
 "this code before going live."
 msgstr ""
 
-#: admin/modules/fbp1/fbp1-fields.php:39
+#: admin/modules/fbp1/fbp1-fields.php:40
 msgid "Install 2nd pixel (optional)"
 msgstr ""
 
-#: admin/modules/fbp1/fbp1-fields.php:45
+#: admin/modules/fbp1/fbp1-fields.php:46
 msgid "Both pixels will track the same data and use the same settings."
 msgstr ""
 
-#: admin/modules/fbp1/fbp1-fields.php:49
+#: admin/modules/fbp1/fbp1-fields.php:50
 msgid "Pixel ID / Dataset ID #2"
 msgstr ""
 
-#: admin/modules/fbp1/fbp1-fields.php:58
+#: admin/modules/fbp1/fbp1-fields.php:59
 msgid "Conversion API token #2"
 msgstr ""
 
-#: admin/modules/fbp1/fbp1-fields.php:67
+#: admin/modules/fbp1/fbp1-fields.php:68
 msgid "Test event code #2"
 msgstr ""
 
-#: admin/modules/fbp1/fbp1-fields.php:76
+#: admin/modules/fbp1/fbp1-fields.php:77
 msgid "Enable advanced matching"
 msgstr ""
 
-#: admin/modules/fbp1/fbp1-fields.php:80
+#: admin/modules/fbp1/fbp1-fields.php:81
 msgid ""
 "Advanced matching improves the accuracy of conversion tracking by "
 "sending to Meta personally identifiable information about your users."
 msgstr ""
 
-#: admin/modules/fbp1/fbp1-fields.php:81
+#: admin/modules/fbp1/fbp1-fields.php:82
 msgid ""
 "When Advanced Matching is enabled, WP Full Picture will start sending to "
 "Meta encrypted addresses, email addresses, phone numbers and user "
@@ -3741,21 +3782,21 @@ msgid ""
 "the visitors at a given moment."
 msgstr ""
 
-#: admin/modules/fbp1/fbp1-fields.php:82
+#: admin/modules/fbp1/fbp1-fields.php:83
 msgid ""
 "Attention! Remember to disclose in your privacy policy that you send "
 "this information to Meta!"
 msgstr ""
 
-#: admin/modules/fbp1/fbp1-fields.php:86
+#: admin/modules/fbp1/fbp1-fields.php:87
 msgid "Enable \"Limited Data Use\" for visitors from the US"
 msgstr ""
 
-#: admin/modules/fbp1/fbp1-fields.php:88
+#: admin/modules/fbp1/fbp1-fields.php:89
 msgid "required for compliance with privacy laws in some US states"
 msgstr ""
 
-#: admin/modules/fbp1/fbp1-fields.php:90
+#: admin/modules/fbp1/fbp1-fields.php:91
 #, php-format
 msgid ""
 "WP Full Picture will modify Pixel code to comply with the data "
@@ -3765,51 +3806,51 @@ msgid ""
 "states and countries will not be affected. %1$sLearn more%2$s."
 msgstr ""
 
-#: admin/modules/fbp1/fbp1-fields.php:159
-#: admin/modules/ga41/ga41-fields.php:413
+#: admin/modules/fbp1/fbp1-fields.php:160
+#: admin/modules/ga41/ga41-fields.php:402
 #: admin/modules/ga42__premium_only/ga42-fields.php:321
 #: admin/modules/hotj/hotj-fields.php:259
 #: admin/modules/pla/pla-fields.php:140
 msgid "Track page type"
 msgstr ""
 
-#: admin/modules/fbp1/fbp1-fields.php:165
+#: admin/modules/fbp1/fbp1-fields.php:166
 #: admin/modules/pla/pla-fields.php:146
 msgid "Track page title"
 msgstr ""
 
-#: admin/modules/fbp1/fbp1-fields.php:171
+#: admin/modules/fbp1/fbp1-fields.php:172
 #: admin/modules/pla/pla-fields.php:152
 msgid "Track archive and page numbers"
 msgstr ""
 
-#: admin/modules/fbp1/fbp1-fields.php:177
-#: admin/modules/ga41/ga41-fields.php:463
+#: admin/modules/fbp1/fbp1-fields.php:178
+#: admin/modules/ga41/ga41-fields.php:452
 #: admin/modules/ga42__premium_only/ga42-fields.php:371
 #: admin/modules/mato/mato-fields.php:180
 #: admin/modules/pla/pla-fields.php:158
 msgid "Track page language"
 msgstr ""
 
-#: admin/modules/fbp1/fbp1-fields.php:183
-#: admin/modules/ga41/ga41-fields.php:443
+#: admin/modules/fbp1/fbp1-fields.php:184
+#: admin/modules/ga41/ga41-fields.php:432
 #: admin/modules/ga42__premium_only/ga42-fields.php:351
 msgid "Track post and page publish dates"
 msgstr ""
 
-#: admin/modules/fbp1/fbp1-fields.php:189
+#: admin/modules/fbp1/fbp1-fields.php:190
 #: admin/modules/pla/pla-fields.php:164
 msgid "Track page id"
 msgstr ""
 
-#: admin/modules/fbp1/fbp1-fields.php:195
-#: admin/modules/ga41/ga41-fields.php:473
+#: admin/modules/fbp1/fbp1-fields.php:196
+#: admin/modules/ga41/ga41-fields.php:462
 #: admin/modules/ga42__premium_only/ga42-fields.php:381
 #: admin/modules/mato/mato-fields.php:188
 msgid "Track post's terms (categories, tags, etc.) "
 msgstr ""
 
-#: admin/modules/fbp1/fbp1-fields.php:200
+#: admin/modules/fbp1/fbp1-fields.php:201
 #: admin/modules/gtm/gtm-fields.php:290
 msgid ""
 "By default WP Full Picture tracks categories, tags and formats that are "
@@ -3817,26 +3858,26 @@ msgid ""
 "\"General Settings\" > \"Default Tracking Settings\"."
 msgstr ""
 
-#: admin/modules/fbp1/fbp1-fields.php:204
-#: admin/modules/ga41/ga41-fields.php:486
+#: admin/modules/fbp1/fbp1-fields.php:205
+#: admin/modules/ga41/ga41-fields.php:475
 #: admin/modules/ga42__premium_only/ga42-fields.php:394
 #: admin/modules/mato/mato-fields.php:198
 msgid "Add taxonomy slug to term name"
 msgstr ""
 
-#: admin/modules/fbp1/fbp1-fields.php:208
+#: admin/modules/fbp1/fbp1-fields.php:209
 msgid ""
 "This will add information about a taxonomy, to the term information sent "
 "to Meta, e.g. \"european music (tag)\""
 msgstr ""
 
-#: admin/modules/fbp1/fbp1-fields.php:212
-#: admin/modules/ga41/ga41-fields.php:494
+#: admin/modules/fbp1/fbp1-fields.php:213
+#: admin/modules/ga41/ga41-fields.php:483
 #: admin/modules/ga42__premium_only/ga42-fields.php:402
 msgid "Send term names instead of term slugs"
 msgstr ""
 
-#: admin/modules/fbp1/fbp1-fields.php:216
+#: admin/modules/fbp1/fbp1-fields.php:217
 msgid ""
 "This will send term names (e.g. The best of european music) instead of "
 "term slugs (e.g. eu_music). Doing this is not recommended since term "
@@ -3844,21 +3885,21 @@ msgid ""
 "occasions."
 msgstr ""
 
-#: admin/modules/fbp1/fbp1-fields.php:220
-#: admin/modules/ga41/ga41-fields.php:522
+#: admin/modules/fbp1/fbp1-fields.php:221
+#: admin/modules/ga41/ga41-fields.php:511
 #: admin/modules/ga42__premium_only/ga42-fields.php:430
 #: admin/modules/mato/mato-fields.php:164
 #: admin/modules/pla/pla-fields.php:170
 msgid "Track author's display names"
 msgstr ""
 
-#: admin/modules/fbp1/fbp1-fields.php:226
+#: admin/modules/fbp1/fbp1-fields.php:227
 #: admin/modules/pla/pla-fields.php:488
 msgid "Track searched phrases"
 msgstr ""
 
-#: admin/modules/fbp1/fbp1-fields.php:232
-#: admin/modules/ga41/ga41-fields.php:453
+#: admin/modules/fbp1/fbp1-fields.php:233
+#: admin/modules/ga41/ga41-fields.php:442
 #: admin/modules/ga42__premium_only/ga42-fields.php:361
 #: admin/modules/hotj/hotj-fields.php:253
 #: admin/modules/mato/mato-fields.php:172
@@ -3866,28 +3907,28 @@ msgstr ""
 msgid "Track user's login status and role"
 msgstr ""
 
-#: admin/modules/fbp1/fbp1-fields.php:235
+#: admin/modules/fbp1/fbp1-fields.php:236
 msgid "Tracked as a parameter \"user_type\" of the \"PageView\" event"
 msgstr ""
 
-#: admin/modules/fbp1/fbp1-fields.php:239
+#: admin/modules/fbp1/fbp1-fields.php:240
 msgid "Track visitor's browser language"
 msgstr ""
 
-#: admin/modules/fbp1/fbp1-fields.php:242
+#: admin/modules/fbp1/fbp1-fields.php:243
 msgid "Tracked as a parameter \"browser_lang\" of the \"PageView\" event"
 msgstr ""
 
-#: admin/modules/fbp1/fbp1-fields.php:249
-#: admin/modules/ga41/ga41-fields.php:554
+#: admin/modules/fbp1/fbp1-fields.php:250
+#: admin/modules/ga41/ga41-fields.php:543
 #: admin/modules/ga42__premium_only/ga42-fields.php:462
 #: admin/modules/mato/mato-fields.php:233
 #: admin/modules/pla/pla-fields.php:176
 msgid "Track custom metadata"
 msgstr ""
 
-#: admin/modules/fbp1/fbp1-fields.php:292
-#: admin/modules/ga41/ga41-fields.php:125
+#: admin/modules/fbp1/fbp1-fields.php:293
+#: admin/modules/ga41/ga41-fields.php:114
 #: admin/modules/ga42__premium_only/ga42-fields.php:33
 #: admin/modules/gtm/gtm-fields.php:367
 #: admin/modules/hotj/hotj-fields.php:104
@@ -3899,36 +3940,36 @@ msgstr ""
 msgid "Tracking events"
 msgstr ""
 
-#: admin/modules/fbp1/fbp1-fields.php:296
+#: admin/modules/fbp1/fbp1-fields.php:297
 #: admin/modules/hotj/hotj-fields.php:108
 msgid "Track clicks on outbound links"
 msgstr ""
 
-#: admin/modules/fbp1/fbp1-fields.php:299
+#: admin/modules/fbp1/fbp1-fields.php:300
 msgid ""
 "This will track clicks on all the links that lead to other domains. "
 "Attention! Affiliate links leading to other sites are also treated as "
 "outbound."
 msgstr ""
 
-#: admin/modules/fbp1/fbp1-fields.php:299
+#: admin/modules/fbp1/fbp1-fields.php:300
 msgid "Tracked as a parameter \"url\" of the \"outbound\" event"
 msgstr ""
 
-#: admin/modules/fbp1/fbp1-fields.php:303
-#: admin/modules/fbp1/fbp1-fields.php:338
-#: admin/modules/fbp1/fbp1-fields.php:356
-#: admin/modules/fbp1/fbp1-fields.php:372
-#: admin/modules/fbp1/fbp1-fields.php:417
-#: admin/modules/fbp1/fbp1-fields.php:454
-#: admin/modules/fbp1/fbp1-fields.php:491
-#: admin/modules/fbp1/fbp1-fields.php:511
-#: admin/modules/fbp1/fbp1-fields.php:528
+#: admin/modules/fbp1/fbp1-fields.php:304
+#: admin/modules/fbp1/fbp1-fields.php:339
+#: admin/modules/fbp1/fbp1-fields.php:357
+#: admin/modules/fbp1/fbp1-fields.php:373
+#: admin/modules/fbp1/fbp1-fields.php:418
+#: admin/modules/fbp1/fbp1-fields.php:455
+#: admin/modules/fbp1/fbp1-fields.php:492
+#: admin/modules/fbp1/fbp1-fields.php:512
+#: admin/modules/fbp1/fbp1-fields.php:529
 msgid "Also track with Conversion API"
 msgstr ""
 
-#: admin/modules/fbp1/fbp1-fields.php:312
-#: admin/modules/ga41/ga41-fields.php:158
+#: admin/modules/fbp1/fbp1-fields.php:313
+#: admin/modules/ga41/ga41-fields.php:147
 #: admin/modules/ga42__premium_only/ga42-fields.php:66
 #: admin/modules/hotj/hotj-fields.php:115
 #: admin/modules/linkd/linkd-fields.php:109
@@ -3938,36 +3979,36 @@ msgstr ""
 msgid "Track clicks on affiliate links"
 msgstr ""
 
-#: admin/modules/fbp1/fbp1-fields.php:327
+#: admin/modules/fbp1/fbp1-fields.php:328
 #: admin/modules/gtm/gtm-fields.php:62
 msgid "Name (optional)"
 msgstr ""
 
-#: admin/modules/fbp1/fbp1-fields.php:334
+#: admin/modules/fbp1/fbp1-fields.php:335
 msgid ""
 "These clicks will be tracked as a parameter \"target\" of the "
 "\"affiliate\" event"
 msgstr ""
 
-#: admin/modules/fbp1/fbp1-fields.php:347
+#: admin/modules/fbp1/fbp1-fields.php:348
 #: admin/modules/hotj/hotj-fields.php:148
 #: admin/modules/mads/mads-fields.php:125
 #: admin/modules/tik/tik-fields.php:96
 msgid "Track clicks on file download links"
 msgstr ""
 
-#: admin/modules/fbp1/fbp1-fields.php:352
+#: admin/modules/fbp1/fbp1-fields.php:353
 #: admin/modules/gtm/gtm-fields.php:76 admin/modules/pla/pla-fields.php:368
 msgid ""
 "Enter coma separated list of file formats (extensions) you want to track"
 msgstr ""
 
-#: admin/modules/fbp1/fbp1-fields.php:352
+#: admin/modules/fbp1/fbp1-fields.php:353
 msgid "Tracked as a parameter \"file\" of the \"file download\" event"
 msgstr ""
 
-#: admin/modules/fbp1/fbp1-fields.php:365
-#: admin/modules/ga41/ga41-fields.php:139
+#: admin/modules/fbp1/fbp1-fields.php:366
+#: admin/modules/ga41/ga41-fields.php:128
 #: admin/modules/ga42__premium_only/ga42-fields.php:47
 #: admin/modules/hotj/hotj-fields.php:141
 #: admin/modules/mato/mato-fields.php:278
@@ -3975,13 +4016,13 @@ msgstr ""
 msgid "Track clicks on email and tel. links"
 msgstr ""
 
-#: admin/modules/fbp1/fbp1-fields.php:368
+#: admin/modules/fbp1/fbp1-fields.php:369
 msgid ""
 "Tracked as parameters \"target\" and \"type\" of the \"Contact\" event"
 msgstr ""
 
-#: admin/modules/fbp1/fbp1-fields.php:381
-#: admin/modules/ga41/ga41-fields.php:206
+#: admin/modules/fbp1/fbp1-fields.php:382
+#: admin/modules/ga41/ga41-fields.php:195
 #: admin/modules/ga42__premium_only/ga42-fields.php:114
 #: admin/modules/hotj/hotj-fields.php:164
 #: admin/modules/linkd/linkd-fields.php:134
@@ -3993,14 +4034,14 @@ msgstr ""
 msgid "Track clicks on page elements"
 msgstr ""
 
-#: admin/modules/fbp1/fbp1-fields.php:403
+#: admin/modules/fbp1/fbp1-fields.php:404
 msgid ""
 "These clicks will be tracked as a parameter \"name\" of the \"click on "
 "element\" event"
 msgstr ""
 
-#: admin/modules/fbp1/fbp1-fields.php:426
-#: admin/modules/ga41/ga41-fields.php:263
+#: admin/modules/fbp1/fbp1-fields.php:427
+#: admin/modules/ga41/ga41-fields.php:252
 #: admin/modules/ga42__premium_only/ga42-fields.php:171
 #: admin/modules/hotj/hotj-fields.php:199
 #: admin/modules/linkd/linkd-fields.php:169
@@ -4012,17 +4053,17 @@ msgstr ""
 msgid "Track form submissions"
 msgstr ""
 
-#: admin/modules/fbp1/fbp1-fields.php:441
+#: admin/modules/fbp1/fbp1-fields.php:442
 #: admin/modules/gtm/gtm-fields.php:132
 #: admin/modules/pla/pla-fields.php:325
 msgid "Form name (required)"
 msgstr ""
 
-#: admin/modules/fbp1/fbp1-fields.php:450
+#: admin/modules/fbp1/fbp1-fields.php:451
 msgid "Tracked as a parameter \"form\" of the \"form submit\" event"
 msgstr ""
 
-#: admin/modules/fbp1/fbp1-fields.php:463
+#: admin/modules/fbp1/fbp1-fields.php:464
 #: admin/modules/hotj/hotj-fields.php:226
 #: admin/modules/linkd/linkd-fields.php:196
 #: admin/modules/mato/mato-fields.php:371
@@ -4031,27 +4072,27 @@ msgstr ""
 msgid "Track when page elements show on screen"
 msgstr ""
 
-#: admin/modules/fbp1/fbp1-fields.php:486
+#: admin/modules/fbp1/fbp1-fields.php:487
 msgid "Tracked as a parameter \"element\" of the \"user viewed\" event"
 msgstr ""
 
-#: admin/modules/fbp1/fbp1-fields.php:500
-#: admin/modules/ga41/ga41-fields.php:374
+#: admin/modules/fbp1/fbp1-fields.php:501
+#: admin/modules/ga41/ga41-fields.php:363
 #: admin/modules/ga42__premium_only/ga42-fields.php:282
 #: admin/modules/mato/mato-fields.php:400
 msgid "Track when visitors scroll to:"
 msgstr ""
 
-#: admin/modules/fbp1/fbp1-fields.php:502
-#: admin/modules/ga41/ga41-fields.php:375
+#: admin/modules/fbp1/fbp1-fields.php:503
+#: admin/modules/ga41/ga41-fields.php:364
 #: admin/modules/ga42__premium_only/ga42-fields.php:283
 #: admin/modules/gtm/gtm-fields.php:177
 #: admin/modules/mato/mato-fields.php:401
 msgid "e.g. 25, 50, 75"
 msgstr ""
 
-#: admin/modules/fbp1/fbp1-fields.php:505
-#: admin/modules/ga41/ga41-fields.php:380
+#: admin/modules/fbp1/fbp1-fields.php:506
+#: admin/modules/ga41/ga41-fields.php:369
 #: admin/modules/ga42__premium_only/ga42-fields.php:288
 #: admin/modules/gtm/gtm-fields.php:178
 #: admin/modules/mato/mato-fields.php:402
@@ -4059,45 +4100,45 @@ msgstr ""
 msgid "% of page height"
 msgstr ""
 
-#: admin/modules/fbp1/fbp1-fields.php:506
+#: admin/modules/fbp1/fbp1-fields.php:507
 #: admin/modules/mato/mato-fields.php:406
 msgid "Separate multiple values with comas. Do not use \"%\" symbol."
 msgstr ""
 
-#: admin/modules/fbp1/fbp1-fields.php:507
+#: admin/modules/fbp1/fbp1-fields.php:508
 msgid "Tracked as a parameter \"scroll height\" of the \"scroll\" event"
 msgstr ""
 
-#: admin/modules/fbp1/fbp1-fields.php:516
+#: admin/modules/fbp1/fbp1-fields.php:517
 msgid ""
 "Tracking scroll with server can greatly decrease its performance. It is "
 "NOT recommended to enable this function on slow hosting."
 msgstr ""
 
-#: admin/modules/fbp1/fbp1-fields.php:520
+#: admin/modules/fbp1/fbp1-fields.php:521
 msgid ""
 "Track how long visitors are actively engaged with the website's content"
 msgstr ""
 
-#: admin/modules/fbp1/fbp1-fields.php:524
+#: admin/modules/fbp1/fbp1-fields.php:525
 msgid ""
 "Tracked as a parameter \"seconds\" of the \"user engagement time\" event"
 msgstr ""
 
-#: admin/modules/fbp1/fbp1-fields.php:533
+#: admin/modules/fbp1/fbp1-fields.php:534
 msgid ""
 "Tracking engagement time with server will decrease its performance. It "
 "is NOT recommended to enable this function on slow hosting."
 msgstr ""
 
-#: admin/modules/fbp1/fbp1-fields.php:542
-#: admin/modules/ga41/ga41-fields.php:409
+#: admin/modules/fbp1/fbp1-fields.php:543
+#: admin/modules/ga41/ga41-fields.php:398
 #: admin/modules/ga42__premium_only/ga42-fields.php:317
 msgid "Tracking event parameters"
 msgstr ""
 
-#: admin/modules/fbp1/fbp1-fields.php:550
-#: admin/modules/ga41/ga41-fields.php:585
+#: admin/modules/fbp1/fbp1-fields.php:551
+#: admin/modules/ga41/ga41-fields.php:574
 #: admin/modules/gads/gads-fields.php:257
 #: admin/modules/gtm/gtm-fields.php:395
 #: admin/modules/mato/mato-fields.php:454
@@ -4105,16 +4146,16 @@ msgstr ""
 msgid "Tracking lead scores and custom events"
 msgstr ""
 
-#: admin/modules/fbp1/fbp1-fields.php:554
-#: admin/modules/ga41/ga41-fields.php:589
+#: admin/modules/fbp1/fbp1-fields.php:555
+#: admin/modules/ga41/ga41-fields.php:578
 #: admin/modules/gtm/gtm-fields.php:399
 #: admin/modules/mato/mato-fields.php:458
 #: admin/modules/pla/pla-fields.php:424
 msgid "Track when specific conditions are met"
 msgstr ""
 
-#: admin/modules/fbp1/fbp1-fields.php:562
-#: admin/modules/ga41/ga41-fields.php:597
+#: admin/modules/fbp1/fbp1-fields.php:563
+#: admin/modules/ga41/ga41-fields.php:586
 #: admin/modules/gads/gads-fields.php:269
 #: admin/modules/gtm/gtm-fields.php:407
 #: admin/modules/mato/mato-fields.php:466
@@ -4122,8 +4163,8 @@ msgstr ""
 msgid "When this happens"
 msgstr ""
 
-#: admin/modules/fbp1/fbp1-fields.php:570
-#: admin/modules/ga41/ga41-fields.php:606
+#: admin/modules/fbp1/fbp1-fields.php:571
+#: admin/modules/ga41/ga41-fields.php:595
 #: admin/modules/gads/gads-fields.php:278
 #: admin/modules/gtm/gtm-fields.php:416
 #: admin/modules/mato/mato-fields.php:475
@@ -4131,8 +4172,8 @@ msgstr ""
 msgid "...for..."
 msgstr ""
 
-#: admin/modules/fbp1/fbp1-fields.php:575
-#: admin/modules/ga41/ga41-fields.php:611
+#: admin/modules/fbp1/fbp1-fields.php:576
+#: admin/modules/ga41/ga41-fields.php:600
 #: admin/modules/gads/gads-fields.php:283
 #: admin/modules/gtm/gtm-fields.php:421
 #: admin/modules/mato/mato-fields.php:480
@@ -4140,8 +4181,8 @@ msgstr ""
 msgid "The first time"
 msgstr ""
 
-#: admin/modules/fbp1/fbp1-fields.php:576
-#: admin/modules/ga41/ga41-fields.php:612
+#: admin/modules/fbp1/fbp1-fields.php:577
+#: admin/modules/ga41/ga41-fields.php:601
 #: admin/modules/gads/gads-fields.php:284
 #: admin/modules/gtm/gtm-fields.php:422
 #: admin/modules/mato/mato-fields.php:481
@@ -4149,100 +4190,76 @@ msgstr ""
 msgid "Every time"
 msgstr ""
 
-#: admin/modules/fbp1/fbp1-fields.php:581
+#: admin/modules/fbp1/fbp1-fields.php:582
 #: admin/modules/gads/gads-fields.php:289
 msgid "Send event"
 msgstr ""
 
-#: admin/modules/fbp1/fbp1-fields.php:582
-#: admin/modules/ga41/ga41-fields.php:618
+#: admin/modules/fbp1/fbp1-fields.php:583
+#: admin/modules/ga41/ga41-fields.php:607
 #: admin/modules/gtm/gtm-fields.php:428
 msgid "event_name"
 msgstr ""
 
-#: admin/modules/fbp1/fbp1-fields.php:590
+#: admin/modules/fbp1/fbp1-fields.php:591
 msgid "Also track with CAPI"
 msgstr ""
 
-#: admin/modules/fbp1/fbp1-fields.php:606
+#: admin/modules/fbp1/fbp1-fields.php:607
 msgid "Tracking WooCommerce"
 msgstr ""
 
-#: admin/modules/fbp1/fbp1-fields.php:610
-msgid "Advanced Order Tracking with Conversion API"
+#: admin/modules/fbp1/fbp1-fields.php:611
+msgid "Status-Based Order Tracking with Conversion API"
 msgstr ""
 
-#: admin/modules/fbp1/fbp1-fields.php:614
+#: admin/modules/fbp1/fbp1-fields.php:615
 msgid ""
 "This feature requires the use of Conversion API. Please check if you "
 "entered its key in the \"Installation\" section."
 msgstr ""
 
-#: admin/modules/fbp1/fbp1-fields.php:616
-#: admin/modules/ga41/ga41-fields.php:667
-msgid "What is Advanced Order Tracking"
-msgstr ""
-
 #: admin/modules/fbp1/fbp1-fields.php:617
-#: admin/modules/ga41/ga41-fields.php:668
+#: admin/modules/ga41/ga41-fields.php:665 admin/modules/woo/woo-faq.php:21
 msgid ""
-"Advanced Order Tracking is a more accurate method of tracking purchases."
+"Status-Based Order Tracking is an alternative method of tracking "
+"purchases. Instead of tracking them on order confirmation pages, orders "
+"are tracked when their status changes."
 msgstr ""
 
 #: admin/modules/fbp1/fbp1-fields.php:618
-#: admin/modules/ga41/ga41-fields.php:669
-msgid "How is it better then standard tracking?"
+#: admin/modules/ga41/ga41-fields.php:666 admin/modules/woo/woo-faq.php:22
+msgid ""
+"This method of tracking is recommended for stores that use payment "
+"gateways, which do not redirect back to the order confirmation page."
 msgstr ""
 
 #: admin/modules/fbp1/fbp1-fields.php:619
-msgid ""
-"Typically, orders are tracked when clients view order confirmation page. "
-"However, some clients never view this page (they do not return to store "
-"page after paying for their order)."
-msgstr ""
-
-#: admin/modules/fbp1/fbp1-fields.php:620
-msgid ""
-"Advanced Order Tracking works differently. It tracks orders when they "
-"get specific statuses (see settings in the WooCommerce Tracking module) "
-"which makes tracking more accurate."
+#: admin/modules/ga41/ga41-fields.php:311
+#: admin/modules/ga41/ga41-fields.php:668
+#: admin/modules/ga42__premium_only/ga42-fields.php:230
+msgid "Other information"
 msgstr ""
 
 #: admin/modules/fbp1/fbp1-fields.php:621
-#: admin/modules/ga41/ga41-fields.php:678
-msgid "What you must know"
-msgstr ""
-
-#: admin/modules/fbp1/fbp1-fields.php:623
-#: admin/modules/ga41/ga41-fields.php:680
+#: admin/modules/ga41/ga41-fields.php:670
 msgid ""
-"When AOT is enabled, no \"purchase\" event will be sent on the order "
-"confirmation page."
+"Orders will be tracked when they get a status that is set in "
+"\"WooCommerce Tracking\" page > \"Status-Based Order Tracking\" section."
 msgstr ""
 
-#: admin/modules/fbp1/fbp1-fields.php:624
-#: admin/modules/ga41/ga41-fields.php:681
-msgid ""
-"Orders will be tracked when they get a status that is set in WooCommerce "
-"Tracking module."
-msgstr ""
-
-#: admin/modules/fbp1/fbp1-fields.php:625
-#: admin/modules/ga41/ga41-fields.php:682
+#: admin/modules/fbp1/fbp1-fields.php:622
+#: admin/modules/ga41/ga41-fields.php:671 admin/modules/woo/woo-faq.php:29
 msgid ""
 "Purchases are attributed to users and sessions just like with standard "
 "tracking."
 msgstr ""
 
-#: admin/modules/fbp1/fbp1-fields.php:626
-msgid "Purchase event is sent servers-side, using Conversion API."
-msgstr ""
-
-#: admin/modules/fbp1/fbp1-fields.php:627
-#: admin/modules/ga41/ga41-fields.php:685
+#: admin/modules/fbp1/fbp1-fields.php:623
+#: admin/modules/ga41/ga41-fields.php:672 admin/modules/woo/woo-faq.php:30
 msgid ""
-"AOT does not track orders added manually in the WooCommerce admin panel, "
-"since they cannot be attributed to any website users."
+"SBOT does not track orders added manually in the WooCommerce admin "
+"panel, since they cannot be attributed to any website users."
 msgstr ""
 
 #: admin/modules/ga41/ga41-descr.php:18
@@ -4252,15 +4269,6 @@ msgstr ""
 #: admin/modules/ga41/ga41-descr.php:18
 #: admin/modules/ga42__premium_only/ga42-descr.php:18
 msgid "The data is sent to an account with measurement ID "
-msgstr ""
-
-#: admin/modules/ga41/ga41-descr.php:25
-msgid ""
-"If you have consent banner enabled in the opt-in or one of automatic "
-"modes, GA will start tracking after visitors consent to using their "
-"personal data for statistics. Additional functionality of GA will be "
-"enabled if they also consent to using the data for marketing purposes."
-"Google consent mode can be enabled in the settings of the consent banner."
 msgstr ""
 
 #: admin/modules/ga41/ga41-descr.php:31
@@ -4274,26 +4282,30 @@ msgstr ""
 
 #: admin/modules/ga41/ga41-descr.php:43
 #: admin/modules/ga42__premium_only/ga42-descr.php:37
-#, php-format
-msgid ""
-"Event parameters give context to GA events. In order to see them in GA, "
-"you need to %1$sregistered them as custom dimensions%2$s and set up "
-"custom reports. They will not be visible in standard reports."
+msgid "Event parameters give context to GA events."
 msgstr ""
 
-#: admin/modules/ga41/ga41-descr.php:57
-#: admin/modules/ga42__premium_only/ga42-descr.php:50
-msgid "product list view"
+#: admin/modules/ga41/ga41-descr.php:44
+#: admin/modules/ga42__premium_only/ga42-descr.php:38
+#, php-format
+msgid ""
+"In order to see them in GA, you need to %1$sregistered them as custom "
+"dimensions%2$s."
 msgstr ""
 
 #: admin/modules/ga41/ga41-descr.php:58
 #: admin/modules/ga42__premium_only/ga42-descr.php:51
+msgid "product list view"
+msgstr ""
+
+#: admin/modules/ga41/ga41-descr.php:59
+#: admin/modules/ga42__premium_only/ga42-descr.php:52
 #: admin/modules/gtm/gtm-descr.php:50
 msgid "list item click"
 msgstr ""
 
-#: admin/modules/ga41/ga41-descr.php:74
-#: admin/modules/ga42__premium_only/ga42-descr.php:67
+#: admin/modules/ga41/ga41-descr.php:75
+#: admin/modules/ga42__premium_only/ga42-descr.php:68
 msgid "These functions are scheduled for removal in future updates"
 msgstr ""
 
@@ -4438,10 +4450,10 @@ msgid ""
 msgstr ""
 
 #: admin/modules/ga41/ga41-faq.php:73
-#: admin/modules/ga41/ga41-fields.php:171
-#: admin/modules/ga41/ga41-fields.php:219
-#: admin/modules/ga41/ga41-fields.php:316
-#: admin/modules/ga41/ga41-fields.php:365
+#: admin/modules/ga41/ga41-fields.php:160
+#: admin/modules/ga41/ga41-fields.php:208
+#: admin/modules/ga41/ga41-fields.php:305
+#: admin/modules/ga41/ga41-fields.php:354
 #: admin/modules/ga42__premium_only/ga42-faq.php:80
 #: admin/modules/ga42__premium_only/ga42-fields.php:79
 #: admin/modules/ga42__premium_only/ga42-fields.php:127
@@ -4453,11 +4465,11 @@ msgid ""
 msgstr ""
 
 #: admin/modules/ga41/ga41-faq.php:74
-#: admin/modules/ga41/ga41-fields.php:151
-#: admin/modules/ga41/ga41-fields.php:172
-#: admin/modules/ga41/ga41-fields.php:220
-#: admin/modules/ga41/ga41-fields.php:317
-#: admin/modules/ga41/ga41-fields.php:366
+#: admin/modules/ga41/ga41-fields.php:140
+#: admin/modules/ga41/ga41-fields.php:161
+#: admin/modules/ga41/ga41-fields.php:209
+#: admin/modules/ga41/ga41-fields.php:306
+#: admin/modules/ga41/ga41-fields.php:355
 #: admin/modules/ga42__premium_only/ga42-faq.php:81
 #: admin/modules/ga42__premium_only/ga42-fields.php:59
 #: admin/modules/ga42__premium_only/ga42-fields.php:80
@@ -4491,9 +4503,9 @@ msgid ""
 msgstr ""
 
 #: admin/modules/ga41/ga41-faq.php:78
-#: admin/modules/ga41/ga41-fields.php:224
-#: admin/modules/ga41/ga41-fields.php:321
-#: admin/modules/ga41/ga41-fields.php:370
+#: admin/modules/ga41/ga41-fields.php:213
+#: admin/modules/ga41/ga41-fields.php:310
+#: admin/modules/ga41/ga41-fields.php:359
 #: admin/modules/ga42__premium_only/ga42-faq.php:85
 #: admin/modules/ga42__premium_only/ga42-fields.php:132
 #: admin/modules/ga42__premium_only/ga42-fields.php:229
@@ -4531,54 +4543,42 @@ msgstr ""
 
 #: admin/modules/ga41/ga41-fields.php:16
 #: admin/modules/ga42__premium_only/ga42-fields.php:17
-msgid "Measurement ID"
+#: admin/modules/gads/gads-fields.php:8
+msgid "GTAG ID"
+msgstr ""
+
+#: admin/modules/ga41/ga41-fields.php:22
+#: admin/modules/ga42__premium_only/ga42-fields.php:23
+msgid "G-0000000 or GT-0000000"
 msgstr ""
 
 #: admin/modules/ga41/ga41-fields.php:23
-#: admin/modules/ga41/ga41-fields.php:33
 #: admin/modules/ga42__premium_only/ga42-fields.php:24
 #, php-format
 msgid "%1$sLearn where to find it%2$s"
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:23
-#, php-format
-msgid ""
-"%1$sRead this article%2$s if this Measurement ID was previously used "
-"with a different integration."
-msgstr ""
-
 #: admin/modules/ga41/ga41-fields.php:27
-msgid "Measurement Protocol API secret key (for server-side tracking)"
-msgstr ""
-
-#: admin/modules/ga41/ga41-fields.php:34
-msgid ""
-"Measurement Protocol is used for WooCommerce Advanced Order Tracking. "
-"See \"WooCommerce Tracking\" section for more information."
-msgstr ""
-
-#: admin/modules/ga41/ga41-fields.php:38
 msgid "Avoid issues when using multiple GAs on a single site"
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:41
+#: admin/modules/ga41/ga41-fields.php:30
 msgid ""
 "Enable this function if you installed another GA tracking script with a "
 "different plugin, the Custom Scripts module or a Google Tag Manager."
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:45
+#: admin/modules/ga41/ga41-fields.php:34
 msgid "Enhanced Conversions"
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:49
+#: admin/modules/ga41/ga41-fields.php:38
 msgid ""
 "This function only has an effect if you link your Google Analytics with "
 "your Google Ads account."
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:50
+#: admin/modules/ga41/ga41-fields.php:39
 msgid ""
 "Enhanced Conversions improves the accuracy of conversion tracking in "
 "Google Ads when it is linked with Google Analytics. This option sends to "
@@ -4587,25 +4587,25 @@ msgid ""
 "by Google to better match the conversions with specific users."
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:51
+#: admin/modules/ga41/ga41-fields.php:40
 msgid ""
 "To implement Enhanced Conversions in Google Ads via Google Analytics "
 "follow the steps below."
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:53
+#: admin/modules/ga41/ga41-fields.php:42
 msgid ""
 "Go to your Google Analytics panel > Admin (settings page) > Data "
 "Collection > and enable \"User-provided data collection\" "
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:54
+#: admin/modules/ga41/ga41-fields.php:43
 msgid ""
 "Go back to the Admin page (settings page) > and link your GA with G Ads "
 "in Google Ads links section\" "
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:55
+#: admin/modules/ga41/ga41-fields.php:44
 #: admin/modules/gads/gads-fields.php:35
 msgid ""
 "Enable \"Enhanced Conversions\" via Google Tag in your Google Ads "
@@ -4615,7 +4615,7 @@ msgid ""
 "menu using the \"Appearance\" switch in the top."
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:56
+#: admin/modules/ga41/ga41-fields.php:45
 #: admin/modules/gads/gads-fields.php:36
 #, php-format
 msgid ""
@@ -4624,41 +4624,41 @@ msgid ""
 "in your country."
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:57
+#: admin/modules/ga41/ga41-fields.php:46
 #: admin/modules/gads/gads-fields.php:37
 msgid ""
 "Add information to your privacy policy that you send personal user data "
 "to Google."
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:78
+#: admin/modules/ga41/ga41-fields.php:67
 #: admin/modules/gads/gads-fields.php:54
 msgid ""
 "If you have a consent banner enabled, this will NOT start tracking "
 "visitors who did not agree to it."
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:88
+#: admin/modules/ga41/ga41-fields.php:77
 msgid ""
 "This option only applies when your consent banner is in the opt-in mode "
 "or one of automatic modes."
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:89
+#: admin/modules/ga41/ga41-fields.php:78
 msgid ""
 "When you enable this option, GA will disregard settings in your consent "
 "banner and load without waiting for user's consent."
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:100
+#: admin/modules/ga41/ga41-fields.php:89
 msgid "If visitor's country is not recognized GA will load normally."
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:129
+#: admin/modules/ga41/ga41-fields.php:118
 msgid "Identify logged-in users across devices and browsers"
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:133
+#: admin/modules/ga41/ga41-fields.php:122
 #: admin/modules/ga42__premium_only/ga42-fields.php:41
 msgid ""
 "When you enable this option WP Full Picture will start sending to Google "
@@ -4667,25 +4667,25 @@ msgid ""
 "browsers."
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:134
+#: admin/modules/ga41/ga41-fields.php:123
 #: admin/modules/ga42__premium_only/ga42-fields.php:42
 #, php-format
 msgid "You can learn more about it from %1$sGoogle's documentation%2$s."
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:135
+#: admin/modules/ga41/ga41-fields.php:124
 #: admin/modules/ga42__premium_only/ga42-fields.php:43
 msgid ""
 "Attention! You must add to your privacy policy information on your use "
 "of this ID."
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:143
-#: admin/modules/ga41/ga41-fields.php:164
-#: admin/modules/ga41/ga41-fields.php:212
-#: admin/modules/ga41/ga41-fields.php:269
-#: admin/modules/ga41/ga41-fields.php:308
-#: admin/modules/ga41/ga41-fields.php:358
+#: admin/modules/ga41/ga41-fields.php:132
+#: admin/modules/ga41/ga41-fields.php:153
+#: admin/modules/ga41/ga41-fields.php:201
+#: admin/modules/ga41/ga41-fields.php:258
+#: admin/modules/ga41/ga41-fields.php:297
+#: admin/modules/ga41/ga41-fields.php:347
 #: admin/modules/ga42__premium_only/ga42-fields.php:51
 #: admin/modules/ga42__premium_only/ga42-fields.php:72
 #: admin/modules/ga42__premium_only/ga42-fields.php:120
@@ -4695,29 +4695,29 @@ msgstr ""
 msgid "Do not track"
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:144
-#: admin/modules/ga41/ga41-fields.php:165
+#: admin/modules/ga41/ga41-fields.php:133
+#: admin/modules/ga41/ga41-fields.php:154
 #: admin/modules/ga42__premium_only/ga42-fields.php:52
 #: admin/modules/ga42__premium_only/ga42-fields.php:73
 msgid "Track every link with a different event"
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:145
-#: admin/modules/ga41/ga41-fields.php:166
+#: admin/modules/ga41/ga41-fields.php:134
+#: admin/modules/ga41/ga41-fields.php:155
 #: admin/modules/ga42__premium_only/ga42-fields.php:53
 #: admin/modules/ga42__premium_only/ga42-fields.php:74
 msgid ""
 "Track every link with the same event but different parameter (advanced)"
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:148
-#: admin/modules/ga41/ga41-fields.php:169
+#: admin/modules/ga41/ga41-fields.php:137
+#: admin/modules/ga41/ga41-fields.php:158
 #: admin/modules/ga42__premium_only/ga42-fields.php:56
 #: admin/modules/ga42__premium_only/ga42-fields.php:77
 msgid "\"Track every link with a different event\" option"
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:149
+#: admin/modules/ga41/ga41-fields.php:138
 #: admin/modules/ga42__premium_only/ga42-fields.php:57
 msgid ""
 "When you choose this option, every time someone clicks a contact link WP "
@@ -4726,21 +4726,21 @@ msgid ""
 "part before @]\"."
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:150
+#: admin/modules/ga41/ga41-fields.php:139
 #: admin/modules/ga42__premium_only/ga42-fields.php:58
 msgid ""
 "This option is recommended if you do not have many phone and email links "
 "on your website and/or you are not an advanced GA user."
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:152
+#: admin/modules/ga41/ga41-fields.php:141
 #: admin/modules/ga42__premium_only/ga42-fields.php:60
 msgid ""
 "When you choose this option, WP FP will send to your GA events "
 "\"email_link_click\" and \"tel_link_click\"."
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:153
+#: admin/modules/ga41/ga41-fields.php:142
 #: admin/modules/ga42__premium_only/ga42-fields.php:61
 #, php-format
 msgid ""
@@ -4749,19 +4749,19 @@ msgid ""
 "and build a custom report."
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:154
+#: admin/modules/ga41/ga41-fields.php:143
 #: admin/modules/ga42__premium_only/ga42-fields.php:62
 msgid ""
 "This option is recommended if you have many different contact links on "
 "the website and you are an advanced GA user."
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:168
+#: admin/modules/ga41/ga41-fields.php:157
 #: admin/modules/ga42__premium_only/ga42-fields.php:76
 msgid "Enable this function to track clicks on affiliate links."
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:170
+#: admin/modules/ga41/ga41-fields.php:159
 #: admin/modules/ga42__premium_only/ga42-fields.php:78
 #, php-format
 msgid ""
@@ -4771,21 +4771,21 @@ msgid ""
 "naming rules%2$s."
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:173
+#: admin/modules/ga41/ga41-fields.php:162
 #: admin/modules/ga42__premium_only/ga42-fields.php:81
 msgid ""
 "When you choose this option, every time someone clicks an affiliate "
 "link, WP FP will send to your GA event \"affiliate_link_click\"."
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:174
+#: admin/modules/ga41/ga41-fields.php:163
 #: admin/modules/ga42__premium_only/ga42-fields.php:82
 msgid ""
 "Information about the names of the links will be sent to GA as event "
 "parameters."
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:175
+#: admin/modules/ga41/ga41-fields.php:164
 #: admin/modules/ga42__premium_only/ga42-fields.php:83
 #, php-format
 msgid ""
@@ -4794,30 +4794,30 @@ msgid ""
 "%1$saffiliate_link_click%2$s and build a custom report."
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:176
+#: admin/modules/ga41/ga41-fields.php:165
 #: admin/modules/ga42__premium_only/ga42-fields.php:84
 msgid ""
 "This option is recommended if you have many different affiliate links on "
 "the website and you are an advanced GA user."
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:180
+#: admin/modules/ga41/ga41-fields.php:169
 #: admin/modules/ga42__premium_only/ga42-fields.php:88
 msgid "Links"
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:188
+#: admin/modules/ga41/ga41-fields.php:177
 #: admin/modules/ga42__premium_only/ga42-fields.php:96
 #: admin/modules/insp/insp-fields.php:122
 msgid "Url part, e.g. /go/"
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:195
+#: admin/modules/ga41/ga41-fields.php:184
 #: admin/modules/ga42__premium_only/ga42-fields.php:103
 msgid "Event name or link name"
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:202
+#: admin/modules/ga41/ga41-fields.php:191
 #: admin/modules/ga42__premium_only/ga42-fields.php:110
 msgid ""
 "If you chose an option to track clicks with different parameters, then "
@@ -4826,15 +4826,15 @@ msgid ""
 "element. Make sure it has any."
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:213
-#: admin/modules/ga41/ga41-fields.php:309
+#: admin/modules/ga41/ga41-fields.php:202
+#: admin/modules/ga41/ga41-fields.php:298
 #: admin/modules/ga42__premium_only/ga42-fields.php:121
 #: admin/modules/ga42__premium_only/ga42-fields.php:217
 msgid "Track every element with a different event"
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:214
-#: admin/modules/ga41/ga41-fields.php:310
+#: admin/modules/ga41/ga41-fields.php:203
+#: admin/modules/ga41/ga41-fields.php:299
 #: admin/modules/ga42__premium_only/ga42-fields.php:122
 #: admin/modules/ga42__premium_only/ga42-fields.php:218
 msgid ""
@@ -4842,19 +4842,19 @@ msgid ""
 "(advanced)"
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:216
+#: admin/modules/ga41/ga41-fields.php:205
 #: admin/modules/ga42__premium_only/ga42-fields.php:124
 msgid "Enable this function to track clicks on page elements."
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:217
-#: admin/modules/ga41/ga41-fields.php:314
+#: admin/modules/ga41/ga41-fields.php:206
+#: admin/modules/ga41/ga41-fields.php:303
 #: admin/modules/ga42__premium_only/ga42-fields.php:125
 #: admin/modules/ga42__premium_only/ga42-fields.php:222
 msgid "\"Track every element with a different event\" option"
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:218
+#: admin/modules/ga41/ga41-fields.php:207
 #: admin/modules/ga42__premium_only/ga42-fields.php:126
 #, php-format
 msgid ""
@@ -4864,21 +4864,21 @@ msgid ""
 "naming rules%2$s."
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:221
+#: admin/modules/ga41/ga41-fields.php:210
 #: admin/modules/ga42__premium_only/ga42-fields.php:129
 msgid ""
 "When you choose this option, every time someone clicks an element, WP FP "
 "will send to your GA event \"element_click\"."
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:222
+#: admin/modules/ga41/ga41-fields.php:211
 #: admin/modules/ga42__premium_only/ga42-fields.php:130
 msgid ""
 "Information about the names of the clicked elements will be sent to GA "
 "as event parameters."
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:223
+#: admin/modules/ga41/ga41-fields.php:212
 #: admin/modules/ga42__premium_only/ga42-fields.php:131
 #, php-format
 msgid ""
@@ -4887,12 +4887,12 @@ msgid ""
 "%1$selement_click%2$s and build a custom report."
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:228
+#: admin/modules/ga41/ga41-fields.php:217
 #: admin/modules/ga42__premium_only/ga42-fields.php:136
 msgid "Page elements"
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:238
+#: admin/modules/ga41/ga41-fields.php:227
 #: admin/modules/ga42__premium_only/ga42-fields.php:146
 msgid ""
 "If you are tracking events with a single event name but different "
@@ -4901,45 +4901,45 @@ msgid ""
 "clicked element. Make sure it has any."
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:253
+#: admin/modules/ga41/ga41-fields.php:242
 #: admin/modules/ga42__premium_only/ga42-fields.php:161
 msgid "Event name or element name"
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:270
+#: admin/modules/ga41/ga41-fields.php:259
 #: admin/modules/ga42__premium_only/ga42-fields.php:178
 msgid "Track every form with a different event"
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:271
+#: admin/modules/ga41/ga41-fields.php:260
 #: admin/modules/ga42__premium_only/ga42-fields.php:179
 msgid ""
 "Track every form with the same event but different parameter (advanced)"
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:277
+#: admin/modules/ga41/ga41-fields.php:266
 #: admin/modules/ga42__premium_only/ga42-fields.php:185
 msgid "Forms"
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:292
+#: admin/modules/ga41/ga41-fields.php:281
 #: admin/modules/ga42__premium_only/ga42-fields.php:200
 msgid "Event name or form name"
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:302
+#: admin/modules/ga41/ga41-fields.php:291
 #: admin/modules/ga42__premium_only/ga42-fields.php:210
 msgid "Track when visitors see specific page elements"
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:312
+#: admin/modules/ga41/ga41-fields.php:301
 #: admin/modules/ga42__premium_only/ga42-fields.php:220
 msgid ""
 "Enable this function to track when specific page elements are visible to "
 "the visitor."
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:315
+#: admin/modules/ga41/ga41-fields.php:304
 #: admin/modules/ga42__premium_only/ga42-fields.php:223
 #, php-format
 msgid ""
@@ -4948,21 +4948,21 @@ msgid ""
 "The event names must follow %1$sthese naming rules%2$s."
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:318
+#: admin/modules/ga41/ga41-fields.php:307
 #: admin/modules/ga42__premium_only/ga42-fields.php:226
 msgid ""
 "When you choose this option, every time someone sees a page elements, WP "
 "FP will send to your GA event \"element_view\"."
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:319
+#: admin/modules/ga41/ga41-fields.php:308
 #: admin/modules/ga42__premium_only/ga42-fields.php:227
 msgid ""
 "Information about the names of the seen elements will be sent to GA as "
 "event parameters."
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:320
+#: admin/modules/ga41/ga41-fields.php:309
 #: admin/modules/ga42__premium_only/ga42-fields.php:228
 #, php-format
 msgid ""
@@ -4971,66 +4971,61 @@ msgid ""
 "%1$sviewed_element%2$s and build a custom report."
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:322
-#: admin/modules/ga42__premium_only/ga42-fields.php:230
-msgid "Other information"
-msgstr ""
-
-#: admin/modules/ga41/ga41-fields.php:327
+#: admin/modules/ga41/ga41-fields.php:316
 #: admin/modules/ga42__premium_only/ga42-fields.php:235
 msgid "Viewed elements"
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:342
+#: admin/modules/ga41/ga41-fields.php:331
 #: admin/modules/ga42__premium_only/ga42-fields.php:250
 msgid "Event name or element name (required)"
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:352
+#: admin/modules/ga41/ga41-fields.php:341
 #: admin/modules/ga42__premium_only/ga42-fields.php:260
 msgid "Track scroll depths"
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:359
+#: admin/modules/ga41/ga41-fields.php:348
 #: admin/modules/ga42__premium_only/ga42-fields.php:267
 msgid "Track every depth level with a different event"
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:360
+#: admin/modules/ga41/ga41-fields.php:349
 #: admin/modules/ga42__premium_only/ga42-fields.php:268
 msgid "Track every depth level with one event with parameters"
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:362
+#: admin/modules/ga41/ga41-fields.php:351
 #: admin/modules/ga42__premium_only/ga42-fields.php:270
 msgid "Enable this function to track how deep people scroll your pages."
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:363
+#: admin/modules/ga41/ga41-fields.php:352
 #: admin/modules/ga42__premium_only/ga42-fields.php:271
 msgid "\"Track every depth level with a different event\" option"
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:364
+#: admin/modules/ga41/ga41-fields.php:353
 #: admin/modules/ga42__premium_only/ga42-fields.php:272
 msgid ""
 "When you choose this option, when a depth level is reached, WP FP will "
 "send to GA an event \"scrolled_[depth]\", e.g. scrolled_50 "
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:367
+#: admin/modules/ga41/ga41-fields.php:356
 #: admin/modules/ga42__premium_only/ga42-fields.php:275
 msgid ""
 "When you choose this option, every time someone reaches a specified "
 "depthd, WP FP will send to your GA event \"scroll\"."
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:368
+#: admin/modules/ga41/ga41-fields.php:357
 #: admin/modules/ga42__premium_only/ga42-fields.php:276
 msgid "Information about the depth will be sent to GA as event parameters."
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:369
+#: admin/modules/ga41/ga41-fields.php:358
 #: admin/modules/ga42__premium_only/ga42-fields.php:277
 #, php-format
 msgid ""
@@ -5039,12 +5034,12 @@ msgid ""
 "and build a custom report."
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:384
+#: admin/modules/ga41/ga41-fields.php:373
 #: admin/modules/ga42__premium_only/ga42-fields.php:292
 msgid "Track how long the user was actively engaged with the content"
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:389
+#: admin/modules/ga41/ga41-fields.php:378
 #: admin/modules/ga42__premium_only/ga42-fields.php:297
 #, php-format
 msgid ""
@@ -5053,14 +5048,14 @@ msgid ""
 "%1$suser_engagement_time%2$s. Unit of measurement: seconds."
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:390
+#: admin/modules/ga41/ga41-fields.php:379
 #: admin/modules/ga42__premium_only/ga42-fields.php:298
 msgid ""
 "This feature lets you measure how much time users actively spend on your "
 "website (scrolling, reading, etc.)."
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:391
+#: admin/modules/ga41/ga41-fields.php:380
 #: admin/modules/ga42__premium_only/ga42-fields.php:299
 msgid ""
 "This does not, however, use Google Analytics' method of tracking "
@@ -5069,13 +5064,13 @@ msgid ""
 "knowledge and experience."
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:392
+#: admin/modules/ga41/ga41-fields.php:381
 #: admin/modules/ga42__premium_only/ga42-fields.php:300
 #: admin/modules/track404/track404-faq.php:6
 msgid "How does it work?"
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:393
+#: admin/modules/ga41/ga41-fields.php:382
 #: admin/modules/ga42__premium_only/ga42-fields.php:301
 msgid ""
 "Time of engagement starts running when a user focuses a tab with page’s "
@@ -5083,7 +5078,7 @@ msgid ""
 "doesn’t run if a user is not looking at the content."
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:394
+#: admin/modules/ga41/ga41-fields.php:383
 #: admin/modules/ga42__premium_only/ga42-fields.php:302
 msgid ""
 "When a user stops scrolling or moving a mouse, a 15 second countdown "
@@ -5092,14 +5087,14 @@ msgid ""
 "user makes an action."
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:395
+#: admin/modules/ga41/ga41-fields.php:384
 #: admin/modules/ga42__premium_only/ga42-fields.php:303
 msgid ""
 "The time info is sent to GA before the user closes his browser or "
 "changes a browser tab."
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:396
+#: admin/modules/ga41/ga41-fields.php:385
 #: admin/modules/ga42__premium_only/ga42-fields.php:304
 msgid ""
 "When a user returns to the page, the timer is cleared and starts "
@@ -5107,12 +5102,12 @@ msgid ""
 "described below."
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:397
+#: admin/modules/ga41/ga41-fields.php:386
 #: admin/modules/ga42__premium_only/ga42-fields.php:305
 msgid "How to get the data"
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:398
+#: admin/modules/ga41/ga41-fields.php:387
 #: admin/modules/ga42__premium_only/ga42-fields.php:306
 msgid ""
 "All the timer events that WP FP sends to Google Analytics contain "
@@ -5121,14 +5116,14 @@ msgid ""
 "times during one pageview, WP FP will send several timer events."
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:399
+#: admin/modules/ga41/ga41-fields.php:388
 #: admin/modules/ga42__premium_only/ga42-fields.php:307
 msgid ""
 "This means, that in order to learn how much time the user was engaged "
 "with the content, you need to add all these numbers together."
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:400
+#: admin/modules/ga41/ga41-fields.php:389
 #: admin/modules/ga42__premium_only/ga42-fields.php:308
 msgid ""
 "This can be done using Google's Calculated Metrics feature. Here's a "
@@ -5136,27 +5131,27 @@ msgid ""
 "this is for advanced GA users."
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:400
+#: admin/modules/ga41/ga41-fields.php:389
 #: admin/modules/ga42__premium_only/ga42-fields.php:308
 msgid "Go to the tutorial"
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:415
+#: admin/modules/ga41/ga41-fields.php:404
 #: admin/modules/ga42__premium_only/ga42-fields.php:323
 msgid "Parameter name, e.g. \"page_type\""
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:419
-#: admin/modules/ga41/ga41-fields.php:429
-#: admin/modules/ga41/ga41-fields.php:439
-#: admin/modules/ga41/ga41-fields.php:449
-#: admin/modules/ga41/ga41-fields.php:459
-#: admin/modules/ga41/ga41-fields.php:469
-#: admin/modules/ga41/ga41-fields.php:481
-#: admin/modules/ga41/ga41-fields.php:518
-#: admin/modules/ga41/ga41-fields.php:528
-#: admin/modules/ga41/ga41-fields.php:540
-#: admin/modules/ga41/ga41-fields.php:550
+#: admin/modules/ga41/ga41-fields.php:408
+#: admin/modules/ga41/ga41-fields.php:418
+#: admin/modules/ga41/ga41-fields.php:428
+#: admin/modules/ga41/ga41-fields.php:438
+#: admin/modules/ga41/ga41-fields.php:448
+#: admin/modules/ga41/ga41-fields.php:458
+#: admin/modules/ga41/ga41-fields.php:470
+#: admin/modules/ga41/ga41-fields.php:507
+#: admin/modules/ga41/ga41-fields.php:517
+#: admin/modules/ga41/ga41-fields.php:529
+#: admin/modules/ga41/ga41-fields.php:539
 #: admin/modules/ga42__premium_only/ga42-fields.php:327
 #: admin/modules/ga42__premium_only/ga42-fields.php:337
 #: admin/modules/ga42__premium_only/ga42-fields.php:347
@@ -5173,48 +5168,48 @@ msgid ""
 "start with a digit."
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:423
+#: admin/modules/ga41/ga41-fields.php:412
 #: admin/modules/ga42__premium_only/ga42-fields.php:331
 #: admin/modules/mato/mato-fields.php:148
 msgid "Track page IDs"
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:425
+#: admin/modules/ga41/ga41-fields.php:414
 #: admin/modules/ga42__premium_only/ga42-fields.php:333
 msgid "Parameter name, e.g. \"page_id\""
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:433
+#: admin/modules/ga41/ga41-fields.php:422
 #: admin/modules/ga42__premium_only/ga42-fields.php:341
 msgid "Track the current page number of categories, tags, etc."
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:435
+#: admin/modules/ga41/ga41-fields.php:424
 #: admin/modules/ga42__premium_only/ga42-fields.php:343
 msgid "Parameter name, e.g. \"page_number\""
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:445
+#: admin/modules/ga41/ga41-fields.php:434
 #: admin/modules/ga42__premium_only/ga42-fields.php:353
 msgid "Parameter name, e.g. \"post_date\""
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:455
+#: admin/modules/ga41/ga41-fields.php:444
 #: admin/modules/ga42__premium_only/ga42-fields.php:363
 msgid "Parameter name, e.g. \"user_role\""
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:465
+#: admin/modules/ga41/ga41-fields.php:454
 #: admin/modules/ga42__premium_only/ga42-fields.php:373
 msgid "Parameter name, e.g. \"page_lang\""
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:475
+#: admin/modules/ga41/ga41-fields.php:464
 #: admin/modules/ga42__premium_only/ga42-fields.php:383
 msgid "Parameter name, e.g. \"taxonomy_terms\""
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:482
+#: admin/modules/ga41/ga41-fields.php:471
 #: admin/modules/ga42__premium_only/ga42-fields.php:390
 #: admin/modules/gtm/gtm-fields.php:283
 msgid ""
@@ -5223,7 +5218,7 @@ msgid ""
 "in the \"General Settings\" > \"Default Tracking Settings\"."
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:490
+#: admin/modules/ga41/ga41-fields.php:479
 #: admin/modules/ga42__premium_only/ga42-fields.php:398
 msgid ""
 "Sometimes it can be difficult to say if a term, e.g. \"european music\" "
@@ -5232,7 +5227,7 @@ msgid ""
 "music (tag)\""
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:498
+#: admin/modules/ga41/ga41-fields.php:487
 #: admin/modules/ga42__premium_only/ga42-fields.php:406
 msgid ""
 "Enable this to send term names (e.g. product category) instead of their "
@@ -5241,13 +5236,13 @@ msgid ""
 "on very rare occasions."
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:502
+#: admin/modules/ga41/ga41-fields.php:491
 #: admin/modules/ga42__premium_only/ga42-fields.php:410
 #: admin/modules/mato/mato-fields.php:130
 msgid "Track unmodified page titles"
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:507
+#: admin/modules/ga41/ga41-fields.php:496
 #: admin/modules/ga42__premium_only/ga42-fields.php:415
 msgid ""
 "By default, Google Analytics takes page titles from the \"title\" meta "
@@ -5257,7 +5252,7 @@ msgid ""
 "different titles."
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:507
+#: admin/modules/ga41/ga41-fields.php:496
 #: admin/modules/ga42__premium_only/ga42-fields.php:415
 msgid ""
 "When you enable this option, WP Full Picture will send to Google "
@@ -5265,50 +5260,50 @@ msgid ""
 "product edit screen. This will make data analysis easier."
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:511
+#: admin/modules/ga41/ga41-fields.php:500
 #: admin/modules/ga42__premium_only/ga42-fields.php:419
 msgid "Track SEO titles (displayed in Google's search results)"
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:513
+#: admin/modules/ga41/ga41-fields.php:502
 #: admin/modules/ga42__premium_only/ga42-fields.php:421
 msgid "Parameter name, e.g. \"seo_title\""
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:524
+#: admin/modules/ga41/ga41-fields.php:513
 #: admin/modules/ga42__premium_only/ga42-fields.php:432
 msgid "Parameter name, e.g. \"post_author\""
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:529
+#: admin/modules/ga41/ga41-fields.php:518
 #: admin/modules/ga42__premium_only/ga42-fields.php:437
 msgid ""
 "Tracking personally identifiable information is against Google's policy. "
 "Make sure that the displayed names are pseudonyms."
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:533
+#: admin/modules/ga41/ga41-fields.php:522
 #: admin/modules/ga42__premium_only/ga42-fields.php:441
 #: admin/modules/mato/mato-fields.php:218
 msgid "Track authors IDs"
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:536
+#: admin/modules/ga41/ga41-fields.php:525
 #: admin/modules/ga42__premium_only/ga42-fields.php:444
 msgid "Parameter name, e.g. \"author_id\""
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:544
+#: admin/modules/ga41/ga41-fields.php:533
 #: admin/modules/ga42__premium_only/ga42-fields.php:452
 msgid "Track the number of search results"
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:546
+#: admin/modules/ga41/ga41-fields.php:535
 #: admin/modules/ga42__premium_only/ga42-fields.php:454
 msgid "Parameter name, e.g. \"search_results_nr\""
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:561
+#: admin/modules/ga41/ga41-fields.php:550
 #: admin/modules/ga42__premium_only/ga42-fields.php:469
 msgid ""
 "To view data in your Google Analytics reports you also need to register "
@@ -5316,40 +5311,40 @@ msgid ""
 "parameter names as you entered in the fields."
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:562
+#: admin/modules/ga41/ga41-fields.php:551
 #: admin/modules/ga42__premium_only/ga42-fields.php:470
 msgid ""
 "Event parameter names must contain only lowercase letters, digits and "
 "underscores and cannot begin with a digit."
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:571
+#: admin/modules/ga41/ga41-fields.php:560
 #: admin/modules/ga42__premium_only/ga42-fields.php:479
 msgid "parameter_name"
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:617
+#: admin/modules/ga41/ga41-fields.php:606
 msgid "Send to GA event"
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:626
+#: admin/modules/ga41/ga41-fields.php:615
 #: admin/modules/gtm/gtm-fields.php:436
 #: admin/modules/mato/mato-fields.php:495
 msgid "Value (optional)"
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:640
+#: admin/modules/ga41/ga41-fields.php:629
 #: admin/modules/ga42__premium_only/ga42-fields.php:493
 #: admin/modules/main/main-fields.php:389
 msgid "Other"
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:644
+#: admin/modules/ga41/ga41-fields.php:633
 #: admin/modules/ga42__premium_only/ga42-fields.php:497
 msgid "Track JavaScript errors"
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:648
+#: admin/modules/ga41/ga41-fields.php:637
 #: admin/modules/ga42__premium_only/ga42-fields.php:500
 msgid ""
 "This will send to Google Analytics descriptions of JavaScript errors on "
@@ -5358,7 +5353,7 @@ msgid ""
 "limited to 100 characters (Google's limit)."
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:648
+#: admin/modules/ga41/ga41-fields.php:637
 #: admin/modules/ga42__premium_only/ga42-fields.php:500
 #, php-format
 msgid ""
@@ -5366,7 +5361,7 @@ msgid ""
 "in GA%4$s with event parameter %1$sjs_error_details%2$s."
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:657
+#: admin/modules/ga41/ga41-fields.php:646
 #: admin/modules/ga42__premium_only/ga42-fields.php:509
 #: admin/modules/gads/gads-fields.php:308
 #: admin/modules/gtm/gtm-fields.php:454
@@ -5382,64 +5377,39 @@ msgstr ""
 msgid "WooCommerce tracking"
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:661
-msgid "Advanced Order Tracking with Measurement Protocol"
+#: admin/modules/ga41/ga41-fields.php:650
+msgid "Measurement Protocol API secret key"
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:665
+#: admin/modules/ga41/ga41-fields.php:655
+#, php-format
 msgid ""
-"This feature requires the use of Measurement Protocol. Please check if "
-"you entered its key in the \"Installation\" section."
+"Measurement Protocol is only used for WooCommerce Status-Based Order "
+"Tracking (see below). %1$sLearn where to find the MP key%2$s"
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:670
-msgid ""
-"Typically, orders are tracked when clients view order confirmation page. "
-"However, this has serious disadvantages:"
+#: admin/modules/ga41/ga41-fields.php:659
+msgid "Status-Based Order Tracking with Measurement Protocol"
 msgstr ""
 
-#: admin/modules/ga41/ga41-fields.php:672
+#: admin/modules/ga41/ga41-fields.php:667
+#, php-format
 msgid ""
-"Some clients never view this page (they do not return to store page "
-"after paying for their order)."
+"In addition, SBOT allows for tracking returns and cancellations. "
+"(requires a %1$scustom \"refunds\" report %2$s)."
 msgstr ""
 
 #: admin/modules/ga41/ga41-fields.php:673
-msgid "Order cancellations and returns are not tracked."
-msgstr ""
-
-#: admin/modules/ga41/ga41-fields.php:675
-msgid "Advanced Order Tracking works differently."
-msgstr ""
-
-#: admin/modules/ga41/ga41-fields.php:676
-#, php-format
-msgid ""
-"It tracks orders when they get specific statuses (see settings in the "
-"WooCommerce Tracking module) and can track cancellations and refunds "
-"(see %1$show to create a \"refunds\" report %2$s)."
-msgstr ""
-
-#: admin/modules/ga41/ga41-fields.php:677
-msgid ""
-"This makes the purchase data in your Google Analytics reports more "
-"accurate."
-msgstr ""
-
-#: admin/modules/ga41/ga41-fields.php:683
-msgid "Purchase event is sent servers-side, using Measurement Protocol."
-msgstr ""
-
-#: admin/modules/ga41/ga41-fields.php:684
-msgid ""
-"Google can process server-side purchase events for up to 48 hours before "
-"they show up in reports. This also includes real-time reports."
-msgstr ""
-
-#: admin/modules/ga41/ga41-fields.php:686 admin/modules/woo/woo-faq.php:39
 msgid ""
 "Partial refunds are not tracked. Only full refunds are tracked when the "
 "order status changes to \"Refunded\"."
+msgstr ""
+
+#: admin/modules/ga41/ga41-fields.php:674
+msgid ""
+"Most purchases tracked with SBOT will not be visible in the \"realtime "
+"view\" reports in GA. Google can process server-side purchase events for "
+"up to 48 hours."
 msgstr ""
 
 #: admin/modules/ga42__premium_only/ga42-descr.php:18
@@ -5507,14 +5477,6 @@ msgstr ""
 
 #: admin/modules/gads/gads-descr.php:19
 msgid "The data is sent to Google Ads conversion ID "
-msgstr ""
-
-#: admin/modules/gads/gads-descr.php:26
-msgid ""
-"If you have consent banner enabled in the opt-in or one of automatic "
-"modes, GAds will start tracking after visitors consent to using their "
-"personal data for statistics and marketing purposes. Google consent mode "
-"can be enabled in the settings of the consent banner."
 msgstr ""
 
 #: admin/modules/gads/gads-descr.php:37
@@ -5600,10 +5562,6 @@ msgid ""
 "which one will work with your forms."
 msgstr ""
 
-#: admin/modules/gads/gads-fields.php:8
-msgid "GTAG ID"
-msgstr ""
-
 #: admin/modules/gads/gads-fields.php:13
 msgid "GT-00000000 or AW-00000000"
 msgstr ""
@@ -5618,11 +5576,7 @@ msgid "Conversion ID"
 msgstr ""
 
 #: admin/modules/gads/gads-fields.php:24
-#, php-format
-msgid ""
-"You have entered your GTAG ID in the field above. In order to track your "
-"visitors you need to also provide a Conversion ID in this field. "
-"%1$sLearn more%2$s."
+msgid "Provide conversion ID which starts with AW-."
 msgstr ""
 
 #: admin/modules/gads/gads-fields.php:28
@@ -6329,14 +6283,6 @@ msgstr ""
 msgid "The data is sent to an account with site ID "
 msgstr ""
 
-#: admin/modules/hotj/hotj-descr.php:25
-msgid ""
-"If you have consent banner enabled in the opt-in or one of automatic "
-"modes, Hotjar will start tracking after visitors consent to using their "
-"personal data for statistics. This can be avoided if you enable the "
-"privacy mode below."
-msgstr ""
-
 #: admin/modules/hotj/hotj-descr.php:31
 #: admin/modules/insp/insp-descr.php:32
 msgid ""
@@ -6832,6 +6778,7 @@ msgid ""
 msgstr ""
 
 #: admin/modules/iframeblock/iframeblock-fields.php:25
+#: admin/modules/woo/woo-faq.php:27
 msgid "Good to know"
 msgstr ""
 
@@ -6965,15 +6912,6 @@ msgstr ""
 msgid "The data is sent to Inspectlet account with site ID"
 msgstr ""
 
-#: admin/modules/insp/insp-descr.php:26
-msgid ""
-"If you have consent banner enabled in the opt-in or one of automatic "
-"modes, Inspectlet will start tracking after visitors consent to using "
-"their personal data for statistics. If you enable the A/B testing script "
-"(see the \"Installation\" tab) then it will be loaded when visitors "
-"agree to using the data for personalisation purposes."
-msgstr ""
-
 #: admin/modules/insp/insp-descr.php:38
 msgid "Identified users can be associated with session recordings."
 msgstr ""
@@ -7074,7 +7012,7 @@ msgid "Encoded User ID"
 msgstr ""
 
 #: admin/modules/insp/insp-fields.php:307
-#: includes/class-fupi-get-gdpr-status.php:2282
+#: includes/class-fupi-get-gdpr-status.php:2307
 msgid "User ID"
 msgstr ""
 
@@ -7092,13 +7030,6 @@ msgstr ""
 
 #: admin/modules/linkd/linkd-descr.php:18
 msgid "The data is sent to an account with partner ID "
-msgstr ""
-
-#: admin/modules/linkd/linkd-descr.php:26
-msgid ""
-"If you have consent banner enabled in the opt-in or one of automatic "
-"modes, LinkedIn Insight Tag will start tracking after visitors consent "
-"to using their personal data for statistics and marketing purposes."
 msgstr ""
 
 #: admin/modules/linkd/linkd-descr.php:32
@@ -7246,13 +7177,6 @@ msgstr ""
 
 #: admin/modules/mads/mads-descr.php:16
 msgid "The data is sent to an account with UET tag ID "
-msgstr ""
-
-#: admin/modules/mads/mads-descr.php:24
-msgid ""
-"If you have consent banner enabled in the opt-in or one of automatic "
-"modes, MS Advertising will start working after visitors consent to using "
-"their data for statistics and marketing purposes."
 msgstr ""
 
 #: admin/modules/mads/mads-descr.php:28
@@ -7467,35 +7391,32 @@ msgid ""
 "creating an event goal in MS Ads panel."
 msgstr ""
 
-#: admin/modules/main/main-admin.php:185
-#: admin/modules/main/main-admin.php:206
-#: admin/modules/main/main-admin.php:228
-#: admin/modules/main/main-admin.php:249
-#: admin/modules/main/main-admin.php:337
+#: admin/modules/main/main-admin.php:217
+#: admin/modules/main/main-admin.php:238
+#: admin/modules/main/main-admin.php:259
+#: admin/modules/main/main-admin.php:347
 msgid "Permission denied"
 msgstr ""
 
-#: admin/modules/main/main-admin.php:189
-#: admin/modules/main/main-admin.php:210
-#: admin/modules/main/main-admin.php:341
+#: admin/modules/main/main-admin.php:221
+#: admin/modules/main/main-admin.php:351
 msgid "Backup file not found"
 msgstr ""
 
-#: admin/modules/main/main-admin.php:196
+#: admin/modules/main/main-admin.php:228
 msgid "File deleted"
 msgstr ""
 
-#: admin/modules/main/main-admin.php:198
-#: admin/modules/main/main-admin.php:220
-#: admin/modules/main/main-admin.php:345
+#: admin/modules/main/main-admin.php:230
+#: admin/modules/main/main-admin.php:355
 msgid "File not found"
 msgstr ""
 
-#: admin/modules/main/main-admin.php:241
+#: admin/modules/main/main-admin.php:251
 msgid "There was an error saving the backup file"
 msgstr ""
 
-#: admin/modules/main/main-admin.php:258
+#: admin/modules/main/main-admin.php:268
 msgid "No settings data received"
 msgstr ""
 
@@ -7550,43 +7471,43 @@ msgid ""
 "installations or before making bigger changes."
 msgstr ""
 
-#: admin/modules/main/main-descr.php:61
+#: admin/modules/main/main-descr.php:62
 msgid "Backup"
 msgstr ""
 
-#: admin/modules/main/main-descr.php:62
+#: admin/modules/main/main-descr.php:63
 msgid "Date"
 msgstr ""
 
-#: admin/modules/main/main-descr.php:63
+#: admin/modules/main/main-descr.php:64
 msgid "Actions"
 msgstr ""
 
-#: admin/modules/main/main-descr.php:68
+#: admin/modules/main/main-descr.php:69
 msgid "No backups found"
 msgstr ""
 
-#: admin/modules/main/main-descr.php:82
+#: admin/modules/main/main-descr.php:83
 msgid "Restore"
 msgstr ""
 
-#: admin/modules/main/main-descr.php:83
+#: admin/modules/main/main-descr.php:84
 msgid "Delete"
 msgstr ""
 
-#: admin/modules/main/main-descr.php:84
+#: admin/modules/main/main-descr.php:85
 msgid "Download"
 msgstr ""
 
-#: admin/modules/main/main-descr.php:94
+#: admin/modules/main/main-descr.php:95
 msgid "Create a new backup"
 msgstr ""
 
-#: admin/modules/main/main-descr.php:95
+#: admin/modules/main/main-descr.php:96
 msgid "Restore settings from a backup file"
 msgstr ""
 
-#: admin/modules/main/main-descr.php:105
+#: admin/modules/main/main-descr.php:106
 msgid ""
 "These settings are experimental. They will be introduced into core if no "
 "users report issues with them."
@@ -8091,14 +8012,6 @@ msgstr ""
 msgid "Well done! Matomo is installed"
 msgstr ""
 
-#: admin/modules/mato/mato-descr.php:37
-msgid ""
-"If you have consent banner enabled in the opt-in or one of automatic "
-"modes, Matomo will start working after visitors consent to using their "
-"data for statistics. This can be avoided if you enable the privacy mode "
-"below."
-msgstr ""
-
 #: admin/modules/mato/mato-descr.php:43
 #, php-format
 msgid ""
@@ -8549,13 +8462,6 @@ msgstr ""
 
 #: admin/modules/pin/pin-descr.php:18 admin/modules/twit/twit-descr.php:16
 msgid "The data is tracked by a tag with an ID "
-msgstr ""
-
-#: admin/modules/pin/pin-descr.php:26
-msgid ""
-"If you have consent banner enabled in the opt-in or one of automatic "
-"modes, Pinterest will start working after visitors consent to using "
-"their data for statistics and marketing purposes."
 msgstr ""
 
 #: admin/modules/pin/pin-fields.php:17
@@ -9113,13 +9019,6 @@ msgstr ""
 msgid "The data is sent to a project with API key "
 msgstr ""
 
-#: admin/modules/posthog/posthog-descr.php:25
-msgid ""
-"If you have consent banner enabled in the opt-in or one of automatic "
-"modes, PostHog will start working after visitors consent to using their "
-"data for statistics."
-msgstr ""
-
 #: admin/modules/posthog/posthog-fields.php:15
 msgid "Project API key"
 msgstr ""
@@ -9478,13 +9377,6 @@ msgstr ""
 
 #: admin/modules/tik/tik-descr.php:18
 msgid "The data is tracked by a pixel with an ID "
-msgstr ""
-
-#: admin/modules/tik/tik-descr.php:26
-msgid ""
-"If you have consent banner enabled in the opt-in or one of automatic "
-"modes, TikTok pixel will start working after visitors consent to using "
-"their data for statistics and marketing purposes."
 msgstr ""
 
 #: admin/modules/tik/tik-descr.php:32
@@ -10479,13 +10371,6 @@ msgstr ""
 msgid "Well done! X Ads tracking pixel is installed"
 msgstr ""
 
-#: admin/modules/twit/twit-descr.php:24
-msgid ""
-"If you have consent banner enabled in the opt-in or one of automatic "
-"modes, X / Twitter Ads will start working after visitors consent to "
-"using their data for statistics and marketing purposes."
-msgstr ""
-
 #: admin/modules/twit/twit-descr.php:29
 #, php-format
 msgid ""
@@ -10700,23 +10585,29 @@ msgstr ""
 
 #: admin/modules/woo/woo-descr.php:10
 msgid ""
-"These are global settings which apply to all tools that support "
-"WooCommerce Tracking module. Visit their settings pages for tool-"
-"specific settings."
+"These settings apply to all tools which support WooCommerce Tracking "
+"module (have the \"WooCommerce tracking\" section in their settings "
+"pages)."
 msgstr ""
 
 #: admin/modules/woo/woo-descr.php:14
 msgid ""
-"With Advanced Order Tracking (AOT) you can track more orders, more "
-"accurately (when they get a specific order status), track refunds and "
-"cancellations. At the moment AOT is only available in Meta Pixel and "
-"Google Analytics."
+"Status-Based Order Tracking is an alternative method of tracking "
+"purchases. At the moment it is only available in Meta Pixel and Google "
+"Analytics and needs to be enabled in their settings."
 msgstr ""
 
 #: admin/modules/woo/woo-descr.php:18
 msgid ""
 "Here you can adjust tracking to work with your individual store setup. "
 "You may need it if your store uses custom WooCommerce solutions."
+msgstr ""
+
+#: admin/modules/woo/woo-descr.php:19
+msgid ""
+"Attention. Not all tools can track everything that you can set up here. "
+"To learn more, visit the settings page of your tracking tool's module "
+"and go to the \"WooCommerce tracking\" section."
 msgstr ""
 
 #: admin/modules/woo/woo-faq.php:6
@@ -10745,77 +10636,23 @@ msgid ""
 "console."
 msgstr ""
 
-#: admin/modules/woo/woo-faq.php:21
-msgid "Advanced Order Tracking vs Standard Tracking"
-msgstr ""
-
-#: admin/modules/woo/woo-faq.php:22
-msgid ""
-"Typically, orders are tracked on the order confirmation page (a.k.a "
-"\"Thank you\" page). However, many customers do not view this page, "
-"which leads to incomplete conversions data."
-msgstr ""
-
 #: admin/modules/woo/woo-faq.php:23
-msgid ""
-"Advanced Order Tracking (AOT) solves this problem by tracking orders "
-"only when they get a specific status. By default, WP Full Picture tracks "
-"orders with the statuses \"Processing\" and \"On Hold.\""
+msgid "Supported Tools"
+msgstr ""
+
+#: admin/modules/woo/woo-faq.php:24
+msgid "SBOT is supported in Google Analytics and Meta Pixel."
 msgstr ""
 
 #: admin/modules/woo/woo-faq.php:25
-msgid ""
-"Processing - this is the status that orders get after they are "
-"succesfully paid for through gateways like PayPal, Stripe, and others."
+msgid "How to enable Status-Based Order Tracking"
 msgstr ""
 
 #: admin/modules/woo/woo-faq.php:26
 msgid ""
-"On hold - this is the default status for orders where customers select "
-"manual bank transfer as the payment method."
-msgstr ""
-
-#: admin/modules/woo/woo-faq.php:28
-msgid ""
-"In addition to tracking orders, AOT can also track refunds and "
-"cancellations in compatible tools. Currently, this feature is supported "
-"in Google Analytics."
-msgstr ""
-
-#: admin/modules/woo/woo-faq.php:29
-msgid "Supported Tools"
-msgstr ""
-
-#: admin/modules/woo/woo-faq.php:30
-msgid "AOT is supported in Google Analytics and Meta Pixel."
-msgstr ""
-
-#: admin/modules/woo/woo-faq.php:31
-msgid "How to Enable Advanced Order Tracking"
-msgstr ""
-
-#: admin/modules/woo/woo-faq.php:33
-msgid "Open the settings for the Google Analytics or Meta Pixel module."
-msgstr ""
-
-#: admin/modules/woo/woo-faq.php:34
-msgid ""
-"Provide a server tracking key in the in the relevant field in the "
-"\"Installation\" section."
-msgstr ""
-
-#: admin/modules/woo/woo-faq.php:35
-msgid ""
-"Enable AOT in the \"WooCommerce Tracking\" section of these modules."
-msgstr ""
-
-#: admin/modules/woo/woo-faq.php:37
-msgid "Limitations"
-msgstr ""
-
-#: admin/modules/woo/woo-faq.php:38
-msgid ""
-"AOT does not track orders added manually in the WooCommerce admin panel."
+"Visit the settings pages of the Google Analytics and Meta Pixel modules. "
+"When you are there, go to the \"WooCommerce Tracking\" section and "
+"follow instructions you find there."
 msgstr ""
 
 #: admin/modules/woo/woo-fields.php:9
@@ -10853,84 +10690,94 @@ msgid ""
 "off."
 msgstr ""
 
-#: admin/modules/woo/woo-fields.php:34
-msgid "Track product variants as if they were parent products"
+#: admin/modules/woo/woo-fields.php:35
+msgid "Method of tracking variable products"
 msgstr ""
 
-#: admin/modules/woo/woo-fields.php:38
+#: admin/modules/woo/woo-fields.php:41 admin/modules/woo/woo-fields.php:46
+msgid "Standard"
+msgstr ""
+
+#: admin/modules/woo/woo-fields.php:42 admin/modules/woo/woo-fields.php:48
+msgid "Standard + track default variants"
+msgstr ""
+
+#: admin/modules/woo/woo-fields.php:43 admin/modules/woo/woo-fields.php:50
+msgid "Track parent products instead of variants"
+msgstr ""
+
+#: admin/modules/woo/woo-fields.php:47
 msgid ""
-"Some tracking tools allow you to track what products are viewed, added "
-"and removed from cart and purchased. This works great with simple, "
-"single products but it is a problem with variable products."
+"Parent products are tracked in product lists and when a visitor views a "
+"product page. Variants are tracked when they are added to cart and in "
+"checkout."
 msgstr ""
 
-#: admin/modules/woo/woo-fields.php:39
+#: admin/modules/woo/woo-fields.php:49
 msgid ""
-"The moment one of the variants is added to the cart, this particular "
-"variant will be tracked in the checkout process and not the \"parent\" "
-"product. In other words, a \"parent\" product is tracked on category "
-"lists and the product details pages, but then only its variant is "
-"tracked when it is added to the cart and in the checkout process."
+"The same as \"Standard\" but when a visitor views a product page, WP FP "
+"sends two \"product view\" events - one for the parent product and "
+"another one for the active variant (if chosen in the product settings)."
 msgstr ""
 
-#: admin/modules/woo/woo-fields.php:40
+#: admin/modules/woo/woo-fields.php:51
 msgid ""
-"The result is that in your reports you will see that product X was seen "
-"in category pages and product pages but never purchased (because one of "
-"its variants was)."
-msgstr ""
-
-#: admin/modules/woo/woo-fields.php:41
-msgid ""
-"If you enable this option, WP Full Picture will track parent product "
-"instead of its variant - from the moment it was viewed until it was "
-"purchased."
-msgstr ""
-
-#: admin/modules/woo/woo-fields.php:42
-msgid "Read this if you run dynamic ad campaigns!"
-msgstr ""
-
-#: admin/modules/woo/woo-fields.php:43
-msgid ""
-"If you enable this option, then your tracking tools will report that a "
-"parent product was purchased - and not its variant. If you run dynamic "
-"ad campaigns (with ads dynamically generated with a product feed), you "
-"need to make sure, that the main product data is in your product feeds, "
-"and not the data of the variants."
+"Variants are not tracked. Parent products are tracked throughout the "
+"conversion path."
 msgstr ""
 
 #: admin/modules/woo/woo-fields.php:55
-msgid "Do not track product views after a page is refreshed"
-msgstr ""
-
-#: admin/modules/woo/woo-fields.php:58
-msgid "Recommended for most stores"
+msgid "Track views of product variants"
 msgstr ""
 
 #: admin/modules/woo/woo-fields.php:59
 msgid ""
-"This option is recommended for all stores where product pages are "
-"refreshed after a product is added to cart."
+"This will send \"product view\" events when visitors switch between "
+"product variants."
 msgstr ""
 
-#: admin/modules/woo/woo-fields.php:66
-msgid "Custom adjustments"
+#: admin/modules/woo/woo-fields.php:69
+msgid "Do not track product views after a page is refreshed"
 msgstr ""
 
-#: admin/modules/woo/woo-fields.php:70
-msgid "Custom CSS selectors of product teasers"
+#: admin/modules/woo/woo-fields.php:72
+msgid ""
+"Recommended if your product pages are refreshed after adding products to "
+"cart"
+msgstr ""
+
+#: admin/modules/woo/woo-fields.php:73
+msgid ""
+"This setting applies to views of products on lists and product pages."
 msgstr ""
 
 #: admin/modules/woo/woo-fields.php:74
-msgid "e.g. .product"
+msgid "Exception - product variants"
 msgstr ""
 
 #: admin/modules/woo/woo-fields.php:75
+msgid ""
+"If you enabled an option to track views of product variants (see option "
+"above), then they will still be tracked after refresh."
+msgstr ""
+
+#: admin/modules/woo/woo-fields.php:82
+msgid "Custom adjustments"
+msgstr ""
+
+#: admin/modules/woo/woo-fields.php:86
+msgid "Custom CSS selectors of product teasers"
+msgstr ""
+
+#: admin/modules/woo/woo-fields.php:90
+msgid "e.g. .product"
+msgstr ""
+
+#: admin/modules/woo/woo-fields.php:91
 msgid "You can provide a coma separated list of CSS selectors."
 msgstr ""
 
-#: admin/modules/woo/woo-fields.php:76
+#: admin/modules/woo/woo-fields.php:92
 msgid ""
 "By default, all product teasers (products in lists) in WooCommerce are "
 "wrapped in &lt;li&gt;elements. However, some themes or plugins may use a "
@@ -10938,14 +10785,14 @@ msgid ""
 "buttons and views of teasers may not work correctly."
 msgstr ""
 
-#: admin/modules/woo/woo-fields.php:77
+#: admin/modules/woo/woo-fields.php:93
 msgid ""
 "You can fix it here. Provide CSS selector of an HTML element which wraps "
 "around product teasers on your site (often this is an element with a "
 "class \"product\")."
 msgstr ""
 
-#: admin/modules/woo/woo-fields.php:78
+#: admin/modules/woo/woo-fields.php:94
 msgid ""
 "Attention. Tracking will only work if there is a &lt;script&gt; element "
 "with class \"fupi_prod_data\" inside the product teaser's HTML. If it is "
@@ -10954,19 +10801,19 @@ msgid ""
 "track it."
 msgstr ""
 
-#: admin/modules/woo/woo-fields.php:82
-msgid "Custom CSS selectors of \"Add to wishlist\" button"
+#: admin/modules/woo/woo-fields.php:98
+msgid "CSS selector of \"Add to wishlist\" button"
 msgstr ""
 
-#: admin/modules/woo/woo-fields.php:83
+#: admin/modules/woo/woo-fields.php:99
 msgid "Enter CSS class or ID"
 msgstr ""
 
-#: admin/modules/woo/woo-fields.php:87
+#: admin/modules/woo/woo-fields.php:103
 msgid "e.g. .my-add-to-wishlist"
 msgstr ""
 
-#: admin/modules/woo/woo-fields.php:88
+#: admin/modules/woo/woo-fields.php:104
 msgid ""
 "Enter CSS selector of an \"add to wishlist\" button used on your site "
 "(if it uses any). The wishlist button needs to be positioned in your "
@@ -10974,49 +10821,59 @@ msgid ""
 "may not work correctly. The tracking doesn't work with grouped products."
 msgstr ""
 
-#: admin/modules/woo/woo-fields.php:92
-msgid "(DEPRECATED) Add \"Product brand\" field to \"edit product\" pages"
+#: admin/modules/woo/woo-fields.php:108
+msgid "Add \"Product brand\" field to \"edit product\" pages"
 msgstr ""
 
-#: admin/modules/woo/woo-fields.php:97
+#: admin/modules/woo/woo-fields.php:114
+#: admin/modules/woo/woo-fields.php:122
 msgid ""
-"This option is deprecated and will be removed by the end of 2025. Brands "
-"are now available in WooCommerce core plugin, making this option no "
-"longer needed."
+"This function will be removed by the end of 2025. Please migrate to "
+"standard WooCommerce brands (avail in WooCommerce 9.6+)"
 msgstr ""
 
-#: admin/modules/woo/woo-fields.php:101
+#: admin/modules/woo/woo-fields.php:118
 msgid ""
 "Use custom \"product brand\" taxonomy instead of the default one in "
 "WooCommerce"
 msgstr ""
 
-#: admin/modules/woo/woo-fields.php:105
+#: admin/modules/woo/woo-fields.php:123
 msgid ""
 "Use it to track product brands saved by a different plugin. Choose "
 "taxonomy name in which your plugin saves product brands."
 msgstr ""
 
-#: admin/modules/woo/woo-fields.php:112
-msgid "Advanced order tracking"
+#: admin/modules/woo/woo-fields.php:130
+msgid "Status-based order tracking"
 msgstr ""
 
-#: admin/modules/woo/woo-fields.php:116
+#: admin/modules/woo/woo-fields.php:134
 msgid "Track new orders when they get these statuses"
 msgstr ""
 
-#: admin/modules/woo/woo-fields.php:121
+#: admin/modules/woo/woo-fields.php:139
+msgid ""
+"Recommended statuses - Processing (for orders paid via payment gateways) "
+"and On Hold (for orders paid with bank transfers)."
+msgstr ""
+
+#: admin/modules/woo/woo-fields.php:140
 msgid ""
 "You can enter here multiple order statuses indicating that an order has "
 "been made. The \"purchase\" event will be sent only the first time an "
 "order gets a matching status."
 msgstr ""
 
-#: admin/modules/woo/woo-fields.php:125
+#: admin/modules/woo/woo-fields.php:144
 msgid "Track order cancellations when they get these statuses"
 msgstr ""
 
-#: admin/modules/woo/woo-fields.php:130
+#: admin/modules/woo/woo-fields.php:149
+msgid "Recommended statuses - Cancelled and Refunded."
+msgstr ""
+
+#: admin/modules/woo/woo-fields.php:150
 msgid ""
 "You can enter here multiple order statuses indicating that the order has "
 "been cancelled or refunded. The \"refund\" event will be sent only the "
@@ -11034,19 +10891,19 @@ msgid ""
 "your WordPress admin plugin management page"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:53
+#: includes/class-fupi-get-gdpr-status.php:56
 msgid "Consent banner must be enabled for your setup"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:54
+#: includes/class-fupi-get-gdpr-status.php:57
 msgid "Please enable it in either opt-in mode or one of automatic modes"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:55
+#: includes/class-fupi-get-gdpr-status.php:58
 msgid "You may need to use the Consent Banner module on your website."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:56
+#: includes/class-fupi-get-gdpr-status.php:59
 #, php-format
 msgid ""
 "Enable it if any of the tracking tools installed on your website track "
@@ -11054,50 +10911,50 @@ msgid ""
 "other sites (YouTube video, maps, etc.) or gives warnings in %1$s."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:102
+#: includes/class-fupi-get-gdpr-status.php:105
 msgid "Fix errors in consent banner settings."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:103
+#: includes/class-fupi-get-gdpr-status.php:106
 msgid "Make sure the banner is set up correctly."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:261
+#: includes/class-fupi-get-gdpr-status.php:289
 msgid ""
 "There was an error registering the site in ConsentsDB. Save the secret "
 "key and try again."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:364
+#: includes/class-fupi-get-gdpr-status.php:392
 msgid ""
 "Add to your privacy policy information about additional, personaly "
 "identifiable information tracked and sent to the tool:"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:443
+#: includes/class-fupi-get-gdpr-status.php:471
 msgid "User metadata with ID: "
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:470
+#: includes/class-fupi-get-gdpr-status.php:498
 msgid "Link decoration is enabled in the consent banner settings."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:471
+#: includes/class-fupi-get-gdpr-status.php:499
 msgid ""
 "This setting is a privacy grey area. Make sure you are not breaking any "
 "laws while using it. Otherwise, disable link decoration in the settings "
 "of the consent banner."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:554
+#: includes/class-fupi-get-gdpr-status.php:582
 msgid "Other recommendations"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:558
+#: includes/class-fupi-get-gdpr-status.php:586
 msgid "Google reCaptcha warning"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:559
+#: includes/class-fupi-get-gdpr-status.php:587
 msgid ""
 "Google reCaptcha does not comply with GDPR and there is no known method "
 "of making it comply with it. Make sure to replace it with a GDPR "
@@ -11109,11 +10966,11 @@ msgid ""
 "to tracking, which is against GDPR."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:582
+#: includes/class-fupi-get-gdpr-status.php:610
 msgid "These additional tracking tools are used on the website: "
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:583
+#: includes/class-fupi-get-gdpr-status.php:611
 #, php-format
 msgid ""
 "Your privacy policy must include information about these tracking tools: "
@@ -11122,54 +10979,54 @@ msgid ""
 "with or sell it to."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:594
+#: includes/class-fupi-get-gdpr-status.php:622
 msgid "No information on additional tracking tools have been provided"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:613
+#: includes/class-fupi-get-gdpr-status.php:641
 msgid "Order ID"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:614
+#: includes/class-fupi-get-gdpr-status.php:642
 msgid ""
 "This tool does not track personally identifiable information and does "
 "not need consent banner"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:626
+#: includes/class-fupi-get-gdpr-status.php:654
 msgid "ID of a logged in user"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:648
+#: includes/class-fupi-get-gdpr-status.php:676
 msgid "Visitor's data is being kept on servers in the EU"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:649
+#: includes/class-fupi-get-gdpr-status.php:677
 msgid "Visitor's data is not being kept on servers in the EU"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:668
-#: includes/class-fupi-get-gdpr-status.php:691
+#: includes/class-fupi-get-gdpr-status.php:696
+#: includes/class-fupi-get-gdpr-status.php:719
 msgid ""
 "Real name, surname, phone number, email address and physical address of "
 "customers and logged-in users (enabled with Enhanced Conversions)"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:712
+#: includes/class-fupi-get-gdpr-status.php:740
 msgid "Unique ID (user email email and/or a user id)"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:731
+#: includes/class-fupi-get-gdpr-status.php:759
 msgid ""
 "The script loads an additional script for A/B testing which requires "
 "consent to using visitor's data for website personalisation."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:732
+#: includes/class-fupi-get-gdpr-status.php:760
 msgid "Unique ID (user email email, user id or username)."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:755
+#: includes/class-fupi-get-gdpr-status.php:783
 msgid ""
 "Matomo works in privacy mode and loads irrespective of user tracking "
 "consents. Privacy mode prevents from tracking identifiable information "
@@ -11178,54 +11035,54 @@ msgid ""
 "tracking and order IDs are randomized."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:756
+#: includes/class-fupi-get-gdpr-status.php:784
 msgid ""
 "User ID - used for cross-browser tracking after visitors agree to "
 "cookies."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:757
+#: includes/class-fupi-get-gdpr-status.php:785
 msgid "User ID - for cross-browser tracking."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:758
+#: includes/class-fupi-get-gdpr-status.php:786
 msgid "Set up a consent banner"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:759
+#: includes/class-fupi-get-gdpr-status.php:787
 msgid "Make sure the banner is set up correctly"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:760
+#: includes/class-fupi-get-gdpr-status.php:788
 msgid ""
 "Real order ID is tracked when visitors agree to tracking in a consent "
 "banner. Random order ID is sent when they don't."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:761
+#: includes/class-fupi-get-gdpr-status.php:789
 msgid ""
 "Privacy mode is enabled. Make sure that this tool doesn't track "
 "information that can identify users."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:817
+#: includes/class-fupi-get-gdpr-status.php:845
 msgid ""
 "Advanced Match is enabled. Encrypted addresses, email addresses, phone "
 "numbers and user identifiers of your visitors and logged in users are "
 "sent to Meta (if known)."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:828
+#: includes/class-fupi-get-gdpr-status.php:856
 msgid "Limited Data Use option is enabled for visitors from the USA."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:846
+#: includes/class-fupi-get-gdpr-status.php:874
 msgid ""
 "Enhanced Conversions is enabled and sends to MS Advertising the email "
 "addresses of clients or logged-in users (if known)."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:861
+#: includes/class-fupi-get-gdpr-status.php:889
 msgid ""
 "MS Clarity works in no-cookie mode and loads irrespective of user "
 "tracking consents.This prevents from MS Clarity from tracking "
@@ -11233,73 +11090,73 @@ msgid ""
 "banner (if enabled). Only necessary cookies are loaded."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:862
+#: includes/class-fupi-get-gdpr-status.php:890
 msgid ""
 "No-cookie mode is enabled. Make sure that this tool doesn't track "
 "information that can identify users."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:885
+#: includes/class-fupi-get-gdpr-status.php:913
 msgid ""
 "Enhanced Match is enabled. Email addresses of clients and logged-in "
 "users are sent to Pinterest."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:901
+#: includes/class-fupi-get-gdpr-status.php:929
 msgid ""
 "Due to the nature of Plausible Analytics and its terms and conditions, "
 "you cannot sent to it personally identifiable information. Please make "
 "sure that no metadata contains it."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:917
+#: includes/class-fupi-get-gdpr-status.php:945
 msgid ""
 "Enhanced Conversions is enabled. Email addresses of clients and logged-"
 "in users are sent to Twitter (if known)."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:934
+#: includes/class-fupi-get-gdpr-status.php:962
 msgid "The tool is force loaded for all visitors."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:935
+#: includes/class-fupi-get-gdpr-status.php:963
 msgid "Disable force loading"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:949
+#: includes/class-fupi-get-gdpr-status.php:977
 msgid ""
 "The tool is set to disregard consent banner settings and start tracking "
 "without waiting for consent"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:950
+#: includes/class-fupi-get-gdpr-status.php:978
 msgid "Disable this option in the module's settings"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:951
+#: includes/class-fupi-get-gdpr-status.php:979
 msgid "This tool loads according to incorrectly configured consent banner."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:952
+#: includes/class-fupi-get-gdpr-status.php:980
 msgid "This tool loads according to consent banner settings."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:969
+#: includes/class-fupi-get-gdpr-status.php:997
 msgid "Consent banner is required"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:970
-#: includes/class-fupi-get-gdpr-status.php:1036
-#: includes/class-fupi-get-gdpr-status.php:1384
-#: includes/class-fupi-get-gdpr-status.php:1407
+#: includes/class-fupi-get-gdpr-status.php:998
+#: includes/class-fupi-get-gdpr-status.php:1064
+#: includes/class-fupi-get-gdpr-status.php:1412
+#: includes/class-fupi-get-gdpr-status.php:1435
 msgid "Enable consent banner"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1001
+#: includes/class-fupi-get-gdpr-status.php:1029
 msgid "Google Fonts are replaced with fonts from Bunny Fonts"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1002
+#: includes/class-fupi-get-gdpr-status.php:1030
 #, php-format
 msgid ""
 "You enabled replacing Google Fonts with safe fonts from Bunny Fonts but "
@@ -11310,11 +11167,11 @@ msgid ""
 "plugin."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1003
+#: includes/class-fupi-get-gdpr-status.php:1031
 msgid "Check if you need to use the Safe Fonts module"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1004
+#: includes/class-fupi-get-gdpr-status.php:1032
 #, php-format
 msgid ""
 "Scan your website with %1$s and check if your website uses Google Fonts. "
@@ -11323,13 +11180,13 @@ msgid ""
 "from Bunny Fonts or use a plugin %2$sOMGF (free)%3$s."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1030
+#: includes/class-fupi-get-gdpr-status.php:1058
 msgid ""
 "Disable Order Attribution or control the SourceBuster script in "
 "WooCommerce"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1031
+#: includes/class-fupi-get-gdpr-status.php:1059
 #, php-format
 msgid ""
 "Recent versions of WooCommerce come with an order attribution feature "
@@ -11340,31 +11197,31 @@ msgid ""
 "used by the Order Attribution function. %1$sLearn more%2$s"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1032
+#: includes/class-fupi-get-gdpr-status.php:1060
 msgid ""
 "SourceBuster script is loaded according to incorrectly set up consent "
 "banner"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1033
+#: includes/class-fupi-get-gdpr-status.php:1061
 msgid "Correct consent banner settings"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1034
+#: includes/class-fupi-get-gdpr-status.php:1062
 msgid ""
 "SourceBuster script is loaded according to the consent banner settings"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1035
+#: includes/class-fupi-get-gdpr-status.php:1063
 msgid ""
 "Enable consent banner to load SourceBuster according to privacy laws"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1084
+#: includes/class-fupi-get-gdpr-status.php:1112
 msgid "Check if you need to use the Iframes Manager module"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1085
+#: includes/class-fupi-get-gdpr-status.php:1113
 msgid ""
 "If you embed on your site any content from other websites (YouTube "
 "videos, Google Maps, X/Twitter twits, etc.), please configure the "
@@ -11372,12 +11229,12 @@ msgid ""
 "Picture will be able to load this content according to provided consents."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1111
-#: includes/class-fupi-get-gdpr-status.php:1261
+#: includes/class-fupi-get-gdpr-status.php:1139
+#: includes/class-fupi-get-gdpr-status.php:1289
 msgid " and "
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1114
+#: includes/class-fupi-get-gdpr-status.php:1142
 #, php-format
 msgid ""
 "Iframes loaded by %1$s are loaded according to consent banner settings "
@@ -11385,90 +11242,90 @@ msgid ""
 "to privacy policies of content hosts."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1132
-#: includes/class-fupi-get-gdpr-status.php:1236
-#: includes/class-fupi-get-gdpr-status.php:1447
+#: includes/class-fupi-get-gdpr-status.php:1160
+#: includes/class-fupi-get-gdpr-status.php:1264
+#: includes/class-fupi-get-gdpr-status.php:1475
 msgid "statistics"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1133
-#: includes/class-fupi-get-gdpr-status.php:1237
-#: includes/class-fupi-get-gdpr-status.php:1448
+#: includes/class-fupi-get-gdpr-status.php:1161
+#: includes/class-fupi-get-gdpr-status.php:1265
+#: includes/class-fupi-get-gdpr-status.php:1476
 msgid "marketing"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1134
-#: includes/class-fupi-get-gdpr-status.php:1238
-#: includes/class-fupi-get-gdpr-status.php:1449
+#: includes/class-fupi-get-gdpr-status.php:1162
+#: includes/class-fupi-get-gdpr-status.php:1266
+#: includes/class-fupi-get-gdpr-status.php:1477
 msgid "personalisation"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1156
+#: includes/class-fupi-get-gdpr-status.php:1184
 #, php-format
 msgid ""
 " are loaded according to consent banner settings (require consents for "
 "%1$s) or when visitors agree to privacy policies of content hosts."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1166
+#: includes/class-fupi-get-gdpr-status.php:1194
 msgid " are set to load without waiting for consents."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1183
+#: includes/class-fupi-get-gdpr-status.php:1211
 msgid ""
 "Add information in your privacy policy that your website loads content "
 "from other sources and what happens with their data after they agree. "
 "You can link to their privacy policies."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1221
+#: includes/class-fupi-get-gdpr-status.php:1249
 msgid "WP Full Picture loads a script"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1263
+#: includes/class-fupi-get-gdpr-status.php:1291
 msgid "It is set to require consents for"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1264
+#: includes/class-fupi-get-gdpr-status.php:1292
 msgid "but it is force-loaded before visitors can make their choices."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1265
+#: includes/class-fupi-get-gdpr-status.php:1293
 msgid "Do not force-load this script."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1266
+#: includes/class-fupi-get-gdpr-status.php:1294
 msgid "and loads according to consent banner settings."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1286
-#: includes/class-fupi-get-gdpr-status.php:1302
+#: includes/class-fupi-get-gdpr-status.php:1314
+#: includes/class-fupi-get-gdpr-status.php:1330
 msgid "The script loads without waiting for tracking consents."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1287
-#: includes/class-fupi-get-gdpr-status.php:1303
+#: includes/class-fupi-get-gdpr-status.php:1315
+#: includes/class-fupi-get-gdpr-status.php:1331
 msgid ""
 "Make sure that this script does not track personaly identifiable "
 "information."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1322
+#: includes/class-fupi-get-gdpr-status.php:1350
 msgid "This module does not install any scripts"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1323
+#: includes/class-fupi-get-gdpr-status.php:1351
 msgid ""
 "Make sure that all JavaScript snippets that install tracking tools are "
 "loaded with the Custom Scripts module. WP Full Picture will load them "
 "according to provided consents."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1336
+#: includes/class-fupi-get-gdpr-status.php:1364
 msgid "Check if you need to enable the Custom Scripts module"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1337
+#: includes/class-fupi-get-gdpr-status.php:1365
 msgid ""
 "If you installed any tracking tools with JavaScript snippets, please "
 "move these snippets to the \"Custom scripts\" module (easy) or Google "
@@ -11476,11 +11333,11 @@ msgid ""
 "be able to load these tools according to provided consents."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1361
+#: includes/class-fupi-get-gdpr-status.php:1389
 msgid "Check if you need to use the Tracking Tools Manager module"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1362
+#: includes/class-fupi-get-gdpr-status.php:1390
 #, php-format
 msgid ""
 "Tracking Tools Manager let's you load tracking tools installed outside "
@@ -11490,73 +11347,73 @@ msgid ""
 "how to use it, read these %2$sshort instructions%3$s."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1382
-#: includes/class-fupi-get-gdpr-status.php:1395
+#: includes/class-fupi-get-gdpr-status.php:1410
+#: includes/class-fupi-get-gdpr-status.php:1423
 msgid ""
 "Tracking plugins loaded according to settings in the consent banner:"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1383
-#: includes/class-fupi-get-gdpr-status.php:1406
+#: includes/class-fupi-get-gdpr-status.php:1411
+#: includes/class-fupi-get-gdpr-status.php:1434
 #, php-format
 msgid ""
 "Tracking plugin(s) %1$s must be loaded according to settings in the "
 "consent banner but it is not enabled."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1427
+#: includes/class-fupi-get-gdpr-status.php:1455
 msgid "No name provided"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1446
+#: includes/class-fupi-get-gdpr-status.php:1474
 #, php-format
 msgid "Tracking tool with %1$s=\"%2$s\" and title/ID \"%3$s\""
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1475
+#: includes/class-fupi-get-gdpr-status.php:1503
 #, php-format
 msgid "is marked as using visitor's data for %1$s."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1476
+#: includes/class-fupi-get-gdpr-status.php:1504
 msgid "The tool is loaded according to incorrectly set up consent banner"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1477
+#: includes/class-fupi-get-gdpr-status.php:1505
 msgid "The tool is loaded according to consent banner settings"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1499
+#: includes/class-fupi-get-gdpr-status.php:1527
 msgid "is set to load without waiting for consents."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1500
+#: includes/class-fupi-get-gdpr-status.php:1528
 msgid "Make sure this script does not need consents"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1517
+#: includes/class-fupi-get-gdpr-status.php:1545
 msgid ""
 "Add information in your privacy policy about additional tracking tools "
 "that you use, what data they collect, how is the data used and who is it "
 "shared with."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1518
+#: includes/class-fupi-get-gdpr-status.php:1546
 msgid "This module does not manage any tracking tools"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1519
+#: includes/class-fupi-get-gdpr-status.php:1547
 msgid "Are you sure this module needs to stay enabled?"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1557
+#: includes/class-fupi-get-gdpr-status.php:1585
 #, php-format
 msgid ""
 "Check in what countries opt-in, opt-out and notification banners should "
 "be used. %1$sRead article%2$s"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1558
+#: includes/class-fupi-get-gdpr-status.php:1586
 msgid ""
 "Consent banner uses strict, automatic setup mode - it chooses the "
 "correct mode of work depending on visitor's location. Strict mode is "
@@ -11564,65 +11421,65 @@ msgid ""
 "and / or collect sensitive information."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1559
-#: includes/class-fupi-get-gdpr-status.php:1672
-#: includes/class-fupi-get-gdpr-status.php:1731
+#: includes/class-fupi-get-gdpr-status.php:1587
+#: includes/class-fupi-get-gdpr-status.php:1700
+#: includes/class-fupi-get-gdpr-status.php:1759
 msgid "Opt-in mode is used for visitors from:"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1560
-#: includes/class-fupi-get-gdpr-status.php:1673
+#: includes/class-fupi-get-gdpr-status.php:1588
+#: includes/class-fupi-get-gdpr-status.php:1701
 msgid "Opt-out mode is used for visitors from:"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1561
+#: includes/class-fupi-get-gdpr-status.php:1589
 msgid "Visitors from other countries are notified that they are tracked."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1562
+#: includes/class-fupi-get-gdpr-status.php:1590
 msgid "Fallback mode when no location is found: Opt-in mode."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1586
-#: includes/class-fupi-get-gdpr-status.php:1620
-#: includes/class-fupi-get-gdpr-status.php:1903
+#: includes/class-fupi-get-gdpr-status.php:1614
+#: includes/class-fupi-get-gdpr-status.php:1648
+#: includes/class-fupi-get-gdpr-status.php:1931
 msgid ""
 "Consent banner is set to start tracking visitors from all countries only "
 "after they consent to tracking (Opt-in mode)."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1587
-#: includes/class-fupi-get-gdpr-status.php:1954
+#: includes/class-fupi-get-gdpr-status.php:1615
+#: includes/class-fupi-get-gdpr-status.php:1982
 msgid ""
 "Visitors are not asked for new consent when the privacy policy text "
 "changes and/or when new tracking modules are enabled."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1588
-#: includes/class-fupi-get-gdpr-status.php:1955
+#: includes/class-fupi-get-gdpr-status.php:1616
+#: includes/class-fupi-get-gdpr-status.php:1983
 msgid "Enable it in the consent banner's settings"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1632
+#: includes/class-fupi-get-gdpr-status.php:1660
 msgid ""
 "Consent banner is set to start tracking visitors from the moment they "
 "enter the website but let them decline tracking (Opt-out mode)."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1633
-#: includes/class-fupi-get-gdpr-status.php:1647
-#: includes/class-fupi-get-gdpr-status.php:1915
-#: includes/class-fupi-get-gdpr-status.php:1929
+#: includes/class-fupi-get-gdpr-status.php:1661
+#: includes/class-fupi-get-gdpr-status.php:1675
+#: includes/class-fupi-get-gdpr-status.php:1943
+#: includes/class-fupi-get-gdpr-status.php:1957
 msgid "Change to the opt-in mode or one of automatic modes."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1646
+#: includes/class-fupi-get-gdpr-status.php:1674
 msgid ""
 "Consent banner is set to track all visitors and only notify them that "
 "they are tracked. They cannot decline."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1671
+#: includes/class-fupi-get-gdpr-status.php:1699
 msgid ""
 "Consent banner uses lax, automatic setup mode - it chooses the correct "
 "mode of work depending on visitor's location. Lax mode is intended for "
@@ -11630,144 +11487,144 @@ msgid ""
 "collect sensitive information."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1674
+#: includes/class-fupi-get-gdpr-status.php:1702
 #, php-format
 msgid "Visitors from %1$s are notified that they are tracked."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1675
-#: includes/class-fupi-get-gdpr-status.php:1835
+#: includes/class-fupi-get-gdpr-status.php:1703
+#: includes/class-fupi-get-gdpr-status.php:1863
 msgid "Visitors from other countries are tracked without notification."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1693
+#: includes/class-fupi-get-gdpr-status.php:1721
 msgid ""
 "Consent banner changes the mode of work depending on visitor's location. "
 "The list of locations was set manually by the user."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1694
+#: includes/class-fupi-get-gdpr-status.php:1722
 msgid "Make sure your setup is correct"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1706
+#: includes/class-fupi-get-gdpr-status.php:1734
 msgid "Opt-in mode is used for visitors from all countries."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1717
-#: includes/class-fupi-get-gdpr-status.php:1740
+#: includes/class-fupi-get-gdpr-status.php:1745
+#: includes/class-fupi-get-gdpr-status.php:1768
 msgid "Opt-in mode is not used for visitors from any country."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1754
+#: includes/class-fupi-get-gdpr-status.php:1782
 msgid "Opt-out mode is used for visitors from all countries."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1766
-#: includes/class-fupi-get-gdpr-status.php:1789
+#: includes/class-fupi-get-gdpr-status.php:1794
+#: includes/class-fupi-get-gdpr-status.php:1817
 msgid "Opt-out mode is not used for visitors from any country."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1779
+#: includes/class-fupi-get-gdpr-status.php:1807
 #, php-format
 msgid "Opt-out mode is used for visitors from: %1$s."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1803
+#: includes/class-fupi-get-gdpr-status.php:1831
 msgid ""
 "Visitors from all countries are notified about tracking but can't opt-out"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1804
+#: includes/class-fupi-get-gdpr-status.php:1832
 msgid "Change to opt-in mode or one of the automatic ones"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1815
+#: includes/class-fupi-get-gdpr-status.php:1843
 msgid "Visitors from no country are only informed that they are tracked."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1816
+#: includes/class-fupi-get-gdpr-status.php:1844
 msgid ""
 "Visitors from these countries are notified about tracking but can't opt-"
 "out:"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1854
+#: includes/class-fupi-get-gdpr-status.php:1882
 msgid ""
 "When visitor location is not found, consent banner will start tracking "
 "visitors only after they consent to tracking (Opt-in mode)."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1865
+#: includes/class-fupi-get-gdpr-status.php:1893
 msgid ""
 "When visitor location is not found, consent banner will start tracking "
 "visitors from the moment they enter the website but will let them "
 "decline tracking (Opt-out mode)"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1866
-#: includes/class-fupi-get-gdpr-status.php:1881
+#: includes/class-fupi-get-gdpr-status.php:1894
+#: includes/class-fupi-get-gdpr-status.php:1909
 msgid "Change to opt-in mode."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1880
+#: includes/class-fupi-get-gdpr-status.php:1908
 msgid ""
 "When visitor location is not found, visitors will be notified that they "
 "are tracked bu they will not be able to decline tracking."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1914
+#: includes/class-fupi-get-gdpr-status.php:1942
 msgid ""
 "Consent banner is set to start tracking visitors from the moment they "
 "enter the website but will let them decline tracking (Opt-out mode)"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1928
+#: includes/class-fupi-get-gdpr-status.php:1956
 msgid ""
 "Visitors are notified that they are tracked but they are not able to "
 "decline tracking."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1944
+#: includes/class-fupi-get-gdpr-status.php:1972
 msgid ""
 "Visitors are asked for consent again, when the privacy policy text "
 "changes or when tracking modules are enabled."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1975
+#: includes/class-fupi-get-gdpr-status.php:2003
 msgid "Privacy policy page is not set or is not published"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1976
+#: includes/class-fupi-get-gdpr-status.php:2004
 msgid ""
 "Please set it in \"Settings > Privacy\" page and make sure that it is "
 "published."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1995
+#: includes/class-fupi-get-gdpr-status.php:2023
 msgid ""
 "When visitors are asked for tracking consent (opt-in), switches for "
 "choosing allowed uses of tracked data are pre-selected."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:1996
+#: includes/class-fupi-get-gdpr-status.php:2024
 msgid "Disable pre-selection of switches"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:2009
+#: includes/class-fupi-get-gdpr-status.php:2037
 msgid ""
 "Add to your privacy policy information that WP Full Picture uses the "
 "following cookies:"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:2010
+#: includes/class-fupi-get-gdpr-status.php:2038
 msgid ""
 "fp_cookie - a necessary cookie. It stores information on visitor's "
 "tracking consents, a list of tracking tools that a user agreed to and "
 "the date of the last update of the privacy policy page. Does not expire."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:2011
+#: includes/class-fupi-get-gdpr-status.php:2039
 msgid ""
 "fp_current_session - an optional cookie. It requires consent to tracking "
 "statistics. In the free version it does not hold any value and is only "
@@ -11778,15 +11635,15 @@ msgid ""
 "30 minutes."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:2019
+#: includes/class-fupi-get-gdpr-status.php:2047
 msgid "Saving consents"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:2031
+#: includes/class-fupi-get-gdpr-status.php:2059
 msgid "Saving proofs of visitor's tracking consents is disabled."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:2032
+#: includes/class-fupi-get-gdpr-status.php:2060
 msgid ""
 "Enable saving proofs of consent in the Consent Banner > Saving Consents. "
 "You may need it during audits or investigations by authorities or data "
@@ -11794,11 +11651,11 @@ msgid ""
 "permission, in legal cases where privacy issues are involved."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:2044
+#: includes/class-fupi-get-gdpr-status.php:2070
 msgid "Saving proofs of visitor's tracking consents is enabled."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:2059
+#: includes/class-fupi-get-gdpr-status.php:2082
 msgid ""
 "cdb_id - a necessary cookie. It is saved after visitors agree or decline "
 "tracking in the opt-in banner. It stores a random device identifier used "
@@ -11806,7 +11663,7 @@ msgid ""
 "expire."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:2073
+#: includes/class-fupi-get-gdpr-status.php:2098
 msgid ""
 "fp_country - a necessary cookie used when the geolocation module is "
 "enabled. It is used by the plugin to apply the correct tracking "
@@ -11815,7 +11672,7 @@ msgid ""
 "by default)."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:2074
+#: includes/class-fupi-get-gdpr-status.php:2099
 msgid ""
 "fp_recent_sessions - an optional cookie used for tracking visitor's "
 "behavior across multiple sessions. It requires consent to tracking "
@@ -11823,49 +11680,49 @@ msgid ""
 "during recent sessions. Expires after 30 days from the last visit."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:2095
+#: includes/class-fupi-get-gdpr-status.php:2120
 msgid ""
 "Visitors who want to change their tracking preferences can do it in the "
 "consent banner which shows after they click an icon in the corner of the "
 "screen"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:2126
+#: includes/class-fupi-get-gdpr-status.php:2151
 msgid ""
 "Visitors who want to change their tracking preferences can do it in the "
 "consent banner which shows after they click a link/button in the privacy "
 "policy."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:2142
+#: includes/class-fupi-get-gdpr-status.php:2167
 msgid ""
 "Make sure your visitors can open the consent banner popup to change "
 "their tracking preferences."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:2143
+#: includes/class-fupi-get-gdpr-status.php:2168
 msgid ""
 "Please enable a toggle icon in the theme customizer (Appearance > "
 "Customize > Consent Banner) or add a button in your privacy policy with "
 "the CSS selector(s):"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:2155
+#: includes/class-fupi-get-gdpr-status.php:2180
 msgid "Privacy policy page is missing or is not marked as such."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:2156
+#: includes/class-fupi-get-gdpr-status.php:2181
 msgid ""
 "Create a privacy policy page and mark it as such in in the WordPress "
 "admin > Settings menu > Privacy page."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:2173
+#: includes/class-fupi-get-gdpr-status.php:2198
 msgid ""
 "The consent banner is not set to display in the center of the screen"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:2174
+#: includes/class-fupi-get-gdpr-status.php:2199
 msgid ""
 "To collect maximum number of consents we recommend that you place your "
 "notice in the central position of the screen. This way people will not "
@@ -11874,69 +11731,69 @@ msgid ""
 "traffic, which can be accessed only on the first page the visitor sees."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:2237
+#: includes/class-fupi-get-gdpr-status.php:2262
 msgid "button opening panel with cookie settings"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:2238
+#: includes/class-fupi-get-gdpr-status.php:2263
 msgid ""
 "section where users can consent to the use of their data for statistics"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:2239
+#: includes/class-fupi-get-gdpr-status.php:2264
 msgid ""
 "section where users can consent to the use of their data for marketing"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:2240
+#: includes/class-fupi-get-gdpr-status.php:2265
 msgid ""
 "section where users can consent to the use of their data for "
 "personalisation"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:2242
+#: includes/class-fupi-get-gdpr-status.php:2267
 msgid "The consent banner does not display the \"Decline\" button"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:2243
+#: includes/class-fupi-get-gdpr-status.php:2268
 msgid "Do not hide the \"Decline\" button"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:2244
+#: includes/class-fupi-get-gdpr-status.php:2269
 msgid "Hidden consent baner elements:"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:2283
+#: includes/class-fupi-get-gdpr-status.php:2308
 msgid "Name and surname of a user or a client"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:2284
+#: includes/class-fupi-get-gdpr-status.php:2309
 msgid ""
 "User's email address and/or an email address of a client (even when not "
 "logged in, collected at the time of purchase)"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:2285
+#: includes/class-fupi-get-gdpr-status.php:2310
 msgid ""
 "User's phone number and/or phone number of a client (even when not "
 "logged in, collected at the time of purchase)"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:2286
+#: includes/class-fupi-get-gdpr-status.php:2311
 msgid ""
 "User's physical address and/or address of a client (even when not logged "
 "in, collected at the time of purchase)"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:2300
+#: includes/class-fupi-get-gdpr-status.php:2325
 msgid "Order ID (in WooCommerce)"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:2313
+#: includes/class-fupi-get-gdpr-status.php:2338
 msgid "User metadata with ID"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:2330
+#: includes/class-fupi-get-gdpr-status.php:2355
 msgid ""
 "The privacy policy must include information about tracking tools that "
 "are loaded with GTM, what data is tracked, what you and these tools use "
@@ -11944,33 +11801,33 @@ msgid ""
 "it to."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:2343
+#: includes/class-fupi-get-gdpr-status.php:2368
 msgid ""
 "Tracking tools loaded with GTM need to be used with a consent banner"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:2344
+#: includes/class-fupi-get-gdpr-status.php:2369
 msgid ""
 "Enable and set up the consent banner module and trigger GTM tags after "
 "visitors consent to tracking."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:2355
+#: includes/class-fupi-get-gdpr-status.php:2380
 msgid "Make sure to trigger GTM tags after visitors consent to tracking."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:2356
+#: includes/class-fupi-get-gdpr-status.php:2381
 msgid ""
 "Tracking tools loaded with GTM need to be loaded after visitors consent "
 "to tracking in the consent banner."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:2368
+#: includes/class-fupi-get-gdpr-status.php:2393
 msgid ""
 "Tracking tools loaded with GTM may require the use of a consent banner"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:2369
+#: includes/class-fupi-get-gdpr-status.php:2394
 msgid ""
 "Make sure that none of the tools you install with GTM track personaly "
 "indentifiable information."
@@ -12017,160 +11874,160 @@ msgstr ""
 msgid "Broken links tracking"
 msgstr ""
 
-#: public/class-fupi-public.php:141 public/class-fupi-public.php:143
+#: public/class-fupi-public.php:144 public/class-fupi-public.php:146
 msgid "Labels"
 msgstr ""
 
-#: public/class-fupi-public.php:142
+#: public/class-fupi-public.php:145
 msgid "Label"
 msgstr ""
 
-#: public/class-fupi-public.php:144
+#: public/class-fupi-public.php:147
 msgid "All labels"
 msgstr ""
 
-#: public/class-fupi-public.php:145
+#: public/class-fupi-public.php:148
 msgid "Parent label"
 msgstr ""
 
-#: public/class-fupi-public.php:146
+#: public/class-fupi-public.php:149
 msgid "Parent label:"
 msgstr ""
 
-#: public/class-fupi-public.php:147
+#: public/class-fupi-public.php:150
 msgid "New Label Name"
 msgstr ""
 
-#: public/class-fupi-public.php:148
+#: public/class-fupi-public.php:151
 msgid "Add New Label"
 msgstr ""
 
-#: public/class-fupi-public.php:149
+#: public/class-fupi-public.php:152
 msgid "Edit Label"
 msgstr ""
 
-#: public/class-fupi-public.php:150
+#: public/class-fupi-public.php:153
 msgid "Update Label"
 msgstr ""
 
-#: public/class-fupi-public.php:151
+#: public/class-fupi-public.php:154
 msgid "View Label"
 msgstr ""
 
-#: public/class-fupi-public.php:152
+#: public/class-fupi-public.php:155
 msgid "Separate labels with commas"
 msgstr ""
 
-#: public/class-fupi-public.php:153
+#: public/class-fupi-public.php:156
 msgid "Add or remove labels"
 msgstr ""
 
-#: public/class-fupi-public.php:154 public/modules/woo/woo-public.php:220
+#: public/class-fupi-public.php:157 public/modules/woo/woo-public.php:262
 msgid "Choose from the most used"
 msgstr ""
 
-#: public/class-fupi-public.php:155
+#: public/class-fupi-public.php:158
 msgid "Popular labels"
 msgstr ""
 
-#: public/class-fupi-public.php:156
+#: public/class-fupi-public.php:159
 msgid "Search labels"
 msgstr ""
 
-#: public/class-fupi-public.php:157 public/modules/woo/woo-public.php:223
+#: public/class-fupi-public.php:160 public/modules/woo/woo-public.php:265
 msgid "Not Found"
 msgstr ""
 
-#: public/class-fupi-public.php:158
+#: public/class-fupi-public.php:161
 msgid "No labels"
 msgstr ""
 
-#: public/class-fupi-public.php:159
+#: public/class-fupi-public.php:162
 msgid "Labels list"
 msgstr ""
 
-#: public/class-fupi-public.php:160
+#: public/class-fupi-public.php:163
 msgid "Labels list navigation"
 msgstr ""
 
-#: public/modules/cook/fupi-display-cookie-notice.php:433
+#: public/modules/cook/fupi-display-cookie-notice.php:437
 msgid "This button is only active on the live site"
 msgstr ""
 
-#: public/modules/cook/fupi-display-cookie-notice.php:436
+#: public/modules/cook/fupi-display-cookie-notice.php:440
 msgid "Change cookie preferences"
 msgstr ""
 
-#: public/modules/woo/woo-public.php:207
+#: public/modules/woo/woo-public.php:249
 msgctxt "Taxonomy General Name"
 msgid "Brands"
 msgstr ""
 
-#: public/modules/woo/woo-public.php:208
+#: public/modules/woo/woo-public.php:250
 msgctxt "Taxonomy Singular Name"
 msgid "Brand"
 msgstr ""
 
-#: public/modules/woo/woo-public.php:209
+#: public/modules/woo/woo-public.php:251
 msgid "Brands"
 msgstr ""
 
-#: public/modules/woo/woo-public.php:210
+#: public/modules/woo/woo-public.php:252
 msgid "All brands"
 msgstr ""
 
-#: public/modules/woo/woo-public.php:211
+#: public/modules/woo/woo-public.php:253
 msgid "Parent brand"
 msgstr ""
 
-#: public/modules/woo/woo-public.php:212
+#: public/modules/woo/woo-public.php:254
 msgid "Parent Brand:"
 msgstr ""
 
-#: public/modules/woo/woo-public.php:213
+#: public/modules/woo/woo-public.php:255
 msgid "New Brand Name"
 msgstr ""
 
-#: public/modules/woo/woo-public.php:214
+#: public/modules/woo/woo-public.php:256
 msgid "Add New Brand"
 msgstr ""
 
-#: public/modules/woo/woo-public.php:215
+#: public/modules/woo/woo-public.php:257
 msgid "Edit Brand"
 msgstr ""
 
-#: public/modules/woo/woo-public.php:216
+#: public/modules/woo/woo-public.php:258
 msgid "Update Brand"
 msgstr ""
 
-#: public/modules/woo/woo-public.php:217
+#: public/modules/woo/woo-public.php:259
 msgid "View Brand"
 msgstr ""
 
-#: public/modules/woo/woo-public.php:218
+#: public/modules/woo/woo-public.php:260
 msgid "Separate brands with commas"
 msgstr ""
 
-#: public/modules/woo/woo-public.php:219
+#: public/modules/woo/woo-public.php:261
 msgid "Add or remove brands"
 msgstr ""
 
-#: public/modules/woo/woo-public.php:221
+#: public/modules/woo/woo-public.php:263
 msgid "Popular brands"
 msgstr ""
 
-#: public/modules/woo/woo-public.php:222
+#: public/modules/woo/woo-public.php:264
 msgid "Search brands"
 msgstr ""
 
-#: public/modules/woo/woo-public.php:224
+#: public/modules/woo/woo-public.php:266
 msgid "No brands"
 msgstr ""
 
-#: public/modules/woo/woo-public.php:225
+#: public/modules/woo/woo-public.php:267
 msgid "Brands list"
 msgstr ""
 
-#: public/modules/woo/woo-public.php:226
+#: public/modules/woo/woo-public.php:268
 msgid "Brands list navigation"
 msgstr ""

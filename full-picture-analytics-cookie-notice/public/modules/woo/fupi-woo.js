@@ -7,7 +7,7 @@
 	// Helpers
 
 	FP.fns.get_woo_prod_id = prod => { // This must be equivalent to "get_woo_prod_id" in class-fupi-public-woo.php
-		if ( prod.type == 'variation' && fp.woo.variable_as_simple ) {
+		if ( prod.type == 'variation' && fp.woo.variable_tracking_method == 'track_parents' ) {
 			return fp.woo.sku_is_id ? prod.parent_sku || prod.parent_id : prod.parent_id;
 		} else {
 			return fp.woo.sku_is_id ? prod.sku || prod.id : prod.id;
@@ -15,7 +15,7 @@
 	}
 
 	FP.fns.get_woo_prod_name = prod => { // This must be equivalent to "get_woo_prod_name" in class-fupi-public-woo.php
-		return prod.type == 'variation' && fp.woo.variable_as_simple ? prod.parent_name || prod.name : prod.name;
+		return prod.type == 'variation' && fp.woo.variable_tracking_method == 'track_parents' ? prod.parent_name || prod.name : prod.name;
 	}
 
 	FP.fns.createWooPurchaseMD5 = () => {
@@ -36,6 +36,34 @@
 		return false;
 
 	};
+
+	function get_current_variant_id(){
+		
+		// Get fields with the main product ID and the currently selected variation ID
+		let product_id_field = FP.findFirst( 'form.variations_form input[name="product_id"]' ),
+			variant_id_field = FP.findFirst( 'form.variations_form input[name="variation_id"]' );
+
+		if ( ! ( product_id_field && variant_id_field ) ) return false;
+
+		let product_id = product_id_field.value,
+			variant_id = variant_id_field.value;
+
+		// Check if main prod and variant are the same
+		if ( product_id == variant_id ) {
+
+			// Mark this variant as viewed and return
+			fpdata.woo.viewed_variants.push(variant_id);			
+			return false;
+		};
+
+		// Check if this variant has already been tracked
+		if ( fpdata.woo.viewed_variants && fpdata.woo.viewed_variants.includes( variant_id ) ) return false;
+
+		// Mark this variant as viewed
+		fpdata.woo.viewed_variants.push(variant_id);
+
+		return variant_id;
+	}
 
 	
 
@@ -109,13 +137,49 @@
 		return list_name;
 	}
 
-	// Adds classes to products and product teasers and gets their list names
+	// Prepare teasers and single products for tracking and init tracking
 	FP.fns.prepare_teaser_and_single = function(){
-
+		
+		// Adds classes to products and product teasers and gets their list names
 		prepare_products_with_data_HTML();
 		prepare_allprods_block_teasers();
 		
+		// STOP if page was refreshed
+		if ( fp.woo.dont_track_views_after_refresh && fpdata.refreshed ) return;
+		
+		// Track impressions
 		FP.doActions( "woo_impress" );
+
+		// Track views of default variant
+		if ( fp.woo.variable_tracking_method == 'track_def_var' ) { // 85
+			
+			let variant_id_field = FP.findFirst( 'form.variations_form input[name="variation_id"]' );
+
+			if ( ! variant_id_field ) return;
+
+			// keep checking the value of variant_id_field field until it is no longer '0' (string) or until 2 seconds pass
+			let timer = 0;
+
+			let	variant_check_interval = setInterval( () => {
+					
+				timer += 200;
+
+				if ( variant_id_field.value != '0' ) {
+					clearInterval( variant_check_interval );
+
+					let variant_id = get_current_variant_id();
+		
+					if ( variant_id && fpdata.woo.products[variant_id] && FP.hasActions( 'woo_def_variant_view' ) ) {
+						FP.doActions( "woo_def_variant_view", variant_id );
+					}
+				}
+
+				if ( timer > 2000 ) {
+					clearInterval( variant_check_interval );
+					return;
+				}
+			}, 200 );			
+		}
 	};
 
 	function prepare_products_with_data_HTML(){
@@ -486,6 +550,24 @@
 			};
 		} );
 	};
+
+	// TRACK VIEWED VARIANTS AS PRODUCT VIEWS
+
+	if ( fp.woo.variable_tracking_method != 'track_parents' && fp.woo.track_variant_views ) {
+
+		jQuery(document).ready(function($) {
+			
+			// Listen for variation change events on the variations form
+			$( 'form.variations_form' ).on( 'woocommerce_variation_has_changed' , function() { // !! do NOT change into an arrow function
+				
+				let variant_id = get_current_variant_id();
+
+				if ( variant_id && fpdata.woo.products[variant_id] && FP.hasActions( 'woo_variant_view' ) ) {
+					FP.doActions( 'woo_variant_view', variant_id );
+				}
+			} )
+		} ) 
+	}
 
 	// BLOCK CART & MINI CART
 

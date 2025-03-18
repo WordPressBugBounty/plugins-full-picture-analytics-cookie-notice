@@ -47,7 +47,7 @@ FP.fns.pla_woo_events = () => {
 
 	function track_checkout(){
 
-		let items_type = fp.woo.variable_as_simple ? 'joined_items' : 'items',
+		let items_type = fp.woo.variable_tracking_method == 'track_parents' ? 'joined_items' : 'items',
 			cart = fpdata.woo.cart;
 
 		if ( fp.pla.track_woo_checkout_items ) {
@@ -95,7 +95,7 @@ FP.fns.pla_woo_events = () => {
 
 	function track_purchase(){ // type can be either "checkout" or "order"
 
-		let items_type = fp.woo.variable_as_simple ? 'joined_items' : 'items',
+		let items_type = fp.woo.variable_tracking_method == 'track_parents' ? 'joined_items' : 'items',
 			order = fpdata.woo.order;
 
 		if ( fp.pla.track_woo_purchased_items ) {

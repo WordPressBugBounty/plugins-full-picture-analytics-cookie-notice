@@ -10,10 +10,10 @@ switch( $section_id ){
 
     case 'fupi_cook_cdb':
 
-        $ret_text = '<p>' . sprintf( esc_html__( 'Keeping records of consents is %1$srequired by GDPR%2$s. Save 1000 consents for free in our cloud database.', 'full-picture-analytics-cookie-notice' ), '<button type="button" class="fupi_open_popup fupi_faux_link" data-popup="fupi_gdpr_info_popup">', '</button>')  . '</p>';
+        $ret_text = '<p>' . sprintf( esc_html__( 'Keeping records of consents is %1$srequired by GDPR%2$s. Most WordPress plugins save them in the site\'s database, but this makes them easy to modify, and they may not be considered as valid proofs. That is why we created a cloud database, where you can keep your consents safely and with all necessary data. You can save 1000 proofs for free and purchase one of %3$svery affordable plans%4$s when you need more.', 'full-picture-analytics-cookie-notice' ), '<button type="button" class="fupi_open_popup fupi_faux_link" data-popup="fupi_gdpr_info_popup">', '</button>', '<a href="https://wpfullpicture.com/pricing#hook_cdb_plans">', '</a>')  . '</p>';
 
         if ( fupi_fs()->can_use_premium_code() ) {
-            $ret_text .= '<p style="border: 2px solid #a7d4e2; border-radius: 10px; padding: 20px 15px;">' . sprintf( esc_html__( 'As a Premium user, you can save additional %1$s500 records of consent/decline a day%2$s, for free, until the end of August 2025. To save more, please purchase one of the %3$spay-as-you-go plans%4$s', 'full-picture-analytics-cookie-notice' ), '<strong>', '</strong>', '<a href="https://wpfullpicture.com/pricing#hook_cdb_plans">', '</a>' ) . '</p>';
+            $ret_text .= '<p style="border: 2px solid #a7d4e2; border-radius: 10px; padding: 20px 15px;">' . sprintf( esc_html__( 'As a Premium user, you can save additional %1$s500 records of consent/decline a day%2$s, for free, until the end of August 2025.', 'full-picture-analytics-cookie-notice' ), '<strong>', '</strong>' ) . '</p>';
         }
 
         $ret_text .= '
@@ -36,11 +36,6 @@ switch( $section_id ){
             </div>
         </div>';
 
-    break;
-
-    case 'fupi_cook_google':
-        $ret_text = '<p>' . sprintf( esc_html__( 'These settings will apply to Google Analytics and Google Ads installed with WP Full Picture %1$sand other plugins or methods%2$s.', 'full-picture-analytics-cookie-notice' ), '<strong>', '</strong>' ) . '</p>
-        <p>' . esc_html__('If you use the Google Tag Manager module, WP Full Picture automatically sends to GTM\'s dataLayer information on user consents in the format required by Google.', 'full-picture-analytics-cookie-notice' ) . '</p>';
     break;
 };
 

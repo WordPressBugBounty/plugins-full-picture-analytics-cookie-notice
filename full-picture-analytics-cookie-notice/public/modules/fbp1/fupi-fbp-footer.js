@@ -4,7 +4,7 @@ FP.fns.fbp_woo_events = () => {
 
 	// TRACK IMPRESSIONS
 
-	function track_woo_impress( caller_id ) {
+	function track_woo_impress() {
 		
 		if ( ! fpdata.woo.lists.single ) return;
 		if ( ! fp.woo.fbp ) fp.woo.fbp = { 'single' : [] };
@@ -42,9 +42,32 @@ FP.fns.fbp_woo_events = () => {
 	};
 
 	if ( ! ( fp.woo.dont_track_views_after_refresh && fpdata.refreshed ) ){
-		track_woo_impress( 'fbp' );
+		track_woo_impress();
 		FP.addAction( ['woo_impress'], track_woo_impress );
 	}
+
+	// TRACK DEFAULT VARIANT VIEW
+	// TRACK VARIANT VIEWS
+
+	function woo_variant_view( variant_id ){
+
+		let prod = fpdata.woo.products[variant_id];
+
+		let payload_o = {
+			'contents' : [ {
+				'id' : FP.fns.get_woo_prod_id(prod),
+				'quantity' : 1,
+			} ],
+			'currency' : fpdata.woo.currency,
+			'value' : prod.price,
+			'content_type' : 'product'
+		};
+
+		FP.track_fbp_evt( false, 'ViewContent', false, payload_o );
+	}
+
+	FP.addAction( ['woo_variant_view'], woo_variant_view );
+	FP.addAction( ['woo_def_variant_view'], woo_variant_view );
 
 	// TRACK ADD TO CART
 	// TRACK ADD TO WISHLIST
@@ -93,7 +116,7 @@ FP.fns.fbp_woo_events = () => {
 
 	function track_cart( type ){ // type can be either "checkout" or "order"
 
-		let items_type = fp.woo.variable_as_simple ? 'joined_items' : 'items',
+		let items_type = fp.woo.variable_tracking_method == 'track_parents' ? 'joined_items' : 'items',
 			items_a = [],
 			cart = type == 'checkout' ? fpdata.woo.cart : fpdata.woo.order,
 			event_name = type == 'checkout' ? 'InitiateCheckout' : 'Purchase';
@@ -126,7 +149,13 @@ FP.fns.fbp_woo_events = () => {
 	
 	// track order
 	// unless we already do it through server with advanced order tracking
-	if ( fp.woo.order_data_ready && ! ( fp.fbp.server_side && fp.fbp.adv_orders ) ) track_cart('order');
+	if ( fp.woo.order_data_ready ) {
+		if ( ! fp.vars.is_pro || ! ( fp.fbp.server_side && fp.fbp.adv_orders ) ) {
+			track_cart('order');
+		} else {
+			if ( fp.vars.debug ) console.log( '[FP] Meta Pixel purchase event is tracked by the server-side script' );
+		}
+	};
 
 	// track the start of checkout (except when the whole page or its part is refreshed)
 	if ( ! fpdata.refreshed ) {

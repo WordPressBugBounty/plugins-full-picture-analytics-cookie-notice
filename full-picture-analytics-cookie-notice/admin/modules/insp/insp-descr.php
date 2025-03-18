@@ -23,7 +23,7 @@ switch( $section_id ){
 	// LOADING
 
 	case 'fupi_insp_loading':
-		$ret_text = '<p>' . esc_html__( 'If you have consent banner enabled in the opt-in or one of automatic modes, Inspectlet will start tracking after visitors consent to using their personal data for statistics. If you enable the A/B testing script (see the "Installation" tab) then it will be loaded when visitors agree to using the data for personalisation purposes.', 'full-picture-analytics-cookie-notice') . '</p>';
+		$ret_text = '<p>' . esc_html__( 'Change when this tool loads and starts tracking visitors.', 'full-picture-analytics-cookie-notice') . '</p>';
 	break;
 
 	// TAGS

@@ -23,15 +23,21 @@ class Fupi_compliance_status_checker {
 
     private $modules_names;
 
-    public function __construct( $output_format, $cook_settings = false, $is_first_reg = false ) {
+    public function __construct(
+        $output_format,
+        $cook_settings = false,
+        $is_first_reg = false,
+        $latest_enabled_tools_data = false
+    ) {
         $this->is_first_reg = $is_first_reg;
         $this->format = $output_format;
         $this->consb_settings = ( empty( $cook_settings ) ? get_option( 'fupi_cook' ) : $cook_settings );
         $this->cdb_key = ( !empty( $this->consb_settings['cdb_key'] ) ? $this->consb_settings['cdb_key'] : false );
         $this->include_modules_datafile();
-        $this->get_enabled_modules();
+        $this->get_enabled_modules( $latest_enabled_tools_data );
         $this->check_cons_banner_module();
         // goes second
+        // $this->data = apply_filters( 'fupi_gdpr_status', $this->data, $this->format );
         $this->check_custom_scripts_module();
         $this->check_iframeblock_module();
         $this->check_blockscr_module();
@@ -106,8 +112,8 @@ class Fupi_compliance_status_checker {
         return '';
     }
 
-    private function get_enabled_modules() {
-        $tools = get_option( 'fupi_tools' );
+    private function get_enabled_modules( $latest_enabled_tools_data ) {
+        $tools = ( empty( $latest_enabled_tools_data ) ? get_option( 'fupi_tools' ) : $latest_enabled_tools_data );
         if ( !empty( $tools ) ) {
             $this->tools = array_keys( $tools );
         }
@@ -170,6 +176,27 @@ class Fupi_compliance_status_checker {
                     // unset empty extra data
                     unset($this->data[$module_id]['tracked_extra_data']);
                 }
+                // Remove the whole module if it has no data other then 'name'
+                if ( empty( $module_data['setup'] ) ) {
+                    unset($this->data[$module_id]);
+                    continue;
+                }
+                // check if module has content
+                $has_content = false;
+                // go over all elements of $module_data array
+                foreach ( $module_data as $key => $value ) {
+                    // check if it's not the name
+                    if ( $key != 'name' ) {
+                        // check if is empty
+                        if ( !empty( $value ) ) {
+                            $has_content = true;
+                        }
+                    }
+                }
+                // unset if it has no content
+                if ( !$has_content ) {
+                    unset($this->data[$module_id]);
+                }
                 // join setup
                 if ( !empty( $module_data['setup'] ) ) {
                     $new_setup_data = [];
@@ -200,14 +227,14 @@ class Fupi_compliance_status_checker {
                 $payload = [
                     'wpfpSettings' => $this->data,
                 ];
-                if ( fupi_fs()->can_use_premium_code() ) {
-                    $payload['installID'] = fupi_fs()->get_site()->id;
-                }
+                $payload['installID'] = fupi_fs()->get_site()->id;
+                $json_payload = json_encode( $payload );
+                // trigger_error( $json_payload );
                 $ch = curl_init();
                 curl_setopt( $ch, CURLOPT_URL, 'https://prod-fr.consentsdb.com/api/configuration/new' );
                 // curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
                 curl_setopt( $ch, CURLOPT_POST, true );
-                curl_setopt( $ch, CURLOPT_POSTFIELDS, json_encode( $payload ) );
+                curl_setopt( $ch, CURLOPT_POSTFIELDS, $json_payload );
                 curl_setopt( $ch, CURLOPT_HTTPHEADER, $header_arr );
                 curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
                 $server_output = curl_exec( $ch );
@@ -423,7 +450,7 @@ class Fupi_compliance_status_checker {
 
     private function set_basic_module_info( $module_id, $module_info ) {
         $this->data[$module_id] = [
-            'module_name'        => $this->modules_names[$module_id],
+            'module_name'        => ( $this->format == 'cdb' ? $module_info['name'] : $this->modules_names[$module_id] ),
             'setup'              => [],
             'tracked_extra_data' => [],
         ];
@@ -1273,7 +1300,7 @@ class Fupi_compliance_status_checker {
         $notice_opts = get_option( 'fupi_cookie_notice' );
         $priv_policy_url = get_privacy_policy_url();
         $this->data['cook'] = [
-            'module_name' => $this->modules_names['cook'],
+            'module_name' => ( $this->format == 'cdb' ? $info['name'] : $this->modules_names['cook'] ),
             'setup'       => [],
         ];
         if ( $this->format == 'cdb' ) {
@@ -1705,13 +1732,11 @@ class Fupi_compliance_status_checker {
         $is_cdb_enabled = false;
         if ( !empty( $settings ) ) {
             if ( isset( $settings['cdb_key'] ) && !empty( $priv_policy_url ) ) {
-                if ( $this->format == 'cdb' ) {
-                    $t_cook_56 = 'Saving proofs of visitor\'s tracking consents is enabled.';
-                } else {
+                if ( $this->format != 'cdb' ) {
                     $t_cook_56 = esc_html__( 'Saving proofs of visitor\'s tracking consents is enabled.', 'full-picture-analytics-cookie-notice' );
+                    $is_cdb_enabled = true;
+                    $this->data['cdb']['setup'][] = ['ok', $t_cook_56];
                 }
-                $is_cdb_enabled = true;
-                $this->data['cdb']['setup'][] = ['ok', $t_cook_56];
             }
             // Back to cookie notice settings
             if ( isset( $settings['cdb_key'] ) ) {
@@ -1723,8 +1748,10 @@ class Fupi_compliance_status_checker {
                 $pp_cookies_info[1][] = $t_cook_59;
             }
         }
-        if ( !$is_cdb_enabled ) {
-            $this->data['cdb']['setup'][] = ['alert', $t_cook_10, $t_cook_11];
+        if ( $this->format != 'cdb' ) {
+            if ( !$is_cdb_enabled ) {
+                $this->data['cdb']['setup'][] = ['alert', $t_cook_10, $t_cook_11];
+            }
         }
         $this->data['cook']['pp comments'][] = $pp_cookies_info;
         // Button which toggles consent banner

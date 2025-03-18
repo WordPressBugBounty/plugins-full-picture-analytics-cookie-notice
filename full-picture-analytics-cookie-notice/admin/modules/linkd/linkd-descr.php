@@ -23,7 +23,7 @@ switch( $section_id ){
 	// LOADING
 	
 	case 'fupi_linkd_loading':
-		$ret_text = '<p>' . esc_html__( 'If you have consent banner enabled in the opt-in or one of automatic modes, LinkedIn Insight Tag will start tracking after visitors consent to using their personal data for statistics and marketing purposes.', 'full-picture-analytics-cookie-notice') . '</p>';
+		$ret_text = '<p>' . esc_html__( 'Change when this tool loads and starts tracking visitors.', 'full-picture-analytics-cookie-notice') . '</p>';
 	break;
 
     // EVENT CONVERSIONS

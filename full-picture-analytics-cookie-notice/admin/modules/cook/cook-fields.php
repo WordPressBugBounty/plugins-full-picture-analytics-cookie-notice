@@ -102,6 +102,32 @@ $cook_fields = array_merge( $cook_fields, array(
         'under field'   => '<p>' . esc_html__( 'You must save changes before you can start customizing.', 'full-picture-analytics-cookie-notice' ) . '</p>',
     ),
     array(
+        'type'           => 'toggle',
+        'label'          => esc_html__( 'Enable Advanced Consent Mode v2 for Google Analytics and Google Ads', 'full-picture-analytics-cookie-notice' ),
+        'field_id'       => 'gtag_no_cookie_mode',
+        'el_class'       => 'fupi_condition',
+        'el_data_target' => 'fupi_passthr_cond',
+        'option_arr_id'  => $option_arr_id,
+        'popup2'         => '<p>' . sprintf( esc_html__( 'When this option is %1$sdisabled%2$s, Google Analytics and Google Ads will use the basic consent mode v2.', 'full-picture-analytics-cookie-notice' ), '<strong>', '</strong>' ) . '</p>
+			<p style="color: #e47d00">' . esc_html__( 'Advanced Consent Mode only benefits websites with traffic greater then 1000 consenting users/day or 700 ad clicks/day.', 'full-picture-analytics-cookie-notice' ) . '</p>
+			<a class="button-secondary" target="_blank" href="https://wpfullpicture.com/support/documentation/how-to-enable-consent-mode-for-google-ads-analytics-and-gtm/">' . esc_html__( 'Everything you need to know about it', 'full-picture-analytics-cookie-notice' ) . '</a>
+			<h3>' . esc_html__( 'For users of Google Tag Manager', 'full-picture-analytics-cookie-notice' ) . '</h3>
+			<p>' . esc_html__( 'If you use the Google Tag Manager module, WP Full Picture automatically sends to GTM\'s dataLayer information on user consents in the format required by Google.', 'full-picture-analytics-cookie-notice' ) . '</p>
+			<p>' . esc_html__( 'Tag "Google Tag" automatically recognizes consent information sent by WP FP and starts Google Analytics and Ads based on the provided consents. Other tags need to be manually configured to respect consents.', 'full-picture-analytics-cookie-notice' ) . '</p>
+			<p>' . esc_html__( 'To do this, open the settings of a tag in GTM and click "Advanced Settings" > "Consent Settings (beta)" > "Require additional consents" and choose the consents you need.', 'full-picture-analytics-cookie-notice' ) . '</p>',
+    ),
+    array(
+        'type'          => 'toggle',
+        'label'         => esc_html__( 'Use link decoration to improve conversion tracking', 'full-picture-analytics-cookie-notice' ),
+        'field_id'      => 'url_passthrough',
+        'class'         => 'fupi_sub fupi_disabled fupi_passthr_cond',
+        'option_arr_id' => $option_arr_id,
+        'popup3'        => '<p>' . esc_html__( 'This will enable Google\'s "url_passthrough" feature for link decoration. It will add a Google\'s advertising identifier to all links on your website which will improve conversion tracking.', 'full-picture-analytics-cookie-notice' ) . '</p>
+			<p style="color: #d50000">' . esc_html__( 'Attention! Using link decoration is a legal grey area and may be illegal in countries where consent before tracking is necessary (opt-in). Use at your own risk.', 'full-picture-analytics-cookie-notice' ) . '</p>
+			<p style="color: #d50000">' . esc_html__( 'Attention! Link decoration may, in very rare cases, cause problems on a website. To test it, visit your website from a Google advertisement and finish the whole conversion path.', 'full-picture-analytics-cookie-notice' ) . '</p>
+			<p style="color: #d50000">' . esc_html__( 'Attention! Link decoration will only be used in countries where consent banner lets users decline tracking.', 'full-picture-analytics-cookie-notice' ) . '</p>',
+    ),
+    array(
         'type'          => 'toggle',
         'label'         => esc_html__( 'Ask visitors for consent again, when new tracking tools get enabled or when privacy policy is updated', 'full-picture-analytics-cookie-notice' ),
         'field_id'      => 'ask_for_consent_again',
@@ -154,32 +180,17 @@ $sections = array(
             'must_have'     => 'privacy_policy',
             'popup'         => '<p>' . esc_html__( 'By default, WP Full Picture does not save consents of visitors recognized as bots and those who consented within 1 second from the moment the page has loaded.', 'full-picture-analytics-cookie-notice' ) . '</p>
 				<p>' . sprintf( esc_html__( 'If, for any reason, this filters too much traffic, please %1$slet us know about it%2$s and either enable this option or change the "Bot detection list" in the General Settings page.', 'full-picture-analytics-cookie-notice' ), '<a href="https://wpfullpicture.com/contact/" target="_blank">', '</a>' ) . '</p>',
-        )),
-    ),
-    // Consent Banner
-    array(
-        'section_id'    => 'fupi_cook_google',
-        'section_title' => esc_html__( 'Privacy settings for Google\'s tools', 'full-picture-analytics-cookie-notice' ),
-        'fields'        => array(array(
-            'type'           => 'toggle',
-            'label'          => esc_html__( 'Enable Advanced Consent Mode v2 for Google Analytics and Google Ads', 'full-picture-analytics-cookie-notice' ),
-            'field_id'       => 'gtag_no_cookie_mode',
-            'el_class'       => 'fupi_condition',
-            'el_data_target' => 'fupi_passthr_cond',
-            'option_arr_id'  => $option_arr_id,
-            'popup2'         => '<p>' . sprintf( esc_html__( 'When this option is %1$sdisabled%2$s, Google Analytics and Google Ads will use the basic consent mode v2.', 'full-picture-analytics-cookie-notice' ), '<strong>', '</strong>' ) . '</p>
-					<p style="color: #e47d00">' . esc_html__( 'Advanced Consent Mode only benefits websites with traffic greater then 1000 consenting users/day or 700 ad clicks/day.', 'full-picture-analytics-cookie-notice' ) . '</p>
-					<a class="button-secondary" target="_blank" href="https://wpfullpicture.com/support/documentation/how-to-enable-consent-mode-for-google-ads-analytics-and-gtm/">' . esc_html__( 'Everything you need to know about it', 'full-picture-analytics-cookie-notice' ) . '</a>',
         ), array(
             'type'          => 'toggle',
-            'label'         => esc_html__( 'Use link decoration to improve conversion tracking', 'full-picture-analytics-cookie-notice' ),
-            'field_id'      => 'url_passthrough',
-            'class'         => 'fupi_sub fupi_disabled fupi_passthr_cond',
+            'label'         => esc_html__( 'Allow site visitors to view consent data (beta)', 'full-picture-analytics-cookie-notice' ),
+            'field_id'      => 'consent_access',
             'option_arr_id' => $option_arr_id,
-            'popup3'        => '<p>' . esc_html__( 'This will enable Google\'s "url_passthrough" feature for link decoration. It will add a Google\'s advertising identifier to all links on your website which will improve conversion tracking.', 'full-picture-analytics-cookie-notice' ) . '</p>
-					<p style="color: #d50000">' . esc_html__( 'Attention! Using link decoration is a legal grey area and may be illegal in countries where consent before tracking is necessary (opt-in). Use at your own risk.', 'full-picture-analytics-cookie-notice' ) . '</p>
-					<p style="color: #d50000">' . esc_html__( 'Attention! Link decoration may, in very rare cases, cause problems on a website. To test it, visit your website from a Google advertisement and finish the whole conversion path.', 'full-picture-analytics-cookie-notice' ) . '</p>
-					<p style="color: #d50000">' . esc_html__( 'Attention! Link decoration will only be used in countries where consent banner lets users decline tracking.', 'full-picture-analytics-cookie-notice' ) . '</p>',
+            'must_have'     => 'privacy_policy',
+            'popup'         => '<p>' . esc_html__( 'Let your visitors view all the information that was collected about their consent, the same way you see it in the ConsentsDB.com.', 'full-picture-analytics-cookie-notice' ) . '</p>
+				<p>' . esc_html__( 'When the consent is properly saved, Consent ID that is at the bottom of the consent banner will turn into a link.', 'full-picture-analytics-cookie-notice' ) . '</p>
+				<p>' . esc_html__( 'Consent may not be properly saved if you run out of available consents to save. In that case, please top up your account by purchasing one of the available plans.', 'full-picture-analytics-cookie-notice' ) . '</p>
+				<h3>' . esc_html__( 'How to enable it', 'full-picture-analytics-cookie-notice' ) . '</h3>
+				<p>' . sprintf( esc_html__( 'To use this feature, you need to enable two settings - this one and the option to "Allow site visitors to view consent data" in the settings of your website in ConsentsDB. %1$sLearn more%2$s', 'full-picture-analytics-cookie-notice' ), '<a href="https://wpfullpicture.com/contact/" target="_blank">', '</a>' ) . '</p>',
         )),
     ),
 );

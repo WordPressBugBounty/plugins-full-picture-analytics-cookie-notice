@@ -52,6 +52,7 @@ switch( $section_id ){
 		// Get all the files in the backup folder
 		
 		$folder_path = trailingslashit( wp_upload_dir()['basedir'] ) . 'wpfp/backups/';
+		// get all txt and json files in the folder
 		$files = glob( $folder_path . '*.json' );
 
 		// Add table with available backups
@@ -81,7 +82,7 @@ switch( $section_id ){
 					<div class="fupi_pseudo_td fupi_table_cell_30">
 						<button class="fupi_backup_restore button-secondary">' . esc_html__( 'Restore', 'full-picture-analytics-cookie-notice' ) . '</button>
 						<button class="fupi_backup_delete button-secondary">' . esc_html__( 'Delete', 'full-picture-analytics-cookie-notice' ) . '</button>
-						<button class="fupi_backup_download button-secondary">' . esc_html__( 'Download', 'full-picture-analytics-cookie-notice' ) . '</button>
+						<a href="' . esc_url(admin_url('admin-post.php?action=wpfp_download_backup&file=' . esc_attr($file_name) . '')) . '" class="fupi_backup_download button-secondary">' . esc_html__( 'Download', 'full-picture-analytics-cookie-notice' ) . '</a>
 					</div>
 				</div>';
 			}

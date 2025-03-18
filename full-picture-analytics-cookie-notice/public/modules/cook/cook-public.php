@@ -60,6 +60,7 @@ class Fupi_COOK_public {
             'enabled'               => true,
             'display_notice'        => !$hide_on_this_page,
             'gtag_no_cookie_mode'   => isset( $this->settings['gtag_no_cookie_mode'] ),
+            'consent_access'        => isset( $this->settings['consent_access'] ),
             'url_passthrough'       => isset( $this->settings['url_passthrough'] ),
             'ask_for_consent_again' => isset( $this->settings['ask_for_consent_again'] ),
             'save_in_cdb'           => !empty( $this->settings['cdb_key'] ),

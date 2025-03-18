@@ -22,7 +22,7 @@ switch( $section_id ){
 	// LOADING
 	
 	case 'fupi_ga41_loading':
-		$ret_text = '<p>' . esc_html__( 'If you have consent banner enabled in the opt-in or one of automatic modes, GA will start tracking after visitors consent to using their personal data for statistics. Additional functionality of GA will be enabled if they also consent to using the data for marketing purposes.Google consent mode can be enabled in the settings of the consent banner.', 'full-picture-analytics-cookie-notice') . '</p>';
+		$ret_text = '<p>' . esc_html__( 'Change when this tool loads and starts tracking visitors.', 'full-picture-analytics-cookie-notice') . '</p>';
 	break;
 
 	// EVENTS TRACKING
@@ -40,7 +40,8 @@ switch( $section_id ){
 	// WP DATA
 	
 	case 'fupi_ga41_wpdata':
-		$ret_text = '<p>' . sprintf( esc_html__( 'Event parameters give context to GA events. In order to see them in GA, you need to %1$sregistered them as custom dimensions%2$s and set up custom reports. They will not be visible in standard reports.', 'full-picture-analytics-cookie-notice'), '<a href="https://wpfullpicture.com/support/documentation/how-to-set-up-custom-definitions-in-google-analytics-4/">', '</a>' ) . '</p>';
+		$ret_text = '<p>' . esc_html__( 'Event parameters give context to GA events.', 'full-picture-analytics-cookie-notice') . '</p>
+		<p class="fupi_warning_text">' . sprintf( esc_html__( 'In order to see them in GA, you need to %1$sregistered them as custom dimensions%2$s.', 'full-picture-analytics-cookie-notice'), '<a href="https://wpfullpicture.com/support/documentation/how-to-set-up-custom-definitions-in-google-analytics-4/">', '</a>' ) . '</p>';
 	break;
 
 	// E-COMMERCE

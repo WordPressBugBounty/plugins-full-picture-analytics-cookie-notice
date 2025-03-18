@@ -51,7 +51,7 @@ FP.fns.hotj_woo_events = () => {
 
 		if ( ! track_params ) return;
 		
-		let items_type = fp.woo.variable_as_simple ? 'joined_items' : 'items',
+		let items_type = fp.woo.variable_tracking_method == 'track_parents' ? 'joined_items' : 'items',
 			cart = type == 'checkout' ? fpdata.woo.cart : fpdata.woo.order;
 
 		if ( track_params && track_params.length > 0 ) {

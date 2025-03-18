@@ -85,7 +85,7 @@ FP.fns.clar_woo_events = () => {
 
 	function track_cart( type ){ // type can be either "checkout" or "order"
 
-		let items_type = fp.woo.variable_as_simple ? 'joined_items' : 'items',
+		let items_type = fp.woo.variable_tracking_method == 'track_parents' ? 'joined_items' : 'items',
 			event_name = type == 'checkout' ? 'checkout' : 'purchase',
 			cart = type == 'checkout' ? fpdata.woo.cart : fpdata.woo.order,
 			ids_a = [],

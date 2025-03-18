@@ -608,24 +608,19 @@ $woo_section = array(
 		'fields' => array(
 			array(
 				'type'	 			=> 'toggle',
-				'label' 			=> esc_html__( 'Advanced Order Tracking with Conversion API', 'full-picture-analytics-cookie-notice' ),
+				'label' 			=> esc_html__( 'Status-Based Order Tracking with Conversion API', 'full-picture-analytics-cookie-notice' ),
 				'field_id' 			=> 'adv_orders',
 				'must_have'			=> 'pro woo', //field|fupi_fbp1|capi_token|exists|' . esc_html__("Conversion_API_token")
 				'option_arr_id'		=> $option_arr_id,
 				'under field'		=> esc_html__( 'This feature requires the use of Conversion API. Please check if you entered its key in the "Installation" section.', 'full-picture-analytics-cookie-notice' ),
-				'popup3'			=> '
-					<h3>' . esc_html__( 'What is Advanced Order Tracking', 'full-picture-analytics-cookie-notice' ) . '</h3>
-					<p>' . esc_html__( 'Advanced Order Tracking is a more accurate method of tracking purchases.', 'full-picture-analytics-cookie-notice' ) . '</p>
-					<h3>' . esc_html__( 'How is it better then standard tracking?', 'full-picture-analytics-cookie-notice' ) . '</h3>
-					<p>' . esc_html__( 'Typically, orders are tracked when clients view order confirmation page. However, some clients never view this page (they do not return to store page after paying for their order).', 'full-picture-analytics-cookie-notice' ) . '</p>
-					<p>' . esc_html__( 'Advanced Order Tracking works differently. It tracks orders when they get specific statuses (see settings in the WooCommerce Tracking module) which makes tracking more accurate.', 'full-picture-analytics-cookie-notice' ) . '</p>
-					<h3>' . esc_html__( 'What you must know', 'full-picture-analytics-cookie-notice' ) . '</h3>
+				'popup'				=> '
+					<p>' . esc_html__( 'Status-Based Order Tracking is an alternative method of tracking purchases. Instead of tracking them on order confirmation pages, orders are tracked when their status changes.', 'full-picture-analytics-cookie-notice' ) . '</p>
+					<p>' . esc_html__( 'This method of tracking is recommended for stores that use payment gateways, which do not redirect back to the order confirmation page.', 'full-picture-analytics-cookie-notice' ) . '</p>
+					<h3>' . esc_html__( 'Other information', 'full-picture-analytics-cookie-notice' ) . '</h3>
 					<ol>
-						<li>' . esc_html__( 'When AOT is enabled, no "purchase" event will be sent on the order confirmation page.', 'full-picture-analytics-cookie-notice' ) . '</li>
-						<li>' . esc_html__( 'Orders will be tracked when they get a status that is set in WooCommerce Tracking module.', 'full-picture-analytics-cookie-notice' ) . '</li>
+						<li>' . esc_html__( 'Orders will be tracked when they get a status that is set in "WooCommerce Tracking" page > "Status-Based Order Tracking" section.', 'full-picture-analytics-cookie-notice' ) . '</li>
 						<li>' . esc_html__( 'Purchases are attributed to users and sessions just like with standard tracking.', 'full-picture-analytics-cookie-notice' ) . '</li>
-						<li>' . esc_html__( 'Purchase event is sent servers-side, using Conversion API.', 'full-picture-analytics-cookie-notice' ) . '</li>
-						<li>' . esc_html__( 'AOT does not track orders added manually in the WooCommerce admin panel, since they cannot be attributed to any website users.', 'full-picture-analytics-cookie-notice' ) . '</li>
+						<li>' . esc_html__( 'SBOT does not track orders added manually in the WooCommerce admin panel, since they cannot be attributed to any website users.', 'full-picture-analytics-cookie-notice' ) . '</li>
 					</ol>',
 			),
 		),

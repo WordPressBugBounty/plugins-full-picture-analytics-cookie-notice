@@ -29,34 +29,50 @@ $sections = array(
 				'option_arr_id'		=> $option_arr_id,
 				'popup'				=> esc_html__('This setting only applies to the total value of the purchase. If a tracking tool allows for tracking shipping cost as a separate value, then it will be tracked no matter whether this option is turned on or off.','full-picture-analytics-cookie-notice'),
 			),
+			// a select field with 3 options
+			array(
+				'type' 				=> 'radio',
+				'label' 			=> esc_html__('Method of tracking variable products','full-picture-analytics-cookie-notice'),
+				'field_id' 			=> 'variable_tracking_method',
+				'el_class'			=> 'fupi_condition',
+				'el_data_target'	=> 'fupi_var_track_cond',
+				'option_arr_id'		=> $option_arr_id,
+				'options' 			=> array(
+					'default' 			=> esc_html__('Standard','full-picture-analytics-cookie-notice'),
+					'track_def_var'		=> esc_html__('Standard + track default variants','full-picture-analytics-cookie-notice'),
+					'track_parents'		=> esc_html__('Track parent products instead of variants','full-picture-analytics-cookie-notice'),
+				),
+				'default' 			=> 'default',
+				'popup'			=> '<h3>' . esc_html__('Standard','full-picture-analytics-cookie-notice' ) . '</h3>
+					<p>' . esc_html__('Parent products are tracked in product lists and when a visitor views a product page. Variants are tracked when they are added to cart and in checkout.','full-picture-analytics-cookie-notice' ) . '</p>
+					<h3>' . esc_html__('Standard + track default variants','full-picture-analytics-cookie-notice' ) . '</h3>
+					<p>' . esc_html__('The same as "Standard" but when a visitor views a product page, WP FP sends two "product view" events - one for the parent product and another one for the active variant (if chosen in the product settings).','full-picture-analytics-cookie-notice' ) . '</p>
+					<h3>' . esc_html__('Track parent products instead of variants','full-picture-analytics-cookie-notice' ) . '</h3>
+					<p>' . esc_html__('Variants are not tracked. Parent products are tracked throughout the conversion path.','full-picture-analytics-cookie-notice' ) . '</p>',
+			),
 			array(
 				'type' 				=> 'toggle',
-				'label' 			=> esc_html__('Track product variants as if they were parent products','full-picture-analytics-cookie-notice'),
-				'field_id' 			=> 'variable_as_simple',
+				'label' 			=> esc_html__('Track views of product variants', 'full-picture-analytics-cookie-notice'),
+				'field_id' 			=> 'track_variant_views',
+				'class'				=> 'fupi_sub fupi_var_track_cond fupi_cond_val_track_def_var fupi_cond_val_default fupi_hidden fupi_disabled',
 				'option_arr_id'		=> $option_arr_id,
-				'popup2'			=> '
-					<p>' . esc_html__('Some tracking tools allow you to track what products are viewed, added and removed from cart and purchased. This works great with simple, single products but it is a problem with variable products.','full-picture-analytics-cookie-notice') . '</p>
-					<p>' . esc_html__('The moment one of the variants is added to the cart, this particular variant will be tracked in the checkout process and not the "parent" product. In other words, a "parent" product is tracked on category lists and the product details pages, but then only its variant is tracked when it is added to the cart and in the checkout process.','full-picture-analytics-cookie-notice') . '</p>
-					<p>' . esc_html__('The result is that in your reports you will see that product X was seen in category pages and product pages but never purchased (because one of its variants was).','full-picture-analytics-cookie-notice') . '</p>
-					<p>' . esc_html__('If you enable this option, WP Full Picture will track parent product instead of its variant - from the moment it was viewed until it was purchased.','full-picture-analytics-cookie-notice') . '</p>
-					<h3>' . esc_html__('Read this if you run dynamic ad campaigns!','full-picture-analytics-cookie-notice') . '</h3>
-					<p>' . esc_html__('If you enable this option, then your tracking tools will report that a parent product was purchased - and not its variant. If you run dynamic ad campaigns (with ads dynamically generated with a product feed), you need to make sure, that the main product data is in your product feeds, and not the data of the variants.','full-picture-analytics-cookie-notice') . '</p>',
+				'popup'				=> '<p>' . esc_html__('This will send "product view" events when visitors switch between product variants.','full-picture-analytics-cookie-notice') . '</p>',
 			),
 			// array(
 			// 	'type' 				=> 'toggle',
-			// 	'label' 			=> esc_html__('Send additional "product view" event when user selects a variant','full-picture-analytics-cookie-notice'),
-			// 	'class'				=> 'fupi_sub',
-			// 	'field_id' 			=> 'extra_variant_product_views',
+			// 	'label' 			=> esc_html__('Track parent products instead of its variants','full-picture-analytics-cookie-notice'), // Track product variants as if they were parent products
+			// 	'field_id' 			=> 'variable_as_simple',
 			// 	'option_arr_id'		=> $option_arr_id,
-			// 	'popup'				=> esc_html__('The event will contain the data of the selected variant and will be sent only once per-variant (multiple product views of the same variant will not be sent).','full-picture-analytics-cookie-notice'),
 			// ),
 			array(
 				'type' 				=> 'toggle',
 				'label' 			=> esc_html__('Do not track product views after a page is refreshed','full-picture-analytics-cookie-notice'),
 				'field_id' 			=> 'refresh_no_track_views',
 				'option_arr_id'		=> $option_arr_id,
-				'after field'		=> esc_html__('Recommended for most stores','full-picture-analytics-cookie-notice'),
-				'popup'				=> '<p>' . esc_html__('This option is recommended for all stores where product pages are refreshed after a product is added to cart.','full-picture-analytics-cookie-notice') . '</p>',
+				'after field'		=> esc_html__('Recommended if your product pages are refreshed after adding products to cart','full-picture-analytics-cookie-notice'),
+				'popup'				=> '<p>' . esc_html__('This setting applies to views of products on lists and product pages.','full-picture-analytics-cookie-notice') . '</p>
+					<h3>' . esc_html__('Exception - product variants','full-picture-analytics-cookie-notice') . '</h3>
+					<p>' . esc_html__('If you enabled an option to track views of product variants (see option above), then they will still be tracked after refresh.','full-picture-analytics-cookie-notice') . '</p>',
 			),
 		),
 	),
@@ -79,7 +95,7 @@ $sections = array(
 			),
 			array(
 				'type'	 			=> 'text',
-				'label' 			=> esc_html__( 'Custom CSS selectors of "Add to wishlist" button', 'full-picture-analytics-cookie-notice' ),
+				'label' 			=> esc_html__( 'CSS selector of "Add to wishlist" button', 'full-picture-analytics-cookie-notice' ),
 				'under field'		=> esc_html__( 'Enter CSS class or ID', 'full-picture-analytics-cookie-notice' ),
 				'field_id' 			=> 'wishlist_btn_sel',
 				'option_arr_id'		=> $option_arr_id,
@@ -89,19 +105,21 @@ $sections = array(
 			),
 			array(
 				'type' 				=> 'toggle',
-				'label' 			=> esc_html__('(DEPRECATED) Add "Product brand" field to "edit product" pages','full-picture-analytics-cookie-notice'),
+				'label' 			=> esc_html__('Add "Product brand" field to "edit product" pages','full-picture-analytics-cookie-notice'),
 				'field_id' 			=> 'add_brand_tax',
+				'class'				=> 'fupi_deprecated',
 				'el_class'			=> 'fupi_condition fupi_condition_reverse',
 				'el_data_target'	=> 'fupi_add_brand_tax_cond',
 				'option_arr_id'		=> $option_arr_id,
-				'popup3'			=> '<p>' . esc_html__('This option is deprecated and will be removed by the end of 2025. Brands are now available in WooCommerce core plugin, making this option no longer needed.','full-picture-analytics-cookie-notice') . '</p>',
+				'under field'		=> '<p>' . esc_html__('This function will be removed by the end of 2025. Please migrate to standard WooCommerce brands (avail in WooCommerce 9.6+)','full-picture-analytics-cookie-notice') . '</p>',
 			),
 			array(
 				'type' 				=> 'taxonomies select',
 				'label' 			=> esc_html__('Use custom "product brand" taxonomy instead of the default one in WooCommerce','full-picture-analytics-cookie-notice'),
-				'class'				=> 'fupi_add_brand_tax_cond',
+				'class'				=> 'fupi_join fupi_add_brand_tax_cond fupi_deprecated',
 				'field_id' 			=> 'brand_tax',
 				'option_arr_id'		=> $option_arr_id,
+				'under field'		=> '<p>' . esc_html__('This function will be removed by the end of 2025. Please migrate to standard WooCommerce brands (avail in WooCommerce 9.6+)','full-picture-analytics-cookie-notice') . '</p>',
 				'popup'				=> '<p>' . esc_html__('Use it to track product brands saved by a different plugin. Choose taxonomy name in which your plugin saves product brands.', 'full-picture-analytics-cookie-notice') . '</p>',
 			),
 		),
@@ -109,7 +127,7 @@ $sections = array(
 
 	array(
 		'section_id' => 'fupi_woo_adv',
-		'section_title' => esc_html__( 'Advanced order tracking', 'full-picture-analytics-cookie-notice' ),
+		'section_title' => esc_html__( 'Status-based order tracking', 'full-picture-analytics-cookie-notice' ),
 		'fields' => array(
 			array(
 				'type' 				=> 'woo_order_statuses',
@@ -118,6 +136,7 @@ $sections = array(
 				'must_have'			=> 'pro',
 				'default'			=> array( 'wc-processing', 'wc-on-hold' ),
 				'option_arr_id'		=> $option_arr_id,
+				'under field'		=> '<p>' . esc_html__('Recommended statuses - Processing (for orders paid via payment gateways) and On Hold (for orders paid with bank transfers).', 'full-picture-analytics-cookie-notice') . '</p>',
 				'popup'		 		=> '<p>' . esc_html__('You can enter here multiple order statuses indicating that an order has been made. The "purchase" event will be sent only the first time an order gets a matching status.', 'full-picture-analytics-cookie-notice') . '</p>',
 			),
 			array(
@@ -127,6 +146,7 @@ $sections = array(
 				'field_id' 			=> 'server_cancel_on_statuses',
 				'default'			=> array( 'wc-cancelled', 'wc-refunded' ),
 				'option_arr_id'		=> $option_arr_id,
+				'under field'		=> '<p>' . esc_html__('Recommended statuses - Cancelled and Refunded.', 'full-picture-analytics-cookie-notice') . '</p>',
 				'popup'		 		=> '<p>' . esc_html__('You can enter here multiple order statuses indicating that the order has been cancelled or refunded. The "refund" event will be sent only the first time an order gets a matching status.', 'full-picture-analytics-cookie-notice') . '</p>',
 			),
 		),

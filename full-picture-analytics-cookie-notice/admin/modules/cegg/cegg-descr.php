@@ -23,7 +23,7 @@ switch( $section_id ){
 	// TAGS
 
 	case 'fupi_cegg_loading':
-		$ret_text = '<p>' . esc_html__( 'If you have consent banner enabled in the opt-in or one of automatic modes, Crazy Egg will start working after visitors consent to using their data for statistics and personalisation purposes.', 'full-picture-analytics-cookie-notice') . '</p>';
+		$ret_text = '<p>' . esc_html__( 'Change when this tool loads and starts tracking visitors.', 'full-picture-analytics-cookie-notice') . '</p>';
 	break;
 
 	// TAGS

@@ -8,7 +8,8 @@
     //     'is_addon' => false,
     //     'type' => 'settings',
     // ],
-    [
+    [   
+        'name' => 'Modules',
         'id' => 'tools',
         'is_avail' => true,
         'is_premium' => false,
@@ -17,6 +18,7 @@
         'type' => 'settings',
     ],
     [ 
+        'name' => 'General Settings',
         'id' => 'main', 
         'is_avail' => true, 
         'is_premium' => false, 
@@ -25,6 +27,7 @@
         'type' => 'settings',
     ],
     [ 
+        'name' => 'Crazy Egg',
         'id' => 'cegg', 
         'requires' => ['script_src'],
         'is_avail' => true, 
@@ -36,6 +39,7 @@
         'pp' => 'https://support.crazyegg.com/hc/en-us/articles/360054306594-Crazy-Egg-Privacy-Data-Practice',
     ],
     [ 
+        'name' => 'Google Ads',
         'id' => 'gads',
         'requires' => ['id'],
         'is_avail' => true, 
@@ -47,6 +51,7 @@
         'pp' => 'https://business.safety.google/privacy/'
     ],
     [ 
+        'name' => 'Google Analytics',
         'id' => 'ga41',
         'requires' => ['id'],
         'is_avail' => true, 
@@ -58,6 +63,7 @@
         'pp' => 'https://business.safety.google/privacy/'
     ],
     [ 
+        'name' => 'Google Analytics #2',
         'id' => 'ga42',
         'requires' => ['id'],
         'is_avail' => fupi_fs()->can_use_premium_code(), 
@@ -69,6 +75,7 @@
         'pp' => 'https://business.safety.google/privacy/'
     ],
     [ 
+        'name' => 'Hotjar',
         'id' => 'hotj',
         'requires' => ['id'],
         'is_avail' => true, 
@@ -80,6 +87,7 @@
         'pp' => 'https://help.hotjar.com/hc/en-us/articles/360009206234-General-Data-Protection-Regulation-GDPR',
     ],
     [ 
+        'name' => 'Inspectlet',
         'id' => 'insp',
         'requires' => ['id'],
         'is_avail' => true, 
@@ -91,6 +99,7 @@
         'pp' => 'https://docs.inspectlet.com/hc/en-us/articles/360002994432-Privacy-Impact-Assessment-under-GDPR',
     ],
     [ 
+        'name' => 'LinkedIn Insight',
         'id' => 'linkd',
         'requires' => ['id'],
         'is_avail' => true, 
@@ -102,6 +111,7 @@
         'pp' => 'https://www.linkedin.com/legal/privacy-policy#data',
     ],
     [ 
+        'name' => 'Matomo',
         'id' => 'mato',
         'requires' => ['id', 'url'],
         'is_avail' => true, 
@@ -113,6 +123,7 @@
         'pp' => 'https://matomo.org/matomo-cloud-privacy-policy/',
     ],
     [ 
+        'name' => 'Meta Pixel',
         'id' => 'fbp1',
         'requires' => ['pixel_id'],
         'is_avail' => true, 
@@ -124,6 +135,7 @@
         'pp' => 'https://www.facebook.com/privacy/policy/',
     ],
     [ 
+        'name' => 'Microsoft Advertising',
         'id' => 'mads',
         'requires' => ['id'],
         'is_avail' => true, 
@@ -135,6 +147,7 @@
         'pp' => 'https://help.ads.microsoft.com/apex/index/3/en/60212',
     ],
     [ 
+        'name' => 'Microsoft Clarity',
         'id' => 'clar',
         'requires' => ['id'],
         'is_avail' => true, 
@@ -146,6 +159,7 @@
         'pp' => 'https://learn.microsoft.com/en-us/clarity/setup-and-installation/privacy-disclosure',
     ],
     [ 
+        'name' => 'Pinterest Tag',
         'id' => 'pin',
         'requires' => ['id'],
         'is_avail' => true, 
@@ -157,6 +171,7 @@
         'pp' => 'https://policy.pinterest.com/en-gb/privacy-policy-2018',
     ],
     [ 
+        'name' => 'Plausible Analytics',
         'id' => 'pla',
         'is_avail' => true, 
         'is_premium' => false, 
@@ -166,6 +181,7 @@
         'check_gdpr' => true,
     ],
     [ 
+        'name' => 'PostHog',
         'id' => 'posthog',
         'requires' => ['api_key'],
         'is_avail' => true, 
@@ -177,6 +193,7 @@
         'pp' => 'https://posthog.com/handbook/company/security',
     ],
     [ 
+        'name' => 'Simple Analytics',
         'id' => 'simpl',
         'is_avail' => true, 
         'is_premium' => false, 
@@ -186,6 +203,7 @@
         'check_gdpr' => true,
     ],
     [ 
+        'name' => 'TikTok Pixel',
         'id' => 'tik',
         'requires' => ['id'],
         'is_avail' => true, 
@@ -197,6 +215,7 @@
         'pp' => 'https://www.tiktok.com/legal/page/eea/privacy-policy/en',
     ],
     [ 
+        'name' => 'X Ads (Twitter Ads)',
         'id' => 'twit',
         'requires' => ['id'],
         'is_avail' => true, 
@@ -208,6 +227,7 @@
         'pp' => 'https://x.com/en/privacy',
     ],
     [ 
+        'name' => 'Google Tag Manager',
         'id' => 'gtm',
         'requires' => ['id'],
         'is_avail' => true, 
@@ -220,6 +240,7 @@
         'pp' => 'https://business.safety.google/privacy/'
     ],
     [ 
+        'name' => 'Custom Scripts',
         'id' => 'cscr', 
         'is_avail' => true, 
         'is_premium' => false, 
@@ -230,6 +251,7 @@
         'check_gdpr' => true,
     ],
     [ 
+        'name' => 'GDPR Setup Helper',
         'id' => 'status',
         'is_avail' => true,
         'is_premium' => false, 
@@ -239,6 +261,7 @@
         'custom_page_content' => true,
     ],
     [ 
+        'name' => 'Consent Banner',
         'id' => 'cook', 
         'is_avail' => true, 
         'is_premium' => false, 
@@ -249,6 +272,7 @@
         'load_in_customizer' => true,
     ],
     [ 
+        'name' => 'Iframes Manager',
         'id' => 'iframeblock', 
         'is_avail' => true, 
         'is_premium' => false, 
@@ -259,6 +283,7 @@
         'load_in_customizer' => true,
     ],
     [ 
+        'name' => 'Safe Fonts',
         'id' => 'safefonts', 
         'is_avail' => true,
         'is_premium' => false,
@@ -268,6 +293,7 @@
         'check_gdpr' => true,
     ],
     [ 
+        'name' => 'Privacy Policy Extras',
         'id' => 'privex', 
         'is_avail' => true, 
         'is_premium' => false, 
@@ -278,6 +304,7 @@
         'load_in_customizer' => true,
     ],
     [ 
+        'name' => 'Tracking Tools Manager',
         'id' => 'blockscr', 
         'is_avail' => true, 
         'is_premium' => false, 
@@ -287,6 +314,7 @@
         'check_gdpr' => true,
     ], 
     [ 
+        'name' => 'WooCommerce Tracking',
         'id' => 'woo', 
         'is_avail' => true, 
         'is_premium' => false, 
@@ -295,6 +323,7 @@
         'type' => 'ext',
     ],
     [ 
+        'name' => 'Reports & Statistics',
         'id' => 'reports', 
         'is_avail' => true, 
         'is_premium' => false, 
@@ -303,6 +332,7 @@
         'type' => 'ext',
     ],
     [ 
+        'name' => 'Advanced Triggers',
         'id' => 'atrig', 
         'is_avail' => fupi_fs()->can_use_premium_code(), 
         'is_premium' => true, 
@@ -311,6 +341,7 @@
         'type' => 'ext', 
     ],
     [ 
+        'name' => 'Metadata Tracking',
         'id' => 'trackmeta', 
         'is_avail' => true, 
         'is_premium' => true, 
@@ -319,6 +350,7 @@
         'type' => 'ext',
     ],
     [ 
+        'name' => 'Geolocation',
         'id' => 'geo', 
         'is_avail' => fupi_fs()->can_use_premium_code(),
         'is_premium' => true, 
@@ -327,6 +359,7 @@
         'type' => 'ext',
     ],
     [ 
+        'name' => 'Page labels',
         'id' => 'labelpages', 
         'is_avail' => true, 
         'is_premium' => true, 
@@ -335,6 +368,7 @@
         'type' => 'ext',
     ],
     [ 
+        'name' => 'Broken Link Tracking',
         'id' => 'track404', 
         'is_avail' => true, 
         'is_premium' => false, 

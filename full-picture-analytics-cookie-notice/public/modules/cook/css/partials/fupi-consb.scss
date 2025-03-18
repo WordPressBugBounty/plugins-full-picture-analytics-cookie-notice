@@ -114,6 +114,9 @@ html.fupi_blur_out:not(.fupi_infobox) body{
 		}
 		#fupi_main_descr{
 			margin-top: 0 !important;
+			a{
+				outline: none;
+			}
 		}
 			.fupi_section{
 				&:not(.fupi_hidden){
@@ -616,24 +619,9 @@ html.fupi_blur_out:not(.fupi_infobox) body{
 	}
 }
 
-// CREDIT NOTE
 
 #fupi_stats_only_btn{
 	display: none;
-}
-
-.fupi_poweredBy{
-	display: none;
-	text-align: right;
-    font-size: 12px;
-    color: #999;
-	margin: 5px 0 0;
-	order: 999;
-	width: 100% !important;
-	a{
-		color: #777;
-		text-decoration: underline !important;
-	}
 }
 
 // TOGGLE SWITCHES
@@ -971,11 +959,33 @@ input:checked + .fupi_switch_slider:before {
 	}
 }
 
-// Consent info
+// CONSENT ID
 
 .fupi_cdb_info{
-	font-size: 13px;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ddd;
+	font-size: 12px;
+	text-align: right;
+	margin: 5px 0 0;
+	color: #777;
+	width: 100% !important;
+	order: 990;
+	a{
+		color: #777;
+    	text-decoration: underline !important;
+	}
+}
+
+// CREDIT NOTE
+
+.fupi_poweredBy{
+	display: none;
+	text-align: right;
+    font-size: 12px;
+    color: #777;
+	margin: 5px 0 0;
+	order: 999;
+	width: 100% !important;
+	a{
+		color: #777;
+		text-decoration: underline !important;
+	}
 }

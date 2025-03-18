@@ -41,7 +41,7 @@ FP.fns.gotm_woo_events = () => {
 
 	// TRACK IMPRESSIONS
 
-	function track_woo_impress( caller_id ) {
+	function track_woo_impress() {
 
 		if ( ! fp.woo.gtm ) fp.woo.gtm = {};
 		
@@ -118,9 +118,40 @@ FP.fns.gotm_woo_events = () => {
 	};
 
 	if ( ! ( fp.woo.dont_track_views_after_refresh && fpdata.refreshed ) ){
-		track_woo_impress( 'gtm' );
+		track_woo_impress();
 		FP.addAction( ['woo_impress'], track_woo_impress );
 	}
+	
+	// TRACK DEFAULT VARIANT VIEW
+	// TRACK VARIANT VIEWS
+
+	function woo_variant_view( variant_id ){
+
+		let prod = fpdata.woo.products[variant_id],
+			item ={ 
+				'item_id' : FP.fns.get_woo_prod_id(prod),
+				'item_name': FP.fns.get_woo_prod_name(prod),
+				'item_list_name' : 'single',
+				'price' : prod.price,
+			};
+
+			item = add_brand( item, prod );
+			item = add_categories( item, prod );
+
+		let payload_o = {
+			'event' : 'view_item',
+			'ecommerce' : {
+				'currency' : fpdata.woo.currency,
+				'value' : prod.price,
+				'items' : [item],
+			}
+		};
+
+		FP.fns.push_to_gtm_dl( 'view_item' , payload_o );
+	}
+
+	FP.addAction( ['woo_variant_view'], woo_variant_view );
+	FP.addAction( ['woo_def_variant_view'], woo_variant_view );
 
 	// TRACK TEASER CLICKS
 	// TRACK ADD TO CART / REMOVE FROM CART
@@ -187,7 +218,7 @@ FP.fns.gotm_woo_events = () => {
 
 	function track_cart( type ){ // type can be either "checkout" or "order"
 
-		let items_type = fp.woo.variable_as_simple ? 'joined_items' : 'items',
+		let items_type = fp.woo.variable_tracking_method == 'track_parents' ? 'joined_items' : 'items',
 			items_a = [],
 			cart = type == 'checkout' ? fpdata.woo.cart : fpdata.woo.order,
 			event_name = type == 'checkout' ? 'begin_checkout' : 'purchase';

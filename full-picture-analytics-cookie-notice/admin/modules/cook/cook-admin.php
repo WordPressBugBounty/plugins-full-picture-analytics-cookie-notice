@@ -71,7 +71,7 @@ class Fupi_COOK_admin {
 	public function fupi_customize_save_after(){
 		if ( ! empty ( $this->tools['cook'] ) && ! empty( $this->settings['cdb_key'] ) && ! empty ( get_privacy_policy_url() ) ) {
 			include_once FUPI_PATH . '/includes/class-fupi-get-gdpr-status.php';
-			new Fupi_compliance_status_checker( 'cdb', $this->settings );
+			new Fupi_compliance_status_checker( 'cdb', $this->settings, false );
 		}
 	}
 

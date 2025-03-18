@@ -16,6 +16,7 @@ if ( ! empty( $input ) ) foreach( $input as $key => $value ) {
 				break;
 
 			case 'brand_tax':
+			case 'variable_tracking_method':
 				$clean_val = sanitize_key( $value );
 				break;
 

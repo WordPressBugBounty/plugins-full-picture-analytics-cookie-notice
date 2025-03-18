@@ -22,17 +22,6 @@ $sections = array(
 				'placeholder'		=> esc_html__( 'G-0000000 or GT-0000000', 'full-picture-analytics-cookie-notice'),
 				'under field'		=> '<p>' . sprintf( esc_html__( '%1$sLearn where to find it%2$s', 'full-picture-analytics-cookie-notice'), '<a href="https://wpfullpicture.com/support/documentation/how-to-install-google-analytics-4/">', '</a>') . '</p>',
 			),
-				array(
-					'type'	 			=> 'text',
-					'label' 			=> esc_html__( 'Measurement Protocol API secret key (for server-side tracking)', 'full-picture-analytics-cookie-notice' ),
-					'field_id' 			=> 'mp_secret_key',
-					'must_have'			=> 'pro',
-					'class'				=> 'fupi_sub',
-					'option_arr_id'		=> $option_arr_id,
-					'label_for' 		=> $option_arr_id . '[mp_secret_key]',
-					'under field'		=> sprintf( esc_html__( '%1$sLearn where to find it%2$s', 'full-picture-analytics-cookie-notice'), '<button type="button" class="fupi_faux_link fupi_open_popup" data-popup="fupi_mpapi_key_popup">', '</button>'),
-					'popup'				=> '<p>' . esc_html__( 'Measurement Protocol is used for WooCommerce Advanced Order Tracking. See "WooCommerce Tracking" section for more information.', 'full-picture-analytics-cookie-notice' ) . '</p>',
-				),
 			array(
 				'type' 				=> 'toggle',
 				'label' 			=> esc_html__( 'Avoid issues when using multiple GAs on a single site', 'full-picture-analytics-cookie-notice' ),
@@ -657,33 +646,32 @@ $sections = array(
 		'section_title' => esc_html__( 'WooCommerce tracking', 'full-picture-analytics-cookie-notice' ),
 		'fields' => array(
 			array(
+				'type'	 			=> 'text',
+				'label' 			=> esc_html__( 'Measurement Protocol API secret key', 'full-picture-analytics-cookie-notice' ),
+				'field_id' 			=> 'mp_secret_key',
+				'must_have'			=> 'pro woo',
+				'option_arr_id'		=> $option_arr_id,
+				'label_for' 		=> $option_arr_id . '[mp_secret_key]',
+				'under field'		=> sprintf( esc_html__( 'Measurement Protocol is only used for WooCommerce Status-Based Order Tracking (see below). %1$sLearn where to find the MP key%2$s', 'full-picture-analytics-cookie-notice'), '<button type="button" class="fupi_faux_link fupi_open_popup" data-popup="fupi_mpapi_key_popup">', '</button>'),
+			),
+			array(
 				'type'	 			=> 'toggle',
-				'label' 			=> esc_html__( 'Advanced Order Tracking with Measurement Protocol', 'full-picture-analytics-cookie-notice' ),
+				'label' 			=> esc_html__( 'Status-Based Order Tracking with Measurement Protocol', 'full-picture-analytics-cookie-notice' ),
 				'field_id' 			=> 'adv_orders',
+				'class'				=> 'fupi_sub',
 				'must_have'			=> 'pro woo', // field|fupi_ga41|mp_secret_key|exists|' . esc_html__("Measurement_Protocol_Secret_Key")
 				'option_arr_id'		=> $option_arr_id,
-				'under field'		=> esc_html__( 'This feature requires the use of Measurement Protocol. Please check if you entered its key in the "Installation" section.', 'full-picture-analytics-cookie-notice' ),
-				'popup3'			=> '
-					<h3>' . esc_html__( 'What is Advanced Order Tracking', 'full-picture-analytics-cookie-notice' ) . '</h3>
-					<p>' . esc_html__( 'Advanced Order Tracking is a more accurate method of tracking purchases.', 'full-picture-analytics-cookie-notice' ) . '</p>
-					<h3>' . esc_html__( 'How is it better then standard tracking?', 'full-picture-analytics-cookie-notice' ) . '</h3>
-					<p>' . esc_html__( 'Typically, orders are tracked when clients view order confirmation page. However, this has serious disadvantages:', 'full-picture-analytics-cookie-notice' ) . '</h3>
+				'popup2'			=> '
+					<p>' . esc_html__( 'Status-Based Order Tracking is an alternative method of tracking purchases. Instead of tracking them on order confirmation pages, orders are tracked when their status changes.', 'full-picture-analytics-cookie-notice' ) . '</p>
+					<p>' . esc_html__( 'This method of tracking is recommended for stores that use payment gateways, which do not redirect back to the order confirmation page.', 'full-picture-analytics-cookie-notice' ) . '</p>
+					<p>' . sprintf( esc_html__( 'In addition, SBOT allows for tracking returns and cancellations. (requires a %1$scustom "refunds" report %2$s).', 'full-picture-analytics-cookie-notice' ), '<a href="https://wpfullpicture.com/support/documentation/how-to-make-a-refunds-report-in-google-analytics-4/">', '</a>' ) . '</p>
+					<h3>' . esc_html__( 'Other information', 'full-picture-analytics-cookie-notice' ) . '</h3>
 					<ol>
-						<li>' . esc_html__( 'Some clients never view this page (they do not return to store page after paying for their order).', 'full-picture-analytics-cookie-notice' ) . '</li>
-						<li>' . esc_html__( 'Order cancellations and returns are not tracked.', 'full-picture-analytics-cookie-notice' ) . '</li>
-					</ol>
-					<p>' . esc_html__( 'Advanced Order Tracking works differently.', 'full-picture-analytics-cookie-notice' ) . '</p>
-					<p>' . sprintf( esc_html__( 'It tracks orders when they get specific statuses (see settings in the WooCommerce Tracking module) and can track cancellations and refunds (see %1$show to create a "refunds" report %2$s).', 'full-picture-analytics-cookie-notice' ), '<a href="https://wpfullpicture.com/support/documentation/how-to-make-a-refunds-report-in-google-analytics-4/">', '</a>' ) . '</p>
-					<p>' . esc_html__( 'This makes the purchase data in your Google Analytics reports more accurate.', 'full-picture-analytics-cookie-notice' ) . '</p>
-					<h3>' . esc_html__( 'What you must know', 'full-picture-analytics-cookie-notice' ) . '</h3>
-					<ol>
-						<li>' . esc_html__( 'When AOT is enabled, no "purchase" event will be sent on the order confirmation page.', 'full-picture-analytics-cookie-notice' ) . '</li>
-						<li>' . esc_html__( 'Orders will be tracked when they get a status that is set in WooCommerce Tracking module.', 'full-picture-analytics-cookie-notice' ) . '</li>
+						<li>' . esc_html__( 'Orders will be tracked when they get a status that is set in "WooCommerce Tracking" page > "Status-Based Order Tracking" section.', 'full-picture-analytics-cookie-notice' ) . '</li>
 						<li>' . esc_html__( 'Purchases are attributed to users and sessions just like with standard tracking.', 'full-picture-analytics-cookie-notice' ) . '</li>
-						<li>' . esc_html__( 'Purchase event is sent servers-side, using Measurement Protocol.', 'full-picture-analytics-cookie-notice' ) . '</li>
-						<li style="color: red;">' . esc_html__( 'Google can process server-side purchase events for up to 48 hours before they show up in reports. This also includes real-time reports.', 'full-picture-analytics-cookie-notice' ) . '</li>
-						<li>' . esc_html__( 'AOT does not track orders added manually in the WooCommerce admin panel, since they cannot be attributed to any website users.', 'full-picture-analytics-cookie-notice' ) . '</li>
-						<li>' . esc_html__( 'Partial refunds are not tracked. Only full refunds are tracked when the order status changes to "Refunded".', 'full-picture-analytics-cookie-notice' ) . '</li>
+						<li>' . esc_html__( 'SBOT does not track orders added manually in the WooCommerce admin panel, since they cannot be attributed to any website users.', 'full-picture-analytics-cookie-notice' ) . '</li>
+						<li class="fupi_warning_text">' . esc_html__( 'Partial refunds are not tracked. Only full refunds are tracked when the order status changes to "Refunded".', 'full-picture-analytics-cookie-notice' ) . '</li>
+						<li class="fupi_warning_text">' . esc_html__( 'Most purchases tracked with SBOT will not be visible in the "realtime view" reports in GA. Google can process server-side purchase events for up to 48 hours.', 'full-picture-analytics-cookie-notice' ) . '</li>
 					</ol>',
 			),
 		),

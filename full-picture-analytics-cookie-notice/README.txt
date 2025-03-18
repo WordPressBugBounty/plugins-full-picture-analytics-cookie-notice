@@ -4,7 +4,7 @@ Donate link: https://wpfullpicture.com/
 Tags: woocommerce, consent mode, analytics, privacy, cookies
 Requires at least: 5.4.0
 Tested up to: 6.7.2
-Stable tag: 8.4.0
+Stable tag: 8.5.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -12,107 +12,88 @@ All-in-1 privacy and analytics plugin. Install Google Analytics, Meta Pixel, GTM
 
 == Description ==
 
-WP Full Picture makes it easy to install and setup popular tracking tools and use them according to privacy laws. It lets you:
+WP Full Picture lets you install Google Analytics, Meta Pixel, GTM and other tracking tools and use them according to privacy laws.
 
-1. **Effortlessly install tracking and marketing tools** like Google Analytics, Google Ads, Meta Pixel, Plausible, Hotjar, GTM and many more.
-2. **Comply with GDPR, CNIL, PiPEDA** and other privacy regulations, with WP Full Picture's consent banner and a suite of other built-in solutions.
-3. **Track important user interactions** like form submissions, affiliate link performance, WooCommerce events, and more.
-4. **View detailed traffic and marketing reports** from Google Looker Studio (or similar platforms) directly within your WordPress admin panel.
+It is an alternative to:
+- PixelYourSite, Pixel Manager for WooCommerce and other similar plugins,
+- GTM4WP plugin (WP FP includes its own Google Tag Manager integration),
+- CookieBot, CookieYes, Complianz and similar solutions
 
-## ⚙️ HOW DOES IT WORK?
+## ⚙️ HOW DOES IT WORK - IN 3 STEPS
 
-[youtube https://www.youtube.com/watch?v=_eFhGwNBH6w]
+[youtube https://www.youtube.com/watch?v=_HGafFvF7dQ]
 
+1. Install all the analytics and marketing tools you need with ready-to-use modules,
+2. (optionally) Configure tracking WooCommerce events and user actions,
+3. Enable the built-in consent banner and (optionally) other privacy features.
 
-## 👌 ALTERNATIVE TO...
+All your tracking tools will follow the consent banner's rules and only load when the user agrees to cookies (unless you set it differently) - with no cookie scanning, limits or integration issues.
 
-WP Full Picture replaces multiple analytics and privacy plugins. This helps avoid conflicts between plugins and makes your workflow simpler and faster.
+## 🧩 WHAT IS INCLUDED
 
-You can use WP FP instead of:
+WP Full Picture comes with:
 
-- plugins that install tracking tools, like PixelYourSite, Pixel Manager for WooCommerce, MonsterInsights and others,
-- GTM4WP plugin - WP Full Picture includes its own Google Tag Manager integration and an alternative, lightweight Custom Scripts module,
-- consent solutions - WP FP comes with a consent banner and other privacy solutions which seamlessly integrate with all your tracking tools.
+1. **16 ready-to use modules** for installing Google Analytics, Google Ads, Google Tag Manager, Meta Pixel, Microsoft Clarity, Microsoft Advertising, Matomo, PostHog, Simple Analytics, LinkedIn Insight Tag, Plausible Analytics, X Ads / Twitter Ads, TikTok Pixel, Pinterest Conversion Tag, Hotjar, Crazy Egg and Inspectlet,
+2. **Google Tag Manager integration and Custom Scripts module** for installing other tools,
+3. **Pre-configured WooCommerce tracking** - from tracking product impressions to purchases,
+4. **Event tracking** - form submissions, click tracking, affiliate link tracking, and more,
+5. **Set of privacy tools** - consent banner, iframes manager, GDPR setup helper and more,
+6. **View traffic reports in admin area** - you can view reports from Looker Studio, Databox, and other similar platforms,
+7. **Free package of 1000 records of consents** that you can save in our cloud database - check our [very affordable plans](https://wpfullpicture.com/pricing#hook_cdb_plans). 
 
-## 🔌 INSTALL ANY TRACKING TOOL
+**Attention**. Saving and storing consents is a paid service. As a free user, you can save 1000 proofs for free and purchase one of [very affordable plans](https://wpfullpicture.com/pricing#hook_cdb_plans) when you need more.
 
-WP Full Picture is a centralized hub for managing all your analytics tools. It comes with 16 ready-to-use integrations, powerful Google Tag Manager integration and an easy-to-use Custom Scripts module.
+## 👌 WHY CHOOSE WP FULL PICTURE?
 
-Ready-to-use integrations:
+Choose WP Full Picture if you want to:
 
-1. Google Analytics ([learn more](https://wpfullpicture.com/module/google-analytics-integration-for-wordpress/))
-2. Google Ads ([learn more](https://wpfullpicture.com/module/google-ads/))
-3. Microsoft Clarity ([learn more](https://wpfullpicture.com/module/microsoft-clarity/))
-4. Microsoft Advertising ([learn more](https://wpfullpicture.com/module/microsoft-advertising/))
-5. Meta Pixel (a.k.a Facebook Pixel) ([learn more]())
-6. Matomo ([learn more](https://wpfullpicture.com/module/meta-pixel/))
-7. PostHog ([learn more](https://wpfullpicture.com/module/posthog/))
-8. Simple Analytics ([learn more](https://wpfullpicture.com/module/simple-analytics/))
-9. Linked In Insight Tag ([learn more](https://wpfullpicture.com/module/linkedin-insight-tag/))
-10. Plausible Analytics ([learn more](https://wpfullpicture.com/module/plausible-analytics/))
-11. X Ads / Twitter Ads ([learn more](https://wpfullpicture.com/module/x-ads-twitter-ads/))
-12. TikTok Pixel ([learn more](https://wpfullpicture.com/module/tiktok-pixel/))
-13. Pinterest Conversion Tag ([learn more](https://wpfullpicture.com/module/pinterest-ads/))
-14. Hotjar ([learn more](https://wpfullpicture.com/module/hotjar/))
-15. Crazy Egg ([learn more](https://wpfullpicture.com/module/crazy-egg/))
-16. Inspectlet ([learn more](https://wpfullpicture.com/module/inspectlet/))
+- manage all your analytics tools and privacy solutions from one place,
+- quickly set up advanced tracking of user actions and WooCommerce events,
+- comply with GDPR, PiPEDA and other privacy laws,
+- avoid conflicts between analytics tools and consent banners,
+- display analytics dashboards from Looker Studio, Databox, or other similar platforms inside WP admin.
 
-Tag management solutions:
+## 😊 WHO IS IT (NOT) FOR
 
-1. Google Tag Manager integration ([learn more](https://wpfullpicture.com/module/google-tag-manager/))
-2. Custom Scripts module ([learn more](https://wpfullpicture.com/module/custom-scripts/))
+Basic functions of WP FULL PICTURE can be used by everyone with minimal knowledge of analytics tools.
 
-## 🛒 WOOCOMMERCE TRACKING
+Advanced functions require the knowledge of CSS and JavaScript.
 
-We've integrated 14 tracking tools with WooCommerce - from Google Analytics and GTM to Hotjar and Matomo - so that you can gain deep insights into:
+You do not have to know Google Tag Manager to use it. You can install many analytics tools and set up advanced tracking directly in WP FP, much faster then with GTM.
 
-- **Sales performance:** Monitor important metrics like purchases, checkouts, items added to carts, and cart abandonment rates.
-- **Customer behavior:** Use session recordings to watch how customers navigate through your product categories and pages.
-- **Marketing performance:** Track how well your product campaigns are doing across different channels like Google Ads, Facebook Ads, and email marketing.
+### WHO IS IT NOT FOR
 
-## 👁️ CUSTOM TRACKING
+We do not recommend WP Full Picture, if you display ads on your website. Our consent banner does not have the IAB certificate for websites with ads.
 
-With WP Full Picture, you can track more than what tracking tools give you by default. WP FP helps you track and send them detailed information on user actions and events:
+We also do not recommend WP Full Picture to users who are not familiar with how analytics tools work.
 
-- **WooCommerce:** Track what customers do, from viewing products and adding items to their carts to making purchases.
-- **User interactions:** Track when people click or see specific page elements.
-- **Affiliate marketing:** Keep track of how often your affiliate links are clicked to measure their effectiveness.
-- **Form submissions:** See how often people fill out forms on your website, such as contact forms or registration forms.
-- **Content engagement:** Understand user behavior by tracking things like how far they scroll, how long they are engaged with the content, what page elements and ads they see and click on.
+## ✍️ PREMIUM SERVICES - RECORDS OF CONSENT
 
-## 🤝 PRIVACY COMPLIANCE
+Many consent management solutions keep basic record of consents in the WordPress's database.
 
-WP Full Picture includes a range of privacy features to help you follow rules like GDPR, PIPEDA, CNIL, and RODO.
+However, these consents often cannot prove that the visitor was given enough information to make a choice. What is more, consents in the site's database can be easily manipulated.
 
-- **Consent Banner:** Show a banner to get user permission for tracking (compatible with Google's Consent Mode v2).
-- **Iframes Manager:** Control the loading of YouTube videos, maps and other content from external websites which track your visitors.
-- **Safe Fonts Module:** Replace Google Fonts with fonts that don't send data to Google's servers, protecting user privacy.
-- **Tracking Tools Manager:** Manage tracking tools from other plugins and turn them off for users who don't agree to tracking.
+Unlike them, WP Full Picture's consents are saved in the cloud server in France (where you cannot edit them) and also contain:
+- configuration of consent banner at the time of consent
+- configuration of analytics tools at the time of consent
+- list of cookies present on the browser before the consent
+- copy of privacy policy page
+- and more
 
-And also:
+[See example](https://wpfullpicture.com/sdc_download/20763/?key=uttr6mmij3ssnrpyeo3myg4ys7i0y1).
 
-- **GDPR Setup Helper:** View a detailed information on how to set up tracking so that it complies with GDPR
-- **Records of consent:** Save visitors' tracking preferences in our cloud database (Available for unbeatable price. [See the pricing](https://wpfullpicture.com/pricing/#hook_cdb_plans/).)
-
-## 📊 IN-ADMIN TRAFFIC & MARKETING REPORTS
-
-Easily see your website's traffic stats and marketing performance right from your WordPress admin dashboard.
-
-Create reports with tools like Looker Studio, Databox, or other similar platforms, and view them directly in your WordPress admin area. Plus, if the platform you choose, has an app, then you can also check your reports on your phone. This makes it simple to keep track of visitor trends, marketing costs, and how well your campaigns are doing - all from one place.
-
-## 💎 WP FULL PICTURE PRO -  Advanced Solutions for Businesses
+## 💎 WP FULL PICTURE PRO
 
 WP Full Picture Pro is a powerful tool for businesses. It offers:
 
-- **Advanced order tracking:** Tracks up to 30% more orders in Google Analytics and Meta Pixel using advanced server-side tracking.
-- **Lead scoring:** Analyzes how effective your traffic sources are and helps create custom audiences based on where visitors are in the conversion process.
-- **Advanced Triggers:** Lets you tracks multi-event user actions, like visiting 5 product pages or showing interest in a product.
-- **Server-side tracking:** Bypasses ad blockers - works with Meta Pixel, Google Analytics (for WooCommerce orders), and Simple Analytics.
-- **Metadata tracking:** Track custom user, post and taxonomy data that is specific to your business.
-- **Android sources:** Stops Google Analytics from treating traffic from popular Android apps like Facebook and Pinterest as "Direct Traffic".
-- **Geolocation:** Lets you save money by turning off premium tracking tools in countries where you don’t do business.
+- **CAPI / Server-side tracking** - more accurate tracking in Meta Pixel and Google Analytics (for WooCommerce orders).
+- **Status-based order tracking** - tracking purchases when they get specific order status.
+- **Advanced Triggers** - this lets you track multi-step actions, like visiting 5 product pages or showing interest in a product.
+- **Lead scoring** - scores visitors based on their actions to see which traffic sources bring the best leads.
+- **Metadata tracking** - tracking custom user, post and taxonomy data.
+- and more
 
-[Learn more](https://wpfullpicture.com/free-vs-pro/)
+[See Free vs Pro comparison](https://wpfullpicture.com/free-vs-pro/)
 
 == Frequently Asked Questions ==
 
@@ -120,15 +101,22 @@ WP Full Picture Pro is a powerful tool for businesses. It offers:
 
 Yes. If you use a caching plugin or a tool like Autoptimize, make sure to turn off the settings that combine and minifiy JavaScript files. These can cause issues with the plugin.
 
+= Is WP Full Picture incompatible with any plugins or themes? =
+
+Yes. So far we have noticed that the plugin has problems with:
+
+- PixelYourSite plugin - to avoid issues, please go to General Settings page > Performance section > and enable option "Save main JS functions in a file"
+- OceanWP theme - Consent Banner settings do not show in the Theme Customizer
+- Kubio theme - the theme uses CSS styles that makes WP FP's Consent Banner show in the center of the page instead of the screen. To fix it, please add to your website this custom CSS `body#kubio{transform: none !important;}`
+- Vertice theme - the same problem and solution as above
+
 = Is WP Full Picture compatible with page builders? =
 
 Yes. We tested it with Elementor, Bricks, Breakdance and saw no issues.
 
-= Does WP Full Picture support WooCommerce and new WooCommerce blocks? =
+= Does WP Full Picture support Google's consent mode v2? =
 
-Yes. Both classic WooCommerce elements and new blocks are supported in 14 different tools and Google Tag Manager.
-
-WP Full Picture tracks events like purchases, checkouts, add-to-cart events, and more.
+Yes. Consent mode v2 is fully supported. It works with Google Analytics, Google Ads and GTM. You can enable it in the settings of the cookie notice / consent banner.
 
 = Does WP Full Picture display statistics in the dashboard? =
 
@@ -136,25 +124,31 @@ Yes. WP Full Picture lets you display in your WP admin panel reports and dashboa
 
 These platforms allow you to create advanced reports with aggregated data from various analytics and marketing tools, Google spreadsheets and even WooCommerce data.
 
-= Does WP Full Picture support Google's consent mode v2? =
+= I installed an analytics tool using a different plugin. Do I have to remvoe it and install again using WP Full Picture? =
 
-Yes. Consent mode v2 is fully supported. It works with Google Analytics, Google Ads and GTM. You can enable it in the settings of the cookie notice / consent banner.
-
-= Will I need a consent management plugin or platform (CookieBot, Iubenda, CookieYes, etc.) after I switch to WP Full Picture? =
-
-In most cases, no. You will need it only if you display on your website ads from platforms like Google Adsense - they require FTC certification from a cookie managment solution and WP Full Picture does not have it at the moment.
-
-= How does WP Full Picture's cookie notice block cookies?
-
-WP Full Picture doesn't need to block cookies. Instead, it blocks scripts that install and use these cookies. The end result is the same, but the website works a little bit faster because it loads the tracking scripts only after the visitor agrees to cookies.
-
-= Is WP Full Picture's cookie notice limited in any way? =
-
-No. Unlike consent management platforms (CMPs), we don't limit the use of the notice in any way. It can be displayed unlimited number of times, on unlimited pages by unlimited number of visitors.
+No. Use Tracking Tools Manager module to take control of tracking scripts loaded by other plugins.
 
 = Do I have to use the WP Full Picture's cookie notice? =
 
 No you don't. All the modules can be used separately.
+
+= Can I use a different consent management plugin or platform (CookieBot, Iubenda, CookieYes, etc.) with WP Full Picture? =
+
+No. WP Full Picture's modules for installing analytics tools are optimized to work with WP Full Picture's consent banner.
+
+= Can I use WP Full Picture on a website that displays ads? =
+
+yes, but with limitations. To show personalised ads from Google Adsense and other similar advertising platforms, you need to use a consent banner with IAB FTC certificate. WP Full Picture does not have it at the moment.
+
+= How does WP Full Picture's cookie notice block cookies?
+
+WP Full Picture doesn't need to block cookies. Instead, it blocks scripts that install and use these cookies.
+
+The end result is the same, but the website works a little bit faster because it loads the tracking scripts only after the visitor agrees to cookies.
+
+= Is WP Full Picture's cookie notice limited in any way? =
+
+No. It can be displayed unlimited number of times, on unlimited pages by unlimited number of visitors.
 
 = I live in the EU, but I want to start tracking visitors right after they visit the page. Can I do this? =
 
@@ -164,28 +158,9 @@ Technically, you can. Legally you can't.
 
 No. Privacy regulations cover many areas of business. WP Full Picture helps you handle only a part of it, so you still need to be aware and act accordingly to be fully compliant with the rest of them.
 
-= I am using a different cookie notice. Can I keep using it? =
-
-Yes you can, but you have to test it if it correctly blocks tracking scripts loaded by WP Full Picture before users agree to tracking. Vvast majority of cookie management solutions do not comply with privacy regulations like GDPR or CCPA, even if they claim so!
-
 = Can I translate texts in the cookie notice? =
 
 Yes. WP Full Picture has been tested and works with multilingual plugins WPML and Polylang. It is possible that it also works with other plugins but we haven't tested them.
-
-= Is WP FP compatible with caching plugins?
-
-WP Full Picture is compatible with W3 Total Cache, WP-Optimize, WP Rocket, WP Fastest Cache, Breeze, Siteground Cache, WP Super Cache, Cache Enabler, Litespeed Cache, Comet Cache, Hummingbird, WP Engine ceche and Autoptimize.
-
-Attention! We noticed that WP Multisite installations with LiteSpeed Cache plugin do not clear cache network-wide when the plugin is updated. In such case, cache needs to be cleared manually - visit every site in the network and click "purge cache" button.
-
-= Is WP Full Picture incompatible with any plugins or themes? =
-
-Yes. So far we have noticed that the plugin has problems with:
-
-- PixelYourSite plugin - on December 27, PYS got an update which modifies WP Full Picture's code and breaks it. To avoid it, please go to General Settings page > Performance section > and enable option "Save main JS functions in a file"
-- OceanWP theme - Consent Banner settings do not show in the Theme Customizer
-- Kubio theme - the theme uses CSS styles that makes WP FP's Consent Banner show in the center of the page instead of the screen. To fix it, please add to your website this custom CSS `body#kubio{transform: none !important;}`
-- Vertice theme - the same problem and solution as above
 
 = Does WP Full Picture generate product feeds for Google Shopping or Facebook? =
 
@@ -202,14 +177,33 @@ No. WP Full Picture is focused on tracking and privacy. To generate a product ca
 
 == Changelog ==
 
+= 8.5.0 (18-03-2025) =
+
+* [New] [Woo] Added an option to send "product view" events when visitors change product variants
+* [New] [Woo] Added an option to send an extra "product view" event for "default variants" on product pages
+* [New] [Records of consent] Visitors can now see the consent data collected  in CDB (must be enabled by admin)
+* [Update] [Woo] Added an extra check in JS to make sure no order is tracked twice
+* [Fix] [Consent Banner] When "Settings" panel was disabled, hiding the panel with toggling icon did not work correctly
+* [Fix] [CDB] Fixed a bug which sometimes prevented the latest WP FP configuration from being sent to CDB
+* [Fix] Content of files with settings backups sometimes opened directly in a new tab
+* [Fix] [Consent banner] Visitor were asked for consent every time priv. policy or tools changed - no matter whether the settings "ask visitors for consent" was enabled or not
+* [Other] [Woo] [GA4 / Meta Pixel] Added a check to disable Status-Based Order Tracking (a.k.a Advanced Order Tracking) when the plugin switches from Pro to Free
+* [Other] [GA4 / Meta Pixel] Added an extra debug information about server side tracking
+* [Other] Cookie for saving consents is now always set to expire after 182 days unless it's for development
+* [Other] New format of saving consents IDs in cdb_id cookie
+* [Other] [Woo] [Pro] Added extra checks for getting customer data
+* [Other] [Woo] [Pro] Renamed "Advanced Order Tracking" to "Status-Based Order Tracking"
+* [Removed] IPs are no longer sent to CDB
+
 = 8.4.0 (26-02-2025) =
 
+* [New] Google Ads can now be installed using GTAG ID
 * [New] [Woo] Added an option to provide a custom selector for product teasers
 * [Update] Major rewrite of the internal file structure of the admin section of the plugin
-* [Update] Function for assigning non-HTTP referrers to proper sources no longer changes document.referrer if it contains a UTM
+* [Update] [Pro] Function for assigning non-HTTP referrers to proper sources no longer changes document.referrer if it contains a UTM
 * [Update] WooCommerce default brand taxonomy is now tracked by default. All other ones are now optional.
 * [Fix] Custom scripts were not saved in files right after the option was enabled in the general settings
-* [Fix] [Woo] In some situations user data was not being sent on the purchase confirmation page
+* [Fix] [Woo] [Pro] In some situations user data was not being sent on the purchase confirmation page
 * [Fix] [Google Consent Mode] Changed the default state of "functionality" to "denied" (set to "granted" after visitors agree to  personalisation cookies)
 * [Other] Added a default style "display:none" to consent banner and toggler to hide them when custom content customizers are enabled (e.g. CartFlows setup manager or Kandence Email Customizer)
 * [Other] Added an early "return" to the updater function
@@ -403,32 +397,3 @@ No. WP Full Picture is focused on tracking and privacy. To generate a product ca
 * [Fix] [Google Analytics] Replaced space with an underscore in "email_link click" and "js error" event names
 * [Other] Freemius SDK update
 * [Other] You can now disable Consent Banner customisation section in the theme Customizer with a snippet "function fupi_disable_customizer(){};"
-
-= 7.3.1 (12-03-2024) =
-
-* [New] [Consent banner] Added url_passthrough option to GAds & GA
-* [New] [Pro] IP address validation for server-side tracking
-* [Update] [GTM] [Consent mode] Improved logic of consent mode for GTM
-* [Fix] [Pro] Solution to Cloudflare\'s proxy tht made user IPs unusable for FB CAPI
-* [Fix] [Pro] [Meta] [CAPI] The value of fbp cookie was sometimes not sent to the server, even though it was available
-* [Fix] [Consent banner] On some sites, the theme's CSS of form labels impacted the styling of consent toggles
-* [Fix] Obfuscating some post author names
-* [Fix] [PostHog] Tracking script did not load when the user chose EU servers when setting up their PH account
-* [Fix] [Woo] Option to show "order confirmation page seen" icon on the Orders page has been correctly marked as Pro feature
-
-= 7.3.0 (04-03-2024) =
-
-* [New] [Woo] [GAds] You can now track non-purchase Woo events as conversions
-* [New] [Cookie Notice] Color picker for the switcher for necessary cookies
-* [Updated] Consent mode logic improvement for gtag and GTM.
-* [Updated] [Woo] [GAds] Added transaction_id to purchase tracking
-* [Fix] [Woo] Teasers in modified HTML wrappers will no longer trigger errors
-* [Fix] Shortcode fp_info did not display the tools list if Tracking Tools Manager or Custom Scripts module were enabled but not set up
-* [Fix] [GTM] Static data is no longer sent before settings consents
-* [Fix] [GTM] Added an event name to the push with static data
-* [Fix] [Consent banner] Fixed a case of not working customizer controls under specific circumstances
-* [Fix] Fn isAnchorLinkToCurrentPage no longer throws an error when links with very weird URLs are clicked
-* [Removal] Parameter allow_ad_personalization_signals in GA4 (no longer necessary with consent mode)
-* [Removal] Splitbee module
-* [Other] [Consent Banner] Improved script creating optional headline text
-* [Other] Small UI improvements

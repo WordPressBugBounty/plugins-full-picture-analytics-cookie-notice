@@ -2,7 +2,7 @@ FP.fns.gads_woo_events = () => {
 
 	// TRACK IMPRESSIONS
 
-	function track_woo_impress( caller_id ) {
+	function track_woo_impress() {
 		
 		if ( ! fpdata.woo.lists.single ) return;
 		if ( ! fp.woo.gads ) fp.woo.gads = { 'single' : [] };
@@ -41,7 +41,7 @@ FP.fns.gads_woo_events = () => {
 	};
 
 	if ( ! ( fp.woo.dont_track_views_after_refresh && fpdata.refreshed ) ){
-		track_woo_impress( 'gads' );
+		track_woo_impress();
 		FP.addAction( ['woo_impress'], track_woo_impress );
 	}
 
@@ -98,7 +98,7 @@ FP.fns.gads_woo_events = () => {
 
 		if ( typeof gtag === 'undefined' ) return;
 
-		let items_type = fp.woo.variable_as_simple ? 'joined_items' : 'items',
+		let items_type = fp.woo.variable_tracking_method == 'track_parents' ? 'joined_items' : 'items',
 			items_a = [],
 			cart = fpdata.woo.cart;
 
@@ -158,7 +158,7 @@ FP.fns.gads_woo_events = () => {
 		
 		if ( typeof gtag === 'undefined' ) return;
 
-		let items_type = fp.woo.variable_as_simple ? 'joined_items' : 'items',
+		let items_type = fp.woo.variable_tracking_method == 'track_parents' ? 'joined_items' : 'items',
 			items_a = [],
 			cart = fpdata.woo.order;
 
