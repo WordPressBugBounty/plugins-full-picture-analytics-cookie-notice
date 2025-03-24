@@ -1,23 +1,23 @@
 === Analytics & Privacy Toolkit - WP Full Picture ===
 Contributors: chrisplaneta, freemius
 Donate link: https://wpfullpicture.com/
-Tags: woocommerce, consent mode, analytics, privacy, cookies
+Tags: woocommerce, consent mode, analytics, gdpr, gtm
 Requires at least: 5.4.0
 Tested up to: 6.7.2
-Stable tag: 8.5.0
+Stable tag: 8.5.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-All-in-1 privacy and analytics plugin. Install Google Analytics, Meta Pixel, GTM and other tools and use them according to privacy laws.
+Use Google Analytics, Meta Pixel, GTM and other tracking tools according to privacy laws. Track user actions and WooCommerce events.
 
 == Description ==
 
-WP Full Picture lets you install Google Analytics, Meta Pixel, GTM and other tracking tools and use them according to privacy laws.
+WP Full Picture is an all-in-1 privacy and analytics plugin for WordPress and WooCommerce.
 
-It is an alternative to:
-- PixelYourSite, Pixel Manager for WooCommerce and other similar plugins,
-- GTM4WP plugin (WP FP includes its own Google Tag Manager integration),
-- CookieBot, CookieYes, Complianz and similar solutions
+With WP Full Picture you can:
+- easily install many popular tracking tools, like Google Analytics, Ads, Meta Pixel, GTM and more,
+- use them according to privacy laws (with a built-in consent banner and other privacy tools),
+- and track user actions, WooCommerce events and more.
 
 ## ⚙️ HOW DOES IT WORK - IN 3 STEPS
 
@@ -43,29 +43,44 @@ WP Full Picture comes with:
 
 **Attention**. Saving and storing consents is a paid service. As a free user, you can save 1000 proofs for free and purchase one of [very affordable plans](https://wpfullpicture.com/pricing#hook_cdb_plans) when you need more.
 
+## 🛒 WOOCOMMERCE TRACKING
+
+WP Full Picture lets you easily track WooCommerce events in 14 tracking tools (like Google Analytics, Meta Pixel or Hotjar) and Google Tag Manager.
+
+Set how you can set up tracking the full customer journey (from product views to purchases) in Google Analytics in 5 minutes.
+
+[youtube https://www.youtube.com/watch?v=WN5y4tUu4hc]
+
+## 🍪 CONSENT BANNER and other privacy tools
+
+WP Full Picture comes with a consent banner and several other privacy tools, which help you comply with privacy regulations.
+
+See how they compare with CookieBot, CookieYes and Complianz.
+
+[youtube https://www.youtube.com/watch?v=IrSMKJDB840]
+
+## ALTERNATIVE TO...
+
+WP Full Picture is an alternative to:
+- PixelYourSite, Pixel Manager for WooCommerce and other similar plugins,
+- GTM4WP plugin (WP FP includes its own Google Tag Manager integration),
+- CookieBot, CookieYes, Complianz and similar solutions
+
+## 😊 WHO IS IT FOR
+
+WP Full Picture can be used by everyone with minimal knowledge of analytics tools. Advanced functions require the knowledge of HTML, CSS and JavaScript.
+
+We do not recommend WP Full Picture, if you show ads on your website. Our consent banner does not have the IAB certificate for websites with ads.
+
 ## 👌 WHY CHOOSE WP FULL PICTURE?
 
 Choose WP Full Picture if you want to:
 
-- manage all your analytics tools and privacy solutions from one place,
-- quickly set up advanced tracking of user actions and WooCommerce events,
+- manage all your analytics tools and privacy solutions with one plugin,
 - comply with GDPR, PiPEDA and other privacy laws,
+- quickly set up advanced tracking of user actions and WooCommerce events,
 - avoid conflicts between analytics tools and consent banners,
 - display analytics dashboards from Looker Studio, Databox, or other similar platforms inside WP admin.
-
-## 😊 WHO IS IT (NOT) FOR
-
-Basic functions of WP FULL PICTURE can be used by everyone with minimal knowledge of analytics tools.
-
-Advanced functions require the knowledge of CSS and JavaScript.
-
-You do not have to know Google Tag Manager to use it. You can install many analytics tools and set up advanced tracking directly in WP FP, much faster then with GTM.
-
-### WHO IS IT NOT FOR
-
-We do not recommend WP Full Picture, if you display ads on your website. Our consent banner does not have the IAB certificate for websites with ads.
-
-We also do not recommend WP Full Picture to users who are not familiar with how analytics tools work.
 
 ## ✍️ PREMIUM SERVICES - RECORDS OF CONSENT
 
@@ -76,7 +91,6 @@ However, these consents often cannot prove that the visitor was given enough inf
 Unlike them, WP Full Picture's consents are saved in the cloud server in France (where you cannot edit them) and also contain:
 - configuration of consent banner at the time of consent
 - configuration of analytics tools at the time of consent
-- list of cookies present on the browser before the consent
 - copy of privacy policy page
 - and more
 
@@ -176,6 +190,13 @@ No. WP Full Picture is focused on tracking and privacy. To generate a product ca
 6. View traffic and marketing reports in the admin panel
 
 == Changelog ==
+
+= 8.5.1 (24-03-2025) =
+
+* [Update] [Meta Pixel] If the _fbp cookie is missing, it is now generated by WP FP to improve match quality
+* [Update] [GDPR] Updated texts for the GDPR setup helper and Records of Consents
+* [Fix] [Meta Pixel] The settings field for the test event code did not show up until CAPI key was entered
+* [Fix] For some reason Select2 fields stopped showing placeholders
 
 = 8.5.0 (18-03-2025) =
 

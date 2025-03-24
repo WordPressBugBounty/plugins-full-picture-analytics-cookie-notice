@@ -4,7 +4,7 @@
 $prev_version = '1.0.0';
 // default
 $is_fresh_install = false;
-$regenerate_head = false;
+$regenerate_cdb = false;
 $updated = false;
 // probably a new install or updated from version before v4
 if ( empty( $this->versions ) ) {
@@ -603,8 +603,7 @@ if ( version_compare( $prev_version, '7.6.56' ) == -1 ) {
         }
     }
 }
-// For version 8.5.0
-if ( version_compare( $prev_version, '8.4.0.4' ) == -1 ) {
+if ( version_compare( $prev_version, '8.5.0' ) == -1 ) {
     // 0 if equal, -1 if prev is lower
     $woo_data = get_option( 'fupi_woo' );
     if ( !empty( $woo_data ) && !empty( $woo_data['variable_as_simple'] ) ) {
@@ -612,6 +611,10 @@ if ( version_compare( $prev_version, '8.4.0.4' ) == -1 ) {
         $woo_data['variable_tracking_method'] = 'track_parents';
         update_option( 'fupi_woo', $woo_data );
     }
+}
+if ( version_compare( $prev_version, '8.5.0.4' ) == -1 ) {
+    // 0 if equal, -1 if prev is lower
+    $regenerate_cdb = true;
 }
 // Update version number to match the current version
 $versions = get_option( 'fupi_versions' );
@@ -622,6 +625,13 @@ if ( !empty( $this->main['save_settings_file'] ) ) {
     include_once FUPI_PATH . '/admin/common/generate-files.php';
     $generator = new Fupi_Generate_Files();
     $generator->make_head_js_file( 'updater', false );
+}
+if ( $regenerate_cdb ) {
+    if ( !empty( $this->tools['cook'] ) && !empty( $this->cook['cdb_key'] ) && !empty( get_privacy_policy_url() ) ) {
+        trigger_error( 'Regenerate GDPR info for the ConsentsDB' );
+        include_once FUPI_PATH . '/includes/class-fupi-get-gdpr-status.php';
+        new Fupi_compliance_status_checker('cdb', $this->cook, false);
+    }
 }
 // Clear cache if any updates were made
 if ( $updated ) {

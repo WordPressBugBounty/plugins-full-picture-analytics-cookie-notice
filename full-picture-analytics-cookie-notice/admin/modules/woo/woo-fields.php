@@ -83,7 +83,7 @@ $sections = array(
 		'fields' => array(
 			array(
 				'type'	 			=> 'text',
-				'label' 			=> esc_html__( 'Custom CSS selectors of product teasers', 'full-picture-analytics-cookie-notice' ),
+				'label' 			=> esc_html__( 'CSS selectors of custom product teasers', 'full-picture-analytics-cookie-notice' ),
 				'field_id' 			=> 'teaser_wrapper_sel',
 				'option_arr_id'		=> $option_arr_id,
 				'label_for' 		=> $option_arr_id . '[teaser_wrapper_sel]',

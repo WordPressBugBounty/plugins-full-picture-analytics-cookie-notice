@@ -77,7 +77,7 @@ $sections = array(
 				'field_id' 			=> 'limit_country',
 				'option_arr_id'		=> $option_arr_id,
 				'must_have'			=> 'pro geo',
-				'class'				=> 'fupi_sub fupi_load_opts',
+				'class'				=> 'fupi_load_opts',
 				'is repeater'		=> false,
 				'fields'			=> array(
 					array(

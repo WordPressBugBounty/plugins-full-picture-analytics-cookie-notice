@@ -10,23 +10,27 @@
 		return Math.floor( ( d.getTime() / 1000 ) - diff ); // timestamp in seconds minus 0 secs (if FB makes problems, increase up to 2 secs);
 	}
 
-	function set_fbc(){
+	function set_fbp_fbc(){
 		
-		// get current fbc value
-		let fbc = FP.readCookie( '_fbc' );
+		let fbp = FP.readCookie( '_fbp' ),
+			fbc = FP.readCookie( '_fbc' ),
+			now = Date.now();
 
-		// check if the session started with a click on FB Ad
-		if ( fpdata?.current_session?.landing_page?.url_params?.fbclid ) {
-			// if we don't have saved fbc value or the value is different
-			if ( ! fbc || ! fbc.includes( fpdata.current_session.landing_page.url_params.fbclid ) ) {
-				// create new _fbc
-				fbc = 'fb.1.' + Date.now() + '.' + fpdata.current_session.landing_page.url_params.fbclid;
-				FP.setCookie( '_fbc', fbc, 90 );
-			}
+		if ( ! fbp ) {
+			let rand_num = Math.floor( Math.random() * 10000000000000 );
+			fbp = 'fb.1.' + now + '.' + rand_num;
+			FP.setCookie( '_fbp', fbp, 90 );
 		}
 
-		// save in a temporary variable for easy access
-		if ( fbc ) fp.fbp.fbc = fbc;
+		fp.fbp.fbp = fbp; // save for easy access
+		
+		if ( ! fbc ) {
+			let fbclid = FP.getUrlParamByName('fbclid');
+			if ( fbclid ) fbc = 'fb.1.' + now + '.' + fbclid;
+			if ( fbc ) FP.setCookie( '_fbc', fbc, 90 );
+		}
+		
+		fp.fbp.fbc = fbc; // save for easy access
 	}
 
 	FP.track_fbp_evt = ( custom, evt_name, evt_time, extra_custom_data = false, use_capi = true ) => {
@@ -149,9 +153,9 @@
     function load_fbp() {
 
 		load_pixel();
+		set_fbp_fbc();
 		set_user_data();
 		set_custom_data();
-		set_fbc();
 
 		FP.track_fbp_evt( false, 'PageView' );
 

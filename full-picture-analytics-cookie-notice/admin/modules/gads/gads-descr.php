@@ -34,7 +34,7 @@ switch( $section_id ){
 		
 	// EVENTS TRACKING
 	case 'fupi_gads_events':
-		$ret_text = '<p>' . sprintf( esc_html__('Provide %1$sconversion labels%2$s in the fields below to track as conversions visitors\' actions.', 'full-picture-analytics-cookie-notice' ), '<a target="_blank" href="https://wpfullpicture.com/support/documentation/how-to-get-google-ads-tag-id-conversion-id/">', '</a>' ) . '</p>';
+		$ret_text = '<p>' . sprintf( esc_html__('Provide %1$sconversion labels%2$s in the fields below to track visitors\' actions as conversions.', 'full-picture-analytics-cookie-notice' ), '<a target="_blank" href="https://wpfullpicture.com/support/documentation/how-to-get-google-ads-tag-id-conversion-id/">', '</a>' ) . '</p>';
 	break;
 
 	// E-COMMERCE
@@ -42,9 +42,9 @@ switch( $section_id ){
 	case 'fupi_gads_ecomm':
 
 		if ( empty( $no_woo_descr_text ) ) {
-			$ret_text = '<p>' . sprintf( esc_html__('Provide %1$sconversion labels%2$s in the fields below to track as conversions: purchases, checkouts and additions to cart.', 'full-picture-analytics-cookie-notice' ), '<a target="_blank" href="https://wpfullpicture.com/support/documentation/how-to-get-google-ads-tag-id-conversion-id/">', '</a>' ) . '</p>
+			$ret_text = '<p>' . sprintf( esc_html__('Provide %1$sconversion labels%2$s in the fields below to track purchases, checkouts and additions to cart as conversions.', 'full-picture-analytics-cookie-notice' ), '<a target="_blank" href="https://wpfullpicture.com/support/documentation/how-to-get-google-ads-tag-id-conversion-id/">', '</a>' ) . '</p>
 				<p>' . esc_html__( 'All these events are sent with product information.', 'full-picture-analytics-cookie-notice' ) . '</p>
-				<p class="fupi_woo_reqs_info"><strong>' . esc_html__( 'Attention.', 'full-picture-analytics-cookie-notice' ) . '</strong> ' . sprintf( esc_html__( 'WP Full Picture\'s automatic tracking is designed to work with %1$sstandard Woocommerce hooks and HTML%2$s. If your store doesn\'t use them or modifies them, tracking may not work.', 'full-picture-analytics-cookie-notice' ), '<a href="https://wpfullpicture.com/support/documentation/woocommerce-tracking-requirements/">', '</a>' ) . ' <a href="https://wpfullpicture.com/support/documentation/debug-mode-features/">' . esc_html__( 'Learn how to test it', 'full-picture-analytics-cookie-notice' ) . '</a>.</p>';
+				<p class="fupi_woo_reqs_info"><strong>' . esc_html__( 'Attention.', 'full-picture-analytics-cookie-notice' ) . '</strong> ' . sprintf( esc_html__( 'WP Full Picture can track stores that use %1$sstandard Woocommerce hooks and HTML%2$s. If your store uses plugins that don\'t use them, tracking may not work.', 'full-picture-analytics-cookie-notice' ), '<a href="https://wpfullpicture.com/support/documentation/woocommerce-tracking-requirements/">', '</a>' ) . ' <a href="https://wpfullpicture.com/support/documentation/debug-mode-features/">' . esc_html__( 'Learn how to test it', 'full-picture-analytics-cookie-notice' ) . '</a>.</p>';
 		} else {
 			$ret_text = $no_woo_descr_text;
 		};

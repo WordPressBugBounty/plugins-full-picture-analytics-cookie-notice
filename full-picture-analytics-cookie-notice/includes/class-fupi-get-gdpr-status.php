@@ -791,18 +791,28 @@ class Fupi_compliance_status_checker {
                         $t_cook_1 = 'The tool is set to disregard consent banner settings and start tracking without waiting for consent';
                         $t_cook_1_2 = 'Disable this option in the module\'s settings';
                         $t_cook_2 = 'This tool loads according to incorrectly configured consent banner.';
-                        $t_cook_3 = 'This tool loads according to consent banner settings.';
+                        $t_cook_3 = 'This tool loads according to consent banner settings. When the banner is in opt-in mode, the tool loads after visitors agree to:';
+                        $t_cook_4 = 'The tool enables additional functions after visitors agree to using their personal data for:';
                     } else {
                         $t_cook_1 = esc_html__( 'The tool is set to disregard consent banner settings and start tracking without waiting for consent', 'full-picture-analytics-cookie-notice' );
                         $t_cook_1_2 = esc_html__( 'Disable this option in the module\'s settings', 'full-picture-analytics-cookie-notice' );
                         $t_cook_2 = esc_html__( 'This tool loads according to incorrectly configured consent banner.', 'full-picture-analytics-cookie-notice' );
-                        $t_cook_3 = esc_html__( 'This tool loads according to consent banner settings.', 'full-picture-analytics-cookie-notice' );
+                        $t_cook_3 = esc_html__( 'This tool loads according to consent banner settings. When the banner is in opt-in mode, the tool loads after visitors agree to:', 'full-picture-analytics-cookie-notice' );
+                        $t_cook_4 = esc_html__( 'The tool enables additional functions after visitors agree to using their personal data for:', 'full-picture-analytics-cookie-notice' );
                     }
                     if ( isset( $settings['disreg_cookies'] ) ) {
                         $this->data[$id]['setup'][] = ['alert', $t_cook_1, $t_cook_1_2];
                     } else {
                         $extra = $this->get_extra_text();
-                        $main_text = ( $this->consent_status == 'alert' ? $t_cook_2 : $t_cook_3 );
+                        $req_consents = '';
+                        // paste required consents
+                        if ( isset( $info['consents'] ) ) {
+                            $req_consents = join( ', ', $info['consents'] );
+                            if ( isset( $info['opt_consents'] ) ) {
+                                $req_consents .= '. ' . $t_cook_4 . join( ', ', $info['opt_consents'] );
+                            }
+                        }
+                        $main_text = ( $this->consent_status == 'alert' ? $t_cook_2 : $t_cook_3 . ' ' . $req_consents );
                         $this->data[$id]['setup'][] = [$this->consent_status, $main_text, $extra];
                     }
                 } else {

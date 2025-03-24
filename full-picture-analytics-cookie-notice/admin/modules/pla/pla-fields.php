@@ -78,7 +78,7 @@ $sections = array(
 				'label' 			=> esc_html__('Only track visitors from specific countries', 'full-picture-analytics-cookie-notice'),
 				'field_id' 			=> 'limit_country',
 				'option_arr_id'		=> $option_arr_id,
-				'class'				=> 'fupi_sub fupi_load_opts',
+				'class'				=> 'fupi_load_opts',
 				'must_have'			=> 'pro geo',
 				'is_repeater'		=> false,
 				'popup'				=> sprintf( esc_html__('Enter a list of 2-character %1$scountry codes%2$s separated by comas.', 'full-picture-analytics-cookie-notice' ), '<a target="_blank" href="https://www.iban.com/country-codes">', '</a>' ) . '<br><br>' . esc_html__('If visitor\'s country is not recognized Plausible will load normally. Location is checked using the method chosen in the settings of the Geolocation module.', 'full-picture-analytics-cookie-notice' ),

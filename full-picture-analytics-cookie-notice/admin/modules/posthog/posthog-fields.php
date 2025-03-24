@@ -24,6 +24,7 @@ $sections = array(
 				'type'	 			=> 'toggle',
 				'label' 			=> esc_html__( 'Is the tracked data hosted in the EU?', 'full-picture-analytics-cookie-notice' ),
 				'field_id' 			=> 'data_in_eu',
+				'class'				=> 'fupi_sub',
 				'option_arr_id'		=> $option_arr_id,
 				'popup3'			=> '<p style="color: red;">' . esc_html__( 'It is very important to choose the right option here. If you make a wrong choice, PostHog tracking will not work.', 'full-picture-analytics-cookie-notice' ) . '</p>
 				<p>' . esc_html__( 'If you don\'t know if your PostHog data is kept on EU servers or not, please log in to your PostHog account and see if its address starts with eu.posthog.com.', 'full-picture-analytics-cookie-notice' ) . '</p>',
@@ -44,18 +45,17 @@ $sections = array(
 				'el_data_target'	=> 'fupi_load_opts',
 				'field_id' 			=> 'force_load',
 				'option_arr_id'		=> $option_arr_id,
-				'popup3'			=> '<p>' . sprintf( esc_html__( 'Load tracking script and start tracking all visitors - even administrators, bots, excluded users, people browsing from excluded locations and people that didn\'t agree to tracking. %1$sLearn more%2$s.', 'full-picture-analytics-cookie-notice' ), '<a target="_blank" href="https://wpfullpicture.com/support/documentation/validation-mode/?utm_source=fp_admin&utm_medium=referral&utm_campaign=settings_link">', '</a>' ) . '</p>
-					<p style="color: red">' . esc_html__( 'Enable this setting only for testing purposes. It breaks GDPR and similar laws in other countries that require visitors to opt-in to tracking.', 'full-picture-analytics-cookie-notice' ) . '</p>',
+				'popup3'			=> '<p style="color: red">' . esc_html__( 'Use only for installation verification or testing. It breaks GDPR and similar laws.', 'full-picture-analytics-cookie-notice' ) . '</p>
+				<p>' . sprintf( esc_html__( 'This will load the tracking tool for all website visitors, including administrators, bots, excluded users, people browsing from excluded locations and people that didn\'t agree to tracking. %1$sLearn more%2$s.', 'full-picture-analytics-cookie-notice' ), '<a target="_blank" href="https://wpfullpicture.com/support/documentation/validation-mode/?utm_source=fp_admin&utm_medium=referral&utm_campaign=settings_link">', '</a>' ) . '</p>',
 			),
 			array(
 				'type'	 			=> 'toggle',
 				'label' 			=> esc_html__( 'Track without waiting for consent', 'full-picture-analytics-cookie-notice' ),
-				'class'				=> 'fupi_sub fupi_load_opts',
+				'class'				=> 'fupi_load_opts',
 				'must_have'			=> 'cook',
 				'field_id' 			=> 'disreg_cookies',
 				'option_arr_id'		=> $option_arr_id,
-				'popup3'			=> '<p style="color: red">' . esc_html__( 'This option should be only enabled for testing purposes. It breaks GDPR and similar laws in other countries that require visitors to opt-in to tracking.', 'full-picture-analytics-cookie-notice' ) . '</p>
-				<p>' . esc_html__( 'When you enable this option, this tracking tool will start tracking without waiting for consent - even in countries where visitors may be tracked only after they agree to tracking.', 'full-picture-analytics-cookie-notice' ) . '</p>
+				'popup3'			=> '<p style="color: red">' . esc_html__( 'Use only for installation verification or testing. It breaks GDPR and similar laws.', 'full-picture-analytics-cookie-notice' ) . '</p>
 				<p>' . esc_html__( 'Visitors will still be able to turn off tracking by declining tracking / cookies.', 'full-picture-analytics-cookie-notice' ) . '</p>'
 			),
 			array(
@@ -64,7 +64,7 @@ $sections = array(
 				'field_id' 			=> 'limit_country',
 				'must_have'			=> 'pro geo',
 				'option_arr_id'		=> $option_arr_id,
-				'class'				=> 'fupi_sub fupi_load_opts',
+				'class'				=> 'fupi_load_opts',
 				'is repeater'		=> false,
 				'fields'			=> array(
 					array(

@@ -12,25 +12,23 @@ $basic_fields = array(
 		'label_for' 		=> $option_arr_id . '[pixel_id]',
 		'under field'		=> '<p><a href="https://wpfullpicture.com/support/documentation/how-to-install-meta-pixel/">' . esc_html__('See where to find it', 'full-picture-analytics-cookie-notice') . '</a></p>' ,
 	),
-	array(
-		'type'	 			=> 'text',
-		'label' 			=> esc_html__( 'Conversion API token (for server-side tracking)', 'full-picture-analytics-cookie-notice' ),
-		'field_id' 			=> 'capi_token',
-		'class'				=> 'fupi_sub',
-		'must_have'			=> 'pro',
-		'el_class'			=> 'fupi_condition',
-		'el_data_target'	=> 'fupi_capi_opts',
-		'option_arr_id'		=> $option_arr_id,
-		'label_for' 		=> $option_arr_id . '[capi_token]',
-		'popup'				=> '<p>' . esc_html__( 'After you enable Conversion API, the data you track, will be sent to Meta by both, the tracking pixel and your server. This way, you will be able to track visitors who use ad blockers (they block tracking pixels). Enabling Conversion API will put a strain on your server, requiring it to do additional work. Do not enable Conversion API on hosting that is at its limits.', 'full-picture-analytics-cookie-notice' ) . '</p>
-			<p><a href="https://wpfullpicture.com/support/documentation/3-ways-to-test-and-debug-meta-pixel-integration/">' . esc_html__('See the installation guide', 'full-picture-analytics-cookie-notice') . '</a></p>',
-	),
+		array(
+			'type'	 			=> 'text',
+			'label' 			=> esc_html__( 'Conversion API token (for server-side tracking)', 'full-picture-analytics-cookie-notice' ),
+			'field_id' 			=> 'capi_token',
+			'class'				=> 'fupi_sub',
+			'must_have'			=> 'pro',
+			'option_arr_id'		=> $option_arr_id,
+			'label_for' 		=> $option_arr_id . '[capi_token]',
+			'popup'				=> '<p>' . esc_html__( 'After you enable Conversion API, the data you track, will be sent to Meta by both, the tracking pixel and your server. This way, you will be able to track visitors who use ad blockers (they block tracking pixels). Enabling Conversion API will put a strain on your server, requiring it to do additional work. Do not enable Conversion API on hosting that is at its limits.', 'full-picture-analytics-cookie-notice' ) . '</p>
+				<p><a href="https://wpfullpicture.com/support/documentation/3-ways-to-test-and-debug-meta-pixel-integration/">' . esc_html__('See the installation guide', 'full-picture-analytics-cookie-notice') . '</a></p>',
+		),
 		array(
 			'type'	 			=> 'text',
 			'label' 			=> esc_html__( 'Test event code', 'full-picture-analytics-cookie-notice' ),
 			'field_id' 			=> 'test_code',
 			'must_have'			=> 'pro',
-			'class'				=> 'fupi_sub fupi_capi_opts fupi_disabled',
+			'class'				=> 'fupi_sub',
 			'option_arr_id'		=> $option_arr_id,
 			'label_for' 		=> $option_arr_id . '[test_code]',
 			'popup' 			=> esc_html__( 'Use this option if you want to test the events in the events manager. You can find your test code in the "Facebook Events Manager" > "Test events" section. All the events that happen, will be visible on the "Test events" page for 24 hours after creation. Remember to remove this code before going live.', 'full-picture-analytics-cookie-notice' ),
@@ -103,8 +101,8 @@ $loading_fields = array(
 		'el_class'			=> 'fupi_condition fupi_condition_reverse',
 		'el_data_target'	=> 'fupi_load_opts',
 		'option_arr_id'		=> $option_arr_id,
-		'popup3'			=> '<p>' . sprintf( esc_html__( 'Load tracking script and start tracking all visitors - even administrators, bots, excluded users, people browsing from excluded locations and people that didn\'t agree to tracking. %1$sLearn more%2$s.', 'full-picture-analytics-cookie-notice' ), '<a target="_blank" href="https://wpfullpicture.com/support/documentation/validation-mode/?utm_source=fp_admin&utm_medium=referral&utm_campaign=settings_link">', '</a>' ) . '</p>
-			<p style="color: red">' . esc_html__( 'Enable this setting only for testing purposes. It breaks GDPR and similar laws in other countries that require visitors to opt-in to tracking.', 'full-picture-analytics-cookie-notice' ) . '</p>',
+		'popup3'			=> '<p style="color: red">' . esc_html__( 'Use only for installation verification or testing. It breaks GDPR and similar laws.', 'full-picture-analytics-cookie-notice' ) . '</p>
+		<p>' . sprintf( esc_html__( 'This will load the tracking tool for all website visitors, including administrators, bots, excluded users, people browsing from excluded locations and people that didn\'t agree to tracking. %1$sLearn more%2$s.', 'full-picture-analytics-cookie-notice' ), '<a target="_blank" href="https://wpfullpicture.com/support/documentation/validation-mode/?utm_source=fp_admin&utm_medium=referral&utm_campaign=settings_link">', '</a>' ) . '</p>',
 	)
 );
 
@@ -112,12 +110,11 @@ $opt_fields = array(
 	array(
 		'type'	 			=> 'toggle',
 		'label' 			=> esc_html__( 'Track without waiting for consent', 'full-picture-analytics-cookie-notice' ),
-		'class'				=> 'fupi_sub fupi_load_opts',
+		'class'				=> 'fupi_load_opts',
 		'field_id' 			=> 'disreg_cookies',
 		'must_have'			=> 'cook',
 		'option_arr_id'		=> $option_arr_id,
-		'popup3'			=> '<p style="color: red">' . esc_html__( 'This option should be only enabled for testing purposes. It breaks GDPR and similar laws in other countries that require visitors to opt-in to tracking.', 'full-picture-analytics-cookie-notice' ) . '</p>
-		<p>' . esc_html__( 'When you enable this option, this tracking tool will start tracking without waiting for consent - even in countries where visitors may be tracked only after they agree to tracking.', 'full-picture-analytics-cookie-notice' ) . '</p>
+		'popup3'			=> '<p style="color: red">' . esc_html__( 'Use only for installation verification or testing. It breaks GDPR and similar laws.', 'full-picture-analytics-cookie-notice' ) . '</p>
 		<p>' . esc_html__( 'Visitors will still be able to turn off tracking by declining tracking / cookies.', 'full-picture-analytics-cookie-notice' ) . '</p>'
 	),
 );
@@ -130,7 +127,7 @@ $loading_fields = array_merge( $loading_fields, array(
 		'field_id' 			=> 'limit_country',
 		'must_have'			=> 'pro geo',
 		'option_arr_id'		=> $option_arr_id,
-		'class'				=> 'fupi_sub fupi_load_opts',
+		'class'				=> 'fupi_load_opts',
 		'is repeater'		=> false,
 		'popup'				=> '<p>' . sprintf( esc_html__('Enter a list of 2-character %1$scountry codes%2$s separated by comas.', 'full-picture-analytics-cookie-notice' ), '<a target="_blank" href="https://www.iban.com/country-codes">', '</a>' ) . '</p><p>'. esc_html__('Location is checked using the method chosen in the settings of the Geolocation module.', 'full-picture-analytics-cookie-notice' ) . '</p>',
 		'fields'			=> array(

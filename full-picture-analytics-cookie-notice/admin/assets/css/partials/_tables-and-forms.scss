@@ -16,7 +16,7 @@
 	input[type=number],
 	input[type=search],
 	input[type=tel],
-	input[type=text],
+	input[type=text]:not(.select2-search__field),
 	input[type=url],
 	textarea{
 		padding: 6px 12px !important;

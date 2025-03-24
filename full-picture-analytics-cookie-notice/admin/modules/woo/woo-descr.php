@@ -15,8 +15,8 @@ switch( $section_id ){
 	break;
 
 	case 'fupi_woo_custom':
-		$ret_text = '<p>' . esc_html__('Here you can adjust tracking to work with your individual store setup. You may need it if your store uses custom WooCommerce solutions.', 'full-picture-analytics-cookie-notice' ) . '</p>
-		<p class="fupi_warning_text">' . esc_html__('Attention. Not all tools can track everything that you can set up here. To learn more, visit the settings page of your tracking tool\'s module and go to the "WooCommerce tracking" section.', 'full-picture-analytics-cookie-notice' ) . '</p>';
+		$ret_text = '
+		<p>' . sprintf( esc_html__( 'Here you can adjust tracking to work with non-standard store elements (ones that do not use %1$srequired WooCommerce functions and HTML%2$s).', 'full-picture-analytics-cookie-notice' ), '<a href="https://wpfullpicture.com/support/documentation/woocommerce-tracking-requirements/">', '</a>' ) . '</p>';
 	break;
 };
 
