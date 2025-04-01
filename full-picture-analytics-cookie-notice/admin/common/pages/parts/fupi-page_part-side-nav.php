@@ -82,28 +82,32 @@
 
     if ( fupi_fs()->is_not_paying() ) {
         $under_nav_notice = '<div id="sidenav_buy_pro_banner">
-            <h3>' . esc_html__('Get Pro', 'full-picture-analytics-cookie-notice') . '</h3>
+            <h3>' . esc_html__('WP Full Picture Pro', 'full-picture-analytics-cookie-notice') . '</h3>
             <div id="fupi_feature_slider" class="fupi_slider">
                 <div class="fupi_slides">
                     <div class="fupi_slide">
-                        <div class="fupi_slide_main_text">' . esc_html__('Track up to 30% more WooCommerce orders with advanced order tracking', 'full-picture-analytics-cookie-notice') . '</div>
+                        <div class="fupi_slide_main_text">' . esc_html__('Measure how many visitors are really interested in your products', 'full-picture-analytics-cookie-notice') . '</div>
+                        <p class="small" style="line-height: 1.2"><a href="https://wpfullpicture.com/support/documentation/how-to-set-up-advanced-triggers/" target="_blank">' . esc_html__('See how to do it with Advanced Triggers', 'full-picture-analytics-cookie-notice') . '</a></p>
                     </div>
                     <div class="fupi_slide">
-                        <div class="fupi_slide_main_text">' . esc_html__('See what traffic sources bring you the best traffic', 'full-picture-analytics-cookie-notice') . '</div>
-                        <a href="https://wpfullpicture.com/free-vs-pro/#traffic_sources_section" target="_blank" class="small">' . esc_html__('Learn more', 'full-picture-analytics-cookie-notice') . '</a>
+                        <div class="fupi_slide_main_text">' . esc_html__('Improve conersion tracking with server-side tracking and enhanced attribution', 'full-picture-analytics-cookie-notice') . '</div>
+                        <p class="small" style="line-height: 1.2">' . esc_html__('Available in GA and Meta Pixel', 'full-picture-analytics-cookie-notice') . '</p>
                     </div>
                     <div class="fupi_slide">
-                        <div class="fupi_slide_main_text">' . esc_html__('Use server-side tracking in Meta Pixel and Google Analytics', 'full-picture-analytics-cookie-notice') . '</div>
-                        <a href="https://wpfullpicture.com/free-vs-pro/#server_side_section" target="_blank" class="small">' . esc_html__('Learn more', 'full-picture-analytics-cookie-notice') . '</a>
+                        <div class="fupi_slide_main_text">' . esc_html__('Learn which of your traffic sources and ad campaigns bring you the best traffic.', 'full-picture-analytics-cookie-notice') . '</div>
+                        <p class="small" style="line-height: 1.2"><a href="https://wpfullpicture.com/support/documentation/how-to-use-lead-scoring/" target="_blank">' . esc_html__('See how to do it with Lead Scoring', 'full-picture-analytics-cookie-notice') . '</a></p>
                     </div>
                     <div class="fupi_slide">
-                        <div class="fupi_slide_main_text">' . esc_html__('Learn how much "Direct traffic" in Google Analytics comes from Android applications.', 'full-picture-analytics-cookie-notice') . '</div>
-                        <a href="https://wpfullpicture.com/free-vs-pro/#real_traffic_sources_section" target="_blank" class="small">' . esc_html__('Learn more', 'full-picture-analytics-cookie-notice') . '</a>
+                        <div class="fupi_slide_main_text">' . esc_html__('Monitor your site for JavaScript errors in Google Analytics.', 'full-picture-analytics-cookie-notice') . '</div>
+                    </div>
+                    <div class="fupi_slide">
+                        <div class="fupi_slide_main_text">' . esc_html__('Track custom user and post data important to your business.', 'full-picture-analytics-cookie-notice') . '</div>
+                        <p class="small" style="line-height: 1.2">' . esc_html__('With metadata tracking', 'full-picture-analytics-cookie-notice') . '</p>
                     </div>
                 </div>
                 <ul class="fupi_slider_nav"></ul>
             </div>
-            <a href="https://wpfullpicture.com/pricing" class="button-primary"><span class="dashicons dashicons-unlock"></span> ' . esc_html__('See the pricing', 'full-picture-analytics-cookie-notice') . '</a>
+            <a href="https://wpfullpicture.com/pricing" class="button-primary"><span class="dashicons dashicons-unlock"></span> ' . esc_html__('Get All Pro Features', 'full-picture-analytics-cookie-notice') . '</a>
         </div>';
     }
 

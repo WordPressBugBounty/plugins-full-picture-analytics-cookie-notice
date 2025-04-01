@@ -4,7 +4,7 @@ Donate link: https://wpfullpicture.com/
 Tags: woocommerce, consent mode, analytics, gdpr, gtm
 Requires at least: 5.4.0
 Tested up to: 6.7.2
-Stable tag: 8.5.1
+Stable tag: 8.5.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -47,7 +47,7 @@ WP Full Picture comes with:
 
 WP Full Picture lets you easily track WooCommerce events in 14 tracking tools (like Google Analytics, Meta Pixel or Hotjar) and Google Tag Manager.
 
-Set how you can set up tracking the full customer journey (from product views to purchases) in Google Analytics in 5 minutes.
+See how you can set up tracking the full customer journey (from product views to purchases) in Google Analytics in 5 minutes.
 
 [youtube https://www.youtube.com/watch?v=WN5y4tUu4hc]
 
@@ -68,7 +68,7 @@ WP Full Picture is an alternative to:
 
 ## 😊 WHO IS IT FOR
 
-WP Full Picture can be used by everyone with minimal knowledge of analytics tools. Advanced functions require the knowledge of HTML, CSS and JavaScript.
+WP Full Picture is for everyone with minimal knowledge of analytics tools, however, you need to know HTML and CSS to use advanced functions.
 
 We do not recommend WP Full Picture, if you show ads on your website. Our consent banner does not have the IAB certificate for websites with ads.
 
@@ -77,7 +77,7 @@ We do not recommend WP Full Picture, if you show ads on your website. Our consen
 Choose WP Full Picture if you want to:
 
 - manage all your analytics tools and privacy solutions with one plugin,
-- comply with GDPR, PiPEDA and other privacy laws,
+- follow GDPR, PiPEDA and other privacy laws,
 - quickly set up advanced tracking of user actions and WooCommerce events,
 - avoid conflicts between analytics tools and consent banners,
 - display analytics dashboards from Looker Studio, Databox, or other similar platforms inside WP admin.
@@ -86,7 +86,7 @@ Choose WP Full Picture if you want to:
 
 Many consent management solutions keep basic record of consents in the WordPress's database.
 
-However, these consents often cannot prove that the visitor was given enough information to make a choice. What is more, consents in the site's database can be easily manipulated.
+However, these consents often cannot prove that the visitor had enough information to make a choice. What is more, consents in the site's database can be easily manipulated.
 
 Unlike them, WP Full Picture's consents are saved in the cloud server in France (where you cannot edit them) and also contain:
 - configuration of consent banner at the time of consent
@@ -190,6 +190,12 @@ No. WP Full Picture is focused on tracking and privacy. To generate a product ca
 6. View traffic and marketing reports in the admin panel
 
 == Changelog ==
+
+= 8.5.2 (01-04-2025) =
+
+* [Fix] [Meta Pixel] By mistake, the field for adding test event code was available only for Pro users
+* [Fix] [Woo] There is no longer a PHP notice when there is no "billing address 2"
+* [Update] Updated texts in the GDPR setup helper
 
 = 8.5.1 (24-03-2025) =
 
@@ -372,49 +378,3 @@ No. WP Full Picture is focused on tracking and privacy. To generate a product ca
 * [Other] [CSS] Changed the class of a toggle switch from "fupi_slider" to "fupi_switch_slider"
 * [Deprecated] fpdata.new_tab will be removed in 8.2 since there is no bulletproof solution to check it
 * [Deprecated] adblock checks will be removed in 8.2 since its accuracy is very poor after adblock updates
-
-= 7.5.1 (13-08-2024) =
-
-* [Fix] [GAds] If the "AW-" prefix is missing before the ID, it is now automatically added
-* [Fix] Removed unnecessary "nooptimize" comments that caused issues with the Greenshift "Woo blocks" addon
-* [Fix] [Other] Improved loading the consent banner in customizer
-* [Fix] [Consent Banner] Changed names of CSS and JS files so that they don't get blocked by the ad blockers
-* [Fix] [Geolocation] Changing location with ?fp_set_country now works correctly
-* [Fix] [Geolocation] [Pro] Gtag now waits for the geolocation info before it sends consents
-* [Fix] [Geolocation] [Pro] Location was checked after initiating consent banner when it was in automatic mode
-* [Other] Tested compatibility with WP 6.6.1
-* [Other] Freemius SDK update
-
-= 7.5.0 (07-05-2024) =
-
-* [New] [Pro] [Metadata tracking] You can now track custom user and term metadata
-* [New] [Pro] [Advanced Triggers] Added a "has HTML parent" rule
-* [New] GA consents are now also sent for GAs installed with 3rd party tools
-* [Update] Gtag scripts controlled with TTM will now load even when partial consents have been granted
-* [Fix] Prevented double-triggering setting consents when GTM had "datalayer protection" disabled and GA module was enabled.
-
-= 7.4.0 (25-04-2024) =
-
-* [New] [Woo] You can now track products added to cart with a link parameter, e.g. example.com/?add-to-cart=prod_id
-* [New] [Google Analytics] User actions can now be tracked as either separate events or events with parameters
-* [New] [Google Analytics] You can now set the names of some event parameters
-* [New] Added a URL parameter "?fp_set_country=X" for testing location-based privacy settings, e.g. example.com/?fp_set_country=DE
-* [New] [Consent banner] Admins can specify what element should show/hide the banner on click
-* [New] Added a fallback option to FP.getScript()
-* [New] [Woo] WP FP now lets you push customer data to the DL
-* [New] [Plausible] Option not to load tracking script so that WP FP will work as Plausible's plugin extension
-* [Update] [Iframes Manager] Added checks to prevent returning empty HTML
-* [Update] Better phone number normalization for Woo
-* [Update] [TTL] Added a check that makes sure that no tracking script chosen from the list is double-blocked
-* [Update] HTML tags are now stripped from product names to make sure that they don't cause issues inside WP FP's JS objects
-* [Update] [i18n] Changed language domain to match WP.org slug
-* [Other] Added a link to the WP FP docs in the info about WooCommerce tracking in the modules' settings
-* [Other] Added more info about how "Protecting datalayer" option works
-* [Other] Added explainer info to GTM about how it should be used
-* [Fix] When ga4_debug param is added to URL the notice asked for consents on another pageview
-* [Fix] [TTM] Double quotations of URL attributes in the script constructed with FP.getScript()
-* [Fix] Geolocation was checked on every pageload even if it was already known
-* [Fix] [TTM] Added a check to preg_replace_callback to make sure that there were no errors and the returned HTML is not null
-* [Fix] [Google Analytics] Replaced space with an underscore in "email_link click" and "js error" event names
-* [Other] Freemius SDK update
-* [Other] You can now disable Consent Banner customisation section in the theme Customizer with a snippet "function fupi_disable_customizer(){};"

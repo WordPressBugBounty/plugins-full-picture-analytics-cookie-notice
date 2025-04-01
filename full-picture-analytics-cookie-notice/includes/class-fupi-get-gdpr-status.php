@@ -57,12 +57,12 @@ class Fupi_compliance_status_checker {
                 $t_alert_1 = 'Consent banner must be enabled for your setup';
                 $t_alert_2 = 'Please enable it in either opt-in mode or one of automatic modes';
                 $t_warning_1 = 'You may need to use the Consent Banner module on your website.';
-                $t_warning_2 = 'Enable it if any of the tracking tools installed on your website track personaly identifiable information, your website loads content from other sites (YouTube video, maps, etc.) or gives warnings in <a href="https://2gdpr.com" target="_blank">2GDPR.com</a>.';
+                $t_warning_2 = 'Enable it if you use tracking tools on your website, live chat applications, social buttons, social login options or your website loads content from other sites (YouTube video, maps, etc.).';
             } else {
                 $t_alert_1 = esc_html__( 'Consent banner must be enabled for your setup', 'full-picture-analytics-cookie-notice' );
                 $t_alert_2 = esc_html__( 'Please enable it in either opt-in mode or one of automatic modes', 'full-picture-analytics-cookie-notice' );
                 $t_warning_1 = esc_html__( 'You may need to use the Consent Banner module on your website.', 'full-picture-analytics-cookie-notice' );
-                $t_warning_2 = sprintf( esc_html__( 'Enable it if any of the tracking tools installed on your website track personaly identifiable information, your website loads content from other sites (YouTube video, maps, etc.) or gives warnings in %1$s.', 'full-picture-analytics-cookie-notice' ), '<a href="https://2gdpr.com" target="_blank">2GDPR.com</a>' );
+                $t_warning_2 = esc_html__( 'Enable it if you use tracking tools on your website, live chat applications, social buttons, social login options or your website loads content from other sites (YouTube video, maps, etc.).' );
             }
             $cook_module_name = ( $this->format == 'cdb' ? 'Consent Banner' : $this->modules_names['cook'] );
             switch ( $this->req_consent_banner ) {
@@ -1149,15 +1149,10 @@ class Fupi_compliance_status_checker {
         // defaults
         if ( $this->format == 'cdb' ) {
             $t_block_14 = 'Check if you need to use the Tracking Tools Manager module';
-            $t_block_15 = 'Tracking Tools Manager let\'s you load tracking tools installed outside WP Full Picture according to visitors\' consents. Use it if you installed any tracking tool with a different plugin. If you are unsure, check your website for cookies of other tracking tools with <a href="https://2gdpr.com">2GDPR.com</a>. If you are unsure how to use it, read these <a href="https://wpfullpicture.com/support/documentation/how-to-use-2gdpr-com-to-track-your-visitors-according-to-gdpr/">short instructions</a>.';
+            $t_block_15 = 'Tracking Tools Manager let\'s controls tracking tools installed outside WP Full Picture. Only controlled tools can be loaded according to visitors\' consents. Use it if you installed any tracking tool with a different plugin. If you are unsure, scan your website with one of online cookie scanners.';
         } else {
             $t_block_14 = esc_html__( 'Check if you need to use the Tracking Tools Manager module', 'full-picture-analytics-cookie-notice' );
-            $t_block_15 = sprintf(
-                esc_html__( 'Tracking Tools Manager let\'s you load tracking tools installed outside WP Full Picture according to visitors\' consents. Use it if you installed any tracking tool with a different plugin. If you are unsure, check your website for cookies of other tracking tools with %1$s. If you are unsure how to use it, read these %2$sshort instructions%3$s.', 'full-picture-analytics-cookie-notice' ),
-                '<a href="https://2gdpr.com">2GDPR.com</a>',
-                '<a href="https://wpfullpicture.com/support/documentation/how-to-use-2gdpr-com-to-track-your-visitors-according-to-gdpr/">',
-                '</a>'
-            );
+            $t_block_15 = esc_html__( 'Tracking Tools Manager let\'s controls tracking tools installed outside WP Full Picture. Only controlled tools can be loaded according to visitors\' consents. Use it if you installed any tracking tool with a different plugin. If you are unsure, scan your website with one of online cookie scanners.', 'full-picture-analytics-cookie-notice' );
         }
         $this->data['blockscr']['pre-setup'][] = [$t_block_14, $t_block_15];
         if ( $is_module_enabled ) {

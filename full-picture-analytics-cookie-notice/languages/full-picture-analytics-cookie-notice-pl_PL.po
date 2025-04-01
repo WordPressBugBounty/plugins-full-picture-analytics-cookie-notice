@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wpfp\n"
 "Report-Msgid-Bugs-To: Translator Name <translations@example.com>\n"
-"POT-Creation-Date: 2025-03-24 14:31+0100\n"
-"PO-Revision-Date: 2025-03-24 14:40+0100\n"
+"POT-Creation-Date: 2025-04-01 12:15+0200\n"
+"PO-Revision-Date: 2025-04-01 12:21+0200\n"
 "Last-Translator: Krzysztof Planeta <hello@wpfullpicture.com>\n"
 "Language-Team: Polish\n"
 "Language: pl_PL\n"
@@ -250,41 +250,48 @@ msgid "Please enable some modules. Links to enabled modules will show up here."
 msgstr "Włącz wybrane moduły. Linki do nich pojawią się tutaj."
 
 #: admin/common/pages/parts/fupi-page_part-side-nav.php:85
-msgid "Get Pro"
-msgstr "Kup Pro"
+msgid "WP Full Picture Pro"
+msgstr "WP Full Picture Pro"
 
 #: admin/common/pages/parts/fupi-page_part-side-nav.php:89
-msgid "Track up to 30% more WooCommerce orders with advanced order tracking"
-msgstr "Śledź do 30% więcej zamówień WooCommerce dzięki zaawansowanemu śledzeniu zamówień"
+msgid "Measure how many visitors are really interested in your products"
+msgstr "Odkryj, ilu odwiedzających jest naprawdę zainteresowanych Twoimi produktami"
 
-#: admin/common/pages/parts/fupi-page_part-side-nav.php:92
-msgid "See what traffic sources bring you the best traffic"
-msgstr "Zobacz, które źródła ruchu przynoszą najlepszy ruch"
+#: admin/common/pages/parts/fupi-page_part-side-nav.php:90
+msgid "See how to do it with Advanced Triggers"
+msgstr "Zobacz, jak to zrobić z Zaawansowanymi Trigerami"
 
 #: admin/common/pages/parts/fupi-page_part-side-nav.php:93
+msgid "Improve conersion tracking with server-side tracking and enhanced attribution"
+msgstr "Usprawnij śledzenie konwersji dzięki śledzeniu po stronie serwera i ulepszonej atrybucji"
+
+#: admin/common/pages/parts/fupi-page_part-side-nav.php:94
+msgid "Available in GA and Meta Pixel"
+msgstr "Dostępne w GA i Meta Pixel"
+
 #: admin/common/pages/parts/fupi-page_part-side-nav.php:97
+msgid "Learn which of your traffic sources and ad campaigns bring you the best traffic."
+msgstr "Dowiedz się, które źródła ruchu i kampanie reklamowe przynoszą najlepszy ruch."
+
+#: admin/common/pages/parts/fupi-page_part-side-nav.php:98
+msgid "See how to do it with Lead Scoring"
+msgstr "Zobacz, jak to zrobić z Lead Scoringiem"
+
 #: admin/common/pages/parts/fupi-page_part-side-nav.php:101
-#: admin/modules/blockscr/blockscr-faq.php:49
-#: admin/modules/blockscr/blockscr-fields.php:155
-#: admin/modules/cook/cook-fields.php:30 admin/modules/cook/cook-fields.php:39
-#: admin/modules/cook/cook-fields.php:48 admin/modules/cook/cook-fields.php:58
-#: admin/modules/cook/cook-fields.php:69 admin/modules/cook/cook-fields.php:80
-#: admin/modules/main/main-fields.php:338
-#: admin/modules/tools/tools-fields.php:391 admin/modules/woo/woo-descr.php:14
-msgid "Learn more"
-msgstr "Dowiedz się więcej"
+msgid "Monitor your site for JavaScript errors in Google Analytics."
+msgstr "Monitoruj swoją witrynę pod kątem błędów JavaScript w Google Analytics."
 
-#: admin/common/pages/parts/fupi-page_part-side-nav.php:96
-msgid "Use server-side tracking in Meta Pixel and Google Analytics"
-msgstr "Korzystaj ze śledzenia po stronie serwera w Meta Pixel i Google Analytics"
+#: admin/common/pages/parts/fupi-page_part-side-nav.php:104
+msgid "Track custom user and post data important to your business."
+msgstr "Śledź niestandardowe dane użytkowników i postów ważne dla Twojej firmy."
 
-#: admin/common/pages/parts/fupi-page_part-side-nav.php:100
-msgid "Learn how much \"Direct traffic\" in Google Analytics comes from Android applications."
-msgstr "Dowiedz się, ile ruchu bezpośredniego w Google Analytics pochodzi z aplikacji na Androida."
+#: admin/common/pages/parts/fupi-page_part-side-nav.php:105
+msgid "With metadata tracking"
+msgstr "Ze śledzeniem metadanych"
 
-#: admin/common/pages/parts/fupi-page_part-side-nav.php:106
-msgid "See the pricing"
-msgstr "Zobacz cennik"
+#: admin/common/pages/parts/fupi-page_part-side-nav.php:110
+msgid "Get All Pro Features"
+msgstr "Odblokuj Funkcje Pro"
 
 #: admin/modules/atrig__premium_only/atrig-descr.php:10
 #, php-format
@@ -591,6 +598,16 @@ msgstr "ładują się tylko w określonych krajach (moduł Geolokalizacja musi b
 msgid "do not track users specified in the General Settings page"
 msgstr "nie śledzą użytkowników określonych na stronie Ustawienia ogólne"
 
+#: admin/modules/blockscr/blockscr-faq.php:49
+#: admin/modules/blockscr/blockscr-fields.php:155
+#: admin/modules/cook/cook-fields.php:30 admin/modules/cook/cook-fields.php:39
+#: admin/modules/cook/cook-fields.php:48 admin/modules/cook/cook-fields.php:58
+#: admin/modules/cook/cook-fields.php:69 admin/modules/cook/cook-fields.php:80
+#: admin/modules/main/main-fields.php:338
+#: admin/modules/tools/tools-fields.php:391 admin/modules/woo/woo-descr.php:14
+msgid "Learn more"
+msgstr "Dowiedz się więcej"
+
 #: admin/modules/blockscr/blockscr-faq.php:50
 #: admin/modules/tools/tools-fields.php:392
 msgid "do not track pages that are not viewed, e.g. opened in tabs that were never opened"
@@ -847,7 +864,7 @@ msgstr "Używaj tylko w określonych krajach (pozostaw puste, aby używać wszę
 #: admin/modules/blockscr/blockscr-fields.php:100
 #: admin/modules/cegg/cegg-fields.php:68 admin/modules/clar/clar-fields.php:74
 #: admin/modules/cscr/cscr-fields.php:112
-#: admin/modules/fbp1/fbp1-fields.php:138 admin/modules/ga41/ga41-fields.php:92
+#: admin/modules/fbp1/fbp1-fields.php:137 admin/modules/ga41/ga41-fields.php:92
 #: admin/modules/gads/gads-fields.php:79 admin/modules/hotj/hotj-fields.php:65
 #: admin/modules/insp/insp-fields.php:63
 #: admin/modules/linkd/linkd-fields.php:67
@@ -862,7 +879,7 @@ msgstr "Wszędzie oprócz"
 #: admin/modules/blockscr/blockscr-fields.php:101
 #: admin/modules/cegg/cegg-fields.php:69 admin/modules/clar/clar-fields.php:75
 #: admin/modules/cscr/cscr-fields.php:113
-#: admin/modules/fbp1/fbp1-fields.php:139 admin/modules/ga41/ga41-fields.php:93
+#: admin/modules/fbp1/fbp1-fields.php:138 admin/modules/ga41/ga41-fields.php:93
 #: admin/modules/gads/gads-fields.php:80 admin/modules/hotj/hotj-fields.php:66
 #: admin/modules/insp/insp-fields.php:64
 #: admin/modules/linkd/linkd-fields.php:68
@@ -876,7 +893,7 @@ msgstr "Tylko w"
 
 #: admin/modules/blockscr/blockscr-fields.php:108
 #: admin/modules/cegg/cegg-fields.php:76 admin/modules/cscr/cscr-fields.php:120
-#: admin/modules/fbp1/fbp1-fields.php:146 admin/modules/insp/insp-fields.php:71
+#: admin/modules/fbp1/fbp1-fields.php:145 admin/modules/insp/insp-fields.php:71
 #: admin/modules/mato/mato-fields.php:110 admin/modules/pin/pin-fields.php:84
 #: admin/modules/pla/pla-fields.php:98
 #: admin/modules/posthog/posthog-fields.php:82
@@ -1083,7 +1100,7 @@ msgid "How to install Crazy Egg"
 msgstr "Jak zainstalować Crazy Egg"
 
 #: admin/modules/cegg/cegg-fields.php:13 admin/modules/clar/clar-fields.php:292
-#: admin/modules/fbp1/fbp1-fields.php:274 admin/modules/ga41/ga41-fields.php:12
+#: admin/modules/fbp1/fbp1-fields.php:273 admin/modules/ga41/ga41-fields.php:12
 #: admin/modules/ga42__premium_only/ga42-fields.php:13
 #: admin/modules/gads/gads-fields.php:101 admin/modules/gtm/gtm-fields.php:359
 #: admin/modules/hotj/hotj-fields.php:87 admin/modules/insp/insp-fields.php:85
@@ -1105,7 +1122,7 @@ msgid "%1$sWhere to find script URL and correctly finish installation%2$s."
 msgstr "%1$sGdzie znaleźć adres URL skryptu i poprawnie zakończyć instalację%2$s."
 
 #: admin/modules/cegg/cegg-fields.php:32 admin/modules/clar/clar-fields.php:300
-#: admin/modules/fbp1/fbp1-fields.php:282 admin/modules/ga41/ga41-fields.php:56
+#: admin/modules/fbp1/fbp1-fields.php:281 admin/modules/ga41/ga41-fields.php:56
 #: admin/modules/gads/gads-fields.php:109 admin/modules/hotj/hotj-fields.php:95
 #: admin/modules/insp/insp-fields.php:93
 #: admin/modules/linkd/linkd-fields.php:31
@@ -1117,7 +1134,7 @@ msgid "Loading"
 msgstr "Ładowanie"
 
 #: admin/modules/cegg/cegg-fields.php:36 admin/modules/clar/clar-fields.php:33
-#: admin/modules/cscr/cscr-fields.php:165 admin/modules/fbp1/fbp1-fields.php:99
+#: admin/modules/cscr/cscr-fields.php:165 admin/modules/fbp1/fbp1-fields.php:98
 #: admin/modules/ga41/ga41-fields.php:60 admin/modules/gads/gads-fields.php:47
 #: admin/modules/hotj/hotj-fields.php:32 admin/modules/insp/insp-fields.php:31
 #: admin/modules/linkd/linkd-fields.php:35
@@ -1131,8 +1148,8 @@ msgstr "Wymuś ładowanie"
 
 #: admin/modules/cegg/cegg-fields.php:41 admin/modules/cegg/cegg-fields.php:51
 #: admin/modules/clar/clar-fields.php:38 admin/modules/clar/clar-fields.php:52
-#: admin/modules/fbp1/fbp1-fields.php:104
-#: admin/modules/fbp1/fbp1-fields.php:117 admin/modules/ga41/ga41-fields.php:65
+#: admin/modules/fbp1/fbp1-fields.php:103
+#: admin/modules/fbp1/fbp1-fields.php:116 admin/modules/ga41/ga41-fields.php:65
 #: admin/modules/ga41/ga41-fields.php:75 admin/modules/gads/gads-fields.php:52
 #: admin/modules/gads/gads-fields.php:62 admin/modules/hotj/hotj-fields.php:37
 #: admin/modules/hotj/hotj-fields.php:47 admin/modules/insp/insp-fields.php:36
@@ -1150,7 +1167,7 @@ msgid "Use only for installation verification or testing. It breaks GDPR and sim
 msgstr "Używaj tylko do weryfikacji lub testowania instalacji. Łamie RODO i podobne przepisy."
 
 #: admin/modules/cegg/cegg-fields.php:42 admin/modules/clar/clar-fields.php:39
-#: admin/modules/fbp1/fbp1-fields.php:105 admin/modules/ga41/ga41-fields.php:66
+#: admin/modules/fbp1/fbp1-fields.php:104 admin/modules/ga41/ga41-fields.php:66
 #: admin/modules/gads/gads-fields.php:53 admin/modules/hotj/hotj-fields.php:38
 #: admin/modules/insp/insp-fields.php:37
 #: admin/modules/linkd/linkd-fields.php:41
@@ -1163,7 +1180,7 @@ msgid "This will load the tracking tool for all website visitors, including admi
 msgstr "Spowoduje to załadowanie narzędzia śledzącego wszystkim odwiedzającym witrynę, w tym administratorom, botom, wykluczonym użytkownikom, odwiedzającym z wykluczonych lokalizacji i osobom, które nie wyraziły zgody na śledzenie. %1$sDowiedz się więcej%2$s."
 
 #: admin/modules/cegg/cegg-fields.php:46 admin/modules/clar/clar-fields.php:47
-#: admin/modules/fbp1/fbp1-fields.php:112 admin/modules/ga41/ga41-fields.php:70
+#: admin/modules/fbp1/fbp1-fields.php:111 admin/modules/ga41/ga41-fields.php:70
 #: admin/modules/gads/gads-fields.php:57 admin/modules/hotj/hotj-fields.php:42
 #: admin/modules/insp/insp-fields.php:41
 #: admin/modules/linkd/linkd-fields.php:45
@@ -1175,7 +1192,7 @@ msgid "Track without waiting for consent"
 msgstr "Śledź bez czekania na zgodę"
 
 #: admin/modules/cegg/cegg-fields.php:52 admin/modules/clar/clar-fields.php:53
-#: admin/modules/fbp1/fbp1-fields.php:118 admin/modules/ga41/ga41-fields.php:76
+#: admin/modules/fbp1/fbp1-fields.php:117 admin/modules/ga41/ga41-fields.php:76
 #: admin/modules/gads/gads-fields.php:63 admin/modules/hotj/hotj-fields.php:48
 #: admin/modules/insp/insp-fields.php:47
 #: admin/modules/linkd/linkd-fields.php:51
@@ -1187,7 +1204,7 @@ msgid "Visitors will still be able to turn off tracking by declining tracking / 
 msgstr "Odwiedzający nadal będą mogli wyłączyć śledzenie nie zgadzając się na nie w benerze zgód."
 
 #: admin/modules/cegg/cegg-fields.php:56 admin/modules/clar/clar-fields.php:62
-#: admin/modules/fbp1/fbp1-fields.php:126 admin/modules/ga41/ga41-fields.php:80
+#: admin/modules/fbp1/fbp1-fields.php:125 admin/modules/ga41/ga41-fields.php:80
 #: admin/modules/gads/gads-fields.php:67 admin/modules/insp/insp-fields.php:51
 #: admin/modules/linkd/linkd-fields.php:55
 #: admin/modules/mads/mads-fields.php:63 admin/modules/mato/mato-fields.php:91
@@ -1199,7 +1216,7 @@ msgid "Only track visitors from specific countries"
 msgstr "Śledź tylko odwiedzających z określonych krajów"
 
 #: admin/modules/cegg/cegg-fields.php:62 admin/modules/clar/clar-fields.php:68
-#: admin/modules/fbp1/fbp1-fields.php:132 admin/modules/ga41/ga41-fields.php:86
+#: admin/modules/fbp1/fbp1-fields.php:131 admin/modules/ga41/ga41-fields.php:86
 #: admin/modules/gads/gads-fields.php:73 admin/modules/hotj/hotj-fields.php:59
 #: admin/modules/insp/insp-fields.php:57
 #: admin/modules/linkd/linkd-fields.php:61
@@ -1213,7 +1230,7 @@ msgid "Enter a list of 2-character %1$scountry codes%2$s separated by comas."
 msgstr "Wprowadź listę 2-znakowych %1$skodów krajów%2$s oddzielonych przecinkami."
 
 #: admin/modules/cegg/cegg-fields.php:62 admin/modules/clar/clar-fields.php:68
-#: admin/modules/fbp1/fbp1-fields.php:132 admin/modules/gads/gads-fields.php:73
+#: admin/modules/fbp1/fbp1-fields.php:131 admin/modules/gads/gads-fields.php:73
 #: admin/modules/hotj/hotj-fields.php:59 admin/modules/insp/insp-fields.php:57
 #: admin/modules/linkd/linkd-fields.php:61
 #: admin/modules/mads/mads-fields.php:69 admin/modules/mato/mato-fields.php:113
@@ -1244,8 +1261,8 @@ msgstr "Oznacz nagrania z kliknięciami w linki partnerskie"
 #: admin/modules/cegg/cegg-fields.php:171
 #: admin/modules/clar/clar-fields.php:121
 #: admin/modules/clar/clar-fields.php:157
-#: admin/modules/fbp1/fbp1-fields.php:331
-#: admin/modules/fbp1/fbp1-fields.php:406 admin/modules/gtm/gtm-fields.php:52
+#: admin/modules/fbp1/fbp1-fields.php:330
+#: admin/modules/fbp1/fbp1-fields.php:405 admin/modules/gtm/gtm-fields.php:52
 #: admin/modules/gtm/gtm-fields.php:106 admin/modules/hotj/hotj-fields.php:120
 #: admin/modules/hotj/hotj-fields.php:173
 #: admin/modules/insp/insp-fields.php:118
@@ -1260,7 +1277,7 @@ msgstr "W drugim polu możesz również użyć symbolu zastępczego [name]. Zost
 
 #: admin/modules/cegg/cegg-fields.php:107
 #: admin/modules/clar/clar-fields.php:108
-#: admin/modules/fbp1/fbp1-fields.php:318
+#: admin/modules/fbp1/fbp1-fields.php:317
 #: admin/modules/gads/gads-fields.php:145 admin/modules/gtm/gtm-fields.php:55
 #: admin/modules/hotj/hotj-fields.php:124
 #: admin/modules/linkd/linkd-fields.php:116
@@ -1282,7 +1299,7 @@ msgstr "Oznacz nagrania z kliknięciami w linki z adresami e-mail i numerami tel
 
 #: admin/modules/cegg/cegg-fields.php:126
 #: admin/modules/clar/clar-fields.php:128
-#: admin/modules/fbp1/fbp1-fields.php:366
+#: admin/modules/fbp1/fbp1-fields.php:365
 #: admin/modules/ga41/ga41-fields.php:133
 #: admin/modules/ga42__premium_only/ga42-fields.php:55
 #: admin/modules/hotj/hotj-fields.php:143
@@ -1316,7 +1333,7 @@ msgstr "Oznacz nagrania z kliknięciami w elementy strony"
 
 #: admin/modules/cegg/cegg-fields.php:153
 #: admin/modules/clar/clar-fields.php:165
-#: admin/modules/fbp1/fbp1-fields.php:387
+#: admin/modules/fbp1/fbp1-fields.php:386
 #: admin/modules/ga41/ga41-fields.php:232
 #: admin/modules/ga42__premium_only/ga42-fields.php:154
 #: admin/modules/gads/gads-fields.php:179 admin/modules/gtm/gtm-fields.php:88
@@ -1329,8 +1346,8 @@ msgstr "Selektor CSS np. #sth img"
 
 #: admin/modules/cegg/cegg-fields.php:160
 #: admin/modules/cegg/cegg-fields.php:224
-#: admin/modules/fbp1/fbp1-fields.php:394
-#: admin/modules/fbp1/fbp1-fields.php:476 admin/modules/gtm/gtm-fields.php:95
+#: admin/modules/fbp1/fbp1-fields.php:393
+#: admin/modules/fbp1/fbp1-fields.php:475 admin/modules/gtm/gtm-fields.php:95
 #: admin/modules/gtm/gtm-fields.php:166 admin/modules/pla/pla-fields.php:291
 #: admin/modules/pla/pla-fields.php:389
 msgid "Element name (required)"
@@ -1338,7 +1355,7 @@ msgstr "Nazwa elementu (wymagana)"
 
 #: admin/modules/cegg/cegg-fields.php:167
 #: admin/modules/clar/clar-fields.php:153
-#: admin/modules/fbp1/fbp1-fields.php:402
+#: admin/modules/fbp1/fbp1-fields.php:401
 #: admin/modules/ga41/ga41-fields.php:220
 #: admin/modules/ga42__premium_only/ga42-fields.php:142
 #: admin/modules/gads/gads-fields.php:168 admin/modules/gtm/gtm-fields.php:102
@@ -1353,7 +1370,7 @@ msgstr "Jak wypełnić te pola"
 
 #: admin/modules/cegg/cegg-fields.php:169
 #: admin/modules/clar/clar-fields.php:155
-#: admin/modules/fbp1/fbp1-fields.php:404
+#: admin/modules/fbp1/fbp1-fields.php:403
 #: admin/modules/ga41/ga41-fields.php:222
 #: admin/modules/ga42__premium_only/ga42-fields.php:144
 #: admin/modules/gads/gads-fields.php:170 admin/modules/gtm/gtm-fields.php:104
@@ -1368,7 +1385,7 @@ msgstr "Możesz wprowadzić więcej niż 1 selektor w polu „selektor CSS”, n
 
 #: admin/modules/cegg/cegg-fields.php:170
 #: admin/modules/clar/clar-fields.php:156
-#: admin/modules/fbp1/fbp1-fields.php:405
+#: admin/modules/fbp1/fbp1-fields.php:404
 #: admin/modules/ga41/ga41-fields.php:223
 #: admin/modules/ga42__premium_only/ga42-fields.php:145
 #: admin/modules/gads/gads-fields.php:171 admin/modules/gtm/gtm-fields.php:105
@@ -1383,7 +1400,7 @@ msgstr "Jeśli wiele selektorów wskazuje na ten sam element, śledzone będzie 
 
 #: admin/modules/cegg/cegg-fields.php:173
 #: admin/modules/clar/clar-fields.php:159
-#: admin/modules/fbp1/fbp1-fields.php:408
+#: admin/modules/fbp1/fbp1-fields.php:407
 #: admin/modules/ga41/ga41-fields.php:226
 #: admin/modules/ga42__premium_only/ga42-fields.php:148
 #: admin/modules/gads/gads-fields.php:173 admin/modules/gtm/gtm-fields.php:108
@@ -1398,7 +1415,7 @@ msgstr "Uwaga!"
 
 #: admin/modules/cegg/cegg-fields.php:174
 #: admin/modules/clar/clar-fields.php:160
-#: admin/modules/fbp1/fbp1-fields.php:409
+#: admin/modules/fbp1/fbp1-fields.php:408
 #: admin/modules/ga41/ga41-fields.php:227
 #: admin/modules/ga42__premium_only/ga42-fields.php:149
 #: admin/modules/gads/gads-fields.php:174 admin/modules/gtm/gtm-fields.php:109
@@ -1413,7 +1430,7 @@ msgstr "Aby prawidłowo śledzić kliknięcia w elementach strony INNYCH niż li
 
 #: admin/modules/cegg/cegg-fields.php:175
 #: admin/modules/clar/clar-fields.php:161
-#: admin/modules/fbp1/fbp1-fields.php:410
+#: admin/modules/fbp1/fbp1-fields.php:409
 #: admin/modules/ga41/ga41-fields.php:228
 #: admin/modules/ga42__premium_only/ga42-fields.php:150
 #: admin/modules/gads/gads-fields.php:175 admin/modules/gtm/gtm-fields.php:110
@@ -1428,7 +1445,7 @@ msgstr "Najprostszym sposobem jest użycie symbolu gwiazdki „*”. Na przykła
 
 #: admin/modules/cegg/cegg-fields.php:176
 #: admin/modules/clar/clar-fields.php:162
-#: admin/modules/fbp1/fbp1-fields.php:411
+#: admin/modules/fbp1/fbp1-fields.php:410
 #: admin/modules/ga41/ga41-fields.php:229
 #: admin/modules/ga42__premium_only/ga42-fields.php:151
 #: admin/modules/gads/gads-fields.php:176 admin/modules/gtm/gtm-fields.php:111
@@ -1449,7 +1466,7 @@ msgstr "Oznacz nagrania z wysłanymi formularzami"
 
 #: admin/modules/cegg/cegg-fields.php:186
 #: admin/modules/clar/clar-fields.php:188
-#: admin/modules/fbp1/fbp1-fields.php:446
+#: admin/modules/fbp1/fbp1-fields.php:445
 #: admin/modules/gads/gads-fields.php:202 admin/modules/gtm/gtm-fields.php:121
 #: admin/modules/hotj/hotj-fields.php:204
 #: admin/modules/insp/insp-fields.php:200
@@ -1461,7 +1478,7 @@ msgstr "Istnieją 4 metody śledzenia formularzy. Wybierz tę, która najlepiej 
 
 #: admin/modules/cegg/cegg-fields.php:187
 #: admin/modules/clar/clar-fields.php:189
-#: admin/modules/fbp1/fbp1-fields.php:447 admin/modules/gads/gads-faq.php:56
+#: admin/modules/fbp1/fbp1-fields.php:446 admin/modules/gads/gads-faq.php:56
 #: admin/modules/gads/gads-fields.php:203 admin/modules/gtm/gtm-fields.php:122
 #: admin/modules/hotj/hotj-fields.php:205
 #: admin/modules/insp/insp-fields.php:201
@@ -1473,7 +1490,7 @@ msgstr "Wybierz odpowiednią metodę śledzenia formularzy."
 
 #: admin/modules/cegg/cegg-fields.php:190
 #: admin/modules/clar/clar-fields.php:192
-#: admin/modules/fbp1/fbp1-fields.php:432
+#: admin/modules/fbp1/fbp1-fields.php:431
 #: admin/modules/ga41/ga41-fields.php:271
 #: admin/modules/ga42__premium_only/ga42-fields.php:193
 #: admin/modules/gads/gads-fields.php:206 admin/modules/gtm/gtm-fields.php:125
@@ -1499,7 +1516,7 @@ msgstr "Śledź kiedy elementy strony pojawią się na ekranie"
 
 #: admin/modules/cegg/cegg-fields.php:213
 #: admin/modules/clar/clar-fields.php:215
-#: admin/modules/fbp1/fbp1-fields.php:483
+#: admin/modules/fbp1/fbp1-fields.php:482
 #: admin/modules/ga41/ga41-fields.php:299
 #: admin/modules/ga42__premium_only/ga42-fields.php:221
 #: admin/modules/gads/gads-fields.php:229 admin/modules/gtm/gtm-fields.php:155
@@ -1514,7 +1531,7 @@ msgstr "Elementy są traktowane jako \"widoczne\", gdy znajdują się 200px wewn
 
 #: admin/modules/cegg/cegg-fields.php:214
 #: admin/modules/clar/clar-fields.php:216
-#: admin/modules/fbp1/fbp1-fields.php:485
+#: admin/modules/fbp1/fbp1-fields.php:484
 #: admin/modules/ga41/ga41-fields.php:309
 #: admin/modules/ga42__premium_only/ga42-fields.php:231
 #: admin/modules/gads/gads-fields.php:230 admin/modules/gtm/gtm-fields.php:156
@@ -1719,7 +1736,7 @@ msgid "Tag (required)"
 msgstr "Nazwa (wymagana)"
 
 #: admin/modules/clar/clar-fields.php:219
-#: admin/modules/fbp1/fbp1-fields.php:469
+#: admin/modules/fbp1/fbp1-fields.php:468
 #: admin/modules/ga41/ga41-fields.php:321
 #: admin/modules/ga42__premium_only/ga42-fields.php:243
 #: admin/modules/gads/gads-fields.php:233 admin/modules/gtm/gtm-fields.php:159
@@ -1751,7 +1768,7 @@ msgid "Tag with custom metadata"
 msgstr "Oznacz niestandardowymi metadanymi"
 
 #: admin/modules/clar/clar-fields.php:264
-#: admin/modules/fbp1/fbp1-fields.php:260
+#: admin/modules/fbp1/fbp1-fields.php:259
 #: admin/modules/ga41/ga41-fields.php:546
 #: admin/modules/ga42__premium_only/ga42-fields.php:468
 #: admin/modules/gtm/gtm-fields.php:337 admin/modules/mato/mato-fields.php:232
@@ -3079,135 +3096,135 @@ msgstr "Zobacz instrukcję instalacji"
 msgid "Test event code"
 msgstr "Kod zdarzenia testowego"
 
-#: admin/modules/fbp1/fbp1-fields.php:34
+#: admin/modules/fbp1/fbp1-fields.php:33
 msgid "Use this option if you want to test the events in the events manager. You can find your test code in the \"Facebook Events Manager\" > \"Test events\" section. All the events that happen, will be visible on the \"Test events\" page for 24 hours after creation. Remember to remove this code before going live."
 msgstr "Użyj tej opcji, jeśli chcesz przetestować zdarzenia w menedżerze zdarzeń (Events manager). Kod testowy znajdziesz w sekcji \"Facebook Events Manager\" > \"Test events\". Wszystkie śledzone zdarzenia będą widoczne na stronie „Test events” przez 24 godziny od chwili wystąpienia. Pamiętaj, aby usunąć ten kod kiedy przestanie być potrzebny."
 
-#: admin/modules/fbp1/fbp1-fields.php:38
+#: admin/modules/fbp1/fbp1-fields.php:37
 msgid "Install 2nd pixel (optional)"
 msgstr "Zainstaluj drugi piksel (opcjonalnie)"
 
-#: admin/modules/fbp1/fbp1-fields.php:44
+#: admin/modules/fbp1/fbp1-fields.php:43
 msgid "Both pixels will track the same data and use the same settings."
 msgstr "Oba piksele będą śledzić te same dane i używać tych samych ustawień."
 
-#: admin/modules/fbp1/fbp1-fields.php:48
+#: admin/modules/fbp1/fbp1-fields.php:47
 msgid "Pixel ID / Dataset ID #2"
 msgstr "Pixel ID / Dataset ID #2"
 
-#: admin/modules/fbp1/fbp1-fields.php:57
+#: admin/modules/fbp1/fbp1-fields.php:56
 msgid "Conversion API token #2"
 msgstr "Token Conversion API #2"
 
-#: admin/modules/fbp1/fbp1-fields.php:66
+#: admin/modules/fbp1/fbp1-fields.php:65
 msgid "Test event code #2"
 msgstr "Kod zdarzenia testowego #2"
 
-#: admin/modules/fbp1/fbp1-fields.php:75
+#: admin/modules/fbp1/fbp1-fields.php:74
 msgid "Enable advanced matching"
 msgstr "Włącz zaawansowane dopasowanie (Advanced Matching)"
 
-#: admin/modules/fbp1/fbp1-fields.php:79
+#: admin/modules/fbp1/fbp1-fields.php:78
 msgid "Advanced matching improves the accuracy of conversion tracking by sending to Meta personally identifiable information about your users."
 msgstr "Zaawansowane dopasowywanie (Advanced Matching) poprawia dokładność śledzenia konwersji, wysyłając do Meta dane osobowe użytkowników."
 
-#: admin/modules/fbp1/fbp1-fields.php:80
+#: admin/modules/fbp1/fbp1-fields.php:79
 msgid "When Advanced Matching is enabled, WP Full Picture will start sending to Meta encrypted addresses, email addresses, phone numbers and user identifiers of your visitors. The data will be sent on all pages where your visitor is logged in and on the WooCommerce order confirmation page. The type and amount of sent data depends on what is known about the visitors at a given moment."
 msgstr "Po włączeniu Advanced Matching, WP Full Picture zacznie wysyłać do Meta zaszyfrowane adresy, adresy e-mail, numery telefonów i identyfikatory użytkowników Twojej strony. Dane zostaną wysłane na wszystkich stronach, na których Twoi odwiedzający są zalogowani, oraz na stronie potwierdzenia zamówienia WooCommerce. Rodzaj i ilość wysyłanych danych zależy od tego, co wiadomo o odwiedzających w danym momencie."
 
-#: admin/modules/fbp1/fbp1-fields.php:81
+#: admin/modules/fbp1/fbp1-fields.php:80
 msgid "Attention! Remember to disclose in your privacy policy that you send this information to Meta!"
 msgstr "Uwaga! Pamiętaj, aby w swojej polityce prywatności ujawnić, że wysyłasz te informacje do Meta!"
 
-#: admin/modules/fbp1/fbp1-fields.php:85
+#: admin/modules/fbp1/fbp1-fields.php:84
 msgid "Enable \"Limited Data Use\" for visitors from the US"
 msgstr "Włącz opcję \"Ograniczone wykorzystanie danych\" dla odwiedzających z USA"
 
-#: admin/modules/fbp1/fbp1-fields.php:87
+#: admin/modules/fbp1/fbp1-fields.php:86
 msgid "required for compliance with privacy laws in some US states"
 msgstr "wymagane do zapewnienia zgodności z przepisami dotyczącymi prywatności w niektórych stanach USA"
 
-#: admin/modules/fbp1/fbp1-fields.php:89
+#: admin/modules/fbp1/fbp1-fields.php:88
 #, php-format
 msgid "WP Full Picture will modify Pixel code to comply with the data processing regulations in Colorado, Connecticut and California (US). This will negatively impact data accuracy, campaign performance and retargeting done on the visitors from these states. Users from other states and countries will not be affected. %1$sLearn more%2$s."
 msgstr "WP Full Picture zmodyfikuje kod Pixela, aby był zgodny z przepisami dotyczącymi przetwarzania danych w Kolorado, Connecticut i Kalifornii (USA). Wpłynie to negatywnie na dokładność danych, wydajność kampanii i retargeting przeprowadzony odwiedzających z tych stanów. Nie wpłynie to na użytkowników z innych stanów i krajów. %1$sDowiedz się więcej%2$s."
 
-#: admin/modules/fbp1/fbp1-fields.php:157
+#: admin/modules/fbp1/fbp1-fields.php:156
 #: admin/modules/ga41/ga41-fields.php:399
 #: admin/modules/ga42__premium_only/ga42-fields.php:321
 #: admin/modules/hotj/hotj-fields.php:258 admin/modules/pla/pla-fields.php:140
 msgid "Track page type"
 msgstr "Śledź typ strony"
 
-#: admin/modules/fbp1/fbp1-fields.php:163 admin/modules/pla/pla-fields.php:146
+#: admin/modules/fbp1/fbp1-fields.php:162 admin/modules/pla/pla-fields.php:146
 msgid "Track page title"
 msgstr "Śledź tytuł strony"
 
-#: admin/modules/fbp1/fbp1-fields.php:169 admin/modules/pla/pla-fields.php:152
+#: admin/modules/fbp1/fbp1-fields.php:168 admin/modules/pla/pla-fields.php:152
 msgid "Track archive and page numbers"
 msgstr "Śledź numery stron i archiwów"
 
-#: admin/modules/fbp1/fbp1-fields.php:175
+#: admin/modules/fbp1/fbp1-fields.php:174
 #: admin/modules/ga41/ga41-fields.php:449
 #: admin/modules/ga42__premium_only/ga42-fields.php:371
 #: admin/modules/mato/mato-fields.php:172 admin/modules/pla/pla-fields.php:158
 msgid "Track page language"
 msgstr "Śledź język strony"
 
-#: admin/modules/fbp1/fbp1-fields.php:181
+#: admin/modules/fbp1/fbp1-fields.php:180
 #: admin/modules/ga41/ga41-fields.php:429
 #: admin/modules/ga42__premium_only/ga42-fields.php:351
 msgid "Track post and page publish dates"
 msgstr "Śledź daty publikacji postów i stron"
 
-#: admin/modules/fbp1/fbp1-fields.php:187 admin/modules/pla/pla-fields.php:164
+#: admin/modules/fbp1/fbp1-fields.php:186 admin/modules/pla/pla-fields.php:164
 msgid "Track page id"
 msgstr "Śledź identyfikator strony"
 
-#: admin/modules/fbp1/fbp1-fields.php:193
+#: admin/modules/fbp1/fbp1-fields.php:192
 #: admin/modules/ga41/ga41-fields.php:459
 #: admin/modules/ga42__premium_only/ga42-fields.php:381
 #: admin/modules/mato/mato-fields.php:180
 msgid "Track post's terms (categories, tags, etc.) "
 msgstr "Śledź do jakich kategorii, tagów itp. dodane są strony "
 
-#: admin/modules/fbp1/fbp1-fields.php:198 admin/modules/gtm/gtm-fields.php:290
+#: admin/modules/fbp1/fbp1-fields.php:197 admin/modules/gtm/gtm-fields.php:290
 msgid "By default WP Full Picture tracks categories, tags and formats that are attached to posts and pages. You can enable tracking other terms in the \"General Settings\" > \"Default Tracking Settings\"."
 msgstr "Domyślnie WP Full Picture śledzi kategorie, tagi i formaty postów i stron. Możesz włączyć śledzenie innych w \"Ustawienia Ogólnych\" > \"Domyślne Ustawienia Śledzenia\"."
 
-#: admin/modules/fbp1/fbp1-fields.php:202
+#: admin/modules/fbp1/fbp1-fields.php:201
 #: admin/modules/ga41/ga41-fields.php:472
 #: admin/modules/ga42__premium_only/ga42-fields.php:394
 #: admin/modules/mato/mato-fields.php:190
 msgid "Add taxonomy slug to term name"
 msgstr "Dodaj taksonomię do nazwy terminu"
 
-#: admin/modules/fbp1/fbp1-fields.php:206
+#: admin/modules/fbp1/fbp1-fields.php:205
 msgid "This will add information about a taxonomy, to the term information sent to Meta, e.g. \"european music (tag)\""
 msgstr "Spowoduje to dodanie informacji o typie taksonomii do jakiej należy termin wysyłany do Meta, np. \"muzyka europejska (tag)\""
 
-#: admin/modules/fbp1/fbp1-fields.php:210
+#: admin/modules/fbp1/fbp1-fields.php:209
 #: admin/modules/ga41/ga41-fields.php:480
 #: admin/modules/ga42__premium_only/ga42-fields.php:402
 msgid "Send term names instead of term slugs"
 msgstr "Wysyłaj nazwy terminów zamiast nazw uproszczonych"
 
-#: admin/modules/fbp1/fbp1-fields.php:214
+#: admin/modules/fbp1/fbp1-fields.php:213
 msgid "This will send term names (e.g. The best of european music) instead of term slugs (e.g. eu_music). Doing this is not recommended since term names can sometimes be changed while slugs are changed only on rare occasions."
 msgstr "Spowoduje to wysłanie nazw terminów (np. Najlepsza muzyka europejska) zamiast ich nazw uproszczonych (np. eu_music). Nie jest to zalecane, ponieważ nazwy terminów mogą być czasami zmieniane, podczas gdy nazwy uproszczone są zmieniane tylko w rzadkich przypadkach."
 
-#: admin/modules/fbp1/fbp1-fields.php:218
+#: admin/modules/fbp1/fbp1-fields.php:217
 #: admin/modules/ga41/ga41-fields.php:508
 #: admin/modules/ga42__premium_only/ga42-fields.php:430
 #: admin/modules/mato/mato-fields.php:156 admin/modules/pla/pla-fields.php:170
 msgid "Track author's display names"
 msgstr "Śledź autorów"
 
-#: admin/modules/fbp1/fbp1-fields.php:224 admin/modules/pla/pla-fields.php:488
+#: admin/modules/fbp1/fbp1-fields.php:223 admin/modules/pla/pla-fields.php:488
 msgid "Track searched phrases"
 msgstr "Śledź wyszukiwane frazy"
 
-#: admin/modules/fbp1/fbp1-fields.php:230
+#: admin/modules/fbp1/fbp1-fields.php:229
 #: admin/modules/ga41/ga41-fields.php:439
 #: admin/modules/ga42__premium_only/ga42-fields.php:361
 #: admin/modules/hotj/hotj-fields.php:252
@@ -3215,26 +3232,26 @@ msgstr "Śledź wyszukiwane frazy"
 msgid "Track user's login status and role"
 msgstr "Śledź status logowania i rolę użytkownika"
 
-#: admin/modules/fbp1/fbp1-fields.php:233
+#: admin/modules/fbp1/fbp1-fields.php:232
 msgid "Tracked as a parameter \"user_type\" of the \"PageView\" event"
 msgstr "Śledzony jako parametr „user_type” zdarzenia „PageView”"
 
-#: admin/modules/fbp1/fbp1-fields.php:237
+#: admin/modules/fbp1/fbp1-fields.php:236
 msgid "Track visitor's browser language"
 msgstr "Śledź język przeglądarki odwiedzającego"
 
-#: admin/modules/fbp1/fbp1-fields.php:240
+#: admin/modules/fbp1/fbp1-fields.php:239
 msgid "Tracked as a parameter \"browser_lang\" of the \"PageView\" event"
 msgstr "Śledzony jako parametr „browser_lang” zdarzenia „PageView”"
 
-#: admin/modules/fbp1/fbp1-fields.php:247
+#: admin/modules/fbp1/fbp1-fields.php:246
 #: admin/modules/ga41/ga41-fields.php:540
 #: admin/modules/ga42__premium_only/ga42-fields.php:462
 #: admin/modules/mato/mato-fields.php:225 admin/modules/pla/pla-fields.php:176
 msgid "Track custom metadata"
 msgstr "Śledź niestandardowe metadane"
 
-#: admin/modules/fbp1/fbp1-fields.php:290
+#: admin/modules/fbp1/fbp1-fields.php:289
 #: admin/modules/ga41/ga41-fields.php:111
 #: admin/modules/ga42__premium_only/ga42-fields.php:33
 #: admin/modules/gtm/gtm-fields.php:367 admin/modules/hotj/hotj-fields.php:103
@@ -3244,32 +3261,32 @@ msgstr "Śledź niestandardowe metadane"
 msgid "Tracking events"
 msgstr "Śledzenie zdarzeń"
 
-#: admin/modules/fbp1/fbp1-fields.php:294
+#: admin/modules/fbp1/fbp1-fields.php:293
 #: admin/modules/hotj/hotj-fields.php:107
 msgid "Track clicks on outbound links"
 msgstr "Śledź kliknięcia w linki wychodzące"
 
-#: admin/modules/fbp1/fbp1-fields.php:297
+#: admin/modules/fbp1/fbp1-fields.php:296
 msgid "This will track clicks on all the links that lead to other domains. Attention! Affiliate links leading to other sites are also treated as outbound."
 msgstr "Ta funkcja śledzi kliknięcia na linki, które prowadzą do innych domen. Uwaga! Linki partnerskie prowadzące do innych stron są również traktowane jako wychodzące."
 
-#: admin/modules/fbp1/fbp1-fields.php:297
+#: admin/modules/fbp1/fbp1-fields.php:296
 msgid "Tracked as a parameter \"url\" of the \"outbound\" event"
 msgstr "Śledzony jako parametr „url” zdarzenia „outbound”"
 
-#: admin/modules/fbp1/fbp1-fields.php:301
-#: admin/modules/fbp1/fbp1-fields.php:336
-#: admin/modules/fbp1/fbp1-fields.php:354
-#: admin/modules/fbp1/fbp1-fields.php:370
-#: admin/modules/fbp1/fbp1-fields.php:415
-#: admin/modules/fbp1/fbp1-fields.php:452
-#: admin/modules/fbp1/fbp1-fields.php:489
-#: admin/modules/fbp1/fbp1-fields.php:509
-#: admin/modules/fbp1/fbp1-fields.php:526
+#: admin/modules/fbp1/fbp1-fields.php:300
+#: admin/modules/fbp1/fbp1-fields.php:335
+#: admin/modules/fbp1/fbp1-fields.php:353
+#: admin/modules/fbp1/fbp1-fields.php:369
+#: admin/modules/fbp1/fbp1-fields.php:414
+#: admin/modules/fbp1/fbp1-fields.php:451
+#: admin/modules/fbp1/fbp1-fields.php:488
+#: admin/modules/fbp1/fbp1-fields.php:508
+#: admin/modules/fbp1/fbp1-fields.php:525
 msgid "Also track with Conversion API"
 msgstr "Śledź również za pomocą Conversion API"
 
-#: admin/modules/fbp1/fbp1-fields.php:310
+#: admin/modules/fbp1/fbp1-fields.php:309
 #: admin/modules/ga41/ga41-fields.php:144
 #: admin/modules/ga42__premium_only/ga42-fields.php:66
 #: admin/modules/hotj/hotj-fields.php:114
@@ -3279,30 +3296,30 @@ msgstr "Śledź również za pomocą Conversion API"
 msgid "Track clicks on affiliate links"
 msgstr "Śledź kliknięcia w linki partnerskie i afiliacyjne"
 
-#: admin/modules/fbp1/fbp1-fields.php:325 admin/modules/gtm/gtm-fields.php:62
+#: admin/modules/fbp1/fbp1-fields.php:324 admin/modules/gtm/gtm-fields.php:62
 msgid "Name (optional)"
 msgstr "Nazwa (opcjonalnie)"
 
-#: admin/modules/fbp1/fbp1-fields.php:332
+#: admin/modules/fbp1/fbp1-fields.php:331
 msgid "These clicks will be tracked as a parameter \"target\" of the \"affiliate\" event"
 msgstr "Kliknięcia te będą śledzone jako parametr „target” zdarzenia „affiliate”"
 
-#: admin/modules/fbp1/fbp1-fields.php:345
+#: admin/modules/fbp1/fbp1-fields.php:344
 #: admin/modules/hotj/hotj-fields.php:147
 #: admin/modules/mads/mads-fields.php:124 admin/modules/tik/tik-fields.php:95
 msgid "Track clicks on file download links"
 msgstr "Śledź kliknięcia w linki do pobierania plików"
 
-#: admin/modules/fbp1/fbp1-fields.php:350 admin/modules/gtm/gtm-fields.php:76
+#: admin/modules/fbp1/fbp1-fields.php:349 admin/modules/gtm/gtm-fields.php:76
 #: admin/modules/pla/pla-fields.php:368
 msgid "Enter coma separated list of file formats (extensions) you want to track"
 msgstr "Wprowadź oddzieloną przecinkami listę formatów plików, które chcesz śledzić"
 
-#: admin/modules/fbp1/fbp1-fields.php:350
+#: admin/modules/fbp1/fbp1-fields.php:349
 msgid "Tracked as a parameter \"file\" of the \"file download\" event"
 msgstr "Śledzony jako parametr „file” zdarzenia „file download”"
 
-#: admin/modules/fbp1/fbp1-fields.php:363
+#: admin/modules/fbp1/fbp1-fields.php:362
 #: admin/modules/ga41/ga41-fields.php:125
 #: admin/modules/ga42__premium_only/ga42-fields.php:47
 #: admin/modules/hotj/hotj-fields.php:140
@@ -3310,11 +3327,11 @@ msgstr "Śledzony jako parametr „file” zdarzenia „file download”"
 msgid "Track clicks on email and tel. links"
 msgstr "Śledź kliknięcia w linki zawierające adresy e-mail i numery telefoniczne"
 
-#: admin/modules/fbp1/fbp1-fields.php:366
+#: admin/modules/fbp1/fbp1-fields.php:365
 msgid "Tracked as parameters \"target\" and \"type\" of the \"Contact\" event"
 msgstr "Śledzone jako parametry „target” i „type” zdarzenia „Contact”"
 
-#: admin/modules/fbp1/fbp1-fields.php:379
+#: admin/modules/fbp1/fbp1-fields.php:378
 #: admin/modules/ga41/ga41-fields.php:192
 #: admin/modules/ga42__premium_only/ga42-fields.php:114
 #: admin/modules/hotj/hotj-fields.php:163
@@ -3325,11 +3342,11 @@ msgstr "Śledzone jako parametry „target” i „type” zdarzenia „Contact�
 msgid "Track clicks on page elements"
 msgstr "Śledź kliknięcia w elementy na stronie"
 
-#: admin/modules/fbp1/fbp1-fields.php:401
+#: admin/modules/fbp1/fbp1-fields.php:400
 msgid "These clicks will be tracked as a parameter \"name\" of the \"click on element\" event"
 msgstr "Kliknięcia te będą śledzone jako parametr „name” zdarzenia „click on element”"
 
-#: admin/modules/fbp1/fbp1-fields.php:424
+#: admin/modules/fbp1/fbp1-fields.php:423
 #: admin/modules/ga41/ga41-fields.php:249
 #: admin/modules/ga42__premium_only/ga42-fields.php:171
 #: admin/modules/hotj/hotj-fields.php:198
@@ -3340,16 +3357,16 @@ msgstr "Kliknięcia te będą śledzone jako parametr „name” zdarzenia „cl
 msgid "Track form submissions"
 msgstr "Śledź wysłania formularzy"
 
-#: admin/modules/fbp1/fbp1-fields.php:439 admin/modules/gtm/gtm-fields.php:132
+#: admin/modules/fbp1/fbp1-fields.php:438 admin/modules/gtm/gtm-fields.php:132
 #: admin/modules/pla/pla-fields.php:325
 msgid "Form name (required)"
 msgstr "Nazwa formularza (wymagane)"
 
-#: admin/modules/fbp1/fbp1-fields.php:448
+#: admin/modules/fbp1/fbp1-fields.php:447
 msgid "Tracked as a parameter \"form\" of the \"form submit\" event"
 msgstr "Śledzony jako parametr „form” zdarzenia „form submit”"
 
-#: admin/modules/fbp1/fbp1-fields.php:461
+#: admin/modules/fbp1/fbp1-fields.php:460
 #: admin/modules/hotj/hotj-fields.php:225
 #: admin/modules/linkd/linkd-fields.php:195
 #: admin/modules/mato/mato-fields.php:363 admin/modules/pla/pla-fields.php:372
@@ -3357,25 +3374,25 @@ msgstr "Śledzony jako parametr „form” zdarzenia „form submit”"
 msgid "Track when page elements show on screen"
 msgstr "Śledź, kiedy elementy strony pojawią się na ekranie"
 
-#: admin/modules/fbp1/fbp1-fields.php:484
+#: admin/modules/fbp1/fbp1-fields.php:483
 msgid "Tracked as a parameter \"element\" of the \"user viewed\" event"
 msgstr "Śledzony jako parametr „element” zdarzenia „user viewed”"
 
-#: admin/modules/fbp1/fbp1-fields.php:498
+#: admin/modules/fbp1/fbp1-fields.php:497
 #: admin/modules/ga41/ga41-fields.php:360
 #: admin/modules/ga42__premium_only/ga42-fields.php:282
 #: admin/modules/mato/mato-fields.php:392
 msgid "Track when visitors scroll to:"
 msgstr "Śledź, kiedy odwiedzający przewijają do:"
 
-#: admin/modules/fbp1/fbp1-fields.php:500
+#: admin/modules/fbp1/fbp1-fields.php:499
 #: admin/modules/ga41/ga41-fields.php:361
 #: admin/modules/ga42__premium_only/ga42-fields.php:283
 #: admin/modules/gtm/gtm-fields.php:177 admin/modules/mato/mato-fields.php:393
 msgid "e.g. 25, 50, 75"
 msgstr "np. 25, 50, 75"
 
-#: admin/modules/fbp1/fbp1-fields.php:503
+#: admin/modules/fbp1/fbp1-fields.php:502
 #: admin/modules/ga41/ga41-fields.php:366
 #: admin/modules/ga42__premium_only/ga42-fields.php:288
 #: admin/modules/gtm/gtm-fields.php:178 admin/modules/mato/mato-fields.php:394
@@ -3383,132 +3400,132 @@ msgstr "np. 25, 50, 75"
 msgid "% of page height"
 msgstr "% wysokości strony"
 
-#: admin/modules/fbp1/fbp1-fields.php:504
+#: admin/modules/fbp1/fbp1-fields.php:503
 #: admin/modules/mato/mato-fields.php:398
 msgid "Separate multiple values with comas. Do not use \"%\" symbol."
 msgstr "Oddziel wiele wartości przecinkami. Nie używaj symbolu \"%\"."
 
-#: admin/modules/fbp1/fbp1-fields.php:505
+#: admin/modules/fbp1/fbp1-fields.php:504
 msgid "Tracked as a parameter \"scroll height\" of the \"scroll\" event"
 msgstr "Śledzony jako parametr „scroll height” zdarzenia „scroll”"
 
-#: admin/modules/fbp1/fbp1-fields.php:514
+#: admin/modules/fbp1/fbp1-fields.php:513
 msgid "Tracking scroll with server can greatly decrease its performance. It is NOT recommended to enable this function on slow hosting."
 msgstr "Śledzenie przewijania strony przy pomocy serwera może znacznie zmniejszyć jego wydajność. NIE zaleca się włączania tej funkcji na powolnym hostingu."
 
-#: admin/modules/fbp1/fbp1-fields.php:518
+#: admin/modules/fbp1/fbp1-fields.php:517
 msgid "Track how long visitors are actively engaged with the website's content"
 msgstr "Śledź, jak długo odwiedzający aktywnie angażują się w treść witryny"
 
-#: admin/modules/fbp1/fbp1-fields.php:522
+#: admin/modules/fbp1/fbp1-fields.php:521
 msgid "Tracked as a parameter \"seconds\" of the \"user engagement time\" event"
 msgstr "Śledzony jako parametr „seconds” zdarzenia „user engagement time”"
 
-#: admin/modules/fbp1/fbp1-fields.php:531
+#: admin/modules/fbp1/fbp1-fields.php:530
 msgid "Tracking engagement time with server will decrease its performance. It is NOT recommended to enable this function on slow hosting."
 msgstr "Śledzenie przewijania strony przy pomocy serwera może znacznie zmniejszyć jego wydajność. NIE zaleca się włączania tej funkcji na powolnym hostingu."
 
-#: admin/modules/fbp1/fbp1-fields.php:540
+#: admin/modules/fbp1/fbp1-fields.php:539
 #: admin/modules/ga41/ga41-fields.php:395
 #: admin/modules/ga42__premium_only/ga42-fields.php:317
 msgid "Tracking event parameters"
 msgstr "Parametry zdarzeń"
 
-#: admin/modules/fbp1/fbp1-fields.php:548
+#: admin/modules/fbp1/fbp1-fields.php:547
 #: admin/modules/ga41/ga41-fields.php:571
 #: admin/modules/gads/gads-fields.php:255 admin/modules/gtm/gtm-fields.php:395
 #: admin/modules/mato/mato-fields.php:446 admin/modules/pla/pla-fields.php:420
 msgid "Tracking lead scores and custom events"
 msgstr "Śledzenie zdarzeń niestandardowych i lead scoring"
 
-#: admin/modules/fbp1/fbp1-fields.php:552
+#: admin/modules/fbp1/fbp1-fields.php:551
 #: admin/modules/ga41/ga41-fields.php:575 admin/modules/gtm/gtm-fields.php:399
 #: admin/modules/mato/mato-fields.php:450 admin/modules/pla/pla-fields.php:424
 msgid "Track when specific conditions are met"
 msgstr "Śledź, gdy spełnione są określone warunki"
 
-#: admin/modules/fbp1/fbp1-fields.php:560
+#: admin/modules/fbp1/fbp1-fields.php:559
 #: admin/modules/ga41/ga41-fields.php:583
 #: admin/modules/gads/gads-fields.php:267 admin/modules/gtm/gtm-fields.php:407
 #: admin/modules/mato/mato-fields.php:458 admin/modules/pla/pla-fields.php:432
 msgid "When this happens"
 msgstr "Kiedy to się wydarzy"
 
-#: admin/modules/fbp1/fbp1-fields.php:568
+#: admin/modules/fbp1/fbp1-fields.php:567
 #: admin/modules/ga41/ga41-fields.php:592
 #: admin/modules/gads/gads-fields.php:276 admin/modules/gtm/gtm-fields.php:416
 #: admin/modules/mato/mato-fields.php:467 admin/modules/pla/pla-fields.php:441
 msgid "...for..."
 msgstr "...po raz..."
 
-#: admin/modules/fbp1/fbp1-fields.php:573
+#: admin/modules/fbp1/fbp1-fields.php:572
 #: admin/modules/ga41/ga41-fields.php:597
 #: admin/modules/gads/gads-fields.php:281 admin/modules/gtm/gtm-fields.php:421
 #: admin/modules/mato/mato-fields.php:472 admin/modules/pla/pla-fields.php:446
 msgid "The first time"
 msgstr "Pierwszy"
 
-#: admin/modules/fbp1/fbp1-fields.php:574
+#: admin/modules/fbp1/fbp1-fields.php:573
 #: admin/modules/ga41/ga41-fields.php:598
 #: admin/modules/gads/gads-fields.php:282 admin/modules/gtm/gtm-fields.php:422
 #: admin/modules/mato/mato-fields.php:473 admin/modules/pla/pla-fields.php:447
 msgid "Every time"
 msgstr "Za każdym razem"
 
-#: admin/modules/fbp1/fbp1-fields.php:579
+#: admin/modules/fbp1/fbp1-fields.php:578
 #: admin/modules/gads/gads-fields.php:287
 msgid "Send event"
 msgstr "Wyślij zdarzenie"
 
-#: admin/modules/fbp1/fbp1-fields.php:580
+#: admin/modules/fbp1/fbp1-fields.php:579
 #: admin/modules/ga41/ga41-fields.php:604 admin/modules/gtm/gtm-fields.php:428
 msgid "event_name"
 msgstr "event_name"
 
-#: admin/modules/fbp1/fbp1-fields.php:588
+#: admin/modules/fbp1/fbp1-fields.php:587
 msgid "Also track with CAPI"
 msgstr "Śledź również za pomocą CAPI"
 
-#: admin/modules/fbp1/fbp1-fields.php:604
+#: admin/modules/fbp1/fbp1-fields.php:603
 msgid "Tracking WooCommerce"
 msgstr "Śledźenie WooCommerce"
 
-#: admin/modules/fbp1/fbp1-fields.php:608
+#: admin/modules/fbp1/fbp1-fields.php:607
 msgid "Status-Based Order Tracking with Conversion API"
 msgstr "Śledzenie zamówień na podstawie statusu z CAPI konwersji"
 
-#: admin/modules/fbp1/fbp1-fields.php:612
+#: admin/modules/fbp1/fbp1-fields.php:611
 msgid "This feature requires the use of Conversion API. Please check if you entered its key in the \"Installation\" section."
 msgstr "Ta funkcja wymaga użycia API Konwersji (Conversion API). Sprawdź, czy wprowadziłeś jego klucz w sekcji \"Instalacja\"."
 
-#: admin/modules/fbp1/fbp1-fields.php:614
+#: admin/modules/fbp1/fbp1-fields.php:613
 #: admin/modules/ga41/ga41-fields.php:662 admin/modules/woo/woo-faq.php:21
 msgid "Status-Based Order Tracking is an alternative method of tracking purchases. Instead of tracking them on order confirmation pages, orders are tracked when their status changes."
 msgstr "Śledzenie zamówień na podstawie statusu to alternatywna metoda śledzenia zakupów. Zamiast śledzić je na stronach potwierdzenia zamówienia, zamówienia są śledzone, gdy zmienia się ich status."
 
-#: admin/modules/fbp1/fbp1-fields.php:615
+#: admin/modules/fbp1/fbp1-fields.php:614
 #: admin/modules/ga41/ga41-fields.php:663 admin/modules/woo/woo-faq.php:22
 msgid "This method of tracking is recommended for stores that use payment gateways, which do not redirect back to the order confirmation page."
 msgstr "Ta metoda śledzenia jest zalecana dla sklepów korzystających z bramek płatności, które nie przekierowują z powrotem na stronę potwierdzenia zamówienia."
 
-#: admin/modules/fbp1/fbp1-fields.php:616
+#: admin/modules/fbp1/fbp1-fields.php:615
 #: admin/modules/ga41/ga41-fields.php:308
 #: admin/modules/ga41/ga41-fields.php:665
 #: admin/modules/ga42__premium_only/ga42-fields.php:230
 msgid "Other information"
 msgstr "Dodatkowe informacje"
 
-#: admin/modules/fbp1/fbp1-fields.php:618
+#: admin/modules/fbp1/fbp1-fields.php:617
 #: admin/modules/ga41/ga41-fields.php:667
 msgid "Orders will be tracked when they get a status that is set in \"WooCommerce Tracking\" page > \"Status-Based Order Tracking\" section."
 msgstr "Zamówienia będą śledzone, gdy uzyskają status ustawiony na stronie \"Śledzenie WooCommerce\" > w sekcji \"Śledzenie zamówień na podstawie statusu\"."
 
-#: admin/modules/fbp1/fbp1-fields.php:619
+#: admin/modules/fbp1/fbp1-fields.php:618
 #: admin/modules/ga41/ga41-fields.php:668 admin/modules/woo/woo-faq.php:29
 msgid "Purchases are attributed to users and sessions just like with standard tracking."
 msgstr "Zamówienia są przypisywane do użytkowników i sesji, tak jak w przypadku standardowego śledzenia."
 
-#: admin/modules/fbp1/fbp1-fields.php:620
+#: admin/modules/fbp1/fbp1-fields.php:619
 #: admin/modules/ga41/ga41-fields.php:669 admin/modules/woo/woo-faq.php:30
 msgid "SBOT does not track orders added manually in the WooCommerce admin panel, since they cannot be attributed to any website users."
 msgstr "Ta funkcja nie śledzi zamówień dodanych ręcznie w panelu administracyjnym WooCommerce, ponieważ nie można ich przypisać do żadnego użytkownika witryny."
@@ -8833,9 +8850,8 @@ msgid "You may need to use the Consent Banner module on your website."
 msgstr "Być może będziesz musiał użyć moduł Baner Zgody na swojej stronie internetowej."
 
 #: includes/class-fupi-get-gdpr-status.php:59
-#, php-format
-msgid "Enable it if any of the tracking tools installed on your website track personaly identifiable information, your website loads content from other sites (YouTube video, maps, etc.) or gives warnings in %1$s."
-msgstr "Włącz go, jeśli którekolwiek z narzędzi śledzących zainstalowanych w Twojej witrynie śledzi informacje umożliwiające identyfikację użytkownika, Twoja witryna ładuje treści z innych witryn (filmy z YouTube, mapy itp.) lub wyświetla ostrzeżenia w %1$s."
+msgid "Enable it if you use tracking tools on your website, live chat applications, social buttons, social login options or your website loads content from other sites (YouTube video, maps, etc.)."
+msgstr "Włącz to, jeśli korzystasz z narzędzi śledzących w swojej witrynie, aplikacji do czatu, przycisków społecznościowych, opcji logowania społecznościowego lub Twoja witryna ładuje treści z innych witryn (filmy z YouTube, mapy itp.)."
 
 #: includes/class-fupi-get-gdpr-status.php:105
 msgid "Fix errors in consent banner settings."
@@ -9169,9 +9185,8 @@ msgid "Check if you need to use the Tracking Tools Manager module"
 msgstr "Sprawdź, czy musisz korzystać z modułu Menedżer Narzędzi Śledzących"
 
 #: includes/class-fupi-get-gdpr-status.php:1402
-#, php-format
-msgid "Tracking Tools Manager let's you load tracking tools installed outside WP Full Picture according to visitors' consents. Use it if you installed any tracking tool with a different plugin. If you are unsure, check your website for cookies of other tracking tools with %1$s. If you are unsure how to use it, read these %2$sshort instructions%3$s."
-msgstr "Menedżer Narzędzi Śledzących pozwala ładować narzędzia śledzące zainstalowane poza WP Full Picture zgodnie ze zgodami odwiedzających. Użyj go, jeśli zainstalowałeś jakiekolwiek narzędzie śledzące za pomocą innej wtyczki. Jeśli nie masz pewności, sprawdź swoją witrynę pod kątem plików cookie innych narzędzi śledzących za pomocą %1$s. Jeśli nie masz pewności, jak go używać, przeczytaj te %2$skrótkie instrukcje%3$s."
+msgid "Tracking Tools Manager let's controls tracking tools installed outside WP Full Picture. Only controlled tools can be loaded according to visitors' consents. Use it if you installed any tracking tool with a different plugin. If you are unsure, scan your website with one of online cookie scanners."
+msgstr "Menedżer narzędzi śledzących pozwala kontrolować narzędzia śledzące zainstalowane poza WP Full Picture. Tylko kontrolowane narzędzia mogą być ładowane zgodnie ze zgodami odwiedzających. Użyj menedżera, jeśli zainstalowałeś jakiekolwiek narzędzie śledzące przy pomocy innej wtyczki. Jeśli nie masz pewności, przeskanuj swoją witrynę za pomocą jednego z internetowych skanerów plików cookie."
 
 #: includes/class-fupi-get-gdpr-status.php:1422
 #: includes/class-fupi-get-gdpr-status.php:1435

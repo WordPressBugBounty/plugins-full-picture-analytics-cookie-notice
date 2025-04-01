@@ -27,7 +27,6 @@ $basic_fields = array(
 			'type'	 			=> 'text',
 			'label' 			=> esc_html__( 'Test event code', 'full-picture-analytics-cookie-notice' ),
 			'field_id' 			=> 'test_code',
-			'must_have'			=> 'pro',
 			'class'				=> 'fupi_sub',
 			'option_arr_id'		=> $option_arr_id,
 			'label_for' 		=> $option_arr_id . '[test_code]',
