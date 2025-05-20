@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WP Full Picture\n"
 "Report-Msgid-Bugs-To: Translator Name <translations@example.com>\n"
-"POT-Creation-Date: 2025-04-01 12:15+0200\n"
+"POT-Creation-Date: 2025-04-17 19:24+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Your Name <you@example.com>\n"
 "Language-Team: WP Full Picture Team <hello@wpfullpicture.com>\n"
@@ -268,51 +268,39 @@ msgid ""
 msgstr ""
 
 #: admin/common/pages/parts/fupi-page_part-side-nav.php:85
-msgid "WP Full Picture Pro"
+msgid "Get Pro"
 msgstr ""
 
 #: admin/common/pages/parts/fupi-page_part-side-nav.php:89
-msgid "Measure how many visitors are really interested in your products"
+msgid "Track orders when they get specific statuses"
 msgstr ""
 
-#: admin/common/pages/parts/fupi-page_part-side-nav.php:90
-msgid "See how to do it with Advanced Triggers"
+#: admin/common/pages/parts/fupi-page_part-side-nav.php:92
+msgid "See what traffic sources bring you the best traffic"
 msgstr ""
 
 #: admin/common/pages/parts/fupi-page_part-side-nav.php:93
-msgid ""
-"Improve conersion tracking with server-side tracking and enhanced "
-"attribution"
-msgstr ""
-
-#: admin/common/pages/parts/fupi-page_part-side-nav.php:94
-msgid "Available in GA and Meta Pixel"
-msgstr ""
-
 #: admin/common/pages/parts/fupi-page_part-side-nav.php:97
-msgid ""
-"Learn which of your traffic sources and ad campaigns bring you the best "
-"traffic."
+#: admin/modules/blockscr/blockscr-faq.php:49
+#: admin/modules/blockscr/blockscr-fields.php:155
+#: admin/modules/cook/cook-fields.php:30
+#: admin/modules/cook/cook-fields.php:39
+#: admin/modules/cook/cook-fields.php:48
+#: admin/modules/cook/cook-fields.php:58
+#: admin/modules/cook/cook-fields.php:69
+#: admin/modules/cook/cook-fields.php:80
+#: admin/modules/main/main-fields.php:338
+#: admin/modules/tools/tools-fields.php:391
+#: admin/modules/woo/woo-descr.php:14
+msgid "Learn more"
 msgstr ""
 
-#: admin/common/pages/parts/fupi-page_part-side-nav.php:98
-msgid "See how to do it with Lead Scoring"
+#: admin/common/pages/parts/fupi-page_part-side-nav.php:96
+msgid "Use server-side tracking in Meta Pixel and Google Analytics"
 msgstr ""
 
-#: admin/common/pages/parts/fupi-page_part-side-nav.php:101
-msgid "Monitor your site for JavaScript errors in Google Analytics."
-msgstr ""
-
-#: admin/common/pages/parts/fupi-page_part-side-nav.php:104
-msgid "Track custom user and post data important to your business."
-msgstr ""
-
-#: admin/common/pages/parts/fupi-page_part-side-nav.php:105
-msgid "With metadata tracking"
-msgstr ""
-
-#: admin/common/pages/parts/fupi-page_part-side-nav.php:110
-msgid "Get All Pro Features"
+#: admin/common/pages/parts/fupi-page_part-side-nav.php:102
+msgid "See the pricing"
 msgstr ""
 
 #: admin/modules/atrig__premium_only/atrig-descr.php:10
@@ -652,20 +640,6 @@ msgstr ""
 #: admin/modules/blockscr/blockscr-faq.php:49
 #: admin/modules/tools/tools-fields.php:391
 msgid "do not track users specified in the General Settings page"
-msgstr ""
-
-#: admin/modules/blockscr/blockscr-faq.php:49
-#: admin/modules/blockscr/blockscr-fields.php:155
-#: admin/modules/cook/cook-fields.php:30
-#: admin/modules/cook/cook-fields.php:39
-#: admin/modules/cook/cook-fields.php:48
-#: admin/modules/cook/cook-fields.php:58
-#: admin/modules/cook/cook-fields.php:69
-#: admin/modules/cook/cook-fields.php:80
-#: admin/modules/main/main-fields.php:338
-#: admin/modules/tools/tools-fields.php:391
-#: admin/modules/woo/woo-descr.php:14
-msgid "Learn more"
 msgstr ""
 
 #: admin/modules/blockscr/blockscr-faq.php:50

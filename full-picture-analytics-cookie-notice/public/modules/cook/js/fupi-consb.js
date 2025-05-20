@@ -227,13 +227,13 @@
 
 		// Google
 
+		window.gtag( 'consent', 'update', permissions );
+		if ( fp.gtm && fp.gtm.datalayer == 'fupi_dataLayer' && window.fupi_gtm_gtag ) window.fupi_gtm_gtag( 'consent', 'update', permissions );
+
 		if ( dataLayer ) dataLayer.push( {
 			'event' : 'fp_privacyPreferencesChanged',
 			'fp_visitorPrivacyPreferences' : fpdata.cookies,
 		} );
-
-		window.gtag( 'consent', 'update', permissions );
-		if ( fp.gtm && fp.gtm.datalayer == 'fupi_dataLayer' && window.fupi_gtm_gtag ) window.fupi_gtm_gtag( 'consent', 'update', permissions );
 
 		// MS
 		if ( window.clarity ) {

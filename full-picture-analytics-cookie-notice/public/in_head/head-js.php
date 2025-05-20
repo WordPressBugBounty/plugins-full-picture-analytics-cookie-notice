@@ -392,6 +392,8 @@ fp.notice.vars = {};
 
 	FP.updateConsents = () => {
 
+		if ( fp.vars.use_other_cmp ) return;
+
 		if ( fp.vars.debug ) console.log(\'[FP] Updating consents\');
 		
 		// if the user made a choice in the past

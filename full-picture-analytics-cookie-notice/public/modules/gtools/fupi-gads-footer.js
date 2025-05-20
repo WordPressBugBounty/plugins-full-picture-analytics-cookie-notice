@@ -174,12 +174,13 @@ FP.fns.gads_woo_events = () => {
 		}
 
 		if ( items_a.length == 0 ) return false;
-
+		
 		// Track event
 		
 		let payload_event = {
 			'items' : items_a, 
 			'value' : cart.value,
+			'currency' : fpdata.woo.currency,
 			'send_to' : fp.gads.id2 || fp.gads.id,
 		};
 
@@ -193,9 +194,9 @@ FP.fns.gads_woo_events = () => {
 		let payload_conversion = {
 			'items' : items_a, 
 			'value' : cart.value,
-			'send_to' : ( fp.gads.id2 || fp.gads.id ) + '/' + fp.gads.woo_conv_id,
-			'currency' : fpdata.woo.currency, 
+			'currency' : fpdata.woo.currency,
 			'transaction_id': fpdata.woo.order.id,
+			'send_to' : ( fp.gads.id2 || fp.gads.id ) + '/' + fp.gads.woo_conv_id,
 		}
 
 		gtag('event', 'conversion', payload_conversion );

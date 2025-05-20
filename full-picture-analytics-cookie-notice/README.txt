@@ -3,8 +3,8 @@ Contributors: chrisplaneta, freemius
 Donate link: https://wpfullpicture.com/
 Tags: woocommerce, consent mode, analytics, gdpr, gtm
 Requires at least: 5.4.0
-Tested up to: 6.7.2
-Stable tag: 8.5.2
+Tested up to: 6.8.1
+Stable tag: 8.5.3.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -191,7 +191,16 @@ No. WP Full Picture is focused on tracking and privacy. To generate a product ca
 
 == Changelog ==
 
-= 8.5.2 (01-04-2025) =
+= 8.5.3 (19-05-2025) =
+
+* [New] [Privacy] Setting default consents can be turned off by setting "fp.vars.use_other_cmp" to true
+* [Update] [Google Ads] Added "currency" to "purchase" events (for dynamic remarketing)
+* [Update] [MS Ads] Added revenue values to some ecommerce events
+* [Update] Freemius SDK
+* [Update] [Woo] Set a default "woo custom widget" for "list_name"
+* [Fix] [GTM] The event "fp_privacyPreferencesChanged" is now pushed to the DL after the consents are updated
+
+= 8.5.2 (31-03-2025) =
 
 * [Fix] [Meta Pixel] By mistake, the field for adding test event code was available only for Pro users
 * [Fix] [Woo] There is no longer a PHP notice when there is no "billing address 2"

@@ -663,7 +663,8 @@ class Fupi_WOO_public {
             $parent_product,
             $parent_id
         ) );
-        $list_name = $args['widget_id'];
+        $list_name = ( isset( $args['widget_id'] ) ? $args['widget_id'] : '' );
+        // $list_name = ! empty ( $args['widget_id'] ) ? $args['widget_id'] : 'woo custom widget'; // for some reason this is not working
         if ( str_contains( $list_name, 'recently_viewed_products' ) ) {
             $list_name = 'woo recently viewed widget';
         } else {
@@ -672,6 +673,8 @@ class Fupi_WOO_public {
             } else {
                 if ( str_contains( $list_name, 'top_rated_products-' ) ) {
                     $list_name = 'woo top rated products widget';
+                } else {
+                    $list_name = 'woo custom widget';
                 }
             }
         }

@@ -158,6 +158,7 @@ FP.fns.mads_woo_events = ()=>{
 			'ecomm_pagetype' : page_type,
 			'ecomm_totalvalue' : event_value,
 			'event_value' : event_value,
+			'revenue_value' : event_value,
 			'items' : items_a, 
 		};
 
@@ -200,12 +201,12 @@ FP.fns.mads_woo_events = ()=>{
 			'ecomm_prodid' : items_ids_a,
 			'ecomm_pagetype' : FP.fns.mads_woo_get_pagetype(),
 			'ecomm_totalvalue' : cart.value,
+			'revenue_value' : cart.value,
 			'currency' : fpdata.woo.currency, 
 		};
 
 		if ( event_name == 'purchase' ) {
 			payload_o['transaction_id'] = fpdata.woo.order.id;
-			payload_o['revenue_value'] = cart.value;
 		}
 		
 		window.uetq.push( 'event', 'woo ' + event_name, payload_o );
