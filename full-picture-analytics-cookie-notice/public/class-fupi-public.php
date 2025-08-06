@@ -366,7 +366,7 @@ class Fupi_Public {
         }
         // Copy HTML
         $orig_html = $html;
-        if ( !empty( $this->tools['cook'] ) ) {
+        if ( !empty( $this->tools['cook'] ) && !empty( $this->cook ) ) {
             // SCRIPTS BLOCKER
             $blockscr_enabled = !empty( $this->cook['scrblk_auto_rules'] ) || !empty( $this->cook['control_other_tools'] ) && !empty( $this->cook['scrblk_manual_rules'] );
             if ( !empty( $blockscr_enabled ) ) {

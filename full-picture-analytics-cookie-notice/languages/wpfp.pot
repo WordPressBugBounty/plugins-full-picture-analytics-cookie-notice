@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WP Full Picture\n"
 "Report-Msgid-Bugs-To: Translator Name <translations@example.com>\n"
-"POT-Creation-Date: 2025-07-02 05:57+0200\n"
+"POT-Creation-Date: 2025-08-05 23:12+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Your Name <you@example.com>\n"
 "Language-Team: WP Full Picture Team <hello@wpfullpicture.com>\n"
@@ -105,12 +105,12 @@ msgstr ""
 msgid "Required"
 msgstr ""
 
-#: admin/common/fupi_updater.php:301
+#: admin/common/fupi_updater.php:307
 #, php-format
 msgid "Important changes to privacy settings of Hotjar integration on %1$s"
 msgstr ""
 
-#: admin/common/fupi_updater.php:303
+#: admin/common/fupi_updater.php:309
 #, php-format
 msgid ""
 "This email was sent automatically from %1$s by WP Full Picture plugin.\n"
@@ -375,7 +375,7 @@ msgid "%1$sLearn more%2$s."
 msgstr ""
 
 #: admin/common/pages/parts/fupi-page_part-offscreen.php:8
-#: admin/modules/cook/cook-gdpr-check-cdb.php:239
+#: admin/modules/cook/cook-gdpr-check-cdb.php:246
 #: admin/modules/cook/customizer/fupi-customizer-settings.php:1248
 #: public/modules/cook/fupi-display-cookie-notice.php:67
 msgid "Return"
@@ -400,7 +400,7 @@ msgid "Integrations"
 msgstr ""
 
 #: admin/common/pages/parts/fupi-page_part-side-nav.php:126
-#: admin/modules/tools/tools-fields.php:483 admin/modules/woo/woo-fields.php:79
+#: admin/modules/tools/tools-fields.php:483 admin/modules/woo/woo-fields.php:87
 msgid "Privacy"
 msgstr ""
 
@@ -438,7 +438,7 @@ msgid "Support"
 msgstr ""
 
 #: admin/common/pages/parts/fupi-page_part-top-nav.php:25
-msgid "What's new in v9"
+msgid "What's new in v9.1"
 msgstr ""
 
 #: admin/common/pages/parts/fupi-page_part-top-nav.php:29
@@ -493,7 +493,7 @@ msgid "and Plausible Analytics."
 msgstr ""
 
 #: admin/modules/atrig__premium_only/atrig-fields.php:8
-msgid "Advanced triggers & visitor scoring"
+msgid "Advanced Triggers + visitor scoring"
 msgstr ""
 
 #: admin/modules/atrig__premium_only/atrig-fields.php:12
@@ -1677,39 +1677,55 @@ msgstr ""
 msgid "You must save changes before you can start customizing."
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:216
+#: admin/modules/cook/cook-fields.php:208
 msgid "Hide consent banner on these pages"
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:218
+#: admin/modules/cook/cook-fields.php:210
 msgid ""
 "By default, WP Full Picture hides consent banner on the privacy policy page."
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:219
+#: admin/modules/cook/cook-fields.php:211
 msgid ""
 "Hiding the banner only hides it visually. It does not automatically give "
 "consent to tracking."
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:223
+#: admin/modules/cook/cook-fields.php:215
 msgid "Show consent banner when visitors click this page element"
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:228
+#: admin/modules/cook/cook-fields.php:220
 msgid "e.g. #some_button"
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:229
+#: admin/modules/cook/cook-fields.php:221
 msgid ""
 "Leave empty to use the default .fp_show_cookie_notice. Alternatively, you can "
 "enable a toggle icon in the styling options above."
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:230
+#: admin/modules/cook/cook-fields.php:222
 msgid ""
 "We recommend that you point at a link or a button in your privacy policy. This "
 "is required in most countries that require consent banners."
+msgstr ""
+
+#: admin/modules/cook/cook-fields.php:226
+msgid "Do NOT ask visitors for consent again"
+msgstr ""
+
+#: admin/modules/cook/cook-fields.php:229
+msgid "Breaks GDPR. Best used on dev sites."
+msgstr ""
+
+#: admin/modules/cook/cook-fields.php:230
+msgid ""
+"When you enable this setting, visitors who already consented, will not be "
+"asked for consent every time you enable new tracking tools or change your "
+"privacy policy. This will break GDPR, so we recommend to use it only on "
+"development sites or while setting up tracking."
 msgstr ""
 
 #: admin/modules/cook/cook-fields.php:241
@@ -1749,7 +1765,7 @@ msgid "What is visitor's data used for?"
 msgstr ""
 
 #: admin/modules/cook/cook-fields.php:282 admin/modules/cook/cook-fields.php:473
-#: admin/modules/cook/cook-gdpr-check-cdb.php:242
+#: admin/modules/cook/cook-gdpr-check-cdb.php:249
 #: admin/modules/cook/customizer/fupi-customizer-settings.php:456
 #: admin/modules/cook/customizer/fupi-customizer-settings.php:1324
 #: admin/modules/cscr/cscr-fields.php:70
@@ -1758,7 +1774,7 @@ msgid "Statistics"
 msgstr ""
 
 #: admin/modules/cook/cook-fields.php:288 admin/modules/cook/cook-fields.php:479
-#: admin/modules/cook/cook-gdpr-check-cdb.php:246
+#: admin/modules/cook/cook-gdpr-check-cdb.php:253
 #: admin/modules/cook/customizer/fupi-customizer-settings.php:458
 #: admin/modules/cook/customizer/fupi-customizer-settings.php:1428
 #: admin/modules/cscr/cscr-fields.php:76 admin/modules/tools/tools-descr.php:22
@@ -1767,7 +1783,7 @@ msgid "Marketing"
 msgstr ""
 
 #: admin/modules/cook/cook-fields.php:294 admin/modules/cook/cook-fields.php:485
-#: admin/modules/cook/cook-gdpr-check-cdb.php:244
+#: admin/modules/cook/cook-gdpr-check-cdb.php:251
 #: admin/modules/cook/customizer/fupi-customizer-settings.php:457
 #: admin/modules/cook/customizer/fupi-customizer-settings.php:1376
 #: admin/modules/cscr/cscr-fields.php:82
@@ -1915,7 +1931,7 @@ msgstr ""
 msgid "Text over the placeholder"
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:506 public/modules/cook/cook-public.php:74
+#: admin/modules/cook/cook-fields.php:506 public/modules/cook/cook-public.php:48
 msgid ""
 "This content is hosted by [[an external source]]. By loading it, you accept "
 "its {{privacy terms}}."
@@ -1942,7 +1958,7 @@ msgstr ""
 msgid "Text of the button which loads the iframe"
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:518 public/modules/cook/cook-public.php:76
+#: admin/modules/cook/cook-fields.php:518 public/modules/cook/cook-public.php:50
 msgid "Load content"
 msgstr ""
 
@@ -1996,7 +2012,7 @@ msgid ""
 "tracking tools."
 msgstr ""
 
-#: admin/modules/cook/cook-gdpr-check-cdb.php:233
+#: admin/modules/cook/cook-gdpr-check-cdb.php:240
 #: admin/modules/cook/customizer/fupi-customizer-settings.php:1050
 #: public/modules/cook/fupi-display-cookie-notice.php:60
 msgid ""
@@ -2005,38 +2021,38 @@ msgid ""
 "{{privacy policy}} for more information."
 msgstr ""
 
-#: admin/modules/cook/cook-gdpr-check-cdb.php:234
+#: admin/modules/cook/cook-gdpr-check-cdb.php:241
 #: admin/modules/cook/customizer/fupi-customizer-settings.php:1067
 #: public/modules/cook/fupi-display-cookie-notice.php:62
 msgid "Agree"
 msgstr ""
 
-#: admin/modules/cook/cook-gdpr-check-cdb.php:235
+#: admin/modules/cook/cook-gdpr-check-cdb.php:242
 #: admin/modules/cook/customizer/fupi-customizer-settings.php:1111
 #: public/modules/cook/fupi-display-cookie-notice.php:63
 msgid "I understand"
 msgstr ""
 
-#: admin/modules/cook/cook-gdpr-check-cdb.php:236
+#: admin/modules/cook/cook-gdpr-check-cdb.php:243
 #: admin/modules/cook/customizer/fupi-customizer-settings.php:1196
 #: public/modules/cook/fupi-display-cookie-notice.php:64
 msgid "Decline"
 msgstr ""
 
-#: admin/modules/cook/cook-gdpr-check-cdb.php:237
+#: admin/modules/cook/cook-gdpr-check-cdb.php:244
 #: admin/modules/cook/customizer/fupi-customizer-settings.php:1222
 #: public/modules/cook/fupi-display-cookie-notice.php:65
 #: public/modules/cook/fupi-display-cookie-notice.php:360
 msgid "Settings"
 msgstr ""
 
-#: admin/modules/cook/cook-gdpr-check-cdb.php:238
+#: admin/modules/cook/cook-gdpr-check-cdb.php:245
 #: admin/modules/cook/customizer/fupi-customizer-settings.php:1170
 #: public/modules/cook/fupi-display-cookie-notice.php:66
 msgid "Agree to selected"
 msgstr ""
 
-#: admin/modules/cook/cook-gdpr-check-cdb.php:243
+#: admin/modules/cook/cook-gdpr-check-cdb.php:250
 #: admin/modules/cook/customizer/fupi-customizer-settings.php:1350
 #: public/modules/cook/fupi-display-cookie-notice.php:72
 msgid ""
@@ -2044,7 +2060,7 @@ msgid ""
 "my use of this site."
 msgstr ""
 
-#: admin/modules/cook/cook-gdpr-check-cdb.php:245
+#: admin/modules/cook/cook-gdpr-check-cdb.php:252
 #: admin/modules/cook/customizer/fupi-customizer-settings.php:1402
 #: public/modules/cook/fupi-display-cookie-notice.php:74
 msgid ""
@@ -2052,7 +2068,7 @@ msgid ""
 "choices, recommending things I may like and modifying the site to my liking"
 msgstr ""
 
-#: admin/modules/cook/cook-gdpr-check-cdb.php:247
+#: admin/modules/cook/cook-gdpr-check-cdb.php:254
 #: admin/modules/cook/customizer/fupi-customizer-settings.php:1454
 #: public/modules/cook/fupi-display-cookie-notice.php:76
 msgid ""
@@ -2096,57 +2112,64 @@ msgid ""
 "according to the consent banner settings."
 msgstr ""
 
-#: admin/modules/cook/cook-gdpr-check.php:26
-#: admin/modules/cook/cook-gdpr-check.php:46
+#: admin/modules/cook/cook-gdpr-check.php:24
+#: admin/modules/cook/cook-gdpr-check.php:44
 msgid "Change the consent banner mode to Opt-in or one of automatic modes."
 msgstr ""
 
-#: admin/modules/cook/cook-gdpr-check.php:30
+#: admin/modules/cook/cook-gdpr-check.php:28
 #, php-format
 msgid ""
 "Consent banner is set to work in manual mode. Make sure that it uses Opt-in "
 "mode in %1$sall countries that require it%2$s"
 msgstr ""
 
-#: admin/modules/cook/cook-gdpr-check.php:38
+#: admin/modules/cook/cook-gdpr-check.php:36
 msgid ""
 "Set the consent banner to work in Opt-in mode if geolocation is not found."
 msgstr ""
 
-#: admin/modules/cook/cook-gdpr-check.php:48
+#: admin/modules/cook/cook-gdpr-check.php:46
 msgid ""
 "Usually, between 20% and 30% of website visitors decline tracking. Analytics "
 "tools which require tracking consents will not track those people. Other tools "
 "will work normally."
 msgstr ""
 
-#: admin/modules/cook/cook-gdpr-check.php:56
+#: admin/modules/cook/cook-gdpr-check.php:52
+msgid ""
+"Visitors are not asked for consent when the privacy policy text changes and/or "
+"when new tracking modules are enabled. This function breaks GDPR and needs to "
+"be disabled on production sites."
+msgstr ""
+
+#: admin/modules/cook/cook-gdpr-check.php:59
 #, php-format
 msgid ""
 "Make sure that the Privacy policy page is published and set %1$son this "
 "page%2$s."
 msgstr ""
 
-#: admin/modules/cook/cook-gdpr-check.php:64
+#: admin/modules/cook/cook-gdpr-check.php:67
 msgid ""
 "Disable pre-selection of consent switches in the styling options of the "
 "consent banner"
 msgstr ""
 
-#: admin/modules/cook/cook-gdpr-check.php:73
+#: admin/modules/cook/cook-gdpr-check.php:76
 msgid ""
 "Add to your privacy policy information that WP Full Picture uses the following "
 "cookies:"
 msgstr ""
 
-#: admin/modules/cook/cook-gdpr-check.php:75
+#: admin/modules/cook/cook-gdpr-check.php:78
 msgid ""
 "fp_cookie - a necessary cookie. It stores information on visitor's tracking "
 "consents, a list of tracking tools that a user agreed to and the date of the "
 "last update of the privacy policy page. Does not expire."
 msgstr ""
 
-#: admin/modules/cook/cook-gdpr-check.php:76
+#: admin/modules/cook/cook-gdpr-check.php:79
 msgid ""
 "fp_current_session - an optional cookie. It requires consent to tracking "
 "statistics. In the free version it does not hold any value and is only used to "
@@ -2156,7 +2179,7 @@ msgid ""
 "lead score. Expires when a visitor is inactive for 30 minutes."
 msgstr ""
 
-#: admin/modules/cook/cook-gdpr-check.php:82
+#: admin/modules/cook/cook-gdpr-check.php:85
 msgid ""
 "fp_recent_sessions - an optional cookie used for tracking visitor's behavior "
 "across multiple sessions. It requires consent to tracking statistics. Holds "
@@ -2164,7 +2187,7 @@ msgid ""
 "Expires after 30 days from the last visit."
 msgstr ""
 
-#: admin/modules/cook/cook-gdpr-check.php:85
+#: admin/modules/cook/cook-gdpr-check.php:88
 msgid ""
 "fp_country - a necessary cookie used when the geolocation module is enabled. "
 "It is used by the plugin to apply the correct tracking mechanism and consent "
@@ -2172,20 +2195,20 @@ msgid ""
 "by the website administrator (30 days by default)."
 msgstr ""
 
-#: admin/modules/cook/cook-gdpr-check.php:130
+#: admin/modules/cook/cook-gdpr-check.php:133
 msgid ""
 "Allow your visitors to change their tracking preferences. Enable a toggle icon "
 "in the theme customizer (Appearance > Customize > Consent Banner) or add a "
 "button in your privacy policy with the CSS selector(s):"
 msgstr ""
 
-#: admin/modules/cook/cook-gdpr-check.php:141
+#: admin/modules/cook/cook-gdpr-check.php:144
 msgid ""
 "Place your consent banner in the central position on the screen to collect "
 "maximum number of consents."
 msgstr ""
 
-#: admin/modules/cook/cook-gdpr-check.php:149
+#: admin/modules/cook/cook-gdpr-check.php:152
 msgid "Do not hide the \"Decline\" button in the consent banner."
 msgstr ""
 
@@ -2873,15 +2896,15 @@ msgstr ""
 msgid "WP Full Picture loads a script"
 msgstr ""
 
-#: admin/modules/cscr/cscr-gdpr-check.php:31
+#: admin/modules/cscr/cscr-gdpr-check.php:31 admin/modules/woo/woo-admin.php:142
 msgid "statistics"
 msgstr ""
 
-#: admin/modules/cscr/cscr-gdpr-check.php:32
+#: admin/modules/cscr/cscr-gdpr-check.php:32 admin/modules/woo/woo-admin.php:147
 msgid "marketing"
 msgstr ""
 
-#: admin/modules/cscr/cscr-gdpr-check.php:33
+#: admin/modules/cscr/cscr-gdpr-check.php:33 admin/modules/woo/woo-admin.php:152
 msgid "personalisation"
 msgstr ""
 
@@ -4429,7 +4452,7 @@ msgstr ""
 #: admin/modules/ga41/ga41-fields.php:589
 #: admin/modules/ga42__premium_only/ga42-fields.php:524
 #: admin/modules/gtm/gtm-fields.php:346 admin/modules/mato/mato-fields.php:408
-#: admin/modules/track/track-fields.php:129
+#: admin/modules/track/track-fields.php:131
 msgid ""
 "Do not enable this option if authors of content of your site have "
 "administrator rights. This will expose their IDs making attacks easier. Don't "
@@ -4870,7 +4893,7 @@ msgid "Google tag settings"
 msgstr ""
 
 #: admin/modules/gtag/gtag-fields.php:15
-msgid "Google Tag Gateway measurement path (beta)"
+msgid "Google Tag Gateway measurement path"
 msgstr ""
 
 #: admin/modules/gtag/gtag-fields.php:20
@@ -4886,8 +4909,9 @@ msgstr ""
 #: admin/modules/gtag/gtag-fields.php:23
 #, php-format
 msgid ""
-"%1$sMore data:%2$s tracking scripts loaded from your own domain are rarely "
-"blocked by ad blockers,"
+"%1$sMore data:%2$s This should increase the number of tracked users by up to 5 "
+"percent, since scripts loaded this way are less likely to be blocked by ad "
+"blockers."
 msgstr ""
 
 #: admin/modules/gtag/gtag-fields.php:24
@@ -4903,36 +4927,32 @@ msgid ""
 "Cloudflare."
 msgstr ""
 
-#: admin/modules/gtag/gtag-fields.php:27
-msgid "This function is in beta. If you experience issues, please let us know."
-msgstr ""
-
-#: admin/modules/gtag/gtag-fields.php:31
+#: admin/modules/gtag/gtag-fields.php:30
 msgid "Use link decoration to improve conversion tracking"
 msgstr ""
 
-#: admin/modules/gtag/gtag-fields.php:34
+#: admin/modules/gtag/gtag-fields.php:33
 msgid ""
 "This will enable Google's \"url_passthrough\" feature for link decoration. It "
 "will add a Google's advertising identifier to all links on your website which "
 "will improve conversion tracking."
 msgstr ""
 
-#: admin/modules/gtag/gtag-fields.php:35
+#: admin/modules/gtag/gtag-fields.php:34
 msgid ""
 "Attention! Using link decoration is a legal grey area and may be illegal in "
 "countries where consent before tracking is necessary (opt-in). Use at your own "
 "risk."
 msgstr ""
 
-#: admin/modules/gtag/gtag-fields.php:36
+#: admin/modules/gtag/gtag-fields.php:35
 msgid ""
 "Attention! Link decoration may, in very rare cases, cause problems on a "
 "website. To test it, visit your website from a Google advertisement and finish "
 "the whole conversion path."
 msgstr ""
 
-#: admin/modules/gtag/gtag-fields.php:37
+#: admin/modules/gtag/gtag-fields.php:36
 msgid ""
 "Attention! Link decoration will only be used in countries where consent banner "
 "lets users decline tracking."
@@ -5710,7 +5730,7 @@ msgid ""
 msgstr ""
 
 #: admin/modules/linkd/linkd-descr.php:32 admin/modules/linkd/linkd-descr.php:38
-#: admin/modules/track/track-fields.php:288 admin/modules/woo/woo-descr.php:14
+#: admin/modules/track/track-fields.php:290 admin/modules/woo/woo-descr.php:14
 #: public/modules/main/main-public.php:84
 msgid "Learn more"
 msgstr ""
@@ -6387,66 +6407,58 @@ msgid "Defer non-critical scripts"
 msgstr ""
 
 #: admin/modules/main/main-fields.php:198
-msgid "Slightly improves page-loading speed."
-msgstr ""
-
-#: admin/modules/main/main-fields.php:199
 msgid ""
 "Do not defer WP FP's scripts using a different plugin or solution. Not all WP "
 "FP's scripts can be safely deferred."
 msgstr ""
 
-#: admin/modules/main/main-fields.php:203
-msgid "Save main JS functions in a file (beta)"
+#: admin/modules/main/main-fields.php:202
+msgid "Save main JS functions in a file"
 msgstr ""
 
-#: admin/modules/main/main-fields.php:206
+#: admin/modules/main/main-fields.php:205
 msgid ""
 "If you enable this option, WP FP will save some of its main JavaScript "
 "functions in a file, instead of printing them directly in the HTML."
 msgstr ""
 
-#: admin/modules/main/main-fields.php:207 admin/modules/main/main-fields.php:217
-msgid ""
-"This is done to slightly improve performance and avoid issues with some "
-"caching configurations."
+#: admin/modules/main/main-fields.php:209
+msgid "Save Custom Scripts in a file (beta)"
 msgstr ""
 
-#: admin/modules/main/main-fields.php:208 admin/modules/main/main-fields.php:218
+#: admin/modules/main/main-fields.php:212
 msgid ""
-"The files will be placed in a folder at \"wp-content/uploads/sites(for WP "
-"Multisite)/site_number(for WP Multisite)/wpfp/js/\""
+"If you enable this option, WP FP will save scripts from the Custom Scripts "
+"module in a file, instead of printing them directly in the HTML."
 msgstr ""
 
-#: admin/modules/main/main-fields.php:209 admin/modules/main/main-fields.php:219
+#: admin/modules/main/main-fields.php:213
+msgid ""
+"Attention. All scripts in a file will be wrapped in a function. This means "
+"that all variables that should be accessible via \"window\" object, will not "
+"be accessible this way unless you change them from e.g. \"var variable_name\" "
+"to \"window.variable_name\"."
+msgstr ""
+
+#: admin/modules/main/main-fields.php:214
 #, php-format
 msgid ""
 "This feature is in beta. Please report issues in %1$sthe support forum%2$s."
 msgstr ""
 
-#: admin/modules/main/main-fields.php:213
-msgid "Save Custom Scripts in files (beta)"
-msgstr ""
-
-#: admin/modules/main/main-fields.php:216
-msgid ""
-"If you enable this option, WP FP will put scripts from the Custom Scripts "
-"module in files, instead of printing them directly in the HTML."
-msgstr ""
-
-#: admin/modules/main/main-fields.php:227
+#: admin/modules/main/main-fields.php:222
 msgid "Backups"
 msgstr ""
 
-#: admin/modules/main/main-fields.php:233
+#: admin/modules/main/main-fields.php:228
 msgid "Other settings"
 msgstr ""
 
-#: admin/modules/main/main-fields.php:241
+#: admin/modules/main/main-fields.php:236
 msgid "[fp_info] shortcode"
 msgstr ""
 
-#: admin/modules/main/main-fields.php:245
+#: admin/modules/main/main-fields.php:240
 msgid "Add more tracking tools to the list"
 msgstr ""
 
@@ -8425,13 +8437,13 @@ msgid ""
 msgstr ""
 
 #: admin/modules/tools/tools-fields.php:416
-msgid "Advanced Triggers"
+msgid "Advanced Triggers + Visitor Scoring"
 msgstr ""
 
 #: admin/modules/tools/tools-fields.php:421
 msgid ""
-"Here you can define custom events and set up visitor scoring rules. You can "
-"use it for:"
+"Here you can define triggers for custom events and set up visitor scoring "
+"rules. You can use it for:"
 msgstr ""
 
 #: admin/modules/tools/tools-fields.php:423
@@ -8509,8 +8521,7 @@ msgstr ""
 #: admin/modules/track/track-descr.php:22
 msgid ""
 "These functions can increase the amount and improve the accuracy of tracked "
-"data but sometimes they may give unexpected results. Click the \"i\" icons "
-"below for more information."
+"data."
 msgstr ""
 
 #: admin/modules/track/track-fields.php:54
@@ -8567,27 +8578,32 @@ msgstr ""
 
 #: admin/modules/track/track-fields.php:102
 msgid ""
-"Some WordPress plugins add data to your posts, pages, products and categories. "
-"With WP Full Picture, you can track this data."
+"Many tracking tools in WP FP let you track data associated with your posts, "
+"pages and users, like page types, categories, user roles, etc."
 msgstr ""
 
 #: admin/modules/track/track-fields.php:103
-msgid "Step 1. Find metadata IDs"
+msgid ""
+"Metadata tracking lets you track other data - even data added by other plugins."
 msgstr ""
 
 #: admin/modules/track/track-fields.php:104
-msgid "Do this to view metadata that you can track and find their IDs."
+msgid "To track this data, follow these steps:"
 msgstr ""
 
-#: admin/modules/track/track-fields.php:106
-msgid "Enable \"Setup mode\" in the \"General Settings\" page."
+#: admin/modules/track/track-fields.php:105
+msgid "Step 1. Find IDs of metadata you want to track"
 msgstr ""
 
 #: admin/modules/track/track-fields.php:107
-msgid "Visit a page on your website."
+msgid "Enable \"Setup mode\" in the \"General Settings\" page."
 msgstr ""
 
 #: admin/modules/track/track-fields.php:108
+msgid "Visit a page on your website."
+msgstr ""
+
+#: admin/modules/track/track-fields.php:109
 msgid ""
 "Open your browser console and type \"fp_usermeta\", \"fp_postmeta\" or "
 "\"fp_termmeta\". You need to be logged in as an administrator while doing this."
@@ -8595,30 +8611,30 @@ msgstr ""
 
 #: admin/modules/track/track-fields.php:110
 msgid ""
-"You will see a list of metadata IDs along with associated data. Paste the IDs "
-"of the data that you want to track in the form on this page."
-msgstr ""
-
-#: admin/modules/track/track-fields.php:111
-msgid "Step 2. Set up metadata tracking in your tracking tools"
+"Copy the IDs of the data that you want to track and paste it in the form on "
+"this page."
 msgstr ""
 
 #: admin/modules/track/track-fields.php:112
+msgid "Step 2. Set up metadata tracking in your tracking tools"
+msgstr ""
+
+#: admin/modules/track/track-fields.php:113
 msgid ""
 "To track metadata in your tracking tools, simply look for the \"Track "
 "metadata\" fields in their settings pages and follow instructions you find "
 "there."
 msgstr ""
 
-#: admin/modules/track/track-fields.php:116
+#: admin/modules/track/track-fields.php:117
 msgid "Use page labels for tracking page types"
 msgstr ""
 
-#: admin/modules/track/track-fields.php:119
+#: admin/modules/track/track-fields.php:121
 msgid "This will add a \"page label\" field to page \"edit\" screens."
 msgstr ""
 
-#: admin/modules/track/track-fields.php:120
+#: admin/modules/track/track-fields.php:122
 #, php-format
 msgid ""
 "Use it, to label pages according to their type, e.g. landing page, contact "
@@ -8626,141 +8642,141 @@ msgid ""
 "analysis or be used by developers. %1$sLearn more%2$s."
 msgstr ""
 
-#: admin/modules/track/track-fields.php:121
+#: admin/modules/track/track-fields.php:123
 msgid ""
 "At the moment this extension works with Google Analytics, Facebook Pixel and "
 "Google Tag Manager."
 msgstr ""
 
-#: admin/modules/track/track-fields.php:125
+#: admin/modules/track/track-fields.php:127
 msgid "Allow tracking IDs of content authors"
 msgstr ""
 
-#: admin/modules/track/track-fields.php:128
+#: admin/modules/track/track-fields.php:130
 msgid ""
 "This enables the option to track IDs of content authors with Google Analytics, "
 "Matomo and GTM."
 msgstr ""
 
-#: admin/modules/track/track-fields.php:133
-msgid "Track 404 pages"
+#: admin/modules/track/track-fields.php:135
+msgid "Track locations of broken links"
 msgstr ""
 
-#: admin/modules/track/track-fields.php:138
+#: admin/modules/track/track-fields.php:140
 msgid ""
 "When this is enabled, every time someone tries to visit a non-existent page on "
 "your website, WP Full Picture will add extra parameters to the address of the "
 "404 page they visit, like this: "
 msgstr ""
 
-#: admin/modules/track/track-fields.php:140
+#: admin/modules/track/track-fields.php:142
 msgid ""
 "These parameters contain information which will let you find broken links on "
 "your site or other websites and fix them."
 msgstr ""
 
-#: admin/modules/track/track-fields.php:141
+#: admin/modules/track/track-fields.php:143
 msgid ""
-"You can view all your broken links in Google Analytics, Matomo or other web "
-"analytics tools. Simply search for page views that contain the phrase "
-"\"broken_link_location\" in their URLs."
+"You can view all links containing \"broken links location\" information in "
+"Google Analytics, Matomo and other web analytics tools. Simply search for page "
+"views that contain the phrase \"broken_link_location\" in their URLs."
 msgstr ""
 
-#: admin/modules/track/track-fields.php:145
+#: admin/modules/track/track-fields.php:147
 msgid "Use custom 404 page:"
 msgstr ""
 
-#: admin/modules/track/track-fields.php:152
+#: admin/modules/track/track-fields.php:154
 msgid ""
 "Remember to noindex your custom 404 page from Google search results with your "
 "SEO plugin."
 msgstr ""
 
-#: admin/modules/track/track-fields.php:157
+#: admin/modules/track/track-fields.php:159
 msgid "Allow tracking terms of these taxonomies:"
 msgstr ""
 
-#: admin/modules/track/track-fields.php:161
+#: admin/modules/track/track-fields.php:163
 msgid ""
 "By default, WP Full Picture lets you track categories, product categories (in "
 "WooCommerce) and tags that a page/post/product belongs to. Use this function, "
 "to track additional taxonomy terms."
 msgstr ""
 
-#: admin/modules/track/track-fields.php:162
+#: admin/modules/track/track-fields.php:164
 msgid ""
 "This will apply to blog posts, pages and single custom post types (even "
 "WooCommerce products*)."
 msgstr ""
 
-#: admin/modules/track/track-fields.php:163
+#: admin/modules/track/track-fields.php:165
 msgid ""
 "Product categories that WooCommerce products belong to are tracked "
 "automatically but they are sent in store-related events, like purchases. Use "
 "this function to also track them in other events, like pageviews."
 msgstr ""
 
-#: admin/modules/track/track-fields.php:172
+#: admin/modules/track/track-fields.php:174
 msgid "Tracking improvements"
 msgstr ""
 
-#: admin/modules/track/track-fields.php:176
+#: admin/modules/track/track-fields.php:178
 msgid "Wait for tracking to finish before redirecting to another page"
 msgstr ""
 
-#: admin/modules/track/track-fields.php:179
+#: admin/modules/track/track-fields.php:181
 msgid ""
 "Using this option is recommended for websites that load very quickly and use "
 "multiple tracking tools that track link clicks."
 msgstr ""
 
-#: admin/modules/track/track-fields.php:180
+#: admin/modules/track/track-fields.php:182
 msgid ""
 "When a visitor clicks a link, WP FP will pause the page redirect until all the "
 "tracking tools finish tracking the click."
 msgstr ""
 
-#: admin/modules/track/track-fields.php:181
+#: admin/modules/track/track-fields.php:183
 msgid ""
 "Attention! Test before using in production. On rare occasions enabling this "
 "setting can cause issues with clicks on dynamic page elements like galleries "
 "or sliders."
 msgstr ""
 
-#: admin/modules/track/track-fields.php:185
+#: admin/modules/track/track-fields.php:187
 msgid "Use DOM Listener to track when dynamic page elements show on screen"
 msgstr ""
 
-#: admin/modules/track/track-fields.php:188
+#: admin/modules/track/track-fields.php:190
 msgid ""
 "This function extends the \"element visibility tracking\" function, available "
 "in some tracking tools modules."
 msgstr ""
 
-#: admin/modules/track/track-fields.php:189
+#: admin/modules/track/track-fields.php:191
 msgid ""
 "Use it to track when popups and other content loaded dynamically (after the "
 "page has loaded) shows on screen."
 msgstr ""
 
-#: admin/modules/track/track-fields.php:190
+#: admin/modules/track/track-fields.php:192
 msgid ""
 "Attention! If your website loads a lot of content dynamically, using this "
 "option can make your website feel less responsive while this content is being "
 "loaded."
 msgstr ""
 
-#: admin/modules/track/track-fields.php:194
+#: admin/modules/track/track-fields.php:196
 msgid "Make tracking tools correctly recognize traffic from Android applications"
 msgstr ""
 
-#: admin/modules/track/track-fields.php:209
+#: admin/modules/track/track-fields.php:211
 msgid ""
 "This function fixes incorrect traffic source recognition by Google Analytics "
 "and other tracking tools."
 msgstr ""
 
-#: admin/modules/track/track-fields.php:210
+#: admin/modules/track/track-fields.php:212
 msgid ""
 "When you enable these options, traffic from chosen applications will no longer "
 "be labelled as \"Direct\" but will be recognized as coming from their "
@@ -8768,179 +8784,179 @@ msgid ""
 "etc."
 msgstr ""
 
-#: admin/modules/track/track-fields.php:211
+#: admin/modules/track/track-fields.php:213
 msgid ""
 "Traffic from Line app will be marked as coming from https://line-android-app."
 "jp/."
 msgstr ""
 
-#: admin/modules/track/track-fields.php:215
+#: admin/modules/track/track-fields.php:217
 msgid ""
 "Make tracking tools correctly recognize traffic from other Android applications"
 msgstr ""
 
-#: admin/modules/track/track-fields.php:224
+#: admin/modules/track/track-fields.php:226
 msgid "When traffic source"
 msgstr ""
 
-#: admin/modules/track/track-fields.php:227
+#: admin/modules/track/track-fields.php:229
 msgid "Starts with"
 msgstr ""
 
-#: admin/modules/track/track-fields.php:228
+#: admin/modules/track/track-fields.php:230
 msgid "Equals"
 msgstr ""
 
-#: admin/modules/track/track-fields.php:229
+#: admin/modules/track/track-fields.php:231
 msgid "Includes"
 msgstr ""
 
-#: admin/modules/track/track-fields.php:242
+#: admin/modules/track/track-fields.php:244
 msgid "Report as traffic from this address"
 msgstr ""
 
-#: admin/modules/track/track-fields.php:243
+#: admin/modules/track/track-fields.php:245
 msgid "e.g. android-g-search-box.com"
 msgstr ""
 
-#: admin/modules/track/track-fields.php:248
+#: admin/modules/track/track-fields.php:250
 msgid ""
 "To set it up you need to use Google Analytics with at least 1 month of data or "
 "any other tool that can track real referral addresses."
 msgstr ""
 
-#: admin/modules/track/track-fields.php:249
+#: admin/modules/track/track-fields.php:251
 msgid "How to set it up"
 msgstr ""
 
-#: admin/modules/track/track-fields.php:253
+#: admin/modules/track/track-fields.php:255
 msgid "Prevent attributing conversions to payment gateways"
 msgstr ""
 
-#: admin/modules/track/track-fields.php:262
+#: admin/modules/track/track-fields.php:264
 msgid "When this page is visited"
 msgstr ""
 
-#: admin/modules/track/track-fields.php:263
+#: admin/modules/track/track-fields.php:265
 msgid "e.g. Order confirmation page URL"
 msgstr ""
 
-#: admin/modules/track/track-fields.php:269
+#: admin/modules/track/track-fields.php:271
 msgid "Always report as traffic from"
 msgstr ""
 
-#: admin/modules/track/track-fields.php:270
+#: admin/modules/track/track-fields.php:272
 msgid "e.g. Checkout page URL (has to start with https://)"
 msgstr ""
 
-#: admin/modules/track/track-fields.php:275
+#: admin/modules/track/track-fields.php:277
 msgid ""
 "This will make sure that your conversions are not attributed to payment "
 "gateways (as last source of traffic before visiting order confirmation page)."
 msgstr ""
 
-#: admin/modules/track/track-fields.php:279
+#: admin/modules/track/track-fields.php:281
 msgid "Combine similar URLs of referring domains"
 msgstr ""
 
-#: admin/modules/track/track-fields.php:288
+#: admin/modules/track/track-fields.php:290
 msgid ""
 "Facebook, Instagram and Pinterest use multiple URLs that redirect traffic to "
 "your site, e.g. l.facebook.com, lm.facebook.com, etc. Enable this function to "
 "combine them and analyse traffic sources more easily."
 msgstr ""
 
-#: admin/modules/track/track-fields.php:297
+#: admin/modules/track/track-fields.php:299
 msgid "Default settings"
 msgstr ""
 
-#: admin/modules/track/track-fields.php:301
+#: admin/modules/track/track-fields.php:303
 msgid "Do not track form submissions if they happen within:"
 msgstr ""
 
-#: admin/modules/track/track-fields.php:306
+#: admin/modules/track/track-fields.php:308
 msgid "seconds after the page loads"
 msgstr ""
 
-#: admin/modules/track/track-fields.php:307
+#: admin/modules/track/track-fields.php:309
 msgid ""
 "Humans don't usually send forms right after they open a page. Set this value "
 "to a minimum of 3 seconds to prevent tracking form submittions done by bots "
 "and accidental clicks. Enter 0 or leave empty to disable. Default is 3 seconds."
 msgstr ""
 
-#: admin/modules/track/track-fields.php:311
+#: admin/modules/track/track-fields.php:313
 msgid "Prevent tracking multi-clicks that happen within:"
 msgstr ""
 
-#: admin/modules/track/track-fields.php:316
+#: admin/modules/track/track-fields.php:318
 msgid "miliseconds"
 msgstr ""
 
-#: admin/modules/track/track-fields.php:320
+#: admin/modules/track/track-fields.php:322
 msgid "Prevent tracking page scroll depth if visitor scrolled less than:"
 msgstr ""
 
-#: admin/modules/track/track-fields.php:325
+#: admin/modules/track/track-fields.php:327
 msgid "pixels."
 msgstr ""
 
-#: admin/modules/track/track-fields.php:326
+#: admin/modules/track/track-fields.php:328
 msgid ""
 "This setting prevents tracking scrolls on short pages, when even a very small "
 "scroll can reach the bottom of the page. Default is 200px."
 msgstr ""
 
-#: admin/modules/track/track-fields.php:330
+#: admin/modules/track/track-fields.php:332
 msgid "Prevent tracking page scroll depth if it happened in the first:"
 msgstr ""
 
-#: admin/modules/track/track-fields.php:335
+#: admin/modules/track/track-fields.php:337
 msgid "seconds"
 msgstr ""
 
-#: admin/modules/track/track-fields.php:336
+#: admin/modules/track/track-fields.php:338
 msgid ""
 "This setting prevents tracking \"exploratory\" scrolls - quick scrolls "
 "performed by visitors who want to see the contents of the page before devoting "
 "more time to read it."
 msgstr ""
 
-#: admin/modules/track/track-fields.php:336
+#: admin/modules/track/track-fields.php:338
 msgid ""
 "After the set time has passed page's scroll depth will be tracked normally."
 msgstr ""
 
-#: admin/modules/track/track-fields.php:336
+#: admin/modules/track/track-fields.php:338
 msgid "Default is 5 seconds."
 msgstr ""
 
-#: admin/modules/track/track-fields.php:340
+#: admin/modules/track/track-fields.php:342
 msgid "Set when elements are considered to be visible on screen"
 msgstr ""
 
-#: admin/modules/track/track-fields.php:345
+#: admin/modules/track/track-fields.php:347
 msgid "Leave empty to use default values"
 msgstr ""
 
-#: admin/modules/track/track-fields.php:346
+#: admin/modules/track/track-fields.php:348
 msgid ""
 "By default this is set to \"-200px 0px -200px 0px\", which means, that "
 "elements will be considered as visible, when their top or bottom edge is 200 "
 "pixels inside the visible area of the screen."
 msgstr ""
 
-#: admin/modules/track/track-fields.php:350
+#: admin/modules/track/track-fields.php:352
 msgid "Reset engagement time counter after clicks in anchors"
 msgstr ""
 
-#: admin/modules/track/track-fields.php:354
+#: admin/modules/track/track-fields.php:356
 msgid ""
 "This function modifies the setting \"Track how long the user was actively "
 "engaged with the content\" in Google Analytics and Meta Pixel modules."
 msgstr ""
 
-#: admin/modules/track/track-fields.php:355
+#: admin/modules/track/track-fields.php:357
 msgid ""
 "Enable this option if your website only consists of a single page and you use "
 "anchors to navigate between its sections. Engagement time will be sent to "
@@ -8949,7 +8965,7 @@ msgid ""
 "calculated for the whole page."
 msgstr ""
 
-#: admin/modules/track/track-fields.php:356
+#: admin/modules/track/track-fields.php:358
 msgid "Learn more about engagement time"
 msgstr ""
 
@@ -9137,6 +9153,87 @@ msgid ""
 "users are sent to Twitter."
 msgstr ""
 
+#: admin/modules/woo/woo-admin.php:79
+msgid "Tracking information"
+msgstr ""
+
+#: admin/modules/woo/woo-admin.php:90
+msgid "checkout page"
+msgstr ""
+
+#: admin/modules/woo/woo-admin.php:91
+msgid "store-api (block checkout or integration with a different tool)"
+msgstr ""
+
+#: admin/modules/woo/woo-admin.php:92
+msgid "WP admin panel"
+msgstr ""
+
+#: admin/modules/woo/woo-admin.php:93
+msgid "REST API integration"
+msgstr ""
+
+#: admin/modules/woo/woo-admin.php:94
+msgid "CSV import"
+msgstr ""
+
+#: admin/modules/woo/woo-admin.php:95
+msgid "subscription renewal"
+msgstr ""
+
+#: admin/modules/woo/woo-admin.php:96
+msgid "Point of Sale system"
+msgstr ""
+
+#: admin/modules/woo/woo-admin.php:125
+#, php-format
+msgid "Order created via %1$s."
+msgstr ""
+
+#: admin/modules/woo/woo-admin.php:161
+#, php-format
+msgid "Client consented to tracking by tools which can identify them for %1$s."
+msgstr ""
+
+#: admin/modules/woo/woo-admin.php:166
+msgid "Client did not consent to tracking by tools which can identify them."
+msgstr ""
+
+#: admin/modules/woo/woo-admin.php:170
+msgid "There is no information on tracking consents provided by the client."
+msgstr ""
+
+#: admin/modules/woo/woo-admin.php:189
+#, php-format
+msgid "Purchase event was sent to %1$s using status-based order tracking."
+msgstr ""
+
+#: admin/modules/woo/woo-admin.php:191
+msgid "Purchase event was sent server-side to eligible tools."
+msgstr ""
+
+#: admin/modules/woo/woo-admin.php:205
+#, php-format
+msgid "Refund event was sent to %1$s using status-based order tracking"
+msgstr ""
+
+#: admin/modules/woo/woo-admin.php:207
+msgid "Refund event was sent server-side to eligible tools."
+msgstr ""
+
+#: admin/modules/woo/woo-admin.php:220
+msgid "Client viewed order confirmation page."
+msgstr ""
+
+#: admin/modules/woo/woo-admin.php:223
+msgid "Client did not view order confirmation page."
+msgstr ""
+
+#: admin/modules/woo/woo-admin.php:226
+#, php-format
+msgid "Learn %1$show to understand this information%2$s."
+msgstr ""
+
 #: admin/modules/woo/woo-descr.php:10
 msgid ""
 "These settings apply to all tools which support WooCommerce Tracking module "
@@ -9282,82 +9379,94 @@ msgid ""
 "above), then they will still be tracked after refresh."
 msgstr ""
 
-#: admin/modules/woo/woo-fields.php:83
+#: admin/modules/woo/woo-fields.php:74
+msgid "Show tracking information on order details pages"
+msgstr ""
+
+#: admin/modules/woo/woo-fields.php:78
+#, php-format
+msgid ""
+"Enable this function to view %1$sorder tracking information%2$s in the \"edit "
+"order\" pages in the WP admin. Please mind, that not all information will be "
+"available for orders that were made before you updated to WP FP 9.1."
+msgstr ""
+
+#: admin/modules/woo/woo-fields.php:91
 msgid "Use Order Attribution only when visitors consent to tracking"
 msgstr ""
 
-#: admin/modules/woo/woo-fields.php:87
+#: admin/modules/woo/woo-fields.php:95
 msgid ""
 "This will stop WooCommerce from collecting information about the sources of "
 "conversions from users who did not agree to tracking statistics."
 msgstr ""
 
-#: admin/modules/woo/woo-fields.php:88
+#: admin/modules/woo/woo-fields.php:96
 msgid ""
 "Order attribution information is available on your WooCommerce order details "
 "pages."
 msgstr ""
 
-#: admin/modules/woo/woo-fields.php:89
+#: admin/modules/woo/woo-fields.php:97
 #, php-format
 msgid ""
 "Alternatively, you can completely disable Order Attribution on %1$sthis "
 "page%2$s"
 msgstr ""
 
-#: admin/modules/woo/woo-fields.php:98
+#: admin/modules/woo/woo-fields.php:106
 msgid "Status-based order tracking"
 msgstr ""
 
-#: admin/modules/woo/woo-fields.php:102
+#: admin/modules/woo/woo-fields.php:110
 msgid "Track new orders when they get these statuses"
 msgstr ""
 
-#: admin/modules/woo/woo-fields.php:107
+#: admin/modules/woo/woo-fields.php:115
 msgid ""
 "Recommended statuses - Processing (for orders paid via payment gateways) and "
 "On Hold (for orders paid with bank transfers)."
 msgstr ""
 
-#: admin/modules/woo/woo-fields.php:108
+#: admin/modules/woo/woo-fields.php:116
 msgid ""
 "You can enter here multiple order statuses indicating that an order has been "
 "made. The \"purchase\" event will be sent only the first time an order gets a "
 "matching status."
 msgstr ""
 
-#: admin/modules/woo/woo-fields.php:112
+#: admin/modules/woo/woo-fields.php:120
 msgid "Track order cancellations when they get these statuses"
 msgstr ""
 
-#: admin/modules/woo/woo-fields.php:117
+#: admin/modules/woo/woo-fields.php:126
 msgid "Recommended statuses - Cancelled and Refunded."
 msgstr ""
 
-#: admin/modules/woo/woo-fields.php:118
+#: admin/modules/woo/woo-fields.php:127
 msgid ""
 "You can enter here multiple order statuses indicating that the order has been "
 "cancelled or refunded. The \"refund\" event will be sent only the first time "
 "an order gets a matching status."
 msgstr ""
 
-#: admin/modules/woo/woo-fields.php:125
+#: admin/modules/woo/woo-fields.php:134
 msgid "Custom adjustments"
 msgstr ""
 
-#: admin/modules/woo/woo-fields.php:129
+#: admin/modules/woo/woo-fields.php:138
 msgid "CSS selector of \"Add to wishlist\" button"
 msgstr ""
 
-#: admin/modules/woo/woo-fields.php:130
+#: admin/modules/woo/woo-fields.php:139
 msgid "Enter CSS class or ID"
 msgstr ""
 
-#: admin/modules/woo/woo-fields.php:134
+#: admin/modules/woo/woo-fields.php:143
 msgid "e.g. .my-add-to-wishlist"
 msgstr ""
 
-#: admin/modules/woo/woo-fields.php:135
+#: admin/modules/woo/woo-fields.php:144
 msgid ""
 "Enter CSS selector of an \"add to wishlist\" button used on your site (if it "
 "uses any). The wishlist button needs to be positioned in your HTML right after "
@@ -9365,19 +9474,19 @@ msgid ""
 "The tracking doesn't work with grouped products."
 msgstr ""
 
-#: admin/modules/woo/woo-fields.php:139
+#: admin/modules/woo/woo-fields.php:148
 msgid "CSS selectors of custom product teasers"
 msgstr ""
 
-#: admin/modules/woo/woo-fields.php:143
+#: admin/modules/woo/woo-fields.php:152
 msgid "e.g. .product"
 msgstr ""
 
-#: admin/modules/woo/woo-fields.php:144
+#: admin/modules/woo/woo-fields.php:153
 msgid "You can provide a coma separated list of CSS selectors."
 msgstr ""
 
-#: admin/modules/woo/woo-fields.php:145
+#: admin/modules/woo/woo-fields.php:154
 msgid ""
 "By default, all product teasers (products in lists) in WooCommerce are wrapped "
 "in &lt;li&gt;elements. However, some themes or plugins may use a different "
@@ -9385,14 +9494,14 @@ msgid ""
 "of teasers may not work correctly."
 msgstr ""
 
-#: admin/modules/woo/woo-fields.php:146
+#: admin/modules/woo/woo-fields.php:155
 msgid ""
 "You can fix it here. Provide CSS selector of an HTML element which wraps "
 "around product teasers on your site (often this is an element with a class "
 "\"product\")."
 msgstr ""
 
-#: admin/modules/woo/woo-fields.php:147
+#: admin/modules/woo/woo-fields.php:156
 msgid ""
 "Attention. Tracking will only work if there is a &lt;script&gt; element with "
 "class \"fupi_prod_data\" inside the product teaser's HTML. If it is missing, "
@@ -9400,22 +9509,22 @@ msgid ""
 "display its content, and WP Full Picture will not be able to track it."
 msgstr ""
 
-#: admin/modules/woo/woo-fields.php:151
+#: admin/modules/woo/woo-fields.php:160
 msgid "Add \"Product brand\" field to \"edit product\" pages"
 msgstr ""
 
-#: admin/modules/woo/woo-fields.php:157 admin/modules/woo/woo-fields.php:165
+#: admin/modules/woo/woo-fields.php:166 admin/modules/woo/woo-fields.php:174
 msgid ""
 "This function will be removed by the end of 2025. Please migrate to standard "
 "WooCommerce brands (avail in WooCommerce 9.6+)"
 msgstr ""
 
-#: admin/modules/woo/woo-fields.php:161
+#: admin/modules/woo/woo-fields.php:170
 msgid ""
 "Use custom \"product brand\" taxonomy instead of the default one in WooCommerce"
 msgstr ""
 
-#: admin/modules/woo/woo-fields.php:166
+#: admin/modules/woo/woo-fields.php:175
 msgid ""
 "Use it to track product brands saved by a different plugin. Choose taxonomy "
 "name in which your plugin saves product brands."
@@ -9449,6 +9558,10 @@ msgid ""
 "script for Order Attribution in WooCommerce. The script is enabled after "
 "visitors agree to using their data for statistics. Optionally, you can include "
 "%1$sa list of cookies%2$s that the script uses"
+msgstr ""
+
+#: freemius/assets/js/pricing/freemius-pricing.js:2
+msgid "display"
 msgstr ""
 
 #: includes/class-fupi-deactivator.php:92
@@ -9552,7 +9665,7 @@ msgid "Analytics dashboards"
 msgstr ""
 
 #: includes/fupi_modules_names.php:32
-msgid "Advanced triggers"
+msgid "Advanced triggers + visitor scoring"
 msgstr ""
 
 #: public/class-fupi-public.php:151 public/class-fupi-public.php:153
@@ -9603,7 +9716,7 @@ msgstr ""
 msgid "Add or remove labels"
 msgstr ""
 
-#: public/class-fupi-public.php:164 public/modules/woo/woo-public.php:263
+#: public/class-fupi-public.php:164 public/modules/woo/woo-public.php:272
 msgid "Choose from the most used"
 msgstr ""
 
@@ -9615,7 +9728,7 @@ msgstr ""
 msgid "Search labels"
 msgstr ""
 
-#: public/class-fupi-public.php:167 public/modules/woo/woo-public.php:266
+#: public/class-fupi-public.php:167 public/modules/woo/woo-public.php:275
 msgid "Not Found"
 msgstr ""
 
@@ -9668,7 +9781,9 @@ msgid "Learn how to use it"
 msgstr ""
 
 #: public/modules/main/main-public.php:83
-msgid "Testing is enabled. You can be tracked like any other visitor."
+msgid ""
+"Testing is enabled and you are tracked like other visitors. It will deactivate "
+"automatically after 6 hours."
 msgstr ""
 
 #: public/modules/main/main-public.php:84
@@ -9694,76 +9809,76 @@ msgstr ""
 msgid "Finish testing"
 msgstr ""
 
-#: public/modules/woo/woo-public.php:250
+#: public/modules/woo/woo-public.php:259
 msgctxt "Taxonomy General Name"
 msgid "Brands"
 msgstr ""
 
-#: public/modules/woo/woo-public.php:251
+#: public/modules/woo/woo-public.php:260
 msgctxt "Taxonomy Singular Name"
 msgid "Brand"
 msgstr ""
 
-#: public/modules/woo/woo-public.php:252
+#: public/modules/woo/woo-public.php:261
 msgid "Brands"
 msgstr ""
 
-#: public/modules/woo/woo-public.php:253
+#: public/modules/woo/woo-public.php:262
 msgid "All brands"
 msgstr ""
 
-#: public/modules/woo/woo-public.php:254
+#: public/modules/woo/woo-public.php:263
 msgid "Parent brand"
 msgstr ""
 
-#: public/modules/woo/woo-public.php:255
+#: public/modules/woo/woo-public.php:264
 msgid "Parent Brand:"
 msgstr ""
 
-#: public/modules/woo/woo-public.php:256
+#: public/modules/woo/woo-public.php:265
 msgid "New Brand Name"
 msgstr ""
 
-#: public/modules/woo/woo-public.php:257
+#: public/modules/woo/woo-public.php:266
 msgid "Add New Brand"
 msgstr ""
 
-#: public/modules/woo/woo-public.php:258
+#: public/modules/woo/woo-public.php:267
 msgid "Edit Brand"
 msgstr ""
 
-#: public/modules/woo/woo-public.php:259
+#: public/modules/woo/woo-public.php:268
 msgid "Update Brand"
 msgstr ""
 
-#: public/modules/woo/woo-public.php:260
+#: public/modules/woo/woo-public.php:269
 msgid "View Brand"
 msgstr ""
 
-#: public/modules/woo/woo-public.php:261
+#: public/modules/woo/woo-public.php:270
 msgid "Separate brands with commas"
 msgstr ""
 
-#: public/modules/woo/woo-public.php:262
+#: public/modules/woo/woo-public.php:271
 msgid "Add or remove brands"
 msgstr ""
 
-#: public/modules/woo/woo-public.php:264
+#: public/modules/woo/woo-public.php:273
 msgid "Popular brands"
 msgstr ""
 
-#: public/modules/woo/woo-public.php:265
+#: public/modules/woo/woo-public.php:274
 msgid "Search brands"
 msgstr ""
 
-#: public/modules/woo/woo-public.php:267
+#: public/modules/woo/woo-public.php:276
 msgid "No brands"
 msgstr ""
 
-#: public/modules/woo/woo-public.php:268
+#: public/modules/woo/woo-public.php:277
 msgid "Brands list"
 msgstr ""
 
-#: public/modules/woo/woo-public.php:269
+#: public/modules/woo/woo-public.php:278
 msgid "Brands list navigation"
 msgstr ""
