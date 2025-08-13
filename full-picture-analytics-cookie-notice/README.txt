@@ -4,7 +4,7 @@ Donate link: https://wpfullpicture.com/
 Tags: Consent mode, Analytics, GDPR, GTM, Google Ads
 Requires at least: 5.4.0
 Tested up to: 6.8.2
-Stable tag: 9.1.0
+Stable tag: 9.1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -24,7 +24,7 @@ It is the only tool you need to install tracking tools, display a consent banner
 
 See for yourself.
 
-[youtube https://www.youtube.com/watch?v=_HGafFvF7dQ]
+[youtube https://www.youtube.com/watch?v=5Z_5k089oHw]
 
 ## 🧩 INTEGRATIONS WITH TRACKING TOOLS
 
@@ -205,6 +205,12 @@ No. WP Full Picture is focused on tracking and privacy. To generate a product ca
 6. View traffic and marketing reports in the admin panel
 
 == Changelog ==
+
+= 9.1.1 (13-08-2025) =
+
+* [Fix] GDPR setup info did not show some headings if the Privacy Policy page was not published
+* [Fix] Rest API issues with Zapier
+* [Other] Added social links to the menu
 
 = 9.1.0 (06-08-2025) =
 

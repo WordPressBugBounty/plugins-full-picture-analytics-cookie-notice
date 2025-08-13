@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WP Full Picture\n"
 "Report-Msgid-Bugs-To: Translator Name <translations@example.com>\n"
-"POT-Creation-Date: 2025-08-05 23:12+0200\n"
+"POT-Creation-Date: 2025-08-13 15:27+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Your Name <you@example.com>\n"
 "Language-Team: WP Full Picture Team <hello@wpfullpicture.com>\n"
@@ -101,7 +101,7 @@ msgid "Please select"
 msgstr ""
 
 #: admin/common/fupi-admin-fields-html.php:700
-#: admin/common/pages/fupi-admin-page-display.php:48
+#: admin/common/pages/fupi-admin-page-display.php:52
 msgid "Required"
 msgstr ""
 
@@ -129,29 +129,29 @@ msgid ""
 "WP Full Picture's team"
 msgstr ""
 
-#: admin/common/pages/fupi-admin-page-display.php:63
+#: admin/common/pages/fupi-admin-page-display.php:67
 msgid "Extended integrations"
 msgstr ""
 
-#: admin/common/pages/fupi-admin-page-display.php:64
+#: admin/common/pages/fupi-admin-page-display.php:68
 msgid ""
 "Extended integrations let you use basic and advanced functions of tracking "
 "tools."
 msgstr ""
 
-#: admin/common/pages/fupi-admin-page-display.php:70
+#: admin/common/pages/fupi-admin-page-display.php:74
 msgid "Basic integrations"
 msgstr ""
 
-#: admin/common/pages/fupi-admin-page-display.php:71
+#: admin/common/pages/fupi-admin-page-display.php:75
 msgid "Basic integrations let you use only basic functions of tracking tools."
 msgstr ""
 
-#: admin/common/pages/fupi-admin-page-display.php:77
+#: admin/common/pages/fupi-admin-page-display.php:81
 msgid "Tag Managers"
 msgstr ""
 
-#: admin/common/pages/fupi-admin-page-display.php:78
+#: admin/common/pages/fupi-admin-page-display.php:82
 msgid "Tag managers let you install other tracking tools"
 msgstr ""
 
@@ -410,14 +410,26 @@ msgid "Extensions"
 msgstr ""
 
 #: admin/common/pages/parts/fupi-page_part-side-nav.php:192
-msgid "Unlock all PRO features"
+msgid "Visit our new channels"
 msgstr ""
 
 #: admin/common/pages/parts/fupi-page_part-side-nav.php:193
-msgid "Get PRO"
+msgid "GrowthTools Facebook group"
 msgstr ""
 
 #: admin/common/pages/parts/fupi-page_part-side-nav.php:194
+msgid "GrowthTools YouTube channel"
+msgstr ""
+
+#: admin/common/pages/parts/fupi-page_part-side-nav.php:200
+msgid "Unlock all PRO features"
+msgstr ""
+
+#: admin/common/pages/parts/fupi-page_part-side-nav.php:201
+msgid "Get PRO"
+msgstr ""
+
+#: admin/common/pages/parts/fupi-page_part-side-nav.php:202
 msgid "Compare Free and PRO"
 msgstr ""
 
@@ -6319,120 +6331,106 @@ msgstr ""
 msgid "Rest API is generally faster and less resource-intensive."
 msgstr ""
 
-#: admin/modules/main/main-fields.php:86
-msgid "Check if the data was sent from your domain (beta)"
-msgstr ""
-
-#: admin/modules/main/main-fields.php:90
-msgid "This makes sure that all calls to your server originate from your domain."
-msgstr ""
-
-#: admin/modules/main/main-fields.php:91
-msgid ""
-"This setting is in beta. It will be enabled by default if no users report "
-"errors until 31 August 2025. If you find an error, please report it to us."
-msgstr ""
-
-#: admin/modules/main/main-fields.php:103 admin/modules/main/main-fields.php:107
+#: admin/modules/main/main-fields.php:94 admin/modules/main/main-fields.php:98
 msgid "Setup mode"
 msgstr ""
 
-#: admin/modules/main/main-fields.php:118
+#: admin/modules/main/main-fields.php:109
 msgid "Tracking exclusions"
 msgstr ""
 
-#: admin/modules/main/main-fields.php:122
+#: admin/modules/main/main-fields.php:113
 msgid "Do not track visitors who enter the site from this link:"
 msgstr ""
 
-#: admin/modules/main/main-fields.php:133
+#: admin/modules/main/main-fields.php:124
 msgid ""
 "When someone clicks this link they will no longer be tracked no matter whether "
 "they are logged in or not. This state will be remembered by their browser "
 "until they:"
 msgstr ""
 
-#: admin/modules/main/main-fields.php:135
+#: admin/modules/main/main-fields.php:126
 msgid "visit the site from address that ends with \""
 msgstr ""
 
-#: admin/modules/main/main-fields.php:136
+#: admin/modules/main/main-fields.php:127
 msgid ""
 "click an \"eye\" icon in the bottom-left corner of the screen (on the visitor-"
 "facing website),"
 msgstr ""
 
-#: admin/modules/main/main-fields.php:137
+#: admin/modules/main/main-fields.php:128
 msgid "clear cookies in their browser."
 msgstr ""
 
-#: admin/modules/main/main-fields.php:139
+#: admin/modules/main/main-fields.php:130
 msgid "resets visitor's tracking preferences"
 msgstr ""
 
-#: admin/modules/main/main-fields.php:144
+#: admin/modules/main/main-fields.php:135
 msgid "Do not track logged-in users with these roles:"
 msgstr ""
 
-#: admin/modules/main/main-fields.php:149
+#: admin/modules/main/main-fields.php:140
 msgid ""
 "Site administrators are never tracked. To make them \"trackable\", please "
 "enable \"setup mode\" in the previous tab of these settigngs."
 msgstr ""
 
-#: admin/modules/main/main-fields.php:158 admin/modules/main/main-fields.php:162
+#: admin/modules/main/main-fields.php:149 admin/modules/main/main-fields.php:153
 msgid "Meta tags"
 msgstr ""
 
-#: admin/modules/main/main-fields.php:167
+#: admin/modules/main/main-fields.php:158
 msgid ""
 "One tag per line. For security reasons, meta tags can only have parameters: "
 "\"name\", \"content\", \"property\", \"charset\" and \"http-equiv\"."
 msgstr ""
 
-#: admin/modules/main/main-fields.php:173
+#: admin/modules/main/main-fields.php:164
 msgid "Name (for your information)"
 msgstr ""
 
-#: admin/modules/main/main-fields.php:179
+#: admin/modules/main/main-fields.php:170
 msgid "Tag <meta....>"
 msgstr ""
 
-#: admin/modules/main/main-fields.php:191
+#: admin/modules/main/main-fields.php:182
 msgid "Performance"
 msgstr ""
 
-#: admin/modules/main/main-fields.php:195
+#: admin/modules/main/main-fields.php:186
 msgid "Defer non-critical scripts"
 msgstr ""
 
-#: admin/modules/main/main-fields.php:198
+#: admin/modules/main/main-fields.php:189
 msgid ""
 "Do not defer WP FP's scripts using a different plugin or solution. Not all WP "
 "FP's scripts can be safely deferred."
 msgstr ""
 
-#: admin/modules/main/main-fields.php:202
+#: admin/modules/main/main-fields.php:193
 msgid "Save main JS functions in a file"
 msgstr ""
 
-#: admin/modules/main/main-fields.php:205
+#: admin/modules/main/main-fields.php:196
 msgid ""
 "If you enable this option, WP FP will save some of its main JavaScript "
 "functions in a file, instead of printing them directly in the HTML."
 msgstr ""
 
-#: admin/modules/main/main-fields.php:209
+#: admin/modules/main/main-fields.php:200
 msgid "Save Custom Scripts in a file (beta)"
 msgstr ""
 
-#: admin/modules/main/main-fields.php:212
+#: admin/modules/main/main-fields.php:203
 msgid ""
 "If you enable this option, WP FP will save scripts from the Custom Scripts "
 "module in a file, instead of printing them directly in the HTML."
 msgstr ""
 
-#: admin/modules/main/main-fields.php:213
+#: admin/modules/main/main-fields.php:204
 msgid ""
 "Attention. All scripts in a file will be wrapped in a function. This means "
 "that all variables that should be accessible via \"window\" object, will not "
@@ -6440,25 +6438,25 @@ msgid ""
 "to \"window.variable_name\"."
 msgstr ""
 
-#: admin/modules/main/main-fields.php:214
+#: admin/modules/main/main-fields.php:205
 #, php-format
 msgid ""
 "This feature is in beta. Please report issues in %1$sthe support forum%2$s."
 msgstr ""
 
-#: admin/modules/main/main-fields.php:222
+#: admin/modules/main/main-fields.php:213
 msgid "Backups"
 msgstr ""
 
-#: admin/modules/main/main-fields.php:228
+#: admin/modules/main/main-fields.php:219
 msgid "Other settings"
 msgstr ""
 
-#: admin/modules/main/main-fields.php:236
+#: admin/modules/main/main-fields.php:227
 msgid "[fp_info] shortcode"
 msgstr ""
 
-#: admin/modules/main/main-fields.php:240
+#: admin/modules/main/main-fields.php:231
 msgid "Add more tracking tools to the list"
 msgstr ""
 
@@ -9575,48 +9573,48 @@ msgid ""
 "WordPress admin plugin management page"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:166
+#: includes/class-fupi-get-gdpr-status.php:163
 msgid ""
 "Add to your privacy policy information about additional information tracked "
 "and sent to the tool:"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:389
+#: includes/class-fupi-get-gdpr-status.php:391
 msgid ""
 "The tool is set to \"force load\" and track all visitors. Disable it in the "
 "module's settings."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:403
+#: includes/class-fupi-get-gdpr-status.php:405
 msgid ""
 "The tool is set to disregard consent banner settings and start tracking "
 "without waiting for consent. Disable it in the module's settings."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:415
+#: includes/class-fupi-get-gdpr-status.php:417
 msgid "This tool requires consents to:"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:416
+#: includes/class-fupi-get-gdpr-status.php:418
 msgid "It tracks additional data after visitors agree to:"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:440
+#: includes/class-fupi-get-gdpr-status.php:442
 msgid ""
 "Link decoration is enabled in the Google Tag settings. This setting is a "
 "privacy grey area. Make sure you are not breaking any laws by using it. "
 "Otherwise, disable it."
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:512
+#: includes/class-fupi-get-gdpr-status.php:514
 msgid "User metadata with ID: "
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:697
+#: includes/class-fupi-get-gdpr-status.php:699
 msgid "Other recommendations"
 msgstr ""
 
-#: includes/class-fupi-get-gdpr-status.php:701
+#: includes/class-fupi-get-gdpr-status.php:703
 msgid ""
 "Make sure that you do not use Google reCaptcha. It does not comply with GDPR "
 "and there is no known method of making it comply with it. Replace it with a "

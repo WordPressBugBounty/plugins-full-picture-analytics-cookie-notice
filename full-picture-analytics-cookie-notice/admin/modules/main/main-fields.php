@@ -80,16 +80,7 @@ array_push( $other_settings,
 		),
 		'popup'				=> '<p>' . esc_html__( 'The method you choose here will be used to send data from the visitors\'s browser to your server. This is used for server-side tracking and for sending visitor consents.', 'full-picture-analytics-cookie-notice' ) . '</p>
 			<p>' . esc_html__( 'Rest API is generally faster and less resource-intensive.', 'full-picture-analytics-cookie-notice' ) . '</p>',
-	),
-		array(
-			'type'	 			=> 'toggle',
-			'label' 			=> esc_html__( 'Check if the data was sent from your domain (beta)', 'full-picture-analytics-cookie-notice' ),
-			'field_id' 			=> 'verify_permissions',
-			'class'				=> 'fupi_sub fuipi_disabled fupi_restpi_opts fupi_cond_val_rest',
-			'option_arr_id'		=> $option_arr_id,
-			'popup3'			=> '<p>' . esc_html__('This makes sure that all calls to your server originate from your domain.', 'full-picture-analytics-cookie-notice') . '</p>
-			<p class="fupi_warning_text">' . esc_html__('This setting is in beta. It will be enabled by default if no users report errors until 31 August 2025. If you find an error, please report it to us.', 'full-picture-analytics-cookie-notice') . '</p>',
-		)
+	)
 );
 
 // SECTIONS

@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wpfp\n"
 "Report-Msgid-Bugs-To: Translator Name <translations@example.com>\n"
-"POT-Creation-Date: 2025-08-05 18:46+0200\n"
-"PO-Revision-Date: 2025-08-05 18:50+0200\n"
+"POT-Creation-Date: 2025-08-13 15:27+0200\n"
+"PO-Revision-Date: 2025-08-13 15:29+0200\n"
 "Last-Translator: Krzysztof Planeta <hello@wpfullpicture.com>\n"
 "Language-Team: Polish\n"
 "Language: pl_PL\n"
@@ -101,7 +101,7 @@ msgid "Please select"
 msgstr "Wybierz"
 
 #: admin/common/fupi-admin-fields-html.php:700
-#: admin/common/pages/fupi-admin-page-display.php:48
+#: admin/common/pages/fupi-admin-page-display.php:52
 msgid "Required"
 msgstr "Wymagane"
 
@@ -131,27 +131,27 @@ msgstr ""
 "Pozdrawiamy\n"
 "Zespół WP Full Picture"
 
-#: admin/common/pages/fupi-admin-page-display.php:63
+#: admin/common/pages/fupi-admin-page-display.php:67
 msgid "Extended integrations"
 msgstr "Rozszerzone integracje"
 
-#: admin/common/pages/fupi-admin-page-display.php:64
+#: admin/common/pages/fupi-admin-page-display.php:68
 msgid "Extended integrations let you use basic and advanced functions of tracking tools."
 msgstr "Rozszerzone integracje umożliwiają korzystanie z podstawowych i zaawansowanych funkcji narzędzi śledzących."
 
-#: admin/common/pages/fupi-admin-page-display.php:70
+#: admin/common/pages/fupi-admin-page-display.php:74
 msgid "Basic integrations"
 msgstr "Podstawowe integracje"
 
-#: admin/common/pages/fupi-admin-page-display.php:71
+#: admin/common/pages/fupi-admin-page-display.php:75
 msgid "Basic integrations let you use only basic functions of tracking tools."
 msgstr "Podstawowe integracje pozwalają korzystać tylko z podstawowych funkcji narzędzi śledzących."
 
-#: admin/common/pages/fupi-admin-page-display.php:77
+#: admin/common/pages/fupi-admin-page-display.php:81
 msgid "Tag Managers"
 msgstr "Menedżery tagów"
 
-#: admin/common/pages/fupi-admin-page-display.php:78
+#: admin/common/pages/fupi-admin-page-display.php:82
 msgid "Tag managers let you install other tracking tools"
 msgstr "Menedżery tagów umożliwiają instalację innych narzędzi śledzących"
 
@@ -384,14 +384,26 @@ msgid "Extensions"
 msgstr "Rozszerzenia"
 
 #: admin/common/pages/parts/fupi-page_part-side-nav.php:192
+msgid "Visit our new channels"
+msgstr "Odwiedź nasze nowe kanały"
+
+#: admin/common/pages/parts/fupi-page_part-side-nav.php:193
+msgid "GrowthTools Facebook group"
+msgstr "Grupa GrowthTools na Facebooku"
+
+#: admin/common/pages/parts/fupi-page_part-side-nav.php:194
+msgid "GrowthTools YouTube channel"
+msgstr "Kanał GrowthTools na YouTube"
+
+#: admin/common/pages/parts/fupi-page_part-side-nav.php:200
 msgid "Unlock all PRO features"
 msgstr "Odblokuj wszystkie funkcje PRO"
 
-#: admin/common/pages/parts/fupi-page_part-side-nav.php:193
+#: admin/common/pages/parts/fupi-page_part-side-nav.php:201
 msgid "Get PRO"
 msgstr "Kup PRO"
 
-#: admin/common/pages/parts/fupi-page_part-side-nav.php:194
+#: admin/common/pages/parts/fupi-page_part-side-nav.php:202
 msgid "Compare Free and PRO"
 msgstr "Porównaj Free i PRO"
 
@@ -5654,126 +5666,113 @@ msgstr "Metoda, którą tutaj wybierzesz, będzie używana do wysyłania danych 
 msgid "Rest API is generally faster and less resource-intensive."
 msgstr "Rest API jest generalnie szybsze i mniej zasobochłonne."
 
-#: admin/modules/main/main-fields.php:86
-msgid "Check if the data was sent from your domain (beta)"
-msgstr "Sprawdź, czy dane zostały wysłane z Twojej domeny (beta)"
-
-#: admin/modules/main/main-fields.php:90
-msgid "This makes sure that all calls to your server originate from your domain."
-msgstr "To ustawienie sprawia, że wszystkie dane wysyłane na Twój serwer pochodzą z Twojej domeny."
-
-#: admin/modules/main/main-fields.php:91
-msgid "This setting is in beta. It will be enabled by default if no users report errors until 31 August 2025. If you find an error, please report it to us."
-msgstr "To ustawienie jest w wersji beta. Zostanie domyślnie włączone, jeśli do 31 sierpnia 2025 r. żaden użytkownik nie zgłosi błędów. Jeśli znajdziesz błąd, zgłoś go nam."
-
-#: admin/modules/main/main-fields.php:103
-#: admin/modules/main/main-fields.php:107
+#: admin/modules/main/main-fields.php:94 admin/modules/main/main-fields.php:98
 msgid "Setup mode"
 msgstr "Tryb konfiguracji"
 
-#: admin/modules/main/main-fields.php:118
+#: admin/modules/main/main-fields.php:109
 msgid "Tracking exclusions"
 msgstr "Wyłączanie śledzenia"
 
-#: admin/modules/main/main-fields.php:122
+#: admin/modules/main/main-fields.php:113
 msgid "Do not track visitors who enter the site from this link:"
 msgstr "Nie śledź odwiedzających, którzy wchodzą na stronę z tego linku:"
 
-#: admin/modules/main/main-fields.php:133
+#: admin/modules/main/main-fields.php:124
 msgid "When someone clicks this link they will no longer be tracked no matter whether they are logged in or not. This state will be remembered by their browser until they:"
 msgstr "Gdy ktoś kliknie ten link, nie będzie już śledzony bez względu na to, czy jest zalogowany, czy nie. Stan ten zostanie zapamiętany przez przeglądarkę do chwili kiedy:"
 
-#: admin/modules/main/main-fields.php:135
+#: admin/modules/main/main-fields.php:126
 msgid "visit the site from address that ends with \""
 msgstr "zostanie odwiedzona z adresu kończącego się na \""
 
-#: admin/modules/main/main-fields.php:136
+#: admin/modules/main/main-fields.php:127
 msgid "click an \"eye\" icon in the bottom-left corner of the screen (on the visitor-facing website),"
 msgstr "użytkownik kliknie ikonę \"oka\" w lewym dolnym rogu ekranu,"
 
-#: admin/modules/main/main-fields.php:137
+#: admin/modules/main/main-fields.php:128
 msgid "clear cookies in their browser."
 msgstr "użytkownik wyczyści pliki cookie w swojej przeglądarce."
 
-#: admin/modules/main/main-fields.php:139
+#: admin/modules/main/main-fields.php:130
 msgid "resets visitor's tracking preferences"
 msgstr "resetuje preferencje śledzenia odwiedzającego"
 
-#: admin/modules/main/main-fields.php:144
+#: admin/modules/main/main-fields.php:135
 msgid "Do not track logged-in users with these roles:"
 msgstr "Nie śledź zalogowanych użytkowników o tych rolach:"
 
-#: admin/modules/main/main-fields.php:149
+#: admin/modules/main/main-fields.php:140
 msgid "Site administrators are never tracked. To make them \"trackable\", please enable \"setup mode\" in the previous tab of these settigngs."
 msgstr "Administratorzy strony nigdy nie są śledzeni. Aby umożliwić ich śledzenie, włącz \"tryb konfiguracji\" w poprzedniej zakładce tych ustawień."
 
-#: admin/modules/main/main-fields.php:158
-#: admin/modules/main/main-fields.php:162
+#: admin/modules/main/main-fields.php:149
+#: admin/modules/main/main-fields.php:153
 msgid "Meta tags"
 msgstr "Meta tagi"
 
-#: admin/modules/main/main-fields.php:167
+#: admin/modules/main/main-fields.php:158
 msgid "One tag per line. For security reasons, meta tags can only have parameters: \"name\", \"content\", \"property\", \"charset\" and \"http-equiv\"."
 msgstr "Jeden tag na linię. Ze względów bezpieczeństwa tagi meta mogą mieć tylko parametry: \"name\", \"content\", \"property\", \"charset\" i \"http-equiv\"."
 
-#: admin/modules/main/main-fields.php:173
+#: admin/modules/main/main-fields.php:164
 msgid "Name (for your information)"
 msgstr "Nazwa (do Twojej wiadomości)"
 
-#: admin/modules/main/main-fields.php:179
+#: admin/modules/main/main-fields.php:170
 msgid "Tag <meta....>"
 msgstr "Tag <meta....>"
 
-#: admin/modules/main/main-fields.php:191
+#: admin/modules/main/main-fields.php:182
 msgid "Performance"
 msgstr "Wydajność"
 
-#: admin/modules/main/main-fields.php:195
+#: admin/modules/main/main-fields.php:186
 msgid "Defer non-critical scripts"
 msgstr "Włącz deferowanie skryptów WP FP"
 
-#: admin/modules/main/main-fields.php:198
+#: admin/modules/main/main-fields.php:189
 msgid "Do not defer WP FP's scripts using a different plugin or solution. Not all WP FP's scripts can be safely deferred."
 msgstr "Nie odraczaj ładowania skryptów WP FP przy użyciu innej wtyczki lub rozwiązania (ang. script deferring). Nie wszystkie skrypty WP FP mogą być bezpiecznie odroczone."
 
-#: admin/modules/main/main-fields.php:202
+#: admin/modules/main/main-fields.php:193
 msgid "Save main JS functions in a file"
 msgstr "Zapisz główne funkcje JS w pliku"
 
-#: admin/modules/main/main-fields.php:205
+#: admin/modules/main/main-fields.php:196
 msgid "If you enable this option, WP FP will save some of its main JavaScript functions in a file, instead of printing them directly in the HTML."
 msgstr "Jeśli włączysz tę opcję, WP FP zapisze niektóre ze swoich głównych funkcji JavaScript w pliku, zamiast umieszczać je bezpośrednio w HTML."
 
-#: admin/modules/main/main-fields.php:209
+#: admin/modules/main/main-fields.php:200
 msgid "Save Custom Scripts in a file (beta)"
 msgstr "Zapisz Własne Skrypty w pliku (beta)"
 
-#: admin/modules/main/main-fields.php:212
+#: admin/modules/main/main-fields.php:203
 msgid "If you enable this option, WP FP will save scripts from the Custom Scripts module in a file, instead of printing them directly in the HTML."
 msgstr "Jeśli włączysz tę opcję, WP FP umieści skrypty z modułu Własne Skrypty w pliku, zamiast umieszczać je bezpośrednio w HTML."
 
-#: admin/modules/main/main-fields.php:213
+#: admin/modules/main/main-fields.php:204
 msgid "Attention. All scripts in a file will be wrapped in a function. This means that all variables that should be accessible via \"window\" object, will not be accessible this way unless you change them from e.g. \"var variable_name\" to \"window.variable_name\"."
 msgstr "Uwaga. Wszystkie skrypty w pliku będą otoczone funkcją JS. Oznacza to, że wszystkie zmienne, które powinny być dostępne za pośrednictwem obiektu \"window\", nie będą dostępne w ten sposób, chyba że zmienisz je np. z \"var nazwa_zmiennej\" na \"window.nazwa_zmiennej\"."
 
-#: admin/modules/main/main-fields.php:214
+#: admin/modules/main/main-fields.php:205
 #, php-format
 msgid "This feature is in beta. Please report issues in %1$sthe support forum%2$s."
 msgstr "Ta funkcja jest w wersji beta. Proszę zgłaszać problemy na %1$sforum wsparcia%2$s."
 
-#: admin/modules/main/main-fields.php:222
+#: admin/modules/main/main-fields.php:213
 msgid "Backups"
 msgstr "Kopie zapasowe"
 
-#: admin/modules/main/main-fields.php:228
+#: admin/modules/main/main-fields.php:219
 msgid "Other settings"
 msgstr "Inne ustawienia"
 
-#: admin/modules/main/main-fields.php:236
+#: admin/modules/main/main-fields.php:227
 msgid "[fp_info] shortcode"
 msgstr "Shortcode [fp_info]"
 
-#: admin/modules/main/main-fields.php:240
+#: admin/modules/main/main-fields.php:231
 msgid "Add more tracking tools to the list"
 msgstr "Dodaj więcej narzędzi śledzących do listy"
 
@@ -8378,39 +8377,39 @@ msgstr "Wtyczka WP Full Picture została dezaktywowana na stronie %1$s"
 msgid "WP Full Picture plugin has been deactivated. You can re-activate it from your WordPress admin plugin management page"
 msgstr "Wtyczka WP Full Picture została dezaktywowana. Możesz ją ponownie aktywować na stronie zarządzania wtyczkami w panelu administracyjnym WordPress"
 
-#: includes/class-fupi-get-gdpr-status.php:166
+#: includes/class-fupi-get-gdpr-status.php:163
 msgid "Add to your privacy policy information about additional information tracked and sent to the tool:"
 msgstr "Dodaj do swojej polityki prywatności informacje o dodatkowych informacjach, umożliwiających identyfikację użytkownika, które są śledzone:"
 
-#: includes/class-fupi-get-gdpr-status.php:389
+#: includes/class-fupi-get-gdpr-status.php:391
 msgid "The tool is set to \"force load\" and track all visitors. Disable it in the module's settings."
 msgstr "Narzędzie jest ustawione na \"wymuszanie ładowania\" i śledzenie wszystkich odwiedzających. Wyłącz je w ustawieniach modułu."
 
-#: includes/class-fupi-get-gdpr-status.php:403
+#: includes/class-fupi-get-gdpr-status.php:405
 msgid "The tool is set to disregard consent banner settings and start tracking without waiting for consent. Disable it in the module's settings."
 msgstr "Narzędzie jest ustawione na ignorowanie ustawień banera zgody i rozpoczęcie śledzenia bez oczekiwania na zgodę. Wyłącz to w ustawieniach modułu."
 
-#: includes/class-fupi-get-gdpr-status.php:415
+#: includes/class-fupi-get-gdpr-status.php:417
 msgid "This tool requires consents to:"
 msgstr "To narzędzie wymaga zgody na:"
 
-#: includes/class-fupi-get-gdpr-status.php:416
+#: includes/class-fupi-get-gdpr-status.php:418
 msgid "It tracks additional data after visitors agree to:"
 msgstr "Śledzi dodatkowe dane po wyrażeniu zgody przez odwiedzających:"
 
-#: includes/class-fupi-get-gdpr-status.php:440
+#: includes/class-fupi-get-gdpr-status.php:442
 msgid "Link decoration is enabled in the Google Tag settings. This setting is a privacy grey area. Make sure you are not breaking any laws by using it. Otherwise, disable it."
 msgstr "Dekorowanie linków jest włączone w ustawieniach Google Tag. Legalność tego ustawienia jest nieokreślona i zależy od regionu i lokalnej interpretacji prawa. Upewnij się, że nie łamiesz żadnych przepisów, korzystając z niego. W przeciwnym razie wyłącz je."
 
-#: includes/class-fupi-get-gdpr-status.php:512
+#: includes/class-fupi-get-gdpr-status.php:514
 msgid "User metadata with ID: "
 msgstr "Metadane użytkownika o ID: "
 
-#: includes/class-fupi-get-gdpr-status.php:697
+#: includes/class-fupi-get-gdpr-status.php:699
 msgid "Other recommendations"
 msgstr "Inne zalecenia"
 
-#: includes/class-fupi-get-gdpr-status.php:701
+#: includes/class-fupi-get-gdpr-status.php:703
 msgid "Make sure that you do not use Google reCaptcha. It does not comply with GDPR and there is no known method of making it comply with it. Replace it with a GDPR compliant solution like Cloudflare Turnstile (free and paid) or Friendly Captcha (paid for commercial use). Attention. You may read online, that there are ways to make Google reCaptcha compatible with GDPR. This is not true. The proposed solution of conditionally loading reCaptcha's scripts prevents access to content if visitors do not agree to tracking, which is against GDPR."
 msgstr "Google reCaptcha nie jest zgodna z RODO i nie ma znanej metody dostosowania jej do RODO. Upewnij się, że zastąpisz go rozwiązaniem zgodnym z RODO, na przykład Cloudflare Turnstile (darmowym i płatnym) lub Friendly Captcha (płatnym do użytku komercyjnego). Uwaga. Możesz przeczytać w Internecie, że istnieją sposoby na dostosowanie Google reCaptcha do RODO. Nie jest to prawda. Proponowane rozwiązanie polegające na warunkowym ładowaniu skryptów reCaptcha uniemożliwia dostęp do treści, jeśli odwiedzający nie wyrażą zgody na śledzenie, co jest niezgodne z RODO."
 

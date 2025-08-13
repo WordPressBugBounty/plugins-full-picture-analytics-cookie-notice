@@ -554,7 +554,7 @@
 	// BLOCK CART & MINI CART
 
 	function add_block_hooks(){
-		if ( wp && wp.hooks && wp.hooks.addAction ){
+		if ( typeof wp !== 'undefined' && wp.hooks && wp.hooks.addAction ){
 
 			// change quantity
 			wp.hooks.addAction(
