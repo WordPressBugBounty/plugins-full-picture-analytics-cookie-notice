@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WP Full Picture\n"
 "Report-Msgid-Bugs-To: Translator Name <translations@example.com>\n"
-"POT-Creation-Date: 2025-08-13 15:27+0200\n"
+"POT-Creation-Date: 2025-08-27 11:13+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Your Name <you@example.com>\n"
 "Language-Team: WP Full Picture Team <hello@wpfullpicture.com>\n"
@@ -66,7 +66,7 @@ msgid "Module"
 msgstr ""
 
 #: admin/common/fupi-admin-fields-html.php:123
-#: admin/modules/proofrec/proofrec-fields.php:14
+#: admin/modules/proofrec/proofrec-fields.php:11
 msgid "Requires"
 msgstr ""
 
@@ -409,28 +409,28 @@ msgstr ""
 msgid "Extensions"
 msgstr ""
 
-#: admin/common/pages/parts/fupi-page_part-side-nav.php:192
-msgid "Visit our new channels"
-msgstr ""
-
 #: admin/common/pages/parts/fupi-page_part-side-nav.php:193
-msgid "GrowthTools Facebook group"
-msgstr ""
-
-#: admin/common/pages/parts/fupi-page_part-side-nav.php:194
-msgid "GrowthTools YouTube channel"
-msgstr ""
-
-#: admin/common/pages/parts/fupi-page_part-side-nav.php:200
 msgid "Unlock all PRO features"
 msgstr ""
 
-#: admin/common/pages/parts/fupi-page_part-side-nav.php:201
+#: admin/common/pages/parts/fupi-page_part-side-nav.php:194
 msgid "Get PRO"
 msgstr ""
 
-#: admin/common/pages/parts/fupi-page_part-side-nav.php:202
+#: admin/common/pages/parts/fupi-page_part-side-nav.php:195
 msgid "Compare Free and PRO"
+msgstr ""
+
+#: admin/common/pages/parts/fupi-page_part-side-nav.php:200
+msgid "Visit our new channels"
+msgstr ""
+
+#: admin/common/pages/parts/fupi-page_part-side-nav.php:201
+msgid "GrowthTools Facebook group"
+msgstr ""
+
+#: admin/common/pages/parts/fupi-page_part-side-nav.php:202
+msgid "GrowthTools YouTube channel"
 msgstr ""
 
 #: admin/common/pages/parts/fupi-page_part-top-nav.php:17
@@ -527,7 +527,7 @@ msgid "Descriptive name"
 msgstr ""
 
 #: admin/modules/atrig__premium_only/atrig-fields.php:34
-#: admin/modules/cook/cook-fields.php:242 admin/modules/pla/pla-fields.php:353
+#: admin/modules/cook/cook-fields.php:229 admin/modules/pla/pla-fields.php:353
 msgid "Name"
 msgstr ""
 
@@ -941,7 +941,7 @@ msgid ""
 msgstr ""
 
 #: admin/modules/cegg/cegg-fields.php:68 admin/modules/clar/clar-fields.php:67
-#: admin/modules/cook/cook-fields.php:320 admin/modules/cscr/cscr-fields.php:112
+#: admin/modules/cook/cook-fields.php:307 admin/modules/cscr/cscr-fields.php:112
 #: admin/modules/fbp1/fbp1-fields.php:122 admin/modules/ga41/ga41-fields.php:67
 #: admin/modules/gads/gads-fields.php:66 admin/modules/hotj/hotj-fields.php:69
 #: admin/modules/insp/insp-fields.php:74 admin/modules/linkd/linkd-fields.php:67
@@ -954,7 +954,7 @@ msgid "All except"
 msgstr ""
 
 #: admin/modules/cegg/cegg-fields.php:69 admin/modules/clar/clar-fields.php:68
-#: admin/modules/cook/cook-fields.php:321 admin/modules/cscr/cscr-fields.php:113
+#: admin/modules/cook/cook-fields.php:308 admin/modules/cscr/cscr-fields.php:113
 #: admin/modules/fbp1/fbp1-fields.php:123 admin/modules/ga41/ga41-fields.php:68
 #: admin/modules/gads/gads-fields.php:67 admin/modules/hotj/hotj-fields.php:70
 #: admin/modules/insp/insp-fields.php:75 admin/modules/linkd/linkd-fields.php:68
@@ -966,7 +966,7 @@ msgstr ""
 msgid "Only in"
 msgstr ""
 
-#: admin/modules/cegg/cegg-fields.php:76 admin/modules/cook/cook-fields.php:328
+#: admin/modules/cegg/cegg-fields.php:76 admin/modules/cook/cook-fields.php:315
 #: admin/modules/cscr/cscr-fields.php:120 admin/modules/fbp1/fbp1-fields.php:130
 #: admin/modules/insp/insp-fields.php:82 admin/modules/mato/mato-fields.php:94
 #: admin/modules/pin/pin-fields.php:75 admin/modules/pla/pla-fields.php:96
@@ -1499,150 +1499,150 @@ msgid ""
 "this page%2$s page."
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:31 admin/modules/cook/cook-fields.php:53
+#: admin/modules/cook/cook-fields.php:18 admin/modules/cook/cook-fields.php:40
 msgid "How should the banner work?"
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:35 admin/modules/cook/cook-fields.php:59
-#: admin/modules/cook/cook-fields.php:100
+#: admin/modules/cook/cook-fields.php:22 admin/modules/cook/cook-fields.php:46
+#: admin/modules/cook/cook-fields.php:87
 msgid "Opt-in mode (GDPR compliant, recommended)"
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:36 admin/modules/cook/cook-fields.php:60
-#: admin/modules/cook/cook-fields.php:72 admin/modules/cook/cook-fields.php:101
+#: admin/modules/cook/cook-fields.php:23 admin/modules/cook/cook-fields.php:47
+#: admin/modules/cook/cook-fields.php:59 admin/modules/cook/cook-fields.php:88
 msgid "Opt-out mode"
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:37 admin/modules/cook/cook-fields.php:61
-#: admin/modules/cook/cook-fields.php:76 admin/modules/cook/cook-fields.php:102
+#: admin/modules/cook/cook-fields.php:24 admin/modules/cook/cook-fields.php:48
+#: admin/modules/cook/cook-fields.php:63 admin/modules/cook/cook-fields.php:89
 msgid "Notification mode"
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:40
+#: admin/modules/cook/cook-fields.php:27
 msgid "Enable the Geolocation module to choose geolocation-based modes."
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:62
+#: admin/modules/cook/cook-fields.php:49
 msgid "Automatic strict mode (GDPR compliant, recommended)"
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:63
+#: admin/modules/cook/cook-fields.php:50
 msgid "Automatic Lax mode (GDPR compliant)"
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:64 admin/modules/cook/cook-fields.php:89
+#: admin/modules/cook/cook-fields.php:51 admin/modules/cook/cook-fields.php:76
 msgid "Manual mode"
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:68
+#: admin/modules/cook/cook-fields.php:55
 msgid "Opt-in mode"
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:68 admin/modules/cook/cook-fields.php:79
+#: admin/modules/cook/cook-fields.php:55 admin/modules/cook/cook-fields.php:66
 msgid "GDPR compliant, recommended"
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:69 admin/modules/cook/cook-fields.php:73
+#: admin/modules/cook/cook-fields.php:56 admin/modules/cook/cook-fields.php:60
 msgid ""
 "When someone visits your site, they'll see a popup with options to accept or "
 "decline tracking."
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:70
+#: admin/modules/cook/cook-fields.php:57
 msgid "Tracking will start only after they make a choice."
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:72 admin/modules/cook/cook-fields.php:76
+#: admin/modules/cook/cook-fields.php:59 admin/modules/cook/cook-fields.php:63
 msgid "not GDPR compliant"
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:74
+#: admin/modules/cook/cook-fields.php:61
 msgid ""
 "Tracking will start as soon as a visitor lands on the website, but they will "
 "be able to turn it off by choosing to decline."
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:77
+#: admin/modules/cook/cook-fields.php:64
 msgid ""
 "When someone visits your site, they'll see a popup that informs them that they "
 "are tracked. They will not be able to decline it."
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:79
+#: admin/modules/cook/cook-fields.php:66
 msgid "Automatic strict mode"
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:80 admin/modules/cook/cook-fields.php:85
-#: admin/modules/cook/cook-fields.php:90
+#: admin/modules/cook/cook-fields.php:67 admin/modules/cook/cook-fields.php:72
+#: admin/modules/cook/cook-fields.php:77
 msgid "It requires the Geolocation module."
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:81 admin/modules/cook/cook-fields.php:86
+#: admin/modules/cook/cook-fields.php:68 admin/modules/cook/cook-fields.php:73
 msgid ""
 "The consent banner will work opt-in, opt-out or notification mode, depending "
 "on the location of the visitor."
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:82
+#: admin/modules/cook/cook-fields.php:69
 msgid ""
 "The Strict mode is for sites that use visitors' data for marketing or collect "
 "sensitive data."
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:84
+#: admin/modules/cook/cook-fields.php:71
 msgid "Automatic Lax mode"
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:84
+#: admin/modules/cook/cook-fields.php:71
 msgid "GDPR compliant"
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:87
+#: admin/modules/cook/cook-fields.php:74
 msgid ""
 "The Lax mode is for sites that don't use visitors' data for marketing or "
 "collect sensitive data."
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:91
+#: admin/modules/cook/cook-fields.php:78
 msgid ""
 "Choose this option to manually choose how the banner should work in different "
 "countries. "
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:95
+#: admin/modules/cook/cook-fields.php:82
 msgid "Which mode to use if geolocation fails?"
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:108
+#: admin/modules/cook/cook-fields.php:95
 msgid "Track visitors after they agree to tracking"
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:115
+#: admin/modules/cook/cook-fields.php:102
 msgid "In all countries"
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:116 admin/modules/cook/cook-fields.php:141
-#: admin/modules/cook/cook-fields.php:166
+#: admin/modules/cook/cook-fields.php:103 admin/modules/cook/cook-fields.php:128
+#: admin/modules/cook/cook-fields.php:153
 msgid "Nowhere"
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:117 admin/modules/cook/cook-fields.php:142
-#: admin/modules/cook/cook-fields.php:167
+#: admin/modules/cook/cook-fields.php:104 admin/modules/cook/cook-fields.php:129
+#: admin/modules/cook/cook-fields.php:154
 msgid "In specific countries and regions"
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:120
+#: admin/modules/cook/cook-fields.php:107
 #, php-format
 msgid "This is required in %1$s60+ countries%2$s and is accepted in the rest. "
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:124 admin/modules/cook/cook-fields.php:149
-#: admin/modules/cook/cook-fields.php:174
+#: admin/modules/cook/cook-fields.php:111 admin/modules/cook/cook-fields.php:136
+#: admin/modules/cook/cook-fields.php:161
 msgid "Countries and regions"
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:129 admin/modules/cook/cook-fields.php:154
-#: admin/modules/cook/cook-fields.php:179
+#: admin/modules/cook/cook-fields.php:116 admin/modules/cook/cook-fields.php:141
+#: admin/modules/cook/cook-fields.php:166
 #, php-format
 msgid ""
 "Enter a list of 2-character %1$scountry codes%2$s and region codes, for "
@@ -1652,24 +1652,24 @@ msgid ""
 "service you are using."
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:133
+#: admin/modules/cook/cook-fields.php:120
 msgid "Track from the start but let visitors decline tracking"
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:140 admin/modules/cook/cook-fields.php:165
+#: admin/modules/cook/cook-fields.php:127 admin/modules/cook/cook-fields.php:152
 msgid "In all the countries and regions not mentioned above"
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:145 admin/modules/cook/cook-fields.php:170
+#: admin/modules/cook/cook-fields.php:132 admin/modules/cook/cook-fields.php:157
 #, php-format
 msgid "See %1$sin which countries%2$s you can use this setting."
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:158
+#: admin/modules/cook/cook-fields.php:145
 msgid "Only inform visitors about tracking"
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:188
+#: admin/modules/cook/cook-fields.php:175
 #, php-format
 msgid ""
 "Attention. OceanWP theme breaks the controls for styling the consent banner. "
@@ -1677,62 +1677,62 @@ msgid ""
 "it%2$s."
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:194
+#: admin/modules/cook/cook-fields.php:181
 msgid "Change how the banner looks"
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:195
+#: admin/modules/cook/cook-fields.php:182
 msgid "Style the banner"
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:203
+#: admin/modules/cook/cook-fields.php:190
 msgid "You must save changes before you can start customizing."
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:208
+#: admin/modules/cook/cook-fields.php:195
 msgid "Hide consent banner on these pages"
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:210
+#: admin/modules/cook/cook-fields.php:197
 msgid ""
 "By default, WP Full Picture hides consent banner on the privacy policy page."
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:211
+#: admin/modules/cook/cook-fields.php:198
 msgid ""
 "Hiding the banner only hides it visually. It does not automatically give "
 "consent to tracking."
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:215
+#: admin/modules/cook/cook-fields.php:202
 msgid "Show consent banner when visitors click this page element"
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:220
+#: admin/modules/cook/cook-fields.php:207
 msgid "e.g. #some_button"
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:221
+#: admin/modules/cook/cook-fields.php:208
 msgid ""
 "Leave empty to use the default .fp_show_cookie_notice. Alternatively, you can "
 "enable a toggle icon in the styling options above."
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:222
+#: admin/modules/cook/cook-fields.php:209
 msgid ""
 "We recommend that you point at a link or a button in your privacy policy. This "
 "is required in most countries that require consent banners."
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:226
+#: admin/modules/cook/cook-fields.php:213
 msgid "Do NOT ask visitors for consent again"
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:229
+#: admin/modules/cook/cook-fields.php:216
 msgid "Breaks GDPR. Best used on dev sites."
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:230
+#: admin/modules/cook/cook-fields.php:217
 msgid ""
 "When you enable this setting, visitors who already consented, will not be "
 "asked for consent every time you enable new tracking tools or change your "
@@ -1740,43 +1740,43 @@ msgid ""
 "development sites or while setting up tracking."
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:241
+#: admin/modules/cook/cook-fields.php:228
 msgid "Tool's name"
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:247
+#: admin/modules/cook/cook-fields.php:234
 msgid "Control loading of"
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:251
+#: admin/modules/cook/cook-fields.php:238
 msgid "Script with unique text content"
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:252
+#: admin/modules/cook/cook-fields.php:239
 msgid "Script with a specific filename or URL"
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:253
+#: admin/modules/cook/cook-fields.php:240
 msgid "HTML <link> tag with a specific filename or URL"
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:254
+#: admin/modules/cook/cook-fields.php:241
 msgid "Image with a specific filename or URL"
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:261
+#: admin/modules/cook/cook-fields.php:248
 msgid "Filename, full URL, URL part or unique text content"
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:266
+#: admin/modules/cook/cook-fields.php:253
 msgid "Script ID"
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:273 admin/modules/cook/cook-fields.php:466
+#: admin/modules/cook/cook-fields.php:260 admin/modules/cook/cook-fields.php:453
 msgid "What is visitor's data used for?"
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:282 admin/modules/cook/cook-fields.php:473
+#: admin/modules/cook/cook-fields.php:269 admin/modules/cook/cook-fields.php:460
 #: admin/modules/cook/cook-gdpr-check-cdb.php:249
 #: admin/modules/cook/customizer/fupi-customizer-settings.php:456
 #: admin/modules/cook/customizer/fupi-customizer-settings.php:1324
@@ -1785,7 +1785,7 @@ msgstr ""
 msgid "Statistics"
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:288 admin/modules/cook/cook-fields.php:479
+#: admin/modules/cook/cook-fields.php:275 admin/modules/cook/cook-fields.php:466
 #: admin/modules/cook/cook-gdpr-check-cdb.php:253
 #: admin/modules/cook/customizer/fupi-customizer-settings.php:458
 #: admin/modules/cook/customizer/fupi-customizer-settings.php:1428
@@ -1794,7 +1794,7 @@ msgstr ""
 msgid "Marketing"
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:294 admin/modules/cook/cook-fields.php:485
+#: admin/modules/cook/cook-fields.php:281 admin/modules/cook/cook-fields.php:472
 #: admin/modules/cook/cook-gdpr-check-cdb.php:251
 #: admin/modules/cook/customizer/fupi-customizer-settings.php:457
 #: admin/modules/cook/customizer/fupi-customizer-settings.php:1376
@@ -1803,88 +1803,88 @@ msgstr ""
 msgid "Personalisation"
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:299
+#: admin/modules/cook/cook-fields.php:286
 msgid "Tool's privacy policy URL (for use in [fp_info] shortcode)"
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:310 admin/modules/cscr/cscr-fields.php:102
+#: admin/modules/cook/cook-fields.php:297 admin/modules/cscr/cscr-fields.php:102
 msgid "Load only in specific countries (leave blank to use everywhere)"
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:339
+#: admin/modules/cook/cook-fields.php:326
 msgid ""
 "Temporarily stop WP Full Picture from managing this script (blocking, "
 "conditional-loading, etc.)"
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:352
+#: admin/modules/cook/cook-fields.php:339
 msgid "Consent banner settings"
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:360
+#: admin/modules/cook/cook-fields.php:347
 msgid "Control tracking tools"
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:364
+#: admin/modules/cook/cook-fields.php:351
 msgid "Automatically control loading of tracking tools"
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:368
+#: admin/modules/cook/cook-fields.php:355
 msgid "Jetpack Stats (from the Jetpack plugin)"
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:371
+#: admin/modules/cook/cook-fields.php:358
 msgid "Google Analytics (always enabled, via Consent Mode v2)"
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:373
+#: admin/modules/cook/cook-fields.php:360
 msgid "Google Ads (always enabled, via Consent Mode v2)"
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:375
+#: admin/modules/cook/cook-fields.php:362
 msgid "Microsoft Advertising (always enabled, via MS EUT Consent Mode)"
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:379
+#: admin/modules/cook/cook-fields.php:366
 msgid "Control other tools"
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:387
+#: admin/modules/cook/cook-fields.php:374
 msgid "Manually set up what tools to control"
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:393
+#: admin/modules/cook/cook-fields.php:380
 msgid "See the video tutorial how to set it up"
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:402
+#: admin/modules/cook/cook-fields.php:389
 msgid "Control iframes"
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:406
+#: admin/modules/cook/cook-fields.php:393
 msgid "Control iframes from"
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:410
+#: admin/modules/cook/cook-fields.php:397
 msgid "YouTube"
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:411
+#: admin/modules/cook/cook-fields.php:398
 msgid "Vimeo"
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:413
+#: admin/modules/cook/cook-fields.php:400
 msgid ""
 "This will automatically make all iframes on your website load, when visitors "
 "agree to cookies (or privacy policies of platforms that host the external "
 "content)."
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:414 admin/modules/woo/woo-faq.php:17
+#: admin/modules/cook/cook-fields.php:401 admin/modules/woo/woo-faq.php:17
 msgid "Good to know"
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:415
+#: admin/modules/cook/cook-fields.php:402
 #, php-format
 msgid ""
 "If you do NOT want this module to manage specific iframes, simply wrap them "
@@ -1892,97 +1892,97 @@ msgid ""
 "fp_no_mod_end -->%2$s"
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:419
+#: admin/modules/cook/cook-fields.php:406
 msgid "Control other iframes"
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:427
+#: admin/modules/cook/cook-fields.php:414
 msgid "What iframes to control"
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:433 admin/modules/gtag/gtag-fields.php:26
+#: admin/modules/cook/cook-fields.php:420 admin/modules/gtag/gtag-fields.php:26
 #: admin/modules/tik/tik-descr.php:32
 msgid "Learn how to set it up"
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:436
+#: admin/modules/cook/cook-fields.php:423
 msgid "Name of the service*"
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:438
+#: admin/modules/cook/cook-fields.php:425
 msgid "e.g. YouTube"
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:446
+#: admin/modules/cook/cook-fields.php:433
 msgid "Iframe's domain URL*"
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:448
+#: admin/modules/cook/cook-fields.php:435
 msgid "e.g. youtube.com"
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:454
+#: admin/modules/cook/cook-fields.php:441
 msgid "Service's privacy policy"
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:460
+#: admin/modules/cook/cook-fields.php:447
 msgid "Placeholder image URL"
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:494
+#: admin/modules/cook/cook-fields.php:481
 msgid "Default image placeholder"
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:499
+#: admin/modules/cook/cook-fields.php:486
 msgid ""
 "This placeholder will be shown instead of the iframe if no other placeholder "
 "is available. You can enter a link to a png, jpeg or a gif file here."
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:503
+#: admin/modules/cook/cook-fields.php:490
 msgid "Text over the placeholder"
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:506 public/modules/cook/cook-public.php:48
+#: admin/modules/cook/cook-fields.php:493 public/modules/cook/cook-public.php:48
 msgid ""
 "This content is hosted by [[an external source]]. By loading it, you accept "
 "its {{privacy terms}}."
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:509
+#: admin/modules/cook/cook-fields.php:496
 msgid ""
 "The default text is \"This content is hosted by [[an external source]]. By "
 "loading it, you accept its {{privacy terms}}.\""
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:510
+#: admin/modules/cook/cook-fields.php:497
 msgid "[[an external source]] will be replaced by the iframe's domain URL"
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:511
+#: admin/modules/cook/cook-fields.php:498
 msgid ""
 "Words wrapped with double curly brackets {{ ... }} will turn into a link to "
 "the privacy policy of the iframe's source or, if it is hasn't been provided, "
 "to the privacy policy of your website."
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:515
+#: admin/modules/cook/cook-fields.php:502
 msgid "Text of the button which loads the iframe"
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:518 public/modules/cook/cook-public.php:50
+#: admin/modules/cook/cook-fields.php:505 public/modules/cook/cook-public.php:50
 msgid "Load content"
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:519
+#: admin/modules/cook/cook-fields.php:506
 msgid "The default text is \"Load content\"."
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:525
+#: admin/modules/cook/cook-fields.php:512
 msgid "Lazy load all managed iframes"
 msgstr ""
 
-#: admin/modules/cook/cook-fields.php:529
+#: admin/modules/cook/cook-fields.php:516
 msgid "Recommended for improved page-load times"
 msgstr ""
 
@@ -7421,161 +7421,149 @@ msgid ""
 "practices."
 msgstr ""
 
-#: admin/modules/proofrec/proofrec-fields.php:8
-#, php-format
-msgid ""
-"Provide this Install ID %1$s during registration to be able to save 500 proofs/"
-"day for free until August 31, 2025."
+#: admin/modules/proofrec/proofrec-fields.php:16
+#: admin/modules/proofrec/proofrec-fields.php:23
+msgid "In the cloud (with initial free storage for 1000 proofs)"
 msgstr ""
 
 #: admin/modules/proofrec/proofrec-fields.php:19
-msgid "In the cloud (with free storage for 1000 proofs)"
-msgstr ""
-
-#: admin/modules/proofrec/proofrec-fields.php:22
 msgid "On my email account (Pro only)"
 msgstr ""
 
-#: admin/modules/proofrec/proofrec-fields.php:26
-msgid ""
-"In the cloud (with free storage for 1000 proofs + 500/day until end of August "
-"2025)"
-msgstr ""
-
-#: admin/modules/proofrec/proofrec-fields.php:27
+#: admin/modules/proofrec/proofrec-fields.php:24
 msgid "On my email account"
 msgstr ""
 
-#: admin/modules/proofrec/proofrec-fields.php:33
+#: admin/modules/proofrec/proofrec-fields.php:30
 #, php-format
 msgid "%1$sWhat are the differences?%2$s."
 msgstr ""
 
-#: admin/modules/proofrec/proofrec-fields.php:38
+#: admin/modules/proofrec/proofrec-fields.php:35
 #: admin/modules/proofrec/proofrec-gdpr-check-html.php:6
 msgid "Records of consents"
 msgstr ""
 
-#: admin/modules/proofrec/proofrec-fields.php:42
+#: admin/modules/proofrec/proofrec-fields.php:39
 msgid "Where to store proofs of consent"
 msgstr ""
 
-#: admin/modules/proofrec/proofrec-fields.php:57
+#: admin/modules/proofrec/proofrec-fields.php:54
 msgid "ConsentsDB secret key"
 msgstr ""
 
-#: admin/modules/proofrec/proofrec-fields.php:63
+#: admin/modules/proofrec/proofrec-fields.php:60
 msgid "To start saving consents:"
 msgstr ""
 
-#: admin/modules/proofrec/proofrec-fields.php:65
+#: admin/modules/proofrec/proofrec-fields.php:62
 #, php-format
 msgid ""
 "Make sure your site is set up correctly in the %1$sGDPR setup info%2$s page."
 msgstr ""
 
-#: admin/modules/proofrec/proofrec-fields.php:66
+#: admin/modules/proofrec/proofrec-fields.php:63
 msgid "Create an account at ConsentsDB.com."
 msgstr ""
 
-#: admin/modules/proofrec/proofrec-fields.php:67
+#: admin/modules/proofrec/proofrec-fields.php:64
 msgid "Add this website to your account."
 msgstr ""
 
-#: admin/modules/proofrec/proofrec-fields.php:68
+#: admin/modules/proofrec/proofrec-fields.php:65
 msgid ""
-"You will get a secret key. Paste it in the field above and follow the rest of "
+"When you get a secret key, paste it in the field above and follow the rest of "
 "instructions in the ConsentsDB."
 msgstr ""
 
-#: admin/modules/proofrec/proofrec-fields.php:70
+#: admin/modules/proofrec/proofrec-fields.php:67
 msgid "Learn more:"
 msgstr ""
 
-#: admin/modules/proofrec/proofrec-fields.php:72
+#: admin/modules/proofrec/proofrec-fields.php:69
 msgid "Pricing"
 msgstr ""
 
-#: admin/modules/proofrec/proofrec-fields.php:73
+#: admin/modules/proofrec/proofrec-fields.php:70
 msgid "About ConsentsDB"
 msgstr ""
 
-#: admin/modules/proofrec/proofrec-fields.php:74
+#: admin/modules/proofrec/proofrec-fields.php:71
 msgid "Detailed setup guide"
 msgstr ""
 
-#: admin/modules/proofrec/proofrec-fields.php:80
+#: admin/modules/proofrec/proofrec-fields.php:77
 msgid "Allow site visitors to view consent data"
 msgstr ""
 
-#: admin/modules/proofrec/proofrec-fields.php:85
+#: admin/modules/proofrec/proofrec-fields.php:82
 msgid ""
 "This will display a link at the bottom of the consent banner. When clicked, it "
 "will open a new browser tab with the visitor's consent details as registered "
 "by the ConsentsDB."
 msgstr ""
 
-#: admin/modules/proofrec/proofrec-fields.php:86
+#: admin/modules/proofrec/proofrec-fields.php:83
 msgid "How to enable it"
 msgstr ""
 
-#: admin/modules/proofrec/proofrec-fields.php:87
+#: admin/modules/proofrec/proofrec-fields.php:84
 msgid "To use this feature, you need to:"
 msgstr ""
 
-#: admin/modules/proofrec/proofrec-fields.php:89
+#: admin/modules/proofrec/proofrec-fields.php:86
 msgid "enable this option"
 msgstr ""
 
-#: admin/modules/proofrec/proofrec-fields.php:90
+#: admin/modules/proofrec/proofrec-fields.php:87
 msgid ""
 "go to your ConsentsDB panel > Website settings > enable the option \"Allow "
 "site visitors to view consent data\""
 msgstr ""
 
-#: admin/modules/proofrec/proofrec-fields.php:98
+#: admin/modules/proofrec/proofrec-fields.php:95
 msgid "Send data to this email address"
 msgstr ""
 
-#: admin/modules/proofrec/proofrec-fields.php:103
+#: admin/modules/proofrec/proofrec-fields.php:100
 msgid ""
 "We will send proofs of consents, copy of a privacy policy (after every update "
 "to its text) and information about the WP FP configuration (every time there "
 "is a change to a privacy-related option)."
 msgstr ""
 
-#: admin/modules/proofrec/proofrec-fields.php:104
+#: admin/modules/proofrec/proofrec-fields.php:101
 msgid "Leave empty, to send to the administration email address"
 msgstr ""
 
-#: admin/modules/proofrec/proofrec-fields.php:109
+#: admin/modules/proofrec/proofrec-fields.php:106
 msgid "Sending frequency"
 msgstr ""
 
-#: admin/modules/proofrec/proofrec-fields.php:115
+#: admin/modules/proofrec/proofrec-fields.php:112
 msgid "Every day"
 msgstr ""
 
-#: admin/modules/proofrec/proofrec-fields.php:116
+#: admin/modules/proofrec/proofrec-fields.php:113
 msgid "Twice a day"
 msgstr ""
 
-#: admin/modules/proofrec/proofrec-fields.php:117
+#: admin/modules/proofrec/proofrec-fields.php:114
 msgid "Every hour (for large traffic sites)"
 msgstr ""
 
-#: admin/modules/proofrec/proofrec-fields.php:126
+#: admin/modules/proofrec/proofrec-fields.php:123
 msgid "Do not filter bot traffic"
 msgstr ""
 
-#: admin/modules/proofrec/proofrec-fields.php:130
+#: admin/modules/proofrec/proofrec-fields.php:127
 msgid ""
 "By default, WP Full Picture does not save consents of visitors recognized as "
 "bots and those who consented within 1 second from the moment the page has "
 "loaded."
 msgstr ""
 
-#: admin/modules/proofrec/proofrec-fields.php:131
+#: admin/modules/proofrec/proofrec-fields.php:128
 msgid ""
 "If this filters too much traffic change the \"Bot detection list\" in the "
 "Shared tracking settings page or enable this option."

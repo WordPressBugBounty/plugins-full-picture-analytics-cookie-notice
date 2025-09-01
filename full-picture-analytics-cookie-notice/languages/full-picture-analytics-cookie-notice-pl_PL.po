@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wpfp\n"
 "Report-Msgid-Bugs-To: Translator Name <translations@example.com>\n"
-"POT-Creation-Date: 2025-08-13 15:27+0200\n"
-"PO-Revision-Date: 2025-08-13 15:29+0200\n"
+"POT-Creation-Date: 2025-08-27 11:13+0200\n"
+"PO-Revision-Date: 2025-08-27 11:17+0200\n"
 "Last-Translator: Krzysztof Planeta <hello@wpfullpicture.com>\n"
 "Language-Team: Polish\n"
 "Language: pl_PL\n"
@@ -66,7 +66,7 @@ msgid "Module"
 msgstr "Moduł"
 
 #: admin/common/fupi-admin-fields-html.php:123
-#: admin/modules/proofrec/proofrec-fields.php:14
+#: admin/modules/proofrec/proofrec-fields.php:11
 msgid "Requires"
 msgstr "Wymaga"
 
@@ -383,29 +383,29 @@ msgstr "Prywatność"
 msgid "Extensions"
 msgstr "Rozszerzenia"
 
-#: admin/common/pages/parts/fupi-page_part-side-nav.php:192
-msgid "Visit our new channels"
-msgstr "Odwiedź nasze nowe kanały"
-
 #: admin/common/pages/parts/fupi-page_part-side-nav.php:193
-msgid "GrowthTools Facebook group"
-msgstr "Grupa GrowthTools na Facebooku"
-
-#: admin/common/pages/parts/fupi-page_part-side-nav.php:194
-msgid "GrowthTools YouTube channel"
-msgstr "Kanał GrowthTools na YouTube"
-
-#: admin/common/pages/parts/fupi-page_part-side-nav.php:200
 msgid "Unlock all PRO features"
 msgstr "Odblokuj wszystkie funkcje PRO"
 
-#: admin/common/pages/parts/fupi-page_part-side-nav.php:201
+#: admin/common/pages/parts/fupi-page_part-side-nav.php:194
 msgid "Get PRO"
 msgstr "Kup PRO"
 
-#: admin/common/pages/parts/fupi-page_part-side-nav.php:202
+#: admin/common/pages/parts/fupi-page_part-side-nav.php:195
 msgid "Compare Free and PRO"
 msgstr "Porównaj Free i PRO"
+
+#: admin/common/pages/parts/fupi-page_part-side-nav.php:200
+msgid "Visit our new channels"
+msgstr "Odwiedź nasze nowe kanały"
+
+#: admin/common/pages/parts/fupi-page_part-side-nav.php:201
+msgid "GrowthTools Facebook group"
+msgstr "Grupa GrowthTools na Facebooku"
+
+#: admin/common/pages/parts/fupi-page_part-side-nav.php:202
+msgid "GrowthTools YouTube channel"
+msgstr "Kanał GrowthTools na YouTube"
 
 #: admin/common/pages/parts/fupi-page_part-top-nav.php:17
 msgid "First steps"
@@ -494,7 +494,7 @@ msgid "Descriptive name"
 msgstr "Nazwa"
 
 #: admin/modules/atrig__premium_only/atrig-fields.php:34
-#: admin/modules/cook/cook-fields.php:242 admin/modules/pla/pla-fields.php:353
+#: admin/modules/cook/cook-fields.php:229 admin/modules/pla/pla-fields.php:353
 msgid "Name"
 msgstr "Nazwa"
 
@@ -896,7 +896,7 @@ msgid "Location is checked using the method chosen in the settings of the Geoloc
 msgstr "Lokalizacja jest sprawdzana przy użyciu metody wybranej w ustawieniach modułu geolokalizacji."
 
 #: admin/modules/cegg/cegg-fields.php:68 admin/modules/clar/clar-fields.php:67
-#: admin/modules/cook/cook-fields.php:320
+#: admin/modules/cook/cook-fields.php:307
 #: admin/modules/cscr/cscr-fields.php:112
 #: admin/modules/fbp1/fbp1-fields.php:122 admin/modules/ga41/ga41-fields.php:67
 #: admin/modules/gads/gads-fields.php:66 admin/modules/hotj/hotj-fields.php:69
@@ -911,7 +911,7 @@ msgid "All except"
 msgstr "Wszędzie oprócz"
 
 #: admin/modules/cegg/cegg-fields.php:69 admin/modules/clar/clar-fields.php:68
-#: admin/modules/cook/cook-fields.php:321
+#: admin/modules/cook/cook-fields.php:308
 #: admin/modules/cscr/cscr-fields.php:113
 #: admin/modules/fbp1/fbp1-fields.php:123 admin/modules/ga41/ga41-fields.php:68
 #: admin/modules/gads/gads-fields.php:67 admin/modules/hotj/hotj-fields.php:70
@@ -925,7 +925,7 @@ msgstr "Wszędzie oprócz"
 msgid "Only in"
 msgstr "Tylko w"
 
-#: admin/modules/cegg/cegg-fields.php:76 admin/modules/cook/cook-fields.php:328
+#: admin/modules/cegg/cegg-fields.php:76 admin/modules/cook/cook-fields.php:315
 #: admin/modules/cscr/cscr-fields.php:120
 #: admin/modules/fbp1/fbp1-fields.php:130 admin/modules/insp/insp-fields.php:82
 #: admin/modules/mato/mato-fields.php:94 admin/modules/pin/pin-fields.php:75
@@ -1462,259 +1462,259 @@ msgstr "Aby zarządzać ramkami iframe ładowanymi dynamicznie (np. filmami w wy
 msgid "Please make sure that your privacy policy page is published and set %1$son this page%2$s page."
 msgstr "Upewnij się, że Twoja strona polityki prywatności jest opublikowana i ustawiona %1$sna tej stronie%2$s."
 
-#: admin/modules/cook/cook-fields.php:31 admin/modules/cook/cook-fields.php:53
+#: admin/modules/cook/cook-fields.php:18 admin/modules/cook/cook-fields.php:40
 msgid "How should the banner work?"
 msgstr "Jak powinien działać baner?"
 
-#: admin/modules/cook/cook-fields.php:35 admin/modules/cook/cook-fields.php:59
-#: admin/modules/cook/cook-fields.php:100
+#: admin/modules/cook/cook-fields.php:22 admin/modules/cook/cook-fields.php:46
+#: admin/modules/cook/cook-fields.php:87
 msgid "Opt-in mode (GDPR compliant, recommended)"
 msgstr "Tryb Opt-in (zgodny z RODO, zalecany)"
 
-#: admin/modules/cook/cook-fields.php:36 admin/modules/cook/cook-fields.php:60
-#: admin/modules/cook/cook-fields.php:72 admin/modules/cook/cook-fields.php:101
+#: admin/modules/cook/cook-fields.php:23 admin/modules/cook/cook-fields.php:47
+#: admin/modules/cook/cook-fields.php:59 admin/modules/cook/cook-fields.php:88
 msgid "Opt-out mode"
 msgstr "Tryb Opt-out"
 
-#: admin/modules/cook/cook-fields.php:37 admin/modules/cook/cook-fields.php:61
-#: admin/modules/cook/cook-fields.php:76 admin/modules/cook/cook-fields.php:102
+#: admin/modules/cook/cook-fields.php:24 admin/modules/cook/cook-fields.php:48
+#: admin/modules/cook/cook-fields.php:63 admin/modules/cook/cook-fields.php:89
 msgid "Notification mode"
 msgstr "Tryb powiadamiania"
 
-#: admin/modules/cook/cook-fields.php:40
+#: admin/modules/cook/cook-fields.php:27
 msgid "Enable the Geolocation module to choose geolocation-based modes."
 msgstr "Włącz moduł geolokalizacji, aby wybrać tryby oparte na geolokalizacji."
 
-#: admin/modules/cook/cook-fields.php:62
+#: admin/modules/cook/cook-fields.php:49
 msgid "Automatic strict mode (GDPR compliant, recommended)"
 msgstr "Automatyczny tryb \"Strict\" (zgodny z RODO, zalecany)"
 
-#: admin/modules/cook/cook-fields.php:63
+#: admin/modules/cook/cook-fields.php:50
 msgid "Automatic Lax mode (GDPR compliant)"
 msgstr "Automatyczny tryb \"Lax\" (zgodny z RODO)"
 
-#: admin/modules/cook/cook-fields.php:64 admin/modules/cook/cook-fields.php:89
+#: admin/modules/cook/cook-fields.php:51 admin/modules/cook/cook-fields.php:76
 msgid "Manual mode"
 msgstr "Tryb ręczny"
 
-#: admin/modules/cook/cook-fields.php:68
+#: admin/modules/cook/cook-fields.php:55
 msgid "Opt-in mode"
 msgstr "Tryb Opt-in"
 
-#: admin/modules/cook/cook-fields.php:68 admin/modules/cook/cook-fields.php:79
+#: admin/modules/cook/cook-fields.php:55 admin/modules/cook/cook-fields.php:66
 msgid "GDPR compliant, recommended"
 msgstr "zgodny z RODO, zalecany"
 
-#: admin/modules/cook/cook-fields.php:69 admin/modules/cook/cook-fields.php:73
+#: admin/modules/cook/cook-fields.php:56 admin/modules/cook/cook-fields.php:60
 msgid "When someone visits your site, they'll see a popup with options to accept or decline tracking."
 msgstr "Gdy ktoś odwiedzi Twoją witrynę, zobaczy wyskakujące okienko z opcjami akceptacji lub odrzucenia śledzenia."
 
-#: admin/modules/cook/cook-fields.php:70
+#: admin/modules/cook/cook-fields.php:57
 msgid "Tracking will start only after they make a choice."
 msgstr "Śledzenie rozpocznie się dopiero po dokonaniu wyboru."
 
-#: admin/modules/cook/cook-fields.php:72 admin/modules/cook/cook-fields.php:76
+#: admin/modules/cook/cook-fields.php:59 admin/modules/cook/cook-fields.php:63
 msgid "not GDPR compliant"
 msgstr "niezgodny z RODO"
 
-#: admin/modules/cook/cook-fields.php:74
+#: admin/modules/cook/cook-fields.php:61
 msgid "Tracking will start as soon as a visitor lands on the website, but they will be able to turn it off by choosing to decline."
 msgstr "Śledzenie rozpocznie się, jak tylko odwiedzający wejdzie na stronę, ale będzie mógł je wyłączyć."
 
-#: admin/modules/cook/cook-fields.php:77
+#: admin/modules/cook/cook-fields.php:64
 msgid "When someone visits your site, they'll see a popup that informs them that they are tracked. They will not be able to decline it."
 msgstr "Gdy ktoś odwiedzi Twoją witrynę, zobaczy wyskakujące okienko informujące go, że jest śledzony. Nie będzie w stanie tego odrzucić."
 
-#: admin/modules/cook/cook-fields.php:79
+#: admin/modules/cook/cook-fields.php:66
 msgid "Automatic strict mode"
 msgstr "Tryb automatyczny \"Strict\""
 
-#: admin/modules/cook/cook-fields.php:80 admin/modules/cook/cook-fields.php:85
-#: admin/modules/cook/cook-fields.php:90
+#: admin/modules/cook/cook-fields.php:67 admin/modules/cook/cook-fields.php:72
+#: admin/modules/cook/cook-fields.php:77
 msgid "It requires the Geolocation module."
 msgstr "Wymaga modułu geolokalizacji."
 
-#: admin/modules/cook/cook-fields.php:81 admin/modules/cook/cook-fields.php:86
+#: admin/modules/cook/cook-fields.php:68 admin/modules/cook/cook-fields.php:73
 msgid "The consent banner will work opt-in, opt-out or notification mode, depending on the location of the visitor."
 msgstr "Baner zgody będzie działał w trybie opt-in, opt-out lub powiadomienia, w zależności od lokalizacji odwiedzającego."
 
-#: admin/modules/cook/cook-fields.php:82
+#: admin/modules/cook/cook-fields.php:69
 msgid "The Strict mode is for sites that use visitors' data for marketing or collect sensitive data."
 msgstr "Opcja Strict jest przeznaczona dla witryn, które wykorzystują dane odwiedzających do celów marketingowych lub zbierają dane wrażliwe."
 
-#: admin/modules/cook/cook-fields.php:84
+#: admin/modules/cook/cook-fields.php:71
 msgid "Automatic Lax mode"
 msgstr "Tryb automatyczny \"Lax\""
 
-#: admin/modules/cook/cook-fields.php:84
+#: admin/modules/cook/cook-fields.php:71
 msgid "GDPR compliant"
 msgstr "zgodny z RODO"
 
-#: admin/modules/cook/cook-fields.php:87
+#: admin/modules/cook/cook-fields.php:74
 msgid "The Lax mode is for sites that don't use visitors' data for marketing or collect sensitive data."
 msgstr "Opcja Lax jest przeznaczona dla witryn, które nie wykorzystują danych odwiedzających do celów marketingowych i nie zbierają wrażliwych danych."
 
-#: admin/modules/cook/cook-fields.php:91
+#: admin/modules/cook/cook-fields.php:78
 msgid "Choose this option to manually choose how the banner should work in different countries. "
 msgstr "Wybierz tę opcję, aby ręcznie wybrać sposób działania banera w różnych krajach. "
 
-#: admin/modules/cook/cook-fields.php:95
+#: admin/modules/cook/cook-fields.php:82
 msgid "Which mode to use if geolocation fails?"
 msgstr "Jaki tryb należy użyć, jeśli geolokacja się nie powiedzie?"
 
-#: admin/modules/cook/cook-fields.php:108
+#: admin/modules/cook/cook-fields.php:95
 msgid "Track visitors after they agree to tracking"
 msgstr "Śledź odwiedzających dopiero, kiedy wyrażą na to zgodę"
 
-#: admin/modules/cook/cook-fields.php:115
+#: admin/modules/cook/cook-fields.php:102
 msgid "In all countries"
 msgstr "We wszystkich krajach"
 
-#: admin/modules/cook/cook-fields.php:116
-#: admin/modules/cook/cook-fields.php:141
-#: admin/modules/cook/cook-fields.php:166
+#: admin/modules/cook/cook-fields.php:103
+#: admin/modules/cook/cook-fields.php:128
+#: admin/modules/cook/cook-fields.php:153
 msgid "Nowhere"
 msgstr "Nigdzie"
 
-#: admin/modules/cook/cook-fields.php:117
-#: admin/modules/cook/cook-fields.php:142
-#: admin/modules/cook/cook-fields.php:167
+#: admin/modules/cook/cook-fields.php:104
+#: admin/modules/cook/cook-fields.php:129
+#: admin/modules/cook/cook-fields.php:154
 msgid "In specific countries and regions"
 msgstr "W określonych krajach i regionach"
 
-#: admin/modules/cook/cook-fields.php:120
+#: admin/modules/cook/cook-fields.php:107
 #, php-format
 msgid "This is required in %1$s60+ countries%2$s and is accepted in the rest. "
 msgstr "Jest to wymagane w %1$sponad 60 krajach%2$s i jest akceptowane w pozostałych. "
 
-#: admin/modules/cook/cook-fields.php:124
-#: admin/modules/cook/cook-fields.php:149
-#: admin/modules/cook/cook-fields.php:174
+#: admin/modules/cook/cook-fields.php:111
+#: admin/modules/cook/cook-fields.php:136
+#: admin/modules/cook/cook-fields.php:161
 msgid "Countries and regions"
 msgstr "Kraje i Regiony"
 
-#: admin/modules/cook/cook-fields.php:129
-#: admin/modules/cook/cook-fields.php:154
-#: admin/modules/cook/cook-fields.php:179
+#: admin/modules/cook/cook-fields.php:116
+#: admin/modules/cook/cook-fields.php:141
+#: admin/modules/cook/cook-fields.php:166
 #, php-format
 msgid "Enter a list of 2-character %1$scountry codes%2$s and region codes, for example \"GB, FR, ES, US (CA, TX)\". To specify regions, list their 2-letter codes in brackets, e.g. US (CA, TX) and use geolocation service that provides region information. Visit settings page of the geolocation module to see what service you are using."
 msgstr "Wprowadź listę 2-znakowych %1$skodów krajów%2$s i kodów regionów, na przykład \"GB, FR, ES, US (CA, TX)\". Aby określić regiony, podaj ich 2-literowe kody w nawiasach, np. US (CA, TX) i skorzystaj z metody geolokalizacji, która dostarcza informacji o regionie. Odwiedź stronę ustawień modułu geolokalizacji, aby zobaczyć, z jakiej metody geolokalizacji korzystasz."
 
-#: admin/modules/cook/cook-fields.php:133
+#: admin/modules/cook/cook-fields.php:120
 msgid "Track from the start but let visitors decline tracking"
 msgstr "Śledź od początku wizyty, ale pozwól odwiedzającym odmawiać śledzeniu"
 
-#: admin/modules/cook/cook-fields.php:140
-#: admin/modules/cook/cook-fields.php:165
+#: admin/modules/cook/cook-fields.php:127
+#: admin/modules/cook/cook-fields.php:152
 msgid "In all the countries and regions not mentioned above"
 msgstr "Wszystkie kraje i regiony niewymienione powyżej"
 
-#: admin/modules/cook/cook-fields.php:145
-#: admin/modules/cook/cook-fields.php:170
+#: admin/modules/cook/cook-fields.php:132
+#: admin/modules/cook/cook-fields.php:157
 #, php-format
 msgid "See %1$sin which countries%2$s you can use this setting."
 msgstr "Zobacz %1$s, w których krajach%2$s możesz korzystać z tego ustawienia."
 
-#: admin/modules/cook/cook-fields.php:158
+#: admin/modules/cook/cook-fields.php:145
 msgid "Only inform visitors about tracking"
 msgstr "Tylko informuj odwiedzających o śledzeniu"
 
-#: admin/modules/cook/cook-fields.php:188
+#: admin/modules/cook/cook-fields.php:175
 #, php-format
 msgid "Attention. OceanWP theme breaks the controls for styling the consent banner. They will not be available when using OceanWP. %1$sLearn what to do about it%2$s."
 msgstr "Uwaga. Motyw OceanWP uniemożliwia stylizację banera zgody w panelu dostosowania wyglądu szablonu. Opcje zmiany wyglądu nie będą dostępne podczas korzystania z tego motywu. %1$sDowiedz się, co z tym zrobić%2$s."
 
-#: admin/modules/cook/cook-fields.php:194
+#: admin/modules/cook/cook-fields.php:181
 msgid "Change how the banner looks"
 msgstr "Zmień wygląd banera"
 
-#: admin/modules/cook/cook-fields.php:195
+#: admin/modules/cook/cook-fields.php:182
 msgid "Style the banner"
 msgstr "Stylizuj baner"
 
-#: admin/modules/cook/cook-fields.php:203
+#: admin/modules/cook/cook-fields.php:190
 msgid "You must save changes before you can start customizing."
 msgstr "Musisz zapisać zmiany, zanim zaczniesz dostosowywać wygląd."
 
-#: admin/modules/cook/cook-fields.php:208
+#: admin/modules/cook/cook-fields.php:195
 msgid "Hide consent banner on these pages"
 msgstr "Ukryj baner zgody na tych stronach"
 
-#: admin/modules/cook/cook-fields.php:210
+#: admin/modules/cook/cook-fields.php:197
 msgid "By default, WP Full Picture hides consent banner on the privacy policy page."
 msgstr "Domyślnie WP Full Picture ukrywa baner zgody na stronie polityki prywatności."
 
-#: admin/modules/cook/cook-fields.php:211
+#: admin/modules/cook/cook-fields.php:198
 msgid "Hiding the banner only hides it visually. It does not automatically give consent to tracking."
 msgstr "Ukrycie banera ukrywa go tylko wizualnie. Nie oznacza to automatycznej zgody na śledzenie."
 
-#: admin/modules/cook/cook-fields.php:215
+#: admin/modules/cook/cook-fields.php:202
 msgid "Show consent banner when visitors click this page element"
 msgstr "Pokaż baner zgody, gdy odwiedzający kliknął ten element strony"
 
-#: admin/modules/cook/cook-fields.php:220
+#: admin/modules/cook/cook-fields.php:207
 msgid "e.g. #some_button"
 msgstr "np. #some_button"
 
-#: admin/modules/cook/cook-fields.php:221
+#: admin/modules/cook/cook-fields.php:208
 msgid "Leave empty to use the default .fp_show_cookie_notice. Alternatively, you can enable a toggle icon in the styling options above."
 msgstr "Pozostaw puste, aby użyć domyślnego .fp_show_cookie_notice. Alternatywnie możesz włączyć ikonę wyświetlającą i ukrywającą baner w opcjach stylizacji banera."
 
-#: admin/modules/cook/cook-fields.php:222
+#: admin/modules/cook/cook-fields.php:209
 msgid "We recommend that you point at a link or a button in your privacy policy. This is required in most countries that require consent banners."
 msgstr "Zalecamy wskazanie linku lub przycisku w polityce prywatności. Jest to wymagane w większości krajów, w których konieczne jest używanie banera zgody."
 
-#: admin/modules/cook/cook-fields.php:226
+#: admin/modules/cook/cook-fields.php:213
 msgid "Do NOT ask visitors for consent again"
 msgstr "Nie pytaj ponownie odwiedzających o zgodę"
 
-#: admin/modules/cook/cook-fields.php:229
+#: admin/modules/cook/cook-fields.php:216
 msgid "Breaks GDPR. Best used on dev sites."
 msgstr "Łamie RODO. Najlepiej używać w witrynach deweloperskich."
 
-#: admin/modules/cook/cook-fields.php:230
+#: admin/modules/cook/cook-fields.php:217
 msgid "When you enable this setting, visitors who already consented, will not be asked for consent every time you enable new tracking tools or change your privacy policy. This will break GDPR, so we recommend to use it only on development sites or while setting up tracking."
 msgstr "Gdy włączysz to ustawienie, odwiedzający, którzy już wyrazili zgodę, nie będą proszeni o zgodę za każdym razem, gdy włączysz nowe narzędzia śledzenia lub zmienisz politykę prywatności. Spowoduje to złamanie zasad RODO, więc zalecamy używanie tej opcji tylko na stronach rozwojowych lub podczas konfigurowania śledzenia."
 
-#: admin/modules/cook/cook-fields.php:241
+#: admin/modules/cook/cook-fields.php:228
 msgid "Tool's name"
 msgstr "Nazwa narzędzia"
 
-#: admin/modules/cook/cook-fields.php:247
+#: admin/modules/cook/cook-fields.php:234
 msgid "Control loading of"
 msgstr "Kontroluj ładowanie"
 
-#: admin/modules/cook/cook-fields.php:251
+#: admin/modules/cook/cook-fields.php:238
 msgid "Script with unique text content"
 msgstr "Skryptu z unikalną treścią"
 
-#: admin/modules/cook/cook-fields.php:252
+#: admin/modules/cook/cook-fields.php:239
 msgid "Script with a specific filename or URL"
 msgstr "Skryptu z określoną nazwą pliku lub adresem URL"
 
-#: admin/modules/cook/cook-fields.php:253
+#: admin/modules/cook/cook-fields.php:240
 msgid "HTML <link> tag with a specific filename or URL"
 msgstr "Znacznika HTML <link> z określoną nazwą pliku lub adresem URL"
 
-#: admin/modules/cook/cook-fields.php:254
+#: admin/modules/cook/cook-fields.php:241
 msgid "Image with a specific filename or URL"
 msgstr "Obrazu z określoną nazwą pliku lub adresem URL"
 
-#: admin/modules/cook/cook-fields.php:261
+#: admin/modules/cook/cook-fields.php:248
 msgid "Filename, full URL, URL part or unique text content"
 msgstr "Nazwa lub URL pliku (pełny lub część) lub unikalna treść skryptu"
 
-#: admin/modules/cook/cook-fields.php:266
+#: admin/modules/cook/cook-fields.php:253
 msgid "Script ID"
 msgstr "ID skryptu"
 
-#: admin/modules/cook/cook-fields.php:273
-#: admin/modules/cook/cook-fields.php:466
+#: admin/modules/cook/cook-fields.php:260
+#: admin/modules/cook/cook-fields.php:453
 msgid "What is visitor's data used for?"
 msgstr "Do czego wykorzystywane są dane odwiedzających?"
 
-#: admin/modules/cook/cook-fields.php:282
-#: admin/modules/cook/cook-fields.php:473
+#: admin/modules/cook/cook-fields.php:269
+#: admin/modules/cook/cook-fields.php:460
 #: admin/modules/cook/cook-gdpr-check-cdb.php:249
 #: admin/modules/cook/customizer/fupi-customizer-settings.php:456
 #: admin/modules/cook/customizer/fupi-customizer-settings.php:1324
@@ -1723,8 +1723,8 @@ msgstr "Do czego wykorzystywane są dane odwiedzających?"
 msgid "Statistics"
 msgstr "Statystyki"
 
-#: admin/modules/cook/cook-fields.php:288
-#: admin/modules/cook/cook-fields.php:479
+#: admin/modules/cook/cook-fields.php:275
+#: admin/modules/cook/cook-fields.php:466
 #: admin/modules/cook/cook-gdpr-check-cdb.php:253
 #: admin/modules/cook/customizer/fupi-customizer-settings.php:458
 #: admin/modules/cook/customizer/fupi-customizer-settings.php:1428
@@ -1733,8 +1733,8 @@ msgstr "Statystyki"
 msgid "Marketing"
 msgstr "Marketing"
 
-#: admin/modules/cook/cook-fields.php:294
-#: admin/modules/cook/cook-fields.php:485
+#: admin/modules/cook/cook-fields.php:281
+#: admin/modules/cook/cook-fields.php:472
 #: admin/modules/cook/cook-gdpr-check-cdb.php:251
 #: admin/modules/cook/customizer/fupi-customizer-settings.php:457
 #: admin/modules/cook/customizer/fupi-customizer-settings.php:1376
@@ -1743,172 +1743,172 @@ msgstr "Marketing"
 msgid "Personalisation"
 msgstr "Personalizacja"
 
-#: admin/modules/cook/cook-fields.php:299
+#: admin/modules/cook/cook-fields.php:286
 msgid "Tool's privacy policy URL (for use in [fp_info] shortcode)"
 msgstr "Adres URL polityki prywatności narzędzia (używane przez shortcode [fp_info])"
 
-#: admin/modules/cook/cook-fields.php:310
+#: admin/modules/cook/cook-fields.php:297
 #: admin/modules/cscr/cscr-fields.php:102
 msgid "Load only in specific countries (leave blank to use everywhere)"
 msgstr "Używaj tylko w określonych krajach (pozostaw puste, aby używać wszędzie)"
 
-#: admin/modules/cook/cook-fields.php:339
+#: admin/modules/cook/cook-fields.php:326
 msgid "Temporarily stop WP Full Picture from managing this script (blocking, conditional-loading, etc.)"
 msgstr "Tymczasowo wstrzymaj zarządzanie tym skryptem przez WP Full Picture (blokowanie, ładowanie warunkowe itp.)"
 
-#: admin/modules/cook/cook-fields.php:352
+#: admin/modules/cook/cook-fields.php:339
 msgid "Consent banner settings"
 msgstr "Ustawienia banera zgody"
 
-#: admin/modules/cook/cook-fields.php:360
+#: admin/modules/cook/cook-fields.php:347
 msgid "Control tracking tools"
 msgstr "Kontrola narzędzi śledzących"
 
-#: admin/modules/cook/cook-fields.php:364
+#: admin/modules/cook/cook-fields.php:351
 msgid "Automatically control loading of tracking tools"
 msgstr "Automatycznie kontroluj ładowanie narzędzi śledzących"
 
-#: admin/modules/cook/cook-fields.php:368
+#: admin/modules/cook/cook-fields.php:355
 msgid "Jetpack Stats (from the Jetpack plugin)"
 msgstr "Statystyki Jetpack (z wtyczki Jetpack)"
 
-#: admin/modules/cook/cook-fields.php:371
+#: admin/modules/cook/cook-fields.php:358
 msgid "Google Analytics (always enabled, via Consent Mode v2)"
 msgstr "Google Analytics (zawsze włączony, poprzez Consent Mode v2)"
 
-#: admin/modules/cook/cook-fields.php:373
+#: admin/modules/cook/cook-fields.php:360
 msgid "Google Ads (always enabled, via Consent Mode v2)"
 msgstr "Reklamy Google (zawsze włączone, poprzez Consent Mode v2)"
 
-#: admin/modules/cook/cook-fields.php:375
+#: admin/modules/cook/cook-fields.php:362
 msgid "Microsoft Advertising (always enabled, via MS EUT Consent Mode)"
 msgstr "Microsoft Advertising (zawsze włączona, poprzez MS EUT Consent Mode)"
 
-#: admin/modules/cook/cook-fields.php:379
+#: admin/modules/cook/cook-fields.php:366
 msgid "Control other tools"
 msgstr "Kontroluj inne narzędzia"
 
-#: admin/modules/cook/cook-fields.php:387
+#: admin/modules/cook/cook-fields.php:374
 msgid "Manually set up what tools to control"
 msgstr "Ręcznie ustaw jakie narzędzia kontrolować"
 
-#: admin/modules/cook/cook-fields.php:393
+#: admin/modules/cook/cook-fields.php:380
 msgid "See the video tutorial how to set it up"
 msgstr "Zobacz samouczek wideo, jak to skonfigurować"
 
-#: admin/modules/cook/cook-fields.php:402
+#: admin/modules/cook/cook-fields.php:389
 msgid "Control iframes"
 msgstr "Kontroluj ramki iframe"
 
-#: admin/modules/cook/cook-fields.php:406
+#: admin/modules/cook/cook-fields.php:393
 msgid "Control iframes from"
 msgstr "Kontroluj ramki iframe z"
 
-#: admin/modules/cook/cook-fields.php:410
+#: admin/modules/cook/cook-fields.php:397
 msgid "YouTube"
 msgstr "YouTube"
 
-#: admin/modules/cook/cook-fields.php:411
+#: admin/modules/cook/cook-fields.php:398
 msgid "Vimeo"
 msgstr "Vimeo"
 
-#: admin/modules/cook/cook-fields.php:413
+#: admin/modules/cook/cook-fields.php:400
 msgid "This will automatically make all iframes on your website load, when visitors agree to cookies (or privacy policies of platforms that host the external content)."
 msgstr "Spowoduje to automatyczne załadowanie wszystkich ramek iframe z osadzonymi treściami gdy odwiedzający wyrażą zgodę na śledzenie (lub politykę prywatności platform hostujących treści zewnętrzne)."
 
-#: admin/modules/cook/cook-fields.php:414 admin/modules/woo/woo-faq.php:17
+#: admin/modules/cook/cook-fields.php:401 admin/modules/woo/woo-faq.php:17
 msgid "Good to know"
 msgstr "Dobrze wiedzieć"
 
-#: admin/modules/cook/cook-fields.php:415
+#: admin/modules/cook/cook-fields.php:402
 #, php-format
 msgid "If you do NOT want this module to manage specific iframes, simply wrap them with these HTML comments %1$s<!-- fp_no_mod_start --> your iframe <!-- fp_no_mod_end -->%2$s"
 msgstr "Jeśli NIE chcesz, aby ten moduł zarządzał jakimiś ramkami iframe, po prostu umieść je między tymi komentarzami HTML %1$s<!-- fp_no_mod_start --> iframe <!-- fp_no_mod_end -->%2$s"
 
-#: admin/modules/cook/cook-fields.php:419
+#: admin/modules/cook/cook-fields.php:406
 msgid "Control other iframes"
 msgstr "Kontroluj inne ramki iframe"
 
-#: admin/modules/cook/cook-fields.php:427
+#: admin/modules/cook/cook-fields.php:414
 msgid "What iframes to control"
 msgstr "Jakie ramki iframe kontrolować"
 
-#: admin/modules/cook/cook-fields.php:433 admin/modules/gtag/gtag-fields.php:26
+#: admin/modules/cook/cook-fields.php:420 admin/modules/gtag/gtag-fields.php:26
 #: admin/modules/tik/tik-descr.php:32
 msgid "Learn how to set it up"
 msgstr "Dowiedz się, jak to skonfigurować"
 
-#: admin/modules/cook/cook-fields.php:436
+#: admin/modules/cook/cook-fields.php:423
 msgid "Name of the service*"
 msgstr "Nazwa usługi*"
 
-#: admin/modules/cook/cook-fields.php:438
+#: admin/modules/cook/cook-fields.php:425
 msgid "e.g. YouTube"
 msgstr "np. YouTube"
 
-#: admin/modules/cook/cook-fields.php:446
+#: admin/modules/cook/cook-fields.php:433
 msgid "Iframe's domain URL*"
 msgstr "Adres domeny z adresu URL w iframe*"
 
-#: admin/modules/cook/cook-fields.php:448
+#: admin/modules/cook/cook-fields.php:435
 msgid "e.g. youtube.com"
 msgstr "np. youtube.com"
 
-#: admin/modules/cook/cook-fields.php:454
+#: admin/modules/cook/cook-fields.php:441
 msgid "Service's privacy policy"
 msgstr "Polityka prywatności źródła danych"
 
-#: admin/modules/cook/cook-fields.php:460
+#: admin/modules/cook/cook-fields.php:447
 msgid "Placeholder image URL"
 msgstr "Adres URL obrazu zastępczego"
 
-#: admin/modules/cook/cook-fields.php:494
+#: admin/modules/cook/cook-fields.php:481
 msgid "Default image placeholder"
 msgstr "Domyślny obrazek zastępczy"
 
-#: admin/modules/cook/cook-fields.php:499
+#: admin/modules/cook/cook-fields.php:486
 msgid "This placeholder will be shown instead of the iframe if no other placeholder is available. You can enter a link to a png, jpeg or a gif file here."
 msgstr "Ten obrazek zastępczy zostanie wyświetlony zamiast osadzonej treści, jeśli nie jest dostępny żaden inny obrazek. Możesz wprowadzić tutaj adres do pliku png, jpeg lub gif."
 
-#: admin/modules/cook/cook-fields.php:503
+#: admin/modules/cook/cook-fields.php:490
 msgid "Text over the placeholder"
 msgstr "Tekst nad obrazkiem zastępczym"
 
-#: admin/modules/cook/cook-fields.php:506
+#: admin/modules/cook/cook-fields.php:493
 #: public/modules/cook/cook-public.php:48
 msgid "This content is hosted by [[an external source]]. By loading it, you accept its {{privacy terms}}."
 msgstr "Ta zawartość pochodzi z [[źródło]]. Wyświetlając ją, akceptujesz tą {{politykę prywatności}}."
 
-#: admin/modules/cook/cook-fields.php:509
+#: admin/modules/cook/cook-fields.php:496
 msgid "The default text is \"This content is hosted by [[an external source]]. By loading it, you accept its {{privacy terms}}.\""
 msgstr "Domyślną wartością jest \"Ta zawartość pochodzi z [[zewnętrznego źródła]]. Wyświetlając ją, akceptujesz tą {{politykę prywatności}}.\""
 
-#: admin/modules/cook/cook-fields.php:510
+#: admin/modules/cook/cook-fields.php:497
 msgid "[[an external source]] will be replaced by the iframe's domain URL"
 msgstr "[[źródło zewnętrzne]] zostanie zastąpione adresem URL domeny, z której pochodzi treść"
 
-#: admin/modules/cook/cook-fields.php:511
+#: admin/modules/cook/cook-fields.php:498
 msgid "Words wrapped with double curly brackets {{ ... }} will turn into a link to the privacy policy of the iframe's source or, if it is hasn't been provided, to the privacy policy of your website."
 msgstr "Słowa zawinięte w podwójne nawiasy klamrowe {{ ... }} zamienią się w link do polityki prywatności źródła treści lub, jeśli nie została ona podana, do polityki prywatności Twojej witryny."
 
-#: admin/modules/cook/cook-fields.php:515
+#: admin/modules/cook/cook-fields.php:502
 msgid "Text of the button which loads the iframe"
 msgstr "Tekst przycisku, który ładuje osadzoną treść"
 
-#: admin/modules/cook/cook-fields.php:518
+#: admin/modules/cook/cook-fields.php:505
 #: public/modules/cook/cook-public.php:50
 msgid "Load content"
 msgstr "Załaduj zawartość"
 
-#: admin/modules/cook/cook-fields.php:519
+#: admin/modules/cook/cook-fields.php:506
 msgid "The default text is \"Load content\"."
 msgstr "Domyślny tekst to \"Załaduj zawartość\"."
 
-#: admin/modules/cook/cook-fields.php:525
+#: admin/modules/cook/cook-fields.php:512
 msgid "Lazy load all managed iframes"
 msgstr "Leniwe ładowanie wszystkich zarządzanych treści osadzonych ramkami iframe"
 
-#: admin/modules/cook/cook-fields.php:529
+#: admin/modules/cook/cook-fields.php:516
 msgid "Recommended for improved page-load times"
 msgstr "Zalecane w celu poprawy czasu ładowania strony"
 
@@ -6573,143 +6573,135 @@ msgstr "Rejestracja w ConsentsDB nie powiodła się. Aby zarejestrować stronę 
 msgid "Keeping records of consents is required by GDPR, protects against potential fines, enables audit trails, and helps demonstrate responsible data handling practices."
 msgstr "Prowadzenie rejestrów zgód jest wymagane przez RODO, chroni przed potencjalnymi karami, umożliwia wykonywanie audytów i pomaga wykazać odpowiedzialne praktyki przetwarzania danych."
 
-#: admin/modules/proofrec/proofrec-fields.php:8
-#, php-format
-msgid "Provide this Install ID %1$s during registration to be able to save 500 proofs/day for free until August 31, 2025."
-msgstr "Podaj Install ID %1$s podczas rejestracji, aby móc zapisać 500 dowodów dziennie za darmo do 31 sierpnia 2025 r."
+#: admin/modules/proofrec/proofrec-fields.php:16
+#: admin/modules/proofrec/proofrec-fields.php:23
+msgid "In the cloud (with initial free storage for 1000 proofs)"
+msgstr "W chmurze (z bezpłatnym zapisem 1000 zgód)"
 
 #: admin/modules/proofrec/proofrec-fields.php:19
-msgid "In the cloud (with free storage for 1000 proofs)"
-msgstr "W chmurze (z bezpłatnym miejscem na 1000 dowodów)"
-
-#: admin/modules/proofrec/proofrec-fields.php:22
 msgid "On my email account (Pro only)"
 msgstr "Na moim koncie e-mail (tylko Pro)"
 
-#: admin/modules/proofrec/proofrec-fields.php:26
-msgid "In the cloud (with free storage for 1000 proofs + 500/day until end of August 2025)"
-msgstr "W chmurze (z bezpłatnym przechowywaniem 1000 dowodów + 500/dzień do końca sierpnia 2025 r.)"
-
-#: admin/modules/proofrec/proofrec-fields.php:27
+#: admin/modules/proofrec/proofrec-fields.php:24
 msgid "On my email account"
 msgstr "Na moim koncie e-mail"
 
-#: admin/modules/proofrec/proofrec-fields.php:33
+#: admin/modules/proofrec/proofrec-fields.php:30
 #, php-format
 msgid "%1$sWhat are the differences?%2$s."
 msgstr "%1$sJakie są różnice?%2$s."
 
-#: admin/modules/proofrec/proofrec-fields.php:38
+#: admin/modules/proofrec/proofrec-fields.php:35
 #: admin/modules/proofrec/proofrec-gdpr-check-html.php:6
 msgid "Records of consents"
 msgstr "Rejestr zgód"
 
-#: admin/modules/proofrec/proofrec-fields.php:42
+#: admin/modules/proofrec/proofrec-fields.php:39
 msgid "Where to store proofs of consent"
 msgstr "Gdzie przechowywać dowody zgody"
 
-#: admin/modules/proofrec/proofrec-fields.php:57
+#: admin/modules/proofrec/proofrec-fields.php:54
 msgid "ConsentsDB secret key"
 msgstr "Sekretny klucz ConsentsDB"
 
-#: admin/modules/proofrec/proofrec-fields.php:63
+#: admin/modules/proofrec/proofrec-fields.php:60
 msgid "To start saving consents:"
 msgstr "Aby rozpocząć zapisywanie zgód:"
 
-#: admin/modules/proofrec/proofrec-fields.php:65
+#: admin/modules/proofrec/proofrec-fields.php:62
 #, php-format
 msgid "Make sure your site is set up correctly in the %1$sGDPR setup info%2$s page."
 msgstr "Upewnij się, że Twoja witryna jest poprawnie skonfigurowana na stronie %1$sInformacje o konfiguracji RODO%2$s."
 
-#: admin/modules/proofrec/proofrec-fields.php:66
+#: admin/modules/proofrec/proofrec-fields.php:63
 msgid "Create an account at ConsentsDB.com."
 msgstr "Utwórz konto na stronie ConsentsDB.com."
 
-#: admin/modules/proofrec/proofrec-fields.php:67
+#: admin/modules/proofrec/proofrec-fields.php:64
 msgid "Add this website to your account."
 msgstr "Dodaj tę witrynę do swojego konta."
 
-#: admin/modules/proofrec/proofrec-fields.php:68
-msgid "You will get a secret key. Paste it in the field above and follow the rest of instructions in the ConsentsDB."
-msgstr "Otrzymasz tajny klucz. Wklej go w pole powyżej i postępuj zgodnie z pozostałymi instrukcjami w ConsentsDB."
+#: admin/modules/proofrec/proofrec-fields.php:65
+msgid "When you get a secret key, paste it in the field above and follow the rest of instructions in the ConsentsDB."
+msgstr "Gdy otrzymasz swój klucz, wklej go w polu powyżej i postępuj zgodnie z pozostałymi instrukcjami w ConsentsDB."
 
-#: admin/modules/proofrec/proofrec-fields.php:70
+#: admin/modules/proofrec/proofrec-fields.php:67
 msgid "Learn more:"
 msgstr "Dowiedz się więcej:"
 
-#: admin/modules/proofrec/proofrec-fields.php:72
+#: admin/modules/proofrec/proofrec-fields.php:69
 msgid "Pricing"
 msgstr "Cennik"
 
-#: admin/modules/proofrec/proofrec-fields.php:73
+#: admin/modules/proofrec/proofrec-fields.php:70
 msgid "About ConsentsDB"
 msgstr "O ConsentsDB"
 
-#: admin/modules/proofrec/proofrec-fields.php:74
+#: admin/modules/proofrec/proofrec-fields.php:71
 msgid "Detailed setup guide"
 msgstr "Szczegółowa instrukcja konfiguracji"
 
-#: admin/modules/proofrec/proofrec-fields.php:80
+#: admin/modules/proofrec/proofrec-fields.php:77
 msgid "Allow site visitors to view consent data"
 msgstr "Zezwalaj odwiedzającym witrynę na wyświetlanie danych zgody"
 
-#: admin/modules/proofrec/proofrec-fields.php:85
+#: admin/modules/proofrec/proofrec-fields.php:82
 msgid "This will display a link at the bottom of the consent banner. When clicked, it will open a new browser tab with the visitor's consent details as registered by the ConsentsDB."
 msgstr "Spowoduje to wyświetlenie linku na dole banera zgody. Po kliknięciu otworzy się nowa karta przeglądarki ze szczegółami zgody odwiedzającego zarejestrowanymi przez ConsentsDB."
 
-#: admin/modules/proofrec/proofrec-fields.php:86
+#: admin/modules/proofrec/proofrec-fields.php:83
 msgid "How to enable it"
 msgstr "Jak to włączyć"
 
-#: admin/modules/proofrec/proofrec-fields.php:87
+#: admin/modules/proofrec/proofrec-fields.php:84
 msgid "To use this feature, you need to:"
 msgstr "Aby korzystać z tej funkcji, musisz:"
 
-#: admin/modules/proofrec/proofrec-fields.php:89
+#: admin/modules/proofrec/proofrec-fields.php:86
 msgid "enable this option"
 msgstr "włączyć tę opcję"
 
-#: admin/modules/proofrec/proofrec-fields.php:90
+#: admin/modules/proofrec/proofrec-fields.php:87
 msgid "go to your ConsentsDB panel > Website settings > enable the option \"Allow site visitors to view consent data\""
 msgstr "przejść do panelu ConsentsDB > Ustawienia witryny > włącz opcję \"Zezwalaj odwiedzającym witrynę na wyświetlanie danych zgody\""
 
-#: admin/modules/proofrec/proofrec-fields.php:98
+#: admin/modules/proofrec/proofrec-fields.php:95
 msgid "Send data to this email address"
 msgstr "Wyślij dane na ten adres e-mail"
 
-#: admin/modules/proofrec/proofrec-fields.php:103
+#: admin/modules/proofrec/proofrec-fields.php:100
 msgid "We will send proofs of consents, copy of a privacy policy (after every update to its text) and information about the WP FP configuration (every time there is a change to a privacy-related option)."
 msgstr "Będziemy wysyłać dowody zgód, kopię polityki prywatności (po każdej aktualizacji jej tekstu) oraz informacje o konfiguracji WP FP (za każdym razem, gdy nastąpi zmiana opcji związanej z prywatnością)."
 
-#: admin/modules/proofrec/proofrec-fields.php:104
+#: admin/modules/proofrec/proofrec-fields.php:101
 msgid "Leave empty, to send to the administration email address"
 msgstr "Pozostaw puste, aby wysłać na adres e-mail administracji"
 
-#: admin/modules/proofrec/proofrec-fields.php:109
+#: admin/modules/proofrec/proofrec-fields.php:106
 msgid "Sending frequency"
 msgstr "Częstotliwość wysyłania"
 
-#: admin/modules/proofrec/proofrec-fields.php:115
+#: admin/modules/proofrec/proofrec-fields.php:112
 msgid "Every day"
 msgstr "Codziennie"
 
-#: admin/modules/proofrec/proofrec-fields.php:116
+#: admin/modules/proofrec/proofrec-fields.php:113
 msgid "Twice a day"
 msgstr "Dwa razy dziennie"
 
-#: admin/modules/proofrec/proofrec-fields.php:117
+#: admin/modules/proofrec/proofrec-fields.php:114
 msgid "Every hour (for large traffic sites)"
 msgstr "Co godzinę (w przypadku witryn o dużym natężeniu ruchu)"
 
-#: admin/modules/proofrec/proofrec-fields.php:126
+#: admin/modules/proofrec/proofrec-fields.php:123
 msgid "Do not filter bot traffic"
 msgstr "Nie filtruj ruchu botów"
 
-#: admin/modules/proofrec/proofrec-fields.php:130
+#: admin/modules/proofrec/proofrec-fields.php:127
 msgid "By default, WP Full Picture does not save consents of visitors recognized as bots and those who consented within 1 second from the moment the page has loaded."
 msgstr "Domyślnie WP Full Picture nie zapisuje zgód odwiedzających rozpoznanych jako boty i tych, którzy wyrazili zgodę w ciągu 1 sekundy od momentu załadowania strony."
 
-#: admin/modules/proofrec/proofrec-fields.php:131
+#: admin/modules/proofrec/proofrec-fields.php:128
 msgid "If this filters too much traffic change the \"Bot detection list\" in the Shared tracking settings page or enable this option."
 msgstr "Jeśli filtruje zbyt duży ruch, zmień \"Listę wykrywania botów\" na stronie ustawień udostępnionego śledzenia lub włącz tę opcję."
 

@@ -4,7 +4,7 @@ Donate link: https://wpfullpicture.com/
 Tags: Consent mode, Analytics, GDPR, GTM, Google Ads
 Requires at least: 5.4.0
 Tested up to: 6.8.2
-Stable tag: 9.1.1
+Stable tag: 9.1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -205,6 +205,11 @@ No. WP Full Picture is focused on tracking and privacy. To generate a product ca
 6. View traffic and marketing reports in the admin panel
 
 == Changelog ==
+
+= 9.1.2 (02-09-2025) =
+
+* [Removed] Information about promotional consents in ConsentsDB
+* [Removed] Small code cleaning
 
 = 9.1.1 (13-08-2025) =
 

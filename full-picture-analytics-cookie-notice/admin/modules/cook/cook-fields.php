@@ -7,16 +7,6 @@ $priv_policy_url = get_privacy_policy_url();
 $priv_policy_url_text = ( empty( $priv_policy_url ) ? '<p style="color: red;">' . sprintf( esc_html__( 'Please make sure that your privacy policy page is published and set %1$son this page%2$s page.', 'full-picture-analytics-cookie-notice' ), '<a href="/wp-admin/options-privacy.php" target="_blank">', '</a>' ) . '</p>' : '' );
 $current_theme = wp_get_theme();
 $is_oceanWP_theme = $current_theme->get( 'Name' ) == 'OceanWP';
-// $install_id_text = '';
-// if ( fupi_fs()->can_use_premium_code__premium_only() ) {
-// 	$install_id_text = '<p>' . sprintf( esc_html__( 'Provide this Install ID %1$s during registration to be able to save 500 proofs/day for free until August 31, 2025.', 'full-picture-analytics-cookie-notice'), '<code>' . fupi_fs()->get_site()->id . '</code>' ) . '</p>';
-// 	if ( isset( $this->tools['geo'] ) ) {
-// 		$field_disabled = '';
-// 		$must_have_html = '';
-// 	} else {
-// 		$must_have_html = '<div class="fupi_must_have_info">' . esc_html__( 'Requires', 'full-picture-analytics-cookie-notice' ) . ': <span class="fupi_req">Geolocation module</span></div>';
-// 	}
-// };
 // CONSENT BANNER FIELDS
 $cook_fields = array(array(
     'type'          => 'select',
