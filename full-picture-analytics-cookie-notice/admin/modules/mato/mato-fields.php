@@ -57,18 +57,7 @@ $sections = array(
 				'el_data_target'	=> 'fupi_load_opts',
 				'option_arr_id'		=> $option_arr_id,
 				'popup3'			=> '<p style="color: red">' . esc_html__( 'Use only for installation verification or testing. It breaks GDPR and similar laws.', 'full-picture-analytics-cookie-notice' ) . '</p>
-				<p>' . sprintf( esc_html__( 'This will load the tracking script for administrators, bots, excluded users, people browsing from excluded locations and people who didn\'t agree to tracking. %1$sLearn more%2$s.', 'full-picture-analytics-cookie-notice' ), '<a target="_blank" href="https://wpfullpicture.com/support/documentation/validation-mode/?utm_source=fp_admin&utm_medium=fp_link">', '</a>' ) . '</p>',
-			),
-			array(
-				'type'	 			=> 'toggle',
-				'label' 			=> esc_html__( 'Track without waiting for consent', 'full-picture-analytics-cookie-notice' ),
-				'field_id' 			=> 'disreg_cookies',
-				'class'				=> 'fupi_load_opts fupi_adv',
-				'must_have'			=> 'cook',
-				'option_arr_id'		=> $option_arr_id,
-				'popup3'			=> '<p>' . esc_html__( 'This setting does not have any effect if "Privacy mode" is enabled.', 'full-picture-analytics-cookie-notice' ) . '</p>
-				<p style="color: red">' . esc_html__( 'Use only for installation verification or testing. It breaks GDPR and similar laws.', 'full-picture-analytics-cookie-notice' ) . '</p>
-				<p>' . esc_html__( 'Even when this is enabled, visitors will still be able to turn off tracking by declining tracking / cookies.', 'full-picture-analytics-cookie-notice' ) . '</p>'
+				<p>' . sprintf( esc_html__( 'This will load the tracking script for administrators, bots, excluded users, people browsing from excluded locations and people who didn\'t agree to tracking. %1$sLearn more%2$s.', 'full-picture-analytics-cookie-notice' ), '<a target="_blank" href="https://wpfullpicture.com/support/documentation/validation-mode/">', '</a>' ) . '</p>',
 			),
 			array(
 				'type'	 			=> 'r3',
@@ -110,7 +99,7 @@ $sections = array(
 				'label' 			=> esc_html__( 'Privacy mode', 'full-picture-analytics-cookie-notice' ),
 				'field_id' 			=> 'no_cookies',
 				'option_arr_id'		=> $option_arr_id,
-				'popup'				=> '<p>' . esc_html__( 'If you enable this function together with a Consent Banner module, then Matomo will track visitors in an anonymized way until they agree to tracking. After they do this, Matomo will switch to standard tracking.' ,'full-picture-analytics-cookie-notice' ) . '</p>
+				'popup'				=> '<p>' . esc_html__( 'If you enable this function together with a Consent Management module, then Matomo will track visitors in an anonymized way until they agree to tracking. After they do this, Matomo will switch to standard tracking.' ,'full-picture-analytics-cookie-notice' ) . '</p>
 					<p>' . sprintf( esc_html__( 'This is the recommended way to track as much traffic as possible. Learn about %1$sother ways to use Matomo in compliance with privacy laws%2$s.' ,'full-picture-analytics-cookie-notice' ), ' <a href="https://wpfullpicture.com/support/documentation/how-to-use-matomo-in-compliance-with-privacy-laws/">', '</a>' ) . '</p>
 					<p>' . esc_html__( 'When a visit is anonymized:' ,'full-picture-analytics-cookie-notice' ) . ':</p>
 					<ol>

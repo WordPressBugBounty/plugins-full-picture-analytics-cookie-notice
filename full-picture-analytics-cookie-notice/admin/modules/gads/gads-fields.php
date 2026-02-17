@@ -34,52 +34,7 @@ $sections = array(
 			),
 		),
 	),
-
-	// LOADING
-
-	array(
-		'section_id' => 'fupi_gads_loading',
-		'section_title' => esc_html__( 'Loading', 'full-picture-analytics-cookie-notice' ),
-		'fields' => array(
-			array(
-				'type'	 			=> 'toggle',
-				'label' 			=> esc_html__( 'Force load', 'full-picture-analytics-cookie-notice' ),
-				'field_id' 			=> 'force_load',
-				'el_class'			=> 'fupi_condition fupi_condition_reverse',
-				'el_data_target'	=> 'fupi_load_opts',
-				'option_arr_id'		=> $option_arr_id,
-				'popup3'			=> '<p style="color: red">' . esc_html__( 'Use only for installation verification or testing. It breaks GDPR and similar laws.', 'full-picture-analytics-cookie-notice' ) . '</p>
-				<p>' . sprintf( esc_html__( 'This will load the tracking script for administrators, bots, excluded users, people browsing from excluded locations and people who didn\'t agree to tracking. %1$sLearn more%2$s.', 'full-picture-analytics-cookie-notice' ), '<a target="_blank" href="https://wpfullpicture.com/support/documentation/validation-mode/?utm_source=fp_admin&utm_medium=fp_link">', '</a>' ) . '</p>',
-			),
-			array(
-				'type'	 			=> 'r3',
-				'label' 			=> esc_html__('Only track visitors from specific countries', 'full-picture-analytics-cookie-notice'),
-				'field_id' 			=> 'limit_country',
-				'option_arr_id'		=> $option_arr_id,
-				'class'				=> 'fupi_load_opts fupi_adv',
-				'must_have'			=> 'pro geo',
-				'is repeater'		=> false,
-				'popup'				=> '<p>' . sprintf( esc_html__('Enter a list of 2-character %1$scountry codes%2$s separated by comas.', 'full-picture-analytics-cookie-notice' ), '<a target="_blank" href="https://www.iban.com/country-codes">', '</a>' ) . '</p><p>'. esc_html__('Location is checked using the method chosen in the settings of the Geolocation module.', 'full-picture-analytics-cookie-notice' ) . '</p>',
-				'fields'			=> array(
-					array(
-						'type'				=> 'select',
-						'field_id'			=> 'method',
-						'options'			=> array(
-							'excl'				=> esc_html__('All except','full-picture-analytics-cookie-notice'),
-							'incl'				=> esc_html__('Only in','full-picture-analytics-cookie-notice'),
-						),
-						'class'		=> 'fupi_col_20',
-					),
-					array(
-						'type'				=> 'text',
-						'field_id'			=> 'countries',
-						'placeholder'		=> 'e.g. GB, DE, FR, AU, etc.',
-					),
-				),
-			),
-		),
-	),
-
+	
 	// Privacy settings
 
 	array(
@@ -309,7 +264,7 @@ $adv_triggers_section = array(
 									'string'			=> esc_html__( 'Text', 'full-picture-analytics-cookie-notice' ),
 									'number'			=> esc_html__( 'Number', 'full-picture-analytics-cookie-notice' ),
 									'bool'				=> esc_html__( 'true/false', 'full-picture-analytics-cookie-notice' ),
-									'path'			=> esc_html__( 'Path to a JS value', 'full-picture-analytics-cookie-notice' ),
+									'path'			=> esc_html__( 'Path to a JS variable', 'full-picture-analytics-cookie-notice' ),
 								),
 							),
 							array(

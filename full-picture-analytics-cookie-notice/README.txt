@@ -3,8 +3,8 @@ Contributors: chrisplaneta
 Donate link: https://wpfullpicture.com/
 Tags: Consent mode, Analytics, GDPR, GTM, Google Ads
 Requires at least: 5.4.0
-Tested up to: 6.9.0
-Stable tag: 9.4.2
+Tested up to: 6.9.1
+Stable tag: 10.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -76,14 +76,6 @@ It comes with Google Consent Mode v2 and Microsoft UET Consent Mode built-in, so
 The banner automatically manages all your tracking tools that you installed with WP Full Picture, ensuring your site stays compliant with privacy laws while you keep gathering valuable data.
 
 **[PRO]** The Pro version lets you display the consent banner only in countries where it’s required, helping you stay compliant while keeping your visitors’ experience smooth and distraction-free.
-
-## ✍️ CONSENT MANAGEMENT
-
-WP Full Picture integrates with ConsentsDB cloud service.
-
-CDB lets you store visitor consents outside your website for less than a dollar a month. This keeps your site fast and compliant without extra maintenance.
-
-**[PRO]** With WP Full Picture Pro, you can store all consent records in your email inbox for free, making compliance even simpler and more transparent.
 
 No complicated setup. No third-party cookie scanners. Just peace of mind and easy data control.
 
@@ -224,7 +216,55 @@ No. WP Full Picture is focused on tracking and privacy. To generate a product ca
 
 == Changelog ==
 
-= 9.4.2 (1-12-2025) =
+= 10.0.1 (18-02-2026) =
+
+[Fix] [Woo] Fixed compatibility with WooCommerce HPOS
+[Fix] [GTM] Default name of GTM's dataLayer is now set to fupi_dataLayer to avoid issues with Google tools loaded outside GTM
+[Fix] [Woo] Matomo sometimes did not correctly track products added and removed from cart
+[Other] Text updates
+
+= 10.0.0 (09-02-2026) =
+
+This was released only to PRO users
+
+* [New] All files of WP FP are now loaded asynchronously
+* [New] Dashboard page with guides and useful links
+* [New] Conflict checker (accessible through the new dashboard page)
+* [New] Consent Manager module can now control the loading of PixelYourSite and Pixel Manager for WooCommerce
+* [New] Added time information to fpdata object
+* [New] [Pro] Reactions module
+* [New] [Woo] Option to send "add to cart" events on cart page rather then when users click "add to cart" buttons
+* [New] [Woo] You can now disable sending stadard Add To Cart events and replace them with your own code
+* [New] [Woo] You can now choose specific WooCommerce pages where instead of sending "Product view" events you will send "Product list view" events (for main products)
+* [New] [Pro] Custom triggers can now use "Coursor left browser window" action
+* [Update] WooCommerce tracking - important code modifications so that tracking can work with asynchronous file loading
+* [Update] Simplified navigation
+* [Update] Design and texts
+* [Update] You can now block several files of the same 3rd party tool
+* [Update] [Pro] Meta Pixel no longer sends Conversion API event for pageviews by default. Now it needs to be enabled by the user
+* [Update] [Pro] Visitor scoring levels (10,20,30, etc.) are now enabled by default
+* [Removed] Animation for the consent banner
+* [Removed] Removed an option to disregard cookie choices (due to abuse and/or improper use)
+* [Removed] Function to force load Google Analytics and Ads scripts
+* [Removed] Function to load Google Analytics and Ads in specific countries
+* [Removed] Custom Brand for WooCommerce (deprecated for a long time)
+* [Removed] Options for saving WP FP scripts in files
+* [Fix] Small JS bug on the settings page of the Google Analytics module
+* [Fix] JS errors on "blur" events (DOM events)
+* [Fix] Removed debug_mode parameter from GA events
+* [Fix] Consent banner’s scroll lock is now set in a different way and is no longer removed by WooCommerce
+* [Fix] [Pro] Value comparison type "lower than" in the builder of custom triggers did not work
+* [Fix] [Pro] A bug prevented session cookie to be updated when a user updated from WP FP Free to Pro
+* [Fix] [Pro] A bug in Status Based Order Tracking in GA4, which did not track orders for installs with different GTAGs for GA and GAds
+* [Fix] Iframe placeholders will no longer get incorrect dimensions on some setups
+* [Other] Renamed "Custom scripts" module to "Custom integrations" to avoid confusion with the purpose of the module
+* [Other] Optimized JS functions in the customizer
+* [Other] Tweaked some texts in the GDPR setup helper and the saved proofs of consent
+* [Other] Increased tiemouts for sending data server-server
+* [Other] Small tweaks, optimizations and removal of unnecessary code
+
+
+= 9.4.2 (01-12-2025) =
 
 * [Fix] [GA] Fixed SBOT when gtag ID is different then measurement ID
 * [Other] Freemius SDK update

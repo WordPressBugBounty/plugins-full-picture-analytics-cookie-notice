@@ -69,7 +69,7 @@ $sections = array(
 				'el_class'			=> 'fupi_condition fupi_condition_reverse',
 				'el_data_target'	=> 'fupi_load_opts',
 				'option_arr_id'		=> $option_arr_id,
-				'popup2'			=> sprintf( esc_html__( 'When this option is enabled, it will load Plausible\'s tracking script for all visitors - even for administrators, bots, excluded users and locations. %1$sLearn more%2$s.', 'full-picture-analytics-cookie-notice' ), '<a target="_blank" href="https://wpfullpicture.com/support/documentation/validation-mode/?utm_source=fp_admin&utm_medium=fp_link">', '</a>' ),
+				'popup2'			=> sprintf( esc_html__( 'When this option is enabled, it will load Plausible\'s tracking script for all visitors - even for administrators, bots, excluded users and locations. %1$sLearn more%2$s.', 'full-picture-analytics-cookie-notice' ), '<a target="_blank" href="https://wpfullpicture.com/support/documentation/validation-mode/">', '</a>' ),
 			),
 			array(
 				'type'	 			=> 'r3',

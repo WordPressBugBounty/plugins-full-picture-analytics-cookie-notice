@@ -4,7 +4,7 @@
  * Plugin Name:       WP Full Picture
  * Plugin URI:        https://wpfullpicture.com/
  * Description:       Install the best tracking tools and manage tracking consents with one plugin. Google Analytics, GTM, Meta pixel, WooCommerce and more.
- * Version:           9.4.2
+ * Version:           10.0.1
  * Requires at least: 5.4
  * Requires PHP:      7.4
  * Author:            Krzysztof Planeta
@@ -20,7 +20,7 @@ if ( !defined( 'ABSPATH' ) ) {
 if ( function_exists( 'fupi_fs' ) ) {
     fupi_fs()->set_basename( false, __FILE__ );
 } else {
-    define( 'FUPI_VERSION', '9.4.2' );
+    define( 'FUPI_VERSION', '10.0.1' );
     define( 'FUPI_URL', plugin_dir_url( __FILE__ ) );
     define( 'FUPI_PATH', __DIR__ );
     // DO NOT REMOVE THIS IF, IT IS ESSENTIAL FOR THE `function_exists` CALL ABOVE TO PROPERLY WORK.
@@ -96,6 +96,11 @@ if ( function_exists( 'fupi_fs' ) ) {
     }
 
     add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), 'fupi_plugin_settings_link' );
+    add_action( 'before_woocommerce_init', function () {
+        if ( class_exists( \Automattic\WooCommerce\Utilities\FeaturesUtil::class ) ) {
+            \Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'custom_order_tables', __FILE__, true );
+        }
+    } );
     /**
      * The core plugin class that is used to define internationalization,
      * admin-specific hooks, and public-facing site hooks.

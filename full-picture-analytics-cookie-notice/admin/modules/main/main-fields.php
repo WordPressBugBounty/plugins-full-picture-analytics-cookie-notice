@@ -14,7 +14,7 @@ $other_settings = array(
 		'label' 			=> esc_html__( 'Send email notification when the plugin is deactivated', 'full-picture-analytics-cookie-notice' ),
 		'field_id' 			=> 'deactiv_email',
 		'option_arr_id'		=> $option_arr_id,
-		'placeholder'		=> esc_html__( 'e.g. john@example.com, peter@example.com, etc.', 'full-picture-analytics-cookie-notice' ),
+		'placeholder'		=> sprintf( esc_html__( 'e.g. %1$s, etc.', 'full-picture-analytics-cookie-notice' ), 'john@example.com, peter@example.com' ),
 		'under field' 		=> esc_html__('Enter a coma separated list of email addresses where you want to send the email.','full-picture-analytics-cookie-notice'),
 	),
 	array(
@@ -93,7 +93,7 @@ $sections = array(
 	
 	array(
 		'section_id' => 'fupi_main_no_track',
-		'section_title' => esc_html__( 'Tracking exclusions', 'full-picture-analytics-cookie-notice' ),
+		'section_title' => esc_html__( 'Do not track', 'full-picture-analytics-cookie-notice' ),
 		'fields' => array(
 			array(
 				'type'	 			=> 'text',
@@ -127,39 +127,6 @@ $sections = array(
 				'under field'		=> esc_html__( 'Site administrators are never tracked. To make them temporarily trackable, please enable the Setup Helper in the top menu and enable testing in the front-end of your site.', 'full-picture-analytics-cookie-notice' ),
 			),
 		)
-	),
-
-	// META TAGS
-
-	array(
-		'section_id' => 'fupi_main_meta',
-		'section_title' => esc_html__( 'Meta tags', 'full-picture-analytics-cookie-notice' ),
-		'fields' => array(
-			array(
-				'type'	 			=> 'r3',
-				'label' 			=> esc_html__('Meta tags','full-picture-analytics-cookie-notice'),
-				'field_id' 			=> 'meta_tags',
-				'class'				=> 'fupi_simple_r3',
-				'is_repeater'		=> true,
-				'option_arr_id'		=> $option_arr_id,
-				'under field'		=> '<p>' . esc_html__('One tag per line. For security reasons, meta tags can only have parameters: "name", "content", "property", "charset" and "http-equiv".', 'full-picture-analytics-cookie-notice' ) . '</p>',
-				'fields'			=> array(
-					array(
-						'type'				=> 'text',
-						'field_id'			=> 'name',
-						'class'				=> 'fupi_col_20_grow',
-						'placeholder'		=> esc_html__('Name (for your information)', 'full-picture-analytics-cookie-notice'),
-						'required'			=> true,
-					),
-					array(
-						'type'				=> 'text',
-						'field_id'			=> 'tag',
-						'placeholder'		=> esc_html__('Tag <meta....>', 'full-picture-analytics-cookie-notice'),
-						'required'			=> true,
-					),
-				),
-			),
-		),
 	),
 
 	// GEOLOCATION
@@ -208,7 +175,7 @@ $sections = array(
 					'option_arr_id'		=> $option_arr_id,
 					'label_for' 		=> $option_arr_id . '[cf_worker_url]',
 					'placeholder'		=> '',
-					'under field' 		=> sprintf(esc_html__('Enter worker script URL. %1s Learn how to find it%2s.', 'full-picture-analytics-cookie-notice'), '<a href="https://wpfullpicture.com/support/documentation/geolocation/?utm_source=fp_admin&utm_medium=fp_link" target="_blank">', '</a>'),
+					'under field' 		=> sprintf(esc_html__('Enter worker script URL. %1s Learn how to find it%2s.', 'full-picture-analytics-cookie-notice'), '<a href="https://wpfullpicture.com/support/documentation/geolocation/" target="_blank">', '</a>'),
 				),
 				array(
 					'type'	 			=> 'text',
@@ -234,6 +201,39 @@ $sections = array(
 		)
 	),
 
+	// META TAGS
+
+	array(
+		'section_id' => 'fupi_main_meta',
+		'section_title' => esc_html__( 'Meta tags', 'full-picture-analytics-cookie-notice' ),
+		'fields' => array(
+			array(
+				'type'	 			=> 'r3',
+				'label' 			=> esc_html__('Meta tags','full-picture-analytics-cookie-notice'),
+				'field_id' 			=> 'meta_tags',
+				'class'				=> 'fupi_simple_r3',
+				'is_repeater'		=> true,
+				'option_arr_id'		=> $option_arr_id,
+				'under field'		=> '<p>' . esc_html__('One tag per line. For security reasons, meta tags can only have parameters: "name", "content", "property", "charset" and "http-equiv".', 'full-picture-analytics-cookie-notice' ) . '</p>',
+				'fields'			=> array(
+					array(
+						'type'				=> 'text',
+						'field_id'			=> 'name',
+						'class'				=> 'fupi_col_20_grow',
+						'placeholder'		=> esc_html__('Name (for your information)', 'full-picture-analytics-cookie-notice'),
+						'required'			=> true,
+					),
+					array(
+						'type'				=> 'text',
+						'field_id'			=> 'tag',
+						'placeholder'		=> esc_html__('Tag <meta....>', 'full-picture-analytics-cookie-notice'),
+						'required'			=> true,
+					),
+				),
+			),
+		),
+	),
+
 	// IMPORT/EXPORT SETTINGS
 	array(
 		'section_id' => 'fupi_main_importexport',
@@ -246,32 +246,6 @@ $sections = array(
 		'section_id' => 'fupi_main_perf',
 		'section_title' => esc_html__( 'Performance', 'full-picture-analytics-cookie-notice' ),
 		'fields' => array(
-			array(
-				'type' 				=> 'toggle',
-				'label' 			=> esc_html__( 'Defer non-critical scripts', 'full-picture-analytics-cookie-notice' ),
-				'field_id' 			=> 'async_scripts',
-				'class'				=> 'fupi_adv',
-				'option_arr_id'		=> $option_arr_id,
-				'popup2'		 	=> '<p class="fupi_warning_text">'. esc_html__('Do not defer WP FP\'s scripts using a different plugin or solution. Not all WP FP\'s scripts can be safely deferred.', 'full-picture-analytics-cookie-notice') . '</p>' 
-			),
-			array(
-				'type'	 			=> 'toggle',
-				'label' 			=> esc_html__('Save main JS functions in a file', 'full-picture-analytics-cookie-notice'),
-				'field_id' 			=> 'save_settings_file',
-				'class'				=> 'fupi_adv',
-				'option_arr_id'		=> $option_arr_id,
-				'popup'				=> '<p>'. esc_html__('If you enable this option, WP FP will save some of its main JavaScript functions in a file, instead of printing them directly in the HTML.', 'full-picture-analytics-cookie-notice') . '</p>',
-			),
-			array(
-				'type'	 			=> 'toggle',
-				'label' 			=> esc_html__('Save Custom Scripts in a file (beta)', 'full-picture-analytics-cookie-notice'),
-				'field_id' 			=> 'save_cscr_file',
-				'class'				=> 'fupi_adv',
-				'option_arr_id'		=> $option_arr_id,
-				'popup3'			=> '<p>'. esc_html__('If you enable this option, WP FP will save scripts from the Custom Scripts module in a file, instead of printing them directly in the HTML.', 'full-picture-analytics-cookie-notice') . '</p>
-				<p class="fupi_warning_text">'. sprintf( esc_html__('Attention. All scripts in a file will be wrapped in a function. This means that all variables that should be accessible via "window" object, will not be accessible this way unless you change them from e.g. "var variable_name" to "window.variable_name".', 'full-picture-analytics-cookie-notice'),'<a href="https://wordpress.org/support/plugin/full-picture-analytics-cookie-notice/" target="_blank">', '</a>' ). '</p>
-				<p>'. sprintf( esc_html__('This feature is in beta. Please report issues in %1$sthe support forum%2$s.', 'full-picture-analytics-cookie-notice'),'<a href="https://wordpress.org/support/plugin/full-picture-analytics-cookie-notice/" target="_blank">', '</a>' ). '</p>',
-			),
 			array(
 				'type' 				=> 'toggle',
 				'label' 			=> esc_html__( 'Enable WP Rocket compatibility settings', 'full-picture-analytics-cookie-notice' ),

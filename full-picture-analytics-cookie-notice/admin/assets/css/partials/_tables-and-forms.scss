@@ -202,14 +202,12 @@ tr.fupi_deprecated{
 	max-width: 480px;
 	margin: 0 auto;
 	border-radius: 20px;
-	background-color: #fff;
 }
 
 #fupi_main_col{
 	padding: 20px 10px 0;
 	margin-top: 30px;
 	flex: 1 0 320px;
-	// border-radius: 10px;
 	background: #fff;
 	.dashicons{
 		font-size: inherit;
@@ -234,7 +232,7 @@ tr.fupi_deprecated{
 			width: auto;
 			max-width: calc(100% - 330px);
 			margin-top: 0;
-			border-radius: 0 20px 20px 0;
+			border-radius: 20px;
 		}
 }
 
