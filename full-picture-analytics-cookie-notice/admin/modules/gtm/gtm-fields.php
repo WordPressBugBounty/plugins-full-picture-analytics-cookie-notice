@@ -92,7 +92,7 @@ $sections = array(
 				'placeholder'		=> 'e.g. pdf, doc, docx, xls, xlsx, txt',
 				'option_arr_id'		=> $option_arr_id,
 				'label_for' 		=> $option_arr_id . '[track_file_downl]',
-				'under field'		=> esc_html__( 'Enter coma separated list of file formats (extensions) you want to track', 'full-picture-analytics-cookie-notice'),
+				'under field'		=> esc_html__( 'Enter comma separated list of file formats (extensions) you want to track', 'full-picture-analytics-cookie-notice'),
 			),
 			array(
 				'type'	 			=> 'r3',

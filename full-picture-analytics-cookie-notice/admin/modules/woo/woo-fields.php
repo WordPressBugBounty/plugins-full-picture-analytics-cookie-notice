@@ -187,7 +187,7 @@ $sections = array(
 					),
 				),
 				'popup2'		 	=> '<p>' . esc_html__('This function is useful for stores that display multiple full products on a single page (not to confuse with product teasers used in lists).', 'full-picture-analytics-cookie-notice') . '</p>
-				<p>' . esc_html__('By default, "big" products are tracked with "view item" events, however this may not be always what you want. Use this function to track track views of such products with "list item view" event, istead of "product view" event.', 'full-picture-analytics-cookie-notice') . '</p>
+				<p>' . esc_html__('By default, "big" products are tracked with "view item" events, however this may not be always what you want. Use this function to track views of such products with "list item view" event, istead of "product view" event.', 'full-picture-analytics-cookie-notice') . '</p>
 				<p class="fupi_warning_text">' . esc_html__('This function only affects tools that allow tracking views of products in lists, like Google Analytics, Ads, GTM or MS Advertising.', 'full-picture-analytics-cookie-notice') . '</p>',
 			),
 			array(
@@ -210,7 +210,7 @@ $sections = array(
 				'option_arr_id'		=> $option_arr_id,
 				'label_for' 		=> $option_arr_id . '[teaser_wrapper_sel]',
 				'placeholder'		=> esc_html__('e.g. .product', 'full-picture-analytics-cookie-notice' ),
-				'under field'		=> esc_html__('You can provide a coma separated list of CSS selectors.', 'full-picture-analytics-cookie-notice' ),
+				'under field'		=> esc_html__('You can provide a comma separated list of CSS selectors.', 'full-picture-analytics-cookie-notice' ),
 				'popup2'	 		=> '<p>' . esc_html__('By default, all product teasers (products in lists) in WooCommerce are wrapped in &lt;li&gt;elements. However, some themes or plugins may use a different tag. If this happens, tracking clicks in the "add to cart" buttons and views of teasers may not work correctly.', 'full-picture-analytics-cookie-notice') . '</p>
 					<p>' . esc_html__('You can fix it here. Provide CSS selector of an HTML element which wraps around product teasers on your site (often this is an element with a class "product").', 'full-picture-analytics-cookie-notice') . '</p>
 					<p class="fupi_warning_text">' . esc_html__('Attention. Tracking will only work if there is an HTML &lt;i&gt; element with class "fupi_prod_data" inside the product teaser\'s HTML. If it is missing, then it means that the teaser does not use standard WooCommerce hooks to display its content, and WP Full Picture will not be able to track it.', 'full-picture-analytics-cookie-notice') . '</p>',

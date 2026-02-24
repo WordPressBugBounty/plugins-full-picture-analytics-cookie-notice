@@ -16,7 +16,7 @@
         </ol>
         <p>' . esc_html__( 'If you want to use this method to track form submissions, than you need to make a choice how to send the data to GA.', 'full-picture-analytics-cookie-notice' ) . '</p>
         <h3>' . esc_html__( '"Track every form with a different event" option', 'full-picture-analytics-cookie-notice' ) . '</h3>
-        <p>' . sprintf( esc_html__( 'When you choose this option, every time someone submits a form specified in the fields below, WP FP will send to GA an event with a name specific for this element. The event names must follow %1$sthese naming rules%2$s.', 'full-picture-analytics-cookie-notice' ), '<a href="https://support.google.com/analytics/answer/13316687?hl=en#zippy=%2Cweb" target="_blank">', '</a>' ) . '</p>
+        <p>' . sprintf( esc_html__( 'When you choose this option, every time someone submits a form specified in the fields below, WP FP will send to GA an event with a name specific to this element. The event names must follow %1$sthese naming rules%2$s.', 'full-picture-analytics-cookie-notice' ), '<a href="https://support.google.com/analytics/answer/13316687?hl=en#zippy=%2Cweb" target="_blank">', '</a>' ) . '</p>
         <p>' . esc_html__( 'This option is recommended if you do not intend to set many event names and/or you are not an advanced GA user.', 'full-picture-analytics-cookie-notice' ) . '</p>
         <h3>' . esc_html__( '"Track as one event with different parameters" option', 'full-picture-analytics-cookie-notice' ) . '</h3>
         <p>' . esc_html__( 'When you choose this option, every time someone submits a form, WP FP will send to your GA event "form_submit".', 'full-picture-analytics-cookie-notice' ) . '</p>

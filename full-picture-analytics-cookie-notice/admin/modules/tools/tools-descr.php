@@ -22,7 +22,7 @@ switch( $section_id ){
 
 					<button class="fupi_filter_btn button fupi_tooltip" type="button" data-tag="woo">' . esc_html__('WooCommerce tracking','full-picture-analytics-cookie-notice') . ' <span class="fupi_tooltiptext">' . esc_html__('Tracking store events, like purchases, product views, etc.','full-picture-analytics-cookie-notice') . '</span></button>
 
-					<button class="fupi_filter_btn button fupi_tooltip" type="button" data-tag="proxy">' . esc_html__('Domain proxing','full-picture-analytics-cookie-notice') . ' <span class="fupi_tooltiptext">' . esc_html__('More accurate tracking that bypasses ad blockers','full-picture-analytics-cookie-notice') . '</span></button>
+					<button class="fupi_filter_btn button fupi_tooltip" type="button" data-tag="proxy">' . esc_html__('Domain proxying','full-picture-analytics-cookie-notice') . ' <span class="fupi_tooltiptext">' . esc_html__('More accurate tracking that bypasses ad blockers','full-picture-analytics-cookie-notice') . '</span></button>
 
 					<button class="fupi_filter_btn button fupi_tooltip" type="button" data-tag="server">' . esc_html__('Server-side tracking','full-picture-analytics-cookie-notice') . ' <span class="fupi_tooltiptext">' . esc_html__('Much more accurate tracking that bypasses ad blockers (Pro only)','full-picture-analytics-cookie-notice') . '</span></button>
 

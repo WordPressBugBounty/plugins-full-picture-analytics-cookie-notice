@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WP Full Picture\n"
 "Report-Msgid-Bugs-To: Translator Name <translations@example.com>\n"
-"POT-Creation-Date: 2026-02-17 15:24+0100\n"
+"POT-Creation-Date: 2026-02-24 15:16+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Your Name <you@example.com>\n"
 "Language-Team: WP Full Picture Team <hello@wpfullpicture.com>\n"
@@ -322,7 +322,7 @@ msgstr ""
 
 #: admin/common/pages/fupi-home-page-display.php:200
 #: admin/common/pages/parts/fupi-page_part-side-nav.php:204
-msgid "view pricing"
+msgid "View pricing"
 msgstr ""
 
 #: admin/common/pages/fupi-home-page-display.php:216
@@ -385,7 +385,7 @@ msgstr ""
 #: admin/common/pages/parts/fupi-page-part-status.php:22
 msgid ""
 "A consent banner is the central element of a GDPR-compliant website. However, "
-"not all sites need it. I wrote an article which explains in details, when it is "
+"not all sites need it. I wrote an article which explains in detail, when it is "
 "needed."
 msgstr ""
 
@@ -485,7 +485,7 @@ msgid "Back to Consents"
 msgstr ""
 
 #: admin/common/pages/parts/fupi-page_part-consents_list.php:172
-msgid "Please, enable the opion to store consents in the email account."
+msgid "Please, enable the option to store consents in the email account."
 msgstr ""
 
 #: admin/common/pages/parts/fupi-page_part-footer.php:1
@@ -648,7 +648,7 @@ msgid "How to set up these triggers"
 msgstr ""
 
 #: admin/modules/atrig__premium_only/atrig-descr.php:18
-msgid "What is vitor scoring and how to use it"
+msgid "What is visitor scoring and how to use it"
 msgstr ""
 
 #: admin/modules/atrig__premium_only/atrig-descr.php:19
@@ -1070,7 +1070,7 @@ msgstr ""
 #: admin/modules/simpl/simpl-fields.php:99 admin/modules/tik/tik-fields.php:49
 #: admin/modules/twit/twit-fields.php:51
 #, php-format
-msgid "Enter a list of 2-character %1$scountry codes%2$s separated by comas."
+msgid "Enter a list of 2-character %1$scountry codes%2$s separated by commas."
 msgstr ""
 
 #: admin/modules/cegg/cegg-fields.php:52 admin/modules/clar/clar-fields.php:51
@@ -1188,7 +1188,7 @@ msgstr ""
 
 #: admin/modules/cegg/cegg-fields.php:128 admin/modules/clar/clar-fields.php:144
 #: admin/modules/insp/insp-fields.php:170 admin/modules/tik/tik-fields.php:92
-msgid "Enter coma separated list of file formats you want to track"
+msgid "Enter comma separated list of file formats you want to track"
 msgstr ""
 
 #: admin/modules/cegg/cegg-fields.php:132
@@ -3104,7 +3104,7 @@ msgstr ""
 
 #: admin/modules/cscr/cscr-fields.php:14
 msgid ""
-"This is displayed by the [fp_info] shortcode, in the \"GDPR setup helper\" page "
+"This is displayed by the [fp_info] shortcode, on the \"GDPR setup helper\" page "
 "and in proofs of visitors' consents."
 msgstr ""
 
@@ -3461,7 +3461,7 @@ msgstr ""
 
 #: admin/modules/fbp1/fbp1-fields.php:244 admin/modules/gtm/gtm-fields.php:95
 #: admin/modules/pla/pla-fields.php:270
-msgid "Enter coma separated list of file formats (extensions) you want to track"
+msgid "Enter comma separated list of file formats (extensions) you want to track"
 msgstr ""
 
 #: admin/modules/fbp1/fbp1-fields.php:244
@@ -3551,7 +3551,7 @@ msgstr ""
 
 #: admin/modules/fbp1/fbp1-fields.php:410
 msgid ""
-"Tracking scroll with server can greatly decrease its performance. It is NOT "
+"Tracking scroll with the server can greatly decrease its performance. It is NOT "
 "recommended to enable this function on slow hosting."
 msgstr ""
 
@@ -3957,7 +3957,7 @@ msgstr ""
 #, php-format
 msgid ""
 "When you choose this option, every time someone submits a form specified in the "
-"fields below, WP FP will send to GA an event with a name specific for this "
+"fields below, WP FP will send to GA an event with a name specific to this "
 "element. The event names must follow %1$sthese naming rules%2$s."
 msgstr ""
 
@@ -4336,8 +4336,8 @@ msgstr ""
 #, php-format
 msgid ""
 "When you choose this option, every time someone clicks a page element specified "
-"in the fields below, WP FP will send to GA an event with a name specific for "
-"this element. The event names must follow %1$sthese naming rules%2$s."
+"in the fields below, WP FP will send to GA an event with a name specific to this "
+"element. The event names must follow %1$sthese naming rules%2$s."
 msgstr ""
 
 #: admin/modules/ga41/ga41-fields.php:179
@@ -4916,7 +4916,7 @@ msgid "Order ID"
 msgstr ""
 
 #: admin/modules/ga42__premium_only/ga42-descr.php:18
-msgid "Well done! Your second GA 4 is installed"
+msgid "Well done! Your second GA4 is installed"
 msgstr ""
 
 #: admin/modules/ga42__premium_only/ga42-descr.php:23
@@ -4984,7 +4984,7 @@ msgid "Well done! Google Ads is installed"
 msgstr ""
 
 #: admin/modules/gads/gads-descr.php:20
-msgid "The data is sent to Google Tag ID"
+msgid "The data is sent to the Google Tag ID"
 msgstr ""
 
 #: admin/modules/gads/gads-descr.php:33 admin/modules/gads/gads-descr.php:41
@@ -5015,7 +5015,7 @@ msgstr ""
 
 #: admin/modules/gads/gads-fields.php:50
 msgid ""
-"Enhanced Conversion improves the accuracy of conversion tracking by sending to "
+"Enhanced Conversions improve the accuracy of conversion tracking by sending to "
 "Google your visitors' personal information, like their email address, first and "
 "last name and physical address. This information is later used by Google to "
 "better match the conversions with specific users."
@@ -5089,7 +5089,7 @@ msgstr ""
 
 #: admin/modules/gads/gads-fields.php:300 admin/modules/gads/gads-fields.php:311
 msgid ""
-"Conversion event will be sent with cart value and IDs of the purchased items."
+"The conversion event will be sent with cart value and IDs of the purchased items."
 msgstr ""
 
 #: admin/modules/gads/gads-fields.php:301 admin/modules/gads/gads-fields.php:313
@@ -5117,8 +5117,8 @@ msgstr ""
 
 #: admin/modules/gads/gads-fields.php:323
 msgid ""
-"Conversion event will be sent with the IDs of the items added to cart and their "
-"total value."
+"The conversion event will be sent with the IDs of the items added to cart and "
+"their total value."
 msgstr ""
 
 #: admin/modules/gads/gads-fields.php:328
@@ -5734,7 +5734,7 @@ msgid "e.g. pdf, doc, docx, xls, xlsx, txt"
 msgstr ""
 
 #: admin/modules/hotj/hotj-fields.php:189
-msgid "Enter a coma-separated list of formats of files that you want to track."
+msgid "Enter a comma-separated list of formats of files that you want to track."
 msgstr ""
 
 #: admin/modules/hotj/hotj-fields.php:193
@@ -6365,7 +6365,7 @@ msgid "Event action name (required)"
 msgstr ""
 
 #: admin/modules/mads/mads-fields.php:127
-msgid "Enter coma separated list of file formats you want to track."
+msgid "Enter comma separated list of file formats you want to track."
 msgstr ""
 
 #: admin/modules/mads/mads-fields.php:130
@@ -6410,7 +6410,7 @@ msgid "Error. Incorrect format of uploaded data"
 msgstr ""
 
 #: admin/modules/main/main-admin.php:274 admin/modules/main/main-admin.php:307
-msgid "Settings restorred successfully"
+msgid "Settings restored successfully"
 msgstr ""
 
 #: admin/modules/main/main-admin.php:276 admin/modules/main/main-admin.php:309
@@ -6553,7 +6553,7 @@ msgstr ""
 
 #: admin/modules/main/main-fields.php:18
 msgid ""
-"Enter a coma separated list of email addresses where you want to send the email."
+"Enter a comma separated list of email addresses where you want to send the email."
 msgstr ""
 
 #: admin/modules/main/main-fields.php:22
@@ -6708,7 +6708,7 @@ msgstr ""
 
 #: admin/modules/main/main-fields.php:161
 msgid ""
-"(for regisered users) - Geolocation of visitor's country, free, registration "
+"(for registered users) - Geolocation of visitor's country, free, registration "
 "required"
 msgstr ""
 
@@ -6727,7 +6727,7 @@ msgstr ""
 #: admin/modules/main/main-fields.php:164
 msgid ""
 "Geolocation of visitor's country & region, free and paid, registration is always "
-"required, free is limited to 1500 checks/day and non-commercial use"
+"required, the free plan is limited to 1500 checks/day and non-commercial use"
 msgstr ""
 
 #: admin/modules/main/main-fields.php:165
@@ -6762,9 +6762,9 @@ msgstr ""
 #: admin/modules/main/main-fields.php:199
 msgid ""
 "Default is 30 days. Set to a lower number if your visitors often browse from "
-"different countries. If set to 0, location will be checked at the begining of "
+"different countries. If set to 0, location will be checked at the beginning of "
 "each session. If a location wasn't found it will be checked again at the "
-"begining of the next session and remembered for the specified number of days."
+"beginning of the next session and remembered for the specified number of days."
 msgstr ""
 
 #: admin/modules/main/main-fields.php:208 admin/modules/main/main-fields.php:212
@@ -7070,7 +7070,7 @@ msgstr ""
 #, php-format
 msgid ""
 "By default, Matomo tracks downloads of %1$sthese file formats%2$s. Use this "
-"function to change it. Enter coma-separated list of formats that you want to "
+"function to change it. Enter comma-separated list of formats that you want to "
 "track instead."
 msgstr ""
 
@@ -7148,7 +7148,7 @@ msgstr ""
 #: admin/modules/mato/mato-fields.php:451
 msgid ""
 "Enable to see which taxonomy a given term belongs to. Term data in your GA "
-"reports will be then displayd like e.g. \"term1 (category), term2 (tag)\""
+"reports will be then displayed like e.g. \"term1 (category), term2 (tag)\""
 msgstr ""
 
 #: admin/modules/mato/mato-fields.php:455
@@ -8158,49 +8158,49 @@ msgstr ""
 msgid "Dashboard's <iframe> code (embed code)"
 msgstr ""
 
-#: admin/modules/reports/reports-fields.php:38
+#: admin/modules/reports/reports-fields.php:39
 msgid "Select non-admin users who can access this dashboard (optional)"
 msgstr ""
 
-#: admin/modules/reports/reports-fields.php:46
+#: admin/modules/reports/reports-fields.php:47
 msgid "ID"
 msgstr ""
 
-#: admin/modules/reports/reports-fields.php:47
+#: admin/modules/reports/reports-fields.php:48
 msgid "e.g. dashboard1"
 msgstr ""
 
-#: admin/modules/reports/reports-fields.php:54
+#: admin/modules/reports/reports-fields.php:55
 msgid "Report width (px)"
 msgstr ""
 
-#: admin/modules/reports/reports-fields.php:55
+#: admin/modules/reports/reports-fields.php:56
 msgid "default: 1200"
 msgstr ""
 
-#: admin/modules/reports/reports-fields.php:61
+#: admin/modules/reports/reports-fields.php:62
 msgid "Report height (px)"
 msgstr ""
 
-#: admin/modules/reports/reports-fields.php:62
+#: admin/modules/reports/reports-fields.php:63
 msgid "default: 675"
 msgstr ""
 
-#: admin/modules/reports/reports-fields.php:70
+#: admin/modules/reports/reports-fields.php:71
 msgid "Menu position of the \"Reports\" page"
 msgstr ""
 
-#: admin/modules/reports/reports-fields.php:75
+#: admin/modules/reports/reports-fields.php:76
 msgid ""
 "Lower number = Higher position. Leave empty or enter 0 for the default position. "
 "Negative values will place the link on the first position in the menu."
 msgstr ""
 
-#: admin/modules/reports/reports-fields.php:80
+#: admin/modules/reports/reports-fields.php:81
 msgid "Select non-admin users who can access all dashboards"
 msgstr ""
 
-#: admin/modules/reports/reports-fields.php:83
+#: admin/modules/reports/reports-fields.php:84
 msgid "Users assigned to specific reports will overwrite these values."
 msgstr ""
 
@@ -8263,7 +8263,7 @@ msgstr ""
 #: admin/modules/simpl/simpl-fields.php:34
 #, php-format
 msgid ""
-"Enter https:// at the begining of your address and put \"/\" at the end, for "
+"Enter https:// at the beginning of your address and put \"/\" at the end, for "
 "example %1$shttps://simple.example.com/%2$s"
 msgstr ""
 
@@ -8417,7 +8417,7 @@ msgid "Tracking store events, like purchases, product views, etc."
 msgstr ""
 
 #: admin/modules/tools/tools-descr.php:25
-msgid "Domain proxing"
+msgid "Domain proxying"
 msgstr ""
 
 #: admin/modules/tools/tools-descr.php:25
@@ -8783,7 +8783,7 @@ msgstr ""
 #: admin/modules/tools/tools-fields.php:307
 msgid ""
 "This module lets you easily install tools that track your visitors and use them "
-"in compliance with privacy regulatiopns. You can install analytics tools, live "
+"in compliance with privacy regulations. You can install analytics tools, live "
 "chat applications, scripts from CRM or marketing automation/email platforms and "
 "others."
 msgstr ""
@@ -9974,7 +9974,7 @@ msgstr ""
 #: admin/modules/woo/woo-fields.php:190
 msgid ""
 "By default, \"big\" products are tracked with \"view item\" events, however this "
-"may not be always what you want. Use this function to track track views of such "
+"may not be always what you want. Use this function to track views of such "
 "products with \"list item view\" event, istead of \"product view\" event."
 msgstr ""
 
@@ -10018,7 +10018,7 @@ msgid "e.g. .product"
 msgstr ""
 
 #: admin/modules/woo/woo-fields.php:213
-msgid "You can provide a coma separated list of CSS selectors."
+msgid "You can provide a comma separated list of CSS selectors."
 msgstr ""
 
 #: admin/modules/woo/woo-fields.php:214

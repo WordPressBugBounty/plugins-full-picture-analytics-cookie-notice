@@ -83,7 +83,7 @@ $sections = array(
 						'placeholder'		=> esc_html__('e.g. GB, DE, FR, AU, etc.', 'full-picture-analytics-cookie-notice'),
 					),
 				),
-				'popup'				=> '<p>' . sprintf( esc_html__('Enter a list of 2-character %1$scountry codes%2$s separated by comas.', 'full-picture-analytics-cookie-notice' ), '<a target="_blank" href="https://www.iban.com/country-codes">', '</a>' ) . '</p><p>'. esc_html__('Location is checked using the method chosen in the settings of the Geolocation module.', 'full-picture-analytics-cookie-notice' ) . '</p>',
+				'popup'				=> '<p>' . sprintf( esc_html__('Enter a list of 2-character %1$scountry codes%2$s separated by commas.', 'full-picture-analytics-cookie-notice' ), '<a target="_blank" href="https://www.iban.com/country-codes">', '</a>' ) . '</p><p>'. esc_html__('Location is checked using the method chosen in the settings of the Geolocation module.', 'full-picture-analytics-cookie-notice' ) . '</p>',
 			),
 		),
 	),
@@ -289,7 +289,7 @@ $sections = array(
 				'placeholder'		=> esc_html__('e.g. pdf, doc, docx, xls, xlsx, txt', 'full-picture-analytics-cookie-notice'),
 				'option_arr_id'		=> $option_arr_id,
 				'label_for' 		=> $option_arr_id . '[track_downl_file_formats]',
-				'popup2'			=> '<p>' . sprintf( esc_html__( 'By default, Matomo tracks downloads of %1$sthese file formats%2$s. Use this function to change it. Enter coma-separated list of formats that you want to track instead.', 'full-picture-analytics-cookie-notice' ), '<a href="https://matomo.org/faq/new-to-piwik/faq_47/">', '</a>' ) . '</p>
+				'popup2'			=> '<p>' . sprintf( esc_html__( 'By default, Matomo tracks downloads of %1$sthese file formats%2$s. Use this function to change it. Enter comma-separated list of formats that you want to track instead.', 'full-picture-analytics-cookie-notice' ), '<a href="https://matomo.org/faq/new-to-piwik/faq_47/">', '</a>' ) . '</p>
 					<p class="fupi_warning_text">' . esc_html__( 'Attention! Download events will not be visible in the browser console (after you enable WP FP\'s debug mode) since they are tracked by Matomo and not by WP Full Picture. ', 'full-picture-analytics-cookie-notice' ) . '</p>',
 			),
 		),
@@ -448,7 +448,7 @@ $sections = array(
 					'field_id' 			=> 'add_tax_term_cat',
 					'option_arr_id'		=> $option_arr_id,
 					'class'				=> 'fupi_adv fupi_sub fupi_tax_terms_opts fupi_disabled',
-					'popup'				=> esc_html__('Enable to see which taxonomy a given term belongs to. Term data in your GA reports will be then displayd like e.g. "term1 (category), term2 (tag)"' ,'full-picture-analytics-cookie-notice' ),
+					'popup'				=> esc_html__('Enable to see which taxonomy a given term belongs to. Term data in your GA reports will be then displayed like e.g. "term1 (category), term2 (tag)"' ,'full-picture-analytics-cookie-notice' ),
 				),
 				array( // ok
 					'type'	 			=> 'toggle',

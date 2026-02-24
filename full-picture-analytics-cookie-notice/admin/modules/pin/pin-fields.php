@@ -48,7 +48,7 @@ $sections = array(
 				'class'				=> 'fupi_load_opts fupi_adv',
 				'must_have'			=> 'pro geo',
 				'is_repeater'		=> false,
-				'popup'				=> sprintf( esc_html__('Enter a list of 2-character %1$scountry codes%2$s separated by comas.', 'full-picture-analytics-cookie-notice' ), '<a target="_blank" href="https://www.iban.com/country-codes">', '</a>' ) . '<br><br>' . esc_html__('If visitor\'s country is not recognized, Pinterest tag will load normally. Location is checked using the method chosen in the Geolocation settings.', 'full-picture-analytics-cookie-notice' ),
+				'popup'				=> sprintf( esc_html__('Enter a list of 2-character %1$scountry codes%2$s separated by commas.', 'full-picture-analytics-cookie-notice' ), '<a target="_blank" href="https://www.iban.com/country-codes">', '</a>' ) . '<br><br>' . esc_html__('If visitor\'s country is not recognized, Pinterest tag will load normally. Location is checked using the method chosen in the Geolocation settings.', 'full-picture-analytics-cookie-notice' ),
 				'fields'			=> array(
 					array(
 						'type'				=> 'select',

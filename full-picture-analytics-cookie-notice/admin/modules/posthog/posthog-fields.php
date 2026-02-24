@@ -72,7 +72,7 @@ $sections = array(
 						'placeholder'		=> esc_html__('e.g. GB, DE, FR, AU, etc.', 'full-picture-analytics-cookie-notice'),
 					),
 				),
-				'popup'				=> sprintf( esc_html__('Enter a list of 2-character %1$scountry codes%2$s separated by comas.', 'full-picture-analytics-cookie-notice' ), '<a target="_blank" href="https://www.iban.com/country-codes">', '</a>' ) . '. ' . esc_html__('If visitor\'s country is not recognized, PostHog will load normally.', 'full-picture-analytics-cookie-notice' ),
+				'popup'				=> sprintf( esc_html__('Enter a list of 2-character %1$scountry codes%2$s separated by commas.', 'full-picture-analytics-cookie-notice' ), '<a target="_blank" href="https://www.iban.com/country-codes">', '</a>' ) . '. ' . esc_html__('If visitor\'s country is not recognized, PostHog will load normally.', 'full-picture-analytics-cookie-notice' ),
 			),
 		),
 	),

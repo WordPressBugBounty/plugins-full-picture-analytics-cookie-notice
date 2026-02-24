@@ -10,7 +10,7 @@ $scr_fields = array(
         'field_id'    => 'title',
         'class'       => 'fupi_col_100',
         'required'    => true,
-        'under field' => esc_html__( 'This is displayed by the [fp_info] shortcode, in the "GDPR setup helper" page and in proofs of visitors\' consents.', 'full-picture-analytics-cookie-notice' ),
+        'under field' => esc_html__( 'This is displayed by the [fp_info] shortcode, on the "GDPR setup helper" page and in proofs of visitors\' consents.', 'full-picture-analytics-cookie-notice' ),
     ),
     // array(
     // 	'type'				=> 'button',

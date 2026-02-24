@@ -271,7 +271,7 @@ class Fupi_MAIN_admin {
 		$update_ok = $updater->run( true, $uploaded_settings );
 
 		if ( $update_ok ) {
-			wp_send_json_success( array('message' => esc_html__('Settings restorred successfully', 'full-picture-analytics-cookie-notice' ) ) );
+			wp_send_json_success( array('message' => esc_html__('Settings restored successfully', 'full-picture-analytics-cookie-notice' ) ) );
 		} else {
 			wp_send_json_error( array( 'message' => esc_html__('No settings data received', 'full-picture-analytics-cookie-notice' ) ) );
 		}
@@ -304,7 +304,7 @@ class Fupi_MAIN_admin {
 		$update_ok = $updater->run( true, $file_contents );
 
 		if ( $update_ok ) {
-			wp_send_json_success( array('message' => esc_html__('Settings restorred successfully', 'full-picture-analytics-cookie-notice' ) ) );
+			wp_send_json_success( array('message' => esc_html__('Settings restored successfully', 'full-picture-analytics-cookie-notice' ) ) );
 		} else {
 			wp_send_json_error( array( 'message' => esc_html__('No settings data received', 'full-picture-analytics-cookie-notice' ) ) );
 		}

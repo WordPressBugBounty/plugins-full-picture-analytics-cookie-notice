@@ -105,7 +105,7 @@ $sections = array(
 				'option_arr_id'		=> $option_arr_id,
 				'class'				=> 'fupi_load_opts fupi_adv',
 				'is repeater'		=> false,
-				'popup'				=> '<p>' . sprintf( esc_html__('Enter a list of 2-character %1$scountry codes%2$s separated by comas.', 'full-picture-analytics-cookie-notice' ), '<a target="_blank" href="https://www.iban.com/country-codes">', '</a>' ) . '</p><p>'. esc_html__('Location is checked using the method chosen in the settings of the Geolocation module.', 'full-picture-analytics-cookie-notice' ) . '</p>',
+				'popup'				=> '<p>' . sprintf( esc_html__('Enter a list of 2-character %1$scountry codes%2$s separated by commas.', 'full-picture-analytics-cookie-notice' ), '<a target="_blank" href="https://www.iban.com/country-codes">', '</a>' ) . '</p><p>'. esc_html__('Location is checked using the method chosen in the settings of the Geolocation module.', 'full-picture-analytics-cookie-notice' ) . '</p>',
 				'fields'			=> array(
 					array(
 						'type'				=> 'select',
@@ -241,7 +241,7 @@ $sections = array(
 				'placeholder'		=> 'pdf, doc, docx, xls, xlsx, txt',
 				'option_arr_id'		=> $option_arr_id,
 				'label_for' 		=> $option_arr_id . '[track_file_downl]',
-				'popup'				=> '<p>' . esc_html__( 'Enter coma separated list of file formats (extensions) you want to track', 'full-picture-analytics-cookie-notice') . '</p><p>' . esc_html__( 'Tracked as a parameter "file" of the "file download" event', 'full-picture-analytics-cookie-notice' ) . '</p>',
+				'popup'				=> '<p>' . esc_html__( 'Enter comma separated list of file formats (extensions) you want to track', 'full-picture-analytics-cookie-notice') . '</p><p>' . esc_html__( 'Tracked as a parameter "file" of the "file download" event', 'full-picture-analytics-cookie-notice' ) . '</p>',
 			),
 				array(
 					'type'	 			=> 'toggle',
@@ -407,7 +407,7 @@ $sections = array(
 					'class'				=> 'fupi_sub fupi_adv',
 					'must_have'			=> 'pro',
 					'option_arr_id'		=> $option_arr_id,
-					'popup2'			=> '<p class="fupi_warning_text">' . esc_html__( 'Tracking scroll with server can greatly decrease its performance. It is NOT recommended to enable this function on slow hosting.', 'full-picture-analytics-cookie-notice') . '</p>'
+					'popup2'			=> '<p class="fupi_warning_text">' . esc_html__( 'Tracking scroll with the server can greatly decrease its performance. It is NOT recommended to enable this function on slow hosting.', 'full-picture-analytics-cookie-notice') . '</p>'
 				),
 			array(
 				'type'	 			=> 'toggle',

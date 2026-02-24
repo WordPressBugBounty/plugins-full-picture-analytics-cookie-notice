@@ -15,7 +15,7 @@ $other_settings = array(
 		'field_id' 			=> 'deactiv_email',
 		'option_arr_id'		=> $option_arr_id,
 		'placeholder'		=> sprintf( esc_html__( 'e.g. %1$s, etc.', 'full-picture-analytics-cookie-notice' ), 'john@example.com, peter@example.com' ),
-		'under field' 		=> esc_html__('Enter a coma separated list of email addresses where you want to send the email.','full-picture-analytics-cookie-notice'),
+		'under field' 		=> esc_html__('Enter a comma separated list of email addresses where you want to send the email.','full-picture-analytics-cookie-notice'),
 	),
 	array(
 		'type' 				=> 'text',
@@ -158,10 +158,10 @@ $sections = array(
 				'under field'		=> '<p>' . esc_html__( 'All providers on this list offer free services but some of them require registration or extra setup.','full-picture-analytics-cookie-notice') . '</p>
 				<ul>
 					<li><a href="https://www.cloudflare.com/en-gb/">Cloudflare</a> ' . esc_html__( '(default) - Geolocation of visitor\'s country, free, registration not required', 'full-picture-analytics-cookie-notice') . '</li>
-					<li><a href="https://www.cloudflare.com/en-gb/">Cloudflare</a> '. esc_html__( '(for regisered users) - Geolocation of visitor\'s country, free, registration required', 'full-picture-analytics-cookie-notice') . '</li>
+					<li><a href="https://www.cloudflare.com/en-gb/">Cloudflare</a> '. esc_html__( '(for registered users) - Geolocation of visitor\'s country, free, registration required', 'full-picture-analytics-cookie-notice') . '</li>
 					<li><a href="https://www.cloudflare.com/en-gb/">Cloudflare</a> '. esc_html__( '(Worker method) - Geolocation of visitor\'s country, free, registration and extra setup required', 'full-picture-analytics-cookie-notice') . '</li>
 					<li><a href="https://ipapi.co/">ipapi</a> - '. esc_html__( 'Geolocation of visitor\'s country & region, free and paid, free is limited to 1000 checks/day, registration not required', 'full-picture-analytics-cookie-notice') . '</li>
-					<li><a href="http://ipdata.co/">ipdata</a> - '. esc_html__( 'Geolocation of visitor\'s country & region, free and paid, registration is always required, free is limited to 1500 checks/day and non-commercial use', 'full-picture-analytics-cookie-notice') . '</li>
+					<li><a href="http://ipdata.co/">ipdata</a> - '. esc_html__( 'Geolocation of visitor\'s country & region, free and paid, registration is always required, the free plan is limited to 1500 checks/day and non-commercial use', 'full-picture-analytics-cookie-notice') . '</li>
 					<li><a href="https://db-ip.com/">DB_IP</a> - '. esc_html__( 'Geolocation of visitor\'s country, does not require registration (paid plans are not yet supported)', 'full-picture-analytics-cookie-notice') . '</li>
 					<li><a href="https://www.cloudways.com/en/">Cloudways</a> - '. esc_html__( 'Geolocation of visitor\'s country. Only for Cloudways customers. Extra setup required. Attention! Some caching configurations may cache geo lookup result!', 'full-picture-analytics-cookie-notice') . '</li>
 				</ul>',
@@ -196,7 +196,7 @@ $sections = array(
 				'label_for' 		=> $option_arr_id . '[show_to_countries]',
 				'default'			=> '30',
 				'after field'		=> 'days',
-				'popup' 			=> '<p>' . esc_html__( 'Default is 30 days. Set to a lower number if your visitors often browse from different countries. If set to 0, location will be checked at the begining of each session. If a location wasn\'t found it will be checked again at the begining of the next session and remembered for the specified number of days.', 'full-picture-analytics-cookie-notice') . '</p>',
+				'popup' 			=> '<p>' . esc_html__( 'Default is 30 days. Set to a lower number if your visitors often browse from different countries. If set to 0, location will be checked at the beginning of each session. If a location wasn\'t found it will be checked again at the beginning of the next session and remembered for the specified number of days.', 'full-picture-analytics-cookie-notice') . '</p>',
 			),
 		)
 	),

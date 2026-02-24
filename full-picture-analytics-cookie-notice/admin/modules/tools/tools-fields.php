@@ -280,7 +280,7 @@ $tools_fields = array(
         'class'         => 'fupi_tagman',
         'option_arr_id' => $option_arr_id,
         'el_data_name'  => 'Custom Integrations',
-        'popup'         => '<p>' . esc_html__( 'This module lets you easily install tools that track your visitors and use them in compliance with privacy regulatiopns. You can install analytics tools, live chat applications, scripts from CRM or marketing automation/email platforms and others.', 'full-picture-analytics-cookie-notice' ) . '</p>
+        'popup'         => '<p>' . esc_html__( 'This module lets you easily install tools that track your visitors and use them in compliance with privacy regulations. You can install analytics tools, live chat applications, scripts from CRM or marketing automation/email platforms and others.', 'full-picture-analytics-cookie-notice' ) . '</p>
 			<p>' . sprintf( esc_html__( '%1$sLearn more about this module%2$s', 'full-picture-analytics-cookie-notice' ), '<a target="_blank" href="https://wpfullpicture.com/module/custom-scripts/" class="button-primary">', '</a>' ) . '</p>',
     ),
     // GTM

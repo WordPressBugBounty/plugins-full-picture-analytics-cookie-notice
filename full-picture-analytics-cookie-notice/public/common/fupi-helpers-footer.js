@@ -42,7 +42,7 @@ function fupi_footer_helpers(){
         	});
 
 		return files_arr.some(function (file) {
-			if ( ! file ) return false; // this will get rid of empty arr values. They show up if someone leaves a comma ',' at the begining or end of the list of formats
+			if ( ! file ) return false; // this will get rid of empty arr values. They show up if someone leaves a comma ',' at the beginning or end of the list of formats
             return last_url_part.indexOf( '.' + file.toLowerCase() ) != -1;
         });
     };

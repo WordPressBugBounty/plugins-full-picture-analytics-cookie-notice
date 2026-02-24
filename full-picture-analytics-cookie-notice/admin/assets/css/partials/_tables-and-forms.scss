@@ -9,9 +9,6 @@
 // FORM ELEMENTS
 
 #fupi_main_col{
-	input, textarea, select, .select2{
-		border-color: #b6c1d3;
-	}
 	input[type=date],
 	input[type=datetime-local],
 	input[type=datetime],
@@ -21,8 +18,10 @@
 	input[type=tel],
 	input[type=text]:not(.select2-search__field),
 	input[type=url],
+	select, 
 	textarea{
-		padding: 6px 12px !important;
+		border-radius: 4px;
+		line-height: 2.71428571;
 		font-size: 14px !important;
 		min-width: 50%;
 	}
@@ -30,8 +29,8 @@
 		min-width: 80px; // overwrites WP styles
 		width: 80px;
 	}
-	select{
-		padding: 6px 24px 6px 12px;
+	.select2-search__field{
+		line-height: 1em;
 	}
 	textarea{
 		width: 100%;

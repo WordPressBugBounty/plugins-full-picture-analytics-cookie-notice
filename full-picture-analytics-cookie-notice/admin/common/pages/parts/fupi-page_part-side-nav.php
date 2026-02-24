@@ -200,8 +200,8 @@ class Fupi_Build_Side_Nav {
                 <div id="fupi_getpro_banner_unlock_icon"><span class="dashicons dashicons-performance"></span></div>
                 <h3>' . esc_html__('Does this website make money?', 'full-picture-analytics-cookie-notice') . '</h3>
                 <p>' . esc_html__('Optimize your marketing and improve conversion rates with WP Full Picture PRO', 'full-picture-analytics-cookie-notice') . '</p>
-                <a href="https://wpfullpicture.com/free-vs-pro/" class="button-primary" target="_blank">' . esc_html__('Learn more', 'full-picture-analytics-cookie-notice') . '<span class="dashicons dashicons-arrow-right"></span></a>
-                <a href="https://wpfullpicture.com/pricing/" target="_blank" style="color: lightblue; text-align: center; display: block;">' . esc_html__('view pricing', 'full-picture-analytics-cookie-notice') . '</a>
+                <a href="https://wpfullpicture.com/free-vs-pro/" class="button-primary" target="_blank">' . esc_html__('Learn more', 'full-picture-analytics-cookie-notice') . '</a>
+                <a href="https://wpfullpicture.com/pricing/" target="_blank" style="color: lightblue; text-align: center; display: block;">' . esc_html__('View pricing', 'full-picture-analytics-cookie-notice') . '</a>
             </div>';
             
             // Show BF DEAL notification if current date is within the range

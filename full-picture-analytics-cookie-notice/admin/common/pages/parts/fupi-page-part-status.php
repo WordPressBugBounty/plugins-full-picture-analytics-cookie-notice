@@ -19,7 +19,7 @@ $descr_end = '</div></div>';
 if ( empty( $this->tools['cook'] ) ) {
     echo $descr_start . '<section style="margin-top: 30px;">
         <h3>' . esc_html__('Check if you need a consent banner', 'full-picture-analytics-cookie-notice' ) . '</h3>
-        <p>' . esc_html__('A consent banner is the central element of a GDPR-compliant website. However, not all sites need it. I wrote an article which explains in details, when it is needed.', 'full-picture-analytics-cookie-notice' ) . '</p>
+        <p>' . esc_html__('A consent banner is the central element of a GDPR-compliant website. However, not all sites need it. I wrote an article which explains in detail, when it is needed.', 'full-picture-analytics-cookie-notice' ) . '</p>
         <p><a href="https://wpfullpicture.com/blog/when-you-need-a-gdpr-compliant-consent-banner/" class="button-primary" target="_blank">' . esc_html__('Read the article', 'full-picture-analytics-cookie-notice' ) . '</a></p>
     </section>' . $descr_end;
 } else {
