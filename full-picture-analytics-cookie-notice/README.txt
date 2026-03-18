@@ -3,8 +3,8 @@ Contributors: chrisplaneta
 Donate link: https://wpfullpicture.com/
 Tags: Consent mode, Analytics, GDPR, GTM, Google Ads
 Requires at least: 5.4.0
-Tested up to: 6.9.3
-Stable tag: 10.1.0
+Tested up to: 6.9.4
+Stable tag: 10.1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -209,6 +209,11 @@ These platforms allow you to create advanced reports with aggregated data from v
 6. View traffic and marketing reports in the admin panel
 
 == Changelog ==
+
+= 10.1.1 (11-03-2026) =
+
+* [Update] [Woo] Added a few extra rules to better track ATC buttons on single product pages that use Ajax
+* [Fix] [Woo] Fixed a bug that showed on sam configs, and prevented tracking "add to cart" events on cart pages
 
 = 10.1.0 (11-03-2026) =
 

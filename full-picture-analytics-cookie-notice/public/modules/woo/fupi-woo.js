@@ -474,9 +474,10 @@ function fupi_woo(){
 			// track simple product
 			} else if ( form_el ) {
 
-				let prod_id = FP.findFirst( '.single_add_to_cart_button', form_el ).value;
+				let atc_btn = FP.findFirst( '.single_add_to_cart_button', form_el ),
+					prod_id = atc_btn?.value || atc_btn.dataset?.prod_id || atc_btn.dataset?.prodid || atc_btn.dataset?.product_id || atc_btn.dataset?.pid;
 
-				if ( fpdata.woo.products[prod_id] ) {
+				if ( !! prod_id && fpdata.woo.products[prod_id] ) {
 
 					let qty_el = FP.findFirst( 'input.qty', form_el ),
 						qty = qty_el && qty_el.value && qty_el.value > 0 ? parseInt( qty_el.value ) : 1,
@@ -531,6 +532,8 @@ function fupi_woo(){
 			
 			fpdata.woo.cart = cart_data;
 			cart_data_el.classList.add('fupi_ready'); // Mark as processed
+
+			if ( fpdata.page_type == "Woo Cart" && fpdata.woo.cart.items && fp.woo.where_track_addtocart === 'in_cart' ) do_addToCart_in_cart();
 		}
 	};
 
@@ -615,9 +618,10 @@ function fupi_woo(){
 	function do_addToCart_in_cart(){
 		
 		// check if there is an "fp_woo_cart" cookie with FP.readCookie() function
-		let fp_woo_cart_cookie = FP.readCookie('fp_woo_cart');
-		let added = [];
-		let added_val = 0;
+		let fp_woo_cart_cookie = FP.readCookie('fp_woo_cart'),
+			added = [],
+			added_val = 0,
+			cart_to_track = {};
 		
 		// if there is a cookie
 		if ( fp_woo_cart_cookie ) {
@@ -642,7 +646,7 @@ function fupi_woo(){
 			// Track added products
 			if ( added.length > 0 ) {
 				added_val = Math.round( added_val * 100 ) / 100;
-				fp.woo.cart_to_track = { 'products' : added, 'value' : added_val };
+				cart_to_track = { 'products' : added, 'value' : added_val };
 			}
 		
 		// if there is no cookie
@@ -654,13 +658,12 @@ function fupi_woo(){
 				added.push( [prod, prod.qty] );
 			}
 			
-			fp.woo.cart_to_track = { 'products' : added, 'value' : fpdata.woo.cart.value };
+			cart_to_track = { 'products' : added, 'value' : fpdata.woo.cart.value };
 		}
 		
 		update_cart_cookie();
+		FP.doActions( 'woo_add_to_cart', cart_to_track );
 	}
-
-	if ( fpdata.page_type == "Woo Cart" && fpdata.woo.cart.items && fp.woo.where_track_addtocart === 'in_cart' ) do_addToCart_in_cart();
 
 	// TRACK ADD TO WISHLIST
 
