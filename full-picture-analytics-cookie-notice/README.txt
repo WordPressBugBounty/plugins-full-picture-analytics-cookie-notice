@@ -1,10 +1,10 @@
 === Tracking and Consent Manager - WP Full Picture ===
-Contributors: chrisplaneta
+Contributors: chrisplaneta, freemius
 Donate link: https://wpfullpicture.com/
 Tags: Consent mode, Analytics, GDPR, GTM, Google Ads
 Requires at least: 5.4.0
-Tested up to: 6.9.4
-Stable tag: 10.1.1
+Tested up to: 7.1.1
+Stable tag: 10.1.2.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -210,10 +210,18 @@ These platforms allow you to create advanced reports with aggregated data from v
 
 == Changelog ==
 
+= 10.1.2.1 (23-09-2026) =
+
+* [Update] Freemius SDK
+* [Fix] "return response" for cURL sending data to other servers sometimes echoed returns instead of not showing them
+* [Fix] other minor fixes and improvements to sending data to remote servers
+* [Fix] Other small code fixes and improvements
+* [Other] Added a banner about v11 beta tests
+
 = 10.1.1 (11-03-2026) =
 
 * [Update] [Woo] Added a few extra rules to better track ATC buttons on single product pages that use Ajax
-* [Fix] [Woo] Fixed a bug that showed on sam configs, and prevented tracking "add to cart" events on cart pages
+* [Fix] [Woo] Fixed a bug that showed on some configs, and prevented tracking "add to cart" events on cart pages
 
 = 10.1.0 (11-03-2026) =
 

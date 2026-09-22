@@ -198,10 +198,10 @@ class Fupi_Build_Side_Nav {
 
             $this->extra_html = '<div id="fupi_sidenav_banner" class="fupi_getpro_banner">
                 <div id="fupi_getpro_banner_unlock_icon"><span class="dashicons dashicons-performance"></span></div>
-                <h3>' . esc_html__('Does this website make money?', 'full-picture-analytics-cookie-notice') . '</h3>
-                <p>' . esc_html__('Optimize your marketing and improve conversion rates with WP Full Picture PRO', 'full-picture-analytics-cookie-notice') . '</p>
-                <a href="https://wpfullpicture.com/free-vs-pro/" class="button-primary" target="_blank">' . esc_html__('Learn more', 'full-picture-analytics-cookie-notice') . '</a>
-                <a href="https://wpfullpicture.com/pricing/" target="_blank" style="color: lightblue; text-align: center; display: block;">' . esc_html__('View pricing', 'full-picture-analytics-cookie-notice') . '</a>
+                <h3>' . esc_html__('V11 Beta is out', 'full-picture-analytics-cookie-notice') . '</h3>
+                <p>' . esc_html__('Biggest update to date. 1500+ hours of work. Available to test now. Send feedback and get 40% off.', 'full-picture-analytics-cookie-notice') . '</p>
+                <a href="https://wpfullpicture.com/try-wp-full-picture-beta/" class="button-primary" target="_blank">' . esc_html__('Test v11 PRO', 'full-picture-analytics-cookie-notice') . '</a>
+                <a href="https://wpfullpicture.com/release/wp-full-picture-11/" target="_blank" style="color: lightblue; text-align: center; display: block;">' . esc_html__('Learn what\'s new', 'full-picture-analytics-cookie-notice') . '</a>
             </div>';
             
             // Show BF DEAL notification if current date is within the range

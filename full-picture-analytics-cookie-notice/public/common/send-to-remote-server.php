@@ -11,7 +11,7 @@ foreach ( $requests_a as $request ) {
 
     // $request = [
     //   'url' => 'https://example.com/api1',
-    //   'header' => [],
+    //   'headers' => [],
     //   'payload' => ['key1' => 'value1', 'key2' => 'value2'],
     // 	 'return_response' => 'CDB', // (optional)
     //          can take 3 values?: false, debug.log and a string:
@@ -30,11 +30,7 @@ foreach ( $requests_a as $request ) {
     curl_setopt($ch, CURLOPT_POST, true);
     curl_setopt($ch, CURLOPT_HTTPHEADER, $request['headers']);
     curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode( $request['payload'] ) );
-    
-    if ( ! empty ( $request['return_response'] ) ) {
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    }
-
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_TIMEOUT, 30); // Set a timeout for the request (in seconds)
     curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10); // Add connection timeout (in seconds)
 
@@ -58,13 +54,18 @@ do {
 // Collect responses from each handle
 
 foreach ( $curlHandles as $index => $handle_data) {
+    
     if ( ! empty( $handle_data['return_response'] ) ) {
         if ( $handle_data['return_response'] == 'debug.log' ) {
             $logged_responses[] = curl_multi_getcontent( $handle_data['handle'] );
         } else {
-            $responses[ $handle_data['return_response'] ] = curl_multi_getcontent( $handle_data['handle'] );
+            $response = curl_multi_getcontent($handle_data['handle']);
+            if ($response !== false) {
+                $responses[ $handle_data['return_response'] ] = $response; // $responses is set in calling functions
+            }
         }
-    };
+    }
+
     curl_multi_remove_handle($multiCurl, $handle_data['handle']);
     curl_close($handle_data['handle']);
 }
@@ -73,5 +74,5 @@ foreach ( $curlHandles as $index => $handle_data) {
 curl_multi_close( $multiCurl );
 
 if ( count( $logged_responses ) > 0 ) {
-    trigger_error( json_encode( $logged_responses ) );
+    error_log( json_encode( $logged_responses ) );
 }

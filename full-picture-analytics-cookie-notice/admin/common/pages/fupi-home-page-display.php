@@ -193,11 +193,11 @@
                     if ( ! fupi_fs()->can_use_premium_code() ) : ?>
                     <div id="fupi_home_getpro" class="fupi_home_section t-col-span-2 d-col-span-2 fupi_getpro_banner">
                         <div id="fupi_getpro_banner_unlock_icon"><span class="dashicons dashicons-performance"></span></div>
-                        <h3><?php esc_html_e('Does this website make money?', 'full-picture-analytics-cookie-notice'); ?></h3>
+                        <h3><?php esc_html_e('V11 Beta is out', 'full-picture-analytics-cookie-notice'); ?></h3>
                         <div id="fupi_getpro_content_wrap">
-                            <p style="margin-top: 0;"><?php esc_html_e('Optimize your marketing and improve conversion rates with WP Full Picture PRO', 'full-picture-analytics-cookie-notice'); ?></p>
-                            <a href="https://wpfullpicture.com/free-vs-pro/" class="button-primary no_external_icon" target="_blank" style="font-size: 18px;"><?php esc_html_e('Learn more', 'full-picture-analytics-cookie-notice'); ?></a>
-                            <a href="https://wpfullpicture.com/pricing/" target="_blank" class="no_external_icon" style="color: lightblue; text-align: center; display: block; font-size: 18px;"><?php esc_html_e('View pricing', 'full-picture-analytics-cookie-notice'); ?></a>
+                            <p style="margin-top: 0;"><?php esc_html_e('Biggest update to date. 1500+ hours of work. Available to test now. Send feedback and get 40% off.', 'full-picture-analytics-cookie-notice'); ?></p>
+                            <a href="https://wpfullpicture.com/try-wp-full-picture-beta/" class="button-primary no_external_icon" target="_blank" style="font-size: 18px;"><?php esc_html_e('Test v11 PRO', 'full-picture-analytics-cookie-notice'); ?></a>
+                            <a href="https://wpfullpicture.com/release/wp-full-picture-11/" target="_blank" class="no_external_icon" style="color: lightblue; text-align: center; display: block; font-size: 18px;"><?php esc_html_e('Learn what\'s new', 'full-picture-analytics-cookie-notice'); ?></a>
                         </div>
                     </div>
                     <?php endif; ?>
