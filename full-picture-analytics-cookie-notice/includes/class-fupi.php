@@ -167,6 +167,8 @@ class Fupi {
                 }
             }
         }
+        // The sender route writes to the WooCommerce session and must stay front-end classified for WooCommerce 11.1.2+ (see Fupi_Public::fupi_sender_is_frontend_request)
+        $this->loader->add_filter( 'woocommerce_is_rest_api_request', $plugin_public, 'fupi_sender_is_frontend_request' );
         // SERVER OPERATIONS
         if ( !empty( $this->main['server_method'] ) && $this->main['server_method'] == 'ajax' ) {
             // Add AJAX CB to not logged in users

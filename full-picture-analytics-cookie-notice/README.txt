@@ -3,8 +3,8 @@ Contributors: chrisplaneta, freemius
 Donate link: https://wpfullpicture.com/
 Tags: Consent mode, Analytics, GDPR, GTM, Google Ads
 Requires at least: 5.4.0
-Tested up to: 7.1.1
-Stable tag: 10.1.2.1
+Tested up to: 7.1.3
+Stable tag: 10.1.2.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -209,6 +209,16 @@ These platforms allow you to create advanced reports with aggregated data from v
 6. View traffic and marketing reports in the admin panel
 
 == Changelog ==
+
+= 10.1.2.3 (12-10-2026) =
+
+* [Fix] Check for DOM content loaded is now more reliable
+
+= 10.1.2.2 (8-10-2026) =
+
+* [Fix] [Pro] SBOT tracking after Woo 11.1.2 started treating rest api calls with GET as admin-only
+* [Fix] Check for DOM content loaded is now more reliable
+* [Other] Freemius SDK update
 
 = 10.1.2.1 (23-09-2026) =
 

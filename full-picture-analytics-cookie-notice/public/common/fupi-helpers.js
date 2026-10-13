@@ -1084,12 +1084,6 @@ function fupi_top_helpers(){
         } );
     }
 
-    if ( document.readyState === "complete" ) {
-        do_when_DOM_loaded();
-    } else {
-        document.addEventListener('DOMContentLoaded', do_when_DOM_loaded );
-    }
-
     // ON MOUSE MOVE
     document.addEventListener( 'mousemove', FP.throttle( FP.startActivityTimer, 500 ) ); // This starts the user's activity timer
 
@@ -1110,7 +1104,13 @@ function fupi_top_helpers(){
 		if ( fp.actions.click && e.button == 1) trackClicks(e, true);
 	});
 
-    FP.loaded('head_helpers');
+    FP.loaded('head_helpers'); // Has to go before DOM loaded
+
+    if ( document.readyState !== "loading" ) {
+        do_when_DOM_loaded();
+    } else {
+        document.addEventListener('DOMContentLoaded', do_when_DOM_loaded );
+    }
 
 };
 

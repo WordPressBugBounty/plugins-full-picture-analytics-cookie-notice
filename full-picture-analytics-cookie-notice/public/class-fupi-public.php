@@ -408,6 +408,25 @@ class Fupi_Public {
         return $requests_a;
     }
 
+    // WooCommerce 11.1.2 treats requests with the "?rest_route=" GET parameter as REST API requests and then does not start the WooCommerce client session (skips its "frontend" machinery). Our sender route saves data in the WooCommerce session, so requests to it must be recognized as front-end requests, like WooCommerce handled them before 11.1.2.
+    public function fupi_sender_is_frontend_request( $is_rest_api_request ) {
+        if ( !$is_rest_api_request ) {
+            return false;
+        }
+        // "/index.php?rest_route=/fupi/v1/sender" form of the endpoint
+        if ( !empty( $_GET['rest_route'] ) && is_string( $_GET['rest_route'] ) && str_starts_with( wp_unslash( $_GET['rest_route'] ), '/fupi/v1/sender' ) ) {
+            return false;
+        }
+        // "/wp-json/fupi/v1/sender" form of the endpoint
+        if ( !empty( $_SERVER['REQUEST_URI'] ) ) {
+            $sender_path = '/' . trailingslashit( rest_get_url_prefix() ) . 'fupi/v1/sender';
+            if ( false !== strpos( wp_unslash( $_SERVER['REQUEST_URI'] ), $sender_path ) ) {
+                return false;
+            }
+        }
+        return $is_rest_api_request;
+    }
+
     // REST HOOKS
     public function fupi_rest_hooks() {
         register_rest_route( 'fupi/v1', '/sender', [
