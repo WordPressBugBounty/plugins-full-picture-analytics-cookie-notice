@@ -12,7 +12,7 @@ class Fupi_MAIN_admin {
         $this->settings = get_option('fupi_main');
         $this->tools = get_option('fupi_tools');
         $this->cook = get_option('fupi_cook');	
-		$this->proofrec = get_option('fupi_proofrec');
+		$this->proofrec = get_option('fupi_cook');
 
         $this->add_actions_and_filters();
     }
@@ -59,7 +59,7 @@ class Fupi_MAIN_admin {
 
         // UPDATE CDB
 
-        if ( ! empty ( $this->tools['cook'] ) && ! empty ( $this->tools['proofrec'] ) && $this->pp_ok() ) {
+        if ( ! empty ( $this->tools['cook'] ) && $this->pp_ok() ) {
 
 			include_once FUPI_PATH . '/includes/class-fupi-get-gdpr-status.php';
 			$gdpr_checker = new Fupi_compliance_status_checker( 'main', $clean_data );
@@ -68,7 +68,8 @@ class Fupi_MAIN_admin {
 
         // CLEAR CACHE
 		
-		include FUPI_PATH . '/admin/common/fupi-clear-cache.php';
+		require_once FUPI_PATH . '/admin/common/fupi-clear-cache.php';
+		fupi_clear_cache();
 		return $clean_data;
     }
 
@@ -85,8 +86,8 @@ class Fupi_MAIN_admin {
         
 		$saved_options = array();
         require FUPI_PATH . '/includes/fupi_modules_data.php'; // sets a var $fupi_modules
-        $addons_data = apply_filters( 'fupi_register_addon', [] ); // ! ADDON
-        $fupi_modules = array_merge( $fupi_modules, $addons_data );
+		$atrig_module_data = [ [ 'id' => 'atrig' ] ]; // Also copy data from atrig module
+        $fupi_modules = array_merge( $fupi_modules, $atrig_module_data );
 		
 		// get modules options
 		foreach( $fupi_modules as $module ){
@@ -107,6 +108,13 @@ class Fupi_MAIN_admin {
 			$saved_options[ 'fupi_cookie_notice' ] = $customizer_options;
 		} else {
 			$saved_options[ 'fupi_cookie_notice' ] = 'no_value';
+		}
+
+		$iframe_customizer_options = get_option( 'fupi_ifrblock' );
+		if ( ! empty( $iframe_customizer_options ) ) {
+			$saved_options[ 'fupi_ifrblock' ] = $iframe_customizer_options;
+		} else {
+			$saved_options[ 'fupi_ifrblock' ] = 'no_value';
 		}
 		
 		// get theme mods
@@ -138,18 +146,34 @@ class Fupi_MAIN_admin {
 			'fupi_notice_necessary_switch_color',
 			'fupi_toggler_bg_color',
 			'fupi_custom_toggler_img',
+			'fupi_ifrblock_image',
+			'fupi_ifrblock_border_width',
+			'fupi_ifrblock_border_color',
+			'fupi_ifrblock_border_radius',
+			'fupi_ifrblock_ratio_x',
+			'fupi_ifrblock_ratio_y',
+			'fupi_ifrblock_notice_bg_color',
+			'fupi_ifrblock_notice_text_color',
+			'fupi_ifrblock_notice_font_size',
+			'fupi_ifrblock_btn_bg_color',
+			'fupi_ifrblock_btn_bg_color_hover',
+			'fupi_ifrblock_btn_text_color',
+			'fupi_ifrblock_btn_text_color_hover',
+			'fupi_ifrblock_btn_font_size',
+			'fupi_ifrblock_btn_size',
+			'fupi_ifrblock_btn_border_radius',
 		);
 
 		$saved_options[ 'theme_mods' ] = [];
 
 		foreach ( $banner_style_mods as $mod_id ) {
 			
-			$value = get_theme_mod( $mod_id );
+			$value = get_theme_mod( $mod_id, null );
 			
-			if ( empty( $value ) ) {
+			if ( $value === null ) {
 				$saved_options[ 'theme_mods' ][$mod_id] = 'no_value';
 			} else {
-				$saved_options[ 'theme_mods' ][$mod_id] = get_theme_mod( $mod_id );
+				$saved_options[ 'theme_mods' ][$mod_id] = $value;
 			}
 		}
 
@@ -273,7 +297,7 @@ class Fupi_MAIN_admin {
 		if ( $update_ok ) {
 			wp_send_json_success( array('message' => esc_html__('Settings restored successfully', 'full-picture-analytics-cookie-notice' ) ) );
 		} else {
-			wp_send_json_error( array( 'message' => esc_html__('No settings data received', 'full-picture-analytics-cookie-notice' ) ) );
+			wp_send_json_error( array( 'message' => esc_html__('Settings could not be restored. Public functionality remain disabled until a backup is restored successfully.', 'full-picture-analytics-cookie-notice' ) ) );
 		}
 	}
 
@@ -306,7 +330,7 @@ class Fupi_MAIN_admin {
 		if ( $update_ok ) {
 			wp_send_json_success( array('message' => esc_html__('Settings restored successfully', 'full-picture-analytics-cookie-notice' ) ) );
 		} else {
-			wp_send_json_error( array( 'message' => esc_html__('No settings data received', 'full-picture-analytics-cookie-notice' ) ) );
+			wp_send_json_error( array( 'message' => esc_html__('Settings could not be restored. Public functionality remain disabled until a backup is restored successfully.', 'full-picture-analytics-cookie-notice' ) ) );
 		}
 	}
 }

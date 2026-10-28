@@ -67,6 +67,6 @@
 }
 
 // Hide "Save Settings" button on the section with the backups table
-// #fupi_settings_form:has(#hook_main_3 + .fupi_section_descr:not(.fupi_hidden)) .fupi_form_buttons_wrap {
+// #fupi_content .fupi_settings_form:has(#hook_main_3 + .fupi_section_descr:not(.fupi_hidden)) .fupi_form_buttons_wrap {
 //     display: none;
 // }

@@ -2,50 +2,39 @@
 
 $option_arr_id = 'fupi_cscr';
 $footer_scr_fields = array();
-$scr_fields = array(
-    array(
-        'label'       => esc_html__( 'Name*', 'full-picture-analytics-cookie-notice' ),
-        'type'        => 'text',
-        'el_class'    => 'fupi_internal_title',
-        'field_id'    => 'title',
-        'class'       => 'fupi_col_100',
-        'required'    => true,
-        'under field' => esc_html__( 'This is displayed by the [fp_info] shortcode, on the "GDPR setup helper" page and in proofs of visitors\' consents.', 'full-picture-analytics-cookie-notice' ),
+$scr_fields = array(array(
+    'label'       => esc_html__( 'Name*', 'full-picture-analytics-cookie-notice' ),
+    'type'        => 'text',
+    'el_class'    => 'fupi_internal_title',
+    'field_id'    => 'title',
+    'class'       => 'fupi_col_100',
+    'required'    => true,
+    'under_field' => esc_html__( 'This is displayed by the [fp_info] shortcode (deprecated), on the "GDPR setup helper" page and in proofs of visitors\' consents.', 'full-picture-analytics-cookie-notice' ),
+), array(
+    'type'     => 'hidden',
+    'field_id' => 'id',
+    'required' => true,
+    'class'    => 'fupi_col_20',
+    'el_class' => 'fupi_generate_id',
+), array(
+    'label'       => esc_html__( '(Required) Script only - no HTML', 'full-picture-analytics-cookie-notice' ),
+    'type'        => 'textarea',
+    'field_id'    => 'scr',
+    'class'       => 'fupi_col_100',
+    'el_class'    => 'fupi_textarea_with_code',
+    'required'    => true,
+    'format'      => 'htmlentities',
+    'under_field' => sprintf(
+        esc_html__( '%1$s%5$s tags will be automatically removed (or replaced) from the code above. %6$sLearn more%7$s.%2$s', 'full-picture-analytics-cookie-notice' ),
+        '<p>',
+        '</p>',
+        '<strong>',
+        '</strong>',
+        '&lt;script>',
+        '<a href="https://wpfullpicture.com/support/documentation/how-to-add-custom-scripts-in-a-privacy-respecting-way/" target="_blank">',
+        '</a>'
     ),
-    // array(
-    // 	'type'				=> 'button',
-    // 	'el_class'			=> 'fupi_fields_toggle_btn',
-    // 	'screen_reader_text'=> esc_html__('Show fields', 'full-picture-analytics-cookie-notice' ),
-    // 	'icon'				=> 'dashicons dashicons-arrow-down-alt2',
-    // 	'field_id'			=> 'toggle_btn',
-    // 	'class'				=> 'fupi_col_20',
-    // ),
-    array(
-        'type'     => 'hidden',
-        'field_id' => 'id',
-        'required' => true,
-        'class'    => 'fupi_col_20',
-    ),
-    array(
-        'label'       => esc_html__( '(Required) Script only - no HTML', 'full-picture-analytics-cookie-notice' ),
-        'type'        => 'textarea',
-        'field_id'    => 'scr',
-        'class'       => 'fupi_col_100',
-        'el_class'    => 'fupi_textarea_with_code',
-        'required'    => true,
-        'format'      => 'htmlentities',
-        'under field' => sprintf(
-            esc_html__( '%1$s%5$s tags will be automatically removed (or replaced) from the code above. %6$sLearn more%7$s.%2$s', 'full-picture-analytics-cookie-notice' ),
-            '<p>',
-            '</p>',
-            '<strong>',
-            '</strong>',
-            '&lt;script>',
-            '<a href="https://wpfullpicture.com/support/documentation/how-to-add-custom-scripts-in-a-privacy-respecting-way/" target="_blank">',
-            '</a>'
-        ),
-    ),
-);
+));
 // ADD HTML FIELD ONLY TO FOOTER
 $html_field = array(array(
     'label'       => esc_html__( '(Optional) HTML', 'full-picture-analytics-cookie-notice' ),
@@ -54,7 +43,7 @@ $html_field = array(array(
     'el_class'    => 'fupi_textarea_with_html',
     'class'       => 'fupi_col_100',
     'format'      => 'htmlentities',
-    'under field' => esc_html__( 'HTML is added to the page before the script.', 'full-picture-analytics-cookie-notice' ),
+    'under_field' => esc_html__( 'HTML is added to the page before the script.', 'full-picture-analytics-cookie-notice' ),
 ));
 $footer_scr_fields = array_merge( $scr_fields, $html_field );
 // ADD FPINFO FIELDS TO TOP AND FOOTER FIELDS
@@ -67,7 +56,7 @@ $fpinfo_fields = array(array(
     'el_data_target' => 'fupi_pp_link_opts',
 ), array(
     'type'     => 'url',
-    'label'    => esc_html__( 'Script\'s privacy policy URL (for use in [fp_info] shortcode)', 'full-picture-analytics-cookie-notice' ),
+    'label'    => esc_html__( 'Script\'s privacy policy URL (feature deprecated)', 'full-picture-analytics-cookie-notice' ),
     'field_id' => 'pp_url',
     'class'    => 'fupi_pp_link_opts fupi_col_50',
 ));
@@ -76,7 +65,7 @@ $footer_scr_fields = array_merge( $footer_scr_fields, $fpinfo_fields );
 if ( isset( $this->tools['cook'] ) ) {
     $cook_scr_fields = array(
         array(
-            'label'             => esc_html__( 'Load when visitors agree to', 'full-picture-analytics-cookie-notice' ),
+            'label'             => esc_html__( 'Requires consent to:', 'full-picture-analytics-cookie-notice' ),
             'type'              => 'label',
             'field_id'          => 'types_label',
             'start_sub_section' => true,
@@ -84,19 +73,19 @@ if ( isset( $this->tools['cook'] ) ) {
         ),
         array(
             'label'    => esc_html__( 'Statistics', 'full-picture-analytics-cookie-notice' ),
-            'type'     => 'toggle',
+            'type'     => 'checkbox',
             'field_id' => 'stats',
             'class'    => 'fupi_col_20 fupi_inline_label',
         ),
         array(
             'label'    => esc_html__( 'Marketing', 'full-picture-analytics-cookie-notice' ),
-            'type'     => 'toggle',
+            'type'     => 'checkbox',
             'field_id' => 'market',
             'class'    => 'fupi_col_20 fupi_inline_label',
         ),
         array(
             'label'           => esc_html__( 'Personalisation', 'full-picture-analytics-cookie-notice' ),
-            'type'            => 'toggle',
+            'type'            => 'checkbox',
             'field_id'        => 'pers',
             'class'           => 'fupi_col_20 fupi_inline_label',
             'end_sub_section' => true,
@@ -120,42 +109,12 @@ $geo_fields = array(array(
     'label'             => esc_html__( 'Enable Geolocation in the General Settings to load this script in specific countries', 'full-picture-analytics-cookie-notice' ),
     'type'              => 'label',
     'field_id'          => 'label_geo_text',
-    'class'             => 'fupi_col_100 fupi_adv_group',
+    'class'             => 'fupi_col_100',
     'start_sub_section' => true,
     'end_sub_section'   => true,
 ));
 $scr_fields = array_merge( $scr_fields, $geo_fields );
 $footer_scr_fields = array_merge( $footer_scr_fields, $geo_fields );
-// $atrig_fields = array(
-// 	array(
-// 		'type'	 			=> 'r3',
-// 		'is_repeater'		=> false,
-// 		'field_id' 			=> 'adv_trigger',
-// 		'must_have'			=> 'pro atrig',
-// 		'class'				=> 'fupi_r3_atrig_section',
-// 		'fields'			=> array(
-// 			array(
-// 				'label'				=> esc_html__( '(Beta) After the script loads, trigger when', 'full-picture-analytics-cookie-notice' ),
-// 				'type' 				=> 'atrig_select',
-// 				'field_id'			=> 'atrig_id',
-// 				'class'				=> 'fupi_col_50',
-// 				'default_option_text'	=> esc_html__( 'Trigger instantly', 'full-picture-analytics-cookie-notice' ),
-// 			),
-// 			array(
-// 				'type'	 			=> 'select',
-// 				'label' 			=> esc_html__( '...for...', 'full-picture-analytics-cookie-notice' ),
-// 				'field_id' 			=> 'repeat',
-// 				'class'				=> 'fupi_col_20',
-// 				'options'			=> array(
-// 					'no'				=> esc_html__( 'The first time', 'full-picture-analytics-cookie-notice' ),
-// 					'yes'				=> esc_html__( 'Every time', 'full-picture-analytics-cookie-notice' ),
-// 				),
-// 			),
-// 		),
-// 	),
-// );
-// $scr_fields = array_merge( $scr_fields, $atrig_fields );
-// $footer_scr_fields = array_merge( $footer_scr_fields, $atrig_fields );
 $load_fields = array(array(
     'label'    => esc_html__( 'Force load', 'full-picture-analytics-cookie-notice' ),
     'type'     => 'toggle',

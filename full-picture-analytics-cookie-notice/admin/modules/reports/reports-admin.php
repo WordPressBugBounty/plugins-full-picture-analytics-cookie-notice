@@ -33,7 +33,8 @@ class Fupi_REPORTS_admin {
 
         if ( apply_filters( 'fupi_updating_many_options', false ) ) return $clean_data;
         
-		include FUPI_PATH . '/admin/common/fupi-clear-cache.php';
+		require_once FUPI_PATH . '/admin/common/fupi-clear-cache.php';
+		fupi_clear_cache();
 		return $clean_data; 
     }
 

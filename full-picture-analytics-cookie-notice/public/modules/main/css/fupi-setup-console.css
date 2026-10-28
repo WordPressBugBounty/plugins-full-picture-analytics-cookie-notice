@@ -53,15 +53,15 @@
 }
 
 #fupi_console {
-  max-height: 100vh;
-  width: 280px;
+  height: 100vh;
+  width: 100vw;
+  max-width: 340px;
   background-color: #fff;
   color: #000;
-  padding: 20px;
   z-index: 2;
   font-size: 14px;
   line-height: 1.4em;
-  overflow-y: auto;
+  overflow: hidden;
   -webkit-box-shadow: 3px 0 10px 0 rgba(0, 0, 0, 0.2);
           box-shadow: 3px 0 10px 0 rgba(0, 0, 0, 0.2);
   position: relative;
@@ -72,28 +72,108 @@
 #fupi_console p {
   margin: 1em 0 !important;
 }
-#fupi_console.fupi_trackable #fupi_console_step1,
-#fupi_console.fupi_trackable #fupi_start_test {
-  display: none;
+#fupi_console h2 {
+  margin: 0 0 16px !important;
+  padding-right: 32px;
+  color: #000;
+  font-size: 21px;
+  line-height: 1.25;
 }
-#fupi_console.fupi_not_trackable #fupi_console_step2,
-#fupi_console.fupi_not_trackable #fupi_simulate_first_visit,
-#fupi_console.fupi_not_trackable #fupi_end_test,
-#fupi_console.fupi_not_trackable #fupi_show_banner {
-  display: none;
+#fupi_console h3 {
+  margin: 0 0 8px !important;
+  color: #000;
+  font-size: 16px;
+  line-height: 1.3;
+}
+#fupi_console a {
+  color: #174f87;
+  text-decoration: underline;
 }
 #fupi_console strong {
-  font-weight: 500;
+  font-weight: 600;
 }
 
-#fupi_console,
-#fupi_console h2,
-#fupi_console h3,
-#fupi_console button {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+#fupi_console_panels {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
 }
 
-#fupi_console_buttons {
+.fupi_console_panel {
+  position: absolute;
+  inset: 0;
+  padding: 52px 20px 24px;
+  overflow-y: auto;
+  background: #fff;
+  -webkit-transform: translateX(100%);
+          transform: translateX(100%);
+  visibility: hidden;
+  pointer-events: none;
+}
+#fupi_console.fupi_panels_ready .fupi_console_panel {
+  -webkit-transition: visibility 0s linear 240ms, -webkit-transform 240ms ease;
+  transition: visibility 0s linear 240ms, -webkit-transform 240ms ease;
+  transition: transform 240ms ease, visibility 0s linear 240ms;
+  transition: transform 240ms ease, visibility 0s linear 240ms, -webkit-transform 240ms ease;
+}
+.fupi_console_panel.fupi_panel_visible {
+  -webkit-transform: translateX(0);
+          transform: translateX(0);
+  visibility: visible;
+}
+#fupi_console.fupi_panels_ready .fupi_console_panel.fupi_panel_visible {
+  -webkit-transition: -webkit-transform 240ms ease;
+  transition: -webkit-transform 240ms ease;
+  transition: transform 240ms ease;
+  transition: transform 240ms ease, -webkit-transform 240ms ease;
+}
+.fupi_console_panel.fupi_panel_active {
+  pointer-events: auto;
+}
+
+.fupi_console_notice {
+  padding: 12px 14px;
+  border: 1px solid #eed787;
+  border-radius: 8px;
+  background: #fff7d6;
+  color: #3e3514;
+}
+
+.fupi_panel_back {
+  display: -webkit-inline-box !important;
+  display: -ms-inline-flexbox !important;
+  display: inline-flex !important;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 5px;
+  min-height: 30px;
+  margin: -36px 0 18px !important;
+  padding: 2px 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+  color: #174f87 !important;
+  cursor: pointer;
+  font-size: 13px !important;
+  line-height: 1.3 !important;
+}
+.fupi_panel_back .dashicons {
+  width: 16px;
+  height: 16px;
+  font-size: 16px;
+}
+.fupi_panel_back:hover, .fupi_panel_back:active {
+  padding: 2px 0 !important;
+  background: transparent !important;
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+  color: #0a3159 !important;
+  font-size: 13px !important;
+}
+
+.fupi_console_buttons {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -101,6 +181,139 @@
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   margin-top: 20px;
+}
+
+.fupi_console_confirmation {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 100%;
+          flex: 0 0 100%;
+  padding: 14px;
+  border: 1px solid #cbd3da;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.fupi_confirmation_details .fupi_console_notice {
+  margin-top: 0 !important;
+}
+
+.fupi_scanner_option {
+  display: block;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 100%;
+          flex: 0 0 100%;
+  line-height: 1.35;
+}
+
+#fupi_scanner_downloads {
+  display: grid;
+  gap: 14px;
+  margin-top: 16px;
+}
+
+.fupi_scanner_result_box {
+  padding: 15px;
+  border: 1px solid #cbd3da;
+  border-radius: 7px;
+  background: #fff;
+}
+.fupi_scanner_result_box .fupi_primary_button,
+.fupi_scanner_result_box .fupi_secondary_button {
+  width: 100%;
+}
+
+.fupi_scanner_prompt_link {
+  display: block;
+  margin-top: 10px;
+  text-align: center;
+}
+
+#fupi_scanner_error {
+  color: #9b1c1c;
+  font-weight: 600;
+}
+
+#fupi_scanner_overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483647;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 14px;
+  padding: 24px;
+  background: rgba(9, 19, 31, 0.94);
+  color: #fff;
+  font: 600 17px/1.4 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  text-align: center;
+}
+#fupi_scanner_overlay:focus-visible {
+  outline: 3px solid #ffdd68;
+  outline-offset: -6px;
+}
+
+.fupi_scanner_spinner {
+  width: 28px;
+  height: 28px;
+  border: 3px solid rgba(255, 255, 255, 0.35);
+  border-top-color: #ffdd68;
+  border-radius: 50%;
+  -webkit-animation: fupi-scanner-spin 0.8s linear infinite;
+          animation: fupi-scanner-spin 0.8s linear infinite;
+}
+
+@-webkit-keyframes fupi-scanner-spin {
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes fupi-scanner-spin {
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fupi_scanner_spinner {
+    -webkit-animation: none;
+            animation: none;
+  }
+  #fupi_console.fupi_panels_ready .fupi_console_panel {
+    -webkit-transition: none;
+    transition: none;
+  }
+}
+#fupi_console,
+#fupi_console h2,
+#fupi_console h3,
+#fupi_console button {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+}
+
+#fupi_debug_modes .fupi_debug_field {
+  display: block;
+  margin-bottom: 16px;
+}
+#fupi_debug_modes .fupi_debug_field span {
+  display: block;
+  margin-bottom: 4px;
+}
+#fupi_debug_modes .fupi_debug_field input[type=text] {
+  width: 100%;
+  min-height: 34px;
+  padding: 5px 8px;
+  border: 1px solid #9dabb6;
+  border-radius: 4px;
+  background: #fff;
+  color: #000;
 }
 
 .fupi_primary_button,
@@ -111,10 +324,11 @@
   border-radius: 100px;
   -webkit-box-shadow: none !important;
           box-shadow: none !important;
+  cursor: pointer;
   font-size: 14px !important;
-  padding: 5px 14px !important;
+  padding: 7px 14px !important;
   line-height: 1.3em !important;
-  text-decoration: none;
+  text-decoration: none !important;
   text-align: center;
 }
 .fupi_primary_button:hover, .fupi_primary_button:active,
@@ -123,7 +337,12 @@
   -webkit-box-shadow: none !important;
           box-shadow: none !important;
   font-size: 14px !important;
-  padding: 5px 14px !important;
+  padding: 7px 14px !important;
+}
+.fupi_primary_button:focus-visible,
+.fupi_secondary_button:focus-visible {
+  outline: 2px solid #174f87;
+  outline-offset: 2px;
 }
 .fupi_primary_button .dashicons,
 .fupi_secondary_button .dashicons {
@@ -156,6 +375,7 @@
 
 #fupi_console_close_btn {
   display: block !important;
+  z-index: 1000;
   color: #000 !important;
   position: absolute;
   cursor: pointer;

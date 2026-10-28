@@ -18,6 +18,9 @@ class Fupi_Deactivator {
 					'reports',
 					'reactions',
 					'tools', 
+					'atrig',
+					'tester',
+					'vscor',
 					'main', 
 					'track', 
 					'cegg', 
@@ -43,6 +46,7 @@ class Fupi_Deactivator {
 					'gtm', 
 					'cscr', 
 					'cook', 
+					'ifrblock',
 					'iframeblock', 
 					'proofrec',
 					'privex', 
@@ -88,6 +92,22 @@ class Fupi_Deactivator {
 				remove_theme_mod( 'fupi_notice_necessary_switch_color' );
 				remove_theme_mod( 'fupi_toggler_bg_color' );
 				remove_theme_mod( 'fupi_custom_toggler_img' );
+				remove_theme_mod( 'fupi_ifrblock_image' );
+				remove_theme_mod( 'fupi_ifrblock_border_width' );
+				remove_theme_mod( 'fupi_ifrblock_border_color' );
+				remove_theme_mod( 'fupi_ifrblock_border_radius' );
+				remove_theme_mod( 'fupi_ifrblock_ratio_x' );
+				remove_theme_mod( 'fupi_ifrblock_ratio_y' );
+				remove_theme_mod( 'fupi_ifrblock_notice_bg_color' );
+				remove_theme_mod( 'fupi_ifrblock_notice_text_color' );
+				remove_theme_mod( 'fupi_ifrblock_notice_font_size' );
+				remove_theme_mod( 'fupi_ifrblock_btn_bg_color' );
+				remove_theme_mod( 'fupi_ifrblock_btn_bg_color_hover' );
+				remove_theme_mod( 'fupi_ifrblock_btn_text_color' );
+				remove_theme_mod( 'fupi_ifrblock_btn_text_color_hover' );
+				remove_theme_mod( 'fupi_ifrblock_btn_font_size' );
+				remove_theme_mod( 'fupi_ifrblock_btn_size' );
+				remove_theme_mod( 'fupi_ifrblock_btn_border_radius' );
 
 			}
 

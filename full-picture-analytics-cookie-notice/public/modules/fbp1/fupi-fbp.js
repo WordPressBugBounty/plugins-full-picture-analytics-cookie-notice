@@ -1,5 +1,7 @@
 function fupi_fbp(){
 
+	
+
 	function getEventTimeInSecs(diff){
 		let d = new Date();
 		return Math.floor( ( d.getTime() / 1000 ) - diff ); // timestamp in seconds minus 0 secs (if FB makes problems, increase up to 2 secs);
@@ -57,20 +59,18 @@ function fupi_fbp(){
 
 	
 
-	FP.track_fbp_evt = ( custom, evt_name, evt_time, extra_custom_data = false, use_capi = true ) => {
+	FP.track_fbp_evt = ( custom, evt_name, evt_time, extra_custom_data = false, use_capi = true, delivery_options = false ) => {
 
 		if ( ! evt_time ) evt_time = getEventTimeInSecs(0);
 		
-		let custom_data = extra_custom_data ? { ...fp.fbp.custom_data, ...extra_custom_data } : fp.fbp.custom_data;
+		let custom_data = extra_custom_data ? { ...fp.fbp.custom_data, ...extra_custom_data } : fp.fbp.custom_data,
+			server_promise = Promise.resolve({
+				success: true,
+				skipped: true,
+			});
 
 		// EVENT ID
 		let evt_id = evt_time + fp.random + evt_name;
-
-		/*if ( evt_name == 'woo_enh_order_tracking' ) {
-			evt_id = FP.readCookie( 'fp_fbp_enh_order_evt_id' );
-			if ( ! evt_id ) return; // cookie may not be available if it timed out
-			evt_name = 'Purchase';
-		}*/
 
 		// PIXEL EVT
 		if ( typeof fbq !== 'undefined' ) {
@@ -81,16 +81,8 @@ function fupi_fbp(){
 		if ( fp.main.debug ) console.log( '[FP] Meta Pixel "' + evt_name + '" event:', custom_data );
 
 		
-	}
 
-    // Load on pageload
-	if ( allow_loading_fbp() ) load_fbp();
-
-    // Load on event
-	document.addEventListener( 'fp_load_scripts', () => { if ( allow_loading_fbp() ) load_fbp(); } );
-
-    function allow_loading_fbp(){
-		return FP.isAllowedToLoad( 'fbp', ['stats', 'marketing'], ['pixel_id'] ); // module id in fp.XX / required cookie permission / setting name with required data (like in fp.ga.setting_name)
+		return server_promise;
 	}
 
 	function set_custom_data(){
@@ -148,6 +140,11 @@ function fupi_fbp(){
 		// !! Fires the "Init" ( with or without Advanced Matching data )
 		// https://developers.facebook.com/docs/meta-pixel/advanced/advanced-matching
 
+		if ( fp.fbp.disable_auto_events ) {
+			fbq( 'set', 'autoConfig', false, fp.fbp.pixel_id );
+			
+		}
+
 		
 			fbq( 'init', fp.fbp.pixel_id );
 		
@@ -160,10 +157,10 @@ function fupi_fbp(){
 			fp.loading.push('fbp');
 
 			!function(f,b,e,v,n,t,s)
-			{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+			{if(f.fbq){if(fp.fbp.disable_auto_events)f.fbq.disablePushState=!0;return}n=f.fbq=function(){n.callMethod?
 			n.callMethod.apply(n,arguments):n.queue.push(arguments)};
 			if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-			n.queue=[];t=b.createElement(e);t.async=!0;
+			n.queue=[];if(fp.fbp.disable_auto_events)n.disablePushState=!0;t=b.createElement(e);t.async=!0;
 			t.src=v;s=b.getElementsByTagName(e)[0];
 			s.parentNode.insertBefore(t,s)}(window, document,'script',
 			'https://connect.facebook.net/en_US/fbevents.js');
@@ -174,24 +171,20 @@ function fupi_fbp(){
 		if ( fp.fbp.limit_data_use ) fbq('dataProcessingOptions', ['LDU'], 0, 0);
 	}
 
-    function load_fbp() {
-
-		set_fbp_fbc();
-		load_pixel();
-		
-		set_user_data();
-		set_custom_data();
-
-		FP.track_fbp_evt( false, 'PageView' );
-
-		
-		
-		// Track Search
-		if ( fpdata.page_type == 'Search' ) FP.track_fbp_evt( false, 'Search', false, { 'search_string' : fpdata.search_query } );
-
-		FP.loaded('fbp', 'fbp', '[FP] Meta Pixel loaded');
-    }
+	set_fbp_fbc();
+	load_pixel();
 	
+	set_user_data();
+	set_custom_data();
+
+	FP.track_fbp_evt( false, 'PageView' );
+
+	
+	
+	// Track Search
+	if ( fpdata.page_type == 'Search' ) FP.track_fbp_evt( false, 'Search', false, { 'search_string' : fpdata.search_query } );
+
+	FP.loaded('fbp-setup', 'fbp_setup', '[FP] Meta Pixel loaded');
 };
 
-FP.load('fbp', 'fupi_fbp', ['head_helpers']);
+fupi_fbp();

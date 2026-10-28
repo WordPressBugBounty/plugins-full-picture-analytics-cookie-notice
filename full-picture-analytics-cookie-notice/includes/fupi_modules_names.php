@@ -1,7 +1,7 @@
 <?php $fupi_modules_names = [
     'tools' => esc_attr__('Modules', 'full-picture-analytics-cookie-notice'),
     'main' => esc_attr__('General Settings', 'full-picture-analytics-cookie-notice'),
-    'track' => esc_attr__('Shared Tracking Settings', 'full-picture-analytics-cookie-notice'),
+    'track' => esc_attr__('Tracking Settings', 'full-picture-analytics-cookie-notice'),
     'cegg' => 'Crazy Egg',
     'gtag' => 'Google Tag',
     'gads' => 'Google Ads',
@@ -23,10 +23,15 @@
     'gtm' => 'Google Tag Manager',
     'cscr' => esc_attr__('Custom Integrations', 'full-picture-analytics-cookie-notice'),
     'cook' => esc_attr__('Consent Management', 'full-picture-analytics-cookie-notice'),
-    'proofrec' => esc_attr__('Records of Consent', 'full-picture-analytics-cookie-notice'),
     'safefonts' => esc_attr__('Safe fonts', 'full-picture-analytics-cookie-notice'),
     'woo' => esc_attr__('WooCommerce Tracking', 'full-picture-analytics-cookie-notice'),
     'reports' => esc_attr__('Analytics Dashboards', 'full-picture-analytics-cookie-notice'),
     'reactions' => esc_attr__('Reactions', 'full-picture-analytics-cookie-notice'),
-    'atrig' => esc_attr__('Custom Triggers', 'full-picture-analytics-cookie-notice'),
+    'vscor' => esc_attr__('Engagement tracking', 'full-picture-analytics-cookie-notice'),
+    'atrig' => esc_attr__('Action triggers', 'full-picture-analytics-cookie-notice'),
 ];
+
+$fupi_modules_names = apply_filters(
+    'fupi_modules_names',
+    $fupi_modules_names
+);

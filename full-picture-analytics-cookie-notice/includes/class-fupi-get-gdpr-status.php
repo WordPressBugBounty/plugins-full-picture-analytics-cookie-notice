@@ -26,13 +26,13 @@ class Fupi_compliance_status_checker {
 
         $this->clean_val_id     = $clean_val_id;
         $this->clean_val        = $clean_val;
-        $this->proofrec         = $this->clean_val_id == 'proofrec' && ! empty( $this->clean_val ) ? $this->clean_val : get_option('fupi_proofrec');
-
         $this->cook             = $this->clean_val_id == 'cook' && $this->clean_val !== false ? $this->clean_val : get_option('fupi_cook');
+        $this->proofrec         = $this->cook;
         $this->pp_ok            = $this->pp_ok(); // ! $this->cook has to be set before
 
         $this->is_first_reg     = empty( $opts['is_first_reg'] ) ? false : true;
         $this->cdb_key          = ! empty( $opts['cdb_key'] ) ? esc_attr( $opts['cdb_key'] ) : ( empty ( $this->proofrec['cdb_key'] ) ? false : esc_attr( $this->proofrec['cdb_key'] ) );
+        $this->send_to          = $opts;
 
         $this->tools            = $this->clean_val_id == 'tools' && $this->clean_val !== false ? $this->clean_val : get_option('fupi_tools'); 
         $this->main             = $this->clean_val_id == 'main' && $this->clean_val !== false ? $this->clean_val : get_option('fupi_main'); 
@@ -67,6 +67,7 @@ class Fupi_compliance_status_checker {
 
     private function process_data(){
         
+        // these sections are added every time
         $this->check_cook();
         $this->check_shortcodes();
         $this->check_proofrec();
@@ -74,12 +75,14 @@ class Fupi_compliance_status_checker {
         $this->check_safefonts();
         $this->check_woo();
 
-        // these modules show sections only if they are enabled
+        // these modules add sections only if they are enabled
         $this->check_other_modules();
         
-        if ( $this->format !== 'cdb' ) $this->add_extra_info_section(); // adds a section about the reCaptcha
+        // extra info (about the reCaptcha, etc.)
+        if ( $this->format !== 'cdb' ) $this->add_extra_info_section();
     }
 
+    // Get HTML for the GDPR Setup Helper
     public function get_html(){
         
         $this->format = 'html';
@@ -245,6 +248,7 @@ class Fupi_compliance_status_checker {
         return $output;
     }
 
+    // Prepare consent proof and send to cdb or save in the DB
     public function send_and_return_status(){
 
         if ( ! $this->pp_ok ) {
@@ -259,8 +263,8 @@ class Fupi_compliance_status_checker {
 
         // get email address if it is not available in the options
         if ( $send_to == 'email' ) {
-            if ( ! empty( $opts['email_to'] ) ) {
-                $email_to = $opts['email_to'];
+            if ( ! empty( $this->send_to['email_to'] ) ) {
+                $email_to = $this->send_to['email_to'];
             } else {
                 if ( ! empty ( $this->proofrec['local_backup_email'] ) ) {
                     $email_to = $this->proofrec['local_backup_email'];
@@ -358,7 +362,7 @@ class Fupi_compliance_status_checker {
             
             // add MD5 && WP FP version number
 
-            include_once FUPI_PATH . '/admin/modules/proofrec/proofrec-sender.php';
+            include_once FUPI_PATH . '/admin/modules/cook/cook-proofrec-sender.php';
             $proofrec_sender = new Fupi_PROOFREC_send();
             
             if ( $send_to == 'email' ) { 
@@ -395,6 +399,7 @@ class Fupi_compliance_status_checker {
         return false; // module not found
     }
 
+    // Check if the tools is force loaded and/or requires consents
     private function get_module_loading_status( $id, $info, $settings ) {
 
         // If the tools is force loaded  
@@ -432,6 +437,7 @@ class Fupi_compliance_status_checker {
         }
     }
 
+    // This should probably be in gads-gdpr-check.php
     private function check_url_passthrough(){
             
         if ( ! empty( $this->gtag['url_passthrough'] ) ) {
@@ -448,6 +454,8 @@ class Fupi_compliance_status_checker {
         return false;
     }
 
+    // This should probably be in cook-gdpr-check-cdb.php
+    // ! There is also a copy of this fn in cook-gdpr-check-cdb.php but it should stay there or be optimized to DRY
     private function fupi_modify_cons_banner_text( $text ){
 
         $open_tag_pos = strpos($text, '{{');
@@ -492,7 +500,9 @@ class Fupi_compliance_status_checker {
     
         return do_shortcode( $text );
     }
-
+    
+    // used by tools that track usermeta 
+    // files: [tool_id]-gdpr-check.php
     private function get_tracked_usermeta( $id, $settings, $priv = false ) {
         
         if ( empty( $this->track['custom_data_ids'] ) ) return false;
@@ -507,7 +517,7 @@ class Fupi_compliance_status_checker {
 
                     $usermeta_id = substr( $tracked_meta['id'], 5 );
                     
-                    // this checks if this meta is still set-up in the "shared tracking settings"
+                    // this checks if this meta is still set-up in the "Tracking Settings"
                     foreach( $this->track['custom_data_ids'] as $tracked_meta_arr ) {
                         if ( $tracked_meta_arr['id'] == $usermeta_id ) {
                             $tracked_usermeta[] = $usermeta_id;
@@ -553,6 +563,7 @@ class Fupi_compliance_status_checker {
         return $has_req;
     }
 
+    // used only in 4 modules
     private function set_basic_module_info( $module_id, $module_info ){
         $this->data[$module_id] = [ 
             'module_name' => $this->format == 'cdb' ? $module_info['name'] : $this->modules_names[$module_id],
@@ -581,7 +592,7 @@ class Fupi_compliance_status_checker {
 
     private function check_proofrec(){
         if ( $this->format != 'cdb' ) {
-            include FUPI_PATH . '/admin/modules/proofrec/proofrec-gdpr-check-html.php';
+            include FUPI_PATH . '/admin/modules/cook/cook-gdpr-check-proofrec.php';
         }
     } 
 
@@ -600,12 +611,10 @@ class Fupi_compliance_status_checker {
     } 
 
     private function check_shortcodes(){
-        // handles CDB and HTML format
         include FUPI_PATH . '/admin/modules/track/track-gdpr-check.php';
     } 
 
     private function check_woo(){
-        // handles CDB and HTML format
         include FUPI_PATH . '/admin/modules/woo/woo-gdpr-check.php';
     } 
 
@@ -622,7 +631,7 @@ class Fupi_compliance_status_checker {
             if ( $module_info === false || empty( $module_info['check_gdpr'] ) || $module_info['check_gdpr'] === 'always' ) continue;
             
             // STOP if a module has no settings even though has a settings page
-            $module_settings = $this->clean_val_id == $module_id && ! empty( $this->clean_val ) ? $this->clean_val : get_option( 'fupi_' . $module_id );
+            $module_settings = $this->clean_val_id == $module_id && $this->clean_val !== false ? $this->clean_val : get_option( 'fupi_' . $module_id );
             if ( ! empty( $module_info['has_admin_page'] ) && empty( $module_settings ) ) continue;
 
             // STOP if required data is not provided
@@ -632,8 +641,36 @@ class Fupi_compliance_status_checker {
             // if ( $module_id == 'ga42' ) continue;
 
             // Run method
+            /**
+             * Filters an integration's GDPR status section before the built-in checker runs.
+             *
+             * Return an array to use it for both the setup helper and proof configuration snapshot.
+             * Return null to let WP Full Picture use its built-in checker.
+             *
+             * @param array|null $section_data   GDPR status section data.
+             * @param string     $module_id      Module ID.
+             * @param array      $module_info    Registered module data.
+             * @param array      $module_settings Current module settings.
+             * @param string     $format          Output format: html or cdb.
+             */
+            $section_data = apply_filters(
+                'fupi_gdpr_module_status_data',
+                null,
+                $module_id,
+                $module_info,
+                $module_settings,
+                $this->format
+            );
+
+            if ( is_array( $section_data ) ) {
+                $this->data[ $module_id ] = $section_data;
+                continue;
+            }
+
             $method_name = "check_{$module_id}";
-            $this->$method_name( $module_info, $module_settings );
+            if ( method_exists( $this, $method_name ) ) {
+                $this->$method_name( $module_info, $module_settings );
+            }
         }
     }
 
@@ -726,7 +763,7 @@ class Fupi_compliance_status_checker {
 
         if ( ! empty ( $this->proofrec['storage_location'] ) && $this->proofrec['storage_location'] == 'email' ) {
             return 'email';
-        } else if ( ! empty ( $this->proofrec['cdb_key'] ) ) {
+        } else if ( ! empty ( $this->proofrec['storage_location'] ) && $this->proofrec['storage_location'] == 'cdb' && ! empty ( $this->proofrec['cdb_key'] ) ) {
             return 'cdb';
         };
 

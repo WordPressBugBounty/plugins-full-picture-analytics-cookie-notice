@@ -32,7 +32,7 @@ document.addEventListener( 'DOMContentLoaded', () => {
 
     function enable_custom_controls() {
 
-        // MULTI CHECKBOX
+        // multi_checkbox
         var customMultiCheckboxes = FP.findAll( '.customize-control-multi_checkbox input[type="checkbox"]' );
 
         if ( customMultiCheckboxes ) {
@@ -410,7 +410,13 @@ document.addEventListener( 'DOMContentLoaded', () => {
 
     // wait for the preview iframe to load
     wp.customize.bind('ready', ()=>{
+		wp.customize.previewer.bind( 'fupi_ifrblock_placeholder_state', function( has_placeholders ) {
+			let notice = FP.findID( 'fupi_ifrblock_no_preview_notice' );
+			if ( notice ) notice.hidden = has_placeholders;
+		} );
+
         wp.customize.previewer.bind( 'ready', function() {
+			wp.customize.previewer.send( 'fupi_check_iframe_placeholders' );
             
             bind_customizer_panel_toggles(); // shows and hides the notice when "consent banner" settings panel is opened
             enable_custom_controls();

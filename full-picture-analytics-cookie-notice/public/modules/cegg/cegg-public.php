@@ -18,21 +18,42 @@ class Fupi_CEGG_public {
     }
 
     private function add_actions_and_filters(){
-        add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
         add_filter( 'fupi_modify_fp_object', array($this, 'add_data_to_fp_object'), 10, 1 );
     }
 
     public function add_data_to_fp_object( $fp ){
+
+        $fp['runtime']['cegg'] = [
+            'reqs'      => [
+                'consents'  => ['stats', 'pers'],
+                // no_cookie_field_id => 'no_cookies'
+            ],
+            'files' => [
+                [
+                    'path'           => 'fp.cegg.script_src',
+                    'id'            => 'cegg-script',
+                ],
+                [
+                    'url'           => add_query_arg( 'ver', FUPI_VERSION, FUPI_URL . 'public/modules/cegg/fupi-cegg.js' ),
+                    'id'            => 'cegg-setup',
+                ],
+                [
+                    'url'           => add_query_arg( 'ver', FUPI_VERSION, FUPI_URL . 'public/modules/cegg/fupi-cegg-footer.js' ),
+                    'id'            => 'cegg-footer',
+                ],
+            ]
+        ];
+
+        if ( ! empty ( $this->tools['woo'] ) ) {
+            $fp['runtime']['cegg']['files'][] = [
+                'url'            => add_query_arg( 'ver', FUPI_VERSION, FUPI_URL . 'public/modules/cegg/fupi-cegg-woo.js' ),
+                'id'             => 'cegg-woo',
+                'must_be_truthy' => [ 'fp.woo' ]
+            ];  
+        };
+
         $fp['cegg'] = $this->settings;
         $fp['tools'][] = 'cegg';
         return $fp;
-    }
-
-    public function enqueue_scripts(){
-
-        $reqs = ! empty( $this->tools['woo'] ) && function_exists('WC') ? array('fupi-helpers-js', 'fupi-helpers-footer-js', 'fupi-woo-js', 'fupi-cegg-head-js') : array('fupi-helpers-js', 'fupi-helpers-footer-js', 'fupi-cegg-head-js');
-
-        /* ^ */ wp_enqueue_script( 'fupi-cegg-head-js', FUPI_URL . 'public/modules/cegg/fupi-cegg.js', array( 'fupi-helpers-js' ), FUPI_VERSION, [ 'in_footer' => false, 'strategy' => 'async' ] );
-        /* _ */ wp_enqueue_script( 'fupi-cegg-footer-js', FUPI_URL . 'public/modules/cegg/fupi-cegg-footer.js', $reqs, FUPI_VERSION, [ 'in_footer' => true, 'strategy' => 'async' ] );
     }
 }

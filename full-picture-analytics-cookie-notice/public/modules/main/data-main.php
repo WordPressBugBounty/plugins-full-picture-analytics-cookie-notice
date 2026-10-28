@@ -26,6 +26,8 @@ $fp['main'] = [
     'bot_list'           => ( !empty( $this->main['bot_list'] ) ? esc_attr( $this->main['bot_list'] ) : 'none' ),
     'server_method'      => ( !empty( $this->main['server_method'] ) ? esc_attr( $this->main['server_method'] ) : 'rest' ),
     'magic_keyword'      => ( !empty( $this->main['magic_keyword'] ) ? esc_attr( $this->main['magic_keyword'] ) : 'tracking' ),
+    'rest_url'           => rest_url( 'fupi/v1/sender' ),
+    'rest_nonce'         => ( is_user_logged_in() ? wp_create_nonce( 'wp_rest' ) : false ),
     'ajax_url'           => admin_url( 'admin-ajax.php' ),
     'is_bricks_builder'  => function_exists( 'bricks_is_builder' ) && bricks_is_builder(),
 ];

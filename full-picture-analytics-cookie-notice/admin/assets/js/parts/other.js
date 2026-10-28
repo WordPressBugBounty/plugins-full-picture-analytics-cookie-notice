@@ -1,19 +1,9 @@
 (()=>{
 
-	// TOGGLE FILTERS SECTION
-
-	let toggle_btn = FP.findID('fupi_toggle_filters_section'),
-		filters_section = FP.findID('fupi_tools_filters');
-
-	if ( toggle_btn && filters_section ) toggle_btn.addEventListener( 'click', ()=> filters_section.classList.toggle('fupi_active') );
-})();
-
-(()=>{
-
 	// COPY CURRENT PAGE NAME TO SECTION HEADINGS
 
 	let module_name = FP.findFirst('.fupi_active_title'),
-		section_headings = FP.findAll('#fupi_settings_form h2');
+		section_headings = FP.findAll('#fupi_main_form.fupi_settings_form h2');
 
 	if ( module_name ) {
 		section_headings.forEach( h => {
@@ -37,13 +27,77 @@
 
 (()=>{
 
+	// REMEMBER OPENED COG SETTINGS BUTTONS
+
+	const cookie_name = 'fp_admin_checked_related';
+
+	function get_btn_data( btn ) {
+		return [
+			btn.dataset.moduleId || '',
+			( btn.dataset.field_ids || '' ).split(',').map( id => id.trim() ).filter( Boolean )
+		];
+	}
+
+	function get_saved_btns() {
+		try {
+			const saved_cookie = FP.readCookie( cookie_name ) || '[]';
+			const saved_btns = new Map();
+
+			JSON.parse( saved_cookie ).forEach( saved_btn => {
+				if ( ! Array.isArray( saved_btn ) || typeof saved_btn[0] !== 'string' || ! Array.isArray( saved_btn[1] ) ) return;
+
+				const field_ids = saved_btn[1].filter( id => typeof id === 'string' && id );
+				saved_btns.set( saved_btn[0], [ ...new Set( [ ...( saved_btns.get( saved_btn[0] ) || [] ), ...field_ids ] ) ] );
+			});
+
+			const normalized_cookie = JSON.stringify( [ ...saved_btns ] );
+			if ( normalized_cookie !== saved_cookie ) FP.setCookie( cookie_name, normalized_cookie, 7 );
+
+			return saved_btns;
+		} catch ( error ) {
+			return new Map();
+		}
+	}
+
+	function mark_saved_btns( saved_btns ) {
+		FP.findAll('.fupi_not_builder_btn').forEach( btn => {
+			const [ module_id, field_ids ] = get_btn_data( btn );
+			const saved_field_ids = saved_btns.get( module_id );
+
+			if ( saved_field_ids && field_ids.every( id => saved_field_ids.includes( id ) ) ) btn.classList.add('fupi_cog_btn__checked');
+		});
+	}
+
+	const saved_btns = get_saved_btns();
+	mark_saved_btns( saved_btns );
+
+	document.addEventListener('click', e => {
+		const btn = e.target.closest('.fupi_not_builder_btn');
+		if ( ! btn ) return;
+
+		const [ module_id, field_ids ] = get_btn_data( btn );
+		const saved_field_ids = saved_btns.get( module_id ) || [];
+		const merged_field_ids = [ ...new Set( [ ...saved_field_ids, ...field_ids ] ) ];
+
+		if ( merged_field_ids.length > saved_field_ids.length ) {
+			saved_btns.set( module_id, merged_field_ids );
+			FP.setCookie( cookie_name, JSON.stringify( [ ...saved_btns ] ), 7 );
+		}
+
+		mark_saved_btns( saved_btns );
+	});
+
+})();
+
+(()=>{
+
 	// ADD "EXTERNAL" DASHICON TO LINKS AND SET THEM TO OPEN IN A NEW TAB
 	window.addEventListener( 'DOMContentLoaded', ()=>{
 
-		let links = FP.findAll('#fupi_main_col a');
+		let links = FP.findAll('#fupi_main_col a, .fupi_offscreen_source a, #fupi_offscreen a');
 
 		links.forEach( link => {
-			if ( ! link.classList.contains('no_external_icon') && ! link.href.includes(document.location.host) && ! link.classList.contains('fupi_vid') && ! link.classList.contains('fupi_vid_btn') ) {
+			if ( ! link.classList.contains('no_external_icon') && ! link.href.includes(document.location.host) && ! link.classList.contains('fupi_vid') && ! link.classList.contains('fupi_vid_btn') && ! link.querySelector('.dashicons-external') ) {
 				if ( ! link.target ) link.target = '_blank';
 				link.insertAdjacentHTML('beforeend', ' <span class="dashicons dashicons-external"></span>');
 			}
@@ -70,9 +124,9 @@
 	if ( ! install_pla_with_wpfp ) return;
 
 	let sections_to_hide = [
-		'#fupi_current_page_sidenav button[data-target="hook_pla_1"]',
-		'#fupi_current_page_sidenav button[data-target="hook_pla_3"]',
-		'#fupi_current_page_sidenav button[data-target="hook_pla_6"]',
+		'.fupi_sidenav_item.fupi_current button[data-target="hook_pla_1"]',
+		'.fupi_sidenav_item.fupi_current button[data-target="hook_pla_3"]',
+		'.fupi_sidenav_item.fupi_current button[data-target="hook_pla_7"]',
 	]
 
 	function toggle_sections( state ){
@@ -97,36 +151,50 @@
 
 (()=>{
 
+	let main_form = FP.findID('fupi_main_form');
+	if ( ! main_form ) return; // for the dashboard
+
 	// SHOW ALERT ABOUT UNSAVED CHANGES
 
 	window.fupi_unsaved = false;
 
-	document.addEventListener("DOMContentLoaded", function() { 
+	function markUnsaved() {
+		window.fupi_unsaved = true;
+		let cookie_notice_customizer = FP.findFirst('.fupi_customize_notice_btn');
+		if ( cookie_notice_customizer ) cookie_notice_customizer.classList.add('fupi_disabled');
+	}
 
-		var els = document.querySelectorAll('#fupi_settings_form textarea, #fupi_settings_form input, #fupi_settings_form select');
-		
-		els.forEach( function(el) {
-			el.addEventListener('change', function() {
-				window.fupi_unsaved = true;
-				// disable a button linking to consent banner customizer
-				let cookie_notice_customizer = FP.findFirst('.fupi_customize_notice_btn');
-				if ( cookie_notice_customizer ) cookie_notice_customizer.classList.add('fupi_disabled');
-			});
-		});  
-			
-		window.addEventListener('beforeunload', function(event) {
-			if(window.fupi_unsaved){
-				event.returnValue = "string";
-			}
-		});
+	function isInSettingsForm(el) {
+		return el.closest && el.closest('.fupi_settings_form');
+	}
 
-		var forms = document.querySelectorAll('form');
-		forms.forEach( function(form) {
-			form.addEventListener('submit', function() {
-				window.fupi_unsaved = false;
-			});
-		});  
+	function isSettingsForm(el) {
+		return el.classList && el.classList.contains('fupi_settings_form');
+	}
 
+	main_form.addEventListener('change', function(e) {
+		if (isInSettingsForm(e.target)) {
+			markUnsaved();
+		}
+	});
+
+	main_form.addEventListener('input', function(e) {
+		if (isInSettingsForm(e.target)) {
+			markUnsaved();
+		}
+	});
+
+	main_form.addEventListener('submit', function(e) {
+		if (isSettingsForm(e.target)) {
+			window.fupi_unsaved = false;
+		}
+	});
+
+	window.addEventListener('beforeunload', function(event) {
+		if(window.fupi_unsaved){
+			event.preventDefault();
+			event.returnValue = '';
+		}
 	});
 })();
 
@@ -196,34 +264,10 @@
 	const advModeCheckbox = FP.findID('adv_mode_checkbox');
 	const setupModeCheckbox = FP.findID('setup_mode_checkbox');
 
-	function alertBeforeChange(e){
-
-		e.stopPropagation();
-		e.preventDefault();
-
-		const value = e.target.checked,
-			adv_mode_alert_text = fupi_adv_mode_alert_text || 'This will reload the page. All unsaved data will be lost. Are you sure?';
-
-		// open alert box with text" Are you sure" and buttons yes and no
-
-		// if the user confirms
-		if ( confirm( adv_mode_alert_text ) ) {
-
-			// send the data to the server and refresh
-			handleChange(e);
-		
-		// if the user cancels
-		} else {
-
-			// do not check the switcher's state
-			e.target.checked = ! value;
-		}
-	}
-
 	function handleChange(e) {
 
 		const mode = e.target.id === 'adv_mode_checkbox' ? 'adv_mode' : 'setup_mode';
-		const value = e.target.checked;
+		const value = mode === 'adv_mode' ? ! e.target.checked : e.target.checked;
 		const data = new FormData();
 
 		data.append('action', 'fupi_update_modes');
@@ -241,12 +285,6 @@
 			console.log(response.data);
 
 			if ( mode == 'adv_mode' ) {
-				
-				// remember which popup to open after the reload
-				let popup_id_to_open = value ? 'fupi_popup_adv_mode_intro' : 'fupi_popup_easy_mode_intro';
-				FP.setCookie('fupi_admin_open_popup', popup_id_to_open );
-
-				// reload the page
 				document.location.reload();
 			}
 		});
@@ -262,75 +300,15 @@
 		notif_bar.style.display = show_notice ? '' : 'none';
 	}
 
-	if (advModeCheckbox) advModeCheckbox.addEventListener('change', alertBeforeChange  );
+	if (advModeCheckbox) advModeCheckbox.addEventListener('change', handleChange );
 	if (setupModeCheckbox) setupModeCheckbox.addEventListener('change', toggleNotifAndSave);
 
 })();
 
-// ENABLE SELCT2 FIELSDS THAT ARE NOT IN A REPEATER
+// ENABLE ENHANCED SELECT FIELDS THAT ARE NOT IN A REPEATER
 
-jQuery( document ).ready( function($) {
-	if ( jQuery.isFunction(jQuery.fn.select2) ){
-		jQuery('.fupi_select2:not(.fupi_select2_enabled)').each( function(){
-			$select2 = jQuery(this);
-
-			if ( $select2.hasClass('fupi_user_search') ) {
-
-				$select2.select2({
-					ajax: {
-						url: ajaxurl,
-						dataType: 'json',
-						delay: 250,
-						data: function (params) {
-							return {
-								q: params.term,
-								action: 'fupi_search_users',
-							};
-						},
-						processResults: function(data) {
-							return {
-								results: data
-							};
-						},
-						cache: true
-					},
-					width: '100%',
-					minimumInputLength: 2,
-					placeholder: $select2.data('placeholder_text')
-				});
-
-			} else if ( $select2.hasClass('fupi_page_search') ) {
-
-				$select2.select2({
-					ajax: {
-						url: ajaxurl,
-						dataType: 'json',
-						delay: 250,
-						data: function (params) {
-							return {
-								q: params.term,
-								action: 'fupi_search_pages',
-							};
-						},
-						processResults: function(data) {
-							return {
-								results: data
-							};
-						},
-						cache: true
-					},
-					width: '100%',
-					minimumInputLength: 2,
-					placeholder: $select2.data('placeholder_text')
-				});
-	
-			} else {
-				$select2.select2();
-			}
-
-			$select2.addClass('fupi_select2_enabled');
-		})
-	};
+document.addEventListener('DOMContentLoaded', function() {
+	FupiSlimSelect.init( document, '.fupi_select2:not(.fupi_select2_enabled)' );
 });
 
 // HIDE WOOCOMMERCE SETTINGS FIELDS (e.g. in the GAds module) when Woo is not enabled
@@ -348,4 +326,22 @@ jQuery( document ).ready( function($) {
 			next_element.style.display = 'none';
 		}
 	}
+})();
+
+(()=>{
+
+    // CUSTOM META BUILDER - clear sections that contain not existing (expired) custom meta
+
+    let builder_sections = FP.findAll('.fupi_metadata_tracker .fupi_r3_section');
+
+    builder_sections.forEach( section => {
+        
+        let metadata_select = FP.findFirst( '.fupi_field_type_custom_meta_select select', section );
+
+        if ( metadata_select && ! metadata_select.value ){
+            let minus_button = FP.findFirst( '.fupi_r3_remove_btn', section );
+            if ( minus_button ) minus_button.click();
+        }
+    } );
+
 })();

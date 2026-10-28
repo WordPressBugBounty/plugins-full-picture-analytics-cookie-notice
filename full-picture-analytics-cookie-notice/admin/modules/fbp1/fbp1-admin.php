@@ -5,13 +5,13 @@ class Fupi_FBP1_admin {
     private $settings;
     private $tools;
     private $cook;
-    private $proofrec;
+    // private $proofrec;
 
     public function __construct(){
         $this->settings = get_option('fupi_fbp1');
         $this->tools = get_option('fupi_tools');
         $this->cook = get_option('fupi_cook');	
-        $this->proofrec = get_option('fupi_proofrec');
+        // $this->proofrec = get_option('fupi_cook');
 
         $this->add_actions_and_filters();
     }
@@ -19,7 +19,6 @@ class Fupi_FBP1_admin {
     private function add_actions_and_filters(){
         add_action( 'fupi_register_setting_fbp1', array( $this, 'register_module_settings' ) );
         add_filter( 'fupi_fbp1_add_fields_settings', array( $this, 'add_fields_settings' ), 10, 1 );
-        add_filter( 'fupi_fbp1_get_faq_data', array( $this, 'get_faq_data' ), 10, 1 );
         add_filter( 'fupi_fbp1_get_page_descr', array( $this, 'get_page_descr' ), 10, 2 );
     }
 
@@ -48,22 +47,15 @@ class Fupi_FBP1_admin {
 
         if ( apply_filters( 'fupi_updating_many_options', false ) ) return $clean_data;
 		
-		if ( ! empty ( $this->tools['cook'] ) && ! empty ( $this->tools['proofrec'] ) && $this->pp_ok() ) {
+		if ( ! empty ( $this->tools['cook'] ) && $this->pp_ok() ) {
 			include_once FUPI_PATH . '/includes/class-fupi-get-gdpr-status.php';
 			$gdpr_checker = new Fupi_compliance_status_checker( 'fbp1', $clean_data );
             $gdpr_checker->send_and_return_status();
 		}
 		
-		include FUPI_PATH . '/admin/common/fupi-clear-cache.php';
+		require_once FUPI_PATH . '/admin/common/fupi-clear-cache.php';
+		fupi_clear_cache();
 		return $clean_data; 
-    }
-    
-    public function get_faq_data( $empty_arr ){
-        include_once 'fbp1-faq.php';
-        return [ 
-            'q' => $questions, 
-            'a' => $answers 
-        ];
     }
 
     public function get_page_descr( $section_id, $no_woo_descr_text ){

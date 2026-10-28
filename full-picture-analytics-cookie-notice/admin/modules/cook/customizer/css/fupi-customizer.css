@@ -270,6 +270,10 @@ body.fupi_preview_opt_in_out #customize-control-fupi_cookie_notice-active_previe
   border: 2px solid #90c2ff;
 }
 
+#sub-accordion-panel-fupi_ifrblock .customize-panel-description {
+  display: block !important;
+}
+
 #sub-accordion-section-fupi_notice_design select,
 #sub-accordion-section-fupi_notice_design input[type=text] {
   max-width: 180px;

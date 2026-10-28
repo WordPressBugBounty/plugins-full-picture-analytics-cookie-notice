@@ -14,29 +14,19 @@
 
     // Advanced mode
 
-    // if a user updated from before 9.2, then we enable advanced mode by default
-    // however, this can be overwritten if a user makes a choice using the switcher
+    // Show all settings by default unless the current user has chosen to hide them.
 
-    $default_adv_mode = ! empty( $fupi_versions['use_adv_mode'] );
+    $default_adv_mode = true;
     $user_adv_mode_meta = get_user_meta( $current_user_id, 'fupi_adv_mode', true ); 
 	$user_adv_mode = $default_adv_mode;
 	
 	if ( ! empty ( $user_adv_mode_meta ) ) {
 		$user_adv_mode = $user_adv_mode_meta == 'yes';
-	}
+    }
 
     $adv_mode_class_suffix    = $user_adv_mode ? 'on' : 'off';
     
-    // show welcome message if fupi_tools is empty
-    $welcome_popup_id = $module_id === 'tools' && $adv_mode_class_suffix == 'off' && ( empty ( $this->tools ) || count( $this->tools ) == 0 ) ? 'fupi_first_steps_popup' : '';
-    // $welcome_popup_id = '';
-    
-    // Addons
-
-    $addons_data        = apply_filters( 'fupi_register_addon', [] ); // ! ADDON
-    $all_modules_data   = array_merge( $this->fupi_modules, $addons_data );
-
-    foreach ( $all_modules_data as $module_data ) {
+    foreach ( $this->fupi_modules as $module_data ) {
         if ( $module_data['id'] == $module_id ) {
             $current_module_data = $module_data;
             if ( ! empty ( $module_data['is_premium'] ) ) {
@@ -79,7 +69,7 @@
     }
 </style>
 
-<div id="fupi_content" class="wrap fupi_page_<?php echo $module_id; ?> adv_mode_<?php echo $adv_mode_class_suffix; ?>" data-licence="<?php echo $licence; ?>" data-is_premium_module="<?php echo $is_premium ? 'yes' : 'no'; ?>" data-msurl="<?php echo $multisite_url; ?>" data-page="<?php echo $module_id;?>" data-step="0" data-wp_nonce="<?php echo $wp_nonce; ?>" data-welcome_popup_id="<?php echo $welcome_popup_id?>">
+<div id="fupi_content" class="wrap fupi_page_<?php echo $module_id; ?> adv_mode_<?php echo $adv_mode_class_suffix; ?>" data-licence="<?php echo $licence; ?>" data-is_premium_module="<?php echo $is_premium ? 'yes' : 'no'; ?>" data-msurl="<?php echo $multisite_url; ?>" data-page="<?php echo $module_id;?>" data-step="0" data-wp_nonce="<?php echo $wp_nonce; ?>">
 
     <h1></h1>
     <?php settings_errors();
@@ -89,17 +79,7 @@
     ?>
     
     <div id="fupi_extra_content">
-    
         <?php include_once 'parts/fupi-page_part-guides.php'; ?>
-
-        <?php if ( $module_id == 'tools' ) { ?>
-            <div class="fupi_tagman_headline_html_template fupi_tools_integr_section" style="display: none;">
-                <div class="fupi_tools_integr_headline">
-                    <div class="fupi_tools_integr_headline_title"><?php esc_html_e( 'Tag Managers','full-picture-analytics-cookie-notice' ) ?></div>
-                    <p><?php esc_html_e( 'Tag managers let you install other tracking tools','full-picture-analytics-cookie-notice' ) ?></p>
-                </div>
-            </div>
-        <?php }; ?>
     </div>
 
     <?php 
@@ -110,7 +90,7 @@
 
         <?php 
         include_once 'parts/fupi-page_part-side-nav.php'; 
-        new Fupi_Build_Side_Nav($all_modules_data, $active_slug); 
+        new Fupi_Build_Side_Nav($this->fupi_modules, $active_slug); 
         ?>        
 
         <div id="fupi_main_col">
@@ -121,7 +101,7 @@
             if ( $active_slug == 'consents_list' ) {
                 include_once 'parts/fupi-page_part-consents_list.php';
             } else { ?>
-                <form id="fupi_settings_form" data-activetab="<?php echo $active_slug ?>" action="options.php" method="post">
+                <form id="fupi_main_form" class="fupi_settings_form" data-activetab="<?php echo $active_slug ?>" action="options.php" method="post">
 
                     <?php
                     // SETTINGS FIELDS
@@ -139,7 +119,7 @@
 
                     // DEBUG DATA
                     
-                    if ( defined( 'FUPI_TESTER' ) && FUPI_TESTER == true ) {
+                    if ( defined( 'FUPI_TESTER' ) && FUPI_TESTER == true && $module_id !== 'reports' ) {
                         
                         echo '<div id="fupi_option_debug_box">
                             <p>Option name: fupi_'. $active_slug .'</p>

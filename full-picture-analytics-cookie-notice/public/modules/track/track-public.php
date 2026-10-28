@@ -1,5 +1,8 @@
 <?php
 
+/*
+This file only adds metadata to fpdata. All other data is added to fpdata via the data-track.php, which is included in class-fupi-public.php file
+*/
 class Fupi_TRACK_public {
     private $settings;
 

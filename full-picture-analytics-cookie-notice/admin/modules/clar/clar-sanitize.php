@@ -10,37 +10,28 @@ if ( ! empty( $input ) ) foreach( $input as $key => $value ) {
 
 		switch ($clean_key) {
 			
-			case 'tag_affiliate':
+			case 'track_clicks':
+			case 'track_aff':
+			case 'track_form_submits':
+			case 'track_impress':
 
 				$clean_val = [];
 
 				if ( is_array( $value ) ){
+					
+					$j = 0;
 
-					foreach( $value as $i => $section ){
-						if ( empty( $section['sel'] ) ) continue;
-						$clean_val[$i]['sel'] = trim( sanitize_text_field( $section['sel'] ) );
-						if ( ! empty( $section['val'] ) ) $clean_val[$i]['val'] = trim( sanitize_text_field( $section['val'] ) );
-					}
-				};
-				break;
+					foreach( $value as $section ){
 
-			case 'tag_elems':
-			case 'tag_forms':
-			case 'tag_views':
+						if ( empty( $section['atrig_id'] ) || empty( $section['val'] ) ) continue;
 
-				$clean_val = [];
-
-				if ( is_array( $value ) ){
-
-					foreach( $value as $i => $section ){
-						if ( empty( $section['sel'] ) || empty( $section['val'] ) ) continue;
-						$clean_val[$i]['sel'] = trim( sanitize_text_field( $section['sel'] ) );
-						$clean_val[$i]['val'] = trim( sanitize_text_field( $section['val'] ) );
+						$clean_val[$j]['atrig_id'] 	= esc_attr( $section['atrig_id'] );
+						$clean_val[$j]['val'] 		= trim( sanitize_text_field( $section['val'] ) );
+						$j++;
 					}
 				};
 				break;
 			case 'id':
-			case 'tag_file_downl':
 				$clean_val = trim( sanitize_text_field( $value ) );
 				break;
 			case 'tag_cf':
@@ -49,35 +40,37 @@ if ( ! empty( $input ) ) foreach( $input as $key => $value ) {
 
 				if ( is_array($value) ){
 
-					foreach( $value as $i => $section ){
+					$j = 0;
+
+					foreach( $value as $section ){
+
 						if ( empty( $section['id'] ) || empty( $section['name'] ) ) continue;
-						$clean_val[$i]['id'] = trim( sanitize_text_field( $section['id'] ) );
-						$clean_val[$i]['name'] = trim( sanitize_text_field( $section['name'] ) );
+
+						$clean_val[$j]['id'] 		= trim( sanitize_text_field( $section['id'] ) );
+						$clean_val[$j]['name'] 		= trim( sanitize_text_field( $section['name'] ) );
+						$j++;
 					}
 				};
 
 				break;
 
 			case 'custom_events':
+			case 'vscores':
 
 				$clean_val = [];
 
 				if ( is_array( $value ) ){
 
-					$i = 0;
 					$j = 0;
-					$max = count( $value );
 
-					for ( ; $i < $max; $i++) {
-
-						$section = $value[$i];
+					foreach( $value as $section ){
 
 						if ( empty( $section['atrig_id'] ) || empty( $section['evt_name'] ) ) continue;
 
-						$clean_val[$j]['atrig_id'] = sanitize_key( $section['atrig_id'] );
-						$clean_val[$j]['evt_name'] = sanitize_text_field( $section['evt_name'] );
-						$clean_val[$j]['repeat'] = empty( $section['repeat'] ) ? 'no' :  sanitize_key( $section['repeat'] );
+						$clean_val[$j]['atrig_id'] 		= sanitize_key( $section['atrig_id'] );
+						$clean_val[$j]['evt_name'] 		= sanitize_text_field( $section['evt_name'] );
 
+						if ( $clean_key == 'custom_events' ) $clean_val[$j]['repeat'] = empty( $section['repeat'] ) ? 'no' : sanitize_key( $section['repeat'] );
 						$j++;
 					}
 				};

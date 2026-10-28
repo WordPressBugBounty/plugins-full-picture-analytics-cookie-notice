@@ -202,7 +202,24 @@
 
 	// INIT When the preview finishes loading
     wp.customize.bind( 'preview-ready', () => {
-    	
+		let hasIframePlaceholders;
+
+		function sendIframePlaceholderState() {
+			const currentState = !! findfirst( '.fupi_iframe_placeholder' );
+
+			if ( currentState === hasIframePlaceholders ) return;
+
+			hasIframePlaceholders = currentState;
+			wp.customize.preview.send( 'fupi_ifrblock_placeholder_state', currentState );
+		}
+
+		wp.customize.preview.bind( 'fupi_check_iframe_placeholders', function() {
+			hasIframePlaceholders = undefined;
+			sendIframePlaceholderState();
+		} );
+		new MutationObserver( sendIframePlaceholderState ).observe( document.body, { childList: true, subtree: true } );
+		sendIframePlaceholderState();
+
 		// SHOW/HIDE THE BANNER IN THE PREVIEW SECTION
 		wp.customize.preview.bind( 'fupi_open_notice', function( expand ) {
 			window.fupi_preview_mode = window.fupi_preview_mode || wp.customize.settings.values['fupi_cookie_notice[active_preview]'];
@@ -289,6 +306,13 @@
 	bindCssVar( 'fupi_notice_round_corners', '--fupi-notice-panel-round-corners', 16 );
 	bindCssVar( 'fupi_notice_btn_round_corners', '--fupi-notice-btn-round-corners', 8 );
 
+	const bindIframeCssVar = (id, name, def) => bind(id, v => setCss(name, (v === '' || v === null || typeof v === 'undefined' ? def : v) + 'px'));
+	bindIframeCssVar( 'fupi_ifrblock_border_width', '--fupi-ifrblock-border-width', 2 );
+	bindIframeCssVar( 'fupi_ifrblock_border_radius', '--fupi-ifrblock-border-radius', 3 );
+	bindIframeCssVar( 'fupi_ifrblock_notice_font_size', '--fupi-ifrblock-notice-font-size', 16 );
+	bindIframeCssVar( 'fupi_ifrblock_btn_font_size', '--fupi-ifrblock-btn-font-size', 16 );
+	bindIframeCssVar( 'fupi_ifrblock_btn_border_radius', '--fupi-ifrblock-btn-border-radius', 8 );
+
     // Helper to bind color updates to CSS variables
     const bindColor = (id, name) => bind(id, v => setCss(name, v));
 	bindColor( 'fupi_notice_bg_color', '--fupi-notice-panel-bg-color' );
@@ -306,6 +330,58 @@
 	bindColor( 'fupi_notice_necessary_switch_color', '--fupi-notice-necessary-slider-color' );
 	bindColor( 'fupi_notice_border_color', '--fupi-notice-panel-border-color' );
     bindColor( 'fupi_toggler_bg_color', '--fupi-notice-toggler-bg-color' );
+	bindColor( 'fupi_ifrblock_border_color', '--fupi-ifrblock-border-color' );
+	bindColor( 'fupi_ifrblock_notice_bg_color', '--fupi-ifrblock-notice-bg-color' );
+	bindColor( 'fupi_ifrblock_notice_text_color', '--fupi-ifrblock-notice-text-color' );
+	bindColor( 'fupi_ifrblock_btn_bg_color', '--fupi-ifrblock-btn-bg-color' );
+	bindColor( 'fupi_ifrblock_btn_bg_color_hover', '--fupi-ifrblock-btn-bg-color-hover' );
+	bindColor( 'fupi_ifrblock_btn_text_color', '--fupi-ifrblock-btn-text-color' );
+	bindColor( 'fupi_ifrblock_btn_text_color_hover', '--fupi-ifrblock-btn-text-color-hover' );
+
+	bind( 'fupi_ifrblock_btn_size', size => {
+		const paddings = {
+			small: '6px 10px',
+			medium: '9px 15px',
+			large: '12px 20px',
+		};
+		setCss('--fupi-ifrblock-btn-padding', paddings[size] || paddings.large);
+	} );
+
+	bind( 'fupi_ifrblock[caption_txt]', text => {
+		if ( typeof fupi_iframe_texts !== 'undefined' ) fupi_iframe_texts.iframe_caption_txt = text;
+
+		findAll( '.fupi_iframe_descr' ).forEach( descr => {
+			const wrap = descr.closest( '.fupi_blocked_iframe' );
+			if ( ! wrap ) return;
+
+			const source = wrap.dataset.name;
+			const privacyUrl = wrap.dataset.privacy || fp.notice.privacy_url;
+			const caption = source ? text.replace( /\[\[.*?\]\]/, source ) : text.replace( '[[', '' ).replace( ']]', '' );
+			const privacyText = caption.match( /\{\{(.*?)\}\}/ );
+
+			descr.textContent = '';
+			if ( ! privacyText ) {
+				descr.textContent = caption;
+				return;
+			}
+
+			descr.append( caption.slice( 0, privacyText.index ) );
+			if ( privacyUrl ) {
+				const link = document.createElement( 'a' );
+				link.href = privacyUrl;
+				link.textContent = privacyText[1];
+				descr.append( link );
+			} else {
+				descr.append( privacyText[1] );
+			}
+			descr.append( caption.slice( privacyText.index + privacyText[0].length ) );
+		} );
+	} );
+
+	bind( 'fupi_ifrblock[btn_text]', text => {
+		if ( typeof fupi_iframe_texts !== 'undefined' ) fupi_iframe_texts.iframe_btn_text = text;
+		findAll( '.fupi_iframe_consent_btn' ).forEach( button => button.textContent = text );
+	} );
 
 	bind( 'fupi_cookie_notice_border', type => { 
         let shadow = 'none', width = '0px';

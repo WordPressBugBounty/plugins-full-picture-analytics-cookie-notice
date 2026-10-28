@@ -1,142 +1,131 @@
-// SCRIPT REPEATER
-
 (() => {
 
-	let fupi_content = FP.findFirst('#fupi_content');
+	const fupi_content = FP.findFirst('#fupi_content');
 
 	if ( ! fupi_content ) return;
 
-	let module_id = fupi_content.dataset.page;
+	function enable_submit_btn( enable ) { // works only on ajax form in the slideout pannel
+		const submit_btn = FP.findFirst( '.fupi_settings_panel_form_submit_btn' );
+		if ( submit_btn ) submit_btn.disabled = ! enable;
+	}
 
-	function remove_or_clear_section(target){
-		let closest_section_wrap = target.closest('.fupi_r3_section'),
-			siblingSections = FP.getSiblings( closest_section_wrap );
+	function mark_slideout_form_as_unsaved( section ){
+		let form = section.closest('#fupi_dynamic_settings_form');
+		if ( form ) {
+			form.dataset.unsaved = true;
+			enable_submit_btn( true );
+		}
+	}
+
+	function remove_are_you_sure_styling(btn){
+		btn.classList.remove('are_you_sure');
+		btn.textContent = btn.dataset.default_text;
+	}
+
+	function add_are_you_sure_styling(btn){
+		btn.classList.add('are_you_sure');
+		btn.textContent = btn.dataset.confirm_text;
+	}
+
+	function fill_event_headline( section, title ) {
+		let title_el = FP.findFirst( '.fupi_headline_title', section );
+		if ( title_el ) title_el.textContent = title;
+	}
+
+	// Generate random IDs
+	
+	let generated_id_increment = 0;
+
+	function fill_empty_id_fields_with_random_ids( scope = window.document ){
+		let all_hidden_id_fields = FP.findAll('.fupi_field_type_hidden input.fupi_generate_id', scope );
+		all_hidden_id_fields.forEach( field => {
+			if ( ! field.value ) {
+				generated_id_increment++;
+				field.value = Date.now() + generated_id_increment;
+			}
+		} );
+	}
+
+	// Remove section or...
+	// - if it is the only one
+	// -- clear it - if it is not in a builder
+	// -- clear and hide it - if it is in a builder
+
+	function smart_remove_section( current_section ){
+
+		let siblingSections = FP.getSiblings( current_section );
 
 		siblingSections = siblingSections.filter(sect => sect.classList.contains('fupi_r3_section')); // get only r3 sections
 
 		// check if this is the only section on this level
-		if ( siblingSections.length > 0 ) {
-			FP.remove(closest_section_wrap);
+		if ( siblingSections.length > 1 ) {
+			FP.remove( current_section );
 		} else {
-			clear_section(closest_section_wrap);
+			clear_section( current_section );
+			mark_req_fields( current_section );
+			if ( current_section.classList.contains('fupi_r3_event_builder') ) current_section.classList.add('fupi_hidden');
 		}
 	}
 
-	function add_section(target){
-
-		let current_section = target.closest('.fupi_r3_section'),
-			cloned_section = current_section.cloneNode(true);
-
-		cloned_section = clear_section(cloned_section);
-		cloned_section = remove_extra_repeaters(cloned_section);
-		// cloned_section = show_collapsed_fields(cloned_section);
-		current_section.parentElement.insertBefore(cloned_section, current_section.nextSibling);
-
-		if ( module_id == 'cscr' || module_id == 'cook' || module_id == 'reports' || module_id == 'atrig' ) {
-			let id_field = FP.findFirst('.fupi_field_id_wrap input', cloned_section);
-			if ( id_field ) id_field.value = generate_random_id();
-		}
-	}
-
-	// function collapse_fields(){
-	// 	let tr_collapsible_fields = FP.findAll('.fupi_collapsible_fields');
-
-	// 	tr_collapsible_fields.forEach( tr => {
-	// 		tr.addEventListener('click', e => {
-	// 			if ( e.target.closest('.fupi_fields_toggle_btn') ) {
-	// 				let parent_section_el = e.target.closest('.fupi_r3_section.fupi_r3_repeater');
-	// 				if ( parent_section_el ) parent_section_el.classList.toggle('fupi_fields_visible');
-	// 			}
-	// 		})
-	// 	});
-	// }
-
-	// function show_collapsed_fields( cloned_section ){
+	function add_section_after( current_section ){
 		
-	// 	// make fields visible if this section has a "collapse fields" button
+		let cloned_section = current_section.cloneNode(true);
+
+		cloned_section = clear_section( cloned_section );
+		cloned_section = remove_extra_sub_repeaters(cloned_section);
+
+		fill_empty_id_fields_with_random_ids( cloned_section );
+		mark_req_fields( cloned_section );
+
+		current_section.parentElement.insertBefore(cloned_section, current_section.nextSibling );
+	}
+	
+	function make_new_section_after( current_section, trigger_id, trigger_name ){
+
+		let cloned_section = current_section.cloneNode(true);
+
+		cloned_section = clear_section( cloned_section );
+		cloned_section = remove_extra_sub_repeaters(cloned_section);
+
+		cloned_section.classList.remove('fupi_hidden');
+
+		let atrig_id_field = FP.findFirst( 'input[name*="atrig_id"]', cloned_section );
+		if ( atrig_id_field ) atrig_id_field.value = trigger_id;
+
+		fill_event_headline( cloned_section, trigger_name );
+
+		mark_req_fields( cloned_section );
 		
-	// 	let collapse_btn = FP.findFirst( '.fupi_fields_toggle_btn', cloned_section );
-
-	// 	if ( collapse_btn ) {
-	// 		let parent_section_el = collapse_btn.closest('.fupi_r3_section.fupi_r3_repeater');
-	// 		if ( parent_section_el ) parent_section_el.classList.add('fupi_fields_visible');
-	// 	}
-
-	// 	return cloned_section;
-	// }
-
-	function destroy_all_select2s(){
-		(($)=>{
-			if ( $.isFunction($.fn.select2) ){
-				$('.fupi_r3_repeater .fupi_select2_enabled.fupi_select2').each( function(){
-					$select2 = $(this);
-					$select2.select2('destroy');
-					$select2.removeClass('fupi_select2_enabled');
-					
-				});
-			}
-		})(jQuery)
+		current_section.parentElement.insertBefore(cloned_section, current_section.nextSibling );
 	}
 
-	function enable_all_select2s(){
-		jQuery(document).ready(function($) {
+	// after a field has been added or removed this makes sure that field names and IDs use the correct array indexes 
+	function get_direct_r3_sections( sections_wrap ) {
 
-			if ( $.isFunction($.fn.select2) ){
-
-				$('.fupi_r3_repeater .fupi_select2').each( function(){
-
-					$select2 = $(this);
-
-					if ( $select2.hasClass('fupi_user_search') ) {
-
-						$select2.select2({
-							ajax: {
-								url: ajaxurl,
-								dataType: 'json',
-								delay: 250,
-								data: function (params) {
-									return {
-										q: params.term,
-										action: 'fupi_search_users',
-									};
-								},
-								processResults: function(data) {
-									return {
-										results: data
-									};
-								},
-								cache: true
-							},
-							width: '100%',
-							minimumInputLength: 2,
-							placeholder: $select2.data('placeholder_text')
-						});
-
-					} else {
-						$select2.select2();
-					}
-
-					$select2.addClass('fupi_select2_enabled');
-				})
-			};
-		});
-	}
-
-	function rename_fields_in_section( sections_wrap, parent_sect_nums ){ // section_wrap is a <td> or - when called from inside this function - fupi_r3_field
-
-		if ( ! parent_sect_nums ) parent_sect_nums = [];
-
-		// get all the sections that are direct descendants of the section wrap
 		let sibling_sections = FP.nl2Arr( sections_wrap.children ),
-			sections = sibling_sections ? sibling_sections.filter( siblig => siblig.classList.contains('fupi_r3_section') ) : []; // children of <td> ( fupi_r3_section )
+			sections = [];
 
-		// console.log('same level sections', sections);
+		sibling_sections.forEach( child => {
+			if ( child.classList.contains('fupi_r3_section') ) {
+				sections.push( child );
+			} else if ( child.classList.contains('fupi_r3_subfield_section') ) {
+				sections = sections.concat( FP.nl2Arr( child.children ).filter( sub_child => sub_child.classList.contains('fupi_r3_section') ) );
+			}
+		});
+
+		return sections;
+	}
+
+	function order_array_indexes_in_all_sections( sections_wrap, parent_sect_nums = [] ){
+
+		// get all the actual repeater sections that are direct descendants of the section wrap (usually td), also through the r3 subfield wrapper
+		let sections = get_direct_r3_sections( sections_wrap );
 
 		sections.forEach( (section, sect_i) => {
 
 			let current_sect_nums = [...parent_sect_nums, sect_i]; // starts as [0]
 
-			// get all the field wrappers that are direct descendants of the section or are inside a fupi_r3_fields_group wrapper
+			// get all the field wrappers that are direct descendants of the section or are inside a fupi_r3_fields_group wrapper (or builder)
 			let section_children_arr = FP.nl2Arr( section.children ),
 				field_wrappers = [];
 
@@ -158,7 +147,7 @@
 				// if field wrapper contains a repeater run renaming function on its content
 				if ( field_wrap.classList.contains('fupi_field_type_r3') ){
 
-					rename_fields_in_section( field_wrap, current_sect_nums );
+					order_array_indexes_in_all_sections( field_wrap, current_sect_nums );
 
 				// if the field wrapper contains form fields then modify their names and ids
 				} else {
@@ -189,55 +178,270 @@
 			} );
 		} );
 	}
+	
+	// removes sub repeaters, leaving only the first one
+	function remove_extra_sub_repeaters(section){
 
-	function remove_extra_repeaters(section){
 		let extra_section = FP.findFirst('.fupi_r3_repeater + .fupi_r3_repeater', section);
-		if ( extra_section ) {
+		while ( extra_section ) {
 			FP.remove(extra_section);
-			return remove_extra_repeaters(section);
-		} else {
-			return section;
+			extra_section = FP.findFirst('.fupi_r3_repeater + .fupi_r3_repeater', section);
 		}
+
+		return section;
 	}
 
-	function clear_section(section){
-
-		section.classList.add('fupi_highlight_req');
-
-		// remove all indicators of filled and empty fields
-		FP.findAll('.field_empty', section).forEach( field => field.classList.remove('field_empty') );
-		FP.findAll( '.field_filled', section ).forEach( field => field.classList.remove('field_filled') );
-
-		// clear values and mark with empties
-		FP.findAll('textarea', section).forEach( area => {
-			area.value = '';
-			if ( area.classList.contains('fupi_req') ) area.parentElement.classList.add('fupi_empty');
-		} );
-
-		FP.findAll('input[type="text"], input[type="url"]', section).forEach( field => {
-			field.value = '';
-			if ( field.classList.contains('fupi_req') ) field.parentElement.classList.add('fupi_empty');
-		} );
+	function remove_r3_section( section ){
 		
-		FP.findAll('input[type="password"]', section).forEach( field => {
-			field.value = '';
-			if ( field.classList.contains('fupi_req') ) field.parentElement.classList.add('fupi_empty');
-		} );
+		let td = section.closest('td'),
+			has_select2 = FP.findFirst( '.ss-main', section );
+
+		mark_slideout_form_as_unsaved( section );
+
+		if ( has_select2 ) FupiSlimSelect.destroyRepeaters();
+
+		smart_remove_section( section );
+		fill_empty_id_fields_with_random_ids( td );
+		order_array_indexes_in_all_sections( td );
+
+		if ( has_select2 ) FupiSlimSelect.initIn();
+	}
+
+	function handle_remove_btn_with_confirm( target ){
 		
-		FP.findAll('input[type="number"]', section).forEach( field => {
-			field.value = 0;
-			if ( field.classList.contains('fupi_req') ) field.parentElement.classList.add('fupi_empty');
-		} );
+		let	remove_double_confirm_btn 	= target.closest('.fupi_remove_double_confirm_btn'),
+			are_you_sure_btn 			= FP.findFirst('.are_you_sure');
+			
+		// if the user clicked "remove" btn
+		if ( remove_double_confirm_btn ) {
+
+			// if this btn has no "Are you sure" text
+			if ( ! target.closest('.are_you_sure') ) {
+
+				// remove "AYS" styling from other button (if exists)
+				if ( are_you_sure_btn ) {
+					remove_are_you_sure_styling(are_you_sure_btn);
+				}
+
+				// add "AYS" styling to this button
+				add_are_you_sure_styling(remove_double_confirm_btn);
+
+				return true;
+			
+			// and btn has AYS text
+			} else {
+				// remove section
+				let current_section = remove_double_confirm_btn.closest('.fupi_r3_section');
+				remove_r3_section( current_section );
+				// enable_submit_btn( true );
+
+				return true;
+			}
 		
-		// these do not get empties
-		FP.findAll('input[type="checkbox"]', section).forEach( box => box.checked = false );
-		FP.findAll('input[type="hidden"]', section).forEach( field => field.value = '' );
+		// if the user clicked sth else
+		} else {
+			if ( are_you_sure_btn ) remove_are_you_sure_styling(are_you_sure_btn);
+		}
+
+		return false;
+	}
+
+	function handle_plus_section_button( target ){
+
+		const add_section_btn = target.closest('.fupi_r3_add_btn');
+
+		if ( add_section_btn ) {
+			// add section right after the section where "+" was clicked
+			let section = target.closest('.fupi_r3_section'),
+				td = section.closest('td'),
+				has_select2 = FP.findFirst( '.ss-main', section );
+			
+			mark_slideout_form_as_unsaved( section );
+			
+			if ( has_select2 ) FupiSlimSelect.destroyRepeaters();
+			add_section_after( section );
+			order_array_indexes_in_all_sections( td );
+			if ( has_select2 ) FupiSlimSelect.initIn();
+
+			return true;
+		}
+		return false;
+	}
+
+	function handle_minus_section_btn( target ){
+
+		const remove_btn = target.closest('.fupi_r3_remove_btn');
+			
+		if ( remove_btn ) {
+			let current_section = target.closest('.fupi_r3_section');
+			remove_r3_section( current_section );
+			return true;
+		}
+		return false;
+	}
+
+	function handle_add_trigger_btn( target ) { // trigger builder > btn below all sections
+
+		const add_section_at_end_btn = target.closest('.fupi_r3_add_end_btn');
+		
+		if ( add_section_at_end_btn ) {
+			
+			let td = target.closest('td'),
+				direct_children = FP.nl2Arr( td.children );
+
+			let all_sections = direct_children.filter( child => {
+				return child.matches('.fupi_r3_section');
+			});
+				
+			let last_section = all_sections[all_sections.length -1 ];
+
+			// check if there is only one section, is empty and invisible
+			let show_section = all_sections.length == 1 && all_sections[0].classList.contains('fupi_empty_r3') && all_sections[0].classList.contains('fupi_hidden');
+
+			if ( show_section ) {
+				last_section.classList.add('fupi_section_not_saved');
+				last_section.classList.remove('fupi_hidden');
+				mark_slideout_form_as_unsaved( last_section );
+			} else {
+
+				let has_select2 = FP.findFirst( '.ss-main', last_section );
+
+				mark_slideout_form_as_unsaved( last_section );
+				if ( has_select2 ) FupiSlimSelect.destroyRepeaters();
+				add_section_after( last_section );
+				order_array_indexes_in_all_sections( td );
+				if ( has_select2 ) FupiSlimSelect.initIn();
+			}
+
+		
+			return true;
+		}
+
+		return false;
+	}
+
+	function handle_show_evt_settings_btn( target ){
+
+		const show_evt_settings_btn = target.closest('.fupi_r3_builder_evt_settings_btn');
+
+		if ( ! show_evt_settings_btn ) return false;
+			
+		let trigger_id = show_evt_settings_btn.dataset.trigger_id,
+			trigger_name = show_evt_settings_btn.textContent,
+			td = target.closest('td'),
+			first_top_section = FP.findFirst('.fupi_r3_section', td ),
+			section_with_trigger_el = FP.findFirst( '.fupi_r3_section:has(input[name*="[atrig_id]"][value="' + trigger_id + '"]', td ),
+			all_top_level_siblings = section_with_trigger_el ? FP.getSiblings( section_with_trigger_el ) : FP.getSiblings( first_top_section ),
+			hidden_current_section = false;
+
+		// hide all top level sections
+		all_top_level_siblings.forEach( top_level_sibling => {
+			if ( hidden_current_section ) return;
+			if ( top_level_sibling.classList.contains('fupi_r3_section') && ! top_level_sibling.classList.contains('fupi_hidden') ) {
+				top_level_sibling.classList.add('fupi_hidden');
+				if ( top_level_sibling == section_with_trigger_el ) hidden_current_section = true;
+			}
+		})
+
+		if ( hidden_current_section ) return true; // this ensure that we only hide a section if the same btn was clicked multiple times
+		
+		// show section if it already exists ( with same trigger_id as requested) 
+		if ( section_with_trigger_el ) {
+			section_with_trigger_el.classList.remove('fupi_hidden');
+			fill_event_headline( section_with_trigger_el, trigger_name );
+			mark_req_fields( section_with_trigger_el );
+		
+		// or make one if it doesn't exist
+		} else {
+			
+			if ( first_top_section ) {
+
+				// update it with new data if it is empty
+				if ( first_top_section.classList.contains('fupi_empty_r3') ) {
+
+					// clear all fields
+					clear_section( first_top_section );
+					
+					// update name field
+					fill_event_headline( first_top_section, trigger_name );
+
+					// update trigger field
+					let trigger_id_el = FP.findFirst('input[name*="[atrig_id]"]', first_top_section );
+					if ( trigger_id_el ) trigger_id_el.value = trigger_id;
+
+					first_top_section.classList.remove('fupi_hidden');
+					mark_req_fields( first_top_section );
+
+				// create one after the existing section
+				} else {
+
+					let has_select2 = FP.findFirst( '.ss-main', first_top_section );
+
+					if ( has_select2 ) FupiSlimSelect.destroyRepeaters();
+					make_new_section_after( first_top_section, trigger_id, trigger_name ); // clears fields > adds trigger data > marks fields as empty or filled
+					order_array_indexes_in_all_sections( td );
+					if ( has_select2 ) FupiSlimSelect.initIn();
+				}
+			}
+		}
+		
+		return true;
+	}
+
+	function listen_to_clicks() {
+
+		document.addEventListener('click', e => {
+
+			let stop_checking = handle_remove_btn_with_confirm( e.target );
+
+			// if ( ! stop_checking ) stop_checking = handle_untrack_section_button( e.target );
+
+			if ( ! stop_checking ) stop_checking = handle_plus_section_button( e.target );
+			if ( ! stop_checking ) stop_checking = handle_add_trigger_btn( e.target ); // trigger builder > btn below all sections
+			if ( ! stop_checking ) stop_checking = handle_minus_section_btn( e.target );
+
+			if ( ! stop_checking ) handle_show_evt_settings_btn( e.target ); // event builder > button with trigger data
+		} )
+	}
+
+	//
+	// HANDLING EMPTY AND REQUIRED FIELDS AND SECTIONS
+	//
+
+	function clear_section( section ){
+
+		section.classList.add('fupi_empty_r3');
+
+		FP.findAll('.fupi_empty', section).forEach( field => field.classList.remove('fupi_empty') ); // this will be reapplied with "mark_req_fields"
+
+		// clear values
+		FP.findAll('textarea', section).forEach( field => field.value = '' );
+		FP.findAll('input', section).forEach( field => {
+			if ( field.type !== 'checkbox' && field.type !== 'submit' ) field.value = '' 
+		} );
+		FP.findAll('input[type="checkbox"]', section).forEach( field => field.checked = false );
 
 		FP.findAll('select', section).forEach( sel => {
+
 			let option_el = FP.findFirst('option', sel);
-			if ( option_el && option_el.value ) sel.value = option_el.value;
-			
-			if ( sel.classList.contains('fupi_req') ) sel.parentElement.classList.add('fupi_empty');
+
+			if ( sel.dataset.default ) {
+				
+				sel.value = sel.dataset.default;
+
+			} else {
+				if ( sel.multiple ) {
+					FP.findAll('option', sel).forEach( option => option.selected = false );
+				} else if ( option_el ) {
+					sel.value = option_el.value;
+				}
+			}
+
+			if ( sel.slim ) {
+				let selected_values = FP.findAll('option:checked', sel).map( option => option.value );
+				sel.slim.setSelected( selected_values, false );
+			}
+
 		} );
 
 		// unhide hidden elements
@@ -247,312 +451,286 @@
 		return section;
 	}
 
-	function enable_section_buttons() {
+	//
+	// MARKS REQUIRED FIELDS AS EMPTY OR FILLED
+	// 
 
-		FP.findID('fupi_settings_form').addEventListener('click', e => {
+	function listen_to_fields_changes( wrapper ){
 
-			let btn = e.target;
+		// prevent double-listening to the same wrapper
+		if ( wrapper.dataset.r3ChangeListener === 'true' ) return;
+		wrapper.dataset.r3ChangeListener = 'true';
 
-			if ( btn.classList.contains('fupi_r3_btn') ){
+		let dynamic_form = wrapper.closest('#fupi_dynamic_settings_form');
 
-				destroy_all_select2s();
-				let section_wrap = btn.closest('td');
+		let mark_fields_as_unsaved_and_empty = e => {
 
-				if ( btn.classList.contains('fupi_btn_remove') ){
-					remove_or_clear_section(btn);
-					rename_fields_in_section(section_wrap);
-				} else {
-					add_section(btn);
-					rename_fields_in_section(section_wrap);
-					modify_specific_fields();
-				}
+			let target = e.target;
 
-				enable_all_select2s();
-				hide_already_selected_atrig_selects();
+			// enable "Save" btn in dynamic form after any change
+			if ( dynamic_form && dynamic_form.dataset.unsaved !== 'true' ) {
+				dynamic_form.dataset.unsaved = 'true';
+				enable_submit_btn( true );
 			}
-		})
-	}
 
-	// This is for the Custom Scripts module
+			// continue only for required field
+			if ( ! target.classList.contains('fupi_req') ) return;
+			
+			r3_field_wrap = target.closest('.fupi_r3_field');
 
-	function get_attributes_from_str( str ){
+			if ( ! r3_field_wrap ) return;
 
-		// return an object with key-value pairs
-		// string example: 'data-param='abc def ghi' async src="https://www.googletagmanager.com/gtag/js?id=UA-11111111-1" data-param2="abc" id="anID" class="class1 class2"'
-
-		let parts = str.trim().split(' '), // we break the string into parts by 'space' (spaces can occur in unexpected places! see example above)
-			ok_parts = parts.filter( v => v ), // and remove empty values from array
-			ret_val = {};
-
-		for ( var i = 0; i < ok_parts.length; i++ ) {
-
-			let part = ok_parts[i],
-				eq_index = part.indexOf('='),
-				last_char = part[part.length-1];
-
-			// if we have an equal sign
-			// (this means that the value before the equal sign is the key and the one after is the value)
-			if ( eq_index != -1 ){
-
-				// we check if the last element of the current part is an apostrophe. If it isn\'t then it means we split the value in two or more pieces and need to join it with the next string parts
-				while ( ! ( last_char == '"' || last_char == "'" ) && i+1 <= ok_parts.length ) {
-					part += ' ' + ok_parts[i+1];
-					last_char = part[part.length-1];
-					i++;
-				}
-
-				// if we have the key and the whole value
-				if ( last_char == '"' || last_char == "'" ) {
-					// we save the key and value pair
-					let key_val = part.split(/=(.*)/s); // split on the first occurance of "=" sign. They may sometimes show up in values too
-					ret_val[key_val[0]]= key_val[1];
-				}
-
-			// if we don't have an equal sign this is a single value
+			// mark field as empty or not
+			if ( target.value ) {
+				r3_field_wrap.classList.remove( 'fupi_empty');
 			} else {
-				ret_val[part] = true;
+				r3_field_wrap.classList.add( 'fupi_empty' );
 			}
-		}
 
-		return ret_val;
-	}
+			let evt_builder_section = r3_field_wrap.closest('.fupi_r3_event_builder');
 
-	function reformat_custom_scripts( script ){
+			// mark evt builder section as empty or not
+			if ( evt_builder_section ) {
 
-		// remove all ending "</script>" tags
-		script = script.replaceAll('</script>', '');
+				let has_empty_fields = !! FP.findFirst( '.fupi_empty .fupi_req', evt_builder_section ),
+					trigger_id_el = FP.findFirst( 'input[name*="[atrig_id]"]', evt_builder_section );
 
-		// remove all HTML comments including everything between <!-- and -->
-		script = script.replaceAll(/<!--/g, '//');
-		script = script.replaceAll(/-->/g, '');
+				evt_builder_section.classList.toggle( 'fupi_empty_r3', has_empty_fields );
 
-		// remove noscript tags with everything in between
-		script = script.replaceAll(/<noscript>[\s\S]*?<\/noscript>/g, '');
+				if ( trigger_id_el ) {
 
-		// find all <script[something or nothing]> tags
-		let start_regex = /<script[\s\S]*?>/gi,
-			matches = script.match(start_regex),
-			replacements = [];
+					let evt_open_btn = FP.findFirst( '.fupi_r3_builder_evt_settings_btn[data-trigger_id="' + trigger_id_el.value + '"]' );
 
-		// get their attributes
-		if ( Array.isArray( matches ) && matches.length > 0 ) matches.forEach( txt => {
-
-			// remove "<script" and final ">"
-			txt = txt.replace('<script','');
-			txt = txt.slice(0, -1);
-			txt = txt.trim();
-
-			if ( txt.length == 0 ) {
-
-				replacements.push('');
-
-			} else {
-
-				// try to transform the "<script [attributes]>" into "getScript()"
-				let attributes_obj = get_attributes_from_str(txt),
-					src = attributes_obj.src ? attributes_obj.src : false,
-					attrs_str = '';
-
-				if ( ! src ) {
-					// Remove the whole <script> tag
-					replacements.push('');
-				} else {
-					// Build string with attributes
-					for (const [key, val] of Object.entries(attributes_obj)) {
-						if ( key != 'src' ) {
-							if ( attrs_str.length > 1 ) attrs_str += ", ";
-							attrs_str += '"' + key + '": ' + val;
-						}
+					if ( evt_open_btn ) {
+						evt_open_btn.classList.toggle( 'fupi_trigger_used_in_evt', ! has_empty_fields );
 					}
-	
-					replacements.push([src, attrs_str]);
 				}
 			}
-		} );
+		}
 
-		// prepare elements to replace <string [something or nothing]> in the original script
-		replacements.forEach( ( repl, i ) =>{
-			if ( repl ) replacements[i] = 'FP.getScript(' + repl[0] + ', false, {' + repl[1] + '});'; // repl[0] & repl[1] are already properly formatted
-		} )
-
-		// replace elements in string one by one
-
-		let i = 0;
-
-		return script.replace(start_regex, ()=>{ return replacements[i++]; });
-
-		// e.target.value = e.target.value.replaceAll(/<.*?script[\s\S]*?>/g, '');
+		wrapper.addEventListener('input', mark_fields_as_unsaved_and_empty );
+		wrapper.addEventListener('change', mark_fields_as_unsaved_and_empty );
 	}
 
-	function enable_focusout_checks(){
-		document.addEventListener( 'focusout', e => {
+	// this should be run every time some fields are changed AUTOMATICALLY!
+	function mark_req_fields( section ) {
+		
+		let req_fields = FP.findAll( '.fupi_req', section ),
+			has_empty_fields = false;
 
-			switch (e.target.tagName) {
-				case 'INPUT':
-				case 'TEXTAREA':
-				case 'SELECT':
+		req_fields.forEach( req_field => {
 
-					let r3_field_wrap = e.target.closest('.fupi_r3_field');
+			let field_wrap = req_field.closest('.fupi_r3_field');
 
-					if ( r3_field_wrap ) {
-
-						// mark as empty
-						if ( e.target.value ) {
-							r3_field_wrap.classList.remove('field_empty');
-							r3_field_wrap.classList.add('field_filled');
-						} else {
-							r3_field_wrap.classList.remove('field_filled');
-							r3_field_wrap.classList.add('field_empty');
-						}
-						
-						// sanitize script
-						if ( module_id == 'cscr' ) {
-							if ( e.target.tagName == 'TEXTAREA' ) {
-								let new_value = reformat_custom_scripts( e.target.value ); // e.target.value = e.target.value.replaceAll(/<.*?script[\s\S]*?>/g, '');
-								if ( new_value ) e.target.value = new_value;
-							}
-						}
-						
-						// sanitize script id
-						if ( module_id == 'cscr' || module_id == 'scrblock' || module_id == 'reports' ) {
-							if ( e.target.name.includes('[id]') ) e.target.value = e.target.value.replace(/[^a-z0-9_]/g, "");
-						}
-					}
-
-				break;
-			}
-		})
-	}
-
-	// R3 SPECIFIC FUNCTIONS
-
-	// FOR ADDING CUSTOM SCRIPTS
-
-	function generate_random_id(){
-		return Math.random().toString(36).replace(/[^a-z1-9]+/g, '').substring(0, 5); // 5 random  characters
-	}
-
-	function fill_empty_id_fields_with_random_ids(){
-		let script_id_fields = FP.findAll('.fupi_field_id_wrap input');
-		script_id_fields.forEach( field => field.value = field.value || generate_random_id() );
-	}
-
-	// for the Reporst & Stats module
-	function make_ids_from_titles(){
-	
-		let reports_fields = FP.findAll('.fupi_reports_fields');
-
-		if ( reports_fields.length == 0 ) return;
-	
-		document.addEventListener( 'change', e => {
-			if ( e.target.tagName == 'INPUT' && e.target.name.includes('[title]') ) {
-				
-				let id_field = FP.findFirst( '.fupi_field_id_wrap input', e.target.closest('.fupi_r3_section') );
-				
-				if ( id_field ){
-					let new_val = e.target.value ? (e.target.value.toLowerCase()).replace(/[^a-z0-9]/g, "") : generate_random_id();
-					id_field.value = new_val;
+			if ( ! req_field.value && ! req_field.checked ) {
+				has_empty_fields = true;
+				if ( ! field_wrap.classList.contains('fupi_empty') ) {
+					field_wrap.classList.add('fupi_empty');
 				}
-			}
-		});
-	}
-	
-	function toggle_leadscore_repeat_field( select, show ){
-		let closest_r3_section = select.closest('.fupi_r3_section'),
-			action_repeat_select = FP.findFirst( '.fupi_field_repeat_wrap select', closest_r3_section );
-
-		if ( show ) {
-			action_repeat_select.disabled = false;
-		} else {
-			if ( select.value.includes('fp_leadscore') ) {
-				action_repeat_select.value = 'no';
-				action_repeat_select.disabled = true;
 			} else {
-				action_repeat_select.disabled = false;
-			};
-		}
-		
-	}
-
-    function listen_to_select_events(){
-        document.addEventListener('change', e=>{
-            if( e.target.tagName =='SELECT' && e.target.getAttribute('name').includes('atrig_id') ) {
-				toggle_leadscore_repeat_field( e.target );
-				hide_already_selected_atrig_selects();
+				field_wrap.classList.remove('fupi_empty');
 			}
-        })
-    }
-
-	function hide_selects_in_group( trigger_selects ){
-		
-		// get fields that are already selected
-		let selected_options = [];
-
-		trigger_selects.forEach( select => {
-			if ( select.value ) selected_options.push( select.value );
-		} );
-
-		// hide already selected fields
-		trigger_selects.forEach( select => {
-
-			let all_options = FP.nl2Arr( select.options );
-
-			all_options.forEach( opt => {
-				opt.style.display = selected_options.includes( opt.value ) ? 'none' : 'block';
-			})
-		});
-	}
-
-	function hide_already_selected_atrig_selects( trigger_selects ){
-
-		if ( ! trigger_selects ) {
-
-			let builders = FP.findAll('.fupi_events_builder');
-
-			builders.forEach( builder => {
-				trigger_selects = FP.findAll('select[name*="atrig_id"]', builder);
-				hide_selects_in_group( trigger_selects );
-			})
-
+		})
+					
+		// mark section as non-empty
+		// mark corresponding button (which opens the builder) as green or orange
+		if ( ! has_empty_fields ) {
+			section.classList.remove('fupi_empty_r3');
 		} else {
-			hide_selects_in_group( trigger_selects );
+			section.classList.add('fupi_empty_r3');
 		}
 	}
 
-	function modify_specific_fields(){
+	//
+	// FOR THE BUILDER SLIDEOUT PANEL
+	//
 
-		// FOR SELECTING CUSTOM TRIGGERS ON A MODULE'S PAGE
-		let builders = FP.findAll('.fupi_events_builder');
+	function get_active_triggers_data(){
 
-		builders.forEach( builder => {
-			
-			let trigger_selects = FP.findAll('select[name*="atrig_id"]', builder);
-			
-			hide_already_selected_atrig_selects( trigger_selects );
-			
-			trigger_selects.forEach( select => {
-				toggle_leadscore_repeat_field( select );
-			});
+		const trigger_sections = FP.findAll('#fupi_dynamic_settings_form .fupi_r3_trigger_builder');
+
+		let data = {};
+
+		trigger_sections.forEach( section => {
+
+			let trigger_name_input = FP.findFirst('input[name*="[name]"]', section ),
+				trigger_id_input = FP.findFirst('input.fupi_generate_id', section );
+
+			if ( trigger_name_input.value && trigger_id_input.value ) data[trigger_id_input.value] = trigger_name_input.value;
 		})
+
+		return data;
 	}
 
+	function get_active_visitor_score_levels(){
+
+		const levels_field = FP.findFirst('#fupi_dynamic_settings_form input[name="fupi_vscor[lead_scoring_levels]"]');
+		if ( ! levels_field ) return false;
+
+		const levels = levels_field.value
+			.replace(/[^0-9,]/g, '')
+			.split(',')
+			.map( level => parseInt( level.trim(), 10 ) )
+			.filter( level => ! Number.isNaN( level ) );
+
+		return levels.length ? [...new Set(levels)].sort((a, b) => a - b) : [10, 20, 30, 40, 50];
+	}
+
+	function sync_builder_events_and_triggers(){
+
+		let builder_btn = FP.findFirst('.fupi_atrig_popup_opener:not(.fupi_not_builder_btn)');
+
+		if ( ! builder_btn ) return;
+		
+		let td = builder_btn.closest('td'),
+			event_builder_sections = FP.findAll( '.fupi_r3_event_builder', td );
+
+		const score_levels = builder_btn.dataset.moduleId == 'vscor' ? get_active_visitor_score_levels() : false;
+
+		let triggers_data_o = score_levels
+			? Object.fromEntries( score_levels.map( level => [ 'fp_leadscore_' + level, 'Visitor collects ' + level + ' points' ] ) )
+			: get_active_triggers_data(); // returns object with elements "trigger_id" : trigger_name from dynamic settings
+
+		event_builder_sections.forEach( event_section => {
+
+			let event_trigger_id_el = FP.findFirst('input[name*="[atrig_id]"]', event_section ),
+				event_trigger_id = event_trigger_id_el.value;
+
+			if ( ! event_trigger_id ) {
+				if ( ! event_section.classList.contains('fupi_empty_r3') ) remove_r3_section( event_section );
+				return;
+			}
+
+			// look for a trigger field with the same ID value
+			let trigger_name = triggers_data_o[event_trigger_id];
+
+			// if this trigger exists
+			if ( trigger_name ) {
+				
+				// update name
+				fill_event_headline( event_section, trigger_name );
+
+			} else {
+				remove_r3_section( event_section );
+			}
+		})
+
+		// update buttons that open event settings
+
+		let open_evt_settings_btns = FP.findAll( '.fupi_r3_builder_evt_settings_btn', td );
+
+		open_evt_settings_btns.forEach( ( open_evt_btn, i ) => {
+
+			let trigger_id = open_evt_btn.dataset.trigger_id;
+
+			// if trigger exists
+			if ( triggers_data_o[trigger_id] ) {
+				
+				// update btn text
+				open_evt_btn.textContent = triggers_data_o[trigger_id];
+				
+				// remove from triggers_data_o (this lets ut see what triggers to add later)
+				delete triggers_data_o[trigger_id];
+
+			// remove it
+			} else {
+				FP.remove(open_evt_btn);
+			}
+		})
+
+		// add new options to trigger selector
+		for ( const id in triggers_data_o ) {
+
+			// do not use insertAdjacentHTML - trigger names with special characters concatenated into the HTML break the btn
+			const button = document.createElement('button');
+			button.type = 'button';
+			button.className = 'fupi_r3_builder_evt_settings_btn';
+			button.dataset.trigger_id = id;
+			button.textContent = triggers_data_o[id];
+			builder_btn.before(button);
+		}
+	}
+
+	function manage_empty_sections( td ){
+
+		const first_section = FP.findFirst( '.fupi_r3_section', td ),
+			is_event_builder = FP.findFirst( '.fupi_r3_event_builder', td );
+
+		let sibling_sections = FP.getSiblings( first_section ),
+			all_sections = sibling_sections.filter(sect => sect.classList.contains('fupi_r3_section')),
+			empty_sections = all_sections.filter(sect => sect.classList.contains('fupi_empty_r3')); 
+			
+			// Sections with "fupi_empty_r3" are either:
+			// - the first section of a field with no saved data
+			// - sections that are not connected to existing triggers
+
+		// if we have many sections and some of them are empty (but not all!), we remove empty ones
+		if ( all_sections.length > empty_sections.length ) {
+			empty_sections.forEach( section => FP.remove(section));
+			return true; // returns that it changed DOM
+		}
+
+		if ( is_event_builder ) {
+			
+			// if we have multiple sections and all of them are empty, we remove all of them except one
+			if ( all_sections.length > 1 && all_sections.length == empty_sections.length ) {
+				empty_sections.forEach( (section, i) => {
+					if ( i == 0 ) {
+						clear_section( section ); // this clears fields that may STILL contain data!
+						mark_req_fields( section );
+						return false; // returns that it did not change DOM
+					} else {
+						FP.remove(section);
+						return true; // returns that it changed DOM
+					}
+				})
+			}
+
+			// if we have only one section and it is empty, then we make it invisible
+			if ( all_sections.length == 1 && empty_sections.length == 1 ) {
+
+				let last_section = all_sections[all_sections.length -1 ]
+
+				last_section.classList.add('fupi_hidden');
+				return false;
+			}
+		}
+	}
+
+	//
 	// INIT
+	//
 
-	// check if there are any r3s on page
-	if ( FP.findFirst('.fupi_r3_repeater') ) {
+	FP.f.enableRepeatersIn = ( wrapperSelector ) => {
 		
-		if ( module_id == 'cscr' || module_id == 'cook' || module_id == 'reports' || module_id == 'atrig' ) fill_empty_id_fields_with_random_ids();
+		let wrapper = FP.findFirst( wrapperSelector );
+		if ( ! wrapper ) return;
 
-		enable_all_select2s();
-		enable_section_buttons();
-		enable_focusout_checks();
-		modify_specific_fields();
+		let td_els_with_repeaters = FP.findAll('td:has(.fupi_r3_repeater)', wrapper);
 
-		// collapse fields if there are
-		// collapse_fields();
-    	listen_to_select_events();
+		td_els_with_repeaters.forEach( td => {
+			let changed_DOM = manage_empty_sections( td ); // removes/hides/clears fields that still have some content
+			if ( changed_DOM ) order_array_indexes_in_all_sections( td );
+		})
 
-		if ( module_id == 'reports' ) make_ids_from_titles();
-	}
+		fill_empty_id_fields_with_random_ids();
+		FupiSlimSelect.initIn( wrapperSelector );
+		listen_to_fields_changes( wrapper );
+	};
+
+	FP.f.enableRepeatersIn('#fupi_main_form');
+	
+	listen_to_clicks();
+
+	// AFTER DYNAMIC SETTINGS LOAD FOR THE FIRST TIME
+	document.addEventListener( 'fupi_atrig_panel_loaded', ()=>{
+		FP.f.enableRepeatersIn('#fupi_dynamic_settings_form');
+	})
+	
+	// AFTER DYNAMIC SETTINGS ARE SAVED
+	document.addEventListener( 'fupi_atrig_panel_form_saved', ()=>{
+		sync_builder_events_and_triggers();
+		FupiSlimSelect.initIn( '#fupi_dynamic_settings_form' );
+	})
 
 })();

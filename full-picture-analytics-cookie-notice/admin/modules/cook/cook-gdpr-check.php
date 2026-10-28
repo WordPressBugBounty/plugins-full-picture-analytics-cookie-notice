@@ -38,7 +38,7 @@ if ( ! empty( $this->cook ) ){
 
         if ( ! empty ( $this->cook['enable_scripts_after'] ) && $this->cook['enable_scripts_after'] !== 'optin' ) {
             // $status = 'alert';
-            $this->data['cook']['setup'][] = [ 'alert', esc_html__('Set the consent banner to work in Opt-in mode if geolocation is not found.', 'full-picture-analytics-cookie-notice') ];
+            $this->data['cook']['setup'][] = [ 'alert', esc_html__('Set the consent banner to work in Opt-in mode in case geolocation fails.', 'full-picture-analytics-cookie-notice') ];
         }
 
     // when geo is disabled, the mode is set in the setting "enable_scripts_after"
@@ -72,10 +72,24 @@ if ( ! empty( $this->cook ) ){
 }
 
 // Privacy policy page
+$this->data['privacy_policy'] = [
+    'module_name' => esc_html__( 'Privacy policy', 'full-picture-analytics-cookie-notice' ),
+    'setup'       => [],
+];
+
 if ( empty ( $this->pp_ok ) ) {
-    // $status = 'alert';
-    $this->data['cook']['setup'][] = [ 'alert', sprintf( esc_html__('Make sure that the Privacy policy page is published, set %1$son this page%2$s and in the settings of the Consent Management module.', 'full-picture-analytics-cookie-notice'), '<a href="/wp-admin/options-privacy.php" target="_blank">', '</a>' ) ];
+    $this->data['privacy_policy']['setup'][] = [ 'alert', sprintf( esc_html__('Make sure that the Privacy policy page is published, set %1$son this page%2$s and in the settings of the Consent Management module.', 'full-picture-analytics-cookie-notice'), '<a href="/wp-admin/options-privacy.php" target="_blank">', '</a>' ) ];
 }
+
+$this->data['privacy_policy']['setup'][] = [
+    'info',
+    sprintf( esc_html__( 'We prepared texts that you can adjust and add to your privacy policy. %1$sView the texts%2$s', 'full-picture-analytics-cookie-notice' ), '<a href="https://wpfullpicture.com/support/documentation/texts-for-the-privacy-policy/" target="_blank">', '</a>' ),
+];
+
+$this->data['privacy_policy']['setup'][] = [
+    'info',
+    sprintf( esc_html__( 'Inform your visitors about tracking tools you use, what data they collect and what it is used for. You do not need to describe individual cookies (%1$slearn more%2$s).', 'full-picture-analytics-cookie-notice' ), '<a href="https://wpfullpicture.com/blog/does-gdpr-require-you-to-list-cookies-on-your-website/" target="_blank">', '</a>' ),
+];
 
 // Text for pre-selected switches
 if ( isset( $notice_opts['switches_on'] ) && is_array( $notice_opts['switches_on'] ) && ! empty( $notice_opts['optin_switches'] ) ) {
@@ -85,15 +99,6 @@ if ( isset( $notice_opts['switches_on'] ) && is_array( $notice_opts['switches_on
         $this->data['cook']['setup'][] = [ 'alert', esc_html__('Disable pre-selection of consent switches in the styling options of the consent banner', 'full-picture-analytics-cookie-notice') ];
     };
 };
-
-// Extra texts for the privacy policy 
-
-if ( $this->format != 'cdb' ) {
-
-    $this->data['cook']['pp comments'][] = [ 
-        sprintf( esc_html__('Add to your privacy policy information about WP Full Picture. We prepared a sample text for you that you can adjust to your needs and legal requirements in your country. %1$sView the text%2$s', 'full-picture-analytics-cookie-notice'), '<a href="https://wpfullpicture.com/support/documentation/texts-for-the-privacy-policy/">', '</a>' ),
-    ];
-}
 
 // Button which toggles consent banner
 

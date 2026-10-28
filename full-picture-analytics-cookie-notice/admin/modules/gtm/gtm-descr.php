@@ -6,24 +6,23 @@ switch( $section_id ){
 
     case 'fupi_gtm_main':
 
-		$gtm_id = ! empty ( $this->settings ) && ! empty ( $this->settings['id'] ) ? esc_attr( $this->settings['id'] ) : '';
-
         $ret_text = '
 		<div id="fupi_not_installed_info" class="fupi_installation_status fupi_hidden">
-			<img src="' . FUPI_URL . 'admin/assets/img/almost_ico.png" aria-hidden="true"> <p>' . sprintf( esc_html__( '%1$s is not installed', 'full-picture-analytics-cookie-notice' ), 'Google Tag Manager' ) . '<br><span class="fupi_small">' . esc_html__( 'To install it, please fill in the required field below', 'full-picture-analytics-cookie-notice' ) . '</span>.</p>
+			<img src="' . FUPI_URL . 'admin/assets/img/almost_ico.png" aria-hidden="true"> <p>' . sprintf( esc_html__( '%1$s is not installed', 'full-picture-analytics-cookie-notice' ), 'Google Tag Manager' ) . '<br><span class="fupi_small">' . esc_html__( 'Please fill in the required fields below', 'full-picture-analytics-cookie-notice' ) . '</span>.</p>
 		</div>
 		<div id="fupi_installed_info" class="fupi_installation_status fupi_hidden">
-            <img src="' . FUPI_URL . 'admin/assets/img/success_ico.png" aria-hidden="true"> <p>' . esc_html__( 'Well done! GTM is installed.', 'full-picture-analytics-cookie-notice' ) . '<br><span class="fupi_small">' . sprintf( esc_html__( '%1$sFollow this tutorial%2$s, if you want to use it together with server-side tracking GTM from Stape.', 'full-picture-analytics-cookie-notice' ), '<a href="https://wpfullpicture.com/support/documentation/how-to-use-sgtm-from-stape-io/" target="_blank">', '</a>' ) . '</span></p>
+            <img src="' . FUPI_URL . 'admin/assets/img/success_ico.png" aria-hidden="true"> <p>' . esc_html__( 'GTM is installed.', 'full-picture-analytics-cookie-notice' ) . '<br><span class="fupi_small">' . sprintf( esc_html__( '%1$sFollow this tutorial%2$s, if you want to use it together with server-side tracking GTM from Stape.', 'full-picture-analytics-cookie-notice' ), '<a href="https://wpfullpicture.com/support/documentation/how-to-use-sgtm-from-stape-io/" target="_blank">', '</a>' ) . '</span></p>
         </div>
-		<p style="text-align: center;" class="fupi_warning_text"><button type="button" class="fupi_faux_link fupi_open_popup" data-popup="fupi_howtouseit_popup">' . esc_html__( 'How NOT to use GTM with WP Full Picture.', 'full-picture-analytics-cookie-notice' ) . ' <span class="fupi_open_popup_i">i</span></button></p>';
+		<p style="text-align: center;" class="fupi_warning_text"><button type="button" class="fupi_faux_link fupi_open_offscreen" data-offscreen="fupi_howtouseit_offscreen">' . esc_html__( 'How NOT to use GTM with WP Full Picture.', 'full-picture-analytics-cookie-notice' ) . ' <span class="fupi_open_offscreen_i">?</span></button></p>';
     break;
 
 	case 'fupi_gtm_loading':
 
-		$ret_text = '<p class="fupi_warning_text">' . esc_html__('Tracking tools installed with GTM, track all users - even those who did not agree to tracking or are excluded from tracking (in the General Settings page).', 'full-picture-analytics-cookie-notice' ) . '</p>
-		<p class="fupi_warning_text">' . esc_html__('To comply with GDPR (and be able to decline tracking yourself), please, enable the Consent Management module and set every tag in GTM to require relevant consents.', 'full-picture-analytics-cookie-notice' ) . '</p>
+		$ret_text = '<p>' . esc_html__('To load tracking tools in GTM according to privacy regulations:', 'full-picture-analytics-cookie-notice' ) . '</p>
 		<ol>
-			<li>' . esc_html__( 'Open the tag configuration.', 'full-picture-analytics-cookie-notice') . ',</li>
+			<li>' . esc_html__( 'Enable and set up the Consent Management module', 'full-picture-analytics-cookie-notice') . ',</li>
+			<li>' . esc_html__( 'Go to your GTM container settings', 'full-picture-analytics-cookie-notice') . ',</li>
+			<li>' . esc_html__( 'Open configuration of every tag', 'full-picture-analytics-cookie-notice') . ',</li>
 			<li>' . esc_html__( 'Click on "Advanced settings" and then "Consent settings"', 'full-picture-analytics-cookie-notice') . ',</li>
 			<li>' . esc_html__( 'Check the box "Require additional consents for tag to fire"', 'full-picture-analytics-cookie-notice') . ',</li>
 			<li>' . esc_html__( 'Choose relevant consents', 'full-picture-analytics-cookie-notice') . ',</li>
@@ -31,20 +30,26 @@ switch( $section_id ){
 		</ol>';
 	break;
 
-	case 'fupi_gtm_events':
-		$ret_text = '<p>' . esc_html__('Use functions on this page to push to the dataLayer information about simple events, like clicking a button or submitting a form.', 'full-picture-analytics-cookie-notice' ) . '</p>';
-	break;
+	// case 'fupi_gtm_events':
+	// 	$ret_text = '<p>' . esc_html__('Push to the dataLayer information about clicks, form submissions, etc.', 'full-picture-analytics-cookie-notice' ) . '</p>';
+	// break;
 
-	case 'fupi_gtm_atrig':
-		$ret_text = '<p>' . sprintf( esc_html__( 'Here you can set up pushing to the dataLayer data of custom events. They can be triggered by %1$scustom triggers%2$s and include %3$soptional parameters%2$s.' , 'full-picture-analytics-cookie-notice' ), '<a href="https://wpfullpicture.com/support/documentation/how-to-set-up-advanced-triggers/" target="_blank">', '</a>', '<a href="https://wpfullpicture.com/support/documentation/how-to-set-up-custom-parameters/" target="_blank">' ) . '</p>';
-	break;
+	// case 'fupi_gtm_atrig':
+	// 	$ret_text = '<p>' . esc_html__( 'Track specific user actions.' , 'full-picture-analytics-cookie-notice' ) . '</p>';
+	// break;
 
 	case 'fupi_gtm_users':
 		$ret_text = '<p>' . esc_html__( 'Push to the dataLayer information about the visitors and logged in users of your website.', 'full-picture-analytics-cookie-notice') . ' ' . sprintf( esc_html__( 'Follow %1$sthis tutorial%2$s to learn how to turn this data into variables that you can use in GTM.', 'full-picture-analytics-cookie-notice'), '<a href="https://www.analyticsmania.com/post/pull-data-from-data-layer-google-tag-manager-tutorial/" target="_blank">', '</a>' ) . '</p>';
 	break;
 
 	case 'fupi_gtm_wpdata':
-		$ret_text = '<p>' . esc_html__( 'Push to the dataLayer information about the visited pages on your web site.', 'full-picture-analytics-cookie-notice') . ' ' . sprintf( esc_html__( 'Follow %1$sthis tutorial%2$s to learn how to turn this data into variables that you can use in GTM.', 'full-picture-analytics-cookie-notice'), '<a href="https://www.analyticsmania.com/post/pull-data-from-data-layer-google-tag-manager-tutorial/" target="_blank">', '</a>' ) . '</p>';
+		$ret_text = '<p>' . esc_html__( 'Parameters add context to tracked events.', 'full-picture-analytics-cookie-notice') . ' ' . sprintf( esc_html__( 'Learn %1$show to use them in GTM%2$s.', 'full-picture-analytics-cookie-notice'), '<a href="https://www.analyticsmania.com/post/pull-data-from-data-layer-google-tag-manager-tutorial/" target="_blank">', '</a>' ) . '</p>';
+	break;
+
+	// ENGAGEMENT
+
+	case 'fupi_gtm_vscor':
+		$ret_text = '<p>' . esc_html__( 'Track how engaged your visitors are with your site. Go to the settings of the Engagement Tracking module to set how many points visitors should get for taking specific actions.' , 'full-picture-analytics-cookie-notice' ) . '</p>';
 	break;
 
     // E-COMMERCE

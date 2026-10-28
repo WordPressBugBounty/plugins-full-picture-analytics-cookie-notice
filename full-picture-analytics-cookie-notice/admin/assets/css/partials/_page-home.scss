@@ -139,6 +139,7 @@
 			font-size: 32px;
 			margin: 0 0 10px;
 			color: #1d2327;
+			text-align: left;
 		}
 		p {
 			font-size: 20px;
@@ -226,34 +227,3 @@
 		}
 	}
 }
-
-
-// PRO BANNER
-#fupi_home_getpro{
-	background: #2b2b2b !important;
-}
-
-	#fupi_getpro_banner_unlock_icon{
-		top: -35px;
-		margin-left: -30px;
-		width: 60px;
-		height: 60px;
-		.dashicons{
-			width: 50px;
-			height: 50px;
-			line-height: 50px;
-			font-size: 50px;
-		}
-	}
-
-	#fupi_getpro_content_wrap{
-		display: flex;
-		flex-wrap: wrap;
-		align-items: center;
-		p{
-			font-size: 18px;
-		}
-		> * {
-			flex: 1 0 240px;
-		}
-	}

@@ -6,14 +6,12 @@ switch( $section_id ){
 
     case 'fupi_mads_install':
 
-		$mads_id = ! empty ( $this->settings ) && ! empty ( $this->settings['id'] ) ? esc_attr( $this->settings['id'] ) : '';
-
         $ret_text = '
         <div id="fupi_not_installed_info" class="fupi_installation_status fupi_hidden">
-			<img src="' . FUPI_URL . 'admin/assets/img/almost_ico.png" aria-hidden="true"> <p>' . sprintf( esc_html__( '%1$s is not installed', 'full-picture-analytics-cookie-notice' ), 'Microsoft Advertising pixel (UET Tag)' ) . '<br><span class="fupi_small">' . esc_html__( 'To install it, please fill in the required field below', 'full-picture-analytics-cookie-notice' ) . '</span>.</p>
+			<img src="' . FUPI_URL . 'admin/assets/img/almost_ico.png" aria-hidden="true"> <p>' . sprintf( esc_html__( '%1$s is not installed', 'full-picture-analytics-cookie-notice' ), 'Microsoft Advertising pixel (UET Tag)' ) . '<br><span class="fupi_small">' . esc_html__( 'Please fill in the required fields below', 'full-picture-analytics-cookie-notice' ) . '</span>.</p>
 		</div>
         <div id="fupi_installed_info" class="fupi_installation_status fupi_hidden">
-            <img src="' . FUPI_URL . 'admin/assets/img/success_ico.png" aria-hidden="true"> <p>' . esc_html__( 'Well done! Microsoft Ads pixel (UET tag) is installed', 'full-picture-analytics-cookie-notice' ) . '<br><span class="fupi_small">' . esc_html__( 'The data is sent to an account with UET tag ID ', 'full-picture-analytics-cookie-notice' ) . $mads_id . '</span>.</p>
+            <img src="' . FUPI_URL . 'admin/assets/img/success_ico.png" aria-hidden="true"> <p>' . esc_html__( 'Microsoft Advertising is installed', 'full-picture-analytics-cookie-notice' ) . '</p>
         </div>';
 
     break;
@@ -21,7 +19,7 @@ switch( $section_id ){
     // LOADING
 
 	case 'fupi_mads_loading':
-		$ret_text = '<p>' . esc_html__( 'Here you can change when and where this tool loads. This is all optional.', 'full-picture-analytics-cookie-notice') . '</p>';
+		$ret_text = '<p>' . esc_html__( 'Change when and where this tool loads. This is all optional.', 'full-picture-analytics-cookie-notice') . '</p>';
 	break;
 
     // DATA COLLECTION
@@ -33,8 +31,18 @@ switch( $section_id ){
     // EVENTS
 
     case 'fupi_mads_events':
-        $ret_text = '<p>' . esc_html__('Use functions on this page to track simple events, like clicking a button or submitting a form.', 'full-picture-analytics-cookie-notice' ) . ' ' . sprintf( esc_html__( '%1$sRegister them MS Ads%2$s to track conversions and build custom audiences.', 'full-picture-analytics-cookie-notice'), '<a href="https://wpfullpicture.com/support/documentation/how-to-track-specific-user-actions-as-conversions-in-microsoft-advertising/" >','</a>') . '</p>';
+        $ret_text = '<p>' . esc_html__( 'Track clicks, form submissions and other events.', 'full-picture-analytics-cookie-notice' ) . '</p>
+            <p>' . esc_html__( 'Attention. Sending a UET event does not make it a conversion. You need to configure a matching conversion goal or audience in Microsoft Advertising to use it for conversion tracking or remarketing.', 'full-picture-analytics-cookie-notice' ) . ' ' . sprintf( esc_html__( '%1$sLearn how to configure Microsoft Advertising%2$s.', 'full-picture-analytics-cookie-notice'), '<a href="https://wpfullpicture.com/support/documentation/how-to-track-specific-user-actions-as-conversions-in-microsoft-advertising/">', '</a>') . '</p>';
     break;
+
+	case 'fupi_mads_custom_events':
+		$ret_text = '<p>' . esc_html__( 'Send UET custom events', 'full-picture-analytics-cookie-notice' ) . '</p>
+            <p>' . esc_html__( 'Attention. Sending a UET event does not make it a conversion. You need to configure a matching conversion goal or audience in Microsoft Advertising to use it for conversion tracking or remarketing.', 'full-picture-analytics-cookie-notice' ) . ' ' . sprintf( esc_html__( '%1$sLearn how to configure Microsoft Advertising%2$s.', 'full-picture-analytics-cookie-notice'), '<a href="https://wpfullpicture.com/support/documentation/how-to-track-specific-user-actions-as-conversions-in-microsoft-advertising/">', '</a>') . '</p>';
+	break;
+
+	case 'fupi_mads_vscor':
+		$ret_text = '<p>' . esc_html__( 'Send a UET event when visitors reach specified engagement levels.', 'full-picture-analytics-cookie-notice' ) . '</p>';
+	break;
 
 	case 'fupi_mads_ecomm':
 
@@ -52,8 +60,8 @@ switch( $section_id ){
                 <h3 class="fupi_warning_text">' . esc_html__( 'What you should do next', 'full-picture-analytics-cookie-notice' ) . '</h3>
                 <p>' . esc_html__( 'To use the tracked data to track conversions or create custom audienes, you need to register these events in your MS Ads panel.', 'full-picture-analytics-cookie-notice' ) . '</p>
                 <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;">
-                    <button type="button" class="button-secondary fupi_open_popup" data-popup="fupi_woo_track_conv_popup">' . esc_html__( 'How to register ecommerce events in MS Ads', 'full-picture-analytics-cookie-notice') . '</button>
-                    <button type="button" class="button-secondary fupi_open_popup" data-popup="fupi_dynamic_remarket_popup">' . esc_html__( 'How to create remarketing campaigns', 'full-picture-analytics-cookie-notice') . '</button>
+                    <button type="button" class="button-secondary fupi_open_offscreen" data-offscreen="fupi_woo_track_conv_offscreen">' . esc_html__( 'How to register ecommerce events in MS Ads', 'full-picture-analytics-cookie-notice') . '</button>
+                    <button type="button" class="button-secondary fupi_open_offscreen" data-offscreen="fupi_dynamic_remarket_offscreen">' . esc_html__( 'How to create remarketing campaigns', 'full-picture-analytics-cookie-notice') . '</button>
                 </div>
                 <p class="fupi_woo_reqs_info"><strong>' . esc_html__( 'Attention.', 'full-picture-analytics-cookie-notice' ) . '</strong> ' . sprintf( esc_html__( 'WP Full Picture can track stores that use %1$sstandard Woocommerce hooks and HTML%2$s. If your store uses plugins that don\'t use them, tracking may not work.', 'full-picture-analytics-cookie-notice' ), '<a href="https://wpfullpicture.com/support/documentation/woocommerce-tracking-requirements/">', '</a>' ) . ' <a href="https://wpfullpicture.com/support/documentation/debug-mode-features/">' . esc_html__( 'Learn how to test it', 'full-picture-analytics-cookie-notice' ) . '</a>.</p>';
         } else {

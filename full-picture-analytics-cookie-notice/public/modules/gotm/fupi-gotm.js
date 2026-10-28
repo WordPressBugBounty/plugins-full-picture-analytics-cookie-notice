@@ -1,12 +1,12 @@
 function fupi_head_gtm(){
 
-	let dl_format = fp.gtm.compat ?? 'default';
+	// set dataLayer name
+	fp.gtm.datalayer = ! fp.gtm.datalayer || fp.gtm.datalayer == "default" ? "dataLayer" : "fupi_dataLayer";
 
-	// !!! Datalayer is created in JS helpers
-
-	var data_o = {
-		'event' : 'fp_staticData',
-	};
+	let dl_format = fp.gtm.compat ?? 'default',
+		data_o = {
+			'event' : 'fp_staticData',
+		};
 
 	// PASS COOKIE INFO
 
@@ -83,7 +83,9 @@ function fupi_head_gtm(){
 
 	// LOAD GTM
 
-	if ( ! fp.gtm.no_container ) {
+	let hide_container = fp.main.is_pro && fp.gtm.no_container;
+	
+	if ( ! hide_container ) {
 		(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 		new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 		j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
@@ -94,10 +96,8 @@ function fupi_head_gtm(){
 	// send basic data
 	window[fp.gtm.datalayer].push(data_o);
 
-	
-
 	// mark as loaded
 	FP.loaded('gtm', 'gtm', '[FP] GTM loaded');
 }
 
-if ( fp.gtm && fp.gtm.id ) FP.load('gtm', 'fupi_head_gtm', ['head_helpers']);
+fupi_head_gtm();

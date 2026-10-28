@@ -35,7 +35,7 @@ switch( $section_id ){
 	// PERFORMANCE
 
 	case 'fupi_main_perf':
-		$ret_text = '<p>' . esc_html__('Improve page-speed and compatibility with caching tools.', 'full-picture-analytics-cookie-notice' ) . '</p>';
+		$ret_text = '<p>' . esc_html__('Improve compatibility with other plugins.', 'full-picture-analytics-cookie-notice' ) . '</p>';
 	break;
 
 	// IMPORT / EXPORT
@@ -142,6 +142,7 @@ switch( $section_id ){
 			'classes' => 'fupi_descr_standard_width',
 			'content' => '<div class="fupi_cols" style="text-align: left; margin-top: 20px;">
 				<div class="fupi_col_50">
+					<p class="fupi_warning_text">' . esc_html__('Attention. This shortcode will be removed in WP FP v12.', 'full-picture-analytics-cookie-notice' ) . '</p>
 					<p>' . sprintf( esc_html__('Shortcode %1$s[fp_info]%2$s is intended for use in a privacy policy. It lists all tools that are installed or %3$scontrolled%4$s with WP Full Picture, and that track visitor\'s personal information for statistics, marketing or personalisation.', 'full-picture-analytics-cookie-notice' ), '<code>', '</code>', '<a href="https://wpfullpicture.com/support/documentation/how-to-control-tracking-tools-installed-outside-wp-fp/">', '</a>' ) . '</p>
 					<p>' . esc_html__('The list updates automatically, as you enable or disable new tools, but it does not include tools added with Google Tag Manager. Use the form below to add to this list tools installed with GTM.', 'full-picture-analytics-cookie-notice' ) . '</p>
 				</div>

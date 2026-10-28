@@ -1,4 +1,4 @@
-#fupi_settings_form table.fupi_table_grid{
+#fupi_content.fupi_page_tools #fupi_main_form table{
 	margin-left: -10px;
 	margin-bottom: 40px;
 	width: calc( 100% + 10px);
@@ -59,10 +59,33 @@
 	.fupi_must_have_info{
 		margin-top: 0;
 	}
+	.fupi_addons_row {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 73px !important;
+		th{
+			display: none;
+		}
+		td{
+			padding: 10px;
+		}
+	}
+	.fupi_addons_btn{
+		display: inline-block;
+		width: 32px;
+		height: 32px;
+		background: transparent url('../img/addons_ico.png') center / 32px 32px no-repeat;
+		box-sizing: content-box;
+		box-shadow: none !important;
+		.dashicons-external{
+			display: none;
+		}
+	}
 }
 
 @media screen and (max-width: 1099px) {
-	#fupi_settings_form table.fupi_table_grid{
+	#fupi_content.fupi_page_tools #fupi_main_form table{
 		tr{
 			flex: 1 0 40%;
 			max-width: 100%;
@@ -93,7 +116,7 @@
 // STYLING HEADLINES & DESCRIPTIONS 
 
 .fupi_page_tools{
-	#fupi_settings_form{
+	#fupi_content .fupi_settings_form{
 		.fupi_section_descr{
 			margin-bottom: 0;
 			// border-radius: 10px;
@@ -105,40 +128,3 @@
 		gap: 30px;
 	}
 }
-
-// TOOLS FILTERS
-
-#fupi_tools_filters{
-	display: none;
-	flex-wrap: wrap;
-	gap: 40px;
-	margin-top: 30px;
-	&.fupi_active{
-		display: flex;
-	}
-}
-
-	#fupi_filters_title{
-		font-size: 16px;
-		font-weight: 500;
-		flex: 0 0 140px;
-		max-width: 140px;
-	}
-
-	#fupi_tools_filters_wrap{
-		flex: 0 0 calc(100% - 180px);
-		padding-top: 10px;
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: flex-start;
-		gap: 10px;
-		button{
-			flex: 0 0 auto;
-			border: 0;
-			background-color: #f5e4cd;
-			color: #000;
-			&.fupi_active{
-				background-color: #ffdc94;
-			}
-		}
-	}

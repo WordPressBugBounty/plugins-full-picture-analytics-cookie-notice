@@ -12,7 +12,7 @@ let FP = {};
     FP.v.viewport = {};
     FP.m = {}; // for modules and extensions
 
-    FP.updateViewportDimensions = function () {
+    FP.updateViewportDimensions = () => {
         var e = d.documentElement,
         g = d.getElementsByTagName('body')[0],
         x = w.innerWidth || e.clientWidth || g.clientWidth,
@@ -23,7 +23,7 @@ let FP = {};
         };
     };
 
-    FP.getUrlParamByName = function (name) {
+    FP.getUrlParamByName = name => {
         // var match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
         // return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
         const queryString = window.location.search,
@@ -31,20 +31,20 @@ let FP = {};
 		return urlParams.get(name);
     };
 
-    FP.getSiblings = function(e){
+    FP.getSiblings = e => {
 
-        // for collecting siblings
+        // for collecting sibling elements, including the given element
         let siblings = [];
 
         // if no parent, return no sibling
-        if (!e.parentNode) return siblings;
+        if (!e.parentNode) return [];
 
         // first child of the parent node
         let sibling  = e.parentNode.firstChild;
 
         // collecting siblings
         while (sibling) {
-            if (sibling.nodeType === 1 && sibling !== e) {
+            if (sibling.nodeType === 1) {
                 siblings.push(sibling);
             }
             sibling = sibling.nextSibling;
@@ -53,7 +53,7 @@ let FP = {};
     }
 
     // ASYNC GET SCRIPT
-    FP.getScript = function(src, func, id) {
+    FP.getScript = (src, func, id) => {
         var script = d.createElement('script');
         script.async = "async";
         script.src = src;
@@ -65,56 +65,67 @@ let FP = {};
     // CONVERT NODE LIST TO ARRAY
     FP.nl2Arr = nl => nl ? [].slice.call(nl) : false;
 
-    FP.remove = function(el){
+    FP.remove = el => {
         if(el){ el.parentNode.removeChild(el); }
     };
 
-    FP.findAll = function(e, c){
+    FP.findAll = (e, c) => {
         if ( c === null ) return [];
         c = c || document;
         return FP.nl2Arr(c.querySelectorAll(e));
     };
 
-    FP.findFirst = function(e, c){
+    FP.findFirst = (e, c) => {
         if ( c === null ) return null;
         c = c || document;
         return c.querySelector(e);
     };
 
-    FP.findID = function(e, c){
+    FP.findID = (e, c) => {
         if ( c === null ) return null;
         c = c || document;
         return c.getElementById(e);
     };
 
-    FP.findTags = function(e, c){
+    FP.findTags = (e, c) => {
         if ( c === null ) return null;
         c = c || document;
         return FP.nl2Arr(c.getElementsByTagName(e));
     };
 
-    FP.setCookie = function (name,value,days) {
-        if (days > 1) {
+    FP.setCookie = (name, value, days = 0, mins = 0, path = "/") => {
+        var expires = "";
+        if ( days > 0 || mins > 0 ) {
             var date = new Date();
-            date.setTime(date.getTime()+(days*24*60*60*1000));
-            var expires = "; expires="+date.toGMTString();
-        } else {var expires = "";}
-        d.cookie = name+"="+value+expires+"; path=/";
+            if (days > 0) {
+                date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+            } else {
+                date.setTime(date.getTime() + mins * 60 * 1000);
+            }
+            expires = "; expires=" + date.toGMTString();
+        };
+        d.cookie = name + "=" + encodeURIComponent(value) + expires + "; path=" + path + "; sameSite=strict" + (window.location.protocol === 'https:' ? '; Secure' : '');
     };
 
-    FP.readCookie = function (name) {
+    FP.readCookie = name => {
         var nameEQ = name + "=";
-        var ca = d.cookie.split(';');
-        for(var i=0;i < ca.length;i++) {
+        var ca = document.cookie.split(";");
+        for (var i = 0; i < ca.length; i++) {
             var c = ca[i];
-            while (c.charAt(0)==' ') c = c.substring(1,c.length);
-            if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+            while (c.charAt(0) == " ") {c = c.substring(1, c.length);}
+            if (c.indexOf(nameEQ) == 0) return decodeURIComponent(c.substring(nameEQ.length, c.length));
         };
         return null;
     };
 
-    FP.deleteCookie = function (name) {
+    FP.deleteCookie = name => {
         FP.setCookie(name,"",-1);
+    };
+
+    FP.sendEvt = (evt_name, details_a) => {
+        var details = details_a ? { 'detail' : details_a } : {},
+            fp_event = new CustomEvent( evt_name, details );
+        document.dispatchEvent(fp_event);
     };
 
 })(FP);

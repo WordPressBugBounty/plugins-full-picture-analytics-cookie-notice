@@ -7,26 +7,12 @@ switch( $section_id ){
 	// INSTALLATION
 
 	case 'fupi_mato_install':
-
-		$mato_id = ! empty ( $this->settings ) && ! empty ( $this->settings['id'] ) ? esc_attr( $this->settings['id'] ) : '';
-		$mato_url = ! empty ( $this->settings ) && ! empty ( $this->settings['url'] ) ? esc_attr( $this->settings['url'] ) : '';
-		$mato_src = ! empty ( $this->settings ) && ! empty ( $this->settings['src'] ) ? esc_attr( $this->settings['src'] ) : '';
-		$install_details_text = '';
-
-		if ( ! empty( $mato_id ) && ! empty( $mato_url ) ){
-			if ( ! empty( $mato_src ) ) { 
-				$install_details_text = esc_html__( 'The data is sent to Matomo Cloud.', 'full-picture-analytics-cookie-notice' );
-			} else {
-				$install_details_text = esc_html__( 'The data is sent to your on-premise installation of Matomo. ', 'full-picture-analytics-cookie-notice' );
-			}
-		}
-
 		$ret_text = '
 		<div id="fupi_not_installed_info" class="fupi_installation_status fupi_hidden">
-			<img src="' . FUPI_URL . 'admin/assets/img/almost_ico.png" aria-hidden="true"> <p>' . sprintf( esc_html__( '%1$s is not installed', 'full-picture-analytics-cookie-notice' ), 'Matomo' ) . '<br><span class="fupi_small">' . esc_html__( 'To install it, please fill in the required field below', 'full-picture-analytics-cookie-notice' ) . '</span>.</p>
+			<img src="' . FUPI_URL . 'admin/assets/img/almost_ico.png" aria-hidden="true"> <p>' . sprintf( esc_html__( '%1$s is not installed', 'full-picture-analytics-cookie-notice' ), 'Matomo' ) . '<br><span class="fupi_small">' . esc_html__( 'Please fill in the required fields below', 'full-picture-analytics-cookie-notice' ) . '</span>.</p>
 		</div>
 		<div id="fupi_installed_info" class="fupi_installation_status fupi_hidden">
-			<img src="' . FUPI_URL . 'admin/assets/img/success_ico.png" aria-hidden="true"> <p>' . esc_html__( 'Well done! Matomo is installed', 'full-picture-analytics-cookie-notice' ) . '<br><span class="fupi_small">' . $install_details_text . '</span></p>
+			<img src="' . FUPI_URL . 'admin/assets/img/success_ico.png" aria-hidden="true"> <p>' . esc_html__( 'Matomo is installed', 'full-picture-analytics-cookie-notice' ) . '</p>
 		</div>';
 
 	break;
@@ -34,7 +20,7 @@ switch( $section_id ){
 	// LOADING
 	
 	case 'fupi_mato_loading':
-		$ret_text = '<p>' . esc_html__( 'Here you can change when and where this tool loads. This is all optional.', 'full-picture-analytics-cookie-notice') . '</p>';
+		$ret_text = '<p>' . esc_html__( 'Change when and where this tool loads. This is all optional.', 'full-picture-analytics-cookie-notice') . '</p>';
 	break;
 
 	// DATA COLLECTION
@@ -46,13 +32,19 @@ switch( $section_id ){
 	// SIMPLE EVENTS
 	
 	case 'fupi_mato_events':
-		$ret_text = '<p>' . esc_html__('Use simple events to track clicks, form submissions and others events.', 'full-picture-analytics-cookie-notice' ) . '</p>';
+		$ret_text = '<p>' . esc_html__('Track clicks, form submissions and others events.', 'full-picture-analytics-cookie-notice' ) . '</p>';
 	break;
 		
 	// CUSTOM EVENTS
 	
 	case 'fupi_mato_atrig':
 		$ret_text = '<p>' . sprintf( esc_html__( 'Here you can set up custom events. Trigger them with %1$scustom triggers%2$s' , 'full-picture-analytics-cookie-notice' ), '<a href="https://wpfullpicture.com/support/documentation/how-to-set-up-advanced-triggers/" target="_blank">', '</a>' ) . '</p>';
+	break;
+
+	// ENGAGEMENT
+
+	case 'fupi_mato_vscor':
+		$ret_text = '<p>' . esc_html__( 'Use these functions to track how engaged visitors are. Go to the settings of the Engagement Tracking module to set how many points visitors should get for taking specific actions.' , 'full-picture-analytics-cookie-notice' ) . '</p>';
 	break;
 	
 	// WP DATA TRACKING
@@ -67,7 +59,7 @@ switch( $section_id ){
 
 		if ( empty( $no_woo_descr_text ) ) {
 
-			$ret_text = '<p>' . esc_html__( 'To automatically track WooCommerce events, you need to enable e-commerce functions in Matomo.', 'full-picture-analytics-cookie-notice') . ' <button type="button" class="fupi_faux_link fupi_open_popup" data-popup="fupi_enable_ecomm_popup">' . esc_html__( 'Learn how to do it', 'full-picture-analytics-cookie-notice') . '</button></p>
+			$ret_text = '<p>' . esc_html__( 'To automatically track WooCommerce events, you need to enable e-commerce functions in Matomo.', 'full-picture-analytics-cookie-notice') . ' <button type="button" class="fupi_faux_link fupi_open_offscreen" data-offscreen="fupi_enable_ecomm_offscreen">' . esc_html__( 'Learn how to do it', 'full-picture-analytics-cookie-notice') . '</button></p>
 				<p>' . esc_html__( 'After you do this, WP FP will track and send to Matomo these events:', 'full-picture-analytics-cookie-notice') . '</p>
 				<ol class="fupi_checked_list">
 					<li>' . esc_html__( 'purchase (as an internal and separate event)', 'full-picture-analytics-cookie-notice') . '</li>
@@ -77,7 +69,8 @@ switch( $section_id ){
 				</ol>
 				<p>' . sprintf( esc_html__( '%1$sInternal events%2$s are used by Matomo to create default e-commerce reports and are sent with product information, e.g. what products were purchased or added to cart. These events cannot be used for creating goals or in custom reports.', 'full-picture-analytics-cookie-notice' ), '<strong>', '</strong>' ) . '</p>
 				<p>' . sprintf( esc_html__( '%1$sSeparate events%2$s do not come with extra data but can be used as goals and in custom reports.', 'full-picture-analytics-cookie-notice' ), '<strong>', '</strong>' ) . '</p>
-				<p class="fupi_woo_reqs_info"><strong>' . esc_html__( 'Attention.', 'full-picture-analytics-cookie-notice' ) . '</strong> ' . sprintf( esc_html__( 'WP Full Picture can track stores that use %1$sstandard Woocommerce hooks and HTML%2$s. If your store uses plugins that don\'t use them, tracking may not work.', 'full-picture-analytics-cookie-notice' ), '<a href="https://wpfullpicture.com/support/documentation/woocommerce-tracking-requirements/">', '</a>' ) . ' <a href="https://wpfullpicture.com/support/documentation/debug-mode-features/">' . esc_html__( 'Learn how to test it', 'full-picture-analytics-cookie-notice' ) . '</a>.</p>';
+				<p class="fupi_woo_reqs_info"><strong>' . esc_html__( 'Attention.', 'full-picture-analytics-cookie-notice' ) . '</strong> ' . sprintf( esc_html__( 'WP Full Picture can track stores that use %1$sstandard Woocommerce hooks and HTML%2$s. If your store uses plugins that don\'t use them, tracking may not work.', 'full-picture-analytics-cookie-notice' ), '<a href="https://wpfullpicture.com/support/documentation/woocommerce-tracking-requirements/">', '</a>' ) . ' <a href="https://wpfullpicture.com/support/documentation/debug-mode-features/">' . esc_html__( 'Learn how to test it', 'full-picture-analytics-cookie-notice' ) . '</a>.</p>
+				<p>' . sprintf( esc_html__( '%1$sAttention%2$s. Matomo can track e-commerce events %3$sonly in one currency%4$s. WP Full Picture uses the store currency configured in WooCommerce. E-commerce events in a different currency are skipped. WP Full Picture does not convert values.',  'full-picture-analytics-cookie-notice' ), '<strong>', '</strong>', '<span class="fupi_warning_text">', '</span>' ) . '</p>';
 
 		} else {
 			$ret_text = $no_woo_descr_text;

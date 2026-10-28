@@ -1,3 +1,5 @@
+// TO DO: remove waiting for CDB response if not in debug mode - atm. it unnecesssarily stops the page from reloading until it get the response
+
 function fupi_consb() {
 
 	'use strict';
@@ -102,6 +104,18 @@ function fupi_consb() {
 		return true;
 	}
 
+	function is_valid_cdb_cookie_data( cookie_data ) {
+		return Array.isArray( cookie_data ) &&
+			typeof cookie_data[0] == 'string' &&
+			cookie_data[0].length > 0 &&
+			Array.isArray( cookie_data[1] ) &&
+			cookie_data[1].every( consent_time =>
+				Array.isArray( consent_time ) &&
+				Number.isFinite( consent_time[0] ) &&
+				typeof consent_time[1] == 'boolean'
+			);
+	}
+
 	function save_consent_id_in_cookie() {
 
 		// creates and saves cdb_id in a cookie
@@ -125,9 +139,14 @@ function fupi_consb() {
 
 			// if ver 8.5+, we add another consent time
 			} else {
-				cdb_id_cookie = JSON.parse( cdb_id_cookie );
-				fp.notice.cdb_id = cdb_id_cookie[0];
-				fp.notice.consent_times.push( ...cdb_id_cookie[1] );
+				let saved_consent_data = FP.parseJSON( cdb_id_cookie, false );
+
+				if ( is_valid_cdb_cookie_data( saved_consent_data ) ) {
+					fp.notice.cdb_id = saved_consent_data[0];
+					fp.notice.consent_times.push( ...saved_consent_data[1] );
+				} else {
+					fp.notice.cdb_id = crypto && crypto.randomUUID ? crypto.randomUUID() : FP.getRandomStr();
+				}
 			}
 		}
 		
@@ -137,38 +156,55 @@ function fupi_consb() {
 	};
 
 	function mark_cdb_id_as_confirmed( server_response ){
-		
-		if ( typeof server_response == 'object' && server_response.CDB ) {
-			let cdb_response = JSON.parse(server_response.CDB);
-			if ( cdb_response.status == 'success' ) {
-				fp.notice.consent_times[0][1] = true;
-				FP.setCookie( 'cdb_id', JSON.stringify( [fp.notice.cdb_id, fp.notice.consent_times ] ), 365 );
-				fp.notice.cdb_id_confirmed = true;
-				if ( fp.main.debug ) console.log('[FP] Consent saved in CDB');
+
+		let saved = false;
+
+		if ( typeof server_response == 'object' && server_response !== null ) {
+			if ( server_response.CDB ) {
+				let cdb_response = FP.parseJSON( server_response.CDB, false );
+				saved = cdb_response?.status == 'success';
+			}
+
+			if ( Array.isArray( server_response.results ) ) {
+				let email_result = server_response.results.find( result => result.event_id == 'proofrec_db_save' );
+				if ( email_result?.success && email_result?.saved ) saved = true;
 			}
 		}
-		
-		// Optionally reload page
-		if ( fp.notice.reload_page_after_saving_cdb ) {
-			if ( fp.main.debug ) console.log('[FP] Reloading page');
-			location.reload();
+
+		if ( saved ) {
+			fp.notice.consent_times[0][1] = true;
+			FP.setCookie( 'cdb_id', JSON.stringify( [fp.notice.cdb_id, fp.notice.consent_times ] ), 365 );
+			fp.notice.cdb_id_confirmed = true;
+			if ( fp.main.debug ) console.log('[FP] Consent proof saved');
 		}
+
+		return saved;
 	}
 
-	function save_preferences_in_cdb( prev_consents ) {
+	function get_consent_result( server_response ) {
+		if ( ! server_response || ! Array.isArray( server_response.results ) ) return false;
+		return server_response.results.find( result => result.event_id == 'proofrec_db_save' || result.event_id == 'cdb' ) || false;
+	}
 
-		if ( ! can_save_consents() ) return;
+	function save_preferences_in_cdb( prev_consents, retry_on_failure = false ) {
+
+		if ( ! can_save_consents() ) {
+			return Promise.resolve({
+				success: true,
+				skipped: true,
+				saved: false,
+				retryable: false,
+			});
+		}
 
 		if ( fp.main.debug ) console.log('[FP] Saving consent');
 
-		let newCookieVal = fpdata.cookies;
-		
 		fp.notice.consent_time = Date.now();
 		fp.notice.cdb_waiting_for_response = true;
 
 		save_consent_id_in_cookie();
 
-		let payload = newCookieVal;
+		let payload = { ...fpdata.cookies };
 		
 		payload['consentBannerMode'] = fp.notice.mode;
 		payload['previousConsents'] = prev_consents;
@@ -197,7 +233,66 @@ function fupi_consb() {
 			event_id = 'proofrec_db_save';
 		}
 
-		FP.postToServer( [[ event_type, event_id, payload ]], mark_cdb_id_as_confirmed ); // if callback will not fire, then cdb_id will still be set by the fallback in maybe_wait_to_reload_page()
+		let post_proof = () => FP.postToServer(
+			[[ event_type, event_id, payload ]],
+			{
+				keepalive: true,
+				expectResponse: true,
+			}
+		);
+
+		return post_proof()
+			.then( server_response => {
+				let result = get_consent_result( server_response );
+
+				if (
+					retry_on_failure &&
+					fp?.proofrec?.storage_location == 'email' &&
+					( ! result || ( ! result.success && result.retryable ) )
+				) {
+					return new Promise( resolve => {
+						setTimeout( () => resolve( post_proof() ), 400 );
+					});
+				}
+
+				return server_response;
+			})
+			.then( server_response => {
+				mark_cdb_id_as_confirmed( server_response );
+				return server_response;
+			});
+	}
+
+	function save_is_confirmed( server_response ) {
+		if ( server_response?.skipped ) return true;
+		return fp.notice.cdb_id_confirmed;
+	}
+
+	function reload_after_consent_save( save_promise ) {
+		let confirmed_promise = save_promise.then( server_response => {
+			if ( save_is_confirmed( server_response ) ) return true;
+			return new Promise( () => {} );
+		}).catch( error => {
+			if ( fp.main.debug ) console.error('[FP] Consent proof request failed', error);
+			return new Promise( () => {} );
+		});
+
+		Promise.race( [
+			confirmed_promise,
+			new Promise( resolve => setTimeout( resolve, 4000 ) ),
+		] ).then( () => {
+			if ( fp.main.debug ) console.log('[FP] Reloading page after consent update');
+			location.reload();
+		});
+	}
+
+	function prevent_duplicate_consent_submission() {
+		[
+			FP.findID('fupi_decline_cookies_btn'),
+			FP.findID('fupi_agree_to_selected_cookies_btn'),
+		].forEach( button => {
+			if ( button ) button.disabled = true;
+		});
 	}
 
 	// SETUP CONSENT BANNER
@@ -217,71 +312,6 @@ function fupi_consb() {
 		}
 	} )
 
-	// FUNCTIONS
-
-	function update_tools_consents(){
-
-		let permissions = {
-				'analytics_storage': fpdata.cookies.stats ? 'granted' : 'denied',
-				'personalization_storage' : fpdata.cookies.personalisation ? 'granted' : 'denied',
-				'ad_storage' : fpdata.cookies.marketing ? 'granted' : 'denied',
-				'ad_user_data' : fpdata.cookies.marketing ? 'granted' : 'denied',
-				'ad_personalization' : fpdata.cookies.marketing ? 'granted' : 'denied',
-				'functionality_storage' : fpdata.cookies.personalisation ? 'granted' : 'denied',
-			};
-
-		fpdata.consents = {
-			'can_track_stats' : fpdata.cookies.stats || false,
-			'can_track_pers' : fpdata.cookies.personalisation || false,
-			'can_track_market' : fpdata.cookies.marketing || false,
-		}
-
-		// update in dataLayer
-
-		window.gtag( 'consent', 'update', permissions );
-		window.dataLayer.push( {
-			'event' : 'fp_privacyPreferencesChanged',
-			'fp_visitorPrivacyPreferences' : fpdata.cookies,
-		} );
-
-		// update in fupi_dataLayer
-		
-		if ( window.fupi_gtm_gtag ) window.fupi_gtm_gtag( 'consent', 'update', permissions );
-
-		if ( window.fupi_dataLayer ) {
-			window.fupi_dataLayer.push( {
-				'event' : 'fp_privacyPreferencesChanged',
-				'fp_visitorPrivacyPreferences' : fpdata.cookies,
-			} );
-		}
-
-		// MS Ads
-		window.uetq.push( 'consent', 'update', {'ad_storage': permissions['ad_storage'] } );
-
-		// MS CLARITY
-		if ( window.clarity ) {
-			fpdata.cookies.stats ? window.clarity('consent') : window.clarity('consent', false);
-		}
-
-		// Pixel Manager
-		if ( fp.notice.scrblk_auto_rules && fp.notice.scrblk_auto_rules.includes('pixelman') ){
-			window._pmwq = window._pmwq || [];
-			window._pmwq.push(function() {
-				if ( fpdata.cookies && !! window?.pmw?.consent?.api?.updateSelectively ) {
-					pmw.consent.api.updateSelectively({
-						statistics: fpdata.cookies.stats,
-						marketing: fpdata.cookies.marketing,
-						preferences: fpdata.cookies.personalisation,
-						necessary: true,
-					});
-					console.log("[FP] Updated tracking consents for Pixel Manager");
-				}
-			});
-		}
-
-		if ( fp.main.debug ) console.log('[FP] Consents updated', permissions);
-	}	
-
 	function hide_popup_elements(){
 		if ( fp.notice.hidden.length > 0 ) {
 			fp.notice.hidden.forEach( el=> {
@@ -295,19 +325,22 @@ function fupi_consb() {
 						if ( ! fp.notice.auto_mode ) FP.findID('fupi_decline_cookies_btn').style.display = 'none';
 					break;
 
-					case 'stats':
+					case 'stats': {
 						let stats_sect = FP.findID('fupi_stats_section');
 						if (stats_sect) stats_sect.style.display = 'none';
+					}
 					break;
 
-					case 'market':
+					case 'market': {
 						let market_sect = FP.findID('fupi_market_section');
 						if ( market_sect ) market_sect.style.display = 'none';
+					}
 					break;
 
-					case 'pers':
+					case 'pers':{
 						let pers_sect = FP.findID('fupi_pers_section');
 						if ( pers_sect ) pers_sect.style.display = 'none';
+					}
 					break;
 				}
 			} )
@@ -367,6 +400,11 @@ function fupi_consb() {
 
 		show_notice_links.forEach(function(link) {
 			
+			// Check if we've already attached a listener to this element
+			if ( link.dataset.fupiListenerAttached ) {
+				return;
+			}
+			
 			link.addEventListener('click', function(e) {
 				
 				e.preventDefault();
@@ -390,6 +428,9 @@ function fupi_consb() {
 
 				if ( ! a11y_buttons_ready ) a11y_buttons( true );
 			});
+			
+			// Mark this element as having a listener attached
+			link.dataset.fupiListenerAttached = 'true';
 		});
 	}
 
@@ -422,7 +463,8 @@ function fupi_consb() {
 		// if ver 8.5+, we add another consent time
 		} else {
 			
-			cookie_val = JSON.parse( cookie_val );
+			cookie_val = FP.parseJSON( cookie_val, false );
+			if ( ! is_valid_cdb_cookie_data( cookie_val ) || ! cookie_val[1][0] ) return;
 			cdb_id = cookie_val[0];
 			
 			let cons_times_a = cookie_val[1];
@@ -525,6 +567,8 @@ function fupi_consb() {
 
 		if ( decline_btn ) {
 			decline_btn.addEventListener('click', function(){
+				if ( decline_btn.disabled ) return;
+				prevent_duplicate_consent_submission();
 
 				// hide all
 				hide_panel('welcome');
@@ -540,6 +584,8 @@ function fupi_consb() {
 
 		if ( accept_chosen_btn ) {
 			accept_chosen_btn.addEventListener('click', function(){
+				if ( accept_chosen_btn.disabled ) return;
+				prevent_duplicate_consent_submission();
 
 				// hide all
 				hide_panel('settings');
@@ -657,7 +703,8 @@ function fupi_consb() {
 			};
 	
 			FP.setCookie('fp_cookie', JSON.stringify(fpdata.cookies), 182 );
-			update_tools_consents();
+			FP.updatePrivacyChoices( false );
+			FP.sendEvt( 'fp_load_scripts' );
 		}
 
 		if ( FP.loadIframes ) FP.loadIframes(); // unblock iframes
@@ -713,13 +760,8 @@ function fupi_consb() {
 		FP.setCookie('fp_cookie', JSON.stringify(fpdata.cookies), 182 );
 
 		save_preferences_in_cdb( prev_consents );
-
-		FP.updateSessionData();
-
+		FP.updatePrivacyChoices( false );
 		FP.sendEvt( 'fp_load_scripts' );
-		FP.sendEvt( 'fupi_consents_changed', 'all accepted') ;
-
-		update_tools_consents();
 	}
 
 	function accept_stats_cookies_and_fire_custom_event(){
@@ -740,30 +782,20 @@ function fupi_consb() {
 		};
 
 		FP.setCookie('fp_cookie', JSON.stringify(fpdata.cookies), 182 );
-		
 		save_preferences_in_cdb( prev_consents );
-
-		FP.updateSessionData();
-
+		FP.updatePrivacyChoices( false );
 		FP.sendEvt( 'fp_load_scripts' );
-		FP.sendEvt( 'fupi_consents_changed', 'stats accepted') ;
-
-		update_tools_consents();
-	}
-
-	function check_if_needs_a_reload(){
-		return fp.loaded.some( el => el !== 'woo' && el !== 'gtm' && el !== 'gtg' && el !== 'ga41' && el !== 'ga42' && el !== 'gads');
 	}
 
 	function accept_chosen_cookies_and_fire_custom_events() {
 
+		prevent_duplicate_consent_submission();
+
 		let stats_checkbox = FP.findID('fupi_stats_agree'),
 			perso_checkbox = FP.findID('fupi_pers_agree'),
 			marke_checkbox = FP.findID('fupi_marketing_agree'),
-			needs_a_reload = check_if_needs_a_reload(), // checks for scripts that do not adjust its behavior depending on consents
-			prev_consents = get_prev_consents();
-
-		fp.notice.reload_page_after_saving_cdb = needs_a_reload;
+			prev_consents = get_prev_consents(),
+			made_choice_previously = !! fpdata.cookies;
 
 		fpdata.cookies = {
 			'stats': stats_checkbox ? stats_checkbox.checked : false,
@@ -778,18 +810,17 @@ function fupi_consb() {
 		};
 
 		FP.setCookie('fp_cookie', JSON.stringify(fpdata.cookies), 182 );
+		let save_promise = save_preferences_in_cdb( prev_consents, true );
+		FP.updatePrivacyChoices( false );
 		
-		save_preferences_in_cdb( prev_consents );
-
-		FP.updateSessionData();
-
-		if ( needs_a_reload ) {
-			update_tools_consents();
-			maybe_wait_to_reload_page();
+		if ( made_choice_previously ) {
+			reload_after_consent_save( save_promise );
 		} else {
-			FP.sendEvt( 'fp_load_scripts' );
-			FP.sendEvt( 'fupi_consents_changed', 'some accepted' );
-			update_tools_consents();
+			if ( fp.notice.mode == 'optout' ) {
+				reload_after_consent_save( save_promise );
+			} else {
+				FP.sendEvt( 'fp_load_scripts' );
+			}
 		}
 	}
 
@@ -797,10 +828,10 @@ function fupi_consb() {
 
 		if ( ! fp.main.track_current_user ) return;
 
-		let needs_a_reload = check_if_needs_a_reload(),
-			prev_consents = get_prev_consents();
+		prevent_duplicate_consent_submission();
 
-		fp.notice.reload_page_after_saving_cdb = needs_a_reload;
+		let prev_consents = get_prev_consents(),
+			made_choice_previously = !! fpdata.cookies;
 		
 		fpdata.cookies = {
 			'stats': false,
@@ -815,31 +846,17 @@ function fupi_consb() {
 		};
 
 		FP.setCookie('fp_cookie', JSON.stringify(fpdata.cookies), 182 );
+		let save_promise = save_preferences_in_cdb( prev_consents, true );
+		FP.updatePrivacyChoices( false );
 		
-		save_preferences_in_cdb( prev_consents );
-
-		FP.updateSessionData();
-
-		FP.sendEvt('fupi_consents_changed', 'declined');
-		update_tools_consents();
-		
-		if ( needs_a_reload ) {
-			maybe_wait_to_reload_page();
-		}
-	}
-
-	function maybe_wait_to_reload_page(){
-		// if we should wait for server response
-		if ( fp.notice.cdb_waiting_for_response ) {
-			setTimeout( function() {
-				if (fp.main.debug ) console.log('[FP] Waiting for CDB server response before reloading the page');
-				if ( ! fp.notice.cdb_id_confirmed ) {
-					if ( fp.main.debug ) console.log('[FP] Reloading page after timeout');
-					location.reload();
-				}
-			}, 2000 ); // this is max wait time. The reload is also triggered by the FP.postToServer script
+		if ( made_choice_previously ) {
+			reload_after_consent_save( save_promise );
 		} else {
-			location.reload();
+			if ( fp.notice.mode == 'optout' ) {
+				reload_after_consent_save( save_promise );
+			} else {
+				FP.sendEvt( 'fp_load_scripts' );
+			}
 		}
 	}
 
@@ -960,12 +977,12 @@ function fupi_consb() {
 		if ( ! a11y_buttons_ready ) a11y_buttons();
 	}
 
-	FP.loaded('cons_banner');
+	FP.loaded('cons-banner');
 
 };
 
 if ( fp.main.is_bricks_builder ) {
-	FP.load('cons_banner', 'fupi_consb', ['footer_helpers', 'consb_html']);
+	FP.load('cons-banner', 'fupi_consb', ['footer-helpers']);
 } else {
-	FP.load('cons_banner', 'fupi_consb', ['footer_helpers', 'consb_html', 'iframes_blocker']);
+	FP.load('cons-banner', 'fupi_consb', ['footer-helpers', 'iframes-blocker']);
 }

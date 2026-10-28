@@ -8,7 +8,7 @@ if ( ! empty( $input ) ) foreach( $input as $key => $value ) {
 
 	if( ! empty( $value ) ) {
 
-		switch ($clean_key) {
+			switch ($clean_key) {
 
 			// MIXED SECTIONS
 
@@ -17,7 +17,15 @@ if ( ! empty( $input ) ) foreach( $input as $key => $value ) {
 			case 'optin':
 			case 'optout':
 			case 'inform':
+			case 'dynamic_blocking':
+			case 'storage_location':
+			case 'cdb_key':
+			case 'email_frequency':
 				$clean_val = sanitize_key( $value );
+			break;
+
+			case 'local_backup_email':
+				$clean_val = sanitize_email( $value );
 			break;
 			
 			case 'show_to_countries':

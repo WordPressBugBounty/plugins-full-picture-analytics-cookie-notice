@@ -25,6 +25,10 @@ class Fupi_Public {
 
     private $modules = [];
 
+    private $server_max_body_size = 65536;
+
+    private $server_max_batch_size = 20;
+
     public function __construct( $plugin_name, $version ) {
         $this->plugin_name = $plugin_name;
         $this->version = $version;
@@ -33,27 +37,31 @@ class Fupi_Public {
         $this->track = get_option( 'fupi_track' );
         $this->cook = get_option( 'fupi_cook' );
         $this->woo = get_option( 'fupi_woo' );
-        $this->proofrec = get_option( 'fupi_proofrec' );
+        $this->proofrec = $this->cook;
         $this->gtm = get_option( 'fupi_gtm' );
         $this->ver = get_option( 'fupi_versions' );
     }
 
-    public function load_module( $moduleName, $is_premium = false ) {
+    public function load_module( $moduleID, $is_premium = false, $custom_path = '' ) {
         if ( $is_premium && !fupi_fs()->can_use_premium_code() ) {
             return;
         }
         // do not load premium modules
         // do not load a module that is already loaded
-        $moduleClass = 'Fupi_' . strtoupper( $moduleName ) . '_public';
+        $moduleClass = 'Fupi_' . strtoupper( $moduleID ) . '_public';
         if ( class_exists( $moduleClass ) ) {
-            trigger_error( "Module {$moduleName} is already loaded.", E_USER_WARNING );
+            trigger_error( "Module {$moduleID} is already loaded.", E_USER_WARNING );
             return;
         }
         // load file
-        if ( $is_premium ) {
-            $modulePath = FUPI_PATH . "/public/modules/{$moduleName}__premium_only/{$moduleName}-public.php";
+        if ( is_string( $custom_path ) && $custom_path !== '' ) {
+            $modulePath = $custom_path;
         } else {
-            $modulePath = FUPI_PATH . "/public/modules/{$moduleName}/{$moduleName}-public.php";
+            if ( $is_premium ) {
+                $modulePath = FUPI_PATH . "/public/modules/{$moduleID}__premium_only/{$moduleID}-public.php";
+            } else {
+                $modulePath = FUPI_PATH . "/public/modules/{$moduleID}/{$moduleID}-public.php";
+            }
         }
         if ( !file_exists( $modulePath ) ) {
             return;
@@ -73,7 +81,7 @@ class Fupi_Public {
         //     }
         // }
         // Add the module to the main class
-        $this->modules[$moduleName] = new $moduleClass();
+        $this->modules[$moduleID] = new $moduleClass();
         // you can pass $this here or any other vars if needed. Passing $this will let the module access the main class and all of its methods and properties.
     }
 
@@ -87,227 +95,34 @@ class Fupi_Public {
     }
 
     public function fupi_output_fupi_data_in_head() {
-        // GET THE DATA
-        global $wp;
-        global $post;
-        $fp = [
-            'loaded'    => [],
-            'loading'   => [],
-            'waitlist'  => [],
-            'actions'   => [],
-            'observers' => [],
-            'tools'     => [],
-            'vars'      => [],
-            'notice'    => [
-                'enabled' => false,
-            ],
-        ];
-        $fpdata = [];
-        include_once dirname( __FILE__ ) . '/modules/main/data-main.php';
-        include_once dirname( __FILE__ ) . '/modules/track/data-track.php';
-        include_once dirname( __FILE__ ) . '/in_head/data-wp.php';
-        $fp = apply_filters( 'fupi_modify_fp_object', $fp );
-        $fpdata = apply_filters( 'fupi_modify_fpdata_object', $fpdata );
-        // OUTPUT THE DATA
-        $output = '<!--noptimize--><script id=\'fp_data_js\' class="fupi_no_defer" type="text/javascript" data-no-defer="1" data-no-optimize="1" nowprocket>
-			
-			var FP = { \'fns\' : {} },
-				fp = ' . json_encode( $fp ) . ',
-				fpdata = ' . json_encode( $fpdata ) . ';';
-        // fp_nonce = "' . wp_create_nonce('wp_rest'). '";'; // It has to be "wp_rest" This is required!
-        $extra_scr = apply_filters( 'fupi_add_js_to_head_data', '' );
-        if ( !empty( $extra_scr ) ) {
-            $output .= $extra_scr;
-        }
-        // add queueing functions
-        $output .= '
-			fp.load_queue = {};
-
-			FP.getInner = function (vals, splitter = ".") {
-        
-				let args = Array.isArray(vals) ? vals : vals.split(splitter).map( arg => arg.trim() ),
-					obj = window[args.shift()];
-
-				for (var i = 0; i < args.length; i++) {
-					var prop = args[i];
-					if (! obj || ! obj.hasOwnProperty(prop)) return false;
-					obj = obj[prop];
-				};
-
-				return obj;
-			};
-			
-			FP.load = ( slug, cb_s = false, req_a = false ) => {
-
-				if ( ! fp.load_queue[slug] ) {
-					fp.load_queue[slug] = {
-						"state" : "waiting", 
-						"cb" : cb_s,
-						"req_a" : req_a
-					}
-				}
-
-				if ( cb_s ) {
-
-					// make sure we only load things that are not loading or have loaded
-					if ( fp.load_queue[slug].state == "waiting" ) {
-				
-						// check if all deps are loaded
-						let deps_loaded = req_a.every( el => fp.load_queue[el] && fp.load_queue[el].state == "loaded" );
-					
-						if ( deps_loaded ) {
-							let fn = FP.getInner( cb_s, ".");
-							if ( fn ) {
-								fp.load_queue[slug].state = "loading";
-								fn();
-							}
-						}
-					}
-
-				}
-			};
-			
-			FP.loaded = ( slug, marker = false, text = false ) => {
-
-				fp.load_queue[slug] = {state : "loaded"};
-				// if (fp.main.debug) console.log( text || "[FP] " + slug + " loaded " );
-
-				if ( marker ) fp.loaded.push( marker ); // for consent banner reloading
-
-				// check if any queued scripts can now be loaded
-				for ( const [fn_slug, data_o] of Object.entries( fp.load_queue ) ) {
-					if ( fp.load_queue[fn_slug].state == "waiting" ) {
-						FP.load( fn_slug, data_o.cb, data_o.req_a );
-					}
-				}
-			};
-
-			FP.readCookie = name => {
-				var nameEQ = name + "=";
-				var ca = document.cookie.split(";");
-				for (var i = 0; i < ca.length; i++) {
-					var c = ca[i];
-					while (c.charAt(0) == " ") {c = c.substring(1, c.length);}
-					if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
-				};
-				return null;
-			};
-			
-			FP.manageIframes = ()=>{}; // DO NOT REMOVE for backwards compat
-			
-			// SET INITIAL CONSENTS
-			
-			FP.set_gtag_consents = ( tag_name, type, stats = false, pers = false, market = false ) =>{
-
-				window[tag_name]("consent", type, {
-					"ad_storage": market ? "granted" : "denied",
-					"ad_user_data" : market ? "granted" : "denied",
-					"ad_personalization" : market ? "granted" : "denied",
-					"analytics_storage": stats ? "granted" : "denied",
-					"personalization_storage": pers ? "granted" : "denied",
-					"functionality_storage": pers || stats || market ? "granted" : "denied",
-					"security_storage": "granted",
-				});
-
-				if ( type == "update" ) {
-					if ( tag_name == "gtag" ) {
-						window.dataLayer.push( {
-							"event" : "fp_privacyPreferencesChanged",
-							"fp_visitorPrivacyPreferences" : fpdata.cookies,
-						} );
-					} else {
-						window.fupi_dataLayer.push( {
-							"event" : "fp_privacyPreferencesChanged",
-							"fp_visitorPrivacyPreferences" : fpdata.cookies,
-						} );
-					}
-				}
-			}
-			
-			let cookies = FP.readCookie("fp_cookie"),
-				track_me = FP.readCookie("fp_track_me");
-
-			fpdata.cookies = cookies ? JSON.parse(cookies) : false;
-			if ( track_me === "1" ) fp.main.track_current_user = true;
-
-			fpdata.consents = {
-				"can_track_stats" : false,
-				"can_track_pers" : false,
-				"can_track_market" : false,
-			};
-
-			// Consents for gtag, gtm and MS EUT
-
-			// Set GTAG dataLayer with denied consents
-			window.dataLayer = window.dataLayer || [];
-			window.gtag = function(){window.dataLayer.push(arguments);}
-			FP.set_gtag_consents("gtag", "default");
-
-			// Set Gtag url_passthrough
-			if ( fp?.gtag?.url_passthrough && fp.notice.enabled && ( fp.notice.mode == "optin" || fp.notice.mode == "optout" ) ) {
-				window.gtag("set", "url_passthrough", true);
-			};
-
-			// MS Ads datalayer with denied consents
-			window.uetq = window.uetq || [];
-			window.uetq.push( "consent", "default", {
-				"ad_storage": "denied"
-			});
-
-			// Set a separate dataLayer for the GTM (if enabled by the user) with denied consents
-
-			if ( fp.gtm ) {
-				fp.gtm.datalayer = ! fp.gtm.datalayer || fp.gtm.datalayer == "default" ? "dataLayer" : "fupi_dataLayer";
-				if ( fp.gtm.datalayer == "fupi_dataLayer" ){
-					window.fupi_dataLayer = window.fupi_dataLayer || [];
-					window.fupi_gtm_gtag = function(){window.fupi_dataLayer.push(arguments);} // gtag used for consents
-					FP.set_gtag_consents("fupi_gtm_gtag", "default");
-				}
-			};';
-        if ( !empty( $this->main['geo'] ) ) {
-            $output .= "FP.fetchGeo = (method, options = {}) => {\r\n\t\t\t\t\treturn new Promise((resolve, reject) => {\r\n\t\t\t\t\t\tlet fetchUrl, fetchOptions = {};\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t\tswitch(method) {\r\n\t\t\t\t\t\t\tcase 'cloudways':\r\n\t\t\t\t\t\t\t\tfetchUrl = options.ajaxUrl;\r\n\t\t\t\t\t\t\t\tfetchOptions = {\r\n\t\t\t\t\t\t\t\t\tmethod: 'POST',\r\n\t\t\t\t\t\t\t\t\tcredentials: 'same-origin',\r\n\t\t\t\t\t\t\t\t\theaders: new Headers({'Content-Type': 'application/x-www-form-urlencoded'}),\r\n\t\t\t\t\t\t\t\t\tbody: 'action=fupi_ajax_geo__premium_only&method=cloudways'\r\n\t\t\t\t\t\t\t\t};\r\n\t\t\t\t\t\t\t\tbreak;\r\n\t\t\t\t\t\t\tcase 'db_ip':\r\n\t\t\t\t\t\t\t\tfetchUrl = 'https://api.db-ip.com/v2/free/self';\r\n\t\t\t\t\t\t\t\tbreak;\r\n\t\t\t\t\t\t\tcase 'ip_api':\r\n\t\t\t\t\t\t\t\tfetchUrl = 'https://ipapi.co/json/';\r\n\t\t\t\t\t\t\t\tbreak;\r\n\t\t\t\t\t\t\tcase 'ipdata':\r\n\t\t\t\t\t\t\t\tfetchUrl = 'https://api.ipdata.co/?api-key=' + options.apiKey;\r\n\t\t\t\t\t\t\t\tbreak;\r\n\t\t\t\t\t\t\tcase 'cf_worker':\r\n\t\t\t\t\t\t\t\tfetchUrl = options.workerUrl;\r\n\t\t\t\t\t\t\t\tbreak;\r\n\t\t\t\t\t\t\tcase 'cf_default':\r\n\t\t\t\t\t\t\t\tfetchUrl = '/cdn-cgi/trace';\r\n\t\t\t\t\t\t\t\tbreak;\r\n\t\t\t\t\t\t\tcase 'cf_non_user':\r\n\t\t\t\t\t\t\t\tfetchUrl = 'https://www.cloudflare.com/cdn-cgi/trace';\r\n\t\t\t\t\t\t\t\tbreak;\r\n\t\t\t\t\t\t\tdefault:\r\n\t\t\t\t\t\t\t\treject(new Error('Unknown geolocation method'));\r\n\t\t\t\t\t\t\t\treturn;\r\n\t\t\t\t\t\t}\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t\twindow.fetch(fetchUrl, fetchOptions)\r\n\t\t\t\t\t\t.then(response => (method === 'cf_default' || method === 'cf_non_user') ? response.text() : response.json())\r\n\t\t\t\t\t\t.then(data => {\r\n\t\t\t\t\t\t\tlet result = { country: 'unknown', region: 'unknown', geo: data };\r\n\t\t\t\t\t\t\t\r\n\t\t\t\t\t\t\tswitch(method) {\r\n\t\t\t\t\t\t\t\tcase 'cloudways':\r\n\t\t\t\t\t\t\t\t\tif (data.success && data.message) result.country = data.message;\r\n\t\t\t\t\t\t\t\t\tbreak;\r\n\t\t\t\t\t\t\t\tcase 'db_ip':\r\n\t\t\t\t\t\t\t\t\tif (data.countryCode?.length === 2) result.country = data.countryCode;\r\n\t\t\t\t\t\t\t\t\tbreak;\r\n\t\t\t\t\t\t\t\tcase 'ip_api':\r\n\t\t\t\t\t\t\t\t\tif (data.country?.length === 2) {\r\n\t\t\t\t\t\t\t\t\t\tresult.country = data.country;\r\n\t\t\t\t\t\t\t\t\t\tresult.region = [data.region_code, data.region];\r\n\t\t\t\t\t\t\t\t\t}\r\n\t\t\t\t\t\t\t\t\tbreak;\r\n\t\t\t\t\t\t\t\tcase 'ipdata':\r\n\t\t\t\t\t\t\t\t\tif (data.country_code?.length === 2) {\r\n\t\t\t\t\t\t\t\t\t\tresult.country = data.country_code;\r\n\t\t\t\t\t\t\t\t\t\tresult.region = [data.region_code, data.region];\r\n\t\t\t\t\t\t\t\t\t}\r\n\t\t\t\t\t\t\t\t\tbreak;\r\n\t\t\t\t\t\t\t\tcase 'cf_worker':\r\n\t\t\t\t\t\t\t\t\tif (data.country && data.country !== 'XX') result.country = data.country;\r\n\t\t\t\t\t\t\t\t\tbreak;\r\n\t\t\t\t\t\t\t\tcase 'cf_default':\r\n\t\t\t\t\t\t\t\tcase 'cf_non_user':\r\n\t\t\t\t\t\t\t\t\tlet match = /loc=([A-Z]{2})/g.exec(data);\r\n\t\t\t\t\t\t\t\t\tif (match && match[1] !== 'XX') result.country = match[1];\r\n\t\t\t\t\t\t\t\t\tbreak;\r\n\t\t\t\t\t\t\t}\r\n\t\t\t\t\t\t\tresolve(result);\r\n\t\t\t\t\t\t})\r\n\t\t\t\t\t\t.catch(err => {\r\n\t\t\t\t\t\t\tif (fp.main.debug) console.error('[FP] Geolocation error:', err);\r\n\t\t\t\t\t\t\treject(err);\r\n\t\t\t\t\t\t});\r\n\t\t\t\t\t});\r\n\t\t\t\t};\r\n\t\t\t";
-        }
-        $output .= 'FP.loaded("head_js");
-		</script><!--/noptimize-->';
-        echo $output;
+        require_once dirname( __FILE__ ) . '/in_head/inline_js.php';
+        $inline_js = new Fupi_Public_Inline_JS($this);
+        $inline_js->output();
     }
 
-    public function fupi_enqueue_js_helpers() {
+    public function fupi_enqueue_core_js() {
         /* ^ */
         wp_enqueue_script(
-            'fupi-helpers-js',
-            FUPI_URL . 'public/common/fupi-helpers.js',
+            'fupi-core',
+            FUPI_URL . 'public/common/js/fupi-core.js',
             array(),
             $this->version,
             [
                 'in_footer' => false,
-                'strategy'  => 'async',
+                'strategy'  => 'defer',
             ]
         );
-        // can delete fp_cookies when ?tracking=off
-        /* _ */
-        wp_enqueue_script(
-            'fupi-helpers-footer-js',
-            FUPI_URL . 'public/common/fupi-helpers-footer.js',
-            array('fupi-helpers-js'),
-            $this->version,
-            [
-                'in_footer' => true,
-                'strategy'  => 'async',
-            ]
-        );
-        // jquery was set as dependancy before 7.2.2
     }
 
     /**
-     * Selectively add data-no-defer="1" attribute to specific enqueued scripts and styles
+     * Selectively add optimizer exclusion attributes to Full Picture scripts.
      */
     // DEFERRING EXCLUSIONS
-    // Add "Data-no-defer" to file links for Litespeed cache and some compatible plugins
-    function add_nodefer_to_fupi_scripts( $tag, $handle, $src ) {
+    // Add exclusion attributes for Litespeed cache and some compatible plugins
+    public function add_nodefer_to_fupi_scripts( $tag, $handle, $src ) {
         // Check if current script should have no-defer attribute
-        if ( str_contains( $handle, 'fupi-' ) ) {
-            $tag = str_replace( '<script ', '<script data-no-defer="1" ', $tag );
+        if ( strpos( $handle, 'fupi-' ) !== false ) {
+            $tag = str_replace( '<script ', '<script data-no-defer="1" data-no-optimize="1" data-no-minify="1" data-cfasync="false" class="fupi_no_defer" data-fp-runtime="1" ', $tag );
         }
         return $tag;
     }
@@ -320,6 +135,8 @@ class Fupi_Public {
                 $inline_excludes = array();
             }
             $inline_excludes[] = 'fupi_no_defer';
+            $inline_excludes[] = 'data-fp-runtime';
+            $inline_excludes = array_values( array_unique( $inline_excludes ) );
         }
         return $inline_excludes;
     }
@@ -333,18 +150,10 @@ class Fupi_Public {
             $excludes[] = 'hooks.js';
             $excludes[] = 'hooks.min.js';
             $excludes[] = '/wp-includes/js/jquery/(.*).js';
-            $excludes[] = '/wp-content/plugins/full-picture-analytics-cookie-notice/(.*)';
-            $excludes[] = '/wp-content/plugins/full-picture-premium/(.*)';
-            // standard WP install
-            $excludes[] = '/wp-content/uploads/wpfp/js/head.js';
-            $excludes[] = '/wp-content/uploads/wpfp/js/footer.js';
-            $excludes[] = '/wp-content/uploads/wpfp/js/cscr_head.js';
-            $excludes[] = '/wp-content/uploads/wpfp/js/cscr_footer.js';
-            // multisite install
-            $excludes[] = '/wp-content/uploads/sites/([0-9]?)/wpfp/js/head.js';
-            $excludes[] = '/wp-content/uploads/sites/([0-9]?)/wpfp/js/footer.js';
-            $excludes[] = '/wp-content/uploads/sites/([0-9]?)/wpfp/js/cscr_head.js';
-            $excludes[] = '/wp-content/uploads/sites/([0-9]?)/wpfp/js/cscr_footer.js';
+            // this is necessary only when WooCommerce is used
+            $excludes[] = '/full-picture-analytics-cookie-notice/';
+            $excludes[] = '/full-picture-premium/';
+            $excludes = array_values( array_unique( $excludes ) );
         }
         return $excludes;
     }
@@ -353,40 +162,29 @@ class Fupi_Public {
     // SERVER-SIDE TRACKING
     //
     private function get_current_user_ip() {
-        // Get current user IP address
-        if ( !empty( $_SERVER['HTTP_CLIENT_IP'] ) ) {
-            $user_ip = $_SERVER['HTTP_CLIENT_IP'];
-        } elseif ( !empty( $_SERVER['HTTP_X_FORWARDED_FOR'] ) ) {
-            $user_ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
-        } else {
-            $user_ip = $_SERVER['REMOTE_ADDR'];
+        // Proxy headers are client-controlled unless the request came through a
+        // trusted proxy. Use the socket address by default and let installations
+        // with a trusted proxy explicitly provide the restored client address.
+        $remote_ip = ( !empty( $_SERVER['REMOTE_ADDR'] ) ? trim( wp_unslash( $_SERVER['REMOTE_ADDR'] ) ) : '' );
+        if ( !filter_var( $remote_ip, FILTER_VALIDATE_IP ) ) {
+            $remote_ip = '127.0.0.1';
         }
-        // validate IP
-        if ( !filter_var( $user_ip, FILTER_VALIDATE_IP ) ) {
-            if ( str_contains( $user_ip, ',' ) ) {
-                // fix for Cloudflare
-                $user_ip = explode( ',', $user_ip )[0];
-            } else {
-                if ( !empty( $_SERVER['HTTP_X_REAL_IP'] ) ) {
-                    $user_ip = $_SERVER['HTTP_X_REAL_IP'];
-                }
-            }
-            if ( !filter_var( $user_ip, FILTER_VALIDATE_IP ) ) {
-                $user_ip = '127.0.0.1';
-            }
+        $user_ip = apply_filters( 'fupi_public_client_ip', $remote_ip, $remote_ip );
+        if ( !is_string( $user_ip ) || !filter_var( trim( $user_ip ), FILTER_VALIDATE_IP ) ) {
+            return $remote_ip;
         }
-        return $user_ip;
+        return trim( $user_ip );
     }
 
     // PREPARE REQUEST TO CDB
     private function prepare_cdb_data( $requests_a, $event_payload ) {
         $visit_info = (object) $event_payload;
-        $cdbID = $visit_info->cdbID;
+        $cdbID = ( isset( $visit_info->cdbID ) ? $visit_info->cdbID : false );
         if ( empty( $cdbID ) ) {
-            return;
+            return $requests_a;
         }
-        if ( empty( $this->proofrec['cdb_key'] ) ) {
-            return;
+        if ( empty( $this->proofrec['storage_location'] ) || $this->proofrec['storage_location'] != 'cdb' || empty( $this->proofrec['cdb_key'] ) ) {
+            return $requests_a;
         }
         // MAKE PAYLOAD
         $gmt_offset = get_option( 'gmt_offset' );
@@ -408,7 +206,10 @@ class Fupi_Public {
         return $requests_a;
     }
 
-    // WooCommerce 11.1.2 treats requests with the "?rest_route=" GET parameter as REST API requests and then does not start the WooCommerce client session (skips its "frontend" machinery). Our sender route saves data in the WooCommerce session, so requests to it must be recognized as front-end requests, like WooCommerce handled them before 11.1.2.
+    // WooCommerce 11.1.2 treats requests with the "?rest_route=" GET parameter as REST API
+    // requests and then does not start the WooCommerce client session (skips its "frontend"
+    // machinery). Our sender route saves data in the WooCommerce session, so requests to it
+    // must be recognized as front-end requests, like WooCommerce handled them before 11.1.2.
     public function fupi_sender_is_frontend_request( $is_rest_api_request ) {
         if ( !$is_rest_api_request ) {
             return false;
@@ -440,50 +241,309 @@ class Fupi_Public {
     public function fupi_ajax_hooks() {
         // Get the payload
         $input = file_get_contents( 'php://input' );
+        // Count every request before parsing or validating its payload.
+        $user_ip = $this->get_current_user_ip();
+        if ( !$this->fupi_server_rate_limit_ok( $user_ip ) ) {
+            header( 'Retry-After: 60' );
+            wp_send_json( [
+                'success'   => false,
+                'retryable' => true,
+                'error'     => 'rate_limited',
+            ], 429 );
+        }
+        // Check for errors
+        if ( strlen( $input ) > $this->server_max_body_size ) {
+            wp_send_json( [
+                'success'   => false,
+                'retryable' => false,
+                'error'     => 'request_too_large',
+            ], 413 );
+        }
         $data_arr = json_decode( $input, true );
-        // process data and echo response
-        $response = json_encode( $this->fupi_process_server_calls( $data_arr, true ) );
-        echo $response;
-        die;
+        if ( json_last_error() !== JSON_ERROR_NONE ) {
+            wp_send_json( [
+                'success'   => false,
+                'retryable' => false,
+                'error'     => 'invalid_json',
+            ], 400 );
+        }
+        $response = $this->fupi_process_server_calls( $data_arr, true, true );
+        wp_send_json( $response->get_data(), $response->get_status() );
     }
 
-    // Process the payload
-    // ( the returned response is automatically converted to JSON )
-    public function fupi_process_server_calls( $request, $is_ajax = false ) {
-        $data_arr = ( $is_ajax ? $request : json_decode( $request->get_body() ) );
-        // you can also use "$request->get_params();" or these >>> https://www.coditty.com/code/wordpress-api-custom-route-access-post-parameters
+    // Abuse control
+    private function fupi_server_rate_limit_ok( $user_ip ) {
+        $limit = (int) apply_filters( 'fupi_public_server_rate_limit', 120 );
+        if ( $limit < 1 ) {
+            return true;
+        }
+        $window = floor( time() / MINUTE_IN_SECONDS );
+        $key = 'fupi_srv_' . substr( hash( 'sha256', $user_ip . '|' . $window ), 0, 32 );
+        $count = (int) get_transient( $key );
+        if ( $count >= $limit ) {
+            return false;
+        }
+        set_transient( $key, $count + 1, MINUTE_IN_SECONDS + 10 );
+        return true;
+    }
+
+    private function fupi_validate_server_event( $event_type, $event_id, $event_payload ) {
+        // Define which event IDs each server-side operation may dispatch.
+        $allowlist = apply_filters( 'fupi_public_server_event_allowlist', [
+            'cdb'     => [],
+            'send'    => ['fbp', 'simpl'],
+            'process' => ['proofrec_db_save', 'woo_order_tracking'],
+        ] );
+        // Reject unknown operation types, including malformed filtered allowlists.
+        if ( !is_string( $event_type ) || !is_array( $allowlist ) || !isset( $allowlist[$event_type] ) ) {
+            return new WP_Error('invalid_event_type', 'Unsupported event type.');
+        }
+        // CDB events have no event ID; all other operations require an allowlisted ID.
+        if ( $event_type !== 'cdb' && (!is_string( $event_id ) || !in_array( $event_id, $allowlist[$event_type], true )) ) {
+            return new WP_Error('invalid_event_id', 'Unsupported event ID.');
+        }
+        // JSON objects are decoded as associative arrays before reaching this validator.
+        if ( !is_array( $event_payload ) ) {
+            return new WP_Error('invalid_payload', 'Event payload must be an object.');
+        }
+        // Validate the shared consent-record schema used by CDB and ProofRec.
+        if ( $event_type === 'cdb' || $event_id === 'proofrec_db_save' ) {
+            if ( empty( $event_payload['cdbID'] ) || !is_string( $event_payload['cdbID'] ) || strlen( $event_payload['cdbID'] ) > 50 || !preg_match( '/^[A-Za-z0-9._:-]+$/', $event_payload['cdbID'] ) || empty( $event_payload['timestamp'] ) || !is_numeric( $event_payload['timestamp'] ) || !isset( $event_payload['stats'], $event_payload['marketing'], $event_payload['personalisation'] ) || !is_bool( $event_payload['stats'] ) || !is_bool( $event_payload['marketing'] ) || !is_bool( $event_payload['personalisation'] ) ) {
+                return new WP_Error('invalid_consent_payload', 'Invalid consent payload.');
+            }
+        }
+        // WooCommerce tracking requires a bounded request ID and consent collection.
+        if ( $event_id === 'woo_order_tracking' ) {
+            if ( empty( $event_payload['request_id'] ) || !is_string( $event_payload['request_id'] ) || strlen( $event_payload['request_id'] ) > 64 || !preg_match( '/^[A-Za-z0-9._:-]+$/', $event_payload['request_id'] ) || empty( $event_payload['consents'] ) || !is_array( $event_payload['consents'] ) ) {
+                return new WP_Error('invalid_woo_payload', 'Invalid WooCommerce payload.');
+            }
+        }
+        // Meta server events require identity, timing, and user-data fields.
+        if ( $event_id === 'fbp' ) {
+            if ( empty( $event_payload['event_name'] ) || !is_string( $event_payload['event_name'] ) || strlen( $event_payload['event_name'] ) > 100 || empty( $event_payload['event_id'] ) || !is_string( $event_payload['event_id'] ) || strlen( $event_payload['event_id'] ) > 200 || empty( $event_payload['event_time'] ) || !is_numeric( $event_payload['event_time'] ) || empty( $event_payload['user_data'] ) || !is_array( $event_payload['user_data'] ) ) {
+                return new WP_Error('invalid_fbp_payload', 'Invalid Meta payload.');
+            }
+        }
+        // Simple Analytics forwarding accepts only a valid URL and bounded user agent.
+        if ( $event_id === 'simpl' ) {
+            if ( empty( $event_payload['url'] ) || !is_string( $event_payload['url'] ) || strlen( $event_payload['url'] ) > 2048 || !filter_var( $event_payload['url'], FILTER_VALIDATE_URL ) || empty( $event_payload['ua'] ) || !is_string( $event_payload['ua'] ) || strlen( $event_payload['ua'] ) > 1000 ) {
+                return new WP_Error('invalid_simpl_payload', 'Invalid Simple Analytics payload.');
+            }
+        }
+        return true;
+    }
+
+    private function fupi_normalize_process_result( $event_id, $handler_result ) {
+        // Convert WordPress errors into the common result shape and retry server-side failures.
+        if ( is_wp_error( $handler_result ) ) {
+            $error_data = $handler_result->get_error_data();
+            $status = ( is_array( $error_data ) && !empty( $error_data['status'] ) ? (int) $error_data['status'] : 500 );
+            return [
+                'event_id'  => $event_id,
+                'success'   => false,
+                'saved'     => false,
+                'retryable' => $status >= 500,
+                'error'     => $handler_result->get_error_code(),
+            ];
+        }
+        // Unwrap REST responses so all successful handlers follow the same array contract.
+        if ( $handler_result instanceof WP_REST_Response ) {
+            $handler_result = $handler_result->get_data();
+        }
+        // Treat unsupported return types as permanent handler contract failures.
+        if ( !is_array( $handler_result ) ) {
+            return [
+                'event_id'  => $event_id,
+                'success'   => false,
+                'saved'     => false,
+                'retryable' => false,
+                'error'     => 'invalid_handler_result',
+            ];
+        }
+        // Apply safe defaults while preventing handlers from replacing the requested event ID.
+        return array_merge( [
+            'event_id'  => $event_id,
+            'success'   => false,
+            'saved'     => false,
+            'retryable' => false,
+        ], $handler_result, [
+            'event_id' => $event_id,
+        ] );
+    }
+
+    // Process the payload. Both REST and AJAX receive the same response shape.
+    public function fupi_process_server_calls( $request, $is_ajax = false, $rate_limit_checked = false ) {
+        // REST supplies raw JSON, while AJAX has already parsed the payload into an array.
+        $body = ( $is_ajax ? false : $request->get_body() );
         $userIP = $this->get_current_user_ip();
+        // AJAX is checked before JSON decoding in its transport handler.
+        if ( !$rate_limit_checked && !$this->fupi_server_rate_limit_ok( $userIP ) ) {
+            $response = new WP_REST_Response([
+                'success'   => false,
+                'retryable' => true,
+                'error'     => 'rate_limited',
+            ], 429);
+            $response->header( 'Retry-After', '60' );
+            return $response;
+        }
+        // Reject oversized REST bodies before decoding them
+        if ( !$is_ajax && strlen( $body ) > $this->server_max_body_size ) {
+            return new WP_REST_Response([
+                'success'   => false,
+                'retryable' => false,
+                'error'     => 'request_too_large',
+            ], 413);
+        }
+        $data_arr = ( $is_ajax ? $request : json_decode( $body, true ) );
+        // Reject malformed REST JSON
+        if ( !$is_ajax && json_last_error() !== JSON_ERROR_NONE ) {
+            return new WP_REST_Response([
+                'success'   => false,
+                'retryable' => false,
+                'error'     => 'invalid_json',
+            ], 400);
+        }
+        // Reject empty arrays
+        if ( !is_array( $data_arr ) || empty( $data_arr ) || count( $data_arr ) > $this->server_max_batch_size ) {
+            return new WP_REST_Response([
+                'success'   => false,
+                'retryable' => false,
+                'error'     => 'invalid_batch',
+            ], 400);
+        }
         $requests_a = [];
+        $results = [];
+        $delivery_ranges = [];
+        $valid_events = 0;
+        // One-by-one, validate data of every event and process it
         foreach ( $data_arr as $event_data ) {
+            // Skip is we don't have exactly 3 event params ['send','fbp',payload]
+            if ( !is_array( $event_data ) || count( $event_data ) !== 3 ) {
+                $results[] = [
+                    'event_id'  => false,
+                    'success'   => false,
+                    'retryable' => false,
+                    'error'     => 'invalid_event',
+                ];
+                continue;
+            }
             $event_type = $event_data[0];
             $event_id = $event_data[1];
             $event_payload = $event_data[2];
-            if ( $event_type == 'cdb' ) {
+            $validation = $this->fupi_validate_server_event( $event_type, $event_id, $event_payload );
+            if ( is_wp_error( $validation ) ) {
+                $results[] = [
+                    'event_id'  => ( is_string( $event_id ) ? $event_id : false ),
+                    'success'   => false,
+                    'retryable' => false,
+                    'error'     => $validation->get_error_code(),
+                ];
+                continue;
+            }
+            $valid_events++;
+            // Prepare the data to be sent
+            // CDB and send events enqueue outbound requests; process events run local handlers.
+            if ( $event_type === 'cdb' ) {
+                $request_count = count( $requests_a );
                 $requests_a = $this->prepare_cdb_data( $requests_a, $event_payload );
+                $prepared = count( $requests_a ) > $request_count;
+                if ( $prepared ) {
+                    $delivery_ranges[count( $results )] = [$request_count, count( $requests_a )];
+                }
+                $results[] = [
+                    'event_id'  => 'cdb',
+                    'success'   => $prepared,
+                    'sent'      => $prepared,
+                    'retryable' => false,
+                    'error'     => ( $prepared ? false : 'cdb_storage_unavailable' ),
+                ];
             } else {
-                if ( $event_type == 'send' ) {
-                    $requests_a = apply_filters(
+                if ( $event_type === 'send' ) {
+                    $request_count = count( $requests_a );
+                    $prepared_requests = apply_filters(
                         'fupi_prepare_' . $event_id . '_server_request_data',
                         $requests_a,
                         $event_payload,
                         $userIP
                     );
+                    $prepared = is_array( $prepared_requests ) && count( $prepared_requests ) > $request_count;
+                    if ( is_array( $prepared_requests ) ) {
+                        $requests_a = $prepared_requests;
+                    }
+                    if ( $prepared ) {
+                        $delivery_ranges[count( $results )] = [$request_count, count( $requests_a )];
+                    }
+                    $results[] = [
+                        'event_id'  => $event_id,
+                        'success'   => $prepared,
+                        'sent'      => $prepared,
+                        'retryable' => false,
+                        'error'     => ( $prepared ? false : 'server_request_unavailable' ),
+                    ];
                 } else {
-                    if ( $event_type == 'process' ) {
-                        // do server action if we are not sending anything
-                        do_action( 'fupi_do_' . $event_id . '_server_action', $event_payload, $userIP );
+                    if ( $event_type === 'process' ) {
+                        $handler_result = apply_filters(
+                            'fupi_process_' . $event_id . '_server_result',
+                            null,
+                            $event_payload,
+                            $userIP
+                        );
+                        // !! LEGACY !!
+                        // Preserve extensions using the legacy action. Persistence-aware
+                        // built-in handlers use the result-producing filter above.
+                        // if ( $handler_result === null && has_action( 'fupi_do_' . $event_id . '_server_action' ) ) {
+                        // 	do_action( 'fupi_do_' . $event_id . '_server_action', $event_payload, $userIP );
+                        // 	$handler_result = [
+                        // 		'success' => true,
+                        // 		'processed' => true,
+                        // 		'retryable' => false,
+                        // 	];
+                        // }
+                        $results[] = $this->fupi_normalize_process_result( $event_id, $handler_result );
                     }
                 }
             }
         }
-        // send results to servers and return the response
-        if ( empty( $requests_a ) ) {
-            return 'Server call has been processed.';
-        } else {
-            $responses = [];
-            include_once FUPI_PATH . '/public/common/send-to-remote-server.php';
-            return ( count( $responses ) > 0 ? $responses : 'Server call has been processed.' );
+        $responses = [];
+        // Execute all prepared remote requests together and collect any requested responses.
+        if ( !empty( $requests_a ) ) {
+            include FUPI_PATH . '/public/common/send-to-remote-server.php';
         }
+        $delivery_results_by_index = [];
+        foreach ( $fupi_remote_delivery_results ?? [] as $delivery_result ) {
+            $delivery_results_by_index[$delivery_result['request_index']] = $delivery_result;
+        }
+        foreach ( $delivery_ranges as $result_index => $range ) {
+            for ($request_index = $range[0]; $request_index < $range[1]; $request_index++) {
+                $delivery_result = $delivery_results_by_index[$request_index] ?? false;
+                if ( !$delivery_result || $delivery_result['curl_errno'] !== CURLE_OK || $delivery_result['http_code'] < 200 || $delivery_result['http_code'] >= 300 ) {
+                    $results[$result_index]['success'] = false;
+                    $results[$result_index]['sent'] = false;
+                    $results[$result_index]['error'] = 'delivery_failed';
+                    break;
+                }
+            }
+        }
+        // The batch succeeds only when every per-event result succeeds.
+        $success = !empty( $results );
+        foreach ( $results as $result ) {
+            if ( empty( $result['success'] ) ) {
+                $success = false;
+                break;
+            }
+        }
+        $response_data = [
+            'success' => $success,
+            'results' => $results,
+        ];
+        // Keep response keys such as CDB and debug provider names backwards compatible.
+        if ( !empty( $responses ) ) {
+            unset($responses['success'], $responses['results']);
+            // this prevents "succes" and "results" from $responses from overwriting the $response_data below
+            $response_data = array_merge( $response_data, $responses );
+        }
+        // Return 200 for a syntactically valid batch, even when an individual event fails.
+        return new WP_REST_Response($response_data, ( $valid_events > 0 ? 200 : 400 ));
     }
 
     // HTML MODS
@@ -499,9 +559,16 @@ class Fupi_Public {
         $orig_html = $html;
         if ( !empty( $this->tools['cook'] ) && !empty( $this->cook ) ) {
             // SCRIPTS BLOCKER
-            $blockscr_enabled = !empty( $this->cook['scrblk_auto_rules'] ) || !empty( $this->cook['control_other_tools'] ) && !empty( $this->cook['scrblk_manual_rules'] );
-            if ( !empty( $blockscr_enabled ) ) {
-                include_once dirname( __FILE__ ) . '/common/blockscr_parser.php';
+            if ( !function_exists( 'fupi_get_script_blocking_rules' ) ) {
+                require_once FUPI_PATH . '/public/modules/cook/blockscr_rules.php';
+            }
+            $tools_to_block = fupi_get_script_blocking_rules( $this->cook, true );
+            if ( !empty( $tools_to_block ) ) {
+                if ( !empty( $this->cook['dynamic_blocking'] ) ) {
+                    include_once FUPI_PATH . '/public/modules/cook/blockscr_parser.php';
+                } else {
+                    include_once FUPI_PATH . '/public/modules/cook/blockscr_parser_old.php';
+                }
             }
             // IFRAMES BLOCKER
             $iframeblock_enabled = !empty( $this->cook['iframe_auto_rules'] ) || !empty( $this->cook['control_other_iframes'] ) && !empty( $this->cook['iframe_manual_rules'] );
@@ -509,7 +576,7 @@ class Fupi_Public {
                 // make sure we do not try to manage iframes in the bricks builder editor (it breaks)
                 $can_load_iframe_parser = !(function_exists( 'bricks_is_builder' ) && bricks_is_builder());
                 if ( $can_load_iframe_parser ) {
-                    include_once dirname( __FILE__ ) . '/common/iframeblock_parser.php';
+                    include_once FUPI_PATH . '/public/modules/cook/iframeblock_parser.php';
                 }
             }
         }

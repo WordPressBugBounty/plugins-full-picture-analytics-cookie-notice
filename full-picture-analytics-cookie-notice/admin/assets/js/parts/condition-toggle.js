@@ -1,9 +1,9 @@
-(() => {
+// CONDITIONS
+// toggle fields that can be conditionally toggled
 
-	// CONDITIONS
-	// toggle fields that can be conditionally toggled
+FP.initCondFields = ( wrapper_sel )=>{
 
-	let condition_fields = FP.findAll( '.fupi_condition' );
+	let condition_fields = FP.findAll( wrapper_sel + ' .fupi_condition' );
 	
 	// sync after pageload
 
@@ -111,32 +111,35 @@
 			}
 		})
 	}
+}
 
-})();
+FP.initCondFields( '#fupi_main_form' );
 
 (()=>{
 	
 	// CONSENT BANNER > TOGGLE HIDDEN RADIOS & "MANUAL" FIELDS
 	
-	let mode_select = FP.findFirst('.fupi_cookie_notice_modes select');
+	let mode_fields = FP.findAll('.fupi_cookie_notice_modes input[type="radio"]');
 
-	if ( ! mode_select ) return;
+	if ( ! mode_fields.length ) return;
 	
 	// first we hide all manual fields
-	FP.findID('fupi_settings_form').classList.add('fupi_hide_manual_cookie_settings');
+	FP.findID('fupi_main_form').classList.add('fupi_hide_manual_cookie_settings');
 	
 	// show manual fields if manual radio is checked
 	toggle_manual_fields();
 
 	function toggle_manual_fields(){
-		if ( mode_select.value == 'manual' ) {
-			FP.findID('fupi_settings_form').classList.remove('fupi_hide_manual_cookie_settings');
+		let selected_mode = FP.findFirst('.fupi_cookie_notice_modes input[type="radio"]:checked');
+
+		if ( selected_mode && selected_mode.value == 'manual' ) {
+			FP.findID('fupi_main_form').classList.remove('fupi_hide_manual_cookie_settings');
 		} else {
-			FP.findID('fupi_settings_form').classList.add('fupi_hide_manual_cookie_settings');
+			FP.findID('fupi_main_form').classList.add('fupi_hide_manual_cookie_settings');
 		}
 	}
 
 	// then we go over each radio field
-	mode_select.addEventListener('change', toggle_manual_fields )
+	mode_fields.forEach( field => field.addEventListener('change', toggle_manual_fields ) );
 
 })();

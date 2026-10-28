@@ -1,6 +1,7 @@
 // TOGGLE SWITCHES
 
-.fupi_switch {
+.fupi_switch,
+.fupi_faux_switch {
 	position: relative;
 	display: inline-block;
 	width: 40px;
@@ -13,7 +14,8 @@
 	}
 }
 
-.fupi_switch_slider {
+.fupi_switch_slider,
+.fupi_faux_switch_slider {
 	position: absolute;
 	cursor: pointer;
 	top: 0;

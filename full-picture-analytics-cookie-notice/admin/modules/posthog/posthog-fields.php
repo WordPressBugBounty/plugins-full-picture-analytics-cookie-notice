@@ -18,7 +18,7 @@ $sections = array(
 				'required'			=> true,
 				'option_arr_id'		=> $option_arr_id,
 				'label_for' 		=> $option_arr_id . '[api_key]',
-				'under field'		=> esc_html__( 'Paste the API Key from PostHog dashboard > "Project Settings".', 'full-picture-analytics-cookie-notice' ),
+				'under_field'		=> esc_html__( 'Paste the API Key from PostHog dashboard > "Project Settings".', 'full-picture-analytics-cookie-notice' ),
 			),
 			array(
 				'type'	 			=> 'toggle',
@@ -26,7 +26,7 @@ $sections = array(
 				'field_id' 			=> 'data_in_eu',
 				'class'				=> 'fupi_sub',
 				'option_arr_id'		=> $option_arr_id,
-				'popup3'			=> '<p style="color: red;">' . esc_html__( 'It is very important to choose the right option here. If you make a wrong choice, PostHog tracking will not work.', 'full-picture-analytics-cookie-notice' ) . '</p>
+				'offscreen_important'			=> '<p style="color: red;">' . esc_html__( 'It is very important to choose the right option here. If you make a wrong choice, PostHog tracking will not work.', 'full-picture-analytics-cookie-notice' ) . '</p>
 				<p>' . esc_html__( 'If you don\'t know if your PostHog data is kept on EU servers or not, please log in to your PostHog account and see if its address starts with eu.posthog.com.', 'full-picture-analytics-cookie-notice' ) . '</p>',
 			),
 		),
@@ -44,8 +44,10 @@ $sections = array(
 				'el_class'			=> 'fupi_condition fupi_condition_reverse',
 				'el_data_target'	=> 'fupi_load_opts',
 				'field_id' 			=> 'force_load',
+				'class'				=> 'fupi_deprecated',
 				'option_arr_id'		=> $option_arr_id,
-				'popup3'			=> '<p style="color: red">' . esc_html__( 'Use only for installation verification or testing. It breaks GDPR and similar laws.', 'full-picture-analytics-cookie-notice' ) . '</p>
+				'after_field'		=> esc_html__( 'Replaced with the test mode in the Setup Helper', 'full-picture-analytics-cookie-notice' ),
+				'offscreen_important'			=> '<p style="color: red">' . esc_html__( 'Use only for installation verification or testing. It breaks GDPR and similar laws.', 'full-picture-analytics-cookie-notice' ) . '</p>
 				<p>' . sprintf( esc_html__( 'This will load the tracking script for administrators, bots, excluded users, people browsing from excluded locations and people who didn\'t agree to tracking. %1$sLearn more%2$s.', 'full-picture-analytics-cookie-notice' ), '<a target="_blank" href="https://wpfullpicture.com/support/documentation/validation-mode/">', '</a>' ) . '</p>',
 			),
 			array(
@@ -53,8 +55,9 @@ $sections = array(
 				'label' 			=> esc_html__('Only track visitors from specific countries', 'full-picture-analytics-cookie-notice'),
 				'field_id' 			=> 'limit_country',
 				'must_have'			=> 'pro geo',
+				'related_opts'		=> ['main', 'geo, ipdata_api_key, cf_worker_url, remember_geo'],
 				'option_arr_id'		=> $option_arr_id,
-				'class'				=> 'fupi_load_opts fupi_adv',
+				'class'				=> 'fupi_load_opts',
 				'is repeater'		=> false,
 				'fields'			=> array(
 					array(
@@ -72,7 +75,7 @@ $sections = array(
 						'placeholder'		=> esc_html__('e.g. GB, DE, FR, AU, etc.', 'full-picture-analytics-cookie-notice'),
 					),
 				),
-				'popup'				=> sprintf( esc_html__('Enter a list of 2-character %1$scountry codes%2$s separated by commas.', 'full-picture-analytics-cookie-notice' ), '<a target="_blank" href="https://www.iban.com/country-codes">', '</a>' ) . '. ' . esc_html__('If visitor\'s country is not recognized, PostHog will load normally.', 'full-picture-analytics-cookie-notice' ),
+				'offscreen'				=> sprintf( esc_html__('Enter a list of 2-character %1$scountry codes%2$s separated by commas.', 'full-picture-analytics-cookie-notice' ), '<a target="_blank" href="https://www.iban.com/country-codes">', '</a>' ) . '. ' . esc_html__('If visitor\'s country is not recognized, PostHog will load normally.', 'full-picture-analytics-cookie-notice' ),
 			),
 		),
 	),

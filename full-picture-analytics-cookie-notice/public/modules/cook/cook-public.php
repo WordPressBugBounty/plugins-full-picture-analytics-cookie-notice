@@ -3,8 +3,6 @@
 class Fupi_COOK_public {
     private $settings;
 
-    private $tools;
-
     private $main;
 
     private $pp_url = false;
@@ -16,7 +14,6 @@ class Fupi_COOK_public {
         if ( $this->settings === false ) {
             $this->settings = [];
         }
-        $this->tools = get_option( 'fupi_tools' );
         $this->main = get_option( 'fupi_main' );
         $this->add_actions_and_filters();
     }
@@ -35,6 +32,14 @@ class Fupi_COOK_public {
             10,
             1
         );
+        if ( !empty( $this->settings['dynamic_blocking'] ) ) {
+            add_filter(
+                'fupi_add_js_to_head_data',
+                array($this, 'get_dynamic_element_blocking_js'),
+                1,
+                1
+            );
+        }
         // output after body open
         if ( function_exists( 'wp_body_opens' ) ) {
             add_action( 'wp_body_opens', array($this, 'output_notice_html') );
@@ -54,6 +59,10 @@ class Fupi_COOK_public {
         // !! DO NOT DELETE
         // we get options again because otherwise the translation would not kick in
         $cook_opts_2 = get_option( 'fupi_cook' );
+        $iframe_opts = get_option( 'fupi_ifrblock' );
+        if ( !is_array( $iframe_opts ) ) {
+            $iframe_opts = array();
+        }
         // Add consent control for Pixel Manager
         if ( !empty( $cook_opts_2['scrblk_auto_rules'] ) && in_array( 'pixelman', $cook_opts_2['scrblk_auto_rules'] ) ) {
             echo '<script id="fupi_pixelman_compat">
@@ -72,13 +81,13 @@ class Fupi_COOK_public {
             </script>';
         }
         // Add translations to iframe texts
-        $iframe_caption_txt = ( empty( $cook_opts_2['iframe_caption_txt'] ) ? esc_attr__( 'This content is hosted by [[an external source]]. By loading it, you accept its {{privacy terms}}.', 'full-picture-analytics-cookie-notice' ) : esc_attr( $cook_opts_2['iframe_caption_txt'] ) );
-        $iframe_btn_text = ( empty( $cook_opts_2['iframe_btn_text'] ) ? esc_attr__( 'Load content', 'full-picture-analytics-cookie-notice' ) : esc_attr( $cook_opts_2['iframe_btn_text'] ) );
+        $iframe_caption_txt = ( empty( $iframe_opts['caption_txt'] ) ? esc_attr__( 'This content is hosted by [[an external source]]. By loading it, you accept its {{privacy terms}}.', 'full-picture-analytics-cookie-notice' ) : esc_attr( $iframe_opts['caption_txt'] ) );
+        $iframe_btn_text = ( empty( $iframe_opts['btn_text'] ) ? esc_attr__( 'Load content', 'full-picture-analytics-cookie-notice' ) : esc_attr( $iframe_opts['btn_text'] ) );
         $iframe_texts = [
             'iframe_caption_txt' => $iframe_caption_txt,
             'iframe_btn_text'    => $iframe_btn_text,
         ];
-        echo '<script id="fupi_iframe_texts">let fupi_iframe_texts = ' . json_encode( $iframe_texts ) . ';</script>';
+        echo '<script id="fupi_iframe_texts">let fupi_iframe_texts = ' . wp_json_encode( $iframe_texts ) . ';</script>';
     }
 
     private function get_pp_data() {
@@ -99,6 +108,22 @@ class Fupi_COOK_public {
     }
 
     public function add_data_to_fp_object( $fp ) {
+        // ADD FILES TO RUNTIME
+        $fp['runtime']['notice'] = [
+            'files' => [[
+                'url'            => add_query_arg( 'ver', FUPI_VERSION, FUPI_URL . 'public/modules/cook/js/fupi-consb.js' ),
+                'id'             => 'cons-banner',
+                'cant_be_truthy' => ['fp.main.is_customizer'],
+            ], [
+                'url'            => add_query_arg( 'ver', FUPI_VERSION, FUPI_URL . 'public/modules/cook/js/fupi-customizer-consb.js' ),
+                'id'             => 'cons-banner-customizer',
+                'must_be_truthy' => ['fp.main.is_customizer'],
+            ], [
+                'url'            => add_query_arg( 'ver', FUPI_VERSION, FUPI_URL . 'public/modules/cook/js/fupi-iframes.js' ),
+                'id'             => 'iframes-blocker',
+                'cant_be_truthy' => ['fp.main.is_bricks_builder'],
+            ]],
+        ];
         // GET DATA FROM THE CUSTOMIZER
         $notice_data = get_option( 'fupi_cookie_notice' );
         // from customizer
@@ -131,30 +156,62 @@ class Fupi_COOK_public {
         unset($mod_settings['inform_countries']);
         unset($mod_settings['hide_on_pages']);
         unset($mod_settings['customize_notice_btn']);
+        unset($mod_settings['storage_location']);
         unset($mod_settings['cdb_key']);
-        // the key is not removed after DB update so "unset" needs to stay
+        unset($mod_settings['consent_access']);
+        unset($mod_settings['local_backup_email']);
+        unset($mod_settings['email_frequency']);
         unset($mod_settings['save_all_consents']);
         unset($mod_settings['iframe_auto_rules']);
         unset($mod_settings['iframe_manual_rules']);
         unset($mod_settings['control_other_iframes']);
         unset($mod_settings['control_other_tools']);
         unset($mod_settings['scrblk_manual_rules']);
+        unset($mod_settings['iframe_img']);
+        unset($mod_settings['iframe_caption_txt']);
+        unset($mod_settings['iframe_btn_text']);
+        unset($mod_settings['customize_iframe_btn']);
         // ADD VALUES
+        $iframe_image_id = absint( get_theme_mod( 'fupi_ifrblock_image', 0 ) );
+        $iframe_image_url = ( $iframe_image_id ? wp_get_attachment_image_url( $iframe_image_id, 'full' ) : false );
+        $iframe_ratio_x = get_theme_mod( 'fupi_ifrblock_ratio_x', 16 );
+        $iframe_ratio_y = get_theme_mod( 'fupi_ifrblock_ratio_y', 9 );
+        $iframe_ratio_x = ( is_numeric( $iframe_ratio_x ) ? (float) $iframe_ratio_x : 0 );
+        $iframe_ratio_y = ( is_numeric( $iframe_ratio_y ) ? (float) $iframe_ratio_y : 0 );
+        if ( !is_finite( $iframe_ratio_x ) || $iframe_ratio_x < 1 || $iframe_ratio_x > 100 ) {
+            $iframe_ratio_x = 16;
+        }
+        if ( !is_finite( $iframe_ratio_y ) || $iframe_ratio_y < 1 || $iframe_ratio_y > 100 ) {
+            $iframe_ratio_y = 9;
+        }
+        $iframe_default_aspect = round( (float) $iframe_ratio_y / (float) $iframe_ratio_x * 10000 ) / 100 . '%';
         $new_settings = [
-            'enabled'              => true,
-            'display_notice'       => !$hide_on_this_page,
-            'priv_policy_update'   => $this->pp_update_date,
-            'blur_page'            => !empty( $notice_data ) && !empty( $notice_data['blur_page'] ),
-            'scroll_lock'          => !empty( $notice_data ) && !empty( $notice_data['scroll_lock'] ),
-            'hidden'               => ( isset( $notice_data['hide'] ) ? $notice_data['hide'] : [] ),
-            'shown'                => ( isset( $notice_data['show'] ) ? $notice_data['show'] : [] ),
-            'preselected_switches' => ( isset( $notice_data['switches_on'] ) ? $notice_data['switches_on'] : [] ),
-            'optin_switches'       => !empty( $notice_data['optin_switches'] ),
-            'privacy_url'          => $this->pp_url,
+            'enabled'                  => true,
+            'display_notice'           => !$hide_on_this_page,
+            'priv_policy_update'       => $this->pp_update_date,
+            'blur_page'                => !empty( $notice_data ) && !empty( $notice_data['blur_page'] ),
+            'scroll_lock'              => !empty( $notice_data ) && !empty( $notice_data['scroll_lock'] ),
+            'hidden'                   => ( isset( $notice_data['hide'] ) ? $notice_data['hide'] : [] ),
+            'shown'                    => ( isset( $notice_data['show'] ) ? $notice_data['show'] : [] ),
+            'preselected_switches'     => ( isset( $notice_data['switches_on'] ) ? $notice_data['switches_on'] : [] ),
+            'optin_switches'           => !empty( $notice_data['optin_switches'] ),
+            'privacy_url'              => $this->pp_url,
+            'iframe_placeholder_image' => ( $iframe_image_url ? esc_url( $iframe_image_url ) : false ),
+            'iframe_default_aspect'    => $iframe_default_aspect,
         ];
         $notice_settings = array_merge( $new_settings, $mod_settings );
         // ADD TO FP OBJECT
         $fp['notice'] = $notice_settings;
+        // DYNAMIC SCRIPT BLOCKING RULES FOR JS - for use with the preemptive blocking
+        if ( !empty( $this->settings['dynamic_blocking'] ) ) {
+            if ( !function_exists( 'fupi_get_script_blocking_rules' ) ) {
+                require_once FUPI_PATH . '/public/modules/cook/blockscr_rules.php';
+            }
+            $scrblk_js_rules = fupi_get_script_blocking_rules( $this->settings, true );
+            if ( !empty( $scrblk_js_rules ) ) {
+                $fp['scrblk'] = $scrblk_js_rules;
+            }
+        }
         /*
                 $fp['notice'] = [
         
@@ -187,6 +244,19 @@ class Fupi_COOK_public {
             $fp['notice']['mode'] = ( !empty( $this->settings['enable_scripts_after'] ) ? esc_attr( $this->settings['enable_scripts_after'] ) : 'optin' );
         }
         // default
+        if ( !is_customize_preview() ) {
+            $send_to_email = !empty( $this->settings['storage_location'] ) && $this->settings['storage_location'] == 'email';
+            $send_to_cdb = !empty( $this->settings['storage_location'] ) && $this->settings['storage_location'] == 'cdb' && !empty( $this->settings['cdb_key'] );
+            $proofrec_settings = array(
+                'save_consent' => $send_to_email || $send_to_cdb,
+            );
+            if ( $send_to_email || $send_to_cdb ) {
+                $proofrec_settings['storage_location'] = ( $send_to_email ? 'email' : 'cdb' );
+                $proofrec_settings['consent_access'] = !empty( $this->settings['consent_access'] );
+                $proofrec_settings['save_all_consents'] = !empty( $this->settings['save_all_consents'] );
+            }
+            $fp['proofrec'] = $proofrec_settings;
+        }
         return $fp;
     }
 
@@ -199,45 +269,7 @@ class Fupi_COOK_public {
             FUPI_VERSION,
             'all'
         );
-        // also contains (little) CSS for the iframe manager
-        if ( is_customize_preview() ) {
-            /* _ */
-            wp_enqueue_script(
-                'fupi-customizer-consb-js',
-                FUPI_URL . 'public/modules/cook/js/fupi-customizer-consb.js',
-                array('fupi-helpers-js', 'jquery'),
-                FUPI_VERSION,
-                [
-                    'in_footer' => true,
-                    'strategy'  => 'async',
-                ]
-            );
-        } else {
-            /*if ( $this->track_current_user )*/
-            /* _ */
-            wp_enqueue_script(
-                'fupi-consb-js',
-                FUPI_URL . 'public/modules/cook/js/fupi-consb.js',
-                array('fupi-helpers-js', 'fupi-helpers-footer-js'),
-                FUPI_VERSION,
-                [
-                    'in_footer' => true,
-                    'strategy'  => 'async',
-                ]
-            );
-        }
-        /* ^ */
-        wp_enqueue_script(
-            'fupi-iframes-js',
-            FUPI_URL . 'public/modules/cook/js/fupi-iframes.js',
-            array('fupi-helpers-js'),
-            FUPI_VERSION,
-            [
-                'in_footer' => false,
-                'strategy'  => 'async',
-            ]
-        );
-        // the included function is loaded only if we are not in bricks builder editor
+        // !! also contains some CSS for the iframe manager
     }
 
     // SHORTCODE FOR BLOCKING IFRAMES
@@ -272,6 +304,18 @@ class Fupi_COOK_public {
         }
         return $content;
         // this returns only iframes - shortcodes are always invisible ( it saves user time removing them if the iframe blocking module was disabled )
+    }
+
+    // DYNAMIC BLOCKING JS
+    public function get_dynamic_element_blocking_js( $js_str ) {
+        if ( !function_exists( 'fupi_get_script_blocking_rules' ) ) {
+            require_once FUPI_PATH . '/public/modules/cook/blockscr_rules.php';
+        }
+        if ( empty( fupi_get_script_blocking_rules( $this->settings, true ) ) ) {
+            return $js_str;
+        }
+        $dynamic_blocking_js = (include FUPI_PATH . '/public/modules/cook/dynamic-element-blocking-js.php');
+        return $js_str . $dynamic_blocking_js;
     }
 
 }

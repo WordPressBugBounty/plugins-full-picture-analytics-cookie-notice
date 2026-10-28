@@ -3,7 +3,7 @@
 $cook = get_option( 'fupi_cook' );
 $tools = get_option( 'fupi_tools' );
 $main = get_option( 'fupi_main' );
-$priv_policy_url_text = '<p style="color: red;">' . esc_html__( 'Attention. Your privacy policy page is either not published or its ID is not added to the Consent Management module', 'full-picture-analytics-cookie-notice' ) . '</p>';
+$priv_policy_url_text = '<p style="color: red;">' . esc_html__( 'Attention. Your privacy policy page is either not published or its ID is not saved in the Consent Management module.', 'full-picture-analytics-cookie-notice' ) . '</p>';
 if ( !empty( $cook['pp_id'] ) ) {
     $pp_id = (int) $cook['pp_id'];
     if ( get_post_status( $pp_id ) == 'publish' ) {
@@ -59,7 +59,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 
     }
 
-    // MULTI CHECKBOX
+    // multi_checkbox
     class FUPI_Customize_Multi_Checkbox extends WP_Customize_Control {
         public $type = 'multi_checkbox';
 

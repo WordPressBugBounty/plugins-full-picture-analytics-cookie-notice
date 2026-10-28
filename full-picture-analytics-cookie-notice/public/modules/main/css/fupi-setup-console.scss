@@ -51,15 +51,15 @@
 // CONSOLE
 
 #fupi_console{
-    max-height: 100vh;
-    width: 280px;
-    background-color: #fff; 
+    height: 100vh;
+    width: 100vw;
+    max-width: 340px;
+    background-color: #fff;
     color: #000;
-    padding: 20px;
     z-index: 2;
     font-size: 14px;
     line-height: 1.4em;
-    overflow-y: auto;
+    overflow: hidden;
     box-shadow: 3px 0 10px 0 rgba(0, 0, 0, 0.2);
     position: relative;
     border-radius: 0 10px 10px 0;
@@ -67,23 +67,184 @@
     p{
         margin: 1em 0 !important;
     }
-    &.fupi_trackable{
-        #fupi_console_step1,
-        #fupi_start_test{
-            display: none;
-        }
+    h2{
+        margin: 0 0 16px !important;
+        padding-right: 32px;
+        color: #000;
+        font-size: 21px;
+        line-height: 1.25;
     }
-    &.fupi_not_trackable{
-        #fupi_console_step2,
-        #fupi_simulate_first_visit,
-        #fupi_end_test,
-        #fupi_show_banner{
-            display: none;
-        }
+    h3{
+        margin: 0 0 8px !important;
+        color: #000;
+        font-size: 16px;
+        line-height: 1.3;
+    }
+    a{
+        color: #174f87;
+        text-decoration: underline;
     }
     strong{
-        font-weight: 500;
+        font-weight: 600;
     }
+}
+
+#fupi_console_panels{
+    position: relative;
+    height: 100%;
+    overflow: hidden;
+}
+
+.fupi_console_panel{
+    position: absolute;
+    inset: 0;
+    padding: 52px 20px 24px;
+    overflow-y: auto;
+    background: #fff;
+    transform: translateX(100%);
+    visibility: hidden;
+    pointer-events: none;
+    #fupi_console.fupi_panels_ready &{
+        transition: transform 240ms ease, visibility 0s linear 240ms;
+    }
+    &.fupi_panel_visible{
+        transform: translateX(0);
+        visibility: visible;
+        #fupi_console.fupi_panels_ready &{
+            transition: transform 240ms ease;
+        }
+    }
+    &.fupi_panel_active{
+        pointer-events: auto;
+    }
+}
+
+.fupi_console_notice{
+    padding: 12px 14px;
+    border: 1px solid #eed787;
+    border-radius: 8px;
+    background: #fff7d6;
+    color: #3e3514;
+}
+
+.fupi_panel_back{
+    display: inline-flex !important;
+    align-items: center;
+    gap: 5px;
+    min-height: 30px;
+    margin: -36px 0 18px !important;
+    padding: 2px 0 !important;
+    border: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    color: #174f87 !important;
+    cursor: pointer;
+    font-size: 13px !important;
+    line-height: 1.3 !important;
+    .dashicons{
+        width: 16px;
+        height: 16px;
+        font-size: 16px;
+    }
+    &:hover, &:active{
+        padding: 2px 0 !important;
+        background: transparent !important;
+        box-shadow: none !important;
+        color: #0a3159 !important;
+        font-size: 13px !important;
+    }
+}
+
+.fupi_console_buttons{
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.fupi_console_confirmation{
+    flex: 0 0 100%;
+    padding: 14px;
+    border: 1px solid #cbd3da;
+    border-radius: 8px;
+    background: #fff;
+}
+
+.fupi_confirmation_details{
+    .fupi_console_notice{
+        margin-top: 0 !important;
+    }
+}
+
+.fupi_scanner_option{
+    display: block;
+    flex: 0 0 100%;
+    line-height: 1.35;
+}
+
+#fupi_scanner_downloads{
+    display: grid;
+    gap: 14px;
+    margin-top: 16px;
+}
+
+.fupi_scanner_result_box{
+    padding: 15px;
+    border: 1px solid #cbd3da;
+    border-radius: 7px;
+    background: #fff;
+    .fupi_primary_button,
+    .fupi_secondary_button{
+        width: 100%;
+    }
+}
+
+.fupi_scanner_prompt_link{
+    display: block;
+    margin-top: 10px;
+    text-align: center;
+}
+
+#fupi_scanner_error{
+    color: #9b1c1c;
+    font-weight: 600;
+}
+
+#fupi_scanner_overlay{
+	position: fixed;
+	inset: 0;
+	z-index: 2147483647;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 14px;
+	padding: 24px;
+	background: rgba( 9, 19, 31, 0.94 );
+	color: #fff;
+	font: 600 17px/1.4 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+	text-align: center;
+	&:focus-visible{
+		outline: 3px solid #ffdd68;
+		outline-offset: -6px;
+	}
+}
+
+.fupi_scanner_spinner{
+	width: 28px;
+	height: 28px;
+	border: 3px solid rgba( 255, 255, 255, 0.35 );
+	border-top-color: #ffdd68;
+	border-radius: 50%;
+	animation: fupi-scanner-spin 0.8s linear infinite;
+}
+
+@keyframes fupi-scanner-spin{
+	to{ transform: rotate( 360deg ); }
+}
+
+@media ( prefers-reduced-motion: reduce ){
+	.fupi_scanner_spinner{ animation: none; }
+    #fupi_console.fupi_panels_ready .fupi_console_panel{ transition: none; }
 }
 
 #fupi_console,
@@ -93,56 +254,78 @@
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 }
 
-#fupi_console_buttons{
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin-top: 20px;
+#fupi_debug_modes{
+    .fupi_debug_field{
+        display: block;
+        margin-bottom: 16px;
+        span{
+            display: block;
+            margin-bottom: 4px;
+        }
+        input[type="text"]{
+            width: 100%;
+            min-height: 34px;
+            padding: 5px 8px;
+            border: 1px solid #9dabb6;
+            border-radius: 4px;
+            background: #fff;
+            color: #000;
+        }
+    }
 }
-    .fupi_primary_button,
-    .fupi_secondary_button{
-        flex: 0 0 100%;
-        border-radius: 100px;
+
+.fupi_primary_button,
+.fupi_secondary_button{
+    flex: 0 0 100%;
+    border-radius: 100px;
+    box-shadow: none !important;
+    cursor: pointer;
+    font-size: 14px !important;
+    padding: 7px 14px !important;
+    line-height: 1.3em !important;
+    text-decoration: none !important;
+    text-align: center;
+    &:hover, &:active{
         box-shadow: none !important;
         font-size: 14px !important;
-        padding: 5px 14px !important;
-        line-height: 1.3em !important;
-        text-decoration: none;
-        text-align: center;
-        &:hover, &:active{
-            box-shadow: none !important;
-            font-size: 14px !important;
-            padding: 5px 14px !important;
-        }
-        .dashicons{
-            font-size: 16px;
-            width: 16px;
-            height: 16px;
-        }
+        padding: 7px 14px !important;
     }
-    .fupi_primary_button{
-        background-color: #ffdd68 !important;
+    &:focus-visible{
+        outline: 2px solid #174f87;
+        outline-offset: 2px;
+    }
+    .dashicons{
+        font-size: 16px;
+        width: 16px;
+        height: 16px;
+    }
+}
+
+.fupi_primary_button{
+    background-color: #ffdd68 !important;
+    color: #000 !important;
+    border: 1px solid #bf9c27 !important;
+    &:hover, &:active{
         color: #000 !important;
+        background-color: #ffe488 !important;
         border: 1px solid #bf9c27 !important;
-        &:hover, &:active{
-            color: #000 !important;
-            background-color: #ffe488 !important;
-            border: 1px solid #bf9c27 !important;
-        }
     }
-    .fupi_secondary_button{
-        background-color: #f3faff !important;
+}
+
+.fupi_secondary_button{
+    background-color: #f3faff !important;
+    color: #112849 !important;
+    border: 1px solid #9dabb6 !important;
+    &:hover, &:active{
         color: #112849 !important;
+        background-color: #fefefe !important;
         border: 1px solid #9dabb6 !important;
-        &:hover, &:active{
-            color: #112849 !important;
-            background-color: #fefefe !important;
-            border: 1px solid #9dabb6 !important;
-        }
     }
+}
 
 #fupi_console_close_btn{
     display: block !important;
+    z-index: 1000;
     color: #000 !important;
     position: absolute;
     cursor: pointer;

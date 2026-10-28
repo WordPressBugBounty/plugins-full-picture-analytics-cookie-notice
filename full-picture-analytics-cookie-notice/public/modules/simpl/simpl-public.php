@@ -15,7 +15,6 @@ class Fupi_SIMPL_public {
     }
 
     private function add_actions_and_filters() {
-        add_action( 'wp_enqueue_scripts', array($this, 'enqueue_scripts') );
         add_filter(
             'fupi_modify_fp_object',
             array($this, 'add_data_to_fp_object'),
@@ -25,24 +24,17 @@ class Fupi_SIMPL_public {
     }
 
     public function add_data_to_fp_object( $fp ) {
+        $fp['runtime']['simpl'] = [
+            'reqs'  => [],
+            'files' => [[
+                'url' => add_query_arg( 'ver', FUPI_VERSION, FUPI_URL . 'public/modules/simpl/fupi-simpl.js' ),
+                'id'  => 'simpl',
+            ]],
+        ];
         $fp['simpl'] = ( !empty( $this->settings ) ? $this->settings : array() );
         // plausible does not require any setup to run
         $fp['tools'][] = 'simpl';
         return $fp;
-    }
-
-    public function enqueue_scripts() {
-        /* ^ */
-        wp_enqueue_script(
-            'fupi-simpl-head-js',
-            FUPI_URL . 'public/modules/simpl/fupi-simpl.js',
-            array('fupi-helpers-js'),
-            FUPI_VERSION,
-            [
-                'in_footer' => false,
-                'strategy'  => 'async',
-            ]
-        );
     }
 
 }

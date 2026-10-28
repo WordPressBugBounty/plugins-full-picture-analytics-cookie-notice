@@ -93,8 +93,8 @@ function fupi_consb(){
 		notice.classList.add( 'fupi_fadeInUp', 'fupi_animated' );
 	}
 
-	FP.loaded('cons_banner');
+	FP.loaded('cons-banner-customizer');
 
 };
 
-FP.load('cons_banner', 'fupi_consb', ['footer_helpers', 'consb_html']); // the same as in the non-customizer file
+FP.load('cons-banner-customizer', 'fupi_consb', ['footer-helpers']);

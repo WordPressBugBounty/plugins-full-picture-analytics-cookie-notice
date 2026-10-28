@@ -15,7 +15,7 @@ $other_settings = array(
 		'field_id' 			=> 'deactiv_email',
 		'option_arr_id'		=> $option_arr_id,
 		'placeholder'		=> sprintf( esc_html__( 'e.g. %1$s, etc.', 'full-picture-analytics-cookie-notice' ), 'john@example.com, peter@example.com' ),
-		'under field' 		=> esc_html__('Enter a comma separated list of email addresses where you want to send the email.','full-picture-analytics-cookie-notice'),
+		'under_field' 		=> esc_html__('Enter a comma separated list of email addresses where you want to send the email.','full-picture-analytics-cookie-notice'),
 	),
 	array(
 		'type' 				=> 'text',
@@ -40,7 +40,7 @@ if ( current_user_can('manage_options') ){
 			'label' 			=> esc_html__( 'Let non-admin users view and save WP Full Picture\'s settings', 'full-picture-analytics-cookie-notice' ),
 			'must_have'			=> 'pro',
 			'option_arr_id' 	=> $option_arr_id,
-			'popup2'			=> '<p class="fupi_warning_text">' . esc_html__( 'As a security measure, the edit rights cannot be given to users without the right to at least edit posts.', 'full-picture-analytics-cookie-notice' ) . '</p>',
+			'offscreen_warning'			=> '<p class="fupi_warning_text">' . esc_html__( 'As a security measure, the edit rights cannot be given to users without the right to at least edit posts.', 'full-picture-analytics-cookie-notice' ) . '</p>',
 		),
 	);
 }
@@ -54,18 +54,12 @@ array_push( $other_settings,
 		'option_arr_id'		=> $option_arr_id,
 		'label_for' 		=> $option_arr_id . '[bot_list]',
 		'options'				=> array(
-			'basic'			=> esc_html__( 'Basic list (fast, only checks for the most common bots)', 'full-picture-analytics-cookie-notice' ),
-			'big'			=> esc_html__( 'Big list (slower but much more accurate and blocks some AI bots)', 'full-picture-analytics-cookie-notice' ),
+			'basic'			=> esc_html__( 'Basic list', 'full-picture-analytics-cookie-notice' ),
+			'big'			=> esc_html__( 'Big list (slower, can identify common AI bots)', 'full-picture-analytics-cookie-notice' ),
 			'none'			=> esc_html__( 'None', 'full-picture-analytics-cookie-notice' ),
 		),
 		'default'			=> 'basic',
-		'popup'				=> '<p>' . esc_html__( 'Bot detection is used to prevent bots from:','full-picture-analytics-cookie-notice' ) . '</p>
-			<ol>
-				<li>' . esc_html__( 'triggering server events (for tools supporting server-side tracking)','full-picture-analytics-cookie-notice' ) . '</li>
-				<li>' . esc_html__( 'making unnecessary geolocation checks (when the geolocation module is enabled),','full-picture-analytics-cookie-notice' ) . '</li>
-				<li>' . esc_html__( 'saving cookie consents','full-picture-analytics-cookie-notice' ) . '</li>
-			</ol>
-			<p>' . sprintf( esc_html__( 'The Big list is based on the %1$slist of crawler user agents%2$s by bentsi.','full-picture-analytics-cookie-notice' ), '<a href="https://github.com/monperrus/crawler-user-agents/blob/master/crawler-user-agents.json">', '</a>' ) . '</p>',
+		'under_field'		=> esc_html__( 'This makes sure that only humans are tracked. The basic list only checks for common indexing and content scraping bots. The big list also identifies common AI bots. Do not enable it if you want to track AI traffic (e.g. with AI Bot Activity feature in MS Clarity).','full-picture-analytics-cookie-notice' ),
 	),
 	array(
 		'type'	 			=> 'select',
@@ -80,7 +74,7 @@ array_push( $other_settings,
 			'rest'			=> esc_html__( 'Rest API (default)', 'full-picture-analytics-cookie-notice' ),
 			'ajax'			=> esc_html__( 'AJAX', 'full-picture-analytics-cookie-notice' ),
 		),
-		'popup'				=> '<p>' . esc_html__( 'The method you choose here will be used to send data from the visitors\'s browser to your server. This is used for server-side tracking and for sending visitor consents.', 'full-picture-analytics-cookie-notice' ) . '</p>
+		'offscreen'				=> '<p>' . esc_html__( 'The method you choose here will be used to send data from the visitors\'s browser to your server. This is used for server-side tracking and for sending visitor consents.', 'full-picture-analytics-cookie-notice' ) . '</p>
 			<p>' . esc_html__( 'Rest API is generally faster and less resource-intensive.', 'full-picture-analytics-cookie-notice' ) . '</p>',
 	)
 );
@@ -102,29 +96,24 @@ $sections = array(
 				'el_class'			=> 'fupi_narrow_text_field',
 				'option_arr_id'		=> $option_arr_id,
 				'label_for' 		=> $option_arr_id . '[magic_keyword]',
-				'before field'		=> $siteURL . '?',
-				'after field'		=> '=off',
+				'before_field'		=> $siteURL . '?',
+				'after_field'		=> '=off',
 				'placeholder'		=> 'tracking',
 				'format'			=> 'key',
 				'default'			=> 'tracking',
-				'under field'		=> '<p><a href="' . get_bloginfo('url') . '/?' . $magic_keyword . '=off"><strong>' . get_bloginfo('url') . '/?' . $magic_keyword . '=off</strong></a></p>',
-				'popup' 			=> '<p>' . esc_html__( 'When someone clicks this link they will no longer be tracked no matter whether they are logged in or not. This state will be remembered by their browser until they:','full-picture-analytics-cookie-notice') . '</p>
-				<ol>
-					<li>' . esc_html__( 'visit the site from address that ends with "','full-picture-analytics-cookie-notice') . '?' . $magic_keyword . '=on",</li>
-					<li>' . esc_html__( 'click an "eye" icon in the bottom-left corner of the screen (on the visitor-facing website),','full-picture-analytics-cookie-notice') . '</li>
-					<li>' . esc_html__( 'clear cookies in their browser.','full-picture-analytics-cookie-notice') . '</li>
-				</ol>
-				<p><strong>' . $magic_keyword . '=on</strong> or <strong>' . $magic_keyword . '=reset</strong>: ' . esc_html__( 'resets visitor\'s tracking preferences','full-picture-analytics-cookie-notice') . '</p>
-				',
+				'under_field'		=> '<p><a href="' . get_bloginfo('url') . '/?' . $magic_keyword . '=off"><strong>' . get_bloginfo('url') . '/?' . $magic_keyword . '=off</strong></a></p>',
+				'offscreen' 			=> '<p><strong>' . $magic_keyword . '=off</strong>: ' . esc_html__( 'disables tracking for this visitor until they turn it on again or reset tracking.', 'full-picture-analytics-cookie-notice' ) . '</p>
+				<p><strong>' . $magic_keyword . '=on</strong>: ' . esc_html__( 'brings tracking back to the state before it was turned off.', 'full-picture-analytics-cookie-notice' ) . '</p>
+				<p><strong>' . $magic_keyword . '=reset</strong>: ' . esc_html__( 'clears visitor\'s consent choices and tracking-related cookies.', 'full-picture-analytics-cookie-notice' ) . '</p>',
 			),
 			array(
-				'type'	 			=> 'roles multi checkbox',
+				'type'	 			=> 'roles_multi_checkbox',
 				'label' 			=> esc_html__( 'Do not track logged-in users with these roles:', 'full-picture-analytics-cookie-notice' ),
 				'field_id' 			=> 'disable_for_roles',
 				'option_arr_id'		=> $option_arr_id,
 				'label_for' 		=> $option_arr_id . '[disable_for_roles]',
 				'default'			=> 'administrator',
-				'under field'		=> esc_html__( 'Site administrators are never tracked. To make them temporarily trackable, please enable the Setup Helper in the top menu and enable testing in the front-end of your site.', 'full-picture-analytics-cookie-notice' ),
+				'under_field'		=> esc_html__( 'Site administrators are never tracked. To make them temporarily trackable, please enable the Setup Helper in the top menu and enable testing in the front-end of your site.', 'full-picture-analytics-cookie-notice' ),
 			),
 		)
 	),
@@ -140,7 +129,6 @@ $sections = array(
 				'label' 			=> esc_html__( 'Geolocation provider', 'full-picture-analytics-cookie-notice' ),
 				'field_id' 			=> 'geo',
 				'option_arr_id'		=> $option_arr_id,
-				'class'				=> 'fupi_adv',
 				'must_have'			=> 'pro',
 				'el_class'			=> 'fupi_condition',
 				'el_data_target'	=> 'fupi_geo_cond',
@@ -155,7 +143,7 @@ $sections = array(
 					'cloudways'			=> 'Cloudways Geo IP',
 				),
 				'default'			=> 'none',
-				'under field'		=> '<p>' . esc_html__( 'All providers on this list offer free services but some of them require registration or extra setup.','full-picture-analytics-cookie-notice') . '</p>
+				'under_field'		=> '<p>' . esc_html__( 'All providers on this list offer free services but some of them require registration or extra setup.','full-picture-analytics-cookie-notice') . '</p>
 				<ul>
 					<li><a href="https://www.cloudflare.com/en-gb/">Cloudflare</a> ' . esc_html__( '(default) - Geolocation of visitor\'s country, free, registration not required', 'full-picture-analytics-cookie-notice') . '</li>
 					<li><a href="https://www.cloudflare.com/en-gb/">Cloudflare</a> '. esc_html__( '(for registered users) - Geolocation of visitor\'s country, free, registration required', 'full-picture-analytics-cookie-notice') . '</li>
@@ -169,18 +157,18 @@ $sections = array(
 				array(
 					'type'	 			=> 'text',
 					'label' 			=> esc_html__( 'Cloudflare Worker URL', 'full-picture-analytics-cookie-notice' ),
-					'class'				=> 'fupi_sub fupi_adv fupi_geo_cond fupi_cond_val_cf_worker fupi_disabled',
+					'class'				=> 'fupi_sub fupi_geo_cond fupi_cond_val_cf_worker fupi_disabled',
 					'must_have'			=> 'pro',
 					'field_id' 			=> 'cf_worker_url',
 					'option_arr_id'		=> $option_arr_id,
 					'label_for' 		=> $option_arr_id . '[cf_worker_url]',
 					'placeholder'		=> '',
-					'under field' 		=> sprintf(esc_html__('Enter worker script URL. %1s Learn how to find it%2s.', 'full-picture-analytics-cookie-notice'), '<a href="https://wpfullpicture.com/support/documentation/geolocation/" target="_blank">', '</a>'),
+					'under_field' 		=> sprintf(esc_html__('Enter worker script URL. %1s Learn how to find it%2s.', 'full-picture-analytics-cookie-notice'), '<a href="https://wpfullpicture.com/support/documentation/geolocation/" target="_blank">', '</a>'),
 				),
 				array(
 					'type'	 			=> 'text',
 					'label' 			=> esc_html__( 'ipdata API key', 'full-picture-analytics-cookie-notice' ),
-					'class'				=> 'fupi_sub fupi_geo_cond fupi_cond_val_ipdata fupi_disabled fupi_adv',
+					'class'				=> 'fupi_sub fupi_geo_cond fupi_cond_val_ipdata fupi_disabled',
 					'must_have'			=> 'pro',
 					'field_id' 			=> 'ipdata_api_key',
 					'option_arr_id'		=> $option_arr_id,
@@ -190,13 +178,12 @@ $sections = array(
 				'type'	 			=> 'number',
 				'label' 			=> esc_html__( 'Remember visitor\'s location for', 'full-picture-analytics-cookie-notice' ),
 				'field_id' 			=> 'remember_geo',
-				'class'				=> 'fupi_adv',
 				'must_have'			=> 'pro',
 				'option_arr_id'		=> $option_arr_id,
 				'label_for' 		=> $option_arr_id . '[show_to_countries]',
 				'default'			=> '30',
-				'after field'		=> 'days',
-				'popup' 			=> '<p>' . esc_html__( 'Default is 30 days. Set to a lower number if your visitors often browse from different countries. If set to 0, location will be checked at the beginning of each session. If a location wasn\'t found it will be checked again at the beginning of the next session and remembered for the specified number of days.', 'full-picture-analytics-cookie-notice') . '</p>',
+				'after_field'		=> 'days',
+				'offscreen' 			=> '<p>' . esc_html__( 'Default is 30 days. Set to a lower number if your visitors often browse from different countries. If set to 0, location will be checked at the beginning of each session. If a location wasn\'t found it will be checked again at the beginning of the next session and remembered for the specified number of days.', 'full-picture-analytics-cookie-notice') . '</p>',
 			),
 		)
 	),
@@ -211,10 +198,9 @@ $sections = array(
 				'type'	 			=> 'r3',
 				'label' 			=> esc_html__('Meta tags','full-picture-analytics-cookie-notice'),
 				'field_id' 			=> 'meta_tags',
-				'class'				=> 'fupi_simple_r3',
 				'is_repeater'		=> true,
 				'option_arr_id'		=> $option_arr_id,
-				'under field'		=> '<p>' . esc_html__('One tag per line. For security reasons, meta tags can only have parameters: "name", "content", "property", "charset" and "http-equiv".', 'full-picture-analytics-cookie-notice' ) . '</p>',
+				'under_field'		=> '<p>' . esc_html__('One tag per line. For security reasons, meta tags can only have parameters: "name", "content", "property", "charset" and "http-equiv".', 'full-picture-analytics-cookie-notice' ) . '</p>',
 				'fields'			=> array(
 					array(
 						'type'				=> 'text',
@@ -244,15 +230,13 @@ $sections = array(
 
 	array(
 		'section_id' => 'fupi_main_perf',
-		'section_title' => esc_html__( 'Performance', 'full-picture-analytics-cookie-notice' ),
+		'section_title' => esc_html__( 'Compatibility', 'full-picture-analytics-cookie-notice' ),
 		'fields' => array(
 			array(
 				'type' 				=> 'toggle',
 				'label' 			=> esc_html__( 'Enable WP Rocket compatibility settings', 'full-picture-analytics-cookie-notice' ),
 				'field_id' 			=> 'wprocket_compat',
 				'option_arr_id'		=> $option_arr_id,
-				'popup2'		 	=> '<p>'. esc_html__('WP Full Picture only loads scripts that are used by the enabled modules. These scripts are loaded in a specific order and place. Unfortunately, some of WP Rocket\'s functions change it, which breaks tracking. Enable this option to prevent it.', 'full-picture-analytics-cookie-notice') . '</p>
-				<p>'. sprintf( esc_html__('If, for any reasons, you experience issues, please let us know and %1$sset up exclusions manually%2$s.', 'full-picture-analytics-cookie-notice'), '<a href="https://wpfullpicture.com/support/documentation/how-to-fix-issues-with-caching/" target="_blank">', '</a>') . '</p>',
 			),
 		),
 	),
@@ -268,13 +252,12 @@ $sections = array(
 
 	array(
 		'section_id' => 'fupi_main_shortcode',
-		'section_title' => esc_html__( '[fp_info] shortcode', 'full-picture-analytics-cookie-notice' ),
+		'section_title' => esc_html__( '[fp_info] shortcode - deprecated', 'full-picture-analytics-cookie-notice' ),
 		'fields' => array(
 			array(
 				'type'	 			=> 'r3',
 				'label' 			=> esc_html__('Add more tracking tools to the list', 'full-picture-analytics-cookie-notice'),
 				'field_id' 			=> 'extra_tools',
-				'class'				=> 'fupi_simple_r3',
 				'option_arr_id'		=> $option_arr_id,
 				'is_repeater'		=> true,
 				'fields'			=> array(

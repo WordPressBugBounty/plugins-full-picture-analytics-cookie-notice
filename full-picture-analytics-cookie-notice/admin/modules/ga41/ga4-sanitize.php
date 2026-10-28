@@ -28,49 +28,45 @@ if ( ! empty ( $input ) ) foreach( $input as $key => $value ) {
 			case 'track_email_tel':
 				$clean_val = sanitize_key( $value );
 				break;
-			case 'track_affiliate':
+			case 'track_clicks':
+			case 'track_aff':
+			case 'track_form_submits':
+			case 'track_impress':
 
 				$clean_val = [];
 
 				if ( is_array( $value ) ){
 
-					foreach( $value as $i => $section ){
-						
-						if ( empty( $section['sel'] ) ) continue;
-						
-						$clean_val[$i]['sel'] = trim( sanitize_text_field( $section['sel'] ) );
-						
-						if ( $input['track_views_method'] == 'evt' ){
-							
-							if ( empty( $section['val'] ) ) continue;
-							
-							$clean_val[$i]['val'] = sanitize_key( $section['val'] );
+					$j = 0;
 
-						} else {
-							if ( ! empty( $section['val'] ) ) $clean_val[$i]['val'] = trim( sanitize_text_field( $section['val'] ) );
-						}
+					foreach( $value as $section ){
+
+						if ( empty( $section['atrig_id'] ) || empty( $section['val'] ) ) continue;
+
+						$clean_val[$j]['atrig_id'] = esc_attr( $section['atrig_id'] );
+						$clean_val[$j]['val'] = trim( sanitize_text_field( $section['val'] ) );
+						$clean_val[$j]['type'] = empty( $section['type'] ) ? 'event' : sanitize_key( $section['type'] );
+						$j++;
 					}
 				};
 				break;
-			
+
 			case 'custom_events':
+			case 'vscores':
 				$clean_val = [];
 
 				if ( is_array( $value ) ){
 
-					$i = 0;
 					$j = 0;
-					$max = count( $value );
 
-					for ( ; $i < $max; $i++) {
-
-						$section = $value[$i];
+					foreach ( $value as $section ) {
 
 						if ( empty( $section['atrig_id'] ) || empty( $section['evt_name'] ) ) continue;
 
 						$clean_val[$j]['atrig_id'] = sanitize_key( $section['atrig_id'] );
 						$clean_val[$j]['evt_name'] = sanitize_text_field( $section['evt_name'] );
-						$clean_val[$j]['repeat'] = empty( $section['repeat'] ) ? 'no' :  sanitize_key( $section['repeat'] );
+
+						if ( $clean_key == 'custom_events' ) $clean_val[$j]['repeat'] = empty( $section['repeat'] ) ? 'no' : sanitize_key( $section['repeat'] );
 
 						// Parameters
 
@@ -82,7 +78,7 @@ if ( ! empty ( $input ) ) foreach( $input as $key => $value ) {
 							
 							foreach ( $section['params'] as $param ) {
 								// Check if both name and value exist
-								if ( ! empty( $param['name'] ) && isset( $param['val'] ) && isset( $param['type'] ) ) {
+								if ( ! empty( $param['name'] ) && ! empty( $param['val'] ) && ! empty( $param['type'] ) ) {
 									$clean_params[$k]['name'] = sanitize_key( $param['name'] );
 									$clean_params[$k]['type'] = sanitize_key( $param['type'] );
 									
@@ -116,82 +112,21 @@ if ( ! empty ( $input ) ) foreach( $input as $key => $value ) {
 				};
 				break;
 
-			case 'track_elems':
-
-				$clean_val = [];
-
-				if ( is_array( $value ) ){
-
-					foreach( $value as $i => $section ){
-						if ( empty( $section['sel'] ) || empty( $section['val'] ) ) continue;
-						$clean_val[$i]['sel'] = trim( sanitize_text_field( $section['sel'] ) );
-						if ( $input['track_elems_method'] == 'evt' ){
-							$clean_val[$i]['val'] = sanitize_key( $section['val'] );
-						} else {
-							$clean_val[$i]['val'] = trim( sanitize_text_field( $section['val'] ) );
-						}
-					}
-				};
-				break;
-
-			case 'track_forms':
-
-				$clean_val = [];
-
-				if ( is_array( $value ) ){
-
-					foreach( $value as $i => $section ){
-						if ( empty( $section['sel'] ) || empty( $section['val'] ) ) continue;
-						$clean_val[$i]['sel'] = trim( sanitize_text_field( $section['sel'] ) );
-						if ( $input['track_forms_method'] == 'evt' ){
-							$clean_val[$i]['val'] = sanitize_key( $section['val'] );
-						} else {
-							$clean_val[$i]['val'] = trim( sanitize_text_field( $section['val'] ) );
-						}
-					}
-				};
-				break;
-				
-			case 'track_views':
-				
-				$clean_val = [];
-
-				if ( is_array( $value ) ){
-
-					foreach( $value as $i => $section ){
-						
-						if ( empty( $section['sel'] ) || empty( $section['val'] ) ) continue;
-
-						$clean_val[$i]['sel'] = trim( sanitize_text_field( $section['sel'] ) );
-
-						if ( $input['track_views_method'] == 'evt' ){
-							$clean_val[$i]['val'] = sanitize_key( $section['val'] );
-						} else {
-							$clean_val[$i]['val'] = trim( sanitize_text_field( $section['val'] ) );
-						}
-					}
-				};
-				break;
-
-			case 'track_scroll':
-				$clean_val = trim( sanitize_text_field( $value ) );
-				break;
-
 			case 'track_cf':
 
 				$clean_val = [];
 
 				if ( is_array($value) ){
 
-					$i = 0;
 					$j = 0;
-					$max = count( $value );
 
-					for ( ; $i < $max; $i++) { 
-						$section = $value[$i];
+					foreach( $value as $section ){
+
 						if ( empty( $section['id'] ) || empty( $section['dimname'] ) ) continue;
+
 						$clean_val[$j]['id'] = trim( sanitize_text_field( $section['id'] ) );
 						$clean_val[$j]['dimname'] = sanitize_key( $section['dimname'] );
+
 						$j++;
 					}
 				};
@@ -218,25 +153,11 @@ if ( ! empty ( $input ) ) foreach( $input as $key => $value ) {
 					}
 				};
 				break;
-
-			case 'limit_country':
-
-				$clean_val = [];
-
-				if ( is_array( $value ) && ! empty( $value['method'] ) && ! empty( $value['countries'] ) ) {
-					$clean_val['method'] = sanitize_key( $value['method'] );
-					$clean_val['countries'] = trim( sanitize_text_field( $value['countries'] ) );
-				};
-
-				break;
-
 			case 'mp_secret_key':
 			case 'id':
 			case 'id2':
-				
 				$clean_val = trim( sanitize_text_field( $value ) );
 				break;
-				
 			default:
 				$clean_val = is_bool ( $value ) || is_string ( $value ) ? strip_tags( stripslashes( $value ) ) : false;
 			break;

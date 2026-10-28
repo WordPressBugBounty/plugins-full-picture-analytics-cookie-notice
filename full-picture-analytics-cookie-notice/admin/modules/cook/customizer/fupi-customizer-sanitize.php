@@ -39,10 +39,43 @@ switch ( $field_type ) {
 
 // Sanitize specific fields
 switch ( $setting_id ) {
+	case 'fupi_ifrblock_border_width':
+		$min = 0;
+		$max = 20;
+	break;
+	case 'fupi_ifrblock_border_radius':
+	case 'fupi_ifrblock_btn_border_radius':
+		$min = 0;
+		$max = 100;
+	break;
+	case 'fupi_ifrblock_ratio_x':
+	case 'fupi_ifrblock_ratio_y':
+		$min = 1;
+		$max = 100;
+	break;
+	case 'fupi_ifrblock_notice_font_size':
+	case 'fupi_ifrblock_btn_font_size':
+		$min = 10;
+		$max = 40;
+	break;
+	case 'fupi_ifrblock_btn_size':
+		return in_array( $val, array( 'small', 'medium', 'large' ), true ) ? $val : null;
+	break;
+	case 'fupi_ifrblock_image':
+		$attachment_id = absint( $val );
+		return empty( $attachment_id ) || wp_attachment_is_image( $attachment_id ) ? $attachment_id : null;
+	break;
 
 	// Media file ID for use an an icon in the consent banner toggler
 	case 'fupi_custom_toggler_img':
 		if ( ! is_numeric( $val ) ) return false;
 		return $val; 
 	break;
+}
+
+if ( isset( $min, $max ) ) {
+	if ( ! is_numeric( $val ) ) return null;
+
+	$val = (int) $val;
+	return min( $max, max( $min, $val ) );
 }

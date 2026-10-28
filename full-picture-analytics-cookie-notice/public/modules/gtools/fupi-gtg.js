@@ -22,10 +22,8 @@ function fupi_load_gads(){
 			window.gtag( 'config', fp.gads.id );
 		}
 	}
-
 	
-
-	FP.loaded('gads_config', 'gads');
+	fp.loaded.push( 'gads' );
 };
 
 function fupi_load_ga4( nr ) {
@@ -43,7 +41,24 @@ function fupi_load_ga4( nr ) {
 
 	// enable GA's debug mode
 	// @ https://support.google.com/analytics/answer/7201382?hl=en
-	if ( fpdata?.cookies?.ga4_debug ) params.debug_mode = true;
+
+	let ga4_debug_url = FP.getUrlParamByName('ga4_debug');
+	
+	if ( ga4_debug_url ) {
+		if ( ga4_debug_url == 'on' ) {
+			FP.setCookie( 'fp_ga4_debug', '1', 0, 360 );
+			fp.main.ga4_debug = true;
+		} else {
+			FP.deleteCookie( 'fp_ga4_debug' );
+		}
+	} else {
+		fp.main.ga4_debug = FP.readCookie('fp_ga4_debug') === '1';
+	}
+
+	if ( fp.main.ga4_debug ) {
+		params.debug_mode = true;
+		window.gtag( 'set', { 'debug_mode': true } );
+	}
 
 	
 
@@ -122,7 +137,7 @@ function fupi_load_ga4( nr ) {
 
 	
 
-	FP.loaded('ga4' + nr + '_config', 'ga4' + nr );
+	fp.loaded.push( 'ga4' + nr );
 }
 
 function fupi_enable_gtag() {
@@ -151,24 +166,19 @@ function fupi_enable_gtag() {
 
 	fp.vars.gtag_enh_conv = false;
 
+	// SET GTAG url_passthrough
+    if ( fp?.gtag?.url_passthrough ) window.gtag('set', 'url_passthrough', true);
+
 	
 
-	FP.loaded('gtag_config', 'gtg');
-};
+	if ( fp.ga41?.id ) {
+		fupi_load_ga4(1);
+		
+	}
 
-function fupi_load_ga41(){
-	fupi_load_ga4( 1 );
-};
+	if ( fp.gads?.id ) fupi_load_gads();
 
-function fupi_load_ga42(){
-	fupi_load_ga4( 2 );
-};
-
-FP.load('gtag_config', 'fupi_enable_gtag', ['head_helpers', 'gtag_file']);
-
-if ( fp.ga41?.id ) {
-	FP.load('ga41_config', 'fupi_load_ga41', ['gtag_config']);
-	
+	FP.loaded('gtg-config', 'gtg');
 }
 
-if ( fp.gads?.id ) FP.load('gads_config', 'fupi_load_gads', ['gtag_config']);
+FP.load('gtg-config', 'fupi_enable_gtag');

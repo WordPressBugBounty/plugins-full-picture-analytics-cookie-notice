@@ -60,7 +60,7 @@ class Fupi_CSCR_public {
             // GET title
             $cscr_title = esc_attr( $script_data['title'] );
             // OUTPUT
-            $output .= "<!--noptimize-->\r\n            <script type='text/plain' data-fupi_type='inline' data-module='cscr' data-fupi_id='fp_{$script_data['id']}' data-fupi_class='fupi_blocked_script fupi_no_defer' data-fupi_force='{$force_load}' data-fupi_permiss='{$permissions_s}' data-fupi_geo='{$geo}' data-no-optimize=\"1\" data-noptimize nowprocket>\r\n                " . html_entity_decode( $script_data['scr'], ENT_QUOTES ) . "\r\n            </script>\r\n            <!--/noptimize-->";
+            $output .= "<!--noptimize-->\n            <script type='text/plain' data-fupi_type='inline' data-module='cscr' data-fupi_id='fp_{$script_data['id']}' data-fupi_class='fupi_blocked_script fupi_no_defer' data-fupi_force='{$force_load}' data-fupi_permiss='{$permissions_s}' data-fupi_geo='{$geo}' data-no-optimize=\"1\" data-noptimize nowprocket>\n                " . html_entity_decode( $script_data['scr'], ENT_QUOTES ) . "\n            </script>\n            <!--/noptimize-->";
         }
         return $output;
     }

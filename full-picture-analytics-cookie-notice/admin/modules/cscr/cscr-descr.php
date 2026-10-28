@@ -1,8 +1,8 @@
 <?php
 
 $ret_text = '';
-$common_info = '<button type="button" class="fupi_faux_link fupi_open_popup" data-popup="fupi_custom_data_popup">' . esc_html__( 'How to use variables in the code', 'full-picture-analytics-cookie-notice') . ' <span class="fupi_open_popup_i">i</span></button>
-<button type="button" class="fupi_faux_link fupi_open_popup" data-popup="fupi_testing_popup">' . esc_html__( 'How to test the code', 'full-picture-analytics-cookie-notice') . ' <span class="fupi_open_popup_i">i</span></button>
+$common_info = '<button type="button" class="fupi_faux_link fupi_open_offscreen" data-offscreen="fupi_custom_data_offscreen">' . esc_html__( 'How to use variables in the code', 'full-picture-analytics-cookie-notice') . ' <span class="fupi_open_offscreen_i">?</span></button>
+<button type="button" class="fupi_faux_link fupi_open_offscreen" data-offscreen="fupi_testing_offscreen">' . esc_html__( 'How to test the code', 'full-picture-analytics-cookie-notice') . ' <span class="fupi_open_offscreen_i">?</span></button>
 
 <p class="fupi_warning_text">' . esc_html__( 'Attention. Make sure your caching tool/plugin does not save inline JavaScript in a file. Otherwise, this function may not work correctly.', 'full-picture-analytics-cookie-notice' ) . '</p>
 

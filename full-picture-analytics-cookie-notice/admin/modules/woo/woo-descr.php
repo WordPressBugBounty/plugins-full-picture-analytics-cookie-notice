@@ -13,8 +13,7 @@ switch( $section_id ){
 
 	case 'fupi_woo_adv':
 		$ret_text = '<div>
-			<p>' . esc_html__( 'Status-Based Order Tracking is an alternative method of tracking purchases that does not require clients to see the order confirmation page. In Google Analytics it also tracks refunds and cancellations.', 'full-picture-analytics-cookie-notice' ) . '</p>
-			<p>' . sprintf( esc_html__('At the moment it is only supported in Google Analytics and Meta Pixel. You can learn how it works %1$son this page%2$s.', 'full-picture-analytics-cookie-notice' ), '<a target="_blank" href="https://wpfullpicture.com/support/documentation/what-you-need-to-know-about-status-based-order-tracking/">', '</a>' ) . '</p>
+			<p>' . esc_html__( 'Status-Based Order Tracking lets you track orders when their statuses change instead of when visitors view the order confirmation page.', 'full-picture-analytics-cookie-notice' ) . ' ' . sprintf( esc_html__('At the moment it is only supported in Google Analytics and Meta Pixel. You can learn how it works %1$son this page%2$s.', 'full-picture-analytics-cookie-notice' ), '<a target="_blank" href="https://wpfullpicture.com/support/documentation/what-you-need-to-know-about-status-based-order-tracking/">', '</a>' ) . '</p>
 		</div>';
 	break;
 

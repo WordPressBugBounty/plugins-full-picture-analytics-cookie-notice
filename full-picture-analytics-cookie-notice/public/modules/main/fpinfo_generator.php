@@ -22,6 +22,7 @@ class Fupi_fpinfo_generator {
         $this->get_extra_tools_data();
         
         if ( ! empty( $this->tools['cook'] ) ) {
+            $this->get_proofrec_data();
             $this->get_blockscr_data();
             $this->get_iframe_data();
         }
@@ -57,9 +58,6 @@ class Fupi_fpinfo_generator {
                 case 'gtm':
                     $this->get_module_data( $module_info );
                 break;
-                case 'proofrec':
-                    $this->get_proofrec_data( $module_info );
-                break;
                 default:
                     if ( $module_info['type'] == 'integr' && isset( $module_info['pp'] ) ) $this->get_module_data( $module_info );
                 break;
@@ -79,9 +77,7 @@ class Fupi_fpinfo_generator {
 
     private function get_proofrec_data(){
 
-        $proofrec = get_option('fupi_proofrec');
-
-        if ( ! empty( $proofrec['cdb_key'] ) && $this->pp_ok() ) {
+        if ( ! empty( $this->cook['storage_location'] ) && $this->cook['storage_location'] == 'cdb' && ! empty( $this->cook['cdb_key'] ) && $this->pp_ok() ) {
             $this->data[ 'ConsentsDB' ] = false;
         }
 

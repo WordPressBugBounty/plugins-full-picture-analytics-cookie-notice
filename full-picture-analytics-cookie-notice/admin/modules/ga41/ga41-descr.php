@@ -1,7 +1,6 @@
 <?php
 
 $ret_text = '';
-$how_to_useit = '<p style="text-align: center;" class="fupi_warning_text"><button type="button" class="fupi_faux_link fupi_open_popup" data-popup="fupi_howtouseit_popup">' . esc_html__( 'How NOT to use Google Analytics with WP Full Picture.', 'full-picture-analytics-cookie-notice' ) . ' <span class="fupi_open_popup_i">i</span></button></p>';
 
 switch( $section_id ){
 
@@ -9,15 +8,13 @@ switch( $section_id ){
 
 	case 'fupi_ga41_install':
 
-		$ga4_id = ! empty ( $this->settings ) && ! empty ( $this->settings['id'] ) ? esc_attr( $this->settings['id'] ) : '';
-
 		$ret_text = '
 		<div id="fupi_not_installed_info" class="fupi_installation_status fupi_hidden">
-			<img src="' . FUPI_URL . 'admin/assets/img/almost_ico.png" aria-hidden="true"> <p>' . sprintf( esc_html__( '%1$s is not installed', 'full-picture-analytics-cookie-notice' ), 'Google Analytics' ) . '<br><span class="fupi_small">' . esc_html__( 'To install it, please fill in the required field below', 'full-picture-analytics-cookie-notice' ) . '</span>.</p>
+			<img src="' . FUPI_URL . 'admin/assets/img/almost_ico.png" aria-hidden="true"> <p>' . sprintf( esc_html__( '%1$s is not installed', 'full-picture-analytics-cookie-notice' ), 'Google Analytics' ) . '<br><span class="fupi_small">' . esc_html__( 'Please fill in the required fields below', 'full-picture-analytics-cookie-notice' ) . '</span>.</p>
 		</div>
 		<div id="fupi_installed_info" class="fupi_installation_status fupi_hidden">
-			<img src="' . FUPI_URL . 'admin/assets/img/success_ico.png" aria-hidden="true"> <p>' . esc_html__( 'Well done! GA 4 is installed', 'full-picture-analytics-cookie-notice' ) . '<br><span class="fupi_small">' . esc_html__( 'The data is sent to an account with GTAG ID ', 'full-picture-analytics-cookie-notice' ) . $ga4_id . '</span>.</p>
-		</div>' . $how_to_useit;
+			<img src="' . FUPI_URL . 'admin/assets/img/success_ico.png" aria-hidden="true"> <p>' . esc_html__( 'GA 4 is installed', 'full-picture-analytics-cookie-notice' ) . '</p>
+		</div>';
 	break;
 
 	// DATA COLLECTION
@@ -29,19 +26,27 @@ switch( $section_id ){
 	// EVENTS
 
 	case 'fupi_ga41_events':
-		$ret_text = '<p>' . esc_html__('Use simple events to track clicks, form submissions and others events.', 'full-picture-analytics-cookie-notice' ) . ' ' . esc_html__( 'You can send them to GA as either separate events (every action gets a unique event - easy) or single events with parameters that identify actions (advanced).', 'full-picture-analytics-cookie-notice') . '</p>';
+		$ret_text = '<p>' . esc_html__('Track clicks, form submissions and others events.', 'full-picture-analytics-cookie-notice' ) . ' ' . esc_html__( 'You can send them to GA as either separate events (every action gets a unique event - easy) or single events with parameters that identify actions (advanced).', 'full-picture-analytics-cookie-notice') . '</p>';
 	break;
 
 	// CUSTOM EVENTS
 	
 	case 'fupi_ga41_custom_events':
-		$ret_text = '<p>' . sprintf( esc_html__( 'Here you can set up custom events. Trigger them with %1$scustom triggers%2$s and add %3$soptional parameters%2$s.' , 'full-picture-analytics-cookie-notice' ), '<a href="https://wpfullpicture.com/support/documentation/how-to-set-up-advanced-triggers/" target="_blank">', '</a>', '<a href="https://wpfullpicture.com/support/documentation/how-to-set-up-custom-parameters/" target="_blank">' ) . ' ' . sprintf( esc_html__( 'Attention. You need to %1$sregister parameters in GA dashboard%2$s to view them in reports.', 'full-picture-analytics-cookie-notice'), '<a href="https://wpfullpicture.com/support/documentation/how-to-set-up-custom-definitions-in-google-analytics-4/" target="_blank">', '</a>' ) . '</p>';
+		$ret_text = '<p>' . esc_html__( 'Track specific user actions.', 'full-picture-analytics-cookie-notice' ) . ' ' . sprintf( esc_html__( 'Remember to %1$sregister parameters in GA dashboard%2$s to view them in reports.', 'full-picture-analytics-cookie-notice'), '<a href="https://wpfullpicture.com/support/documentation/how-to-set-up-custom-definitions-in-google-analytics-4/" target="_blank">', '</a>' ) . '</p>';
+	break;
+
+	// ENGAGEMENT
+
+	case 'fupi_ga41_vscores':
+		$ret_text = '<p>' . esc_html__( 'Use these functions to track how engaged visitors are. Go to the settings of the Engagement Tracking module to set how many points visitors should get for taking specific actions.' , 'full-picture-analytics-cookie-notice' ) . '</p>';
 	break;
 
 	// PARAMS
 	
 	case 'fupi_ga41_wpdata':
-		$ret_text = '<p>' . esc_html__( 'These parameters will be sent with all events, including the initial pageview event and custom events.', 'full-picture-analytics-cookie-notice') . ' ' . sprintf( esc_html__( 'In order to see them in reports, you need to %1$sregistered them in GA%2$s.', 'full-picture-analytics-cookie-notice'), '<a href="https://wpfullpicture.com/support/documentation/how-to-set-up-custom-definitions-in-google-analytics-4/">', '</a>' ) . '</p>';
+		$ret_text = '<p>' . esc_html__( 'Parameters add context to events.', 'full-picture-analytics-cookie-notice') . '</p>
+			<p class="fupi_warning_text">' . sprintf( esc_html__( 'In order to see parameters in reports, you need to %1$sregistered them in GA%2$s.', 'full-picture-analytics-cookie-notice'), '<a href="https://wpfullpicture.com/support/documentation/how-to-set-up-custom-definitions-in-google-analytics-4/">', '</a>' ) . '</a></p>
+			<p class="fupi_warning_text">' . esc_html__( 'Parameter names must contain only lowercase letters, digits and underscores and cannot start with a digit.', 'full-picture-analytics-cookie-notice' ) . '</p>';
 	break;
 
 	// E-COMMERCE

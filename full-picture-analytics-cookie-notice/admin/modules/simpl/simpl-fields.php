@@ -18,7 +18,7 @@ $sections = array(
 				'el_data_target'	=> 'fupi_serverside_cond',
 				'option_arr_id'		=> $option_arr_id,
 				'label_for' 		=> $option_arr_id . '[server_side]',
-				'popup3'			=> '<p style="color: red">' . esc_html__( 'Server-side tracking has been deprecated by Simple Analytics. Use this feature at your own risk. It may be removed at any moment.', 'full-picture-analytics-cookie-notice' ) . '</p>
+				'offscreen_important'			=> '<p style="color: red">' . esc_html__( 'Server-side tracking has been deprecated by Simple Analytics. Use this feature at your own risk. It may be removed at any moment.', 'full-picture-analytics-cookie-notice' ) . '</p>
 				<p><p>' . sprintf( esc_html__( 'When this option is enabled, data about your visitors will be sent to Simple Analytics via server, and not their browser. This will bypass ad-blockers and increase accuracy of your data. However most of the options below will become unavailable. %1$sLearn more%2$s', 'full-picture-analytics-cookie-notice' ), '<a href="https://docs.simpleanalytics.com/script#developers">', '</a>' ) . '</p>',
 			),
 			array(
@@ -30,7 +30,7 @@ $sections = array(
 				'option_arr_id'		=> $option_arr_id,
 				'label_for' 		=> $option_arr_id . '[src]',
 				'placeholder'		=> 'https://simple.example.com/',
-				'popup'				=> '<p>' . esc_html__( 'Here you can paste the custom URL that you configured to bypass ad-blockers. If you are not sure what it means, go to your Simple Analytics dashboard > "Settings" > "Bypass Ad-blockers" section and see if any custom domain was entered there.', 'full-picture-analytics-cookie-notice' ) . '</p>
+				'offscreen'				=> '<p>' . esc_html__( 'Here you can paste the custom URL that you configured to bypass ad-blockers. If you are not sure what it means, go to your Simple Analytics dashboard > "Settings" > "Bypass Ad-blockers" section and see if any custom domain was entered there.', 'full-picture-analytics-cookie-notice' ) . '</p>
 				<p>' . sprintf( esc_html__( 'Enter https:// at the beginning of your address and put "/" at the end, for example %1$shttps://simple.example.com/%2$s', 'full-picture-analytics-cookie-notice' ), '<b>', '</b>' ) . '</p>',
 			),
 			array(
@@ -42,7 +42,7 @@ $sections = array(
 				'option_arr_id'		=> $option_arr_id,
 				'label_for' 		=> $option_arr_id . '[join_traffic]',
 				'placeholder'		=> 'example.com',
-				'popup'				=> '<p>' . esc_html__( 'Enable this option if you have Simple Analytics installed on multiple domains and your visitors freely move between them. A common situation is when you have multiple language versions of the same site in different subdomains e.g. examples.com, de.example.com, fr.example.com.', 'full-picture-analytics-cookie-notice' ) . '</p>
+				'offscreen'				=> '<p>' . esc_html__( 'Enable this option if you have Simple Analytics installed on multiple domains and your visitors freely move between them. A common situation is when you have multiple language versions of the same site in different subdomains e.g. examples.com, de.example.com, fr.example.com.', 'full-picture-analytics-cookie-notice' ) . '</p>
 				<p>' . sprintf( esc_html__( 'Enter the domain name in the field above (without the "https://" part) that you want all traffic from the other domains to be joined in. %1$sLearn more%2$s', 'full-picture-analytics-cookie-notice' ), '<a href="https://docs.simpleanalytics.com/overwrite-domain-name">', '</a>' ) . '. ' . esc_html__('Remember, that Simple Analytics needs to be installed on all of those websites and the domain that you enter above needs to be registered in the Simple Analytics dashboard.','full-picture-analytics-cookie-notice') . '</p>',
 			),
 			array(
@@ -52,7 +52,7 @@ $sections = array(
 				'field_id' 			=> 'localhost',
 				'option_arr_id'		=> $option_arr_id,
 				'label_for' 		=> $option_arr_id . '[localhost]',
-				'popup'				=> '<p>' . sprintf( esc_html__( 'Enable this, if you are running Simple Analytics on a localhost dev environment. %1$sRead more%2$s', 'full-picture-analytics-cookie-notice' ), '<a href="https://docs.simpleanalytics.com/script#developers">', '</a>' ) . '</p>',
+				'offscreen'				=> '<p>' . sprintf( esc_html__( 'Enable this, if you are running Simple Analytics on a localhost dev environment. %1$sRead more%2$s', 'full-picture-analytics-cookie-notice' ), '<a href="https://docs.simpleanalytics.com/script#developers">', '</a>' ) . '</p>',
 			),
 			array(
 				'type'	 			=> 'toggle',
@@ -61,16 +61,18 @@ $sections = array(
 				'field_id' 			=> 'hashes',
 				'option_arr_id'		=> $option_arr_id,
 				'label_for' 		=> $option_arr_id . '[hashes]',
-				'popup'				=> '<p>' . sprintf( esc_html__( 'Enable this, if you are running Simple Analytics on a single-page website and clicks in navigation scroll page to different sections on the page. %1$sRead more%2$s', 'full-picture-analytics-cookie-notice' ), '<a href="https://docs.simpleanalytics.com/hash-mode">', '</a>' ) . '</p>',
+				'offscreen'				=> '<p>' . sprintf( esc_html__( 'Enable this, if you are running Simple Analytics on a single-page website and clicks in navigation scroll page to different sections on the page. %1$sRead more%2$s', 'full-picture-analytics-cookie-notice' ), '<a href="https://docs.simpleanalytics.com/hash-mode">', '</a>' ) . '</p>',
 			),
 			array(
 				'type'	 			=> 'toggle',
 				'label' 			=> esc_html__( 'Force load', 'full-picture-analytics-cookie-notice' ),
 				'field_id' 			=> 'force_load',
+				'class'				=> 'fupi_deprecated',
 				'el_class'			=> 'fupi_condition fupi_condition_reverse',
 				'el_data_target'	=> 'fupi_load_opts',
 				'option_arr_id'		=> $option_arr_id,
-				'popup2'			=> sprintf( esc_html__( 'When this setting is enabled, Simple Analytics will load for all visitors - even for bots, logged in administrators and excluded users and locations (with the geolocation module). %1$sLearn more%2$s.', 'full-picture-analytics-cookie-notice' ), '<a target="_blank" href="https://wpfullpicture.com/support/documentation/validation-mode/">', '</a>' ),
+				'after_field'		=> esc_html__( 'Replaced with the test mode in the Setup Helper', 'full-picture-analytics-cookie-notice' ),
+				'offscreen_warning'			=> sprintf( esc_html__( 'When this setting is enabled, Simple Analytics will load for all visitors - even for bots, logged in administrators and excluded users and locations (with the geolocation module). %1$sLearn more%2$s.', 'full-picture-analytics-cookie-notice' ), '<a target="_blank" href="https://wpfullpicture.com/support/documentation/validation-mode/">', '</a>' ),
 			),
 			array(
 				'type'	 			=> 'r3',
@@ -78,7 +80,8 @@ $sections = array(
 				'field_id' 			=> 'limit_country',
 				'option_arr_id'		=> $option_arr_id,
 				'must_have'			=> 'pro geo',
-				'class'				=> 'fupi_load_opts fupi_adv',
+				'related_opts'		=> ['main', 'geo, ipdata_api_key, cf_worker_url, remember_geo'],
+				'class'				=> 'fupi_load_opts',
 				'is repeater'		=> false,
 				'fields'			=> array(
 					array(
@@ -96,7 +99,7 @@ $sections = array(
 						'placeholder'		=> esc_html__('e.g. GB, DE, FR, AU, etc.', 'full-picture-analytics-cookie-notice'),
 					),
 				),
-				'popup'				=> sprintf( esc_html__('Enter a list of 2-character %1$scountry codes%2$s separated by commas.', 'full-picture-analytics-cookie-notice' ), '<a target="_blank" href="https://www.iban.com/country-codes">', '</a>' ) . '. ' . esc_html__('If visitor\'s country is not recognized, Simple Analytics will load as usual.', 'full-picture-analytics-cookie-notice' ),
+				'offscreen'				=> sprintf( esc_html__('Enter a list of 2-character %1$scountry codes%2$s separated by commas.', 'full-picture-analytics-cookie-notice' ), '<a target="_blank" href="https://www.iban.com/country-codes">', '</a>' ) . '. ' . esc_html__('If visitor\'s country is not recognized, Simple Analytics will load as usual.', 'full-picture-analytics-cookie-notice' ),
 			)
 		),
 	),

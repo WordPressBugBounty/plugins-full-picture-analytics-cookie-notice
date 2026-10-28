@@ -9,32 +9,22 @@ if ( ! empty ( $input ) ) foreach( $input as $key => $value ) {
 	if( ! empty( $value ) ) {
 
 		switch ($clean_key) {
-			case 'track_affiliate_2':
+			case 'track_clicks':
+			case 'track_aff':
+			case 'track_form_submits':
+			case 'track_impress':
 
 				$clean_val = [];
 
 				if ( is_array( $value ) ){
 
-					foreach( $value as $i => $section ){
-						if ( empty( $section['sel'] ) ) continue;
-						$clean_val[$i]['sel'] = trim( sanitize_text_field( $section['sel'] ) );
-						if ( ! empty( $section['val'] ) ) $clean_val[$i]['val'] = trim( sanitize_text_field( $section['val'] ) );
-					}
-				};
-				break;
+					$j = 0;
 
-			case 'track_elems_2':
-			case 'track_forms_2':
-			case 'track_views':
-				
-				$clean_val = [];
-
-				if ( is_array( $value ) ){
-
-					foreach( $value as $i => $section ){
-						if ( empty( $section['sel'] ) || empty( $section['val'] ) ) continue;
-						$clean_val[$i]['sel'] = trim( sanitize_text_field( $section['sel'] ) );
-						$clean_val[$i]['val'] = trim( sanitize_text_field( $section['val'] ) );
+					foreach( $value as $section ){
+						if ( empty( $section['atrig_id'] ) || empty( $section['val'] ) ) continue;
+						$clean_val[$j]['atrig_id'] = esc_attr( $section['atrig_id'] );
+						$clean_val[$j]['val'] = trim( sanitize_text_field( $section['val'] ) );
+						$j++;
 					}
 				};
 				break;
@@ -46,6 +36,9 @@ if ( ! empty ( $input ) ) foreach( $input as $key => $value ) {
 			case 'track_affiliate_goalname':
 			case 'track_elems_goalname':
 			case 'track_forms_goalname':
+			case 'track_visib_goalname':
+			case 'custom_track_goalname':
+			case 'track_vscores_goalname':
 			case 'track_contact_links':
 			case 'track_cookie_decline_2':
 			case 'track_woo_purchases':
@@ -54,6 +47,7 @@ if ( ! empty ( $input ) ) foreach( $input as $key => $value ) {
 			case 'track_woo_checkout_items':
 			case 'track_woo_addtocart':
 			case 'track_woo_addtowishlist':
+			case 'track_downl':
 				$clean_val = trim( sanitize_text_field( $value ) );
 				break;
 			case 'track_cf':
@@ -73,9 +67,6 @@ if ( ! empty ( $input ) ) foreach( $input as $key => $value ) {
 			case 'shared_link_url':
 				$clean_val = esc_url_raw( $value );
 				break;
-			case 'stats_page_cap':
-				$clean_val = sanitize_key( $value );
-				break;
 			case 'limit_country':
 
 				$clean_val = [];
@@ -87,20 +78,23 @@ if ( ! empty ( $input ) ) foreach( $input as $key => $value ) {
 
 				break;
 			case 'custom_events':
+			case 'vscores':
 				$clean_val = [];
 
 				if ( is_array( $value ) ){
 
-					$i = 0;
 					$j = 0;
-					$max = count( $value );
 
-					for ( ; $i < $max; $i++) {
-						$section = $value[$i];
+					foreach( $value as $section ){
 						if ( empty( $section['atrig_id'] ) || empty( $section['evt_name'] ) ) continue;
 						$clean_val[$j]['atrig_id'] = sanitize_key( $section['atrig_id'] );
 						$clean_val[$j]['evt_name'] = sanitize_text_field( $section['evt_name'] );
-						$clean_val[$j]['repeat'] = empty( $section['repeat'] ) ? 'no' :  sanitize_key( $section['repeat'] );
+
+						if ( $clean_key == 'custom_events' ) {
+							$repeat = empty( $section['repeat'] ) ? 'no' : sanitize_key( $section['repeat'] );
+							$clean_val[$j]['repeat'] = in_array( $repeat, [ 'no', 'yes' ], true ) ? $repeat : 'no';
+						}
+
 						$j++;
 					}
 				};

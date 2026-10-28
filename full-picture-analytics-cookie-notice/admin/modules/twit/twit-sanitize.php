@@ -10,19 +10,22 @@ if ( ! empty( $input ) ) foreach( $input as $key => $value ) {
 
 		switch ($clean_key) {
 			
-			case 'track_affiliate':
-			case 'track_elems':
-			case 'track_forms':
-			case 'track_views':
+			case 'track_clicks':
+			case 'track_aff':
+			case 'track_form_submits':
+			case 'track_impress':
 				
 				$clean_val = [];
 
 				if ( is_array( $value ) ){
 
-					foreach( $value as $i => $section ){
-						if ( empty( $section['sel'] ) || empty( $section['val'] ) ) continue;
-						$clean_val[$i]['sel'] = trim( sanitize_text_field( $section['sel'] ) );
-						$clean_val[$i]['val'] = trim( sanitize_text_field( $section['val'] ) );
+					$j = 0;
+
+					foreach( $value as $section ){
+						if ( empty( $section['atrig_id'] ) || empty( $section['val'] ) ) continue;
+						$clean_val[$j]['atrig_id'] = esc_attr( $section['atrig_id'] );
+						$clean_val[$j]['val'] = trim( sanitize_text_field( $section['val'] ) );
+						$j++;
 					}
 				};
 				break;

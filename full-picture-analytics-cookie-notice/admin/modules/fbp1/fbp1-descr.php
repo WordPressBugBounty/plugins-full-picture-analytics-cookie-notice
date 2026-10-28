@@ -8,21 +8,19 @@ switch( $section_id ){
 
 	case 'fupi_fbp1_install':
 
-		$pixel_id = ! empty ( $this->settings ) && ! empty ( $this->settings['pixel_id'] ) ? esc_attr( $this->settings['pixel_id'] ) : '';
-
 		$ret_text = '
 		<div id="fupi_not_installed_info" class="fupi_installation_status fupi_hidden">
 			<img src="' . FUPI_URL . 'admin/assets/img/almost_ico.png" aria-hidden="true"> <p>' . sprintf( esc_html__( '%1$s is not installed', 'full-picture-analytics-cookie-notice' ), 'Meta Pixel' ) . '<br><span class="fupi_small">' . sprintf( esc_html__( 'To install Meta Pixel fill in the required field below and add a domain verification meta tag in the %1$sGeneral Settings%2$s.', 'full-picture-analytics-cookie-notice' ), '<a href="' . admin_url('admin.php?page=full_picture_main') . '" target="_blank">', '</a>' ) . '</span>.</p>
 		</div>
 		<div id="fupi_installed_info" class="fupi_installation_status fupi_hidden">
-			<img src="' . FUPI_URL . 'admin/assets/img/success_ico.png" aria-hidden="true"> <p>' . esc_html__( 'Well done! Meta Pixel is installed', 'full-picture-analytics-cookie-notice' ) . '<br><span class="fupi_small">' . esc_html__( 'The data is sent to a dataset with an ID ', 'full-picture-analytics-cookie-notice' ) . $pixel_id . '</span>.</p>
+			<img src="' . FUPI_URL . 'admin/assets/img/success_ico.png" aria-hidden="true"> <p>' . esc_html__( 'Meta Pixel is installed', 'full-picture-analytics-cookie-notice' ) . '</p>
 		</div>';
 	break;
 
 	// LOADING
 
 	case 'fupi_fbp1_loading':
-		$ret_text = '<p>' . esc_html__( 'Here you can change when and where this tool loads. This is all optional.', 'full-picture-analytics-cookie-notice') . '</p>';
+		$ret_text = '<p>' . esc_html__( 'Change when and where this tool loads. This is all optional.', 'full-picture-analytics-cookie-notice') . '</p>';
 	break;
 
 	// PRIVACY
@@ -33,21 +31,25 @@ switch( $section_id ){
 
 	// SIMPLE EVENTS
 
-	case 'fupi_fbp1_events':
-		$ret_text = '<p>' . esc_html__('Use simple events to track clicks, form submissions and others events.', 'full-picture-analytics-cookie-notice' ) . '</p>';
-	break;
+	// case 'fupi_fbp1_vscor':
+	// 	$ret_text = '<p>' . esc_html__('Track clicks, form submissions and others events.', 'full-picture-analytics-cookie-notice' ) . '</p>';
+	// break;
 
-	// COMPLEX EVENTS
+	// CUSTOM EVENTS
 
 	case 'fupi_fbp1_atrig':
 		$ret_text = '<p>' . sprintf( 
-			esc_html__( 'Here you can set up sending custom events of two types - %4$sstandard Meta events%2$s and %5$sfully custom events%2$s. Trigger them with %1$scustom triggers%2$s and add %3$soptional parameters%2$s.' , 'full-picture-analytics-cookie-notice' ), 
-			'<a href="https://wpfullpicture.com/support/documentation/how-to-set-up-advanced-triggers/" target="_blank">', 
-			'</a>',
-			'<a href="https://wpfullpicture.com/support/documentation/how-to-set-up-custom-parameters/" target="_blank">',
+			esc_html__( 'Send events when visitors take specific actions. For more information read Meta\'s documentation on %1$sstandard events%3$s and %2$scustom events%3$s.' , 'full-picture-analytics-cookie-notice' ), 
 			'<a href="https://developers.facebook.com/docs/meta-pixel/reference" target="_blank">',
-			'<a href="https://www.facebook.com/business/help/964258670337005?id=1205376682832142" target="_blank">' 
+			'<a href="https://www.facebook.com/business/help/964258670337005?id=1205376682832142" target="_blank">',
+			'</a>'
 		) . '</p>';
+	break;
+
+	// ENGAGEMENT
+
+	case 'fupi_fbp1_vscores':
+		$ret_text = '<p>' . esc_html__( 'Use these functions to track how engaged visitors are. Go to the settings of the Engagement Tracking module to set how many points visitors should get for taking specific actions.' , 'full-picture-analytics-cookie-notice' ) . '</p>';
 	break;
 
 	// PARAMETERS TRACKING

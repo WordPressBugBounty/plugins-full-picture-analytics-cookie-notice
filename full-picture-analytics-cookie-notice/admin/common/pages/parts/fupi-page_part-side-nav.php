@@ -73,7 +73,12 @@ class Fupi_Build_Side_Nav {
 
     private function sort_modules_by_type(){
         
-        $sorted_modules = [];
+        $sorted_modules = [
+            'home'   => [],
+            'integr' => [],
+            'priv'   => [],
+            'ext'    => [],
+        ];
         
         foreach( $this->modules_data as $module ){
             $sorted_modules[$module['type']][] = $module;
@@ -96,7 +101,11 @@ class Fupi_Build_Side_Nav {
 
     private function get_icon( $module ) {
         if ( isset( $module['icon'] ) ) {
-            return '<img src="' . FUPI_URL . 'admin/assets/img/' . esc_attr( $module['icon'] ) . '.png" aria-hidden="true">';
+            if ( str_contains( $module['icon'], '/' ) ) { // if we have a URL
+                return '<img src="' . sanitize_url( $module['icon'] ) . '" aria-hidden="true">';
+            } else {
+                return '<img src="' . FUPI_URL . 'admin/assets/img/' . esc_attr( $module['icon'] ) . '.png" aria-hidden="true">';
+            }
         } else if ( isset( $module['dashicon'] ) ) {
             return '<span class="dashicons ' . esc_attr( $module['dashicon'] ) . ' "></span>';
         }
@@ -156,6 +165,7 @@ class Fupi_Build_Side_Nav {
                 } else {
                     $sticky_link_class = '';
                     $section_links++;
+                    $this->links_in_menu++;
                 }
 
                 $section_html .= '<div class="fupi_sidenav_item fupi_current ' . $sticky_link_class . '">' . $this->get_icon( $module ) . $this->get_title( $module ) . '</div>';
@@ -193,15 +203,15 @@ class Fupi_Build_Side_Nav {
         if ( $this->active_slug != 'main' && $this->links_in_menu == 0 ) {
             $this->extra_html = '<div>Enable some modules. Links to their settings will show up here.</div>';
         };
-
+        /*
         if ( fupi_fs()->is_not_paying() ) {
 
             $this->extra_html = '<div id="fupi_sidenav_banner" class="fupi_getpro_banner">
                 <div id="fupi_getpro_banner_unlock_icon"><span class="dashicons dashicons-performance"></span></div>
-                <h3>' . esc_html__('V11 Beta is out', 'full-picture-analytics-cookie-notice') . '</h3>
-                <p>' . esc_html__('Biggest update to date. 1500+ hours of work. Available to test now. Send feedback and get 40% off.', 'full-picture-analytics-cookie-notice') . '</p>
-                <a href="https://wpfullpicture.com/try-wp-full-picture-beta/" class="button-primary" target="_blank">' . esc_html__('Test v11 PRO', 'full-picture-analytics-cookie-notice') . '</a>
-                <a href="https://wpfullpicture.com/release/wp-full-picture-11/" target="_blank" style="color: lightblue; text-align: center; display: block;">' . esc_html__('Learn what\'s new', 'full-picture-analytics-cookie-notice') . '</a>
+                <h3>' . esc_html__('Get pro?', 'full-picture-analytics-cookie-notice') . '</h3>
+                <p>' . esc_html__('Optimize your marketing and improve conversion rates with WP Full Picture PRO', 'full-picture-analytics-cookie-notice') . '</p>
+                <a href="https://wpfullpicture.com/free-vs-pro/" class="button-primary" target="_blank">' . esc_html__('Learn more', 'full-picture-analytics-cookie-notice') . '</a>
+                <a href="https://wpfullpicture.com/pricing/" target="_blank" style="color: lightblue; text-align: center; display: block;">' . esc_html__('View pricing', 'full-picture-analytics-cookie-notice') . '</a>
             </div>';
             
             // Show BF DEAL notification if current date is within the range
@@ -213,42 +223,11 @@ class Fupi_Build_Side_Nav {
             // if ( $current_time >= $start_date && $current_time <= $end_date ) {
             //     $this->extra_html = '';
             // }
-        }
+        }*/
     }
 
     private function output_all_html(){
         echo '<div id="fupi_nav_col"><div id="fupi_side_menu" role="link">' . $this->menu_html . '</div>' . $this->extra_html . '</div>';
     }
 }
-    
-/*
-    <div id="sidenav_buy_pro_banner">
-        <h3>' . esc_html__('Do you want to...', 'full-picture-analytics-cookie-notice') . '</h3>
-        <div id="fupi_feature_slider" class="fupi_slider">
-            <div class="fupi_slides">
-                <div class="fupi_slide">
-                    <div class="fupi_slide_main_text">' . esc_html__('Measure how many visitors are really interested in your products', 'full-picture-analytics-cookie-notice') . '</div>
-                    <p class="small" style="line-height: 1.2"><a href="https://wpfullpicture.com/support/documentation/how-to-set-up-advanced-triggers/" target="_blank">' . esc_html__('See how to do it with custom triggers', 'full-picture-analytics-cookie-notice') . '</a></p>
-                </div>
-                <div class="fupi_slide">
-                    <div class="fupi_slide_main_text">' . esc_html__('Improve conersion tracking with server-side tracking and enhanced attribution', 'full-picture-analytics-cookie-notice') . '</div>
-                    <p class="small" style="line-height: 1.2">' . esc_html__('Available in GA and Meta Pixel', 'full-picture-analytics-cookie-notice') . '</p>
-                </div>
-                <div class="fupi_slide">
-                    <div class="fupi_slide_main_text">' . esc_html__('Learn which of your traffic sources and ad campaigns bring you the best traffic.', 'full-picture-analytics-cookie-notice') . '</div>
-                    <p class="small" style="line-height: 1.2"><a href="https://wpfullpicture.com/support/documentation/how-to-use-lead-scoring/" target="_blank">' . esc_html__('See how to do it with Lead Scoring', 'full-picture-analytics-cookie-notice') . '</a></p>
-                </div>
-                <div class="fupi_slide">
-                    <div class="fupi_slide_main_text">' . esc_html__('Monitor your site for JavaScript errors in Google Analytics.', 'full-picture-analytics-cookie-notice') . '</div>
-                </div>
-                <div class="fupi_slide">
-                    <div class="fupi_slide_main_text">' . esc_html__('Track custom user and post data important to your business.', 'full-picture-analytics-cookie-notice') . '</div>
-                    <p class="small" style="line-height: 1.2">' . esc_html__('With metadata tracking', 'full-picture-analytics-cookie-notice') . '</p>
-                </div>
-            </div>
-            <ul class="fupi_slider_nav"></ul>
-        </div>
-        <a href="https://wpfullpicture.com/pricing" class="button-primary"><span class="dashicons dashicons-unlock"></span> ' . esc_html__('Get All Pro Features', 'full-picture-analytics-cookie-notice') . '</a>
-    </div>
-*/
 ?>

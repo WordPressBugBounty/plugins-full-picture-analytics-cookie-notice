@@ -237,6 +237,67 @@ $necessary_slider_color = ( !empty( $necessary_slider_color_val ) ? esc_attr( $n
 // TOGGLER BG COLOR
 $toggler_bg_color_val = get_theme_mod( 'fupi_toggler_bg_color' );
 $toggler_bg_color = ( !empty( $toggler_bg_color_val ) ? esc_attr( $toggler_bg_color_val ) : '#6190c6' );
+// Iframe placeholder
+$get_ifrblock_number = function (
+    $setting_id,
+    $default,
+    $min,
+    $max
+) {
+    $value = get_theme_mod( $setting_id, $default );
+    if ( !is_numeric( $value ) ) {
+        return $default;
+    }
+    return min( $max, max( $min, (int) $value ) );
+};
+$get_ifrblock_color = function ( $setting_id, $default ) {
+    $value = sanitize_hex_color( get_theme_mod( $setting_id, $default ) );
+    return ( $value ? $value : $default );
+};
+$ifrblock_border_width = $get_ifrblock_number(
+    'fupi_ifrblock_border_width',
+    2,
+    0,
+    20
+) . 'px';
+$ifrblock_border_radius = $get_ifrblock_number(
+    'fupi_ifrblock_border_radius',
+    3,
+    0,
+    100
+) . 'px';
+$ifrblock_border_color = $get_ifrblock_color( 'fupi_ifrblock_border_color', '#bcbcbc' );
+$ifrblock_notice_bg_color = $get_ifrblock_color( 'fupi_ifrblock_notice_bg_color', '#fff' );
+$ifrblock_notice_text_color = $get_ifrblock_color( 'fupi_ifrblock_notice_text_color', '#333' );
+$ifrblock_notice_font_size = $get_ifrblock_number(
+    'fupi_ifrblock_notice_font_size',
+    16,
+    10,
+    40
+) . 'px';
+$ifrblock_btn_bg_color = $get_ifrblock_color( 'fupi_ifrblock_btn_bg_color', '#222' );
+$ifrblock_btn_bg_color_hover = $get_ifrblock_color( 'fupi_ifrblock_btn_bg_color_hover', '#555' );
+$ifrblock_btn_text_color = $get_ifrblock_color( 'fupi_ifrblock_btn_text_color', '#fff' );
+$ifrblock_btn_text_color_hover = $get_ifrblock_color( 'fupi_ifrblock_btn_text_color_hover', '#fff' );
+$ifrblock_btn_font_size = $get_ifrblock_number(
+    'fupi_ifrblock_btn_font_size',
+    16,
+    10,
+    40
+) . 'px';
+$ifrblock_btn_border_radius = $get_ifrblock_number(
+    'fupi_ifrblock_btn_border_radius',
+    8,
+    0,
+    100
+) . 'px';
+$ifrblock_btn_sizes = array(
+    'small'  => '6px 10px',
+    'medium' => '9px 15px',
+    'large'  => '12px 20px',
+);
+$ifrblock_btn_size = get_theme_mod( 'fupi_ifrblock_btn_size', 'large' );
+$ifrblock_btn_size = ( isset( $ifrblock_btn_sizes[$ifrblock_btn_size] ) ? $ifrblock_btn_sizes[$ifrblock_btn_size] : $ifrblock_btn_sizes['large'] );
 echo "\n" . '<style id="fupi_cookie_css">
 	body{
 		--fupi-notice-panel-bg-color: ' . $panel_bg_color . ';
@@ -267,6 +328,19 @@ echo "\n" . '<style id="fupi_cookie_css">
 		--fupi-notice-slider-focus-shadow: 0 0 4px ' . $slider_color . ';
 		--fupi-notice-popup-panel-max-width: ' . $popup_max_width . ';
 		--fupi-notice-toggler-bg-color: ' . $toggler_bg_color . ';
+		--fupi-ifrblock-border-width: ' . esc_attr( $ifrblock_border_width ) . ';
+		--fupi-ifrblock-border-color: ' . esc_attr( $ifrblock_border_color ) . ';
+		--fupi-ifrblock-border-radius: ' . esc_attr( $ifrblock_border_radius ) . ';
+		--fupi-ifrblock-notice-bg-color: ' . esc_attr( $ifrblock_notice_bg_color ) . ';
+		--fupi-ifrblock-notice-text-color: ' . esc_attr( $ifrblock_notice_text_color ) . ';
+		--fupi-ifrblock-notice-font-size: ' . esc_attr( $ifrblock_notice_font_size ) . ';
+		--fupi-ifrblock-btn-bg-color: ' . esc_attr( $ifrblock_btn_bg_color ) . ';
+		--fupi-ifrblock-btn-bg-color-hover: ' . esc_attr( $ifrblock_btn_bg_color_hover ) . ';
+		--fupi-ifrblock-btn-text-color: ' . esc_attr( $ifrblock_btn_text_color ) . ';
+		--fupi-ifrblock-btn-text-color-hover: ' . esc_attr( $ifrblock_btn_text_color_hover ) . ';
+		--fupi-ifrblock-btn-border-radius: ' . esc_attr( $ifrblock_btn_border_radius ) . ';
+		--fupi-ifrblock-btn-font-size: ' . esc_attr( $ifrblock_btn_font_size ) . ';
+		--fupi-ifrblock-btn-padding: ' . esc_attr( $ifrblock_btn_size ) . ';
 	}
 </style>' . "\n";
 if ( is_customize_preview() ) {
@@ -412,6 +486,5 @@ if ( !$is_mode_notify && (is_customize_preview() || isset( $notice_opts ) && !em
     }
     echo '<aside><button id="fupi_notice_toggler" class="fp_show_cookie_notice fupi_tooltip ' . $toggler_class . '" style="display: none;"><span class="fupi_srt">' . esc_attr__( 'Change cookie preferences', 'full-picture-analytics-cookie-notice' ) . '</span><img src="' . $img_src . '">' . $toggler_tooltip . '</button></aside>';
 }
-echo '<!--noptimize--><script data-no-optimize="1" data-noptimize nowprocket>FP.loaded("consb_html");</script><!--/noptimize-->
-	<!-- WP Full Picture - Consent Banner & Analytics - END -->';
+echo '<!-- WP Full Picture - Consent Banner & Analytics - END -->';
 ob_end_flush();

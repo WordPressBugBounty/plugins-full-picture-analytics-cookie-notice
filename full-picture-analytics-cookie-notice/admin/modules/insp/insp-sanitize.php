@@ -9,38 +9,27 @@ if ( ! empty( $input ) ) foreach( $input as $key => $value ) {
 	if( ! empty( $value ) ) {
 
 		switch ($clean_key) {
-			case 'tag_affiliate':
+			case 'track_clicks':
+			case 'track_aff':
+			case 'track_form_submits':
+			case 'track_impress':
 
 				$clean_val = [];
 
 				if ( is_array( $value ) ){
 
-					foreach( $value as $i => $section ){
-						if ( empty( $section['sel'] ) ) continue;
-						$clean_val[$i]['sel'] = trim( sanitize_text_field( $section['sel'] ) );
-						if ( ! empty( $section['val'] ) ) $clean_val[$i]['val'] = trim( sanitize_text_field( $section['val'] ) );
-					}
-				};
-				break;
+					$j = 0;
 
-			case 'tag_elems':
-			case 'tag_forms':
-			case 'tag_views':
-				
-				$clean_val = [];
-
-				if ( is_array( $value ) ){
-
-					foreach( $value as $i => $section ){
-						if ( empty( $section['sel'] ) || empty( $section['val'] ) ) continue;
-						$clean_val[$i]['sel'] = trim( sanitize_text_field( $section['sel'] ) );
-						$clean_val[$i]['val'] = trim( sanitize_text_field( $section['val'] ) );
+					foreach( $value as $section ){
+						if ( empty( $section['atrig_id'] ) || empty( $section['val'] ) ) continue;
+						$clean_val[$j]['atrig_id'] = esc_attr( $section['atrig_id'] );
+						$clean_val[$j]['val'] = trim( sanitize_text_field( $section['val'] ) );
+						$j++;
 					}
 				};
 				break;
 
 			case 'id':
-			case 'tag_file_downl':
 				$clean_val = trim( sanitize_text_field( $value ) );
 				break;
 			case 'identif_method':

@@ -1,31 +1,21 @@
 // R3 REPEATER
+// EVENTS LIST
 
 .fupi_r3_section{
 	display: flex;
 	flex-wrap: wrap;
-	align-items: flex-start;
-	// border-radius: 5px;
-	+ .fupi_r3_section{
-		margin-top: 10px;
-	}
-	.fupi_r3_field{
-		flex: 1 0 auto;
-		min-width: 100px;
-		box-sizing: border-box;
-		padding: 0 10px 10px 0;
-		> *:not(.fupi_r3_section):not(.fupi_r3_field):not(button):not(.fupi_switch):not(.fupi_tooltip) {
-			width: 100%; // padding on the right +1px of the border
-		}
-	}
+	align-items: flex-end;
+	margin-bottom: 5px;
+	gap: 10px;
 	&.fupi_r3_repeater{
-		padding: 6px 0 0 10px;
+		padding: 0;
 		.fupi_r3_btns{
 			flex: 0 0 auto;
 		}
 	}
 	+ .fupi_after_field{
 		margin-top: 6px;
-		+ .fupi_open_popup{
+		+ .fupi_open_offscreen{
 			margin-top: 6px;
 		}
 	}
@@ -38,12 +28,44 @@
 	}
 }
 
+	.fupi_r3_field{
+		flex: 1 0 auto;
+		min-width: 100px;
+		box-sizing: border-box;
+		padding: 0 0 10px 0;
+		position: relative;
+		> *:not(.fupi_r3_section):not(.fupi_r3_field):not(button):not(.fupi_switch):not(.fupi_must_have_pro_ico):not(.fupi_must_have_pro_ico_round) {
+			width: 100%;
+		}
+	}
+
+// TABLE ROW DISPLAY
+
+.fupi_r3_table_row{
+	width: 100%;
+	display: grid;
+	grid-template-columns: 165px 1fr;
+	column-gap: 16px;
+	align-items: start;
+	gap: 10px;
+	> .fupi_r3_field_label{
+		margin-top: 0 !important;
+		padding-top: 10px;
+	}
+}
+	.fupi_r3_subfield{
+		display: flex;
+		flex-direction: column;
+		gap: 0 10px;
+	}
+
 // R3 BTNS
 
 // this pushes buttons to the right
 .fupi_r3_btns{
 	padding: 0 0 10px 0;
 	margin-left: auto;
+	align-self: flex-end;
 }
 
 .fupi_r3_btns_left{
@@ -57,14 +79,17 @@
 	border: 0 !important;
 	color: #000 !important;
 	font-size: 16px;
-	padding: 0;
 	transition: .2s all;
 	// border-radius: 4px;
 	line-height: 1em;
 	cursor: pointer;
-	height: 34px !important;
-	width: 34px !important;
 	margin: 0 3px;
+	padding: 10px;
+	&.dashicons{
+		padding: 0;
+		height: 34px !important;
+		width: 34px !important;
+	}
 	&:hover, &:focus{
 		background-color: #fde292 !important;
 	}
@@ -75,10 +100,16 @@
 	}
 }
 
+.fupi_r3_hide_add_btn{
+	.fupi_r3_add_btn{
+		display: none;
+	}
+}
+
 // R3 inside R3
 
 .fupi_r3_section{
-	> .fupi_field_type_r3{
+	.fupi_field_type_r3{
 		width: 100%;
 		.fupi_r3_btns{
 			margin-left: 0;
@@ -95,12 +126,19 @@
 	}
 }
 
+.fupi_missing_must_have{
+	.fupi_r3_add_end_btn_wrap,
+	.fupi_remove_double_confirm_btn,
+	.fupi_addEdit_elements_btn {
+		pointer-events: none;
+	}
+}
+
 .fupi_r3_field{
-	position: relative;
 	&.fupi_missing_must_have{
 		background-color: #eee;
 		padding: 10px;
-		input, select, .select2, textarea, label{
+		input, select, .ss-main, textarea, label{
 			opacity: .8;
 		}
 	}
@@ -114,10 +152,8 @@
 	}
 }
 
-
 // Labels
 .fupi_r3_section_label{
-	font-weight: bold;
 	margin: 9px 0 5px !important;
 }
 
@@ -131,6 +167,7 @@
 
 .fupi_r3_fields_group{
 	padding: 10px;
+	gap: 10px;
     width: 100%;
     background: #f2f2f2;
     margin-bottom: 10px;
@@ -142,135 +179,147 @@
 
 // "TOGGLE FIELDS" BUTTON
 
-// .fupi_collapsible_fields td>.fupi_r3_section:not(.fupi_fields_visible)>*:not(.fupi_field_title_wrap):not(.fupi_field_toggle_btn_wrap):not(.fupi_field_force_load_wrap):not(.fupi_field_disable_wrap):not(.fupi_r3_btns){
-// 	display: none;
-// }
-
 // GRID
 
-.fupi_r3_section,
-.fupi_r3_field{
-	&.fupi_col_10_grow{
-		flex: 1 0 10%;
-		min-width: 100px;
-	}
-	&.fupi_col_10{
-		flex: 0 0 10%;
-		min-width: 100px;
-	}
-	&.fupi_col_15_grow{
-		flex: 1 0 15%;
-		min-width: 100px;
-	}
-	&.fupi_col_15{
-		flex: 0 0 15%;
-		min-width: 100px;
-	}
-	&.fupi_col_20_grow{
-		flex: 1 0 20%;
-		min-width: 150px;
-	}
-	&.fupi_col_20{
-		flex: 0 0 20%;
-		min-width: 150px;
-	}
-	&.fupi_col_25_grow{
-		flex: 1 0 25%;
-		min-width: 175px;
-	}
-	&.fupi_col_25{
-		flex: 0 0 25%;
-		min-width: 175px;
-	}
-	&.fupi_col_30_grow{
-		flex: 1 0 30%;
-		min-width: 200px;
-	}
-	&.fupi_col_30{
-		flex: 0 0 30%;
-		min-width: 200px;
-	}
-	&.fupi_col_33_grow{
-		flex: 1 0 33%;
-		min-width: 200px;
-	}
-	&.fupi_col_33{
-		flex: 0 0 33%;
-		min-width: 200px;
-	}
-	&.fupi_col_35_grow{
-		flex: 1 0 35%;
-		min-width: 200px;
-	}
-	&.fupi_col_35{
-		flex: 0 0 35%;
-		min-width: 200px;
-	}
-	&.fupi_col_40_grow{
-		flex: 1 0 40%;
-		min-width: 225px;
-	}
-	&.fupi_col_40{
-		flex: 0 0 40%;
-		min-width: 225px;
-	}
-	&.fupi_col_50_grow{
-		flex: 1 0 50%;
-		min-width: 250px;
-	}
-	&.fupi_col_50{
-		flex: 0 0 50%;
-		min-width: 250px;
-	}
-	&.fupi_col_66_grow{
-		flex: 1 0 66%;
-		min-width: 300px;
-	}
-	&.fupi_col_66{
-		flex: 0 0 66%;
-		min-width: 300px;
-	}
-	&.fupi_col_70_grow{
-		flex: 1 0 70%;
-		min-width: 70%;
-	}
-	&.fupi_col_70{
-		flex: 0 0 70%;
-		min-width: 70%;
-	}
-	&.fupi_col_80_grow{
-		flex: 1 0 70%;
-		min-width: 70%;
-	}
-	&.fupi_col_80{
-		flex: 0 0 80%;
-		min-width: 80%;
-	}
-	&.fupi_col_100{
-		flex: 1 0 100%;
-		padding-right: 0;
-	}
+.fupi_col_10_grow{
+	flex: 1 0 calc(10% - 10px);
+	min-width: 100px;
 }
+.fupi_col_10{
+	flex: 0 0 calc(10% - 10px);
+	min-width: 100px;
+}
+.fupi_col_15_grow{
+	flex: 1 0 calc(15% - 10px);
+	min-width: 100px;
+}
+.fupi_col_15{
+	flex: 0 0 calc(15% - 10px);
+	min-width: 100px;
+}
+.fupi_col_20_grow{
+	flex: 1 0 calc(20% - 10px);
+	min-width: 150px;
+}
+.fupi_col_20{
+	flex: 0 0 calc(20% - 10px);
+	min-width: 150px;
+}
+.fupi_col_25_grow{
+	flex: 1 0 calc(25% - 10px);
+	min-width: 175px;
+}
+.fupi_col_25{
+	flex: 0 0 calc(25% - 10px);
+	min-width: 175px;
+}
+.fupi_col_30_grow{
+	flex: 1 0 calc(30% - 10px);
+	min-width: 200px;
+}
+.fupi_col_30{
+	flex: 0 0 calc(30% - 10px);
+	min-width: 200px;
+}
+.fupi_col_33_grow{
+	flex: 1 0 calc(33% - 10px);
+	min-width: 200px;
+}
+.fupi_col_33{
+	flex: 0 0 calc(33% - 10px);
+	min-width: 200px;
+}
+.fupi_col_35_grow{
+	flex: 1 0 calc(35% - 10px);
+	min-width: 200px;
+}
+.fupi_col_35{
+	flex: 0 0 calc(35% - 10px);
+	min-width: 200px;
+}
+.fupi_col_40_grow{
+	flex: 1 0 calc(40% - 10px);
+	min-width: 225px;
+}
+.fupi_col_40{
+	flex: 0 0 calc(40% - 10px);
+	min-width: 225px;
+}
+.fupi_col_50_grow{
+	flex: 1 0 calc(50% - 10px);
+	min-width: 250px;
+}
+.fupi_col_50{
+	flex: 0 0 calc(50% - 10px);
+	min-width: 250px;
+}
+.fupi_col_66_grow{
+	flex: 1 0 calc(66% - 10px);
+	min-width: 300px;
+}
+.fupi_col_66{
+	flex: 0 0 calc(66% - 10px);
+	min-width: 300px;
+}
+.fupi_col_70_grow{
+	flex: 1 0 calc(70% - 10px);
+	min-width: calc(70% - 10px);
+}
+.fupi_col_70{
+	flex: 0 0 calc(70% - 10px);
+	min-width: calc(70% - 10px);
+}
+.fupi_col_80_grow{
+	flex: 1 0 calc(80% - 10px);
+	min-width: calc(80% - 10px);
+}
+.fupi_col_80{
+	flex: 0 0 calc(80% - 10px);
+	min-width: calc(80% - 10px);
+}
+.fupi_col_100{
+	flex: 1 0 100%;
+	padding-right: 0;
+}
+
+// FIELD WIDTH
+
+.fupi_field_120{
+	min-width: 120px !important;
+	max-width: 120px !important;
+}
+.fupi_field_180{
+	min-width: 180px !important;
+	max-width: 180px !important;
+}
+.fupi_field_240{
+	min-width: 240px !important;
+	max-width: 240px !important;
+}
+.fupi_field_300{
+	min-width: 300px !important;
+	max-width: 300px !important;
+}
+
+// Adds highlight and "required" text to all required fields in a newly added section
 
 .fupi_req_txt{
 	display: none;
 }
 
-// this adds a highlight and "required" text to all required fields in a newly added section
-.fupi_highlight_req{
-	.fupi_r3_field:not(.field_filled){
-		.fupi_req{
-			border-color: #ca8a14;
-			box-shadow: 0 0 0 1px #ca8a14;
-		}
-		.fupi_req_txt{
-			display: inline-block;
-		}
+.fupi_r3_field.fupi_empty{
+	.fupi_req{
+		border-color: #ca8a14;
+		box-shadow: 0 0 0 1px #ca8a14;
+	}
+	.fupi_req_txt{
+		display: inline-block;
 	}
 }
 
+
 // this adds a red highlight and "required" text when a user leaves a required field empty
-.fupi_r3_field{
+.fupi_r3_subfield{
 	position: relative;
 	&.field_empty{
 		.fupi_req{
@@ -286,7 +335,7 @@
 .fupi_req_txt{
 	display: none;
 	position: absolute;
-	bottom: 0px;
+	top: -6px;
 	left: 8px;
 	width: auto !important;
 	padding: 0px 4px;
@@ -296,17 +345,12 @@
 	border-radius: 4px;
 }
 
-.fupi_simple_r3{
-	.fupi_r3_section{
-		align-items: flex-end;
-		&.fupi_r3_repeater{
-			padding: 0;
-		}
-		+.fupi_r3_section{
-			margin-top: 5px;
-		}
+.fupi_r3_repeater{
+	.fupi_r3_repeater{
+		padding: 0;
 	}
 }
+
 
 .fupi_r3_fullwidth{
 	display: block !important;
@@ -359,28 +403,6 @@
 // R3 - CUSTOM TRIGGERS
 
 .advanced_triggers_builder{
-	.fupi_field_cond_wrap,
-	.fupi_field_when_wrap{
-		.fupi_r3_section{
-			position: relative;
-			padding-left: 0;
-			+ .fupi_r3_section{
-				border-top: 0 !important;
-				margin-top: 0 !important;
-				&::before{
-					content: 'AND';
-					font-weight: bold;
-					position: absolute;
-					font-size: 12px;
-					padding: 5px 3px;
-					top: -13px;
-					left: 5px;
-					z-index: 10;
-					background-color: #fff;
-				}
-			}
-		}
-	}
 	.fupi_field_type_select2{
 		> .fupi_r3_field_label{
 			font-weight: bold;
@@ -393,17 +415,203 @@
 	}
 }
 
-#fupi_main .form-table{
-	.select2{
+.form-table{
+	.ss-main{
 		width: 100% !important;
-	}
-	.select2-selection{
 		padding: 4px 6px;
 		min-height: 42px !important;
-		border: 1px solid #b6c1d3 !important;
+		border: 1px solid #8c8f94 !important;
 	}
-	.select2-search__field{
-		padding: 0 !important;
-		margin: 0;
+}
+
+.fupi_select2_enabled{
+	z-index: 999999 !important;
+}
+
+.ss-content.fupi_select2 .ss-search input{
+	padding: 0 !important;
+	margin: 0;
+}
+
+// CUSTOM SCRIPTS MODULE
+
+.fupi_r3_scr{
+	.fupi_field_adv_trigger_wrap{
+		background: #f2f2f2;
+		padding: 10px;
+		margin-bottom: 10px;
+		// border-radius: 5px;
+	}
+}
+
+.fupi_r3_scr.fupi_cscr_missing_atrig{
+	border: 2px solid #b75216;
+	.fupi_field_adv_trigger_wrap{
+		background: #ffe6c1;
+	}
+}
+.fupi_cscr_missing_atrig_msg{
+	color: lightyellow;
+    padding: 10px;
+    border-radius: 3px;
+    background-color: #b75216;
+    margin-bottom: -5px;
+    z-index: 10;
+    position: relative;
+}
+
+// COMMON FOR EVENT AND TRIGGER BUILDERS
+
+.fupi_remove_double_confirm_btn {
+	&.are_you_sure{
+		background-color: #d70000 !important;
+		color: white !important;
+		border-color: #930000 !important;
+		&:hover, &:focus{
+			background-color: #d40000 !important;
+			border-color: #790000 !important;
+		}
+	}
+}
+
+// EVENTS BUILDER (NEW)
+
+.fupi_r3_event_builder{
+	margin-bottom: 20px;
+	background-color: #fff;
+	overflow: hidden;
+	padding: 10px !important;
+	transition: background-color .3s;
+	border: 1px solid #bbb;
+	border-radius: 6px;
+	&:hover, &:focus{
+		background-color: #fff !important;
+	}
+}
+
+.fupi_r3_event_builder:not(:has(.fupi_empty>.fupi_req)){
+	.fupi_trigger_name:after{
+		content: '\f147';
+		display: inline-block !important;
+		font-family: 'dashicons';
+		font-size: 16px;
+		line-height: 1;
+		margin: -4px 0 0 0;
+    	vertical-align: middle;
+		color: #149345;
+	}
+}
+
+.fupi_r3_builder_evt_settings_btn{
+	display: flex !important;
+	background-color: transparent;
+	gap: 10px;
+	align-items: center;
+	justify-content: space-between;
+	margin: 0 0 8px 0 !important;
+	cursor: pointer;
+	font-size: 15px !important;
+	padding: 2px 8px 2px 2px;
+    border: 1.3px solid #999;
+    border-radius: 100px;
+	.dashicons{
+		font-size: 15px;
+	}
+	&:hover, &:focus{
+		background-color: #fff;
+	}
+	&:before{
+		content: "\f153";
+		font-family: 'dashicons';
+		color: #b6801e;
+		border-radius: 20px;
+		font-size: 20px;
+		width: 20px;
+		height: 20px;
+		line-height: 1em;
+	}
+	&.fupi_trigger_used_in_evt:before{
+		content: "\f12a";
+		font-family: 'dashicons';
+		color: #146a9d;
+	}
+}
+
+.fupi_field_headline{
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+	padding: 10px 0;
+	>* {
+		flex: 1 0 auto;
+	}
+	.fupi_headline_before_title{
+		flex: 1 0 20% !important;
+		min-width: 126px;
+		max-width: 166px;
+	}
+	.fupi_headline_title{
+		font-weight: 500;
+	}
+}
+
+.fupi_field_type_headline{
+	width: 100%;
+}
+
+.fupi_r3_builder_opts{
+	display: flex;
+	width: 100%;
+	flex-wrap: wrap;
+	gap: 10px;
+	padding: 20px 10px 0;
+	border-top: 1px solid #ccc;
+}
+
+// TRIGGER BUILDER - button that adds a new section at the end
+
+.fupi_r3_add_end_btn_wrap {
+	display: flex;
+	justify-content: center;
+    margin-top: 10px;
+}
+
+// SAVE BUTTONS IN THE PANEL WITH TRIGGER BUILDERS
+
+.fupi_atrig_panel_save_btns_wrap{
+	display: flex;
+	justify-content: center;
+	gap: 20px;
+	align-items: center;
+	position: sticky;
+	bottom: 10px;
+}
+
+// BTN WHICH OPENS DYNAMIC SETTINGS PANEL
+.fupi_open_dynamic_settings{
+	font-weight: 500;
+	text-decoration: none !important;
+	font-size: 14px !important;
+}
+
+// .fupi_addEdit_elements_btn,
+// .fupi_addEdit_metadata_btn{
+// 	font-size: 15px !important;
+//     padding: 3px 9px 3px 9px;
+// 	cursor: pointer;
+//     border: 0;
+//     border-radius: 100px;
+//     background: #368aae;
+//     color: #fff;
+// 	&:hover, &:focus{
+// 		background: #2f99c7;
+// 	}
+// }
+
+// fupi_visitor_scoring_builder
+
+.fupi_visitor_scoring_builder{
+	.fupi_headline_title{
+		flex: 0 0 auto;
 	}
 }

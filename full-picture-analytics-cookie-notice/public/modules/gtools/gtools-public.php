@@ -43,22 +43,21 @@ class Fupi_GTOOLS_public {
         if ( empty( $this->ga41_id ) && empty( $this->gads_id ) ) {
             return;
         }
-        if ( $this->ga41_enabled || $this->gads_enabled ) {
+        if ( $this->ga41_enabled && !empty( $this->ga41_id ) || $this->gads_enabled && !empty( $this->gads_id ) ) {
             $this->gtag_settings = get_option( 'fupi_gtag' );
+            $this->add_actions_and_filters();
         }
-        $this->add_actions_and_filters();
     }
 
     private function add_actions_and_filters() {
         add_action( 'wp_head', array($this, 'add_gtag_to_head'), 1 );
-        add_action( 'wp_enqueue_scripts', array($this, 'enqueue_scripts') );
         add_filter(
             'fupi_modify_fp_object',
             array($this, 'add_data_to_fp_object'),
             10,
             1
         );
-        if ( $this->ga41_enabled ) {
+        if ( $this->ga41_enabled && !empty( $this->ga41_id ) ) {
             add_filter(
                 'fupi_order_server_tracking',
                 array($this, 'fupi_ga41_order_server_tracking__premium_only'),
@@ -85,7 +84,7 @@ class Fupi_GTOOLS_public {
             }
             if ( !empty( $script_id ) ) {
                 // ! Datalayer is already created in JS helpers
-                echo '<script id="fupi_gtag_script" async src="https://www.googletagmanager.com/gtag/js?id=' . $script_id . '" onload="FP.loaded(\'gtag_file\')"></script>';
+                echo '<script id="fupi_gtag_script" async src="https://www.googletagmanager.com/gtag/js?id=' . $script_id . '"></script>';
                 $gtag_added = true;
             }
         } else {
@@ -99,38 +98,53 @@ class Fupi_GTOOLS_public {
         }
     }
 
-    public function enqueue_scripts() {
-        // GTG
-        if ( $this->ga41_enabled || $this->gads_enabled ) {
-            /* ^ */
-            wp_enqueue_script(
-                'fupi-gtg-head-js',
-                FUPI_URL . 'public/modules/gtools/fupi-gtg.js',
-                array('fupi-helpers-js'),
-                FUPI_VERSION,
-                [
-                    'in_footer' => false,
-                    'strategy'  => 'async',
-                ]
-            );
-            /* _ */
-            wp_enqueue_script(
-                'fupi-gtg-footer-js',
-                FUPI_URL . 'public/modules/gtools/fupi-gtg-footer.js',
-                array('fupi-helpers-js'),
-                FUPI_VERSION,
-                [
-                    'in_footer' => true,
-                    'strategy'  => 'async',
-                ]
-            );
-        }
-    }
-
     public function add_data_to_fp_object( $fp ) {
+        // GTAG Config
+        $fp['runtime']['gtg'] = [
+            'files' => [[
+                'url' => add_query_arg( 'ver', FUPI_VERSION, FUPI_URL . 'public/modules/gtools/fupi-gtg.js' ),
+                'id'  => 'gtg-config',
+            ]],
+        ];
+        // GA only
+        if ( $this->ga41_enabled && !empty( $this->ga41_id ) ) {
+            $fp['runtime']['ga41'] = [
+                'reqs'  => [
+                    'consents' => ['stats'],
+                ],
+                'files' => [[
+                    'url' => add_query_arg( 'ver', FUPI_VERSION, FUPI_URL . 'public/modules/gtools/fupi-ga-footer.js' ),
+                    'id'  => 'ga-footer',
+                ]],
+            ];
+        }
+        // GAds only
+        if ( $this->gads_enabled && !empty( $this->gads_id ) ) {
+            $fp['runtime']['gads'] = [
+                'reqs'  => [
+                    'consents' => ['stats', 'market'],
+                ],
+                'files' => [[
+                    'url' => add_query_arg( 'ver', FUPI_VERSION, FUPI_URL . 'public/modules/gtools/fupi-gads-footer.js' ),
+                    'id'  => 'gads-footer',
+                ]],
+            ];
+        }
+        // Woo - shared
+        if ( !empty( $this->tools['woo'] ) ) {
+            $tool_id = ( $this->ga41_enabled && !empty( $this->ga41_id ) ? 'ga41' : 'gads' );
+            // Loaded for either GA or GAds but not both
+            $fp['runtime'][$tool_id]['files'][] = [
+                'url'            => add_query_arg( 'ver', FUPI_VERSION, FUPI_URL . 'public/modules/gtools/fupi-gtg-woo.js' ),
+                'id'             => 'gtg-woo',
+                'must_be_truthy' => ['fp.woo'],
+            ];
+        }
         // GTAG
         if ( !empty( $this->gtag_settings ) ) {
             $fp['gtag'] = $this->gtag_settings;
+        } else {
+            $fp['gtag'] = [];
         }
         // GA4
         if ( !empty( $this->ga41_settings ) ) {

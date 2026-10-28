@@ -7,29 +7,37 @@ switch( $section_id ){
 	// INSTALLATION
 
 	case 'fupi_cegg_install':
-
-		$module_data = get_option('fupi_cegg');
-		$script_src = ! empty ( $module_data ) && ! empty ( $module_data['script_src'] ) ? esc_attr( $module_data['script_src'] ) : '';
-
 		$ret_text = '
 		<div id="fupi_not_installed_info" class="fupi_installation_status fupi_hidden">
-			<img src="' . FUPI_URL . 'admin/assets/img/almost_ico.png" aria-hidden="true"> <p>' . sprintf( esc_html__( '%1$s is not installed', 'full-picture-analytics-cookie-notice' ), 'Crazy Egg' ) . '<br><span class="fupi_small">' . esc_html__( 'To install it, please fill in the required field below', 'full-picture-analytics-cookie-notice' ) . '</span>.</p>
+			<img src="' . FUPI_URL . 'admin/assets/img/almost_ico.png" aria-hidden="true"> <p>' . sprintf( esc_html__( '%1$s is not installed', 'full-picture-analytics-cookie-notice' ), 'Crazy Egg' ) . '<br><span class="fupi_small">' . esc_html__( 'Please fill in the required fields below', 'full-picture-analytics-cookie-notice' ) . '</span>.</p>
 		</div>
 		<div id="fupi_installed_info" class="fupi_installation_status fupi_hidden">
-			<img src="' . FUPI_URL . 'admin/assets/img/success_ico.png" aria-hidden="true"> <p>' . esc_html__( 'Well done! Crazy Egg is installed', 'full-picture-analytics-cookie-notice' ) . '<br><span class="fupi_small">' . esc_html__( 'The data is collected by script ', 'full-picture-analytics-cookie-notice' ) . $script_src . '</span>.</p>
+			<img src="' . FUPI_URL . 'admin/assets/img/success_ico.png" aria-hidden="true"> <p>' . esc_html__( 'Crazy Egg is installed', 'full-picture-analytics-cookie-notice' ) . '</p>
 		</div>';
 	break;
 
 	// TAGS
 
 	case 'fupi_cegg_loading':
-		$ret_text = '<p>' . esc_html__( 'Here you can change when and where this tool loads. This is all optional.', 'full-picture-analytics-cookie-notice') . '</p>';
+		$ret_text = '<p>' . esc_html__( 'Change when and where this tool loads. This is all optional.', 'full-picture-analytics-cookie-notice') . '</p>';
 	break;
 
 	// TAGS
 
 	case 'fupi_cegg_tags':
-		$ret_text = '<p>' . esc_html__( 'Here you can tag session recordings with user actions and extra information.', 'full-picture-analytics-cookie-notice' ) . '</p>';
+		$ret_text = '<p>' . esc_html__( 'Tag session recordings with user actions and extra information', 'full-picture-analytics-cookie-notice' ) . '</p>';
+	break;
+
+	// CUSTOM EVENTS
+
+	case 'fupi_cegg_custom_events':
+		$ret_text = '<p>' . esc_html__( 'Tag session recordings when visitors take specific actions.', 'full-picture-analytics-cookie-notice' ) . '</p>';
+	break;
+
+	// ENGAGEMENT
+
+	case 'fupi_cegg_vscores':
+		$ret_text = '<p>' . esc_html__( 'Tag session recordings when visitors reach specified engagement levels.', 'full-picture-analytics-cookie-notice' ) . '</p>';
 	break;
 
 	// USER IDENTIFICATION CONFIG

@@ -883,7 +883,7 @@ msgstr ""
 #: admin/modules/pin/pin-descr.php:26 admin/modules/pla/pla-descr.php:15
 #: admin/modules/posthog/posthog-descr.php:25 admin/modules/tik/tik-descr.php:26
 #: admin/modules/twit/twit-descr.php:24
-msgid "Here you can change when and where this tool loads. This is all optional."
+msgid "Change when and where this tool loads. This is all optional."
 msgstr ""
 
 #: admin/modules/cegg/cegg-descr.php:32 admin/modules/clar/clar-descr.php:38
@@ -4821,7 +4821,7 @@ msgstr ""
 #: admin/modules/ga41/ga41-fields.php:594
 #: admin/modules/ga42__premium_only/ga42-fields.php:571
 #: admin/modules/gtm/gtm-fields.php:393 admin/modules/mato/mato-fields.php:409
-msgid "Track authors IDs"
+msgid "Track author IDs"
 msgstr ""
 
 #: admin/modules/ga41/ga41-fields.php:598
@@ -5449,7 +5449,7 @@ msgid "Track page numbers and archive page numbers"
 msgstr ""
 
 #: admin/modules/gtm/gtm-fields.php:367
-msgid "Track categories, tags and other terms"
+msgid "Track categories, tags, etc. of a post"
 msgstr ""
 
 #: admin/modules/gtm/gtm-fields.php:374
@@ -5476,7 +5476,7 @@ msgid "Track how long visitors are actively engaged with the website's content"
 msgstr ""
 
 #: admin/modules/gtm/gtm-fields.php:443
-msgid "Track user ID of logged-in users"
+msgid "Track user IDs"
 msgstr ""
 
 #: admin/modules/gtm/gtm-fields.php:447
@@ -10211,7 +10211,7 @@ msgid ""
 msgstr ""
 
 #: includes/fupi_modules_names.php:4
-msgid "Shared Tracking Settings"
+msgid "Tracking Settings"
 msgstr ""
 
 #: includes/fupi_modules_names.php:27

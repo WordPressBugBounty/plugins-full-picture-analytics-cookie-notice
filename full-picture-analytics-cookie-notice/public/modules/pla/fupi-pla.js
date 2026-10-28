@@ -1,28 +1,15 @@
 function fupi_pla(){
 
-	if ( allow_loading_pla() ) { 
-		load_pla();
+	if ( ! fp.pla.pla_use || fp.pla.pla_use != 'extend' ){ // for backwards compat
+		
+		let data_domain = fp.pla.domain ? fp.pla.domain : location.host,
+			script_domain = fp.pla.custom_domain ? '//' + fp.pla.custom_domain : 'https://plausible.io';
+
+		FP.getScript( script_domain + '/js/script.revenue.manual.pageview-props.js', after_pla_loads, { 'data-domain' : data_domain, 'defer' : 'defer' } );
+
 	} else {
-		document.addEventListener('fp_load_scripts', ()=>{ if ( allow_loading_pla() ) load_pla(); } );
-	}
-
-	function allow_loading_pla() {
-		return FP.isAllowedToLoad( 'pla', [], [], false, true ); // module id in fp.XX, required cookie permission, setting name with required data (like in fp.gtm.setting_name)
-	}
-
-	function load_pla(){
-
-		if ( ! fp.pla.pla_use || fp.pla.pla_use != 'extend' ){ // for backwards compat
-			
-			let data_domain = fp.pla.domain ? fp.pla.domain : location.host,
-				script_domain = fp.pla.custom_domain ? '//' + fp.pla.custom_domain : 'https://plausible.io';
-	
-			FP.getScript( script_domain + '/js/script.revenue.manual.pageview-props.js', after_pla_loads, { 'data-domain' : data_domain, 'defer' : 'defer' } );
-
-		} else {
-			setTimeout( ()=>{ after_pla_loads( false ) }, 250); // give plausible script some tiem to load
-		}
-	}
+		setTimeout( ()=>{ after_pla_loads( false ) }, 250); // give plausible script some tiem to load
+	}	
 
 	function after_pla_loads ( send_pageview = true ) {
 		
@@ -60,7 +47,6 @@ function fupi_pla(){
 
 		FP.loaded('pla','pla','[FP] Plausible loaded');
 	};
-
 };
 
-FP.load('pla', 'fupi_pla', ['head_helpers']);
+fupi_pla();

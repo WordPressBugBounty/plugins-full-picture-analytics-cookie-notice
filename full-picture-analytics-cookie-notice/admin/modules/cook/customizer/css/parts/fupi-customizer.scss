@@ -269,6 +269,10 @@ body.fupi_preview_opt_in_out{
 
 // FIELD SIZES
 
+#sub-accordion-panel-fupi_ifrblock .customize-panel-description{
+	display: block !important;
+}
+
 #sub-accordion-section-fupi_notice_design{
 	select,
 	input[type="text"]{

@@ -9,24 +9,29 @@ if ( ! empty( $input ) ) foreach( $input as $key => $value ) {
 	if( ! empty( $value ) ) {
 
 		switch ($clean_key) {
-			case 'track_elems':
-			case 'track_forms':
+			case 'purchase_evt_name':
+				$clean_val = sanitize_key( $value );
+				break;
+			case 'track_clicks':
+			case 'track_form_submits':
 				
 				$clean_val = [];
 
 				if ( is_array( $value ) ){
 
-					foreach( $value as $i => $section ){
-						if ( empty( $section['sel'] ) || empty( $section['val'] ) ) continue;
-						$clean_val[$i]['sel'] = trim( sanitize_text_field( $section['sel'] ) );
-						$clean_val[$i]['val'] = trim( sanitize_text_field( $section['val'] ) );
-						$i++;
+					$j = 0;
+
+					foreach( $value as $section ){
+						if ( empty( $section['atrig_id'] ) || empty( $section['val'] ) ) continue;
+						$clean_val[$j]['atrig_id'] = esc_attr( $section['atrig_id'] );
+						$clean_val[$j]['val'] = trim( sanitize_text_field( $section['val'] ) );
+						$clean_val[$j]['type'] = empty( $section['type'] ) ? 'lead' : sanitize_key( $section['type'] );
+						$j++;
 					}
 				};
 				break;
 				
 			case 'id':
-			case 'track_file_downl':
 				$clean_val = trim( sanitize_text_field( $value ) );
 				break;
 			case 'limit_country':
@@ -34,7 +39,11 @@ if ( ! empty( $input ) ) foreach( $input as $key => $value ) {
 				$clean_val = [];
 
 				if ( is_array( $value ) && ! empty( $value['method'] ) && ! empty( $value['countries'] ) ) {
-					$clean_val['method'] = sanitize_key( $value['method'] );
+					$method = sanitize_key( $value['method'] );
+
+					if ( ! in_array( $method, [ 'excl', 'incl' ], true ) ) break;
+
+					$clean_val['method'] = $method;
 					$clean_val['countries'] = trim( sanitize_text_field( $value['countries'] ) );
 				};
 

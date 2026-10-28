@@ -7,15 +7,12 @@ switch( $section_id ){
     // INSTALL
 
 	case 'fupi_tik_install':
-
-		$tik_id = ! empty ( $this->settings ) && ! empty ( $this->settings['id'] ) ? esc_attr( $this->settings['id'] ) : '';
-
 		$ret_text = '
 		<div id="fupi_not_installed_info" class="fupi_installation_status fupi_hidden">
-			<img src="' . FUPI_URL . 'admin/assets/img/almost_ico.png" aria-hidden="true"> <p>' . sprintf( esc_html__( '%1$s is not installed', 'full-picture-analytics-cookie-notice' ), 'TikTok Pixel' ) . '<br><span class="fupi_small">' . esc_html__( 'To install it, please fill in the required field below', 'full-picture-analytics-cookie-notice' ) . '</span>.</p>
+			<img src="' . FUPI_URL . 'admin/assets/img/almost_ico.png" aria-hidden="true"> <p>' . sprintf( esc_html__( '%1$s is not installed', 'full-picture-analytics-cookie-notice' ), 'TikTok Pixel' ) . '<br><span class="fupi_small">' . esc_html__( 'Please fill in the required fields below', 'full-picture-analytics-cookie-notice' ) . '</span>.</p>
 		</div>
 		<div id="fupi_installed_info" class="fupi_installation_status fupi_hidden">
-			<img src="' . FUPI_URL . 'admin/assets/img/success_ico.png" aria-hidden="true"> <p>' . esc_html__( 'Well done! TikTok pixel is installed', 'full-picture-analytics-cookie-notice' ) . '<br><span class="fupi_small">' . esc_html__( 'The data is tracked by a pixel with an ID ', 'full-picture-analytics-cookie-notice' ) . $tik_id . '</span>.</p>
+			<img src="' . FUPI_URL . 'admin/assets/img/success_ico.png" aria-hidden="true"> <p>' . esc_html__( 'TikTok pixel is installed', 'full-picture-analytics-cookie-notice' ) . '</p>
 		</div>';
 
 	break;
@@ -23,13 +20,13 @@ switch( $section_id ){
 	// LOADING
 
 	case 'fupi_tik_loading':
-		$ret_text = '<p>' . esc_html__( 'Here you can change when and where this tool loads. This is all optional.', 'full-picture-analytics-cookie-notice') . '</p>';
+		$ret_text = '<p>' . esc_html__( 'Change when and where this tool loads. This is all optional.', 'full-picture-analytics-cookie-notice') . '</p>';
 	break;
 
 	// EVENT CONVERSIONS
 
 	case 'fupi_tik_events':
-		$ret_text = '<p>' . esc_html__( 'Use functions on this page to track simple events, like clicking a button or submitting a form.' , 'full-picture-analytics-cookie-notice' ) . ' <a href="https://wpfullpicture.com/support/documentation/tracking-events-with-tiktok-pixel/">' . esc_html__( 'Learn how to set it up', 'full-picture-analytics-cookie-notice') . '</a></p>';
+		$ret_text = '<p>' . esc_html__( 'Track clicks, form submissions and others events.' , 'full-picture-analytics-cookie-notice' ) . ' <a href="https://wpfullpicture.com/support/documentation/tracking-events-with-tiktok-pixel/">' . esc_html__( 'Learn how to set it up', 'full-picture-analytics-cookie-notice') . '</a></p>';
 	break;
 
 	// WOO

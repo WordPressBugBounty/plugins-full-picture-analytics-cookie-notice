@@ -76,6 +76,7 @@ class Fupi {
         $plugin_admin = new Fupi_Admin($this->get_plugin_name(), $this->get_version());
         // Perform updates
         $this->loader->add_action( 'init', $plugin_admin, 'perform_updates' );
+        $this->loader->add_action( 'admin_post_fupi_retry_settings_update', $plugin_admin, 'retry_settings_update' );
         // LOAD MODULES
         foreach ( $this->modules as $module ) {
             if ( empty( $this->tools[$module['id']] ) && !isset( $module['always_enabled'] ) ) {
@@ -86,7 +87,7 @@ class Fupi {
             }
             switch ( $module['id'] ) {
                 default:
-                    $plugin_admin->load_module( $module['id'], $module['is_premium'] );
+                    $plugin_admin->load_module( $module['id'], $module['is_premium'], $module['admin_module_path'] ?? '' );
                     break;
             }
         }
@@ -102,15 +103,38 @@ class Fupi {
         $this->loader->add_action( 'wp_ajax_fupi_search_pages', $plugin_admin, 'fupi_search_pages_callback' );
         // AJAX UPDATES OF GENERAL SETTINGS
         $this->loader->add_action( 'wp_ajax_fupi_update_modes', $plugin_admin, 'fupi_update_main_options_callback' );
-        // AJAX CONFLICT CHECKER
-        $this->loader->add_action( 'wp_ajax_fupi_check_conflicts', $plugin_admin, 'fupi_check_conflicts_callback' );
+        // AJAX SETTINGS PANEL
+        $this->loader->add_action( 'wp_ajax_fupi_load_field_form', $plugin_admin, 'fupi_load_field_form_callback' );
+        $this->loader->add_action( 'wp_ajax_fupi_save_field_settings', $plugin_admin, 'fupi_save_field_settings_callback' );
+        $this->loader->add_action( 'wp_ajax_fupi_load_gdpr_helper', $plugin_admin, 'fupi_load_gdpr_helper_callback' );
     }
 
     //
     // PUBLIC HOOKS
     //
     private function define_public_hooks() {
+        $versions = get_option( 'fupi_versions' );
+        $missing_option = new stdClass();
+        $failure_record = get_option( 'fupi_updater_failures', $missing_option );
+        $has_failure_record = $failure_record !== $missing_option;
+        $restore_pending = get_option( 'fupi_backup_restore_safety', $missing_option ) !== $missing_option;
+        $is_current = is_array( $versions ) && ($versions[1] ?? null) === FUPI_VERSION;
+        $is_exhausted = false;
+        if ( !$is_current && $has_failure_record ) {
+            $is_valid_record = is_array( $failure_record ) && count( $failure_record ) === 2 && array_key_exists( 'target_version', $failure_record ) && array_key_exists( 'failures', $failure_record ) && is_string( $failure_record['target_version'] ) && is_int( $failure_record['failures'] ) && $failure_record['failures'] >= 0;
+            $is_exhausted = !$is_valid_record || FUPI_VERSION === $failure_record['target_version'] && $failure_record['failures'] >= 3;
+        }
+        if ( $restore_pending || !$is_current && !$is_exhausted ) {
+            if ( !defined( 'DONOTCACHEPAGE' ) ) {
+                define( 'DONOTCACHEPAGE', true );
+            }
+            nocache_headers();
+        }
         if ( empty( $this->tools ) ) {
+            return;
+        }
+        // Do not run public hooks if data is not current/updated
+        if ( !$is_current || $restore_pending ) {
             return;
         }
         $plugin_public = new Fupi_Public($this->get_plugin_name(), $this->get_version());
@@ -118,7 +142,7 @@ class Fupi {
             'wp_head',
             $plugin_public,
             'fupi_output_fupi_data_in_head',
-            -1
+            -1000
         );
         // includes all the "Get" scripts
         $this->loader->add_filter(
@@ -132,7 +156,7 @@ class Fupi {
         $this->loader->add_filter( 'rocket_exclude_js', $plugin_public, 'fupi_rocket_exclude_js_files' );
         $this->loader->add_filter( 'rocket_delay_js_exclusions', $plugin_public, 'fupi_rocket_exclude_js_files' );
         $this->loader->add_filter( 'rocket_exclude_defer_js', $plugin_public, 'fupi_rocket_exclude_js_files' );
-        $this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'fupi_enqueue_js_helpers' );
+        $this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'fupi_enqueue_core_js' );
         // LOAD MODULES
         // Load when enabled
         $gtools_loaded = false;
@@ -162,23 +186,18 @@ class Fupi {
                         $plugin_public->load_module( 'gotm', false );
                         break;
                     default:
-                        $plugin_public->load_module( $module['id'], $module['is_premium'] );
+                        $plugin_public->load_module( $module['id'], $module['is_premium'], $module['public_module_path'] ?? '' );
                         break;
                 }
             }
         }
-        // The sender route writes to the WooCommerce session and must stay front-end classified for WooCommerce 11.1.2+ (see Fupi_Public::fupi_sender_is_frontend_request)
+        // The sender route writes to the WooCommerce session and must stay front-end
+        // classified for WooCommerce 11.1.2+ (see Fupi_Public::fupi_sender_is_frontend_request)
         $this->loader->add_filter( 'woocommerce_is_rest_api_request', $plugin_public, 'fupi_sender_is_frontend_request' );
         // SERVER OPERATIONS
-        if ( !empty( $this->main['server_method'] ) && $this->main['server_method'] == 'ajax' ) {
-            // Add AJAX CB to not logged in users
-            $this->loader->add_action( 'wp_ajax_nopriv_fupi_ajax', $plugin_public, 'fupi_ajax_hooks' );
-            // AJAX for non-logged-in users
-            $this->loader->add_action( 'wp_ajax_fupi_ajax', $plugin_public, 'fupi_ajax_hooks' );
-        } else {
-            // Add a Rest API endpoint
-            $this->loader->add_action( 'rest_api_init', $plugin_public, 'fupi_rest_hooks' );
-        }
+        $this->loader->add_action( 'wp_ajax_nopriv_fupi_ajax', $plugin_public, 'fupi_ajax_hooks' );
+        $this->loader->add_action( 'wp_ajax_fupi_ajax', $plugin_public, 'fupi_ajax_hooks' );
+        $this->loader->add_action( 'rest_api_init', $plugin_public, 'fupi_rest_hooks' );
         // MODIFY HTML
         $this->loader->add_action(
             'template_redirect',

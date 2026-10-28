@@ -1,28 +1,19 @@
-@import "_base";
-@import "_text-and-buttons";
-@import "_nav-top";
-@import "_nav-side";
-@import "_nav-switches";
-@import "_tables-and-forms";
-@import "_descriptions";
-@import "_r3";
-@import "_tooltip";
-@import "_popup";
-@import "_page-modules";
-@import "_page-main";
-@import "_page-home";
-// @import "_page-getting-started";
-@import "_page-reports";
-@import "_page-status";
-@import "_other";
-@import "_easy-mode";
-@import "_freemius";
-
-
-
-
-
-
-
-
-
+@use "_base";
+@use "_text-and-buttons";
+@use "_nav-top";
+@use "_nav-side";
+@use "_nav-switches";
+@use "_tables-and-forms";
+@use "_descriptions";
+@use "_r3";
+@use "_tooltip";
+@use "_offscreen";
+@use "_page-modules";
+@use "_page-main";
+@use "_page-home";
+// @use "_page-getting-started";
+@use "_page-reports";
+@use "_page-status";
+@use "_other";
+@use "_easy-mode";
+@use "_freemius";

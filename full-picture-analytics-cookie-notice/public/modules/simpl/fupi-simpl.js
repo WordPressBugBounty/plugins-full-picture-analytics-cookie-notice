@@ -1,17 +1,12 @@
 function fupi_simpl(){
 
-	if ( allow_loading_simpl() ) { 
-		load_simpl();
-	} else {
-		document.addEventListener('fp_load_scripts', ()=>{ if ( allow_loading_simpl() ) load_simpl(); } );
-	}
-
-	function allow_loading_simpl() {
-		return FP.isAllowedToLoad( 'simpl', [], [], false, true ); // module id in fp.XX, required cookie permission, setting name with required data (like in fp.gtm.setting_name)
-	}
-
 	function simpleServer(){
 		
+
+		return Promise.resolve({
+			success: true,
+			skipped: true,
+		});
 	}
 
 	function simplePixel(){
@@ -31,14 +26,11 @@ function fupi_simpl(){
 		FP.getScript( script_src + latest_file_name, false, params );
 	}
 
-	function load_simpl(){
-		let use_server = false;
-		
-		use_server ? simpleServer() : simplePixel();
+	let use_server = false;
+	
+	use_server ? simpleServer() : simplePixel();
 
-		FP.loaded('simpl','simpl','[FP] Simple Analytics loaded');
-	}
-
+	FP.loaded('simpl','simpl','[FP] Simple Analytics loaded');
 };
 
-FP.load('simpl', 'fupi_simpl', ['head_helpers']);
+fupi_simpl();

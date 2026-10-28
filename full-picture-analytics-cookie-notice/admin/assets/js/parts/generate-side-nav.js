@@ -2,9 +2,9 @@
 
 (() => {
 
-	let fupi_settings_form 	= FP.findID('fupi_settings_form'),
+	let fupi_settings_form 	= FP.findID('fupi_main_form'),
 		fupi_admin_page 	= FP.getUrlParamByName('page'),
-		headlines 			= FP.findAll( '#fupi_settings_form h2' ),
+		headlines 			= FP.findAll( '#fupi_main_form.fupi_settings_form h2' ),
 		hidden_h2			= [],
 		visible_h2			= [],
 		sub_items_added		= false,

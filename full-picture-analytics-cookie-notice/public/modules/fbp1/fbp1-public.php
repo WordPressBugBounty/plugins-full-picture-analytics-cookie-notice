@@ -20,7 +20,6 @@ class Fupi_FBP1_public {
     }
 
     private function add_actions_and_filters() {
-        add_action( 'wp_enqueue_scripts', array($this, 'enqueue_scripts') );
         add_filter(
             'fupi_modify_fp_object',
             array($this, 'add_data_to_fp_object'),
@@ -30,6 +29,26 @@ class Fupi_FBP1_public {
     }
 
     public function add_data_to_fp_object( $fp ) {
+        $fp['runtime']['fbp'] = [
+            'reqs'  => [
+                'consents' => ['stats', 'market'],
+            ],
+            'files' => [[
+                'url' => add_query_arg( 'ver', FUPI_VERSION, FUPI_URL . 'public/modules/fbp1/fupi-fbp.js' ),
+                'id'  => 'fbp-setup',
+            ], [
+                'url' => add_query_arg( 'ver', FUPI_VERSION, FUPI_URL . 'public/modules/fbp1/fupi-fbp-footer.js' ),
+                'id'  => 'fbp-footer',
+            ]],
+        ];
+        if ( !empty( $this->tools['woo'] ) ) {
+            $fp['runtime']['fbp']['files'][] = [
+                'url'            => add_query_arg( 'ver', FUPI_VERSION, FUPI_URL . 'public/modules/fbp1/fupi-fbp-woo.js' ),
+                'id'             => 'fbp-woo',
+                'must_be_truthy' => ['fp.woo'],
+            ];
+        }
+        // server data
         $fbp_data = $this->settings;
         // ! we must make a copy to safely modify
         $fbp_data['server_side'] = false;
@@ -40,46 +59,25 @@ class Fupi_FBP1_public {
         if ( !empty( $fbp_data['capi_token_2'] ) ) {
             unset($fbp_data['capi_token_2']);
         }
-        if ( !empty( $fbp_data['test_code'] ) ) {
-            unset($fbp_data['test_code']);
-        }
-        if ( !empty( $fbp_data['test_code_2'] ) ) {
-            unset($fbp_data['test_code_2']);
-        }
+        unset($fbp_data['test_code'], $fbp_data['test_code_2']);
         $fp['fbp'] = $fbp_data;
         $fp['tools'][] = 'fbp';
         return $fp;
     }
 
-    public function enqueue_scripts() {
-        $reqs = ( !empty( $this->tools['woo'] ) && function_exists( 'WC' ) ? array(
-            'fupi-helpers-js',
-            'fupi-helpers-footer-js',
-            'fupi-woo-js',
-            'fupi-fbp-head-js'
-        ) : array('fupi-helpers-js', 'fupi-helpers-footer-js', 'fupi-fbp-head-js') );
-        /* ^ */
-        wp_enqueue_script(
-            'fupi-fbp-head-js',
-            FUPI_URL . 'public/modules/fbp1/fupi-fbp.js',
-            array('fupi-helpers-js'),
-            FUPI_VERSION,
-            [
-                'in_footer' => false,
-                'strategy'  => 'async',
-            ]
-        );
-        /* _ */
-        wp_enqueue_script(
-            'fupi-fbp-footer-js',
-            FUPI_URL . 'public/modules/fbp1/fupi-fbp-footer.js',
-            $reqs,
-            FUPI_VERSION,
-            [
-                'in_footer' => true,
-                'strategy'  => 'async',
-            ]
-        );
+    private function validate_test_codes( $test_codes ) {
+        $validated = [];
+        foreach ( (array) $test_codes as $pixel => $test_code ) {
+            $pixel = (int) $pixel;
+            if ( !in_array( $pixel, [1, 2], true ) || !is_string( $test_code ) ) {
+                continue;
+            }
+            $test_code = trim( $test_code );
+            if ( preg_match( '/^[A-Za-z0-9_-]{1,64}$/', $test_code ) ) {
+                $validated[$pixel] = $test_code;
+            }
+        }
+        return $validated;
     }
 
 }

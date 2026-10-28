@@ -858,6 +858,10 @@ input:checked + .fupi_switch_slider:before {
 
 .fupi_iframe_placeholder{
 	position: relative;
+	box-sizing: border-box;
+	border: var(--fupi-ifrblock-border-width, 2px) solid var(--fupi-ifrblock-border-color, #bcbcbc);
+	border-radius: var(--fupi-ifrblock-border-radius, 3px);
+	overflow: hidden;
 }
 
 .fupi_iframe_content{
@@ -873,8 +877,8 @@ input:checked + .fupi_switch_slider:before {
 		flex: 1 0 auto;
 		max-width: 100%;
 		padding: 14px 20px;
-		background-color: rgba(25,44,52,.85);
-		color: #fff;
+		background-color: var(--fupi-ifrblock-notice-bg-color, #fff);
+		color: var(--fupi-ifrblock-notice-text-color, #333);
 		text-align: center;
 		box-sizing: border-box;
 		> p{
@@ -884,11 +888,11 @@ input:checked + .fupi_switch_slider:before {
 }
 
 .fupi_blocked_iframe .fupi_iframe_descr{
-	color: #fff;
-	font-size: 16px;
+	color: var(--fupi-ifrblock-notice-text-color, #333);
+	font-size: var(--fupi-ifrblock-notice-font-size, 16px);
 	line-height: 1.4em;
 	a{
-		color: #fff;
+		color: var(--fupi-ifrblock-notice-text-color, #333);
 		text-decoration: underline;
 		&:hover, &:focus{
 			text-decoration: none;
@@ -897,22 +901,17 @@ input:checked + .fupi_switch_slider:before {
 }
 
 .fupi_blocked_iframe button.fupi_iframe_consent_btn{
-	border-radius: 3px;
+	border-radius: var(--fupi-ifrblock-btn-border-radius, 8px);
 	border: none;
-	padding: .75em 1.25em;
-	font-size: 18px;
+	padding: var(--fupi-ifrblock-btn-padding, 12px 20px);
+	font-size: var(--fupi-ifrblock-btn-font-size, 16px);
 	line-height: 1em;
-	background-color: #3acdb7;
+	background-color: var(--fupi-ifrblock-btn-bg-color, #222);
 	transition: .3s all;
-	color: #000;
+	color: var(--fupi-ifrblock-btn-text-color, #fff);
 	&:hover, &:focus{
-		background-color: #63ffe8;
-	}
-}
-
-@media screen and (max-width: 768px){
-	.fupi_blocked_iframe .fupi_iframe_descr{
-		font-size: 14px;
+		background-color: var(--fupi-ifrblock-btn-bg-color-hover, #555);
+		color: var(--fupi-ifrblock-btn-text-color-hover, #fff);
 	}
 }
 

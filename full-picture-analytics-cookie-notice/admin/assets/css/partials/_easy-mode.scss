@@ -16,7 +16,7 @@
     }
 
     // hide even "do not hide modules" on the tools page
-    #fupi_settings_form tr.fupi_hidden.fupi_do_not_hide{
+    #fupi_content .fupi_settings_form tr.fupi_hidden.fupi_do_not_hide{
         display: none !important;
     }
 

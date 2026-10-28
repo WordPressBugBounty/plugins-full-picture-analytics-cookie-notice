@@ -21,9 +21,9 @@
       <key name="necess_text"/>
       <key name="stats_only_text"/>
     </key>
-    <key name="fupi_cook">
-      <key name="iframe_caption_txt"/>
-      <key name="iframe_btn_text"/>
+    <key name="fupi_ifrblock">
+      <key name="caption_txt"/>
+      <key name="btn_text"/>
     </key>
   </admin-texts>
 </wpml-config>

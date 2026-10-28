@@ -1,21 +1,19 @@
-.fupi_page_status{
-    #fupi_main_col{
-        section{
-            margin: 0 auto;
-            max-width: 640px;
-            padding: 20px 0;
-            // border-radius: 10px;
-            + section{
-                margin-top: 20px;
-            }
-            h3{
-                font-size: 24px;
-                // font-family: "Merriweather", serif;
-                font-weight: 400;
-            }
-            td{
-                font-size: 17px;
-            }
+.fupi_gdpr_helper{
+    section{
+        margin: 0 auto;
+        max-width: 640px;
+        padding: 20px 0;
+        // border-radius: 10px;
+        + section{
+            margin-top: 20px;
+        }
+        h3{
+            font-size: 24px;
+            // font-family: "Merriweather", serif;
+            font-weight: 400;
+        }
+        td{
+            font-size: 17px;
         }
     }
     .fupi_classic_table{

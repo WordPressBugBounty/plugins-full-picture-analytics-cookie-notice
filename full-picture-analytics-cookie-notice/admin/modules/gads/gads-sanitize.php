@@ -10,41 +10,45 @@ if ( ! empty ( $input ) ) foreach( $input as $key => $value ) {
 
 		switch ($clean_key) {
 			
-			case 'track_affiliate':
-			case 'track_elems':
-			case 'track_forms':
-			case 'track_views':
+			case 'track_clicks':
+			case 'track_aff':
+			case 'track_form_submits':
+			case 'track_impress':
 				
 				$clean_val = [];
 
 				if ( is_array( $value ) ){
 
-					foreach( $value as $i => $section ){
-						if ( empty( $section['sel'] ) || empty( $section['val'] ) ) continue;
-						$clean_val[$i]['sel'] = trim( sanitize_text_field( $section['sel'] ) );
-						$clean_val[$i]['val'] = trim( sanitize_text_field( $section['val'] ) );
+					$j = 0;
+
+					foreach( $value as $section ){
+						if ( empty( $section['atrig_id'] ) || empty( $section['val'] ) ) continue;
+						$clean_val[$j]['atrig_id'] = esc_attr( $section['atrig_id'] );
+						$clean_val[$j]['val'] = trim( sanitize_text_field( $section['val'] ) );
+						$j++;
 					}
 				};
 				break;
 			
 			case 'custom_events':
+			case 'vscores':
 				$clean_val = [];
 
 				if ( is_array( $value ) ){
 
-					$i = 0;
 					$j = 0;
-					$max = count( $value );
 
-					for ( ; $i < $max; $i++) {
-						
-						$section = $value[$i];
+					foreach ( $value as $section ) {
 						
 						if ( empty( $section['atrig_id'] ) || empty( $section['conv_label'] ) ) continue;
 						
 						$clean_val[$j]['atrig_id'] = sanitize_key( $section['atrig_id'] );
 						$clean_val[$j]['conv_label'] = sanitize_text_field( $section['conv_label'] );
-						$clean_val[$j]['repeat'] = empty( $section['repeat'] ) ? 'no' :  sanitize_key( $section['repeat'] );
+
+						if ( $clean_key == 'custom_events' ) {
+							$repeat = empty( $section['repeat'] ) ? 'no' : sanitize_key( $section['repeat'] );
+							$clean_val[$j]['repeat'] = in_array( $repeat, [ 'no', 'yes' ], true ) ? $repeat : 'no';
+						}
 
 						// Parameters
 
@@ -56,24 +60,32 @@ if ( ! empty ( $input ) ) foreach( $input as $key => $value ) {
 							
 							foreach ( $section['params'] as $param ) {
 								// Check if both name and value exist
-								if ( ! empty( $param['name'] ) && isset( $param['val'] ) && isset( $param['type'] ) ) {
-									$clean_params[$k]['name'] = sanitize_key( $param['name'] );
-									$clean_params[$k]['type'] = sanitize_key( $param['type'] );
+								if ( ! empty( $param['name'] ) && ! empty( $param['val'] ) && ! empty( $param['type'] ) ) {
+									$clean_param_type = sanitize_key( $param['type'] );
+									$clean_param = [
+										'name' => sanitize_key( $param['name'] ),
+										'type' => $clean_param_type,
+									];
 									
-									switch ( $clean_params[$k]['type'] ) {
+									switch ( $clean_param_type ) {
 										case 'string':
 										case 'path':
-											$clean_params[$k]['val'] = sanitize_text_field( trim( $param['val'] ) );
+											$clean_param['val'] = sanitize_text_field( trim( $param['val'] ) );
 										break;
 
 										case 'number':
-											$clean_params[$k]['val'] = (int) $param['val'];
+											$clean_param['val'] = (int) $param['val'];
 										break;
 
 										case 'bool':
-											$clean_params[$k]['val'] = $param['val'] === 'true' || $param['val'] === '1' ? 1 : 0;
+											$clean_param['val'] = $param['val'] === 'true' || $param['val'] === '1' ? 1 : 0;
 										break;
+
+										default:
+											continue 2;
 									}
+
+									$clean_params[$k] = $clean_param;
 									
 									$k++;
 								}
@@ -94,21 +106,12 @@ if ( ! empty ( $input ) ) foreach( $input as $key => $value ) {
 			case 'id2':
 			case 'business_type':
 			case 'woo_conv_id':
+			case 'woo_checkout_conv_id':
+			case 'woo_add_to_cart_conv_id':
 			case 'track_tel':
 			case 'track_email':
 				$clean_val = trim( sanitize_text_field( $value ) );
 				break;
-			case 'limit_country':
-
-				$clean_val = [];
-
-				if ( is_array( $value ) && ! empty( $value['method'] ) && ! empty( $value['countries'] ) ) {
-					$clean_val['method'] = sanitize_key( $value['method'] );
-					$clean_val['countries'] = trim( sanitize_text_field( $value['countries'] ) );
-				};
-
-				break;
-				
 			case 'self_host_file_name':
 				$clean_val = sanitize_key( $value );
 				break;

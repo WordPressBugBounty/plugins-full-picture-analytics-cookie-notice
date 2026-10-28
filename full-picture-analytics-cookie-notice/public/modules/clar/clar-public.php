@@ -10,7 +10,7 @@ class Fupi_CLAR_public {
 
         $this->settings = get_option('fupi_clar');
         
-        if ( ! empty ( $this->settings ) ) {
+        if ( ! empty ( $this->settings['id'] ) ) {
             $this->tools = get_option('fupi_tools');
             $this->main = get_option('fupi_main');
             $this->add_actions_and_filters();
@@ -18,21 +18,38 @@ class Fupi_CLAR_public {
     }
 
     private function add_actions_and_filters(){
-        add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
         add_filter( 'fupi_modify_fp_object', array($this, 'add_data_to_fp_object'), 10, 1 );
     }
 
     public function add_data_to_fp_object( $fp ){
+
+        $fp['runtime']['clar'] = [
+            'reqs'      => [
+                'consents'  => ['stats'],
+                'no_cookie_field_id' => 'no_cookie'
+            ],
+            'files' => [
+                [
+                    'url'           => add_query_arg( 'ver', FUPI_VERSION, FUPI_URL . 'public/modules/clar/fupi-clar.js' ),
+                    'id'            => 'clar',
+                ],
+                [
+                    'url'           => add_query_arg( 'ver', FUPI_VERSION, FUPI_URL . 'public/modules/clar/fupi-clar-footer.js' ),
+                    'id'            => 'clar-footer',
+                ],
+            ]
+        ];
+
+        if ( ! empty ( $this->tools['woo'] ) ) {
+            $fp['runtime']['clar']['files'][] = [
+                'url'            => add_query_arg( 'ver', FUPI_VERSION, FUPI_URL . 'public/modules/clar/fupi-clar-woo.js' ),
+                'id'             => 'clar-woo',
+                'must_be_truthy' => [ 'fp.woo' ]
+            ];  
+        };
+
         $fp['clar'] = $this->settings;
         $fp['tools'][] = 'clar';
         return $fp;
-    }
-
-    public function enqueue_scripts(){
-
-        $reqs = ! empty( $this->tools['woo'] ) && function_exists('WC') ? array('fupi-helpers-js', 'fupi-helpers-footer-js', 'fupi-woo-js', 'fupi-clar-head-js') : array('fupi-helpers-js', 'fupi-helpers-footer-js', 'fupi-clar-head-js');
-
-        /* ^ */ wp_enqueue_script( 'fupi-clar-head-js', FUPI_URL . 'public/modules/clar/fupi-clar.js', array( 'fupi-helpers-js' ), FUPI_VERSION, [ 'in_footer' => false, 'strategy' => 'async' ] );
-        /* _ */ wp_enqueue_script( 'fupi-clar-footer-js', FUPI_URL . 'public/modules/clar/fupi-clar-footer.js', $reqs, FUPI_VERSION, [ 'in_footer' => true, 'strategy' => 'async' ] );
     }
 }

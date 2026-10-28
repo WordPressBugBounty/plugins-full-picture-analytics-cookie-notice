@@ -67,7 +67,7 @@ function fupi_iframes(){
             
             let width = iframe_data.getAttribute('width'),
                 height = iframe_data.getAttribute('height'),
-                aspect = width && height ? Math.round( parseInt( height ) / parseInt ( width ) * 10000 ) / 100 + '%' : wrap.dataset.aspect || '56.25%';
+                aspect = width && height ? Math.round( parseInt( height ) / parseInt ( width ) * 10000 ) / 100 + '%' : wrap.dataset.aspect || fp.notice.iframe_default_aspect || '56.25%';
 
             wrap.dataset.aspect = aspect;
             return aspect;
@@ -134,13 +134,13 @@ function fupi_iframes(){
         let privacy_url     = wrap.dataset.privacy || fp.notice.privacy_url || false,
             descr_text      = fupi_iframe_texts.iframe_caption_txt,
             aspect          = getIframeAspect( wrap, iframe_data ),
-            vid_domain      = get_domain_from_url( src );
-            placeholder     = wrap.dataset.placeholder || wrap.dataset.image || getIframeThumbSrc( wrap, iframe_data, src, vid_domain ) || fp.notice.iframe_img,
-            src_name        = wrap.dataset.name;
+            vid_domain      = get_domain_from_url( src ),
+            placeholder     = wrap.dataset.placeholder || wrap.dataset.image || getIframeThumbSrc( wrap, iframe_data, src, vid_domain ) || fp.notice.iframe_placeholder_image,
+            src_name        = wrap.dataset.name,
+            placeholder_img = placeholder ? 'background-image: url(\'' + placeholder + '\');' : '';
 
         // make placeholder CSS
-        placeholder_img = placeholder ? 'background-image: url(\'' + placeholder + '\');' : '';
-        
+
         // insert the privacy URL and the source name in the description text
         descr_text = privacy_url ? descr_text.replace('{{', '<a href="' + privacy_url + '">').replace('}}', '</a>') : descr_text.replace('{{', '').replace('}}', '')
         descr_text = src_name ? descr_text.replace(/\[\[.*?\]\]/, src_name ) : descr_text.replace('[[', '').replace(']]', '');
@@ -186,7 +186,9 @@ function fupi_iframes(){
 
         let wrappers = FP.findAll('.fupi_blocked_iframe'), // wrappers of blocked iframes
             cons_cookie = FP.readCookie('fp_iframes_consent'),
-            cons_data = cons_cookie ? JSON.parse(cons_cookie) : false;
+            cons_data = FP.parseJSON( cons_cookie, false );
+
+        if ( ! Array.isArray( cons_data ) ) cons_data = false;
 
         // FOR EACH WRAPPER
         wrappers.forEach( wrap => {
@@ -209,7 +211,7 @@ function fupi_iframes(){
         } )
     }
 
-    if ( document.readyState === "complete" ) {
+    if ( document.readyState !== "loading" ) {
         FP.loadIframes();
     } else {
         document.addEventListener('DOMContentLoaded', FP.loadIframes );
@@ -233,7 +235,8 @@ function fupi_iframes(){
                 cons_cookie = FP.readCookie('fp_iframes_consent');
 
             if ( cons_cookie ) {
-                let cons_data = JSON.parse(cons_cookie);
+                let cons_data = FP.parseJSON( cons_cookie, [] );
+                if ( ! Array.isArray( cons_data ) ) cons_data = [];
                 cons_data.push(vid_domain);
                 FP.setCookie( 'fp_iframes_consent', JSON.stringify(cons_data), 180 );
             } else {
@@ -245,7 +248,7 @@ function fupi_iframes(){
         }
     })
 
-    FP.loaded('iframes_blocker');
+    FP.loaded('iframes-blocker');
 };
 
-if ( ! fp.main.is_bricks_builder ) FP.load('iframes_blocker', 'fupi_iframes', ['head_helpers']);
+FP.load( 'iframes-blocker', 'fupi_iframes' );

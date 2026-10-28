@@ -4,9 +4,9 @@
  * Plugin Name:       WP Full Picture
  * Plugin URI:        https://wpfullpicture.com/
  * Description:       Install the best tracking tools and manage tracking consents with one plugin. Google Analytics, GTM, Meta pixel, WooCommerce and more.
- * Version:           10.1.2.3
- * Requires at least: 5.4
- * Requires PHP:      7.4
+ * Version:           11.0.1
+ * Requires at least: 6.2.2
+ * Requires PHP:      8.1
  * Author:            Krzysztof Planeta
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
@@ -20,7 +20,9 @@ if ( !defined( 'ABSPATH' ) ) {
 if ( function_exists( 'fupi_fs' ) ) {
     fupi_fs()->set_basename( false, __FILE__ );
 } else {
-    define( 'FUPI_VERSION', '10.1.2.3' );
+    define( 'FUPI_VERSION', '11.0.1' );
+    define( 'FUPI_ADDON_API_VERSION', '1.0.0' );
+    define( 'FUPI_ADDON_API_WOO_VERSION', '1.0.0' );
     define( 'FUPI_URL', plugin_dir_url( __FILE__ ) );
     define( 'FUPI_PATH', __DIR__ );
     // DO NOT REMOVE THIS IF, IT IS ESSENTIAL FOR THE `function_exists` CALL ABOVE TO PROPERLY WORK.
@@ -77,6 +79,7 @@ if ( function_exists( 'fupi_fs' ) ) {
     function activate_fupi() {
         // require_once plugin_dir_path( __FILE__ ) . 'includes/class-fupi-activator.php';
         require_once FUPI_PATH . '/admin/common/fupi-clear-cache.php';
+        fupi_clear_cache();
         // Fupi_Activator::activate();
     }
 
@@ -85,6 +88,7 @@ if ( function_exists( 'fupi_fs' ) ) {
     function deactivate_fupi() {
         require_once plugin_dir_path( __FILE__ ) . 'includes/class-fupi-deactivator.php';
         require_once FUPI_PATH . '/admin/common/fupi-clear-cache.php';
+        fupi_clear_cache();
         Fupi_Deactivator::deactivate();
     }
 
@@ -117,9 +121,13 @@ if ( function_exists( 'fupi_fs' ) ) {
      * @since    1.0.0
      */
     function run_fupi() {
+        $GLOBALS['fupi_is_pro'] = fupi_fs()->is_premium();
+        $GLOBALS['fupi_has_active_license'] = fupi_fs()->has_active_valid_license();
+        do_action( 'fupi_register_addons', FUPI_ADDON_API_VERSION, FUPI_ADDON_API_WOO_VERSION );
         $plugin = new Fupi();
         $plugin->run();
     }
 
-    run_fupi();
+    // Register module hooks before WooCommerce initializes on plugins_loaded at priority -1.
+    add_action( 'plugins_loaded', 'run_fupi', -2 );
 }

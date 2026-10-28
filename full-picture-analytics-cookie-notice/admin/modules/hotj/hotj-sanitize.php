@@ -9,57 +9,53 @@ if ( ! empty( $input ) ) foreach( $input as $key => $value ) {
 	if( ! empty( $value ) ) {
 
 		switch ($clean_key) {
-			case 'tag_affiliate':
+			case 'track_clicks':
+			case 'track_aff':
+			case 'track_form_submits':
+			case 'track_impress':
 
 				$clean_val = [];
 
 				if ( is_array( $value ) ){
 
-					foreach( $value as $i => $section ){
-						if ( empty( $section['sel'] ) ) continue;
-						$clean_val[$i]['sel'] = trim( sanitize_text_field( $section['sel'] ) );
-						if ( ! empty( $section['val'] ) ) $clean_val[$i]['val'] = trim( sanitize_text_field( $section['val'] ) );
-					}
-				};
-				break;
+					$j = 0;
 
-			case 'tag_elems':
-			case 'tag_forms':
-			case 'tag_views':
-
-				$clean_val = [];
-
-				if ( is_array( $value ) ){
-
-					foreach( $value as $i => $section ){
-						if ( empty( $section['sel'] ) || empty( $section['val'] ) ) continue;
-						$clean_val[$i]['sel'] = trim( sanitize_text_field( $section['sel'] ) );
-						$clean_val[$i]['val'] = trim( sanitize_text_field( $section['val'] ) );
+					foreach( $value as $section ){
+						if ( empty( $section['atrig_id'] ) || empty( $section['val'] ) ) continue;
+						$clean_val[$j]['atrig_id'] = esc_attr( $section['atrig_id'] );
+						$clean_val[$j]['val'] = trim( sanitize_text_field( $section['val'] ) );
+						$j++;
 					}
 				};
 				break;
 			case 'custom_events':
+			case 'vscores':
 
 				$clean_val = [];
 
 				if ( is_array( $value ) ){
 
-					foreach( $value as $i => $section ){
+					$j = 0;
+
+					foreach( $value as $section ){
 						// Require both atrig_id and tag_name
 						if ( empty( $section['atrig_id'] ) || empty( $section['tag_name'] ) ) continue;
 						
-						$clean_val[$i]['atrig_id'] = sanitize_key( $section['atrig_id'] );
-						$clean_val[$i]['tag_name'] = trim( sanitize_text_field( $section['tag_name'] ) );
+						$clean_val[$j]['atrig_id'] = sanitize_key( $section['atrig_id'] );
+						$clean_val[$j]['tag_name'] = trim( sanitize_text_field( $section['tag_name'] ) );
 						
-						// Sanitize repeat option (default to 'no' if not set)
-						$clean_val[$i]['repeat'] = isset( $section['repeat'] ) && $section['repeat'] === 'yes' ? 'yes' : 'no';
+						if ( $clean_key == 'custom_events' ) {
+							$repeat = empty( $section['repeat'] ) ? 'no' : sanitize_key( $section['repeat'] );
+							$clean_val[$j]['repeat'] = in_array( $repeat, [ 'no', 'yes' ], true ) ? $repeat : 'no';
+						}
+
+						$j++;
 					}
 				};
 				break;
 
 
 			case 'id':
-			case 'tag_file_downl':
 				$clean_val = trim( sanitize_text_field( $value )) ;
 				break;
 			case 'user_attr':

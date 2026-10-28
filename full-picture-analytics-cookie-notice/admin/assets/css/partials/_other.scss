@@ -38,7 +38,7 @@
 
 // CONSENT BANNER SETTINGS PAGE
 
-#fupi_settings_form.fupi_hide_manual_cookie_settings{
+#fupi_content .fupi_settings_form.fupi_hide_manual_cookie_settings{
 	.fupi_manual_mode{
 		display: none !important;
 	}
@@ -104,73 +104,6 @@
 	+.fupi_atrig_popup_info{
 		margin-top: 20px;
 	}
-}
-
-// CUSTOM EVENTS BUILDER
-
-.fupi_events_builder{
-	.fupi_field_type_button{
-		position: relative;
-		label{
-			margin-bottom: 15px;
-		}
-	}
-	.fupi_before_field{
-		font-weight: 500;
-		padding-right: 75px;
-		font-size: 15px !important;
-		border-bottom: 1px solid #ccc;
-		width: auto !important;
-		display: block;
-	}
-	.fupi_select_atrig{
-		flex: 1 0 auto;
-		border: 0;
-		background: none !important;
-		position: absolute !important;
-		top: auto !important;
-		bottom: 6px;
-		color: #333 !important;
-		right: 10px;
-		margin-bottom: 0 !important;
-		&:hover{
-			color: #369 !important;
-		}
-	}
-	.fupi_events_builder_evt{
-		min-width: auto !important;
-		// max-width: 150px !important;
-	}
-	.fupi_r3_btns{
-		align-self: center;
-	}
-}
-
-// CUSTOM SCRIPTS MODULE
-
-.fupi_r3_scr{
-	.fupi_field_adv_trigger_wrap{
-		background: #f2f2f2;
-		padding: 10px;
-		margin-bottom: 10px;
-		// border-radius: 5px;
-	}
-}
-
-.fupi_r3_scr.fupi_cscr_missing_atrig{
-	border: 2px solid #b75216;
-	.fupi_field_adv_trigger_wrap{
-		background: #ffe6c1;
-	}
-}
-.fupi_cscr_missing_atrig_msg{
-	color: lightyellow;
-    padding: 10px;
-    border-radius: 3px;
-    background-color: #b75216;
-    margin-bottom: -5px;
-    z-index: 10;
-    position: relative;
 }
 
 // STATUS PAGE
@@ -239,4 +172,24 @@
 
 .fupi_tablenav-pages > span{
 	background-color: #efefef;
+}
+
+// LOADING SPINNER
+
+.fupi_loading_spinner{
+	display: flex; 
+	justify-content: center; 
+	height: calc(100vh - 60px);
+	align-items: center;
+	div{
+		width: 24px;
+		height: 24px;
+		border: 3px solid rgba(0,0,0,0.1);
+		border-top-color: #333;
+		border-radius: 50%;
+		animation: fupi_spin 0.8s linear infinite;
+	}
+}
+@keyframes fupi_spin{
+	to{ transform: rotate(360deg); }
 }
