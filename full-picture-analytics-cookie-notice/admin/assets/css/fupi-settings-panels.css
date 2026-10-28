@@ -1,0 +1,177 @@
+.fupi_settings_panel {
+	position: fixed;
+	z-index: 100000;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	pointer-events: none;
+	opacity: 0;
+	transition: opacity 0.2s ease;
+}
+
+.fupi_settings_panel_active {
+	opacity: 1;
+	pointer-events: auto;
+}
+
+.fupi_settings_panel_overlay {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background-color: rgba(26, 41, 56, 0.35);
+}
+
+.fupi_settings_panel_wrap {
+	position: absolute;
+	top: 32px;
+	right: 0;
+	bottom: 0;
+	height: calc(100vh - 32px);
+	max-width: calc(100vw - 30px);
+	width: min(1200px, calc(100vw - 30px));
+	transform: translateX(100%);
+	transition: transform 0.22s ease;
+	background: #ffffff;
+	border-radius: 18px 0 0 18px;
+	box-shadow: 0 0 30px rgba(0, 0, 0, 0.14);
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+.fupi_settings_panel_active .fupi_settings_panel_wrap {
+	transform: translateX(0);
+}
+
+.fupi_settings_panel_x_btn{
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	padding: 10px;
+	border: 0;
+	background: transparent;
+	cursor: pointer;
+	line-height: 1;
+}
+
+.fupi_settings_panel_x_btn .dashicons {
+	font-size: 24px !important;
+	width: 24px;
+	height: 24px;
+}
+
+.fupi_settings_panel_content {
+	box-sizing: border-box;
+	max-width: 910px;
+	margin: 0 auto;
+	padding: 50px 24px 32px;
+}
+
+.fupi_settings_panel_content_inner h3 {
+	margin-top: 0;
+	font-size: 22px;
+	line-height: 1.3;
+}
+
+.fupi_settings_panel_content_inner p {
+	font-size: 16px;
+	line-height: 1.55;
+}
+
+@media screen and (max-width: 1200px) {
+	.fupi_settings_panel_wrap {
+		top: 0;
+		height: 100vh;
+		width: 100vw;
+		max-width: 100vw;
+		border-radius: 0;
+	}
+
+	.fupi_settings_panel_content {
+		max-width: none;
+		padding: 50px 20px 30px;
+	}
+}
+
+/* CONTENT */
+
+.fupi_section_title_wrapper h2{
+	text-align: center;
+	font-size: 26px;
+	margin-bottom: 0;
+}
+
+.fupi_popup_settings_descr{
+	text-align: center;
+	font-size: 16px;
+    margin-bottom: 20px;
+}
+
+/* LOADING SPINNER OVERLAY */
+.fupi_form_loading_spinner {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: rgba(255, 255, 255, 0.7);
+	z-index: 100;
+}
+
+.fupi_form_loading_spinner .fupi_loading_spinner > div {
+	width: 40px;
+	height: 40px;
+	border-width: 4px;
+}
+
+// GDPR Setup helper panel
+
+
+.fupi_link_button {
+	appearance: none;
+	padding: 0;
+	border: 0;
+	background: transparent;
+	color: #2271b1;
+	cursor: pointer;
+	font: inherit;
+	text-decoration: underline;
+}
+
+.fupi_link_button:hover,
+.fupi_link_button:focus {
+	color: #135e96;
+}
+
+.fupi_gdpr_helper section {
+	max-width: 640px;
+	margin: 0 auto;
+	padding: 20px 0;
+}
+
+.fupi_gdpr_helper section + section {
+	margin-top: 20px;
+}
+
+.fupi_gdpr_helper section h3 {
+	font-size: 24px;
+	font-weight: 400;
+}
+
+.fupi_gdpr_helper section td {
+	font-size: 17px;
+}
+
+.fupi_gdpr_helper .fupi_classic_table,
+.fupi_gdpr_helper .fupi_classic_table td {
+	border: 0;
+}
+
+.fupi_gdpr_helper .fupi_classic_table td + td {
+	padding-bottom: 30px;
+}

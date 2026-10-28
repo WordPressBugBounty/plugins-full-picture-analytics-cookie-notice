@@ -4,7 +4,7 @@
  * Plugin Name:       WP Full Picture
  * Plugin URI:        https://wpfullpicture.com/
  * Description:       Install the best tracking tools and manage tracking consents with one plugin. Google Analytics, GTM, Meta pixel, WooCommerce and more.
- * Version:           11.0.1
+ * Version:           11.0.2
  * Requires at least: 6.2.2
  * Requires PHP:      8.1
  * Author:            Krzysztof Planeta
@@ -20,7 +20,7 @@ if ( !defined( 'ABSPATH' ) ) {
 if ( function_exists( 'fupi_fs' ) ) {
     fupi_fs()->set_basename( false, __FILE__ );
 } else {
-    define( 'FUPI_VERSION', '11.0.1' );
+    define( 'FUPI_VERSION', '11.0.2' );
     define( 'FUPI_ADDON_API_VERSION', '1.0.0' );
     define( 'FUPI_ADDON_API_WOO_VERSION', '1.0.0' );
     define( 'FUPI_URL', plugin_dir_url( __FILE__ ) );

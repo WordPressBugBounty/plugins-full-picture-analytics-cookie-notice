@@ -1,0 +1,8 @@
+function fupi_footer_helpers(){
+
+<%= contents %>
+
+	FP.loaded('footer-helpers');
+};
+
+FP.load('footer-helpers', 'fupi_footer_helpers')

@@ -1,0 +1,8 @@
+function fupi_core(){
+
+    'use strict';
+
+<%= contents %>
+};
+
+fupi_core();
