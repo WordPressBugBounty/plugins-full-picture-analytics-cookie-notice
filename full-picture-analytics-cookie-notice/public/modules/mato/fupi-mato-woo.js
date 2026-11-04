@@ -1,7 +1,9 @@
+FP.migrateCookieToStorage('fp_matomo_cart__tmp');
+
 FP.fns.mato_remember_cart_changes = ( data, should_remove, return_val = true ) => {
 
 	// get old cart data
-	var cart = FP.readCookie('fp_matomo_cart__tmp'),
+	var cart = FP.readStorage('fp_matomo_cart__tmp'),
 		removed = [];
 
 	cart = cart ? JSON.parse( cart ) : {};
@@ -64,12 +66,12 @@ FP.fns.mato_remember_cart_changes = ( data, should_remove, return_val = true ) =
 	});
 
 	// save updated cart
-	FP.setCookie('fp_matomo_cart__tmp', JSON.stringify(cart) );
+	FP.setStorage('fp_matomo_cart__tmp', JSON.stringify(cart), 1, 0 );
 
 	if ( return_val ) return [cart, removed];
 
-	// Remove cart cookie when an order is made
-	if ( fp.woo.order_data_ready ) FP.deleteCookie('fp_matomo_cart__tmp');
+	// Remove cart data when an order is made
+	if ( fp.woo.order_data_ready ) FP.deleteStorage('fp_matomo_cart__tmp');
 }
 
 FP.addAction( ['woo_add_to_cart'], data =>{
@@ -77,7 +79,7 @@ FP.addAction( ['woo_add_to_cart'], data =>{
 		if ( fp.mato.store_currency === FP.fns.get_woo_currency( data ) ) {
 			FP.fns.mato_remember_cart_changes( data, false, false );
 		} else {
-			FP.deleteCookie('fp_matomo_cart__tmp');
+			FP.deleteStorage('fp_matomo_cart__tmp');
 		}
 	}
 } );
@@ -87,7 +89,7 @@ FP.addAction( ['woo_remove_from_cart'], data =>{
 		if ( fp.mato.store_currency === FP.fns.get_woo_currency( data ) ) {
 			FP.fns.mato_remember_cart_changes( data, true, false );
 		} else {
-			FP.deleteCookie('fp_matomo_cart__tmp');
+			FP.deleteStorage('fp_matomo_cart__tmp');
 		}
 	}
 } );
@@ -230,7 +232,7 @@ function fupi_mato_footer_woo(){
 
 	function add_old_products(){
 		if ( ! evt_uses_store_currency( fpdata.woo.cart ) ) return;
-		let cart = FP.readCookie('fp_matomo_cart__tmp');
+		let cart = FP.readStorage('fp_matomo_cart__tmp');
 		if ( ! cart ) return;		
 		cart = JSON.parse( cart );
 		let cart_value = add_products_to_cart( cart );
@@ -248,7 +250,7 @@ function fupi_mato_footer_woo(){
 
 		if ( ! evt_uses_store_currency( order, 'purchase' ) ) {
 			_paq.push(['trackEvent', 'Ecommerce', 'Purchase', 'Purchase']);
-			FP.deleteCookie('fp_matomo_cart__tmp');
+			FP.deleteStorage('fp_matomo_cart__tmp');
 			return;
 		}
 
@@ -301,7 +303,7 @@ function fupi_mato_footer_woo(){
 		
 		if ( fp.main.debug ) console.log( '[FP] Matomo "trackEcommerceOrder" event: ', order_payload );
 
-		FP.deleteCookie('fp_matomo_cart__tmp');
+		FP.deleteStorage('fp_matomo_cart__tmp');
 	}
 
 	// track order

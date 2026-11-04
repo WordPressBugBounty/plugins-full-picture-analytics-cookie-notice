@@ -1,10 +1,10 @@
 === Tracking and Consent Manager - WP Full Picture ===
 Contributors: chrisplaneta, freemius
 Donate link: https://wpfullpicture.com/
-Tags: Google, Consent mode, Analytics, Ads, GDPR, GTM, Meta, Pixel, Facebook
+Tags: Google Analytics, Consent mode, Google Ads, GDPR, GTM
 Requires at least: 6.2.2
 Tested up to: 7.1.3
-Stable tag: 11.0.2
+Stable tag: 11.0.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -251,7 +251,15 @@ These platforms allow you to create advanced reports with aggregated data from v
 
 == Changelog ==
 
-= 11.0.1 (28-10-2026) =
+= 11.0.3 (04-11-2026) =
+
+* [Fix] Some cookies are now stored in local storage to prevent cloudflare cookie limits
+* [Fix] [Pro] Fixes of Google Ads campaign tracking
+* [Fix] [Pro] Fixes of source tracking via SBOT
+
+= 11.0.1 and 11.0.2 (28-10-2026) =
+
+Both versions are identical. Version 10.0.2 was uploaded to WP repo after the upload of 11.0.1 failed.
 
 * [Fix] Enforced trailing slash at the end of Matomo url and src entered by the user
 

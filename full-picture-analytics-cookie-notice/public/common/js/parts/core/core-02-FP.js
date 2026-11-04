@@ -68,14 +68,178 @@
         FP.setCookie(name, "", -1, 0, path);
     };
 
+    let storage_available;
+
+    // Cookies written before the "__fp1__" prefix was introduced were
+    // percent-encoded JSON. Decode them only when the raw value is not already
+    // valid JSON, so raw legacy values containing "%" are left untouched.
+    const is_json = value => {
+        try {
+            JSON.parse( value );
+            return true;
+        } catch {
+            return false;
+        }
+    };
+
+    const decode_legacy_value = value => {
+
+        if ( typeof value !== 'string' || is_json( value ) ) return value;
+
+        try {
+            const decoded = decodeURIComponent( value );
+            return is_json( decoded ) ? decoded : value;
+        } catch {
+            return value;
+        }
+    };
+
+    FP.storageLifetimes = {
+        'fp_current_session': { days: 0, mins: 30 },
+        'fp_recent_sessions': { days: 30, mins: 0 },
+        'fp_woo_cart': { days: 90, mins: 0 },
+        'fp_matomo_cart__tmp': { days: 1, mins: 0 },
+    };
+
+    FP.hasStorage = () => {
+
+        if ( typeof storage_available == 'boolean' ) return storage_available;
+
+        try {
+            const test_key = '__fp_storage_test__';
+            window.localStorage.setItem( test_key, '1' );
+            window.localStorage.removeItem( test_key );
+            storage_available = true;
+        } catch {
+            storage_available = false;
+        }
+
+        return storage_available;
+    };
+
+    FP.writeLocalStorage = ( name, value, days = 0, mins = 0 ) => {
+
+        if ( ! FP.hasStorage() ) return false;
+
+        let expires = 0;
+
+        if ( days > 0 || mins > 0 ) {
+            const milliseconds = days > 0
+                ? days * 24 * 60 * 60 * 1000
+                : mins * 60 * 1000;
+
+            expires = Date.now() + milliseconds;
+        }
+
+        try {
+            window.localStorage.setItem( name, JSON.stringify({
+                v: String( value ),
+                e: expires,
+            }) );
+
+            return true;
+        } catch {
+            return false;
+        }
+    };
+
+    FP.setStorage = ( name, value, days = 0, mins = 0 ) => {
+
+        if ( FP.writeLocalStorage( name, value, days, mins ) ) return true;
+
+        try {
+            window.localStorage.removeItem( name );
+        } catch {
+            storage_available = false;
+        }
+
+        FP.setCookie( name, value, days, mins );
+
+        return false;
+    };
+
+    FP.readStorage = name => {
+
+        let stored;
+
+        try {
+            stored = window.localStorage.getItem( name );
+        } catch {
+            storage_available = false;
+            return decode_legacy_value( FP.readCookie( name ) );
+        }
+
+        if ( stored === null ) {
+
+            if ( FP.migrateCookieToStorage( name ) ) {
+                try {
+                    stored = window.localStorage.getItem( name );
+                } catch {
+                    storage_available = false;
+                }
+            }
+
+            if ( stored === null ) return decode_legacy_value( FP.readCookie( name ) );
+        }
+
+        const envelope = FP.parseJSON( stored, false );
+
+        if ( ! FP.isObject( envelope ) || typeof envelope.v !== 'string' || ( envelope.e && envelope.e <= Date.now() ) ) {
+            FP.deleteStorage( name );
+            return null;
+        }
+
+        return envelope.v;
+    };
+
+    FP.deleteStorage = name => {
+
+        try {
+            window.localStorage.removeItem( name );
+        } catch {
+            storage_available = false;
+        }
+
+        FP.deleteCookie( name );
+    };
+
+    FP.migrateCookieToStorage = name => {
+
+        if ( ! FP.hasStorage() ) return false;
+
+        let stored;
+
+        try {
+            stored = window.localStorage.getItem( name );
+        } catch {
+            storage_available = false;
+            return false;
+        }
+
+        if ( stored !== null ) {
+            FP.deleteCookie( name );
+            return true;
+        }
+
+        const value = decode_legacy_value( FP.readCookie( name ) );
+
+        if ( value === null ) return false;
+
+        const lifetime = FP.storageLifetimes[name] || { days: 0, mins: 0 };
+
+        if ( ! FP.writeLocalStorage( name, value, lifetime.days, lifetime.mins ) ) return false;
+
+        FP.deleteCookie( name );
+
+        return true;
+    };
+
     FP.resetTrackingState = () => {
-        [
-            'fp_tracking_disabled',
-            'fp_cookie',
-            'fp_country',
-            'fp_current_session',
-            'fp_recent_sessions',
-        ].forEach( FP.deleteCookie );
+        FP.deleteCookie( 'fp_tracking_disabled' );
+        FP.deleteCookie( 'fp_cookie' );
+        FP.deleteCookie( 'fp_country' );
+        FP.deleteStorage( 'fp_current_session' );
+        FP.deleteStorage( 'fp_recent_sessions' );
     };
 
     FP.parseJSON = ( value, fallback = null ) => {

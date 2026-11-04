@@ -4,6 +4,8 @@ function fupi_woo(){
 
 	fp.loaded.push('woo'); // checked in other functions
 
+	FP.migrateCookieToStorage('fp_woo_cart');
+
 	// Helpers
 
 	FP.fns.get_woo_prod_id = prod => { // This must be equivalent to "get_woo_prod_id" in class-fupi-public-woo.php
@@ -661,15 +663,15 @@ function fupi_woo(){
 			cart_cookie_data.line_items[line_key] = fpdata.woo.cart.items[line_key].qty;
 		}
 		
-		FP.setCookie( 'fp_woo_cart', JSON.stringify(cart_cookie_data), 90 );
+		FP.setStorage( 'fp_woo_cart', JSON.stringify(cart_cookie_data), 90 );
 	}
 
 	// This is used when add to cart events are to be sent only in cart
 	// It creates a "fp.woo.cart_to_track" object with all products that should be added to cart > this is later processed by tracking tools when they load
 	function do_addToCart_in_cart(){
 		
-		// check if there is an "fp_woo_cart" cookie with FP.readCookie() function
-		let fp_woo_cart_cookie = FP.readCookie('fp_woo_cart'),
+		// check if there is stored "fp_woo_cart" data with FP.readStorage() function
+		let fp_woo_cart_cookie = FP.readStorage('fp_woo_cart'),
 			added = [],
 			added_val = 0,
 			cart_to_track = false;

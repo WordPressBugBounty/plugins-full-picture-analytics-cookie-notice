@@ -21,6 +21,9 @@
         FP.setCookie( 'fp_cookie', JSON.stringify(fpdata.cookies), 182 );
     }
 
+    FP.migrateCookieToStorage( 'fp_woo_cart' );
+    FP.migrateCookieToStorage( 'fp_matomo_cart__tmp' );
+
     fpdata.new_tab = ! window.sessionStorage['fp_old_session'];
     fpdata.new_session = fpdata.new_tab; // updated with better method if we get permission to set cookies later
 

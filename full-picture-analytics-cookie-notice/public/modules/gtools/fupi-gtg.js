@@ -15,13 +15,24 @@ FP.fns.ga4_set_g_ids = function(nr, type, ID) {
 
 function fupi_load_gads(){   
 	
-	if ( ! fp.loaded.includes('ga41') || fp.ga41.id != fp.gads.id ) {
-		if ( fp.vars.gtag_enh_conv ) {
-			window.gtag( 'config', fp.gads.id, { 'allow_enhanced_conversions': true } );
-		} else {
-			window.gtag( 'config', fp.gads.id );
-		}
+	var ga4_loaded = fp.loaded.includes('ga41'),
+		gads_id = fp.gads.id,
+		ids_to_config = [ gads_id ];
+
+	// A Google tag container (GT-...) already includes its destinations.
+	if ( gads_id && ! gads_id.startsWith('GT-') && fp.gads.id2 && fp.gads.id2 !== gads_id && /^(AW|GT)-/.test( fp.gads.id2 ) ) {
+		ids_to_config.push( fp.gads.id2 );
 	}
+
+	ids_to_config.forEach( function( id ) {
+		if ( ! id || ( ga4_loaded && fp.ga41 && id === fp.ga41.id ) ) return;
+
+		if ( fp.vars.gtag_enh_conv ) {
+			window.gtag( 'config', id, { 'allow_enhanced_conversions': true } );
+		} else {
+			window.gtag( 'config', id );
+		}
+	} );
 	
 	fp.loaded.push( 'gads' );
 };
