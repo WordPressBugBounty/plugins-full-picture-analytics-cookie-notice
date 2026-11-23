@@ -119,6 +119,7 @@ class Fupi_Updater {
                     'update_to_10_0_0' => '9.4.3.12',
                     'update_to_10_0_1' => '10.0.0.1',
                     'update_to_11' => '10.1.2.34',
+                    'update_to_11_0_4' => '11.0.3.1',
                 ] as $migration => $version ) {
                     if ( version_compare( $this->prev_version, $version ) !== -1 ) continue;
                     $this->$migration();
@@ -1119,6 +1120,22 @@ class Fupi_Updater {
     /** Loads migrations introduced in version 11. */
     private function update_to_11() {
         require __DIR__ . '/updater_rules/v11.php';
+    }
+
+    /**
+     * Moves Enhanced Conversions from the Google Analytics and Google Ads settings to the global Google Tag settings.
+     *
+     * @throws UnexpectedValueException When one of the migrated options has an invalid structure.
+     */
+    private function update_to_11_0_4() {
+
+        $this->get_fupi_options( [ 'fupi_ga41', 'fupi_gads', 'fupi_gtag' ] );
+
+        $enh = ! empty( $this->o['fupi_ga41']['enh_conv'] ) || ! empty( $this->o['fupi_gads']['enh_conv'] );
+
+        if ( $enh ) $this->o['fupi_gtag']['enh_conv'] = true;
+
+        unset( $this->o['fupi_ga41']['enh_conv'], $this->o['fupi_gads']['enh_conv'] );
     }
 }
 

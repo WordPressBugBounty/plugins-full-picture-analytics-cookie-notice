@@ -2,8 +2,8 @@
 /**
  * Attribute-parsing and element-blocking helpers for blockscr_parser.php.
  *
- * Extracted into a separate file so the CLI test suite (test_regex.php) can
- * load the functions without executing the WordPress-context parser logic.
+ * Extracted into a separate file so the unit suite can load the functions
+ * without executing the WordPress-context parser logic.
  *
  * Do NOT add WordPress-specific calls (get_option, esc_*, etc.) to this file.
  * Those belong in blockscr_parser.php which runs inside the WP runtime.
@@ -123,8 +123,9 @@ function fupi_find_tag_open_end( $html, $offset ) {
 //   $permissions_s  – space-separated consent tokens
 //   $geo            – geo restriction string, or ''
 //   &$match_count   – shared int counter
+//   $ordered        – true = restore this placeholder in document order
 // ---------------------------------------------------------------------------
-function fupi_block_elements_by_url( &$html, $tag_name, $url_attr, $search_phrase, $type, $base_scr_id, $always_block, $force_load, $permissions_s, $geo, &$match_count ) {
+function fupi_block_elements_by_url( &$html, $tag_name, $url_attr, $search_phrase, $type, $base_scr_id, $always_block, $force_load, $permissions_s, $geo, &$match_count, $ordered = false ) {
 
     $offset   = 0;
     $html_len = strlen( $html );
@@ -194,7 +195,9 @@ function fupi_block_elements_by_url( &$html, $tag_name, $url_attr, $search_phras
             // an equivalent. We call it on $url_val only for the data attribute.
             $safe_url = function_exists('esc_attr') ? esc_attr( $url_val ) : htmlspecialchars( $url_val, ENT_QUOTES, 'UTF-8' );
 
-            $replacement = '<!--noptimize--><script type="text/plain" data-fupi_type="' . $type . '" data-fupi_id="' . $scr_id . '" data-fupi_class="fupi_blocked_script fupi_no_defer" data-fupi_force="' . $force_load . '" data-fupi_permiss="' . $permissions_s . '" data-fupi_geo="' . $geo . '" data-fupi_url="' . $safe_url . '"' . $other_attrs . ' data-no-optimize="1" data-noptimize nowprocket></script><!--/noptimize-->';
+            $ordered_attr = $ordered ? ' data-fupi_ordered="' . ( function_exists('esc_attr') ? esc_attr( '1' ) : '1' ) . '"' : '';
+
+            $replacement = '<!--noptimize--><script type="text/plain" data-fupi_type="' . $type . '" data-fupi_id="' . $scr_id . '" data-fupi_class="fupi_blocked_script fupi_no_defer" data-fupi_force="' . $force_load . '" data-fupi_permiss="' . $permissions_s . '" data-fupi_geo="' . $geo . '" data-fupi_url="' . $safe_url . '"' . $ordered_attr . $other_attrs . ' data-no-optimize="1" data-noptimize nowprocket></script><!--/noptimize-->';
         }
 
         $html     = substr_replace( $html, $replacement, $tag_open_pos, $full_tag_len );
@@ -259,7 +262,7 @@ function fupi_block_elements_by_url_rules( &$html, $tag_name, $url_attr, &$rules
         $rule = &$rules[ $matched_key ];
         $full_tag_len = $full_tag_end - $tag_open_pos; $rule['match_count']++;
         $scr_id = ( $rule['match_count'] === 1 ) ? $rule['base_scr_id'] : $rule['base_scr_id'] . '_' . $rule['match_count'];
-        if ( $rule['always_block'] ) { $replacement = ''; } else { $other_attrs = fupi_rebuild_attrs_without( $attrs, $url_attr ); $other_attrs = rtrim( $other_attrs, '/ ' ); if ( $other_attrs !== '' ) $other_attrs = ' ' . ltrim( $other_attrs ); $safe_url = function_exists('esc_attr') ? esc_attr( $url_val ) : htmlspecialchars( $url_val, ENT_QUOTES, 'UTF-8' ); $replacement = '<!--noptimize--><script type="text/plain" data-fupi_type="' . $rule['type'] . '" data-fupi_id="' . $scr_id . '" data-fupi_class="fupi_blocked_script fupi_no_defer" data-fupi_force="' . $rule['force_load'] . '" data-fupi_permiss="' . $rule['permissions_s'] . '" data-fupi_geo="' . $rule['geo'] . '" data-fupi_url="' . $safe_url . '"' . $other_attrs . ' data-no-optimize="1" data-noptimize nowprocket></script><!--/noptimize-->'; }
+        if ( $rule['always_block'] ) { $replacement = ''; } else { $other_attrs = fupi_rebuild_attrs_without( $attrs, $url_attr ); $other_attrs = rtrim( $other_attrs, '/ ' ); if ( $other_attrs !== '' ) $other_attrs = ' ' . ltrim( $other_attrs ); $safe_url = function_exists('esc_attr') ? esc_attr( $url_val ) : htmlspecialchars( $url_val, ENT_QUOTES, 'UTF-8' ); $ordered_attr = ! empty( $rule['ordered'] ) ? ' data-fupi_ordered="' . ( function_exists('esc_attr') ? esc_attr( '1' ) : '1' ) . '"' : ''; $replacement = '<!--noptimize--><script type="text/plain" data-fupi_type="' . $rule['type'] . '" data-fupi_id="' . $scr_id . '" data-fupi_class="fupi_blocked_script fupi_no_defer" data-fupi_force="' . $rule['force_load'] . '" data-fupi_permiss="' . $rule['permissions_s'] . '" data-fupi_geo="' . $rule['geo'] . '" data-fupi_url="' . $safe_url . '"' . $ordered_attr . $other_attrs . ' data-no-optimize="1" data-noptimize nowprocket></script><!--/noptimize-->'; }
         unset( $rule );
         $html = substr_replace( $html, $replacement, $tag_open_pos, $full_tag_len );
         $html_len = strlen( $html ); $offset = $tag_open_pos + strlen( $replacement );

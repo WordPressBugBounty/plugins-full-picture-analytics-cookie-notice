@@ -130,10 +130,11 @@ function fupi_fbp_footer_woo(){
 	// TRACK CHECKOUT
 	// TRACK ORDER
 
-	function track_cart( type ){ // type can be either "checkout" or "order"
+	function track_cart( type, options = {} ){ // type can be either "checkout" or "order"
 
 		let items_type = fp.woo.variable_tracking_method == 'track_parents' ? 'joined_items' : 'items',
 			items_a = [],
+			total_qty = 0,
 			cart = type == 'checkout' ? fpdata.woo.cart : fpdata.woo.order,
 			event_name = type == 'checkout' ? 'InitiateCheckout' : 'Purchase';
 
@@ -146,6 +147,8 @@ function fupi_fbp_footer_woo(){
 				'quantity' : prod.qty,
 			};
 
+			total_qty += Number( prod.qty ) || 0;
+
 			items_a.push( item );
 		}
 
@@ -154,28 +157,54 @@ function fupi_fbp_footer_woo(){
 		let payload_o = {
 			'contents' : items_a, 
 			'value' : FP.fns.round_woo_money( cart.value, cart.currency_minor_unit ),
-			'num_items': items_a.length,
+			'num_items': Math.round( total_qty ),
 			'currency' : FP.fns.get_woo_currency( cart ),
 			'content_type' : 'product',
 		};
 
-		FP.track_fbp_evt( false, event_name, false, payload_o );
+		if ( type == 'order' && cart.id ) payload_o['order_id'] = String( cart.id );
+
+		FP.track_fbp_evt( false, event_name, false, payload_o, options.use_capi !== false, options.pixel_ids ? { 'pixel_ids': options.pixel_ids } : false );
 	}
 
 	// TRACK ORDER & CHECKOUT
 
 	if ( fpdata.page_type == 'Woo Order Received' && fpdata.woo.order && ! fpdata.refreshed ) {
 
-		let sbot_tracking = fp.main.is_pro && 
-			fp.fbp.server_side && 
+		let sbot_available = fp.main.is_pro &&
 			fp.fbp.adv_orders &&
 			Array.isArray( fpdata.woo.order.server_tracking_tools ) &&
 			fpdata.woo.order.server_tracking_tools.includes('fbp');
 
-		if ( ! sbot_tracking ) {
+		let server_ids = [];
+
+		if ( sbot_available && fp.fbp.server_side && fp.fbp.pixel_id ) server_ids.push( fp.fbp.pixel_id );
+		if ( sbot_available && fp.fbp.server_side_2 && fp.fbp.pixel_id_2 ) server_ids.push( fp.fbp.pixel_id_2 );
+
+		if ( server_ids.length == 0 ) {
+
+			// No pixel is handled by the server-side script: broadcast as before
 			track_cart('order');
+
 		} else {
-			if ( fp.main.debug ) console.log( '[FP] Meta Pixel purchase event is tracked by the server-side script' );
+
+			let active_pixels = [
+				fp.fbp.pixel_id,
+				FP.fns.get_fbp_second_pixel_id ? FP.fns.get_fbp_second_pixel_id() : false,
+			];
+
+			let browser_targets = active_pixels.filter( pixel_id => pixel_id && ! server_ids.includes( pixel_id ) );
+
+			if ( browser_targets.length == 0 ) {
+				if ( fp.main.debug ) console.log( '[FP] Meta Pixel purchase event is tracked by the server-side script' );
+			} else {
+				if ( fp.main.debug ) console.log( '[FP] Meta Pixel purchase event is tracked in the browser by:', browser_targets );
+
+				track_cart( 'order', {
+					'pixel_ids' : browser_targets,
+					'use_capi' : false,
+				} );
+			}
 		}
 	}
 

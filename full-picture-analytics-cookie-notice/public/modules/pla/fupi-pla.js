@@ -36,7 +36,7 @@ function fupi_pla(){
 		if ( fp.pla.track_pageid && fpdata.page_id && fpdata.page_id > 0 ) props['page_id'] = fpdata.page_id;
 
 		// SEARCH TERMS
-		if ( ( fpdata.page_type == 'Search' || fpdata.page_type == 'Woo Product Search' ) && fpdata.search_query ) props['user_search'] = fpdata.search_query;
+		if ( fp.pla.track_search && ( fpdata.page_type == 'Search' || fpdata.page_type == 'Woo Product Search' ) && fpdata.search_query ) props['user_search'] = fpdata.search_query;
 
 		// USER ROLE
 		if ( fp.pla.track_user_role && fpdata.user.role && fpdata.user.role.length > 0 ) props['user_role'] = fpdata.user.role;

@@ -16,7 +16,7 @@ if ( ! function_exists( 'fupi_get_shared_ga4_fields' ) ) {
 				'option_arr_id'		=> $option_arr_id,
 				'label_for' 		=> $option_arr_id . '[id]',
 				'placeholder'		=> 'XX-0000000',
-				'under_field'		=> '<p>' . sprintf( esc_html__( '%1$sHow to get GTAG ID and Measurement ID and install Google Analytics%2$s', 'full-picture-analytics-cookie-notice'), '<a href="https://wpfullpicture.com/support/documentation/how-to-install-google-analytics-4/">', '</a>') . '</p>',
+				'under_field'		=> '<p style="color: red">' . esc_html__( 'Cannot start with "GTM-"', 'full-picture-analytics-cookie-notice' ) . '</p><p>' . sprintf( esc_html__( '%1$sHow to get GTAG ID and Measurement ID and install Google Analytics%2$s', 'full-picture-analytics-cookie-notice'), '<a href="https://wpfullpicture.com/support/documentation/how-to-install-google-analytics-4/">', '</a>') . '</p>',
 			),
 				array(
 					'type'	 			=> 'text',
@@ -54,7 +54,7 @@ if ( ! function_exists( 'fupi_get_shared_ga4_fields' ) ) {
 				'label' 			=> esc_html__( 'Tracking pageviews', 'full-picture-analytics-cookie-notice' ),
 				'button_text' 		=> esc_html__( 'Optional modifications', 'full-picture-analytics-cookie-notice' ),
 				'class'				=> 'fupi_adv',
-				'custom_content'	=> 'class="button-secondary fupi_open_dynamic_settings fupi_not_builder_btn" data-module-id="track" data-field_ids="track_404, switch_ref, join_ref, auto_track_non_http, track_non_http"',
+				'custom_content'	=> 'class="button-secondary fupi_open_dynamic_settings fupi_not_builder_btn" data-module-id="track" data-field_ids="track_404, redirect_404, switch_ref, join_ref, auto_track_non_http, track_non_http"',
 				'field_id' 			=> 'open_pageview_extras_btn',
 				'option_arr_id'		=> $option_arr_id,
 				'under_field'		=> esc_html__( 'Pageviews are tracked by default. All changes are optional.', 'full-picture-analytics-cookie-notice' ),
@@ -273,12 +273,13 @@ if ( ! function_exists( 'fupi_get_shared_ga4_fields' ) ) {
 			
 			array(
 				'type'	 			=> 'toggle',
-				'label' 			=> esc_html__( 'Track JavaScript errors', 'full-picture-analytics-cookie-notice' ),
+				'label' 			=> esc_html__( 'Track JavaScript errors after the page has loaded', 'full-picture-analytics-cookie-notice' ),
 				'field_id' 			=> 'js_err_dimens',
 				'class'				=> 'fupi_adv',
 				'must_have'			=> 'pro',
 				'option_arr_id'		=> $option_arr_id,
-				'offscreen_warning'				=> '<p>' .  esc_html__( 'This will send to Google Analytics descriptions of JavaScript errors on your site. Use it with caution! If your site has many errors, the number of events may exceed Google Analytics\' limit. Events descriptions are limited to 100 characters (Google\'s limit).', 'full-picture-analytics-cookie-notice') . '</p><p class="fupi_warning_text">' . sprintf ( esc_html__( 'To see this data in reports you need to %3$sregister a custom dimension in GA%4$s with event parameter %1$sjs_error_details%2$s.', 'full-picture-analytics-cookie-notice') , ' <span style="background: #fdf3ce;">', '</span>', '<a href="https://wpfullpicture.com/support/documentation/how-to-set-up-custom-definitions-in-google-analytics-4/">', '</a>' ) . '</p>',
+				'under_field'		=> esc_html__( 'Load-time errors are not tracked, due to their potential number.', 'full-picture-analytics-cookie-notice' ),
+				'offscreen_warning'	=> '<p>' .  esc_html__( 'Use with caution! If your site has many errors, the number of events may exceed Google Analytics\' limit. Events descriptions are limited to 100 characters (Google\'s limit).', 'full-picture-analytics-cookie-notice') . '</p><p class="fupi_warning_text">' . sprintf ( esc_html__( 'To see this data in reports you need to %3$sregister a custom dimension in GA%4$s with event parameter %1$sjs_error_details%2$s.', 'full-picture-analytics-cookie-notice') , ' <span style="background: #fdf3ce;">', '</span>', '<a href="https://wpfullpicture.com/support/documentation/how-to-set-up-custom-definitions-in-google-analytics-4/">', '</a>' ) . '</p>',
 			),
 			),
 

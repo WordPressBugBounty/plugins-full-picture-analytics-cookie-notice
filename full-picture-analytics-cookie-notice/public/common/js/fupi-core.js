@@ -302,6 +302,44 @@ function fupi_core(){
         return urlParams.get(name);
     };
 
+    FP.getBrokenLinkReferrer = () => {
+        const referrer = document.referrer;
+
+        if ( ! referrer ) return 'direct_traffic_or_unknown';
+
+        try {
+            const url = new URL( referrer );
+            return ( url.origin + url.pathname ).slice( 0, 1000 );
+        } catch ( error ) {
+            return referrer.slice( 0, 1000 );
+        }
+    };
+
+    FP.getBrokenLinkRedirectUrl = ( target_url = '', referrer = '', current_url = '' ) => {
+        try {
+            const current = new URL( current_url || window.location.href );
+            let target;
+
+            if ( target_url ) {
+                const is_absolute = /^https?:\/\//i.test( target_url ),
+                    is_root_relative = target_url.charAt( 0 ) === '/' && target_url.charAt( 1 ) !== '/';
+
+                if ( ! is_absolute && ! is_root_relative ) return '';
+
+                target = new URL( target_url, current.origin );
+            } else {
+                target = new URL( current.href );
+            }
+
+            target.searchParams.set( 'broken_link_location', ( referrer || 'direct_traffic_or_unknown' ).slice( 0, 1000 ) );
+            target.searchParams.set( 'broken_link', current.href.slice( 0, 2000 ) );
+
+            return target.toString();
+        } catch ( error ) {
+            return '';
+        }
+    };
+
     FP.nl2Arr = nl => nl ? [].slice.call(nl) : false;
 
     FP.findID = (e, c) => {
@@ -1051,7 +1089,7 @@ function fupi_core(){
     fp.load_queue = {};
     
     // Print script element to HTML
-    FP.getScript = ( url, cb, attrs, tag = 'script', fallback = false, error_cb = false ) => {
+    FP.getScript = ( url, cb, attrs, tag = 'script', fallback = false, error_cb = false, ordered = false ) => {
 
         attrs = attrs || false;
         var new_tag = "";
@@ -1093,6 +1131,12 @@ function fupi_core(){
                 }
             }
         }
+
+        // Restored tags must keep their document order: a script can depend on an
+        // earlier blocked script (for example WooCommerce order attribution needs
+        // sourcebuster.js). Dynamically inserted scripts are async by default, so
+        // clear that to make them execute in insertion order.
+        if ( ordered && new_tag.tagName === 'SCRIPT' ) new_tag.async = false;
 
         const append_to = tag == "img" ? 'body' : 'head';
         d.getElementsByTagName( append_to )[0].appendChild(new_tag);
@@ -1555,7 +1599,10 @@ function fupi_core(){
                             url, 
                             ()=>{ FP.loaded( scr_id, scr_id ) }, 
                             plain_el,
-                            tag_type
+                            tag_type,
+                            false,
+                            false,
+                            plain_el.getAttribute('data-fupi_ordered') === '1'
                         );
                         FP.remove(plain_el);
                     } else {
@@ -1676,9 +1723,37 @@ function fupi_core(){
 
     // BROKEN LINK TRACKING
 
-    if ( fp.track.track404 && fpdata.page_type == "404" && ! FP.getUrlParamByName("broken_link_location") ){
-        const location = fp.track.redirect404_url ? new URL( fp.track.redirect404_url ) : window.location;
-        window.location = location + ( location.search ? "&" : "?" ) + "broken_link_location=" + ( document.referrer || "direct_traffic_or_unknown" ) + "&broken_link=" + window.location;
+    if ( fp.track.track404 && fpdata.page_type == "404" &&
+        ! FP.getUrlParamByName( "broken_link_location" ) &&
+        ! FP.getUrlParamByName( "broken_link" ) ) {
+
+        const redirect_url = FP.getBrokenLinkRedirectUrl(
+            fp.track.redirect404_url,
+            FP.getBrokenLinkReferrer(),
+            window.location.href
+        );
+
+        if ( redirect_url ) {
+            if ( fp.track.redirect404_url ) {
+                let redirected_recently;
+
+                try {
+                    const last = Number( window.sessionStorage.getItem( 'fp_404_redirect_ts' ) || 0 );
+                    redirected_recently = last > 0 && Date.now() - last < 10000;
+                    if ( ! redirected_recently ) window.sessionStorage.setItem( 'fp_404_redirect_ts', String( Date.now() ) );
+                } catch {
+                    redirected_recently = false;
+                }
+
+                if ( ! redirected_recently ) window.location.replace( redirect_url );
+            } else {
+                try {
+                    window.history.replaceState( null, '', redirect_url );
+                } catch ( error ) {
+                    window.location.replace( redirect_url );
+                }
+            }
+        }
     }
 
     // LOAD SCRIPTS

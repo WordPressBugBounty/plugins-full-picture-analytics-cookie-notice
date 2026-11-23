@@ -34,29 +34,6 @@ $sections = array(
 			),
 		),
 	),
-	
-	// Privacy settings
-
-	array(
-		'section_id' => 'fupi_gads_basic',
-		'section_title' => esc_html__( 'Data collection', 'full-picture-analytics-cookie-notice' ),
-		'fields' => array(
-			array(
-				'type'	 			=> 'toggle',
-				'label' 			=> esc_html__( 'Enhanced Conversions', 'full-picture-analytics-cookie-notice' ),
-				'field_id' 			=> 'enh_conv',
-				'must_have'			=> 'pro',
-				'option_arr_id'		=> $option_arr_id,
-				'offscreen'				=> '<p>' . esc_html__( 'Enhanced Conversions improve the accuracy of conversion tracking by sending to Google your visitors\' personal information, like their email address, first and last name and physical address. This information is later used by Google to better match the conversions with specific users.', 'full-picture-analytics-cookie-notice' ) . '</p>
-					<p>' . esc_html__( 'To implement Enhanced Conversions follow the steps below.', 'full-picture-analytics-cookie-notice') . '</p>
-					<ol>
-						<li>' . esc_html__('Enable "Enhanced Conversions" via Google Tag in your Google Ads account. You will find it in "Goals" > "Conversions" > "Settings" > "Enhanced conversions" > and select "Google tag" from the dropdown. If you can\'t see these menu elements, please switch to the new menu using the "Appearance" switch in the top.', 'full-picture-analytics-cookie-notice') . '</li>
-						<li>' . sprintf( esc_html__( 'Make sure you agree and comply with Google\'s %1$sCustomer Data policies%2$s, %3$sGoogle Ads Data Processing Terms%2$s and privacy law in your country.', 'full-picture-analytics-cookie-notice' ), '<a href="https://support.google.com/adspolicy/answer/7475709?sjid=6953114821919544275-EU">', '</a>', '<a href="https://business.safety.google/adsprocessorterms/">' ) . '</li>
-						<li>' . esc_html__('Add information to your privacy policy that you send personal user data to Google.', 'full-picture-analytics-cookie-notice' ) . '</li>
-					</ol>',
-			)
-		),
-	),
 
 	// EVENT TRACKING
 

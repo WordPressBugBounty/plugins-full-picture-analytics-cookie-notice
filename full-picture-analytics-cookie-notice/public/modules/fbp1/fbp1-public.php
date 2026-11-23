@@ -28,6 +28,18 @@ class Fupi_FBP1_public {
         );
     }
 
+    private function get_second_pixel_id() {
+        if ( empty( $this->settings['extra_install'] ) ) {
+            return false;
+        }
+        $pixel_id = ( !empty( $this->settings['pixel_id'] ) ? trim( (string) $this->settings['pixel_id'] ) : '' );
+        $pixel_id_2 = ( !empty( $this->settings['pixel_id_2'] ) ? trim( (string) $this->settings['pixel_id_2'] ) : '' );
+        if ( $pixel_id_2 === '' || $pixel_id_2 === $pixel_id ) {
+            return false;
+        }
+        return $pixel_id_2;
+    }
+
     public function add_data_to_fp_object( $fp ) {
         $fp['runtime']['fbp'] = [
             'reqs'  => [
@@ -58,6 +70,10 @@ class Fupi_FBP1_public {
         }
         if ( !empty( $fbp_data['capi_token_2'] ) ) {
             unset($fbp_data['capi_token_2']);
+            // set to true for paid users
+            if ( fupi_fs()->can_use_premium_code__premium_only() && $this->get_second_pixel_id() ) {
+                $fbp_data['server_side_2'] = true;
+            }
         }
         unset($fbp_data['test_code'], $fbp_data['test_code_2']);
         $fp['fbp'] = $fbp_data;

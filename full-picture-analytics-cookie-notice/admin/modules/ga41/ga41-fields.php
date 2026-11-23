@@ -2,10 +2,6 @@
 
 $option_arr_id = 'fupi_ga41';
 $ga41_data = get_option('fupi_ga41');
-$gads_data = get_option('fupi_gads');
-
-$is_gads_installed = ! empty( $this->tools['gads'] );
-$gads_gtag_id = $is_gads_installed && ! empty( $gads_data['id'] ) ? $gads_data['id'] : false;
 
 require_once 'ga4-shared-fields.php';
 
@@ -31,28 +27,7 @@ $sections = array(
 	array(
 		'section_id' => 'fupi_ga41_basic',
 		'section_title' => esc_html__( 'Data collection', 'full-picture-analytics-cookie-notice' ),
-		'fields' => array_merge(
-			array(
-				array(
-					'type'	 			=> 'toggle',
-					'label' 			=> esc_html__( 'Enhanced Conversions for linked Google Ads', 'full-picture-analytics-cookie-notice' ),
-					'field_id' 			=> 'enh_conv',
-					'must_have'			=> 'pro',
-					'option_arr_id'		=> $option_arr_id,
-					'under_field'		=> esc_html__( 'Use it if you linked your Google Analytics with your Google Ads', 'full-picture-analytics-cookie-notice' ),
-					'offscreen'			=> '<p>' . esc_html__( 'Enhanced Conversions improves the accuracy of conversion tracking in Google Ads when it is linked with Google Analytics. This option sends to Google your visitors\' personal information, like their email address, first and last name and physical address. This information is later used by Google to better match the conversions with specific users.', 'full-picture-analytics-cookie-notice' ) . '</p>
-					<p>' . esc_html__( 'To implement Enhanced Conversions in Google Ads via Google Analytics follow the steps below.', 'full-picture-analytics-cookie-notice') . '</p>
-					<ol>
-						<li>' . esc_html__('Go to your Google Analytics panel > Admin (settings page) > Data Collection > and enable "User-provided data collection" ', 'full-picture-analytics-cookie-notice') . '</li>
-						<li>' . esc_html__('Go back to the Admin page (settings page) > and link your GA with G Ads in Google Ads links section" ', 'full-picture-analytics-cookie-notice') . '</li>
-						<li>' . esc_html__('Enable "Enhanced Conversions" via Google Tag in your Google Ads account. You will find it in "Goals" > "Conversions" > "Settings" > "Enhanced conversions" > and select "Google tag" from the dropdown. If you can\'t see these menu elements, please switch to the new menu using the "Appearance" switch in the top.', 'full-picture-analytics-cookie-notice') . '</li>
-						<li>' . sprintf( esc_html__( 'Make sure you agree and comply with Google\'s %1$sCustomer Data policies%2$s, %3$sGoogle Ads Data Processing Terms%2$s and privacy law in your country.', 'full-picture-analytics-cookie-notice' ), '<a href="https://support.google.com/adspolicy/answer/7475709?sjid=6953114821919544275-EU">', '</a>', '<a href="https://business.safety.google/adsprocessorterms/">' ) . '</li>
-						<li>' . esc_html__('Add information to your privacy policy that you send personal user data to Google.', 'full-picture-analytics-cookie-notice' ) . '</li>
-					</ol>',
-				),
-			),
-			$shared_fields['basic']
-		),
+		'fields' => $shared_fields['basic'],
 	),
 	array(
 		'section_id' => 'fupi_ga41_events',
@@ -84,7 +59,7 @@ $sections = array(
 				'field_id' 			=> 'adv_orders',
 				'must_have'			=> 'pro woo',
 				'option_arr_id'		=> $option_arr_id,
-				'under_field'		=> '<p>' . sprintf( esc_html__( 'Status-Based Order Tracking sends purchase events via your server, when order status changes. It tracks orders, refunds and cancellations. You can learn more about it %1$son this page%2$s.', 'full-picture-analytics-cookie-notice' ), '<a target="_blank" href="https://wpfullpicture.com/support/documentation/what-you-need-to-know-about-status-based-order-tracking/">', '</a>' ) . '</p><p>' . esc_html__( 'Attention. Google Analytics will not track orders tracked more than 3 days after their visit.', 'full-picture-analytics-cookie-notice' ) . '</p>',
+				'under_field'		=> '<p>' . sprintf( esc_html__( 'Status-Based Order Tracking sends purchase events via your server, when order status changes. It tracks orders, refunds and cancellations. You can learn more about it %1$son this page%2$s.', 'full-picture-analytics-cookie-notice' ), '<a target="_blank" href="https://wpfullpicture.com/support/documentation/what-you-need-to-know-about-status-based-order-tracking/">', '</a>' ) . '</p><p>' . esc_html__( 'Attention. We strongly advise to send purchase events within 24 hours from purchase. Purchases sent later may not be associated with user sessions and may miss attribution data. Hard limit is 72 hours.', 'full-picture-analytics-cookie-notice' ) . '</p>',
 			),
 			array(
 				'type'	 			=> 'button',

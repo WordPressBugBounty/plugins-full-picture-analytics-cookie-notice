@@ -41,6 +41,9 @@ foreach ( $tools_to_block as $tool_data ) {
     // prepare force load
     $force_load = empty( $tool_data['force_load'] ) ? '0' : '1';
 
+    // restore blocked scripts in document order
+    $ordered = ! empty( $tool_data['ordered'] );
+
     // prepare geo
     $geo = '';
     if ( ! empty( $tool_data['method'] ) && ! empty( $tool_data['countries'] ) ) {
@@ -61,6 +64,7 @@ foreach ( $tools_to_block as $tool_data ) {
             'base_scr_id'   => $base_scr_id,
             'always_block'  => $always_block,
             'force_load'    => $force_load,
+            'ordered'       => $ordered,
             'permissions_s' => $permissions_s,
             'geo'           => $geo,
             'match_count'   => &$match_counts[ $base_scr_id ],

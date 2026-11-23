@@ -1,18 +1,55 @@
 // Contains shared Google ecommerce tracking.
 
+function fupi_gtg_get_purchase_destinations( config ) {
+
+	var ga41_server = config.ga41_enabled && config.is_pro && config.ga41 && config.ga41.server_side &&
+		Array.isArray( config.server_tracking_tools ) && config.server_tracking_tools.includes( 'ga41' ),
+		ga42_server = config.ga42_enabled && config.is_pro && config.ga42 && config.ga42.server_side &&
+		Array.isArray( config.server_tracking_tools ) && config.server_tracking_tools.includes( 'ga42' );
+
+	// No send_to: every browser tag receives the purchase.
+	if ( ! ga41_server && ! ga42_server ) return null;
+
+	var server_ga = [],
+		destinations = [];
+
+	if ( ga41_server ) server_ga.push( config.ga41 );
+	if ( ga42_server ) server_ga.push( config.ga42 );
+
+	function add_destination( id ) {
+		if ( id && ! destinations.includes( id ) ) destinations.push( id );
+	}
+
+	if ( config.ga41_enabled && ! ga41_server && config.ga41 ) add_destination( config.ga41.id2 || config.ga41.id );
+	if ( config.ga42_enabled && ! ga42_server && config.ga42 ) add_destination( config.ga42.id2 || config.ga42.id );
+
+	if ( config.gads_enabled && config.gads ) {
+		var gads_destination = config.gads.id2 || config.gads.id,
+			ads_is_shared = server_ga.some( function( ga ) {
+				return gads_destination === ga.id || gads_destination === ga.id2;
+			} );
+
+		if ( ! ads_is_shared ) add_destination( gads_destination );
+	}
+
+	// Empty array: the browser purchase has no destination left.
+	return destinations;
+}
+
 function fupi_gtools_woo_footer(){
 
 	fp.woo.gtg = {};
 
-	let gads_enabled = fp.loaded.includes('gads'),
+	let gads_enabled = fp.loaded.includes('gads') && !!fpdata?.consents?.can_track_market,
 		ga41_enabled = fp.loaded.includes('ga41'),
-		ga42_enabled = fp.loaded.includes('ga42');
-
-	ecommerce_event_send_to = [];
+		ga42_enabled = fp.loaded.includes('ga42'),
+		ecommerce_event_send_to = [];
 
 	if ( ga41_enabled ) ecommerce_event_send_to.push( fp.ga41.id2 || fp.ga41.id );
 	if ( ga42_enabled ) ecommerce_event_send_to.push( fp.ga42.id2 || fp.ga42.id );
 	if ( gads_enabled ) ecommerce_event_send_to.push( fp.gads.id2 || fp.gads.id );
+
+	ecommerce_event_send_to = [ ...new Set( ecommerce_event_send_to ) ];
 
 	// Helpers
 
@@ -101,6 +138,7 @@ function fupi_gtools_woo_footer(){
 			let payload_o = {
 				'items' : teasers_arr,
 				'currency' : fpdata.woo.currency,
+				'send_to' : ecommerce_event_send_to,
 			};
 
 			gtag( 'event', 'view_item_list', payload_o );
@@ -118,7 +156,7 @@ function fupi_gtools_woo_footer(){
 				'items' : single_arr,
 				'currency' : fpdata.woo.currency,
 				'value' : FP.fns.round_woo_money( value ),
-				// 'send_to' : ecommerce_event_send_to
+				'send_to' : ecommerce_event_send_to,
 			};
 
 			gtag( 'event', impress_evt_name, payload_o );
@@ -157,7 +195,7 @@ function fupi_gtools_woo_footer(){
 			'items': [item],
 			'currency': fpdata.woo.currency,
 			'value': FP.fns.round_woo_money( prod.price, prod.currency_minor_unit ),
-			// 'send_to' : ecommerce_event_send_to
+			'send_to' : ecommerce_event_send_to,
 		};
 
 		gtag('event', 'view_item', payload_o);
@@ -209,7 +247,7 @@ function fupi_gtools_woo_footer(){
 			'items' : items_a,
 			'value' : FP.fns.round_woo_money( event_value, data.currency_minor_unit ),
 			'currency' : FP.fns.get_woo_currency( data ),
-			// 'send_to' : ecommerce_event_send_to
+			'send_to' : ecommerce_event_send_to,
 		};
 
 		gtag( 'event', event_name, payload_o );
@@ -247,28 +285,28 @@ function fupi_gtools_woo_footer(){
 
 	function track_cart( type ){ // type can be either "checkout" or "order"
 
-		// Early returns
-
-		let ga4_server_tracking = type == 'order' &&
-			ga41_enabled &&
-			fp.main.is_pro &&
-			fp.ga41.server_side &&
-			fp.ga41.adv_orders &&
-			Array.isArray( fpdata.woo.order.server_tracking_tools ) &&
-			fpdata.woo.order.server_tracking_tools.includes('ga4');
-
-		if ( type == 'order' && ga4_server_tracking ) {
-			if ( fp.main.debug ) console.log( '[FP] GA4 purchase event is tracked by the server-side script' );
-			if ( ! fp.loaded.includes('gads') ) return;
-		}
-
 		// Vars
 
 		let items_type = fp.woo.variable_tracking_method == 'track_parents' ? 'joined_items' : 'items',
 			items_a = [],
 			cart = type == 'checkout' ? fpdata.woo.cart : fpdata.woo.order,
 			event_name = type == 'checkout' ? 'begin_checkout' : 'purchase',
-			gads_conv_id = false;
+			gads_conv_id = false,
+			purchase_send_to = null;
+
+		// null - all browser tags receive the purchase; array - browser destinations (may be empty)
+		if ( type == 'order' ) {
+			purchase_send_to = fupi_gtg_get_purchase_destinations( {
+				is_pro: fp.main.is_pro,
+				ga41_enabled: ga41_enabled,
+				ga42_enabled: ga42_enabled,
+				gads_enabled: gads_enabled,
+				ga41: fp.ga41,
+				ga42: fp.ga42,
+				gads: fp.gads,
+				server_tracking_tools: fpdata.woo.order.server_tracking_tools,
+			} );
+		}
 
 		if ( gads_enabled ) {
 			if ( type == 'checkout' && fp.gads.woo_checkout_conv_id ) {
@@ -291,6 +329,8 @@ function fupi_gtools_woo_footer(){
 					'price' : prod.price,
 					'quantity' : prod.qty,
 				};
+
+			if ( prod.variant ) item['item_variant'] = prod.variant;
 
 			item = add_brand(item, prod);
 			item = add_categories(item, prod);
@@ -318,15 +358,28 @@ function fupi_gtools_woo_footer(){
 			payload_o['tax'] = fpdata.woo.order.tax || 0;
 			payload_o['shipping'] = fpdata.woo.order.shipping || 0;
 
-			// If GA4 is tracked server-side then send evt only to GAds
-			if ( ga4_server_tracking && fp.loaded.includes('gads') ) {
-				payload_o['send_to'] = fp.gads.id2 || fp.gads.id;
-				console_text = '[FP] GAds';
+			if ( purchase_send_to === null ) {
+				if ( fp.main.debug ) console.log( '[FP] GA4 purchase event is tracked in the browser for all destinations' );
+			} else if ( purchase_send_to.length == 0 ) {
+				if ( fp.main.debug ) console.log( '[FP] GA4 purchase event is tracked server-side and skipped in the browser' );
+			} else {
+				payload_o['send_to'] = purchase_send_to;
+
+				let gads_destination = fp.gads ? ( fp.gads.id2 || fp.gads.id ) : false;
+
+				if ( purchase_send_to.length == 1 && gads_destination && purchase_send_to[0] === gads_destination ) {
+					console_text = '[FP] GAds';
+				}
+
+				if ( fp.main.debug ) console.log( '[FP] GA4 browser purchase destinations: ' + purchase_send_to.join(', ') );
 			}
 		}
 
-		gtag( 'event', event_name, payload_o );
-		if ( fp.main.debug ) console.log( console_text + ' ' + event_name + ' event: ', payload_o );
+		// Skip only the browser purchase event when every destination is tracked server-side
+		if ( purchase_send_to === null || purchase_send_to.length > 0 ) {
+			gtag( 'event', event_name, payload_o );
+			if ( fp.main.debug ) console.log( console_text + ' ' + event_name + ' event: ', payload_o );
+		}
 
 		// GADS Conversion event
 		if ( ! gads_enabled || ! gads_conv_id ) return;

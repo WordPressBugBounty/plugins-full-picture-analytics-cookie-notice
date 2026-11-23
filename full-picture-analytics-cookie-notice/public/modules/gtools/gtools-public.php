@@ -1,5 +1,6 @@
 <?php
 
+require_once FUPI_PATH . '/public/common/ga-email-hash.php';
 class Fupi_GTOOLS_public {
     private $tools;
 
@@ -69,7 +70,8 @@ class Fupi_GTOOLS_public {
 
     public function add_gtag_to_head() {
         $gtag_added = false;
-        if ( empty( $this->gtag_settings['custom_gateway'] ) ) {
+        if ( !empty( $this->gtag_settings['custom_gateway'] ) && fupi_fs()->can_use_premium_code() ) {
+        } else {
             // LOAD CLASSIC GTAG SCRIPT
             $script_id = false;
             if ( !empty( $this->ga41_id ) ) {
@@ -87,7 +89,6 @@ class Fupi_GTOOLS_public {
                 echo '<script id="fupi_gtag_script" async src="https://www.googletagmanager.com/gtag/js?id=' . $script_id . '"></script>';
                 $gtag_added = true;
             }
-        } else {
         }
         if ( $gtag_added ) {
             // make sure we have gtag
@@ -141,8 +142,10 @@ class Fupi_GTOOLS_public {
             ];
         }
         // GTAG
+        $enh_conv = fupi_fs()->can_use_premium_code() && !empty( $this->gtag_settings['enh_conv'] );
         if ( !empty( $this->gtag_settings ) ) {
             $fp['gtag'] = $this->gtag_settings;
+            $fp['gtag']['enh_conv'] = $enh_conv;
         } else {
             $fp['gtag'] = [];
         }
@@ -151,13 +154,16 @@ class Fupi_GTOOLS_public {
             $fp['ga41'] = $this->ga41_settings;
             $fp['tools'][] = 'ga41';
             $fp['ga41']['server_side'] = false;
+            $fp['ga41']['enh_conv'] = $enh_conv;
             if ( !empty( $fp['ga41']['mp_secret_key'] ) ) {
-                unset($fp['ga41']['mp_secret_key']);
             }
+            unset($fp['ga41']['mp_secret_key']);
+            unset($fp['ga41']['api_secret']);
         }
         // GADS
         if ( $this->gads_enabled && !empty( $this->gads_settings ) ) {
             $fp['gads'] = $this->gads_settings;
+            $fp['gads']['enh_conv'] = $enh_conv;
             $fp['tools'][] = 'gads';
         }
         return $fp;

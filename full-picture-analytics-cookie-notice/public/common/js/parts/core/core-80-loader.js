@@ -3,7 +3,7 @@
     fp.load_queue = {};
     
     // Print script element to HTML
-    FP.getScript = ( url, cb, attrs, tag = 'script', fallback = false, error_cb = false ) => {
+    FP.getScript = ( url, cb, attrs, tag = 'script', fallback = false, error_cb = false, ordered = false ) => {
 
         attrs = attrs || false;
         var new_tag = "";
@@ -45,6 +45,12 @@
                 }
             }
         }
+
+        // Restored tags must keep their document order: a script can depend on an
+        // earlier blocked script (for example WooCommerce order attribution needs
+        // sourcebuster.js). Dynamically inserted scripts are async by default, so
+        // clear that to make them execute in insertion order.
+        if ( ordered && new_tag.tagName === 'SCRIPT' ) new_tag.async = false;
 
         const append_to = tag == "img" ? 'body' : 'head';
         d.getElementsByTagName( append_to )[0].appendChild(new_tag);
@@ -507,7 +513,10 @@
                             url, 
                             ()=>{ FP.loaded( scr_id, scr_id ) }, 
                             plain_el,
-                            tag_type
+                            tag_type,
+                            false,
+                            false,
+                            plain_el.getAttribute('data-fupi_ordered') === '1'
                         );
                         FP.remove(plain_el);
                     } else {

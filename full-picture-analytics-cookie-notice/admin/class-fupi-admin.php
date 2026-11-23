@@ -251,7 +251,11 @@ class Fupi_Admin {
     }
 
     public function fupi_custom_admin_styles() {
+        $set_up_text = esc_attr__( 'set up', 'full-picture-analytics-cookie-notice' );
         echo '<style>
+			:root {
+				--fupi-set-up-text: "' . $set_up_text . '";
+			}
 			.column-fupi_order_data{
 				width: 30px !important;
 				max-width: 30px !important;

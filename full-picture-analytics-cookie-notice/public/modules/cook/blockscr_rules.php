@@ -151,6 +151,7 @@ function fupi_get_script_blocking_rules( $cook_settings, $skip_force_load = fals
             'pers'       => ! empty( $tool_data['pers'] ),
             'always'     => ! empty( $tool_data['always'] ),
             'force_load' => $force_load,
+            'ordered'    => ! empty( $tool_data['ordered'] ),
             'method'     => $method,
             'countries'  => $countries,
         );

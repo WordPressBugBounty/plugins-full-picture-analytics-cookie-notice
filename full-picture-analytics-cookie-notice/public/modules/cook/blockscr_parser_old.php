@@ -23,6 +23,9 @@ foreach ( $tools_to_block as $tool_data ) {
     // prepare force load
     $force_load = empty( $tool_data['force_load'] ) ? '0' : '1';
 
+    // restore blocked scripts in document order
+    $ordered = ! empty( $tool_data['ordered'] );
+
     // prepare geo
     $geo = '';
     if ( ! empty( $tool_data['method'] ) && ! empty( $tool_data['countries'] ) ) {
@@ -119,7 +122,7 @@ foreach ( $tools_to_block as $tool_data ) {
 
             $new_html = preg_replace_callback(
                 $pattern,
-                function( $matches ) use ( $base_scr_id, $force_load, $permissions_s, $geo, $block_by, $type, $always_block, &$match_count ) {
+                function( $matches ) use ( $base_scr_id, $force_load, $permissions_s, $geo, $block_by, $type, $always_block, $ordered, &$match_count ) {
                     
                     if ( $always_block ) {
                          return '';
@@ -146,7 +149,7 @@ foreach ( $tools_to_block as $tool_data ) {
                         };
 
                         
-                        $blocked_html = '<!--noptimize--><script type="text/plain" data-fupi_type="' . $type . '" data-fupi_id="' . $scr_id . '" data-fupi_class="fupi_blocked_script fupi_no_defer" data-fupi_force="' . $force_load . '" data-fupi_permiss="' . $permissions_s . '" data-fupi_geo="' . $geo . '" data-fupi_url="' . $url . '" ' . $atts . ' data-no-optimize="1" data-noptimize nowprocket></script><!--/noptimize-->';
+                        $blocked_html = '<!--noptimize--><script type="text/plain" data-fupi_type="' . $type . '" data-fupi_id="' . $scr_id . '" data-fupi_class="fupi_blocked_script fupi_no_defer" data-fupi_force="' . $force_load . '" data-fupi_permiss="' . $permissions_s . '" data-fupi_geo="' . $geo . '" data-fupi_url="' . $url . '"' . ( $ordered ? ' data-fupi_ordered="' . esc_attr( '1' ) . '"' : '' ) . ' ' . $atts . ' data-no-optimize="1" data-noptimize nowprocket></script><!--/noptimize-->';
                         
                         return $blocked_html;
                     }

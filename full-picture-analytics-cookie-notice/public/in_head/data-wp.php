@@ -1,5 +1,6 @@
 <?php
 
+require_once FUPI_PATH . '/public/common/ga-email-hash.php';
 $tracked_taxonomies = ['category', 'post_tag', 'post_format'];
 if ( !empty( $this->track['tracked_taxonomies'] ) && is_array( $this->track['tracked_taxonomies'] ) ) {
     $tracked_taxonomies = array_merge( $tracked_taxonomies, $this->track['tracked_taxonomies'] );

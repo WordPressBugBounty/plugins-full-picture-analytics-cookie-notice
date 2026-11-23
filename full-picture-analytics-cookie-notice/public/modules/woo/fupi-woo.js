@@ -2,8 +2,6 @@ function fupi_woo(){
 
 	if ( ! fp.woo ) return;
 
-	fp.loaded.push('woo'); // checked in other functions
-
 	FP.migrateCookieToStorage('fp_woo_cart');
 
 	// Helpers
@@ -638,14 +636,99 @@ function fupi_woo(){
 	// puts <span>cart_data</span> into fpdata.woo.cart. Must run on page load. We add timeout to wait for the cart contents to load
 	setTimeout( prepare_classic_cart, 300 );
 
-	// Bind event handler immediately (no timeout)
-	if ( jQuery ) jQuery(document).ready(function($) {
-		$('body').on('updated_cart_totals wc_fragments_refreshed wc_fragments_loaded', function( event ){
-			prepare_classic_cart();
-			if ( event.type == 'updated_cart_totals' ) compare_old_and_new_carts();
-			update_cart_cookie();
-		});
-	});
+	// WooCommerce dispatches its cart fragment and totals events through jQuery only.
+	// Bind the optional listeners once when jQuery exists or appears later.
+	let classic_cart_listeners_bound = false,
+		variation_listeners_bound = false,
+		classic_cart_listeners_diagnostic = false,
+		variation_listeners_diagnostic = false;
+
+	function report_listener_failure( group, error ){
+		if ( ! fp.main.debug ) return;
+
+		if ( group == 'classic cart' ) {
+			if ( classic_cart_listeners_diagnostic ) return;
+			classic_cart_listeners_diagnostic = true;
+		} else {
+			if ( variation_listeners_diagnostic ) return;
+			variation_listeners_diagnostic = true;
+		}
+
+		console.log( '[FP] WooCommerce ' + group + ' listeners could not be bound.', error );
+	}
+
+	function bind_classic_cart_listeners(){
+		if ( classic_cart_listeners_bound ) return true;
+
+		try {
+			if ( typeof window.jQuery !== 'function' ) return false;
+
+			window.jQuery(document).ready(function($) {
+				$('body').on('updated_cart_totals wc_fragments_refreshed wc_fragments_loaded', function( event ){
+					prepare_classic_cart();
+					if ( event.type == 'updated_cart_totals' ) compare_old_and_new_carts();
+					update_cart_cookie();
+				});
+			});
+			classic_cart_listeners_bound = true;
+		} catch ( error ) {
+			report_listener_failure( 'classic cart', error );
+		}
+
+		return classic_cart_listeners_bound;
+	}
+
+	function bind_variation_listeners(){
+		if ( fp.woo.variable_tracking_method == 'track_parents' || ! fp.woo.track_variant_views ) return true;
+		if ( variation_listeners_bound ) return true;
+
+		try {
+			if ( typeof window.jQuery !== 'function' ) return false;
+
+			window.jQuery(document).ready(function($) {
+				// Listen for variation change events on the variations form
+				$( 'form.variations_form' ).on( 'woocommerce_variation_has_changed' , function() { // !! do NOT change into an arrow function
+					let variant_id = get_current_variant_id();
+
+					if ( variant_id && fpdata.woo.products[variant_id] && FP.hasActions( 'woo_variant_view' ) ) {
+						FP.doActions( 'woo_variant_view', variant_id );
+					}
+				} )
+			} )
+			variation_listeners_bound = true;
+		} catch ( error ) {
+			report_listener_failure( 'variation view', error );
+		}
+
+		return variation_listeners_bound;
+	}
+
+	function bind_woo_jquery_listeners( final_attempt = false ){
+		let cart_bound = bind_classic_cart_listeners(),
+			variation_bound = bind_variation_listeners();
+
+		if ( ! final_attempt || ! fp.main.debug ) return;
+
+		if ( ! cart_bound && ! classic_cart_listeners_diagnostic ) {
+			classic_cart_listeners_diagnostic = true;
+			console.log( '[FP] WooCommerce classic cart listeners were not bound because jQuery is not available.' );
+		}
+		if ( ! variation_bound && ! variation_listeners_diagnostic ) {
+			variation_listeners_diagnostic = true;
+			console.log( '[FP] WooCommerce variation view listeners were not bound because jQuery is not available.' );
+		}
+	}
+
+	// Bind immediately when jQuery is already available, then retry once at DOM ready and once at window load.
+	bind_woo_jquery_listeners();
+
+	FP.doWhenDOMLoaded( function(){
+		bind_woo_jquery_listeners( document.readyState === 'complete' );
+	} );
+
+	window.addEventListener( 'load', function(){
+		bind_woo_jquery_listeners( true );
+	}, { once: true } );
 
 	function update_cart_cookie(){
 
@@ -751,22 +834,6 @@ function fupi_woo(){
 	};
 
 	// TRACK VIEWED VARIANTS AS PRODUCT VIEWS
-
-	if ( fp.woo.variable_tracking_method != 'track_parents' && fp.woo.track_variant_views ) {
-
-		jQuery(document).ready(function($) {
-			
-			// Listen for variation change events on the variations form
-			$( 'form.variations_form' ).on( 'woocommerce_variation_has_changed' , function() { // !! do NOT change into an arrow function
-				
-				let variant_id = get_current_variant_id();
-
-				if ( variant_id && fpdata.woo.products[variant_id] && FP.hasActions( 'woo_variant_view' ) ) {
-					FP.doActions( 'woo_variant_view', variant_id );
-				}
-			} )
-		} ) 
-	}
 
 	function update_fpdata_cart_items( line_key, new_qty ){
 		let prod = fpdata.woo.cart.items[line_key];
@@ -939,7 +1006,7 @@ function fupi_woo(){
 
 	add_block_hooks();
 	
-	FP.loaded('woo'); // fp.loaded.push('woo'); is at the top
+	FP.loaded('woo', 'woo');
 };
 
 FP.load('woo', 'fupi_woo', ['footer-helpers']);

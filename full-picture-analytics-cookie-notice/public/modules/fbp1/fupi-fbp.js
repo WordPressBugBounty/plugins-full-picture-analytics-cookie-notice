@@ -73,9 +73,18 @@ function fupi_fbp(){
 		let evt_id = evt_time + fp.random + evt_name;
 
 		// PIXEL EVT
+		let pixel_ids = delivery_options && Array.isArray( delivery_options.pixel_ids ) ? delivery_options.pixel_ids : false;
+
 		if ( typeof fbq !== 'undefined' ) {
-			let event_type = custom ? 'trackCustom' : 'track';
-			fbq( event_type, evt_name, custom_data, { 'eventID' : evt_id } );
+			if ( pixel_ids ) {
+				pixel_ids.forEach( pixel_id => {
+					if ( ! pixel_id ) return;
+					fbq( custom ? 'trackSingleCustom' : 'trackSingle', pixel_id, evt_name, custom_data, { 'eventID' : evt_id } );
+				} );
+			} else {
+				let event_type = custom ? 'trackCustom' : 'track';
+				fbq( event_type, evt_name, custom_data, { 'eventID' : evt_id } );
+			}
 		}
 		
 		if ( fp.main.debug ) console.log( '[FP] Meta Pixel "' + evt_name + '" event:', custom_data );
@@ -134,6 +143,8 @@ function fupi_fbp(){
 		fp.fbp.custom_data = custom_data;
 	}
 
+	
+
 	function set_user_data(){
 		
 		// PIXEL
@@ -148,6 +159,16 @@ function fupi_fbp(){
 		
 			fbq( 'init', fp.fbp.pixel_id );
 		
+	}
+
+	// Sends the Meta "Search" event on site and WooCommerce product search pages.
+	function track_search(){
+
+		if ( ! fp.fbp.track_search ) return;
+
+		if ( fpdata.page_type != 'Search' && fpdata.page_type != 'Woo Product Search' ) return;
+
+		FP.track_fbp_evt( false, 'Search', false, { 'search_string' : fpdata.search_query } );
 	}
 
 	function load_pixel(){
@@ -182,7 +203,7 @@ function fupi_fbp(){
 	
 	
 	// Track Search
-	if ( fpdata.page_type == 'Search' ) FP.track_fbp_evt( false, 'Search', false, { 'search_string' : fpdata.search_query } );
+	track_search();
 
 	FP.loaded('fbp-setup', 'fbp_setup', '[FP] Meta Pixel loaded');
 };

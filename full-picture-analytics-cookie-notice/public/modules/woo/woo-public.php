@@ -1,5 +1,6 @@
 <?php
 
+require_once FUPI_PATH . '/public/common/ga-email-hash.php';
 class Fupi_WOO_public {
     private $settings;
 
@@ -127,17 +128,18 @@ class Fupi_WOO_public {
             }
         }
         $rules[] = array(
-            'id'     => 'auto_woo_sbjs',
-            'rules'  => array(array(
+            'id'      => 'auto_woo_sbjs',
+            'rules'   => array(array(
                 'block_by' => 'src',
                 'unique'   => 'sourcebuster',
             ), array(
                 'block_by' => 'src',
-                'unique'   => 'frontend/order-attribution.js',
+                'unique'   => 'frontend/order-attribution',
             )),
-            'stats'  => true,
-            'market' => false,
-            'pers'   => false,
+            'stats'   => true,
+            'market'  => false,
+            'pers'    => false,
+            'ordered' => true,
         );
         return $rules;
     }
@@ -453,6 +455,12 @@ class Fupi_WOO_public {
             $cart_data['items'][$item_key]['price'] = $item_price;
             $cart_data['items'][$item_key]['qty'] = $item_qty;
             $cart_data['items'][$item_key]['parent_id'] = $parent_id;
+            if ( 'variation' === $product->get_type() && function_exists( 'wc_get_formatted_variation' ) ) {
+                $variant = trim( html_entity_decode( strip_tags( wc_get_formatted_variation( $product, true, false ) ), ENT_QUOTES, 'UTF-8' ) );
+                if ( $variant !== '' ) {
+                    $cart_data['items'][$item_key]['variant'] = $variant;
+                }
+            }
             if ( $are_order_items ) {
                 $item_subtotal_tax = (float) $item->get_subtotal_tax();
             } elseif ( isset( $item['line_subtotal_tax'] ) ) {
@@ -547,6 +555,10 @@ class Fupi_WOO_public {
     }
 
     // GET AND OUTPUT ORDER DATA
+    private function normalize_server_tracking_tool_id( $tool_id ) {
+        return ( $tool_id === 'ga4' ? 'ga41' : $tool_id );
+    }
+
     private function get_order_completed_data( $order_id = false, $order = false, $for_server_tracking = false ) {
         if ( empty( $order_id ) ) {
             global $wp;
@@ -610,7 +622,7 @@ class Fupi_WOO_public {
                     if ( !is_array( $tool_data ) || !isset( $tool_data[0] ) || !is_string( $tool_data[0] ) ) {
                         continue;
                     }
-                    $tool_id = sanitize_key( $tool_data[0] );
+                    $tool_id = $this->normalize_server_tracking_tool_id( sanitize_key( $tool_data[0] ) );
                     if ( $tool_id !== '' ) {
                         $order_data['server_tracking_tools'][] = $tool_id;
                     }

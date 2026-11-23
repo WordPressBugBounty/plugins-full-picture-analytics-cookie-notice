@@ -136,6 +136,7 @@ return <<<'JS'
 				orig_set_attribute.call( placeholder, "data-fupi_permiss", permissions.join( " " ) );
 				orig_set_attribute.call( placeholder, "data-fupi_geo", geo );
 				orig_set_attribute.call( placeholder, "data-fupi_url", match.url );
+				if ( match.tool.ordered ) orig_set_attribute.call( placeholder, "data-fupi_ordered", "1" );
 				orig_set_attribute.call( placeholder, "data-no-optimize", "1" );
 				orig_set_attribute.call( placeholder, "data-noptimize", "" );
 				orig_set_attribute.call( placeholder, "nowprocket", "" );

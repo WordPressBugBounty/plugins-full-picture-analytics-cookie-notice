@@ -90,4 +90,9 @@ class Fupi_WOO_admin {
         return ( isset( $methods[$created_via] ) ? $methods[$created_via] : null );
     }
 
+    private function get_server_tracking_tool_name( $tool, $modules_names ) {
+        $tool_id = ( $tool === 'ga4' ? 'ga41' : $tool );
+        return ( isset( $modules_names[$tool_id] ) ? esc_attr( $modules_names[$tool_id] ) : $tool );
+    }
+
 }

@@ -1,10 +1,10 @@
 === Tracking and Consent Manager - WP Full Picture ===
 Contributors: chrisplaneta, freemius
 Donate link: https://wpfullpicture.com/
-Tags: Google Analytics, Consent mode, Google Ads, GDPR, GTM
+Tags: Tags: Google Analytics, Consent mode, Google Ads, GDPR, GTM
 Requires at least: 6.2.2
-Tested up to: 7.1.3
-Stable tag: 11.0.3
+Tested up to: 7.1.5
+Stable tag: 11.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -250,6 +250,22 @@ These platforms allow you to create advanced reports with aggregated data from v
 6. View traffic and marketing reports in the admin panel
 
 == Changelog ==
+
+= 11.1 (18-11-2026) =
+
+* [New] [Pro] Status-Based Order Tracking for Google Analytics #2
+* [New] [Pro] Independent browser or server-side purchase tracking for each Google Analytics installation
+* [New] [Pro] One global Enhanced Conversions setting for Google Analytics and Google Ads
+* [Fix] [Pro] Legacy Status-Based Order Tracking tool IDs are migrated
+* [Fix] Absence of jQuery no longer blocks some tracking functions
+* [Fix] Woo Attribution script blocking now also blocks the minified files and loads blocked files in order
+* [Fix] [Pro] API secrets are redacted in Status-Based Order Tracking debug data
+* [Fix] [Pro] Server-side GA4 purchases no longer send source/medium parameters
+* [Fix] 404 tracking no longer reloads the page twice
+* [Update] JS error tracking
+* [Fix] [Pro] Edge case - sending Meta CAPI events for the second pixel are now properly gated when the first one is not available
+* [Fix] [Pro] Normalized phone number sent to Meta server-side
+* [Other] Restyling of unused event markers
 
 = 11.0.3 (04-11-2026) =
 

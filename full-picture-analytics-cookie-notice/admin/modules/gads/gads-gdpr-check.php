@@ -18,7 +18,7 @@ if ( $loading_status !== false ) {
 
 // Check Enh. Conv.
 
-if ( isset( $settings['enh_conv'] ) ) {
+if ( ! empty( $this->gtag['enh_conv'] ) ) {
 
     $add_section = true;
 

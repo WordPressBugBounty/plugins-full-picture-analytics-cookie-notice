@@ -20,7 +20,7 @@ switch( $section_id ){
 	// DATA COLLECTION
 
 	case 'fupi_ga41_basic':
-		$ret_text = '<p>' . esc_html__( 'These settings impact the amount and precision of collected data.', 'full-picture-analytics-cookie-notice') . '</p>';
+		$ret_text = '<p>' . esc_html__( 'These settings impact the amount and precision of collected data.', 'full-picture-analytics-cookie-notice') . '</p><p class="fupi_warning_text">' . esc_html__( 'You can enable Enhanced Conversions in the settings of the Google Tag module.', 'full-picture-analytics-cookie-notice' ) . '</p>';
 	break;
 
 	// EVENTS

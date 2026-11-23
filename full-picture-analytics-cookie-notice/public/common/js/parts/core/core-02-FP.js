@@ -265,6 +265,44 @@
         return urlParams.get(name);
     };
 
+    FP.getBrokenLinkReferrer = () => {
+        const referrer = document.referrer;
+
+        if ( ! referrer ) return 'direct_traffic_or_unknown';
+
+        try {
+            const url = new URL( referrer );
+            return ( url.origin + url.pathname ).slice( 0, 1000 );
+        } catch ( error ) {
+            return referrer.slice( 0, 1000 );
+        }
+    };
+
+    FP.getBrokenLinkRedirectUrl = ( target_url = '', referrer = '', current_url = '' ) => {
+        try {
+            const current = new URL( current_url || window.location.href );
+            let target;
+
+            if ( target_url ) {
+                const is_absolute = /^https?:\/\//i.test( target_url ),
+                    is_root_relative = target_url.charAt( 0 ) === '/' && target_url.charAt( 1 ) !== '/';
+
+                if ( ! is_absolute && ! is_root_relative ) return '';
+
+                target = new URL( target_url, current.origin );
+            } else {
+                target = new URL( current.href );
+            }
+
+            target.searchParams.set( 'broken_link_location', ( referrer || 'direct_traffic_or_unknown' ).slice( 0, 1000 ) );
+            target.searchParams.set( 'broken_link', current.href.slice( 0, 2000 ) );
+
+            return target.toString();
+        } catch ( error ) {
+            return '';
+        }
+    };
+
     FP.nl2Arr = nl => nl ? [].slice.call(nl) : false;
 
     FP.findID = (e, c) => {

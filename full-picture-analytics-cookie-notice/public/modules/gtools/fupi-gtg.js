@@ -13,9 +13,12 @@ FP.fns.ga4_set_g_ids = function(nr, type, ID) {
 	FP.setCookie( 'fp_ga_ids', JSON.stringify(ga_ids) );
 }
 
+
+
 function fupi_load_gads(){   
 	
-	var ga4_loaded = fp.loaded.includes('ga41'),
+	var ga41_loaded = fp.loaded.includes('ga41'),
+		ga42_loaded = fp.loaded.includes('ga42'),
 		gads_id = fp.gads.id,
 		ids_to_config = [ gads_id ];
 
@@ -25,9 +28,11 @@ function fupi_load_gads(){
 	}
 
 	ids_to_config.forEach( function( id ) {
-		if ( ! id || ( ga4_loaded && fp.ga41 && id === fp.ga41.id ) ) return;
+		if ( ! id ) return;
+		if ( ga41_loaded && ( id === fp.ga41.id || id === fp.ga41.id2 ) ) return;
+		if ( ga42_loaded && ( id === fp.ga42.id || id === fp.ga42.id2 ) ) return;
 
-		if ( fp.vars.gtag_enh_conv ) {
+		if ( fp.gtag?.enh_conv ) {
 			window.gtag( 'config', id, { 'allow_enhanced_conversions': true } );
 		} else {
 			window.gtag( 'config', id );
@@ -42,7 +47,7 @@ function fupi_load_ga4( nr ) {
 	var _ga = fp[ 'ga4' + nr ],
 		params = {};
 
-	if ( fp?.gads?.id && fp?.gads?.id == fp.ga41.id && fp.vars.gtag_enh_conv ) {
+	if ( fp?.gads?.id && fp?.gads?.id == _ga.id && fp.vars.gtag_enh_conv ) {
 		params.allow_enhanced_conversions = true;
 	}
 

@@ -16,15 +16,9 @@ switch( $section_id ){
 
 		<div id="fupi_installed_info" class="fupi_installation_status fupi_hidden">
 			<img src="' . FUPI_URL . 'admin/assets/img/success_ico.png" aria-hidden="true"> <p>' . esc_html__( 'Google Ads is installed', 'full-picture-analytics-cookie-notice' ) . '</p>
-		</div>' . $how_to_useit;
+		</div>' . $how_to_useit . '<p style="text-align: center;">' . esc_html__( 'You can enable Enhanced Conversions in the settings of the Google Tag module.', 'full-picture-analytics-cookie-notice' ) . '</p>';
 	break;
 
-	// PRIVACY
-
-	case 'fupi_gads_basic':
-		$ret_text = '<p>' . esc_html__( 'These settings impact the amount and precision of collected data.', 'full-picture-analytics-cookie-notice') . '</p>';
-	break;
-		
 	// EVENTS
 
 	case 'fupi_gads_events':

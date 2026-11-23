@@ -520,18 +520,21 @@
 	&:hover, &:focus{
 		background-color: #fff;
 	}
-	&:before{
-		content: "\f153";
-		font-family: 'dashicons';
-		color: #b6801e;
-		border-radius: 20px;
-		font-size: 20px;
-		width: 20px;
-		height: 20px;
-		line-height: 1em;
+	&:not(.fupi_trigger_used_in_evt){
+		padding: 2px 2px 2px 8px;
+		&:after{
+			content: var(--fupi-set-up-text);
+			color: red;
+			font-size: 13px;
+			padding-right: 8px;
+			line-height: 1em;
+		}
 	}
 	&.fupi_trigger_used_in_evt:before{
 		content: "\f12a";
+		font-size: 20px;
+		width: 20px;
+		height: 20px;
 		font-family: 'dashicons';
 		color: #146a9d;
 	}

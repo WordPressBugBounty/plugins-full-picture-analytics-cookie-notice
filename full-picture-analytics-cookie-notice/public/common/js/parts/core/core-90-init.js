@@ -100,9 +100,37 @@
 
     // BROKEN LINK TRACKING
 
-    if ( fp.track.track404 && fpdata.page_type == "404" && ! FP.getUrlParamByName("broken_link_location") ){
-        const location = fp.track.redirect404_url ? new URL( fp.track.redirect404_url ) : window.location;
-        window.location = location + ( location.search ? "&" : "?" ) + "broken_link_location=" + ( document.referrer || "direct_traffic_or_unknown" ) + "&broken_link=" + window.location;
+    if ( fp.track.track404 && fpdata.page_type == "404" &&
+        ! FP.getUrlParamByName( "broken_link_location" ) &&
+        ! FP.getUrlParamByName( "broken_link" ) ) {
+
+        const redirect_url = FP.getBrokenLinkRedirectUrl(
+            fp.track.redirect404_url,
+            FP.getBrokenLinkReferrer(),
+            window.location.href
+        );
+
+        if ( redirect_url ) {
+            if ( fp.track.redirect404_url ) {
+                let redirected_recently;
+
+                try {
+                    const last = Number( window.sessionStorage.getItem( 'fp_404_redirect_ts' ) || 0 );
+                    redirected_recently = last > 0 && Date.now() - last < 10000;
+                    if ( ! redirected_recently ) window.sessionStorage.setItem( 'fp_404_redirect_ts', String( Date.now() ) );
+                } catch {
+                    redirected_recently = false;
+                }
+
+                if ( ! redirected_recently ) window.location.replace( redirect_url );
+            } else {
+                try {
+                    window.history.replaceState( null, '', redirect_url );
+                } catch ( error ) {
+                    window.location.replace( redirect_url );
+                }
+            }
+        }
     }
 
     // LOAD SCRIPTS

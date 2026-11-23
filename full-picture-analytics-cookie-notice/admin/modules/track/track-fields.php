@@ -181,8 +181,20 @@ $sections = array(
 				'el_class'			=> 'fupi_condition',
 				'el_data_target'	=> 'fupi_redirect_404_opt',
 				'option_arr_id'		=> $option_arr_id,
-				'under_field'		=> '<p>' . sprintf( esc_html__( 'Every time someone lands on a 404 page, WP Full Picture will add extra parameter to its URL with the location of the broken link. %1$sLearn more%2$s','full-picture-analytics-cookie-notice'), '<a href="https://wpfullpicture.com/support/documentation/how-to-track-broken-links/" target="_blank">', '</a>' ) . '</p>',
+				'under_field'		=> '<p>' . sprintf( esc_html__( 'Every time someone clicks a broken link, WP Full Picture will add extra information to the URL saying where the click originated from. You can check this information in your analytics tool. %1$sLearn more%2$s','full-picture-analytics-cookie-notice'), '<a href="https://wpfullpicture.com/support/documentation/how-to-track-broken-links/" target="_blank">', '</a>' ) . '</p>',
 			),
+				array(
+					'type' 				=> 'text',
+					'label' 			=> esc_html__( 'Use custom 404 page:', 'full-picture-analytics-cookie-notice' ),
+					'field_id' 			=> 'redirect_404',
+					'class'				=> 'fupi_sub fupi_disabled fupi_redirect_404_opt fupi_adv',
+					'placeholder'		=> 'Absolute or site-relative URL of a custom 404 page (e.g. /404/)',
+					'must_have'			=> 'pro',
+					'option_arr_id'		=> $option_arr_id,
+					'label_for' 		=> $option_arr_id . '[redirect_404]',
+					'offscreen_warning'			=> '<p>' . esc_html__('Remember to noindex your custom 404 page from Google search results with your SEO plugin.','full-picture-analytics-cookie-notice') . '</li>
+						</ol>',
+				),
 			array(
 				'type'	 			=> 'r3',
 				'label' 			=> esc_html__( 'Prevent attributing conversions to payment gateways', 'full-picture-analytics-cookie-notice' ),
@@ -358,18 +370,6 @@ $sections = array(
 				'under_field'		=> '<p>' . esc_html__('Supported by: Google Analytics, Matomo and GTM.','full-picture-analytics-cookie-notice') . '</p>
 				<p style="color: red">' . esc_html__('Do not enable this option if authors of content of your site have administrator rights. This will expose their IDs making attacks easier. Don\'t help attackers hack your site.', 'full-picture-analytics-cookie-notice') . '</p>',
 			),
-				array(
-					'type' 				=> 'text',
-					'label' 			=> esc_html__( 'Use custom 404 page:', 'full-picture-analytics-cookie-notice' ),
-					'field_id' 			=> 'redirect_404',
-					'class'				=> 'fupi_sub fupi_disabled fupi_redirect_404_opt fupi_adv',
-					'placeholder'		=> 'URL of a custom 404 page',
-					'must_have'			=> 'pro',
-					'option_arr_id'		=> $option_arr_id,
-					'label_for' 		=> $option_arr_id . '[redirect_404]',
-					'offscreen_warning'			=> '<p>' . esc_html__('Remember to noindex your custom 404 page from Google search results with your SEO plugin.','full-picture-analytics-cookie-notice') . '</li>
-						</ol>',
-				),
 			array(
 				'type'	 			=> 'taxonomies_multi_checkbox',
 				'label' 			=> esc_html__( 'Track terms of these taxonomies', 'full-picture-analytics-cookie-notice' ),
